@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<style type="text/css">
+			/* Las etiquetas 'p' justo despues de un 'div'  
+			   tienen el color del texto verde */
+			div+p { color:rgb(0, 255 ,0); }
+		</style>
+    </head>
+    <body>
+    	<div>Etiqueta 'div' normal</div>
+        <!-- El selector funciona porque la etiqueta p se encuentra justo despues que la etiqueta div -->
+        <p>Etiqueta 'p' normal justo despues de una etiqueta 'div'</p>
+        <!-- El selector NO funciona porque la etiqueta p se encuentra dentro que la etiqueta div -->
+        <div><p>Etiqueta 'p' dentro de una etiqueta 'div'</p></div>
+    </body>
+</html>

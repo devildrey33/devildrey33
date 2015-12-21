@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">	
+			/* Propiedades para la transición comunes para todos los objetos */
+			.Transicion {
+				-webkit-transition-property:color, background-color;
+				-webkit-transition-duration:5s;
+				transition-property:color, background-color;
+				transition-duration:5s;
+				border-radius:50px;
+				display:table-cell;    /* Necesario para centrar verticalemte el texto */
+				vertical-align:middle; /* Centrar verticalmente el contenido */
+				text-align:center;     /* Centrar horizontalmente el texto */
+				width:100px;
+				height:100px;
+				background-color:#00C;
+				color:#FFF;
+			}
+			/* Valores que debe adquirir la transición al pasar por encima el mouse */
+			.Transicion:hover {
+				background-color:#FF0;
+				color:#F00;
+			}
+		</style>
+	</head>
+	<body>
+        <p>El circulo cambia el color del fondo y del texto al pasar el mouse por encima.</p>
+        <p><b>NOTA : </b> Este ejemplo no funciona en Internet Explorer 9 e inferiores!</p>
+    	<div class='Transicion'>
+        	Texto
+        </div>
+	</body>
+</html>

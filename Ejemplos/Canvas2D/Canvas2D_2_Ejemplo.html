@@ -1,0 +1,73 @@
+<html>
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Canvas tutorial</title>
+
+		<script type="text/javascript">
+// -[INICIO devildrey33.variables]-
+// Variables globales
+var Temporizador2 = 0; // ID del Temporizador2
+var Context;          // Contexto gráfico
+var PosX = 5;         // Posición X del texto
+var PosY = 32;        // Posición Y del texto
+var PosTexto = 0;     // Caracter actual
+var Texto = "";       // Cadena de texto a animar
+// -[FIN devildrey33.variables]-
+
+// -[INICIO devildrey33.AnimarTexto]-
+// Función que inicia la animación
+function AnimarTexto(Txt) {
+	clearInterval(Temporizador2);
+	var Canvas = document.getElementById("canvas");
+	if (Canvas.getContext) { Context = Canvas.getContext("2d");                          }
+	else                   { alert("Tu navegador no soporta el objeto canvas!"); return; }
+	PosX = 5;
+	PosY = 32;
+	PosTexto = 0;
+	Texto = Txt;
+	Context.fillStyle = "rgb(0, 0, 0)";
+	Context.fillRect(0, 0, Context.canvas.width, Context.canvas.height);
+	Context.font = 'normal 400 32px sans-serif';
+	Temporizador2 = setInterval("PintarCaracter()", 100);
+}
+// -[FIN devildrey33.AnimarTexto]-
+
+// -[INICIO devildrey33.PintarCaracter]-
+// Función que pinta un caracter del texto
+// NOTA si se encuentra un salto de linea, calcula la posicion de la nueva linea.
+function PintarCaracter() {
+	// Si llegamos al final del texto desactivamos el Temporizador2 y salimos
+	if (PosTexto == Texto.length) {
+		clearInterval(Temporizador2);
+		return;
+	}
+	Caracter = Texto.charAt(PosTexto ++);
+	// Si el caracter es un salto de linea ajustamos la posición y salimos
+	if (Caracter == "\n" || Caracter.charCodeAt(0) == 13) {
+		PosY += 32;
+		PosX = 5;
+		return;
+	}
+	// Pintamos el caracter actual con un color aleatorio
+	else {
+		// Creamos un color aleatorio
+		ColR = Math.round(200 * Math.random()) + 55;
+		ColG = Math.round(200 * Math.random()) + 55;
+		ColB = Math.round(200 * Math.random()) + 55;
+		Context.strokeStyle = "rgb(" + ColR + ", " + ColG + ", " + ColB + ")";
+		// Pintamos el borde del caracter actual
+		Context.strokeText(Caracter, PosX, PosY);
+		// Medimos el caracter actual y sumamos su tamaño a la posición X
+		Tam = Context.measureText(Caracter);
+		PosX += Tam.width;
+	}
+}
+// -[FIN devildrey33.PintarCaracter]-
+		</script>
+	</head>
+	<body onLoad="AnimarTexto('Texto animado carácter a carácter\nCada carácter tiene un color distinto\nY puede tener varias líneas.')">
+		<canvas id="canvas" width="600" height="200"></canvas>
+        <br />
+        <a href="javascript:AnimarTexto('Texto animado carácter a carácter\nCada carácter tiene un color distinto\nY puede tener varias líneas.')">Iniciar animación</a>
+	</body>
+</html>

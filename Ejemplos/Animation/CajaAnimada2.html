@@ -1,0 +1,141 @@
+<!-- Ejemplo de transformaciones 3D solo con CSS -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			#Vista {
+				width:48em;
+				height:30em;
+				margin:0 auto;
+				-webkit-perspective:1200px;
+				-webkit-perspective-origin: 50% 10%;
+				-moz-perspective: 1200px;
+				-moz-perspective-origin: 50% 10%;
+				perspective: 1200px;
+				perspective-origin: 50% 10%;
+			}
+			
+			#Prespectiva {
+				-webkit-transform-style: preserve-3d;
+				-moz-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+				-webkit-animation:APerspectiva 50s linear infinite;
+			}
+			
+			.Pieza_Delantera, .Pieza_Trasera, .Pieza_Derecha, .Pieza_Izquierda, .Pieza_Superior, .Pieza_Inferior {
+				position:absolute;
+			}
+			.Pieza_Superior {
+				top:0;
+				left:4em;
+				width:18em;
+				height:4em;
+				background-color:#C00;
+				-webkit-transform:rotateX(-90deg);
+				-webkit-transform-origin: bottom left;
+				-webkit-animation:APieza_Superior 2s ease infinite alternate;
+			}
+			
+			.Pieza_Trasera {
+				top:4em;
+				left:4em;
+				width:18em;
+				height:18em;
+				background-color:#A00;
+			}
+            
+			.Pieza_Izquierda {
+				top:4em;
+				left:0;
+				width:4em;
+				height:18em;
+				background-color:#C00;
+				-webkit-transform-origin:right bottom;
+				-webkit-transform:rotateY(90deg);
+				-webkit-animation:APieza_Izquierda 2s ease infinite alternate;
+			}
+
+			.Pieza_Delantera {
+				top:0em;
+				left:4em;
+				width:18em;
+				height:18em;
+				background-color:#F00;
+				-webkit-transform-origin:left bottom;
+				-webkit-transform:rotateY(-90deg);
+				-webkit-animation:APieza_Derecha 2s ease infinite alternate;
+			}
+			
+			.Pieza_Derecha {
+				top:4em;
+				left:22em;
+				width:4em;
+				height:18em;
+				background-color:#C00;
+				-webkit-transform-style: preserve-3d;
+				-webkit-transform-origin: left bottom;
+				-webkit-transform:rotateY(-90deg);
+				-webkit-animation:APieza_Derecha 2s ease infinite alternate;
+			}
+
+			.Pieza_Inferior {
+				top:22em;
+				left:4em;
+				width:18em;
+				height:4em;
+				background-color:#C00;
+				-webkit-transform-origin: left top;
+				-webkit-transform:rotateX(90deg);
+				-webkit-animation:APieza_Inferior 2s ease infinite alternate;
+			}
+
+			#Cuerpo {
+				width:48em;
+				height:30em;
+			}
+			
+			@-webkit-keyframes APieza_Izquierda { 
+				from { -webkit-transform: rotateY(0deg); } 
+				to { -webkit-transform: rotateY(90deg);  } 
+			}
+			/* Este keyframe sirve tanto para la pieza derecha como para la
+			   delantera ya que esta va enganchada con la derecha */
+			@-webkit-keyframes APieza_Derecha { 
+				from { -webkit-transform: rotateY(0deg); } 
+				to { -webkit-transform: rotateY(-90deg); } 
+			}
+			@-webkit-keyframes APieza_Superior { 
+				from { -webkit-transform: rotateX(0deg); } 
+				to { -webkit-transform: rotateX(-90deg); } 
+			}
+			@-webkit-keyframes APieza_Inferior { 
+				from { -webkit-transform: rotateX(0deg); } 
+				to { -webkit-transform: rotateX(90deg);  } 
+			}
+			@-webkit-keyframes APerspectiva { 
+				from { -webkit-transform:rotateX(-10deg) rotateY(0deg); } 
+				to { -webkit-transform:rotateX(-10deg) rotateY(-360deg);  } 
+			}
+		
+		</style>
+    	<!-- Código javascript -->
+		<script type="text/javascript">
+		</script>
+	</head>
+    <body>
+        <div id="Vista">
+            <div id="Prespectiva">
+                <div id="Cuerpo">
+                    <div class='Pieza_Superior'></div>
+                    <div class='Pieza_Izquierda'></div>
+                    <div class='Pieza_Trasera'></div>
+                    <div class='Pieza_Derecha'>
+	                    <div class='Pieza_Delantera'></div>
+                    </div>
+                    <div class='Pieza_Inferior'></div>
+                </div>
+            </div>
+        </div>    	
+	</body>
+</html>

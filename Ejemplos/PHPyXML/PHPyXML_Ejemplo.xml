@@ -1,0 +1,25 @@
+<Contenidos>
+    <Entrada Nombre="Utilizar archivos XML con PHP" Dia="10" Mes="Octubre" Any="2011" URL="PHPyXML.php" />
+    <Entrada Nombre="Crear servidor web de pruebas portatil" Dia="07" Mes="Octubre" Any="2011" URL="XamppUSB.php" />
+    <Entrada Nombre="Creación de feeds RSS" Dia="06" Mes="Octubre" Any="2011" URL="FeedsRSS.php" />
+    <Entrada Nombre="C++ 4 Creación de archivos DUMP" Dia="05" Mes="Octubre" Any="2011" URL="Tutorial_WINAPI_4.php" />
+    <Entrada Nombre="ComboBox para la web" Dia="04" Mes="Octubre" Any="2011" URL="ComboBoxWeb.php" />
+
+	<Categoria Nombre='Cpp'>
+		<EntradaCategoria Nombre="C++ 4 Creación de archivos DUMP" />	
+	</Categoria>
+	<Categoria Nombre='PHP'>
+		<EntradaCategoria Nombre="Utilizar archivos XML con PHP" />	
+		<EntradaCategoria Nombre="ComboBox para la web" />	
+	</Categoria>
+	<Categoria Nombre='Windows'>
+		<EntradaCategoria Nombre="Crear servidor web de pruebas portatil" />	
+		<EntradaCategoria Nombre="Tutorial C++ 4 Creación de archivos DUMP" />	
+	</Categoria>
+	<Categoria Nombre='Web'>
+		<EntradaCategoria Nombre="Utilizar archivos XML con PHP" />	
+		<EntradaCategoria Nombre="Crear servidor web de pruebas portatil" />	
+		<EntradaCategoria Nombre="Creación de feeds RSS" />	
+		<EntradaCategoria Nombre="ComboBox para la web" />	
+	</Categoria>
+</Contenidos>

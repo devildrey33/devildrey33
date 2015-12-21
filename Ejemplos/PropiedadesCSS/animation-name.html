@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+            /* Animación */
+            .ObjetoAnimado {
+				width:150px;
+				height:150px;
+				background-color:#09C;
+				animation-name:MiAnimacion;
+				animation-duration:10s; /* Si no especificamos la duración, por defecto es 0 */
+				/* Safari y Chrome */
+				-webkit-animation-name:MiAnimacion;
+				-webkit-animation-duration:10s;
+            }
+            
+            /* Animación para Chrome y Safari */    
+            @-webkit-keyframes MiAnimacion {
+                0%   { border-radius:0px; }           /* Al principio de la animación */
+                100% { border-radius:75px; }          /* Al final de la animación */
+            }
+            
+            
+            /* Animación para todos */    
+            @keyframes MiAnimacion {
+                0%   { border-radius:0px; }           /* Al principio de la animación */
+                100% { border-radius:75px; }          /* Al final de la animación */
+            }            
+		</style>
+    	<!-- Código javascript -->
+		<script type="text/javascript">
+		</script>
+	</head>
+	<body>
+        <p><b>NOTA : </b> Este ejemplo no funciona en Internet Explorer 9 e inferiores!</p>
+        <div class='ObjetoAnimado'></div>
+	</body>
+</html>

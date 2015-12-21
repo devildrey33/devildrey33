@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+            /* Div que simula un cuerpo de 2000 pixeles de ancho para ver el scroll */
+            .Cuerpo {
+                height:2000px;
+            }
+			.Objeto {
+				background-color:#06C;	
+				width:100px;
+				height:100px;
+				opacity:0.8;
+			}
+		</style>
+        <script type="text/javascript">
+        	function CambiarPosition() {
+				var Combo = document.getElementById("CbPosition");
+				var Objeto = document.getElementsByClassName("Objeto").item(0);
+				Objeto.style.position = Combo.options[Combo.selectedIndex].innerHTML;
+				Objeto.style.top = document.getElementById("TxTop").value;
+				Objeto.style.left = document.getElementById("TxLeft").value;
+			}
+		</script>
+	</head>
+	<body>
+        <div class='Cuerpo'>
+            <div class='Objeto'></div>
+            <table>
+            	<tr>
+                	<td><b>static</b></td>
+                    <td>El elemento se posiciona ordenadamente según el flujo de datos, de arriba a abajo. No se puede mover el elemento.</td>
+                </tr>
+            	<tr>
+                	<td><b>absolute</b></td>
+                    <td>
+                    	El elemento se posiciona relativamente a su primer padre que no sea estatico, 
+                        y se puede colocar en cualquier parte del documento.
+                    </td>
+                </tr>
+            	<tr>
+                	<td><b>fixed</b></td>
+                    <td>
+                    	El elemento se posiciona relativamente a la ventana del navegador.<br />
+                    	(para este ejemplo la ventana del navegador representa unicamente la parte inferior, 
+                        y no el código de la parte superior, ya que se está mostrando con un iframe)
+                    </td>
+                </tr>
+            	<tr>
+                	<td><b>relative</b></td>
+                    <td>
+                    	El elemento se posiciona relativamente a su posicion original, 
+                    	con la diferencia que podemos moverlo a partir de esa posición.
+                    </td>
+                </tr>
+            </table>
+            <select id='CbPosition' onChange="CambiarPosition()">
+                <option value ="0">static</option>
+                <option value ="1">absolute</option>
+                <option value ="2">fixed</option>
+                <option value ="3">relative</option>
+            </select>
+            top
+            <input type="text" id='TxTop' value="0px" onkeyup="CambiarPosition()" />; 
+            left
+            <input type="text" id='TxLeft' value="0px" onkeyup="CambiarPosition()" />; 
+            <br />
+            <span>
+            	<b>NOTA</b> : Puede parecer que fixed y absolute hacen lo mismo, pero si usais el scroll vertical, vereis la diferencia.
+            </span>
+
+        </div>
+	</body>
+</html>

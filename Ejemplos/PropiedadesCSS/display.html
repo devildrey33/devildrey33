@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+            span, div { border:1px dashed #999; }
+        </style>
+        <script>
+            function CambiarDisplay(Etiqueta) {
+                var Combo = document.getElementById("Display_" + Etiqueta);
+				var Etiquetas = document.getElementsByTagName(Etiqueta);
+				for (var i = 0; i < Etiquetas.length; i++) {
+	                Etiquetas.item(i).style.display = Combo.options[Combo.selectedIndex].innerHTML;
+				}
+            }
+        </script>
+    </head>
+	<body>
+    	<p>
+        	<code>span { display:</code>
+            <select id='Display_span' onChange="CambiarDisplay('span')">
+                <option>none</option>
+                <option>block</option>
+                <option selected='selected'>inline</option>
+                <option>inline-block</option>
+            </select>
+        	<code>; }</code>
+        </p>
+    
+		<span>Etiqueta &lt;span&gt; número 1.</span>
+		<span>Etiqueta &lt;span&gt; número 2.</span>
+		<span>Etiqueta &lt;span&gt; número 3.</span>
+		<span>Etiqueta &lt;span&gt; número 4.</span>
+		<span>Etiqueta &lt;span&gt; número 5.</span>
+		<span>Etiqueta &lt;span&gt; número 6.</span>
+		<span>Etiqueta &lt;span&gt; número 7.</span>
+		<span>Etiqueta &lt;span&gt; número 8.</span>
+		<span>Etiqueta &lt;span&gt; número 9.</span>
+		<span>Etiqueta &lt;span&gt; número 10.</span>
+		<span>Etiqueta &lt;span&gt; número 11.</span>
+		<span>Etiqueta &lt;span&gt; número 12.</span>
+		<span>Etiqueta &lt;span&gt; número 13.</span>
+		<span>Etiqueta &lt;span&gt; número 14.</span>
+		<span>Etiqueta &lt;span&gt; número 15.</span>
+		<span>Etiqueta &lt;span&gt; número 16.</span>
+
+    	<p>
+        	<code>div { display:</code>
+            <select id='Display_div' onChange="CambiarDisplay('div')">
+                <option>none</option>
+                <option selected='selected'>block</option>
+                <option>inline</option>
+                <option>inline-block</option>
+            </select>
+        	<code>; }</code>
+        </p>
+    
+		<div>Etiqueta &lt;div&gt; número 1.</div>
+		<div>Etiqueta &lt;div&gt; número 2.</div>
+		<div>Etiqueta &lt;div&gt; número 3.</div>
+		<div>Etiqueta &lt;div&gt; número 4.</div>
+		<div>Etiqueta &lt;div&gt; número 5.</div>
+		<div>Etiqueta &lt;div&gt; número 6.</div>
+		<div>Etiqueta &lt;div&gt; número 7.</div>
+		<div>Etiqueta &lt;div&gt; número 8.</div>
+		<div>Etiqueta &lt;div&gt; número 9.</div>
+		<div>Etiqueta &lt;div&gt; número 10.</div>
+		<div>Etiqueta &lt;div&gt; número 11.</div>
+		<div>Etiqueta &lt;div&gt; número 12.</div>
+		<div>Etiqueta &lt;div&gt; número 13.</div>
+		<div>Etiqueta &lt;div&gt; número 14.</div>
+		<div>Etiqueta &lt;div&gt; número 15.</div>
+		<div>Etiqueta &lt;div&gt; número 16.</div>
+	</body>
+</html>

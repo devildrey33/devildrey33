@@ -1,0 +1,60 @@
+<!doctype>
+<html>
+	<head>
+    	<style>
+
+			.Pers {
+				-webkit-perspective: 500px;
+				perspective: 500px;
+				display:table;
+				margin-left:auto;
+				margin-right:auto;
+			}
+
+			BotonCarga {
+				transform-style:preserve-3d;
+				display:table;
+				transition:0.2s;
+				-webkit-transform:rotateX(0deg);
+				transform:rotateX(0deg);
+				background:red;
+				position:relative;
+				padding:10px 40px;
+			}
+			
+			BotonCarga:active {
+				-webkit-transform:rotateX(60deg);
+				transform:rotateX(60deg);
+			}
+			
+			BotonCarga > span {
+			}
+			
+			BotonCarga > div {
+				position:absolute;
+				-webkit-transform:rotateX(90deg) translateZ(0px) translateY(-10px) translateX(-40px);
+				background:blue;
+				z-index:10;
+				height:20px;
+				width:100%;
+			}
+			
+			@keyframes Animacion {
+				from  	{ }
+				to 		{ }
+			}
+			
+        </style>
+    </head>
+    <body>
+    	<br /><br /><br />
+        
+        <div class='Pers'>
+        <BotonCarga>
+        	<span>Boton</span>
+            <div></div>
+        </BotonCarga>
+        
+        </div>
+    </body>
+</html>

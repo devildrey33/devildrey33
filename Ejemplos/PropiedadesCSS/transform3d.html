@@ -1,0 +1,364 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [23/12/2013] para devildrey33.es -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			input {
+				max-height:16px;
+			}
+			
+			body {
+				background-color:#DDD;
+			}
+			
+			#MarcoOpciones {
+				background-color:#FFF;
+				width:470px;
+				display:table;
+				padding:4px 0px 4px 6px;
+				border:1px solid #CCC;
+				z-index:1000;
+				opacity:0.9;
+                position:absolute;
+                right:0px;
+			}
+			#MarcoOpciones * {
+				vertical-align:top;
+			}
+			#MarcoOpciones .TextoLinea1 {
+				width:160px;
+				display:inline-block;
+			}
+			#MarcoOpciones .TextoLinea2 {
+				width:140px;
+				display:inline-block;
+			}
+			#MarcoOpciones .Valor {
+				width:70px;
+				display:inline-block;
+			}
+			
+			hr {
+				border:none;
+				border-bottom:1px solid #CCC;
+				margin-right:6px;
+			}
+			
+			.Tab1 { margin-left:20px; }
+			.Tab2 { margin-left:40px; }
+			
+			#Contenedor {
+				position:absolute;
+				width:400px;
+				margin:130px 130px;
+				z-index:0;			
+			}
+			
+			#Objeto {
+				-webkit-transform-style:preserve-3d;
+				transform-style:preserve-3d;	
+				z-index:0;			
+			}
+			
+			#Objeto, #ObjetoFro, #ObjetoSu, #ObjetoIn, #ObjetoIz, #ObjetoDe, #ObjetoTra {
+				width:400px;
+				height:400px;
+			}
+			
+			#ObjetoFro, #ObjetoSu, #ObjetoIn, #ObjetoIz, #ObjetoDe, #ObjetoTra {
+				background-color:#210;
+				background-image:url('http://img.devildrey33.es/logo400.png');
+				position:absolute;
+			}
+			
+			#ObjetoFro { 
+				-webkit-transform:translateZ(200px);
+				transform:translateZ(200px);
+			
+			}
+			
+			#ObjetoSu { 
+				-webkit-transform: rotateX(90deg) translateZ(200px);
+				transform:rotateX(90deg) translateZ(200px);
+			}
+
+			#ObjetoIn { 
+				-webkit-transform: rotateX(-90deg) translateZ(200px);
+				transform:rotateX(-90deg) translateZ(200px);
+			}
+			
+			#ObjetoIz { 
+				-webkit-transform: rotateY(-90deg) translateZ(200px);
+				transform: rotateY(-90deg) translateZ(200px);
+			}
+			
+			#ObjetoDe { 
+				-webkit-transform: rotateY(90deg) translateZ(200px);
+				transform: rotateY(90deg) translateZ(200px);
+			}
+			
+			#ObjetoTra { 
+				-webkit-transform: rotateX(-180deg) translateZ(200px);
+				transform:rotateX(-180deg) translateZ(200px);
+			}
+			
+		</style>
+	    <script type="text/javascript">
+			function ActualizarTodo() {
+				ActualizarContenedor();
+				ActualizarTransform();
+				ActualizarTransformOrigin();
+				ActualizarTransformStyle();
+			}
+			
+			
+			function ActualizarContenedor() {
+				var Perspectiva = parseInt(document.getElementById("ContenedorPerspectiva").value);
+				var OrigenX = parseInt(document.getElementById("ContenedorOriginX").value);
+				var OrigenY = parseInt(document.getElementById("ContenedorOriginY").value);
+
+				document.getElementById("ContenedorPerspectiva_Valor").innerHTML = Perspectiva + "px";
+				document.getElementById("ContenedorOriginX_Valor").innerHTML = OrigenX;
+				document.getElementById("ContenedorOriginY_Valor").innerHTML = OrigenY;
+				
+				document.getElementById("Contenedor").style.perspective = Perspectiva + "px";
+				document.getElementById("Contenedor").style.webkitPerspective = Perspectiva + "px";				
+				document.getElementById("Contenedor").style.perspectiveOrigin = OrigenX + "% " + OrigenY + "%";
+				document.getElementById("Contenedor").style.webkitPerspectiveOrigin = OrigenX + "% " + OrigenY + "%";				
+
+			}
+			
+			function ActualizarTransform() {
+				var Perspectiva = parseInt(document.getElementById("ObjetoPerspectiva").value);
+				var TranslateX = parseInt(document.getElementById("ObjetoTranslateX").value);
+				var TranslateY = parseInt(document.getElementById("ObjetoTranslateY").value);
+				var TranslateZ = parseInt(document.getElementById("ObjetoTranslateZ").value);
+				var ScaleX = parseFloat(document.getElementById("ObjetoScaleX").value);
+				var ScaleY = parseFloat(document.getElementById("ObjetoScaleY").value);
+				var ScaleZ = parseFloat(document.getElementById("ObjetoScaleZ").value);
+				var Rotate3DX = parseInt(document.getElementById("ObjetoRotate3DX").value);
+				var Rotate3DY = parseInt(document.getElementById("ObjetoRotate3DY").value);
+				var Rotate3DZ = parseInt(document.getElementById("ObjetoRotate3DZ").value);
+				var RotateAngulo = parseInt(document.getElementById("ObjetoRotate3DAngulo").value);
+				var RotateX = parseInt(document.getElementById("ObjetoRotateX").value);
+				var RotateY = parseInt(document.getElementById("ObjetoRotateY").value);
+				var RotateZ = parseInt(document.getElementById("ObjetoRotateZ").value);
+
+				document.getElementById("ObjetoPerspectiva_Valor").innerHTML = Perspectiva + " px";
+				document.getElementById("ObjetoTranslateX_Valor").innerHTML = TranslateX + " px";
+				document.getElementById("ObjetoTranslateY_Valor").innerHTML = TranslateY + " px";
+				document.getElementById("ObjetoTranslateZ_Valor").innerHTML = TranslateZ + " px";
+				document.getElementById("ObjetoScaleX_Valor").innerHTML = ScaleX;
+				document.getElementById("ObjetoScaleY_Valor").innerHTML = ScaleY;
+				document.getElementById("ObjetoScaleZ_Valor").innerHTML = ScaleZ;
+				document.getElementById("ObjetoRotate3DX_Valor").innerHTML = Rotate3DX;
+				document.getElementById("ObjetoRotate3DY_Valor").innerHTML = Rotate3DY;
+				document.getElementById("ObjetoRotate3DZ_Valor").innerHTML = Rotate3DZ;
+				document.getElementById("ObjetoRotateAngulo3D_Valor").innerHTML = RotateAngulo + " deg";
+				document.getElementById("ObjetoRotateX_Valor").innerHTML = RotateX + " deg";
+				document.getElementById("ObjetoRotateY_Valor").innerHTML = RotateY + " deg";
+				document.getElementById("ObjetoRotateZ_Valor").innerHTML = RotateZ + " deg";
+				
+				Resultado = "perspective(" + Perspectiva + "px) " + 
+							"translate3d(" + TranslateX + "px, " + TranslateY + "px, " + TranslateZ + "px) " +
+							"scale3d(" + ScaleX + ", " + ScaleY + ", " + ScaleZ + ") " +
+							"rotateX(" + RotateX + "deg) " +
+							"rotateY(" + RotateY + "deg) " +
+							"rotateZ(" + RotateZ + "deg) " +
+							"rotate3d(" + Rotate3DX + ", " + Rotate3DY + ", " + Rotate3DZ + ", " + RotateAngulo + "deg)";
+				
+				document.getElementById("Objeto").style.webkitTransform = Resultado;				
+				document.getElementById("Objeto").style.transform = Resultado;
+			}
+			
+			function ActualizarTransformOrigin() {
+				var X = parseInt(document.getElementById("ObjetoOriginX").value);
+				var Y = parseInt(document.getElementById("ObjetoOriginY").value);
+				var Z = parseInt(document.getElementById("ObjetoOriginZ").value);
+				document.getElementById("ObjetoOriginX_Valor").innerHTML = X + " %";
+				document.getElementById("ObjetoOriginY_Valor").innerHTML = Y + " %";
+				document.getElementById("ObjetoOriginZ_Valor").innerHTML = Z + " px";
+				document.getElementById("Objeto").style.transformOrigin = X + "% " + Y + "% " + Z + "px";
+				document.getElementById("Objeto").style.webkitTransformOrigin = X + "% " + Y + "% " + Z + "px";
+			}
+			
+			function ActualizarTransformStyle() {
+				var Combo = document.getElementById("ChTransformStyle");
+				document.getElementById("Objeto").style.transformStyle = Combo.options[Combo.selectedIndex].innerHTML;
+				document.getElementById("Objeto").style.webkitTransformStyle = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+			
+			function AnimarAngulo() {
+				if (document.getElementById("Animacion")) {
+					if (document.getElementById("Animacion").checked) {
+						Objeto = document.getElementById("ObjetoRotate3DAngulo");
+						if (Objeto.value == 180) 	
+							Objeto.value = -180;
+						else																
+							Objeto.value = parseFloat(Objeto.value) + 1;
+						ActualizarTransform();
+						setTimeout(function() { AnimarAngulo() }, (1000 / 60));
+					}
+				}
+			}
+			
+        </script>
+	</head>
+	<body onLoad="ActualizarTodo()">
+        <div id='Contenedor'>
+        	<div id='Objeto'>
+            	<div id='ObjetoFro'></div>
+            	<div id='ObjetoSu'></div>
+            	<div id='ObjetoIn'></div>
+            	<div id='ObjetoDe'></div>
+            	<div id='ObjetoIz'></div>
+            	<div id='ObjetoTra'></div>
+            </div>
+        </div>
+
+    	<div id='MarcoOpciones'>
+            <div><code>#Contenedor {</code></div>
+            <div class='Tab1'>
+                <code class='TextoLinea1'>perspective</code><code>:</code>
+                <code class='Valor' id='ContenedorPerspectiva_Valor'>1500</code>
+                <input id='ContenedorPerspectiva' type="range" min="0" max="6000" value="0" title='Perspectiva del contenedor' onchange="ActualizarContenedor()"> 
+                <code>;</code>
+            </div>
+            <div class='Tab1'>
+                <code class='TextoLinea1'>perspective-origin</code><code>:</code>
+                <code class='Valor' id='ContenedorOriginX_Valor'>50</code>
+                <input id='ContenedorOriginX' type="range" min="0" max="100" value="50" title='perspective-origin X' onchange="ActualizarContenedor()"> 
+                <code>,</code>
+            </div>
+            <div class='Tab1'>
+                <code class='TextoLinea1'>&nbsp;</code><code>&nbsp;</code>
+                <code class='Valor' id='ContenedorOriginY_Valor'>50</code>
+                <input id='ContenedorOriginY' type="range" min="0" max="100" value="50" title='perspective-origin Y' onchange="ActualizarContenedor()">  
+                <code>;</code>
+            </div>
+            <div><code>}</code></div>
+            <hr />
+            <div><code>#Objeto {</code></div>
+            <div class='Tab1'><code>transform :</code></div>
+            <div class='Tab2'>
+                <code class='TextoLinea2'>perspective</code><code>(</code>
+                <code class='Valor' id='ObjetoPerspectiva_Valor'>0</code>
+                <input id='ObjetoPerspectiva' type="range" min="0" max="6000" value="0"  title='Perspectiva del objeto' onchange="ActualizarTransform()">
+                <code>)</code>
+            </div>
+            <div class='Tab2'><hr /></div>
+            
+            <div class='Tab2'>
+                <code class='TextoLinea2'>translate3d</code><code>(</code>
+                <code class='Valor' id='ObjetoTranslateX_Valor'>0 px</code>
+                <input id='ObjetoTranslateX' type="range" min="-400" max="400" value="0" title='translate3d X' onchange="ActualizarTransform()">
+            </div>
+            <div class='Tab2'>
+                <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
+                <code class='Valor' id='ObjetoTranslateY_Valor'>0 px</code>
+                <input id='ObjetoTranslateY' type="range" min="-400" max="400" value="0" title='translate3d Y' onchange="ActualizarTransform()">
+            </div>
+            <div class='Tab2'>
+                <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
+                <code class='Valor' id='ObjetoTranslateZ_Valor'>0 px</code>
+                <input id='ObjetoTranslateZ' type="range" min="-2000" max="300" value="0" title='translate3d Z' onchange="ActualizarTransform()">
+                <code>)</code>
+            </div>
+            <div class='Tab2'><hr /></div>
+
+
+            <div class='Tab2'>
+                <code class='TextoLinea2'>scale3d</code><code>(</code>
+                <code class='Valor' id='ObjetoScaleX_Valor'>0</code>
+                <input id='ObjetoScaleX' type="range" min="0.5" max="2" value="1" step='0.01' title='scale3d X' onchange="ActualizarTransform()">
+            </div>
+            <div class='Tab2'>
+                <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
+                <code class='Valor' id='ObjetoScaleY_Valor'>0</code>
+                <input id='ObjetoScaleY' type="range" min="0.5" max="2" value="1" step='0.01' title='scale3d Y' onchange="ActualizarTransform()">
+            </div>
+            <div class='Tab2'>
+                <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
+                <code class='Valor' id='ObjetoScaleZ_Valor'>0</code>
+                <input id='ObjetoScaleZ' type="range" min="0.5" max="2" value="1" step='0.01' title='scale3d Z' onchange="ActualizarTransform()">
+                <code>);</code>
+            </div>
+            <div class='Tab2'><hr /></div>
+
+            <div class='Tab2'>
+                <code class='TextoLinea2'>rotateX</code><code>(</code>
+                <code class='Valor' id='ObjetoRotateX_Valor'>0 deg</code>
+                <input id='ObjetoRotateX' type="range" min="0" max="360" value="0"  title='Rotación del eje X' onchange="ActualizarTransform()">
+                <code>)</code>
+            </div>
+            <div class='Tab2'>
+                <code class='TextoLinea2'>rotateY</code><code>(</code>
+                <code class='Valor' id='ObjetoRotateY_Valor'>0 deg</code>
+                <input id='ObjetoRotateY' type="range" min="0" max="360" value="0"  title='Rotación del eje Y' onchange="ActualizarTransform()">
+                <code>)</code>
+            </div>
+            <div class='Tab2'>
+                <code class='TextoLinea2'>rotateZ</code><code>(</code>
+                <code class='Valor' id='ObjetoRotateZ_Valor'>0 deg</code>
+                <input id='ObjetoRotateZ' type="range" min="0" max="360" value="0"  title='Rotación del eje Z' onchange="ActualizarTransform()">
+                <code>)</code>
+            </div>
+
+            <div class='Tab2'><hr /></div>
+
+            <div class='Tab2'>
+                <code class='TextoLinea2'>rotate3d</code><code>(</code>
+                <code class='Valor' id='ObjetoRotate3DX_Valor'>0</code>
+                <input id='ObjetoRotate3DX' type="range" min="0" max="100" value="0" title='rotate3d vector X' onchange="ActualizarTransform()">
+            </div>
+            <div class='Tab2'>
+                <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
+                <code class='Valor' id='ObjetoRotate3DY_Valor'>0</code>
+                <input id='ObjetoRotate3DY' type="range" min="0" max="100" value="0" title='rotate3d vector Y' onchange="ActualizarTransform()">
+            </div>
+            <div class='Tab2'>
+                <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
+                <code class='Valor' id='ObjetoRotate3DZ_Valor'>0</code>
+                <input id='ObjetoRotate3DZ' type="range" min="0" max="100" value="0" title='rotate3d vector Z' onchange="ActualizarTransform()">
+            </div>
+            <div class='Tab2'>
+                <span class='TextoLinea2'><label>Animar ángulo</label><input type="checkbox" id='Animacion' onChange="AnimarAngulo()"> </span><code>&nbsp;</code>
+                <code class='Valor' id='ObjetoRotateAngulo3D_Valor'>0 deg</code>
+                <input id='ObjetoRotate3DAngulo' type="range" min="-180.0" max="180.0" value="0"  step='0.1' title='rotate3d Ángulo' onchange="ActualizarTransform()">
+                <code>);</code>
+            </div>
+
+            <div class='Tab1'><hr /></div>
+
+            <div class='Tab1'>
+                <code class='TextoLinea1'>transform-origin</code><code>:</code>
+                <code class='Valor' id='ObjetoOriginX_Valor'>50 %</code>
+                <input id='ObjetoOriginX' type="range" min="-100" max="200" value="50" title='transform-origin X' onChange="ActualizarTransformOrigin()">
+            </div>
+            <div class='Tab2'>
+                <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
+                <code class='Valor' id='ObjetoOriginY_Valor'>50 %</code>
+                <input id='ObjetoOriginY' type="range" min="-100" max="200" value="50" title='transform-origin Y' onChange="ActualizarTransformOrigin()">
+            </div>
+            <div class='Tab2'>
+                <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
+                <code class='Valor' id='ObjetoOriginZ_Valor'>100 px</code>
+                <input id='ObjetoOriginZ' type="range" min="-100" max="200" value="0" title='transform-origin Z' onChange="ActualizarTransformOrigin()">
+                <code>)</code>
+            </div>
+
+            <div class='Tab1'><hr /></div>
+            <div class='Tab1'>
+                <code class='TextoLinea1'>transform-style</code><code>:</code>
+                <select id='ChTransformStyle' onChange="ActualizarTransformStyle()">
+					<option>preserve-3d</option>
+		            <option>flat</option>                
+                </select>
+                <code>;</code>
+            </div>
+            <code>}</code>
+
+        </div>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			/* Fondo */
+			#Fondo {
+				background-image:url('http://img.devildrey33.es/logo100.png');
+				background-repeat:no-repeat;
+				width:300px;
+				height:300px;
+			}
+			.Marco {
+				border:1px solid #CCC;
+				background-color:#EEE;
+				display:table;
+			}
+		</style>
+        <script type="text/javascript">
+        	function CambiarFondo() {
+				var Combo = document.getElementById("ChFondo");
+				document.getElementById("Fondo").style.backgroundSize = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body>
+    	<div class='Marco'>
+            <code>background-size:</code>
+            <select id='ChFondo' onChange="CambiarFondo()">
+                <option value ="0">auto</option>
+                <option value ="1">150px 150px</option>
+                <option value ="2">200px 300px</option>
+                <option value ="3">50% 75%</option>
+                <option value ="4">100% 100%</option>
+                <option value ="5">cover</option>
+                <option value ="6">contain</option>
+            </select>
+            <code>;</code>
+        </div>
+        <br />
+        <div ID='Fondo' class='Marco'>
+        </div>
+	</body>
+</html>

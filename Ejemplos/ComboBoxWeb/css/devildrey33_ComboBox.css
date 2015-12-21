@@ -1,0 +1,49 @@
+/* Estilos css para devildrey33_ComboBox       */
+/* Creado el 03/10/2011 por Jose Antonio Bover */
+.devildrey33_ComboBox {
+	border-style:solid;
+	border-width:1px;
+	border-color:#000;	
+	box-shadow: rgba(128,128,128, 0.5) 2px 2px 2px;
+	border-radius:2px;
+	width:160px;
+	padding:2px;
+	color:#FFF;
+	background-color:rgb(51,51,51);
+	cursor:pointer;
+	overflow:hidden;
+	height:24px;
+	position:absolute;
+}
+
+.devildrey33_ComboBox_ImgAbajo {
+	float:right; 
+	background:url('../Graficos/devildrey33_ComboBox_Abajo.png');
+	background-position:0px 0px; /* "Normal" */
+	width:16px;
+	position:relative;
+	height:20px;
+	background-repeat:no-repeat;
+}
+
+.devildrey33_ComboBox_ImgAbajo:hover {
+	background:url('../Graficos/devildrey33_ComboBox_Abajo.png');
+	background-position:-16px 0px; /* "Resaltado" */
+	background-repeat:no-repeat;
+}
+
+.devildrey33_ComboBox_Texto {
+	font-weight:bold;
+	margin:4px;
+	position:relative;
+	top:-1px;
+}
+
+.devildrey33_ComboBox_Entrada {
+	
+}
+
+.devildrey33_ComboBox_Entrada:hover {
+	color:#FF0;
+	text-decoration:underline;
+}

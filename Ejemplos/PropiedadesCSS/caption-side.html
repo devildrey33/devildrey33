@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			table {
+				border-spacing:2px;
+				border:1px solid red;
+			}
+			td { border:1px solid green; }
+		</style>
+        <script type="text/javascript">
+			function CambiarTitulo() {
+				var Combo = document.getElementById("Titulo");
+				document.getElementsByTagName("table").item(0).style.captionSide = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body onLoad="CambiarTitulo()">
+    	<select id='Titulo' onChange="CambiarTitulo()">
+        	<option value ="0">top</option>
+        	<option value ="1">bottom</option>
+        </select>
+		<br /><br />
+    	<table>
+        	<caption>Tabla</caption>
+        	<tr><td>Celda 1</td><td>Celda 2</td></tr>
+        	<tr><td>Celda 3</td><td>Celda 4</td></tr>
+        </table>
+	</body>
+</html>

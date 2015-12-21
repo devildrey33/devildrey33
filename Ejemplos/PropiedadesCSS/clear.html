@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Contenedor { width:210px; height:50px; border:1px solid #999; margin:5px; }
+		</style>
+        <script type="text/javascript">
+			// Función que obtiene el valor del ComboBox especificado
+			function ObtenerValor(Nombre) {
+				var Combo = document.getElementById(Nombre);
+				return Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        	function CambiarClear(Nombre) {
+				document.getElementById('Div' + Nombre).style.clear = ObtenerValor(Nombre);
+			}
+        </script>
+	</head>
+	<body>
+    	<h1>Elementos <code>float:left</code></h1>
+        <p>	Si especificamos <code>clear:<b>left</b></code> o <code>clear:<b>both</b></code> al segundo elemento, 
+	        los elementos se mostrarán en lineas separadas porque usan <code>float:left</code>.</p>
+		<div class='Contenedor' style='float:left; clear:left'>
+        	Elemento 1
+        </div>
+		<div id='DivFloatLeft' class='Contenedor' style='float:left'>
+        	Elemento 2<br />
+        	<code>(clear:</code><select id='FloatLeft' onChange="CambiarClear('FloatLeft')">
+              	<option>none</option>
+              	<option>left</option>
+              	<option>right</option>
+              	<option>both</option>
+            </select><code>;)</code>
+        </div>
+
+		<br style='clear:both'>
+		
+    	<h1>Elementos <code>float:right</code></h1>
+        <p>	Si especificamos <code>clear:<b>right</b></code> o <code>clear:<b>both</b></code> al segundo elemento, 
+        	los elementos se mostrarán en lineas separadas porque usan <code>float:right</code>.</p>
+		<div class='Contenedor' style='float:right'>
+	        Elemento 1
+        </div>
+		<div id='DivFloatRight' class='Contenedor' style='float:right'>
+	        Elemento 2<br />
+        	<code>(clear:</code><select id='FloatRight' onChange="CambiarClear('FloatRight')">
+              	<option>none</option>
+              	<option>left</option>
+              	<option>right</option>
+              	<option>both</option>
+            </select><code>;)</code>
+        </div>
+
+	</body>
+</html>

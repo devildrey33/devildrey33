@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">	
+			/* Propiedades para la transición comunes para todos los objetos */
+			.Transicion {
+				-webkit-transition-property:border-radius;
+				-webkit-transition-duration:5s;
+				transition-property:border-radius;
+				transition-duration:5s;
+				border-radius:0px;
+				width:100px;
+				height:100px;
+				background-color:#00C;
+			}
+			/* Valores que debe adquirir la transición al pasar por encima el mouse */
+			.Transicion:hover {
+				border-radius:50px;
+			}
+		</style>
+	</head>
+	<body>
+        <p>El cuadrado se convierte en un circulo cuando pasas el mouse por encima, la transicion de cuadrado a circulo dura 5 segundos.</p>
+        <p><b>NOTA : </b> Este ejemplo no funciona en Internet Explorer 9 e inferiores!</p>
+    	<div class='Transicion'>
+        </div>
+	</body>
+</html>

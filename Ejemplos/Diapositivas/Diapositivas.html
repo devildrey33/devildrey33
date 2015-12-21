@@ -1,0 +1,84 @@
+<!-- Ejemplo creado por devildrey33 el 26/09/2013 
+		-->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Diapositivas {
+				border:1px solid #CCC;
+				display:table;
+				width:250px;
+				height:200px;
+				margin:0px; 
+				padding:0px;
+			}
+			.Imagen  {
+				position:absolute;
+				display:none;
+				opacity:0.0; /* Para IE6,7,8 hay que usar filter:Alpha(opacity=VALOR) */
+			}
+		</style>
+    	<!-- JQuery 2.x no soporta IE 6,7,8 si quieres soporte para esos navegadores usa la versión 1.x -->
+		<script type='text/javascript' src='/js/jquery-2.0.3.min.js'></script>        
+		<script type="text/javascript">
+			var TiempoPorImagen = 4000; // Tiempo que tarda la imagen en cambiar 
+			var TiempoTransicion = 750; // Tiempo que dura la transición de una imagen a otra
+			var Temporizador = 0;		// Variable que contiene el temporizador [se puede parar con clearInterval(Temporizador)]
+			// Cuando el documento este listo (cargado completamente)
+			$(window).ready(function() {
+				// Recorro todos los marcos de diapositivas
+				$(".Diapositivas").each(function(index, element) {
+					// Asigno la imagen actual a 0 para empezar
+					$(element).attr({ "ImagenActual" : "0"});
+					// hago el primer elemento visible
+					$(element).find(".Imagen:first").css({ "display" : "block", "opacity" : "1.0" });
+                });
+				// Creo el temporizador para cambiar las diapositivas
+				Temporizador = setInterval(function() { CambiarDiapositiva(); }, TiempoPorImagen);
+			});
+			
+			// Variables globales para las funciones anónimas
+			var ImagenActual;
+			// Función que cambia la diapositiva
+			function CambiarDiapositiva() {
+				// Recorro todos los marcos de diapositivas
+				$(".Diapositivas").each(function(index, element) {
+					ImagenAnterior = parseInt($(element).attr("ImagenActual"));	// Ultima imagen actual
+					Imagenes = $(element).children(".Imagen");					// Array que contiene los objetos con la clase .Imagen de este marco
+					// Asigno la nueva imagen actual
+					if (ImagenAnterior == (Imagenes.length - 1)) 	ImagenActual = 0;
+					else											ImagenActual = ImagenAnterior +1;
+					$(element).attr("ImagenActual" , ImagenActual);
+					// Animaciones
+					Imagenes.eq(ImagenActual).css({ "display" : "block" }).animate({ "opacity" : "1.0" }, TiempoTransicion);
+					Imagenes.eq(ImagenAnterior).animate({ "opacity" : "0.0" }, TiempoTransicion, function() { 
+						// Oculto la etiqueta justo al terminar la animación
+						$(this).eq(ImagenActual).css({ "display" : "none" }); 
+					});
+                });
+			}
+		</script>
+	</head>
+	<body>
+    	<!-- Puedes insertar tantos <ETIQUETA class='Imagen'> como necesites el código javascript detecta 
+        		las etiquetas automaticamente y las mostrará una detras de otra       -->
+		<ul class='Diapositivas'>
+        	<li class='Imagen'><img src='/Graficos/250x200_Ejemplo.3.0.png' alt='Imagen'></li>
+        	<li class='Imagen'><img src='/Graficos/250x200_Snake.png' alt='Imagen'></li>
+        	<li class='Imagen'><img src='/Graficos/250x200_Calculadora.png' alt='Imagen'></li>
+        	<li class='Imagen'><img src='/Graficos/250x200_HTML5.png' alt='Imagen'></li>
+        	<li class='Imagen'><img src='/Graficos/250x200_CSS3.png' alt='Imagen'></li>
+        </ul>
+        <br />
+		<div class='Diapositivas'>
+        	<div class='Imagen'><img src='/Graficos/250x200_HTML5_8.png' alt='Imagen'></div>
+        	<div class='Imagen'><img src='/Graficos/250x200_Ejemplo.3.8.png' alt='Imagen'></div>
+        	<div class='Imagen'><img src='/Graficos/250x200_Ejemplo.3.2.png' alt='Imagen'></div>
+        	<div class='Imagen'><img src='/Graficos/250x200_MenuWebFijo.png' alt='Imagen'></div>
+        	<div class='Imagen'><img src='/Graficos/250x200_Navegadores.png' alt='Imagen'></div>
+        	<div class='Imagen'><img src='/Graficos/250x200_USBBoot.png' alt='Imagen'></div>
+        	<div class='Imagen'><img src='/Graficos/250x200_ComboBoxWeb.png' alt='Imagen'></div>
+        </div>
+	</body>
+</html>

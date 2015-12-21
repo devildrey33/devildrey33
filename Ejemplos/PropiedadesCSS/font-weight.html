@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Javascript para cambiar el estilo de la fuente -->
+        <script type="text/javascript">
+			function CambiarFuente() {
+				var Combo = document.getElementById("EstiloFuente");
+				document.getElementById("IDEstiloFuente").style.fontWeight = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body onLoad="CambiarFuente()">
+    	<p>En este ejemplo puedes seleccionar el grosor que se usara para pintar la fuente.</p>
+    	<code>font-weight:</code>
+        <select id='EstiloFuente' onChange="CambiarFuente()">
+        	<option value ="0">normal</option>
+        	<option value ="1">bold</option>
+        	<option value ="2">bolder</option>
+        	<option value ="3">lighter</option>
+        	<option value ="4">100</option>
+        	<option value ="5">200</option>
+        	<option value ="6">300</option>
+        	<option value ="7">400</option>
+        	<option value ="8">500</option>
+        	<option value ="9">600</option>
+        	<option value ="10">700</option>
+        	<option value ="11">800</option>
+        	<option value ="12">900</option>
+        	<option value ="13">inherit</option>
+        </select>
+        <code>;</code>
+        <br />
+        <br />
+        <span id='IDEstiloFuente'>Selecciona el grosor para la fuente.</span>
+	</body>
+</html>

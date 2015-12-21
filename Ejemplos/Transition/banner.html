@@ -1,0 +1,74 @@
+<!doctype>
+<html>
+	<head>
+    	<style>
+        	.devildrey33_BannerFotosHorizontal {
+				margin:0px;
+				padding:0px;
+				display:table;
+				margin-left:auto;
+				margin-right:auto;
+				border-spacing:20px;
+			    border-collapse:separate;
+				position:relative;
+			}
+
+        	.devildrey33_BannerFotosHorizontal > li {
+				display:table-cell;
+				width:159px;
+				height:129px;
+				border:1px solid transparent;
+/*				background:yellow;*/
+				position:relative;
+			}
+			
+			.devildrey33_BannerFotosHorizontal > li > div {
+				display:inline-block;
+				position:absolute;
+				border:1px solid rgb(200, 200, 200);
+				width:159px;
+				height:129px;
+				background:url('./Graficos/250x200_Ejemplo.1.4.png') no-repeat;
+				background-repeat:no-repeat;
+				background-size:cover;
+				z-index:500;
+/*				-webkit-transition:0.4s ease-out;*/
+				transition:0.4s ease-out;
+				top:0px;
+				left:0px;
+			}
+			
+			.devildrey33_BannerFotosHorizontal > li:hover > div {
+				width:250px;
+				height:200px;
+				z-index:1000;
+				left:-50px;
+				top:-20px;	
+			}
+
+			@media (min-width:1470px) {		.devildrey33_BannerFotosHorizontal > li {	display:table-cell;		}	}		
+			@media (max-width:1469px) {		.devildrey33_BannerFotosHorizontal > li:nth-child(1n+8) {	display:none;	}	}		
+			@media (max-width:1289px) {		.devildrey33_BannerFotosHorizontal > li:nth-child(1n+7) {	display:none;	}	}		
+			@media (max-width:1109px) {		.devildrey33_BannerFotosHorizontal > li:nth-child(1n+6) {	display:none;	}	}		
+			@media (max-width:929px)  {		.devildrey33_BannerFotosHorizontal > li:nth-child(1n+5) {	display:none;	}	}		
+			@media (max-width:749px)  {		.devildrey33_BannerFotosHorizontal > li:nth-child(1n+4) {	display:none;	}	}		
+			@media (max-width:569px)  {		.devildrey33_BannerFotosHorizontal > li:nth-child(1n+3) {	display:none;	}	}		
+
+		
+        </style>
+    </head>
+    <body>
+    	<br /><br /><br />
+        <ul class='devildrey33_BannerFotosHorizontal'>
+			<li><div></div></li>
+			<li><div></div></li>
+			<li><div></div></li>
+			<li><div></div></li>
+			<li><div></div></li>
+			<li><div></div></li>
+			<li><div></div></li>
+			<li><div></div></li>
+    	
+        </ul>
+    </body>
+</html>

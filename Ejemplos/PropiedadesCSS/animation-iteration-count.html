@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">		
+            /* Animación */
+            .ObjetoAnimado {
+				animation-name:MiAnimacion;
+				animation-duration:3s;                 /* Si no especificamos la duración, por defecto es 0 */
+				animation-iteration-count:infinite;    /* Iteraciones infinitas para que no pare la animación */
+				/* Safari y Chrome */
+				-webkit-animation-name:MiAnimacion;
+				-webkit-animation-duration:3s;
+				-webkit-animation-iteration-count:infinite;
+				display:table;
+            }
+			            
+            /* Animación para Chrome y Safari */    
+            @-webkit-keyframes MiAnimacion {
+                0%   { -webkit-transform:rotate(0deg); }          /* Al principio de la animación */
+                100% { -webkit-transform:rotate(360deg); }        /* Al final de la animación */
+            }
+                        
+            /* Animación para todos  */    
+            @keyframes MiAnimacion {
+                0%   { transform:rotate(0deg); }          /* Al principio de la animación */
+                100% { transform:rotate(360deg); }        /* Al final de la animación */
+            }            
+		</style>
+    	<!-- Código javascript -->
+		<script type="text/javascript">
+		</script>
+	</head>
+	<body>
+        <br />
+        <br />
+        <div class='ObjetoAnimado'>Texto animado</div>
+        <br />
+        <br />
+        
+        <p><b>NOTA : </b> Este ejemplo no funciona en Internet Explorer 9 e inferiores!</p>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug Win32" />
+	<File name="..\Tutorial TerminandoCalculadora.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="397" topLine="0" />
+	</File>
+	<File name="..\..\Objetos Tutorial\ObjetoBoton.cpp" open="1" top="1" tabpos="6">
+		<Cursor position="11380" topLine="265" />
+	</File>
+	<File name="..\..\Objetos Tutorial\ObjetoBoton.h" open="1" top="0" tabpos="2">
+		<Cursor position="6283" topLine="72" />
+	</File>
+	<File name="..\..\Objetos Tutorial\ObjetoControl.h" open="1" top="0" tabpos="3">
+		<Cursor position="3362" topLine="25" />
+	</File>
+	<File name="..\..\Objetos Tutorial\ObjetoHWND.h" open="1" top="0" tabpos="5">
+		<Cursor position="1296" topLine="6" />
+	</File>
+	<File name="..\..\Objetos Tutorial\PlantillaEventos.h" open="1" top="0" tabpos="4">
+		<Cursor position="8196" topLine="126" />
+	</File>
+</CodeBlocks_layout_file>

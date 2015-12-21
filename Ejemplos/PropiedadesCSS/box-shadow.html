@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Caja {
+				border:1px solid #000;
+				position:relative;
+				width:100px;
+				height:100px;
+				margin:20px;
+				box-shadow:10px 10px 10px 0px red;
+			}
+			.SombraMultiple {
+				border:1px solid #000;
+				position:relative;
+				width:100px;
+				height:100px;
+				margin:20px;
+				box-shadow: 5px 5px 3px 2px rgba(255,0,0,0.5), 
+						   -5px 5px 3px 2px rgba(0,255,0,0.5), 
+						    5px -5px 3px 2px rgba(200,200,0,0.5),
+						   -5px -5px 3px 2px rgba(0,0,255,0.5);
+			}
+		</style>
+        <!-- Código JavaScript CSS -->
+        <script type="text/javascript">
+			
+		
+			// Función que cambia el borde segun los valores H y V especificados.
+			function CambiarSombra() {
+				var H = ObtenerValor("ValorH");
+				var V = ObtenerValor("ValorV");
+				var Des = ObtenerValor("Desenfoque");
+				var Dis = ObtenerValor("Dispersion");
+				var Col = document.getElementById("Color").value;
+				var Tipo = ObtenerTipo();
+				document.getElementById("IDCaja").style.boxShadow = V + " " + H + " " + Des + " " + Dis + " " + Col + " " + Tipo;
+			}
+			// Función que obtiene el valor del ComboBox especificado
+			function ObtenerValor(Nombre) {
+				var Combo = document.getElementById(Nombre);
+				return Combo.options[Combo.selectedIndex].innerHTML;
+			}
+			// Función que obtiene el valor del ComboBox para el tipo.
+			function ObtenerTipo() {
+				switch (document.getElementById("Tipo").value) {
+					case "0" : return "inset";
+					case "1" : return "";
+				}
+				return "";
+			}
+        </script>
+	</head>
+	<body>
+    	
+    	ValorH
+    	<select id='ValorH' onChange="CambiarSombra()">
+        	<option>10px</option>
+        	<option>5px</option>
+        	<option>3px</option>
+        	<option>1px</option>
+        	<option>0px</option>
+        	<option>-1px</option>
+        	<option>-3px</option>
+        	<option>-5px</option>
+        	<option>-10px</option>
+        </select>
+    	ValorV
+    	<select id='ValorV' onChange="CambiarSombra()">
+        	<option>10px</option>
+        	<option>5px</option>
+        	<option>3px</option>
+        	<option>1px</option>
+        	<option>0px</option>
+        	<option>-1px</option>
+        	<option>-3px</option>
+        	<option>-5px</option>
+        	<option>-10px</option>
+        </select>
+		Desenfoque
+    	<select id='Desenfoque' onChange="CambiarSombra()">
+        	<option>10px</option>
+        	<option>5px</option>
+        	<option>3px</option>
+        	<option>1px</option>
+        	<option>0px</option>
+        </select>
+        Dispersión
+    	<select id='Dispersion' onChange="CambiarSombra()">
+        	<option>10px</option>
+        	<option>5px</option>
+        	<option>3px</option>
+        	<option>1px</option>
+        	<option selected="selected">0px</option>
+        </select>
+        Color
+        <input type="text" value='red' onChange="CambiarSombra()" id='Color'>
+        Tipo
+    	<select id='Tipo' onChange="CambiarSombra()">
+        	<option value='0'>inset</option>
+        	<option value='1' selected='selected'>outset</option>
+		</select>        
+        
+        <div class='Caja' id='IDCaja'></div>
+        <hr>
+        Objeto con cuatro sombras
+        <div class='SombraMultiple'></div>
+	</body>
+</html>

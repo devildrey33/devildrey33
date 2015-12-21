@@ -1,0 +1,166 @@
+<!-- Ejemplo creado el 03/02/2015 por Josep Antoni Bover para devildrey33.es 
+		y trata basicamente de modificar completamente la apariencia de un control del tipo input checkbox solo con CSS.
+
+                NOTA!! este ejemplo no cumple con la WC3 por añadir etiquetas dentro de una etiqueta label.
+-->
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
+		<style>
+			.ch {
+				position:relative;
+			}
+			
+			.ch	> input {
+				position:absolute;
+				/* no utilizar visibility:hidden si queremos que el control aun pueda tener el foco del teclado */
+				/* visibility:hidden; */
+				opacity:0;
+			}
+			
+			.ch_cuerpo {
+				top:6px;
+				width: 40px;
+				height: 20px;
+				background: white;
+				border: 1px solid #ccc;
+				display: inline-block;
+				position: relative;
+				border-radius: 50px;
+			}
+		
+			.ch_boton {
+				width: 20px;
+				height: 20px;
+				display: inline-block;
+				background-color: white;
+				position: absolute;
+				top: -1px;
+				left: -1px;
+				border-radius: 60px;
+				border: 1px solid #bbb;
+				box-shadow:0 2px 2px rgba(0,0,0,.13);
+				transition:left cubic-bezier(0.34,1.61,0.7,1) 250ms, transform cubic-bezier(0.34,1.61,0.7,1) 250ms;
+				z-index:2;
+			}
+			
+			.ch_pista {
+				overflow:hidden;
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;				
+				border-radius: 50px;
+			}
+			
+			.ch_si {
+				font-family: 'Rock Salt', cursive;
+				font-weight:bold;
+				font-size:12px;
+				margin-top:-5px;
+				padding-left:15px;
+				position:absolute;
+				display:inline;
+				left:10px;
+				width:45px;
+				height:30px;
+				background :rgb(0, 220, 0);
+				transition:left cubic-bezier(0.34,1.61,0.7,1) 250ms;
+				color:white;
+			}
+			
+			.ch_no {
+				font-family: 'Rock Salt', cursive;
+				font-weight:bold;
+				font-size:12px;
+				margin-top:-5px;
+				padding-left:13px;
+				position:absolute;
+				display:inline;
+				left:-20px;
+				width:45px;
+				height:30px;
+				background :rgb(230, 230, 230);
+				transition:left cubic-bezier(0.34,1.61,0.7,1) 250ms;
+				color:red;
+			}
+			
+			/* Animación del foco del teclado / raton */
+			.ch:hover .ch_cuerpo {
+				border: 1px solid #aaa;
+			}
+			.ch > input:focus + .ch_cuerpo {
+				border: 1px solid #439fd8;
+			}
+			.ch:hover .ch_boton {
+				border: 1px solid #999;
+				transform:scale(1.1);
+			}
+			.ch > input:focus + .ch_cuerpo > .ch_boton {
+				border: 1px solid #439fd8;
+				transform:scale(1.1);
+			}
+			/* Animación del click / espacio */
+			.ch:active .ch_boton {
+				transform:scale(0.95);
+			}
+			
+			
+			/* Boton */
+			.ch	> input[type="checkbox"]:not(:checked) + .ch_cuerpo > .ch_boton {
+				left: 21px;
+			}
+			/* Parte V */
+			.ch	> input[type="checkbox"]:not(:checked) + .ch_cuerpo > .ch_pista > .ch_si {
+				left: 35px;
+			}
+			/* Parte X */
+			.ch	> input[type="checkbox"]:not(:checked) + .ch_cuerpo > .ch_pista > .ch_no {
+				left: -5px;
+			}
+		</style>
+		
+	</head>
+	<body>
+
+		<label class='ch'>Opción
+			<input type="checkbox" checked />
+			<div class='ch_cuerpo'>
+				<div class='ch_boton'></div>
+				<div class='ch_pista'>
+					<div class='ch_no'>x</div>
+					<div class='ch_si'>v</div>
+				</div>
+			</div>
+		</label>
+		<br />
+
+		<label class='ch'>Opción
+			<input type="checkbox" checked />
+			<div class='ch_cuerpo'>
+				<div class='ch_boton'></div>
+				<div class='ch_pista'>
+					<div class='ch_no'>x</div>
+					<div class='ch_si'>v</div>
+				</div>
+			</div>
+		</label>
+		<br />
+		
+		<label class='ch'>Opción
+			<input type="checkbox" />
+			<div class='ch_cuerpo'>
+				<div class='ch_boton'></div>
+				<div class='ch_pista'>
+					<div class='ch_no'>x</div>
+					<div class='ch_si'>v</div>
+				</div>
+			</div>
+		</label>
+		
+	</body>
+</html>

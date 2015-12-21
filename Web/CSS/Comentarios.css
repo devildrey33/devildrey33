@@ -1,0 +1,391 @@
+/* Cabecera comentarios*/
+html[lang=es] #Comentarios > h2:nth-child(1)::after {
+    content:'Comentarios';
+}
+html[lang=en] #Comentarios > h2:nth-child(1)::after {
+    content:'Comments';
+}
+/* Enviar comentario */
+html[lang=es] #Comentarios > #Comentarios_Comentario + button::after {
+    content:'Enviar comentario';
+}
+html[lang=en] #Comentarios > #Comentarios_Comentario + button::after {
+    content:'Send comment';
+}
+
+
+#Comentarios {
+    border-top:1px solid rgb(200, 200, 200);
+    border-left: none;
+    border-right: none;
+    padding:20px 0px 0px 0px;       
+    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;        
+}
+
+#Comentarios > table {
+    width: 100%;
+}
+
+#Comentarios > table td:nth-child(1) {
+    width:25%
+}
+#Comentarios > table td:nth-child(2) {
+    width:75%
+}
+
+#Comentarios_Datos > h2 {
+    font-size:2.5rem;
+    margin-bottom:20px;
+}
+
+#Comentarios_Datos > h2::before {
+    display:none;
+}
+
+#Comentarios_Datos {
+    padding:0px;
+}
+
+/* Enlace a otro mensaje */
+#Comentarios span[comentario], #Comentarios_Datos span[comentario] {
+    color:rgba(234, 80, 79, 1);
+    cursor:pointer;
+    transition:0.2s;
+}
+
+#Comentarios span[comentario]:active, #Comentarios_Datos span[comentario]:active {
+    text-decoration:underline;
+    color:rgba(128, 80, 79, 1);
+}
+
+#Comentarios span[comentario]::before, #Comentarios_Datos span[comentario]::before {
+    content:'[#';
+}
+#Comentarios span[comentario]::after, #Comentarios_Datos span[comentario]::after {
+    content:']';
+}
+
+#Comentarios_Datos > div[comentario] {
+    border:1px solid rgba(200, 200, 200, 1);
+    outline:1px solid rgba(0, 0, 0, 0);
+    background:rgba(249, 249, 222, 1);
+    padding:0px 10px 20px 20px;
+    color:#000;
+    /*margin-left:-21px;*/
+    margin-bottom:20px;
+    overflow:overlay;
+    position:relative;
+    transition:1s;
+    -webkit-animation-play-state: paused; /* Chrome, Safari, Opera */
+    animation-play-state: paused;
+    perspective:600px;
+    transform-style:preserve-3d;
+}
+
+
+#Comentarios_Datos > div[comentario][seleccionado=true] {
+    outline:1px solid rgba(234, 80, 79, 1);
+    border:1px solid rgba(234, 80, 79, 1); 
+}
+
+/* Contenedor de los controles para los mensajes publicados */
+#Comentarios_Datos > div[comentario] > .Comentarios_ControlesMensaje {
+    position:absolute;
+    top:0px;
+    right:6px;    
+    height:36px;
+    width:auto;
+    display:table;    
+}
+/*
+#Comentarios_Datos > div[comentario][seleccionado=true] > .Comentarios_ControlesMensaje {
+    transform:rotateX(0deg);
+}*/
+
+/* Contenedor de los botones Guardar y Cancelar edición */
+#Comentarios_Datos > div[comentario] > div:nth-child(4) {
+    display:table;
+    margin:0px auto;
+}
+
+#Comentarios_Datos > div[comentario] > div > button {
+    display:inline-block;
+    position:relative;
+    min-width:36px !important;
+    height:36px !important;
+    margin:6px 1px !important;    
+    padding:8px;
+}
+
+/* Botones para los mensajes publicados : Responder, +1, -1, Editar, Eliminar. */
+#Comentarios_Datos > div[comentario] > .Comentarios_ControlesMensaje > button {
+    top:-10px;
+    transform-origin:top center;
+    transform:rotateX(-180deg);
+}
+
+#Comentarios_Datos > div[comentario][seleccionado=true] > .Comentarios_ControlesMensaje > button {
+    transform:rotateX(0deg);
+    top:0px;
+}
+
+/* Botones editar, eliminar y ver email  */
+#Comentarios_Datos > div[comentario] > .Comentarios_ControlesMensaje > button:nth-child(4),
+#Comentarios_Datos > div[comentario] > .Comentarios_ControlesMensaje > button:nth-child(5),
+#Comentarios_Datos > div[comentario] > .Comentarios_ControlesMensaje > button:nth-child(6) {
+    display:none;
+}
+/* Solo son visibles en modo administrador */
+body[administrador33=true] #Comentarios_Datos > div[comentario] > .Comentarios_ControlesMensaje > button:nth-child(4),
+body[administrador33=true] #Comentarios_Datos > div[comentario] > .Comentarios_ControlesMensaje > button:nth-child(5),
+body[administrador33=true] #Comentarios_Datos > div[comentario] > .Comentarios_ControlesMensaje > button:nth-child(6) {
+    display:inline-block;
+}
+
+
+/* Para conservar la animación normal de los botones hay que especificar la transición parametro por parametro */
+.TransitionDelay01 {  transition:background 0.35s linear 0s, color 0.35s linear 0s, border 0.35s linear 0s, top 0.6s linear 0s, transform 0.6s cubic-bezier(.17,-0.42,.63,1.24) 0s    !important;  }
+.TransitionDelay02 {  transition:background 0.35s linear 0s, color 0.35s linear 0s, border 0.35s linear 0s, top 0.6s linear 0s, transform 0.6s cubic-bezier(.17,-0.42,.63,1.24) 0.08s !important;  }
+.TransitionDelay03 {  transition:background 0.35s linear 0s, color 0.35s linear 0s, border 0.35s linear 0s, top 0.6s linear 0s, transform 0.6s cubic-bezier(.17,-0.42,.63,1.24) 0.16s !important;  }
+.TransitionDelay04 {  transition:background 0.35s linear 0s, color 0.35s linear 0s, border 0.35s linear 0s, top 0.6s linear 0s, transform 0.6s cubic-bezier(.17,-0.42,.63,1.24) 0.24s !important;  }
+.TransitionDelay05 {  transition:background 0.35s linear 0s, color 0.35s linear 0s, border 0.35s linear 0s, top 0.6s linear 0s, transform 0.6s cubic-bezier(.17,-0.42,.63,1.24) 0.32s !important;  }
+.TransitionDelay06 {  transition:background 0.35s linear 0s, color 0.35s linear 0s, border 0.35s linear 0s, top 0.6s linear 0s, transform 0.6s cubic-bezier(.17,-0.42,.63,1.24) 0.40s !important;  }
+
+/* Animación para resaltar/mostrar un comentario */
+#Comentarios_Datos > div[comentario][resaltado=true] {
+    -webkit-animation:Ani_Comentario_Resaltado 5s ease;
+    animation:Ani_Comentario_Resaltado 5s ease;
+}
+
+@-webkit-keyframes Ani_Comentario_Resaltado {
+    0%   { background:rgba(249, 249, 222, 1);   } 
+    25%  { background:rgba(200, 0, 0, 0.2);     } 
+    50%  { background:rgba(249, 249, 222, 1);   } 
+    75%  { background:rgba(200, 0, 0, 0.2);     } 
+    100% { background:rgba(249, 249, 222, 1);   } 
+}
+
+@keyframes Ani_Comentario_Resaltado {
+    0%   { background:rgba(249, 249, 222, 1);   } 
+    25%  { background:rgba(200, 0, 0, 0.2);     } 
+    50%  { background:rgba(249, 249, 222, 1);   } 
+    75%  { background:rgba(200, 0, 0, 0.2);     } 
+    100% { background:rgba(249, 249, 222, 1);   } 
+}
+
+/* Nombre nummsg y fecha */
+#Comentarios_Datos > div[comentario] > div:nth-child(2) {
+    font-size:2rem;
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+/* Fecha */
+#Comentarios_Datos > div[comentario] > div:nth-child(2) > span {
+    font-size:1.1rem;
+    color:#666;
+}
+
+#Comentarios_Datos > div[comentario] > div[contenteditable=true] {
+    background:white;
+    border:1px solid #999;
+}
+
+
+#Comentarios_MarcoDatos {
+    display:block;
+/*    width:320px;*/
+    height:150px;
+    margin-bottom:20px;
+    margin-top:-5px;
+    vertical-align:bottom;
+}
+
+
+#Comentarios_MarcoDatos > input {
+    width: 30%;
+    height: 30px;
+    transition:0.4s;
+    padding:2px;   
+    outline-color:transparent;
+    display:block;
+/*    border-radius: 2px;
+    border-style: solid;
+    border-width: 1px;*/
+}
+#Comentarios_Nombre, #Comentarios_Correo {
+    margin-bottom: 20px;
+}
+
+#Comentarios_MarcoDatos > input:valid {
+    border:1px solid #28921f;
+}
+#Comentarios_MarcoDatos > input:invalid {
+    border:1px solid #b03535;
+}
+#Comentarios_MarcoDatos > input:focus {
+    width:40%;    
+}
+
+#Comentarios_MarcoDatos > input:focus:valid {
+    box-shadow: 0 0 5px #5cd053;
+}
+#Comentarios_MarcoDatos > input:focus:invalid {    
+    box-shadow: 0 0 5px #d45252;
+}
+
+
+
+
+
+
+
+
+#Comentarios_MarcoCaptcha {
+    position:relative;
+    min-height:148px;
+    display:inline-block;    
+    perspective:800px;    
+    width:calc((100% - (330px + 500px)) + 500px);
+    min-width:500px; /* Els 730px son 330px dels controls + 400px del marc del captcha */
+}
+
+#Comentarios_MarcoP2D {
+    position:relative;
+    vertical-align:bottom;
+/*    outline:1px solid #999;*/
+/*    max-width:100%; 
+    min-width:calc(400px - (100% - 730px)); /* Els 730px son 330px dels controls + 400px del marc del captcha */
+    width:100%;
+    height:148px;
+    display:inline-block;
+    transition:0.7s cubic-bezier(.17,-0.42,.63,1.24);
+/*    background-color: rgb(249, 249, 222);*/
+    margin-bottom:22px;
+    transform-style: preserve-3d;    
+}
+
+#Comentarios_MarcoP2D > div {
+    display:block;
+    position:absolute;
+    width:100%;
+    height:100%;
+    backface-visibility:hidden;
+}
+
+/* TODO : Eliminar el hover */
+#Comentarios_MarcoCaptcha[MostrarCaptcha=true] > #Comentarios_MarcoP2D,
+#Comentarios:hover #Comentarios_MarcoP2D {
+    transform: rotateX(180deg);    
+}
+
+.Delante {
+    z-index:10;
+}
+
+.Delante > p {
+    padding:0px 0px;
+    margin:0px 0px 20px 0px;
+}
+
+.Detras {
+    border:1px solid #999;
+    background-color: rgb(249, 249, 222);
+    transform: rotateX(180deg);
+}
+
+
+
+
+
+
+
+
+
+
+#Comentarios_BarraControles {
+    width:calc(100% - 6px);
+    height:44px;    
+    vertical-align: middle;
+    border:1px solid #999;
+    border-bottom:none;
+    margin:0px;
+    padding:0px;
+    display:table;
+    table-layout: fixed;
+    background:#DDD;
+}
+
+
+#Comentarios_BarraControles > .Boton {
+    display:inline-block;
+    position:relative;
+    width:36px;
+    height:36px;
+    text-align: center;
+    border:none;
+    color:#222;
+    margin:4px 2px 0px 2px;
+    padding:0px;    
+    font-family:"Times New Roman", Georgia, Serif;
+    background-image: url("/Web/Graficos/BotonesEditor2.png");
+    background-repeat:no-repeat;
+    background-color:#DDD;
+}
+
+#Comentarios_BarraControles > .Boton::before {
+    content:'';
+    border:1px solid transparent;
+    background-color:transparent;
+    border-radius:4px;
+    width:36px;
+    height:36px;
+    left:0px;
+    top:0px;
+    position:absolute;
+    transition:0.3s;
+}
+
+#Comentarios_BarraControles > .Boton[marcado=true]::before, #Comentarios_BarraControles > .Boton:hover::before {
+    content:'';
+    background-color:rgba(255, 0, 0, 0.4);
+    border-color:rgb(255, 0, 0);
+}
+
+
+#Comentarios_BarraControles > .Boton:nth-child(2)  {    background-position:-36px;   }
+#Comentarios_BarraControles > .Boton:nth-child(3)  {    background-position:-72px;   }
+#Comentarios_BarraControles > .Boton:nth-child(4)  {    background-position:-108px;   }
+#Comentarios_BarraControles > .Boton:nth-child(5)  {    background-position:-144px;   }
+#Comentarios_BarraControles > .Boton:nth-child(6)  {    background-position:-180px;   }
+#Comentarios_BarraControles > .Boton:nth-child(7)  {    background-position:-216px;   }
+#Comentarios_BarraControles > .Boton:nth-child(8)  {    background-position:-252px;   }
+/*#Comentarios_BarraControles > button:nth-child(9)  {    background-position:-288px;   }*/
+#Comentarios_BarraControles > .Boton:nth-child(9) {    background-position:-324px;   }
+#Comentarios_BarraControles > .Boton:nth-child(10) {    background-position:-360px;   }
+#Comentarios_BarraControles > .Boton:nth-child(11) {    background-position:-396px;   }
+#Comentarios_BarraControles > .Boton:nth-child(12) {    background-position:-432px;   }
+
+#Comentarios_Comentario {
+    width:calc(100% - 26px);
+    height:200px;
+    border:1px solid #999;
+    background-color:white;
+    padding:10px;
+    margin-bottom:20px;
+    overflow:auto;
+    white-space:nowrap;        
+}
+/*
+#Comentarios_Comentario pre {
+    border:1px solid #000;
+    background-color: red;
+}*/
+/*
+#Comentarios pre, #Comentarios_Datos pre {
+    background:red;
+}*/

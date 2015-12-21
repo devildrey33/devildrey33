@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<style type="text/css">
+			/* Las etiquetas 'p' que tengan como padre una etiqueta 'div'  
+			   tienen el color del texto verde */
+			div>p { color:rgb(0, 255 ,0); }
+		</style>
+    </head>
+    <body>
+	    <!-- El selector funciona correctamente con esta linea -->
+        <div><p>Etiqueta 'p' dentro de una etiqueta 'div'</p></div>
+	    <!-- El selector no funciona con esta linea porque la etiqueta p tiene como padre una etiqueta span -->
+        <div><span><p>Etiqueta 'p' dentro de una etiqueta 'span' que esta dentro de una etiqueta 'div'</p></span></div>
+    </body>
+</html>

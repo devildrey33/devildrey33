@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Borde {
+				border-width:5px;
+				border-style:solid;
+				display:table;
+			}            
+		</style>
+        <script type="text/javascript">
+			function CambiarBorde() {
+				var Combo = document.getElementById("Bordes");
+				document.getElementById("IDBorde").style.borderRightWidth = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body onLoad="CambiarBorde()">
+    	<p>En este ejemplo puedes seleccionar el tipo de borde derecho que quieres mostrar en el siguiente div.</p>
+    	<select id='Bordes' onChange="CambiarBorde()">
+        	<option value ="0">thin</option>
+        	<option value ="1">medium</option>
+        	<option value ="2">thick</option>
+        	<option value ="3">1px</option>
+        	<option value ="4">10px</option>
+        	<option value ="5">20px</option>
+        </select>
+        <div class='Borde' id='IDBorde'><br /><br />Selecciona el tipo de borde derecho.<br /><br /><br /></div>
+	</body>
+</html>

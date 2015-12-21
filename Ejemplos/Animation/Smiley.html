@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+
+			.Smiley {
+				display:table;
+				margin:20px auto;
+				width:200px;
+				height:200px;
+			}
+			.Smiley_Cara {
+				border-radius:100px;
+				background-color:orange;
+				box-shadow:inset -10px -30px rgba(100,100,100,0.06);
+				position:relative;
+				z-index:100;
+				width:200px;
+				height:200px;
+				-webkit-animation:Smiley_Tambaleo 5s infinite ease-in-out;
+                animation:Smiley_Tambaleo 5s infinite ease-in-out;
+				-webkit-transform-origin: center bottom;
+				transform-origin: center bottom;				
+			}
+			
+			.Smiley_Sombra {
+				height: 20px;
+				background: rgba(0,0,0,.1);
+				width: 100px;
+				border-radius: 100%;
+				margin:-15px 0px 0px 60px;
+				-webkit-transition: .3s;
+				transition: .3s;
+			}
+			
+			.Smiley_Ojo {
+				display:inline-block;
+				width:25px;
+				height:50px;
+				position:relative;
+				margin-left:25px;
+				left:32px;
+				top:30px;
+				background:rgba(0,0,0,.9);
+				border-radius:50%;
+			}
+			
+			.Smiley_Boca {
+				display:block;
+				border-bottom:8px solid rgba(0,0,0,.9);
+				width:120px; 
+				height:120px;
+				margin-top:-25px;
+				margin-left:35px;
+				border-radius:100px;
+			}
+			
+			@-webkit-keyframes Smiley_Tambaleo {
+			  33% {
+				-webkit-transform: rotate(5deg);
+				transform: rotate(5deg);
+			  }
+			
+			  66% {
+				-webkit-transform: rotate(-5deg);
+				transform: rotate(-5deg);
+			  }
+			}
+			
+			@keyframes Smiley_Tambaleo {
+			  33% {
+				-webkit-transform: rotate(5deg);
+				transform: rotate(5deg);
+			  }
+			
+			  66% {
+				-webkit-transform: rotate(-5deg);
+				transform: rotate(-5deg);
+			  }
+			}			
+		</style>
+
+	</head>
+    <body>
+		<div class='Smiley'>
+			<div class='Smiley_Cara'>
+            	<div class='Smiley_Ojo'></div>
+            	<div class='Smiley_Ojo'></div>
+            	<div class='Smiley_Boca'></div>
+            </div>
+        	
+			<div class='Smiley_Sombra'></div>
+        </div>
+        
+	</body>
+</html>

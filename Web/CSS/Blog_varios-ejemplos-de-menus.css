@@ -1,0 +1,26 @@
+#Marco1, #Marco2, #Marco3, #Marco4 {
+    position:relative;
+    background-color:#FFF;
+    margin-left:auto;
+    margin-right:auto;    
+    overflow:hidden;
+    display:table;
+}
+
+#Marco1 {
+    width:950px; height:140px;
+}
+
+#Marco2 {
+    width:480px; 
+    height:370px; 
+}
+
+#Marco3 {
+    width:570px; 
+    height:120px;
+}
+#Marco4 {
+    width:230px; 
+    height:220px; 
+}

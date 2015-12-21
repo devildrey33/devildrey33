@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+    	<!-- CSS -->
+    	<style type="text/css">
+			p { text-transform:none; }
+        </style>
+    	<!-- JavaScript -->
+    	<script type="text/javascript">
+        	function CambiarTextTransform() {
+				var Combo = document.getElementById("ChCTT");
+				document.getElementsByTagName("p").item(0).style.textTransform = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+    </head>
+	<body>
+		<select id='ChCTT' onChange="CambiarTextTransform()">
+        	<option>none</option>
+        	<option>capitalize</option>
+        	<option>uppercase</option>
+        	<option>lowercase</option>
+        </select>
+	    <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Praesent eget accumsan neque. 
+            Ut nec tellus diam. Nulla facilisi. 
+            Donec non sapien quis eros sagittis laoreet et sed ipsum. 
+            Morbi et dignissim lacus, in condimentum elit.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Aliquam commodo sit amet magna a varius. 
+            Aliquam erat volutpat. 
+            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+            In vel nunc quis quam accumsan rhoncus. 
+            Quisque a iaculis arcu, et venenatis lectus. 
+            Integer id vehicula risus, eu aliquam sem. 
+            In eleifend porta orci tincidunt malesuada.        
+        </p>
+    </body>
+</html>

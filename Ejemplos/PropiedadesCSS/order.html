@@ -1,0 +1,154 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [12/12/2015] para devildrey33.es -->
+<!doctype html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            /* Contenedor flex-box */
+            #ContenedorFlex {
+                max-width:260px;
+                margin:4px;
+                border:1px solid #000;
+                display:flex;
+                flex-flow:column;
+                background:#EEE;                
+            }
+            /* Objeto hijo del ContenedorFlex */
+            .ObjetoFlex {
+                height:20px;
+                margin:3px;
+                padding:3px;
+                border:1px solid #444;
+                color:#FFF;
+                text-shadow:1px 1px 0px #000;
+                order:0; // se aplica el orden por defecto
+            }
+            /* Para diferenciar cada flex-item */
+            .ObjetoFlex:nth-child(1) {  background:blue;   }
+            .ObjetoFlex:nth-child(2) {  background:red;    }
+            .ObjetoFlex:nth-child(3) {  background:green;  }
+            .ObjetoFlex:nth-child(4) {  background:gray;   }
+            .ObjetoFlex:nth-child(5) {  background:yellow; }
+            .ObjetoFlex:nth-child(6) {  background:orange; }
+            .ObjetoFlex:nth-child(7) {  background:brown;  }
+            .ObjetoFlex:nth-child(8) {  background:pink;   }
+            /* Propiedades alineadas en una columna */
+            .tab { display:inline-table; min-width:102px; }
+        </style>
+        <script>
+            function CambiarOrden(Select) {
+                var Orden = Select.options[Select.selectedIndex].innerHTML;
+                Select.parentNode.style.order = Orden;
+            }                    
+        </script>
+    </head>
+    <body>        
+        <!-- Contenedor flexbox para el ejemplo -->
+        <div id='ContenedorFlex'>
+            <div class='ObjetoFlex'><code>order : </code>
+                <select id='ChF1' onChange="CambiarOrden(this)">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select><code>; /* :nth-child(1) */</code>
+            </div>
+            <div class='ObjetoFlex'><code>order : </code>
+                <select id='ChF2' onChange="CambiarOrden(this)">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select><code>; /* :nth-child(2) */</code>
+            </div>
+            <div class='ObjetoFlex'><code>order : </code>
+                <select id='ChF3' onChange="CambiarOrden(this)">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select><code>; /* :nth-child(3) */</code>
+            </div>
+            <div class='ObjetoFlex'><code>order : </code>
+                <select id='ChF4' onChange="CambiarOrden(this)">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select><code>; /* :nth-child(4) */</code>
+            </div>
+            <div class='ObjetoFlex'><code>order : </code>
+                <select id='ChF5' onChange="CambiarOrden(this)">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select><code>; /* :nth-child(5) */</code>
+            </div>
+            <div class='ObjetoFlex'><code>order : </code>
+                <select id='ChF6' onChange="CambiarOrden(this)">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select><code>; /* :nth-child(6) */</code>
+            </div>
+            <div class='ObjetoFlex'><code>order : </code>
+                <select id='ChF7' onChange="CambiarOrden(this)">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select><code>; /* :nth-child(7) */</code>
+            </div>
+            <div class='ObjetoFlex'><code>order : </code>
+                <select id='ChF8' onChange="CambiarOrden(this)">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select><code>; /* :nth-child(8) */</code>
+            </div>
+        </div>
+    </body>
+</html>

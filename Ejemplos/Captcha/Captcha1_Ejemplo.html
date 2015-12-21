@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+        <meta charset="utf-8" />
+		<title>Ejemplo Captcha 1</title>
+        
+		<script type="text/javascript">
+// -[INICIO devildrey33.Captcha1]-
+var Valor1 = 0;
+var Valor2 = 0;
+
+/* Función que genera dos valores aleatorios */
+function GenerarCaptcha() {
+	Valor1 = 1 + Math.floor(Math.random() * 100);
+	Valor2 = 1 + Math.floor(Math.random() * 100);
+	document.getElementById("Valor1Captcha").innerHTML = Valor1;
+	document.getElementById("Valor2Captcha").innerHTML = Valor2;
+	document.getElementById("ResultadoCaptcha").value = "";
+}
+
+/* Función que comprueba que el resultado sea la suma de los dos valores generados */
+function ValidarCaptcha() {
+	if (document.getElementById("ResultadoCaptcha").value == (Valor1 + Valor2)) {
+		alert("Captcha validado");
+		GenerarCaptcha();
+	}
+	else {
+		alert("El valor introducido no es válido.");
+	}
+}
+
+/* Función que ejecuta el código del cuadro de texto ConsolaJavaScript */
+function ConsolaJavaScript() {
+	eval(document.getElementById("ConsolaJavaScript").value);
+}
+// -[FIN devildrey33.Captcha1]-
+		</script>
+        
+	</head>
+	<body onload="GenerarCaptcha()">
+    	<h1>Ejemplo Captcha 1</h1>
+		<p>Ejemplo del captcha creado unicamente con JavaScript</p>    
+        <form action="javascript:ValidarCaptcha()">
+            <span><span id='Valor1Captcha'>0</span> + <span id='Valor2Captcha'>0</span> = </span>
+            <input type='text' name='Resultado' id='ResultadoCaptcha' value='' title='Introduce el resultado de la suma' />
+            <span>Pulsa intro una vez introducido el resultado.</span>
+        </form>
+    
+    	<p>Para hackear el captcha basta con intriducir el siguiente texto en una consola JavaScript :</p>
+        <code>document.getElementById("ResultadoCaptcha").value = (Valor1 + Valor2); ValidarCaptcha();</code>
+        
+        <br /><br />
+        <form action="javascript:ConsolaJavaScript()">
+            <span>Este cuadro de texto permite ejecutar funciones JavaScript</span>
+            <input type='text' name='Consola' id='ConsolaJavaScript' value='' title='Introduce código JavaScript' style="width:650px" />
+        </form>
+		
+        <br /><br />
+        <a href="http://www.devildrey33.es/Captcha1.php">Volver a devildrey33.</a>
+	</body>
+</html>        

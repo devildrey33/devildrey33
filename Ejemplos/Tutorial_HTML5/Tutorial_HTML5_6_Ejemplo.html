@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>                                                <!-- Documento HTML 5 -->
+<html>                                                         <!-- Inicio del documento HTML -->
+    <head>                                                     <!-- Inicio del head -->
+		<title>Ejemplo del tutorial 6</title>
+        <!-- Codificacion UTF-8 -->
+		<meta charset="UTF-8">
+        <!-- Hoja de estilos CSS para este documento -->
+		<style type="text/css">
+			body {
+				background-image:url("http://img.devildrey33.es/Tutorial_HTML5_6_Fondo.jpg"); /* Imagen de fondo */
+				background-repeat:no-repeat;						/* Tipo de repetición */
+				background-position:center top;                     /* Posición del fondo */
+			}
+
+			.AnchoDocumento {
+				width:1000px;      /* Ancho en pixeles para el documento */
+			}
+
+			.Centrado {
+				margin-left:auto;  /* Margen a la izquierda automatico */
+				margin-right:auto; /* Margen a la derecha automatico   */
+			}
+
+			.Titulo {
+				text-align:center;                     /* Alineación del texto : centrado */
+				text-shadow:2px 2px 2px rgb(0, 0, 0);  /* Sombra para el texto */
+			}
+
+			.MarcoTranslucido {
+				position:relative;                         /* Posición relativa al objeto inmediatamente superior */
+				border-width:2px;                          /* Borde con el tamaño de un pixel */
+				border-color:rgb(0, 0, 0);                 /* Color del borde negro */
+				border-style:solid;                        /* Estilo del borde solido */
+				background-color:#333;                     /* Color del fondo */
+				color:rgb(255, 255, 255);                  /* Color del texto blanco */
+				border-radius:6px;                         /* Redondeamiento de las puntas del marco a 6 pixeles*/
+				opacity:0.9;                               /* Opacidad al 0.9% */
+				box-shadow:3px 3px 3px rgb(0, 0, 0);       /* Sombra para el marco */
+			}
+
+			.Documento {
+				margin-top:10px;	/* Margen superior 10 pixeles */
+				width:700px;		/* Ancho 700 pixeles */
+				height:600px;       /* Alto 600 pixeles */
+				padding:5px;		/* Padding 5 pixeles */
+				float:left;         /* Posicionamiento hacia la izquierda */
+			}
+			.SeccionLateral {
+				margin-top:10px;    /* Margen superior 10 pixeles */
+				width:260px;		/* Ancho 260 pixeles */
+				height:600px;       /* Alto 600 pixeles */
+				padding:5px;		/* Padding 5 pixeles */
+				float:right;		/* Posicionamiento hacia la derecha */
+			}
+        </style>
+	</head>                                                    <!-- Final del head -->
+    <body>                                                     <!-- Inicio del cuerpo para el documento HTML -->
+	
+        <header>											   <!-- Inicio para la etiqueta de la cabecera -->
+			<!-- div con las clases AnchoDocumento, Titulo, MarcoTranslucido, y Centrado -->
+            <div class='AnchoDocumento Titulo MarcoTranslucido Centrado'>
+            	<h1>La mejor de las tormentas!</h1>            <!-- Titulo -->
+            </div>
+        </header>                                              <!-- Final para la etiqueta de la cabecera -->
+
+		<!-- Parte donde se ubicara el documento y la sección lateral -->
+        <section>											   
+            <div class='AnchoDocumento Centrado'>              <!-- Inicio del div que contiene el Documento y la SeccionLateral -->
+                <div class='Documento MarcoTranslucido'>       <!-- div con la parte del documento que se alineara a la izquierda -->
+                    <p>Documento</p>
+                </div>
+                <div class='SeccionLateral MarcoTranslucido'>  <!-- div con la sección lateral que se alineara a la derecha -->
+                    <p>Sección lateral</p>
+                </div>	
+            </div>                                             <!-- Final del div que contiene el Documento y la SeccionLateral -->
+        </section> 
+
+		<footer>                                               <!-- Inicio del pie de la pagina -->
+		    <div class='AnchoDocumento Centrado'>
+            	<p><b>Documento creado por devildrey33.</b></p>
+            </div>
+	    </footer>                                              <!-- Fin del pie de la pagina -->
+	</body>                                                    <!-- Final del cuerpo para el documento HTML -->
+</html>                                                        <!-- Final del documento HTML -->

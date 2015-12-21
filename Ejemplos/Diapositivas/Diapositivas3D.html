@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Banner {
+				width:100%;
+				height:210px;
+				-webkit-perspective:2600;
+				perspective:2600;
+			}
+			.Banner_Imagenes {
+				position:relative;
+				top:80px;
+/*				-webkit-perspective:3600px;*/
+				-webkit-transform:translateZ(430px)  translateX(-250px);
+				-webkit-transform-style:preserve-3d;
+				transform:translateZ(430px)  translateX(-250px);
+				transform-style:preserve-3d;
+				margin-left:auto;
+				margin-right:auto;
+                width:100px;
+                height:100px;
+			}
+			.Banner_Imagen {
+/*				-webkit-perspective:600px;*/
+				-webkit-transform-style:preserve-3d;
+				transform-style:preserve-3d;
+				width:90px;
+				height:72px;
+				position:absolute;
+				left:240px;
+				border:1px solid #aaa;
+				background-color:rgb(255, 255, 255);
+/*				opacity:0.8;*/
+				border-radius:4px;
+
+				-webkit-transition:width 0.3s linear, height 0.3s linear, top 0.3s linear, left 0.3s linear;
+				transition:width 0.3s linear, height 0.3s linear, top 0.3s linear, left 0.3s linear;
+				
+			}
+			
+			.Banner_Imagen > .Banner_Texto {
+				position:absolute;
+				bottom:0px;
+				left:0px;
+				right:0px;
+				display:none;
+				transition:opacity 0.5s linear;
+				background-color:rgba(100, 100, 100, 0.8);
+				font-size:11px;
+				color:#FFF;
+			}
+			.Banner_Imagen:hover > .Banner_Texto {
+				display:block;
+			}
+			
+			.Banner_Imagen > img {
+				width:100%;
+				max-height:100%;
+				border-radius:4px;
+/*				-webkit-backface-visibility:hidden;             				*/
+			}
+			
+			.Banner_Imagen:hover {
+				z-index:1000;
+				opacity:1.0;
+				width:200px;
+				height:160px;
+				top:-40px;
+				left:188px;
+			}
+
+			.AnimacionBanner {
+				-webkit-animation:KFAnimacionBanner 0.3s linear;
+				animation:KFAnimacionBanner 0.3s linear;
+			}
+			
+			@-webkit-keyframes KFAnimacionBanner {
+				0%   { top:-400px; }
+				75%  { top:0px; height:72px; }
+				90%  { top:15px; height:57px;  } 
+				100% { top:0px; height:72px; }
+			}
+			@keyframes KFAnimacionBanner {
+				0%   { top:-600px; }
+				75%  { top:0px; height:72px; }
+				90%  { top:15px; height:57px;  } 
+				100% { top:0px; height:72px; }
+			}
+			
+			.Banner_Imagen1 { -webkit-transform: translateZ(380px); }
+			.Banner_Imagen2 { -webkit-transform: rotateY(15deg) translateZ(380px); }
+			.Banner_Imagen3 { -webkit-transform: rotateY(30deg) translateZ(380px); }
+			.Banner_Imagen4 { -webkit-transform: rotateY(45deg) translateZ(380px); }
+			.Banner_Imagen5 { -webkit-transform: rotateY(60deg) translateZ(380px); }
+			.Banner_Imagen6 { -webkit-transform: rotateY(75deg) translateZ(380px); }
+			.Banner_Imagen7 { -webkit-transform: rotateY(90deg) translateZ(380px); }
+			.Banner_Imagen8 { -webkit-transform: rotateY(105deg) translateZ(380px); }
+			.Banner_Imagen9 { -webkit-transform: rotateY(120deg) translateZ(380px); }
+			.Banner_Imagen10 { -webkit-transform: rotateY(135deg) translateZ(380px); }
+			.Banner_Imagen11 { -webkit-transform: rotateY(150deg) translateZ(380px); }
+			.Banner_Imagen12 { -webkit-transform: rotateY(165deg) translateZ(380px); }
+			.Banner_Imagen13 { -webkit-transform: rotateY(180deg) translateZ(380px); }
+			.Banner_Imagen14 { -webkit-transform: rotateY(195deg) translateZ(380px); }
+			.Banner_Imagen15 { -webkit-transform: rotateY(210deg) translateZ(380px); }
+			.Banner_Imagen16 { -webkit-transform: rotateY(225deg) translateZ(380px); }
+			.Banner_Imagen17 { -webkit-transform: rotateY(240deg) translateZ(380px); }
+			.Banner_Imagen18 { -webkit-transform: rotateY(255deg) translateZ(380px); }
+			.Banner_Imagen19 { -webkit-transform: rotateY(270deg) translateZ(380px); }
+			.Banner_Imagen20 { -webkit-transform: rotateY(285deg) translateZ(380px); }
+			.Banner_Imagen21 { -webkit-transform: rotateY(300deg) translateZ(380px); }
+			.Banner_Imagen22 { -webkit-transform: rotateY(315deg) translateZ(380px); }
+			.Banner_Imagen23 { -webkit-transform: rotateY(330deg) translateZ(380px); }
+			.Banner_Imagen24 { -webkit-transform: rotateY(345deg) translateZ(380px); }
+
+		</style>
+
+	    <script type="text/javascript">
+			var Rotacion = 0.0;
+			var RotacionActual = 0.0;
+			function Banner_RotarArriba() {
+				Rotacion += 15.0;
+				setTimeout(function() { Banner_AnimRotarArriba() }, 25);
+			}
+			
+			function Banner_AnimRotarArriba() {
+				if (Rotacion > RotacionActual) {
+					RotacionActual += parseFloat((Rotacion - RotacionActual) / 12);
+					document.getElementsByClassName("Banner_Imagenes")[0].style.webkitTransform = "translateZ(430px)  translateX(-250px) rotateY(" + RotacionActual + "deg)";
+					document.getElementsByClassName("Banner_Imagenes")[0].style.transform = " rotateY(" + RotacionActual + "deg)";
+					setTimeout(function() { Banner_AnimRotarArriba() }, 25);
+				}
+/*								if (RotacionActual > Rotacion) { 
+					RotacionActual -= parseFloat((RotacionActual + Rotacion) / 12);
+				}
+				else 
+				else if (Rotacion == RotacionActual) {	}*/
+			}
+			
+			function Banner_RotarAbajo() {
+			}
+        </script>
+	</head>
+	<body>
+    	<div class='Banner'>
+	    	<div class='Banner_Imagenes'>
+                <div class='Banner_Imagen Banner_Imagen1 AnimacionBanner Duracion9' onclick='Banner_RotarArriba()'>
+                    <div class='Banner_Texto'>
+                    	Proba123
+                    </div>
+                	<img src="/Graficos/250x200_GenerarLibDesdeDll.png" />
+                </div>
+                <div class='Banner_Imagen Banner_Imagen2 AnimacionBanner Duracion9'><img src="/Graficos/250x200_Snake.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen3 AnimacionBanner Duracion9'><img src="/Graficos/250x200_ComboBoxWeb.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen4 AnimacionBanner Duracion9'><img src="/Graficos/250x200_CSS3.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen5 AnimacionBanner Duracion9'><img src="/Graficos/250x200_Canvas2D_2.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen6 AnimacionBanner Duracion9'><img src="/Graficos/250x200_Captcha3.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen7 AnimacionBanner Duracion9'><img src="/Graficos/250x200_Calculadora.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen8 AnimacionBanner Duracion9'><img src="/Graficos/250x200_Candado.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen9 AnimacionBanner Duracion9'><img src="/Graficos/250x200_Ejemplo.1.4.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen10 AnimacionBanner Duracion9'><img src="/Graficos/250x200_USBBoot.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen11 AnimacionBanner Duracion9'><img src="/Graficos/250x200_LMD.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen12 AnimacionBanner Duracion9'><img src="/Graficos/250x200_InyeccionSQL.png" /></div>
+
+                <div class='Banner_Imagen Banner_Imagen13 AnimacionBanner Duracion9'><img src="/Graficos/250x200_FotoVirus0506.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen14 AnimacionBanner Duracion9'><img src="/Graficos/250x200_HTML5.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen15 AnimacionBanner Duracion9'><img src="/Graficos/250x200_Ejemplo.3.8.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen16 AnimacionBanner Duracion9'><img src="/Graficos/250x200_XAMPP.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen17 AnimacionBanner Duracion9'><img src="/Graficos/250x200_PHP.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen18 AnimacionBanner Duracion9'><img src="/Graficos/250x200_NetBeans.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen19 AnimacionBanner Duracion9'><img src="/Graficos/250x200_WebGL.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen20 AnimacionBanner Duracion9'><img src="/Graficos/250x200_ComboBoxWeb2.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen21 AnimacionBanner Duracion9'><img src="/Graficos/250x200_MenuWebFijo.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen22 AnimacionBanner Duracion9'><img src="/Graficos/250x200_WinMain.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen23 AnimacionBanner Duracion9'><img src="/Graficos/250x200_Ejemplo.3.11.png" /></div>
+                <div class='Banner_Imagen Banner_Imagen24 AnimacionBanner Duracion9'><img src="/Graficos/250x200_Ejemplo.3.4.png" /></div>
+
+            </div>
+        </div>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Borde {
+				border-width:1px;
+				border-style:solid;
+				border-top-right-radius:100px 100px;
+				position:relative;
+				width:230px;
+				height:230px;
+			}            
+		</style>
+        <!-- Código JavaScript CSS -->
+        <script type="text/javascript">
+			// Función que cambia el borde segun los valores H y V especificados.
+			function CambiarBorde() {
+				document.getElementById("IDBorde").style.borderTopRightRadius = ObtenerValor("H") + " " + ObtenerValor("V");
+			}
+			// Función que obtiene el valor del ComboBox especificado
+			function ObtenerValor(Pos) {
+				var Combo = document.getElementById("Bordes" + Pos);
+				return Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body>
+    	ValorH
+    	<select id='BordesH' onChange="CambiarBorde()">
+        	<option>100px</option>
+        	<option>50px</option>
+        	<option>10px</option>
+        	<option>5px</option>
+        	<option>10%</option>
+        	<option>50%</option>
+        	<option>100%</option>
+        </select>
+    	ValorV
+    	<select id='BordesV' onChange="CambiarBorde()">
+        	<option>100px</option>
+        	<option>50px</option>
+        	<option>10px</option>
+        	<option>5px</option>
+        	<option>10%</option>
+        	<option>50%</option>
+        	<option>100%</option>
+        </select>
+        <div class='Borde' id='IDBorde'></div>
+	</body>
+</html>

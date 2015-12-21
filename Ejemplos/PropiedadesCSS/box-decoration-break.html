@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.TresColumnas {
+				-webkit-columns: 70px 3; /* Safari, Chrome y Opera */
+				-moz-columns: 70px 3;    /* Firefox */
+				-ms-columns: 70px 3;     /* Internet Explorer */
+				columns:70px 3;
+				width:340px;
+				height:100px;
+				border:1px solid #CCC;
+				padding:5px;
+			}
+			
+			.ContenedorClone {
+				border-radius:4px;
+				padding:2px;
+				border:3px solid green;
+				-webkit-box-decoration-break: clone; /* Safari, Chrome y Opera */
+				-moz-box-decoration-break: clone;    /* Firefox */
+				-ms-box-decoration-break: clone;     /* Internet explorer */
+				box-decoration-break: clone; 				
+			}
+			
+			.ContenedorSlice {
+				border-radius:4px;
+				padding:2px;
+				border:3px solid blue;
+				-webkit-box-decoration-break: slice; /* Safari, Chrome y Opera */
+				-moz-box-decoration-break: slice;    /* Firefox */
+				-ms-box-decoration-break: slice;     /* Internet Explorer */
+				box-decoration-break: slice;    
+			}
+		</style>
+	</head>
+	<body>
+		<p style="color:green">box-decoration-break:clone</p>
+        <div class='TresColumnas'>
+        	<div class='ContenedorClone'>
+            	Hoy mirando al cielo me he dado cuenta de que me han robado la cartera 
+                y no he sido capaz de ver al ladrón, por lo que me ha resultado imposible 
+                recuperar lo substraido.
+            </div>
+        </div>
+        <br />
+		<p style="color:blue">box-decoration-break:slice.</p>
+        <div class='TresColumnas'>
+        	<div class='ContenedorSlice'>
+            	Hoy mirando al cielo me he dado cuenta de que me han robado la cartera 
+                y no he sido capaz de ver al ladrón, por lo que me ha resultado imposible 
+                recuperar lo substraido.
+            </div>
+            
+        </div>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+.ImagenCaptcha {
+	float:left;
+	border-color:#000;
+	border-style:solid;
+	border-width:1px;
+	margin:2px;
+	position:relative;
+	background-color:#FFF;
+}
+#ResultadoCaptcha {
+	background-color:#CCC;
+	position:relative;
+	width:20px;
+}
+#TxtResultado {
+	margin-left:10px;
+	color:#060;
+}
+

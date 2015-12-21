@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			body { font-family:Georgia, serif;	}            
+		</style>
+        <script type="text/javascript">
+			function CambiarFuente() {
+				var Combo = document.getElementById("TipoFuente");
+				document.body.style.fontFamily = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body onLoad="CambiarFuente()">
+    	<p>En este ejemplo puedes seleccionar la fuente para mostrar el documento.</p>
+    	<select id='TipoFuente' onChange="CambiarFuente()">
+        	<option value ="0">Georgia</option>
+        	<option value ="1">Palatino Linotype</option>
+        	<option value ="2">Times New Roman</option>
+        	<option value ="3">Arial</option>
+        	<option value ="4">Arial Black</option>
+        	<option value ="5">Comic Sans MS</option>
+        	<option value ="6">Impact</option>
+        	<option value ="7">Lucida Sans Unicode</option>
+        	<option value ="8">Tahoma</option>
+        	<option value ="9">Trebuchet MS</option>
+        	<option value ="10">Verdana</option>
+        	<option value ="11">Courier New</option>
+        	<option value ="12">Lucida Console</option>
+        </select>
+        <br />
+        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam odio ante, sodales eu sodales sit amet, 
+        	vehicula eu dolor. Proin in turpis eros. Quisque tincidunt, est vitae suscipit accumsan, dolor mi lacinia erat, 
+            quis egestas mi purus eget magna. Vivamus cursus adipiscing tortor, eu venenatis nunc tristique non. 
+            Nam auctor vulputate mi, ut consectetur nisi tincidunt in. In euismod vestibulum fringilla. 
+            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
+            Vivamus varius luctus feugiat. In posuere venenatis orci quis varius. Donec ultricies, massa at elementum porta,
+            arcu erat laoreet arcu, at condimentum odio risus quis orci.</p>
+	</body>
+</html>

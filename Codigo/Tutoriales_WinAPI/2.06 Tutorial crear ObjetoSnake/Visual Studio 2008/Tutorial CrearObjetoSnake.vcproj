@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9,00"
+	Name="2.06 Tutorial CrearObjetoSnake"
+	ProjectGUID="{00D7158E-35FF-463D-87DA-59596FB5AACD}"
+	RootNamespace="TutorialCrearObjetoSnake"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="..\..\$(ConfigurationName)"
+			IntermediateDirectory="..\..\$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="..\..\$(ConfigurationName)"
+			IntermediateDirectory="..\..\$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Archivos de recursos"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+			<File
+				RelativePath="..\2.6 Tutorial CrearObjetoSnake.rc"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Graficos\Snake.bmp"
+				>
+			</File>
+		</Filter>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoArchivo.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoArchivo.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoDirectoriosWindows.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoDirectoriosWindows.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoEscena.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoEscena.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoEscena_Marcador.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoEscena_Marcador.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoEscena_Mensaje.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoEscena_Mensaje.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoEscena_Records.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoEscena_Records.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoEscena_Tablero.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoEscena_Tablero.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoEscena_VentanaTranslucida.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoEscena_VentanaTranslucida.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoHWND.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoHWND.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoSnake.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoSnake.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoSnake_Nivel.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoSnake_Nivel.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoVentana.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoVentana.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\PlantillaEventos.h"
+			>
+		</File>
+		<File
+			RelativePath="..\resource.h"
+			>
+		</File>
+		<File
+			RelativePath="..\Tutorial CrearObjetoSnake.cpp"
+			>
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

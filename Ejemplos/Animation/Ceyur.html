@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+        <link rel='stylesheet' type='text/css' href='/css/devildrey33_Ceyur.css' />
+		<style type="text/css">
+			body { background:#EEE; }
+		</style>
+		<script>
+			/* Puede ser "", "Enfadado", "Triste" */
+        	function CambiarEstado(Estado) {
+				if (Estado != "") Estado = "_" + Estado;
+				document.getElementById("Ceyur").className = "Ceyur" + Estado;
+			}
+        </script>
+	</head>
+    <body>
+    	<div>
+        	<h3>Estados</h3>
+        	<a href="javascript:CambiarEstado('')">Normal</a>, <a href="javascript:CambiarEstado('Enfadado')">Enfadado</a>, <a href="javascript:CambiarEstado('Triste')">Triste</a>.
+            <hr />
+        </div>
+    
+		<div id='Ceyur' class='Ceyur'>
+            <div class='Ceyur_Sombra'>
+                <div class='Ceyur_OjoI'></div>
+                <div class='Ceyur_OjoD'></div>
+            
+            </div>
+            
+			<div class='Ceyur_Cuerpo'>
+            	<div class='Ceyur_OjoI'>
+                	<div class='Ceyur_OjoI_Iris'></div>
+                	<div class='Ceyur_Ojo_Parpado'></div>
+                </div>
+            	<div class='Ceyur_OjoD'>
+                	<div class='Ceyur_OjoD_Iris'></div>
+                	<div class='Ceyur_Ojo_Parpado'></div>
+                </div>
+            </div>
+        	
+        </div>
+        
+	</body>
+</html>

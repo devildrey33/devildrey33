@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Borde {
+				border-width:1px;
+				border-style:solid;
+				border-radius:100px 100px 100px 100px / 100px 100px 100px 100px;
+				position:relative;
+				width:230px;
+				height:230px;
+			}            
+		</style>
+        <!-- Código JavaScript CSS -->
+        <script type="text/javascript">
+			// Función que cambia el borde segun los valores H y V especificados.
+			function CambiarBorde() {
+				StrRadio = ObtenerValor("TLH") + " " + ObtenerValor("TRH") + " " + ObtenerValor("BLH") + " " + ObtenerValor("BRH") 
+                           + " / " + ObtenerValor("TLV") + " " + ObtenerValor("TRV") + " " + ObtenerValor("BLV") + " " +
+						   ObtenerValor("BRV"); 
+						   
+				document.getElementById("IDBorde").style.borderRadius = StrRadio
+				document.getElementById("Codigo-border-radius").innerHTML = "border-radius:" + StrRadio + ";";
+			}
+			// Función que obtiene el valor del ComboBox especificado
+			function ObtenerValor(Pos) {
+				var Combo = document.getElementById("Borde" + Pos);
+				return Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body onload="CambiarBorde()">
+    	<table>
+        	<tr>
+            	<td>top-left horizontal</td>
+            	<td>
+                    <select id='BordeTLH' onChange="CambiarBorde()">
+                        <option>100px</option>
+                        <option>50px</option>
+                        <option>10px</option>
+                        <option>5px</option>
+                        <option>10%</option>
+                        <option>50%</option>
+                        <option>100%</option>
+                    </select>                
+                </td>
+                <td>top-right horizontal</td>
+                <td>
+                    <select id='BordeTRH' onChange="CambiarBorde()">
+                        <option>100px</option>
+                        <option>50px</option>
+                        <option>10px</option>
+                        <option>5px</option>
+                        <option>10%</option>
+                        <option>50%</option>
+                        <option>100%</option>
+                    </select>
+                </td>
+                <td>bottom-left horizontal</td>
+                <td>
+                    <select id='BordeBLH' onChange="CambiarBorde()">
+                        <option>100px</option>
+                        <option>50px</option>
+                        <option>10px</option>
+                        <option>5px</option>
+                        <option>10%</option>
+                        <option>50%</option>
+                        <option>100%</option>
+                    </select>                
+                </td>
+                <td>bottom-right horizontal</td>
+                <td>
+                    <select id='BordeBRH' onChange="CambiarBorde()">
+                        <option>100px</option>
+                        <option>50px</option>
+                        <option>10px</option>
+                        <option>5px</option>
+                        <option>10%</option>
+                        <option>50%</option>
+                        <option>100%</option>
+                    </select>                
+                </td>
+            </tr>
+            <tr>
+            	<td>top-left vertical</td>
+            	<td>
+                    <select id='BordeTLV' onChange="CambiarBorde()">
+                        <option>100px</option>
+                        <option>50px</option>
+                        <option>10px</option>
+                        <option>5px</option>
+                        <option>10%</option>
+                        <option>50%</option>
+                        <option>100%</option>
+                    </select>                
+                </td>
+            	<td>top-right vertical</td>
+            	<td>
+                    <select id='BordeTRV' onChange="CambiarBorde()">
+                        <option>100px</option>
+                        <option>50px</option>
+                        <option>10px</option>
+                        <option>5px</option>
+                        <option>10%</option>
+                        <option>50%</option>
+                        <option>100%</option>
+                    </select>                
+                </td>
+            	<td>bottom-left vertical</td>
+            	<td>
+                    <select id='BordeBLV' onChange="CambiarBorde()">
+                        <option>100px</option>
+                        <option>50px</option>
+                        <option>10px</option>
+                        <option>5px</option>
+                        <option>10%</option>
+                        <option>50%</option>
+                        <option>100%</option>
+                    </select>                
+                </td>
+            	<td>bottom-right vertical</td>
+            	<td>
+                    <select id='BordeBRV' onChange="CambiarBorde()">
+                        <option>100px</option>
+                        <option>50px</option>
+                        <option>10px</option>
+                        <option>5px</option>
+                        <option>10%</option>
+                        <option>50%</option>
+                        <option>100%</option>
+                    </select>                
+                </td>
+            </tr>
+        </table>        
+        
+        <div class='Borde' id='IDBorde'></div>
+        <pre id='Codigo-border-radius'></pre>
+	</body>
+</html>

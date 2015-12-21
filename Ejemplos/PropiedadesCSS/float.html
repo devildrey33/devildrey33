@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Objeto { width:100px; height:100px; display:table; font-size:5.2em; text-align:center; }
+		</style>
+        <script type="text/javascript">
+			// Función que obtiene el valor del ComboBox especificado
+			function ObtenerValor(Nombre) {
+				var Combo = document.getElementById(Nombre);
+				return Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        	function CambiarFloat(Nombre) {
+				document.getElementById('Div_' + Nombre).style.float = ObtenerValor(Nombre);
+			}
+        </script>
+    </head>
+	<body>
+
+        <span style="color:red">Elemento 1 <code>(float:</code>
+        <select id='Float1' onChange="CambiarFloat('Float1')">
+            <option>none</option>
+            <option>left</option>
+            <option>right</option>
+        </select>
+        <code>;)</code></span>
+        <span style="color:green">Elemento 2 
+        <code>(float:</code>
+        <select id='Float2' onChange="CambiarFloat('Float2')">
+            <option>none</option>
+            <option>left</option>
+            <option>right</option>
+        </select>
+        <code>;)</code></span>
+        <span style="color:blue">Elemento 3 
+        <code>(float:</code>
+        <select id='Float3' onChange="CambiarFloat('Float3')">
+            <option>none</option>
+            <option>left</option>
+            <option>right</option>
+        </select>
+        <code>;)</code></span>
+		<hr />
+
+        <div class='Objeto' id='Div_Float1' style="background-color:red">1</div>
+        <div class='Objeto' id='Div_Float2' style="background-color:green">2</div>
+        <div class='Objeto' id='Div_Float3' style="background-color:blue">3</div>
+	</body>
+</html>

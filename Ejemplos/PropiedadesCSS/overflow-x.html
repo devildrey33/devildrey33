@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			#Marco {
+				background:rgba(255, 0, 0, 0.1);
+				border:2px dashed rgb(255, 0, 0);
+				width:150px;
+				height:150px;
+			}
+		</style>
+        <script type="text/javascript">
+        	function CambiarOverflowX() {
+				document.getElementById("Marco").style.overflowX = ObtenerOverflow("ChOverflow");
+			}
+			
+			function ObtenerOverflow(ID) {
+				var Combo = document.getElementById(ID);
+				return Combo.options[Combo.selectedIndex].innerHTML;
+			}
+		</script>
+	</head>
+	<body>
+		<code>overflow-x:</code>
+            <select id='ChOverflow' onChange="CambiarOverflowX()">
+                <option>visible</option>
+                <option>hidden</option>
+                <option>scroll</option>
+                <option>auto</option>
+                <!-- <option>no-display</option>  <!-- Por implementar -->
+                <!-- <option>no-content</option> <!-- Por implementar -->
+                <!-- <option>initial</option>    <!-- Especial de Chrome -->
+                <!-- <option>overlay</option>    <!-- Especial de Chrome -->
+            </select>
+        <code>;</code>
+        <br /><br />
+        <!-- Marco de 150x150 pixeles, imagen de 400x400 .
+        	 Dependiendo del overflow, el contenido se mostrará de las siguientes formas :
+             - visible : Si el contenido sobrepasa el tamaño del marco se verá igualmente.
+             - hidden  : El contenido que sobrepase el tamaño del marco quedará oculto.
+             - scroll  : El marco se convierte en un contenedor/ventana con barras de scroll independientes. -->
+        <div id='Marco'>
+			<img src='http://img.devildrey33.es/logo400.png' alt='Imagen de ejemplo' />
+        </div>
+	</body>
+</html>

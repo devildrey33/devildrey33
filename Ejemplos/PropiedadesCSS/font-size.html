@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Fuente { font-size:xx-small;	}            
+		</style>
+        <script type="text/javascript">
+			function CambiarFuente() {
+				var Combo = document.getElementById("TamFuente");
+				document.getElementById("IDFuente").style.fontSize = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body onLoad="CambiarFuente()">
+    	<p>En este ejemplo puedes seleccionar el tamaño de la fuente.</p>
+    	<select id='TamFuente' onChange="CambiarFuente()">
+        	<option value ="0">xx-small</option>
+        	<option value ="1">x-small</option>
+        	<option value ="2">small</option>
+        	<option value ="3">smaller</option>
+        	<option value ="4">medium</option>
+        	<option value ="5">large</option>
+        	<option value ="6">larger</option>
+        	<option value ="7">x-large</option>
+        	<option value ="8">xx-large</option>
+        	<option value ="9">12px</option>
+        	<option value ="10">24px</option>
+        	<option value ="11">50%</option>
+        	<option value ="12">200%</option>
+        </select>
+        <br />
+        <br />
+        <div class='Fuente' id='IDFuente'>Texto de prueba para ver los distintos tamaños.</div>
+	</body>
+</html>

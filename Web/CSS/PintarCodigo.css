@@ -1,0 +1,92 @@
+
+/*****************/
+/* Pintar código */
+/*****************/
+.Codigo_Marco {
+    display:inline-block;
+    background:#353338;
+    position:relative;
+    max-width:100%;
+    overflow-x:auto;
+    border:2px solid #353338;
+    border-bottom:1px solid #353338;
+}
+
+
+.Codigo_Titulo {
+    color:#FFFFFF;
+    position:relative;
+    display:table-caption;
+    background:rgb(100, 100, 100);
+    padding-left:25px;
+    padding-top:4px;
+    padding-bottom:5px;
+}
+
+.Codigo_PRECodigo {
+    background:#FFFFFF;
+    position:relative;
+    padding:2px;
+    display:table-cell;
+    border-top:2px solid #353338;
+    border-left:2px solid #353338;
+    border-bottom:1px solid #353338;
+    font-family:monospace;
+    font-size:13px;
+}
+
+.Codigo_Numeracion {
+    color:#FFFFFF;
+    display:table-cell;
+    position:relative;
+    text-align:right;
+    padding:0px 4px;
+    background:rgb(100, 100, 100);
+    border-bottom:1px solid #353338;
+    font-family:monospace;
+    font-size:13px;
+}
+
+/* Colores para los codigos */
+.TxtNegro 	{	color:#000000;			}
+.TxtVerde 	{	color:#006600;			}
+.TxtVerdeClaro 	{	color:rgb(0, 153, 153);		}
+.TxtAzul 	{	color:#0000FF;			}
+.TxtAzulClaro 	{	color:rgb(102, 129, 255);	}
+.TxtAzulOscuro 	{	color:#009;			}
+.TxtLila 	{	color:rgb(153, 0, 153);		}
+.TxtRosa 	{	color:rgb(255, 58, 255);	}
+.TxtRojo 	{	color:#CC0000;			}
+.TxtAmarillo 	{	color:rgb(206, 123, 0);		}
+.TxtGris 	{	color:rgb(128, 128, 128);	}
+.TxtGrisClaro 	{	color:rgb(98, 143, 181);	}
+.TxtMarron 	{	color:rgb(109, 50, 6);		}
+.TxtNegrita 	{	font-weight:bold;		}
+
+
+
+/* Etiqueta linea para resaltar una línea de un ejemplo */
+linea { 
+    display:inline;    
+    cursor:pointer;
+    color:green;
+    text-shadow: 0px 0px 1px rgba(0, 128, 0, 0.6);
+}
+
+linea:hover {
+    text-decoration:underline;   
+}
+ .Codigo_PRECodigo > div[l] {
+    transition:0.4s;
+    background-color:rgb(255,255,255);
+    min-height:14px;
+}
+
+.Codigo_PRECodigo > div[l][click] {
+    background-color:rgba(0, 128, 0, 0.5) !important;
+}
+
+.Codigo_PRECodigo > div[l][hover] {
+    font-weight:900;
+    background-color:rgb(220, 220, 220);
+}

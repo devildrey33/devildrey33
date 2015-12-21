@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+            /* Animación */
+            .ObjetoAnimado {
+				display:table;
+				animation:MiAnimacion 3s ease 0s infinite alternate;
+				-webkit-animation:MiAnimacion 3s ease 0s infinite alternate; /* Chrome y Safari */
+            }
+			
+            /* Animación para Chrome y Safari */    
+            @-webkit-keyframes MiAnimacion {
+                0%   { -webkit-transform:rotateY(0deg); }          /* Al principio de la animación */
+                100% { -webkit-transform:rotateY(360deg); }        /* Al final de la animación */
+            }
+			            
+            /* Animación para todos */    
+            @keyframes MiAnimacion {
+                0%   { transform:rotateY(0deg); }          /* Al principio de la animación */
+                100% { transform:rotateY(360deg); }        /* Al final de la animación */
+            }
+            
+			/* Pausar / reanudar animación en CSS mediante un input checkbox*/
+			#CheckAnimacion:checked ~ #Animacion {
+				-webkit-animation-play-state:paused;
+				animation-play-state:paused;
+			}
+		</style>
+    	<!-- Código javascript -->
+		<script type="text/javascript">
+			function Reanudar() { 
+				document.getElementById("Animacion").style.webkitAnimationPlayState  = "running"; 
+				document.getElementById("Animacion").style.animationPlayState  = "running"; 
+			};
+			function Pausar() {
+				document.getElementById("Animacion").style.webkitAnimationPlayState  = "paused"; 
+				document.getElementById("Animacion").style.animationPlayState  = "paused"; 
+			};
+		</script>
+	</head>
+	<body>
+    	<p>En este ejemplo se utliza javascript para pausar/reanudar la animación, haz click en "pausar" y luego en "reanudar".</p>
+
+        <input type="checkbox" id='CheckAnimacion'><label>Pausar / reanudar animación via CSS.</label>
+
+        <p>Pausar y reanudar utilizando javascript :
+            <a href="javascript:Pausar();">Pausar</a>, 
+        	<a href="javascript:Reanudar();">Reanudar</a>.
+          <b>Una vez utilizados los controles de javascript, no se podrá pausar / reanudar la animación via css.</b></p>
+
+
+        <div class='ObjetoAnimado' id='Animacion'>Texto animado</div>
+
+        <p><b>NOTA : </b> Este ejemplo no funciona en Internet Explorer 9 e inferiores!</p>
+	</body>
+</html>
+
+
+
+
+

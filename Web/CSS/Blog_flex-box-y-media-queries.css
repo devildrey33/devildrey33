@@ -1,0 +1,49 @@
+@keyframes AniTabla {
+    0%   { width:800px; }
+    10%  { width:800px; }
+    90%  { width:300px; }
+    100% { width:300px; }
+}
+@-webkit-keyframes AniTabla {
+    0%   { width:800px; }
+    10%  { width:800px; }
+    90%  { width:300px; }
+    100% { width:300px; }
+}
+
+#Ejemplo {
+    width:800px;
+    height:312px;
+    border:1px solid #AAA;
+    -webkit-animation:AniTabla 3s linear 0s infinite alternate;
+    animation:AniTabla 3s linear 0s infinite alternate;
+}
+
+/* Marca de los 800 pixeles */
+.Marca800 {
+    position:absolute;
+    height:340px;
+    border-right:1px dashed green;
+    width:800px;
+    z-index:-1;
+    margin-left:1px;
+}
+/* Marca de los 500 pixeles */
+.Marca500 {
+    position:absolute;
+    height:340px;
+    border-right:1px dashed orange;
+    width:500px;
+    z-index:-1;
+    margin-left:1px;
+}
+
+/* Marca de los 300 pixeles */
+.Marca300 {
+    position:absolute;
+    height:340px;
+    border-right:1px dashed red;
+    width:300px;
+    z-index:-1;
+    margin-left:1px;
+}

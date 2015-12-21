@@ -1,0 +1,65 @@
+<!-- 
+    Demostración básica de como personalizar un checkbox/radio + label
+    Por Josep Antoni Bover Comas el 12/09/2015 para devildrey33.es
+    Contenido : HTML5 + CSS3
+    Ultima modificación : 14/09/2015
+-->
+<!doctype html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            body          { padding:10px; }   /* Un poco de margen para los controles */
+            /* Div que contiene un menú */
+            .Menu { 
+                display:inline-block;
+                position:relative;
+            }
+            /* El checkbox original queda escondido */
+            .Menu > input { display:none; }
+            /* El label actua como botón, y está enlazado al checkbox oculto */
+            .Menu > input + label {
+                border:1px solid #000;
+                background:#CCC;
+                padding:8px;
+                min-width:97px;
+            }
+            /* Cuando el checkbox está marcado el color del fondo del label es verde */
+            .Menu > input:checked + label { background:rgba(0, 155, 50, 0.5); }            
+            /* Div que contiene el submenú enlazado al checkbox */
+            .Menu > input + label + .SubMenu { 
+                position:absolute; 
+                top:40px;
+                width:calc(100% - 22px); /* (10 * 2 del padding) + (1 * 2) del borde */
+                height:100px;
+                border:1px solid #000;
+                background:#CCC;                
+                padding:10px;
+                transform:perspective(600px) rotateY(90deg); /* Rotamos 90 grados el eje Y para que no se vea */
+                transition:0.4s;
+            }
+            /* Div que contiene el submenú una vez esta marcado el checkbox, devuelve a 0 grados el eje Y del submenu */
+            .Menu > input:checked + label + .SubMenu { transform:perspective(600px) rotateY(0deg); }
+        </style>        
+    </head> 
+    <body>
+        <!-- Primer boton -->
+        <div class='Menu'>
+            <input id='Input_Estilo1' type='checkbox' />
+            <label for='Input_Estilo1'>Menú Checkbox</label>
+            <div class='SubMenu'>SubMenu</div>
+        </div>
+        <!-- Segundo boton -->        
+        <div class='Menu'>
+            <input id='Input_Estilo2' type='checkbox' />
+            <label for='Input_Estilo2'>Menú Checkbox</label>
+            <div class='SubMenu'>SubMenu</div>
+        </div>
+        <!-- Tercer boton -->        
+        <div class='Menu'>
+            <input id='Input_Estilo3' type='checkbox' />
+            <label for='Input_Estilo3'>Menú Checkbox</label>
+            <div class='SubMenu'>SubMenu</div>
+        </div>
+    </body>
+</html>

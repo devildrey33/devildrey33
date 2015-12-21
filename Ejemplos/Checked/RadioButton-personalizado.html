@@ -1,0 +1,155 @@
+<!-- 
+    Demostración más avanzada sobre personalizar un checkbox/radio + label
+	En este caso al cambiar el estado del radio activamos / desactivamos una ventana emergente animada.
+    Por Josep Antoni Bover Comas el 12/09/2015 para devildrey33.es
+    Contenido ; HTML5 + CSS3
+-->
+<!doctype html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            /* Marco para los RadioButton */
+            .MarcoBotones {
+                display:table;
+                margin:0px auto;
+            }
+            /* Contenedor para el RadioButton, el Label, y la VentanaEmergente */
+            .Boton { 
+                margin:10px;
+                display:inline-block;
+                width:60px;
+                height:60px;
+            }
+            /* El checkbox original queda escondido */
+            .Boton > input { display : none; }   
+            /* El label actua como boton, por defecto desactivado con fondo gris  */
+            .Boton > input + label {             
+                display:inline-block;
+                border:1px solid #000;
+                margin:5px;
+                background:#CCC;
+                width:60px;
+                height:60px;
+                transition:0.9s cubic-bezier(.17,-0.42,.63,1.24);
+                cursor:pointer;				
+            }
+            /* Cuando el checkbox está marcado el color del fondo es verde y se rota el eje Z 90 grados */
+            .Boton > input:checked + label {     
+                transform:perspective(600px) rotateZ(90deg);
+            }
+            /* Ventana emergente por defecto tiene el left a un -70% del tamaño de la pantalla, por lo que queda escondido */
+            .Boton > input + label + .VentanaEmeregente {
+                position:fixed;
+                top:120px;
+                width:70%;
+                border:1px solid #222;
+                left:calc(-75%);
+                transition:0.9s cubic-bezier(.17,-0.42,.63,1.24);
+                min-height:220px;
+            }
+            /* Imagen para la ventana emergente */
+            .Boton > input + label + .VentanaEmeregente::before {
+                position:absolute;
+                content:'';
+                background-image:url('http://img.devildrey33.es/250x200_Logo.png');
+                background-position: -30px 0px;
+                width:250px;
+                height:200px;
+                top:10px;
+            }
+            /* Texto de la ventana emergente */
+            .Boton > .VentanaEmeregente > p {
+                padding-left:200px;
+            }
+
+            /* Al marcar un botón (radio) la ventana emergente se posicióna al 15% del ancho del navegador */
+            .Boton > input:checked + label + .VentanaEmeregente {
+                left:15%;
+            }
+
+            /* Colores para los fondos de los botones y las ventanas */
+            .Boton:nth-child(1) > input:checked + label, 
+            .Boton:nth-child(1) > input + label + .VentanaEmeregente {
+                background:rgba(255, 50, 50, 0.5);                            
+            }
+            .Boton:nth-child(4) > input:checked + label, 
+            .Boton:nth-child(4) > input + label + .VentanaEmeregente {
+                background:rgba(155, 0, 0, 0.5);
+            }
+            .Boton:nth-child(2) > input:checked + label, 
+            .Boton:nth-child(2) > input + label + .VentanaEmeregente {
+                background:rgba(50, 255, 50, 0.5);                            
+            }                        
+            .Boton:nth-child(5) > input:checked + label, 
+            .Boton:nth-child(5) > input + label + .VentanaEmeregente {
+                background:rgba(0, 155, 0, 0.5);
+            }
+            .Boton:nth-child(3) > input:checked + label, 
+            .Boton:nth-child(3) > input + label + .VentanaEmeregente {
+                background:rgba(50, 50, 255, 0.5);                            
+            }
+            .Boton:nth-child(6) > input:checked + label, 
+            .Boton:nth-child(6) > input + label + .VentanaEmeregente {
+                background:rgba(0, 0, 155, 0.5);
+            }
+        </style>        
+    </head>
+    <body>
+        <div class='MarcoBotones'>
+            <!-- Botón 1 -->
+            <div class='Boton'>
+                <input id='Input_Estilo1' type='radio' name='Input_Estilo' />
+                <label for='Input_Estilo1'></label>
+                <div class= 'VentanaEmeregente'>
+                <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at ipsum eros. Vestibulum orci purus, rutrum luctus felis in, varius commodo nisl. In tristique dolor non mi maximus congue. Vivamus lorem mi, aliquam sed scelerisque a, pretium congue nunc. Praesent malesuada, justo id dictum viverra, erat erat rutrum lectus, sit amet tempor elit enim a lectus. In molestie accumsan nulla id tincidunt. Proin tempus imperdiet lacus eget feugiat. Nulla facilisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sapien justo, consequat ut lobortis sit amet, scelerisque quis justo. Phasellus luctus vestibulum augue feugiat cursus. Nulla quis placerat nibh. Suspendisse eget elit commodo, volutpat magna vel, egestas metus.</p>
+                </div>
+            </div>
+
+            <!-- Botón 2 -->
+            <div class='Boton'>
+                <input id='Input_Estilo2' type='radio' name='Input_Estilo' />
+                <label for='Input_Estilo2'></label>
+                <div class= 'VentanaEmeregente'>
+                <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at ipsum eros. Vestibulum orci purus, rutrum luctus felis in, varius commodo nisl. In tristique dolor non mi maximus congue. Vivamus lorem mi, aliquam sed scelerisque a, pretium congue nunc. Praesent malesuada, justo id dictum viverra, erat erat rutrum lectus, sit amet tempor elit enim a lectus. In molestie accumsan nulla id tincidunt. Proin tempus imperdiet lacus eget feugiat. Nulla facilisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sapien justo, consequat ut lobortis sit amet, scelerisque quis justo. Phasellus luctus vestibulum augue feugiat cursus. Nulla quis placerat nibh. Suspendisse eget elit commodo, volutpat magna vel, egestas metus.</p>
+                </div>
+            </div>
+
+            <!-- Botón 3 -->
+            <div class='Boton'>
+                <input id='Input_Estilo3' type='radio' name='Input_Estilo' />
+                <label for='Input_Estilo3'></label>
+                <div class= 'VentanaEmeregente'>
+                <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at ipsum eros. Vestibulum orci purus, rutrum luctus felis in, varius commodo nisl. In tristique dolor non mi maximus congue. Vivamus lorem mi, aliquam sed scelerisque a, pretium congue nunc. Praesent malesuada, justo id dictum viverra, erat erat rutrum lectus, sit amet tempor elit enim a lectus. In molestie accumsan nulla id tincidunt. Proin tempus imperdiet lacus eget feugiat. Nulla facilisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sapien justo, consequat ut lobortis sit amet, scelerisque quis justo. Phasellus luctus vestibulum augue feugiat cursus. Nulla quis placerat nibh. Suspendisse eget elit commodo, volutpat magna vel, egestas metus.</p>
+                </div>
+            </div>			
+
+            <!-- Botón 4 -->
+            <div class='Boton'>
+                <input id='Input_Estilo4' type='radio' name='Input_Estilo' />
+                <label for='Input_Estilo4'></label>
+                <div class= 'VentanaEmeregente'>
+                <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at ipsum eros. Vestibulum orci purus, rutrum luctus felis in, varius commodo nisl. In tristique dolor non mi maximus congue. Vivamus lorem mi, aliquam sed scelerisque a, pretium congue nunc. Praesent malesuada, justo id dictum viverra, erat erat rutrum lectus, sit amet tempor elit enim a lectus. In molestie accumsan nulla id tincidunt. Proin tempus imperdiet lacus eget feugiat. Nulla facilisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sapien justo, consequat ut lobortis sit amet, scelerisque quis justo. Phasellus luctus vestibulum augue feugiat cursus. Nulla quis placerat nibh. Suspendisse eget elit commodo, volutpat magna vel, egestas metus.</p>
+                </div>
+            </div>
+
+            <!-- Botón 5 -->
+            <div class='Boton'>
+                <input id='Input_Estilo5' type='radio' name='Input_Estilo' />
+                <label for='Input_Estilo5'></label>
+                <div class= 'VentanaEmeregente'>
+                <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at ipsum eros. Vestibulum orci purus, rutrum luctus felis in, varius commodo nisl. In tristique dolor non mi maximus congue. Vivamus lorem mi, aliquam sed scelerisque a, pretium congue nunc. Praesent malesuada, justo id dictum viverra, erat erat rutrum lectus, sit amet tempor elit enim a lectus. In molestie accumsan nulla id tincidunt. Proin tempus imperdiet lacus eget feugiat. Nulla facilisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sapien justo, consequat ut lobortis sit amet, scelerisque quis justo. Phasellus luctus vestibulum augue feugiat cursus. Nulla quis placerat nibh. Suspendisse eget elit commodo, volutpat magna vel, egestas metus.</p>
+                </div>
+            </div>
+
+            <!-- Botón 6 -->
+            <div class='Boton'>
+                <input id='Input_Estilo6' type='radio' name='Input_Estilo' />
+                <label for='Input_Estilo6'></label>
+                <div class= 'VentanaEmeregente'>
+                <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at ipsum eros. Vestibulum orci purus, rutrum luctus felis in, varius commodo nisl. In tristique dolor non mi maximus congue. Vivamus lorem mi, aliquam sed scelerisque a, pretium congue nunc. Praesent malesuada, justo id dictum viverra, erat erat rutrum lectus, sit amet tempor elit enim a lectus. In molestie accumsan nulla id tincidunt. Proin tempus imperdiet lacus eget feugiat. Nulla facilisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sapien justo, consequat ut lobortis sit amet, scelerisque quis justo. Phasellus luctus vestibulum augue feugiat cursus. Nulla quis placerat nibh. Suspendisse eget elit commodo, volutpat magna vel, egestas metus.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,76 @@
+﻿/* 
+	Acordeon que contiene 2 divs, uno principal, y uno que esta dentro del principal el cual parte de altura 0 y se incrementa hasta abarcar el tamaño necesario.
+	Se compone de tres clases :
+		DivPrincipal 		: clase que contiene la parte que siempre esta visible y la parte que varia de altura.
+		DivVariableOculto	: clase que oculta la parte variable y especifica una transición para realizar la animación.
+		DivVariableVisible	: clase que muestra la parte variable y especifica una transición para realizar la animación.
+	Las partes de altura variable deben tener una ID con la que especificamos el max-height (su maxima altura).
+
+	PROBLEMAS 
+		Chrome, Safari, Mozilla :
+			- No puedo especificar "height:auto" si quiero que funcione el transition, por lo que hay que especificar un max-height especifico para cada acordeon.
+		Opera : 
+			- El height del DivVariableOculto si se especifica "0%" no lo pilla, hay que poner "0px", de todas formas sigue mostrando una linea del DivVariableOculto.
+			- El transition solo funciona si se especifica el height con pixeles, y no con porcentaje.
+		IE9 : 
+			- El height del DivVariableOculto se lo pasa por el forro y lo muestra enterito.
+			- El transition no funciona..
+			- El max-height no funciona en IE8 e inferiores, en IE9 en teoria esta soportado pero a la practica ni con !important hace caso de el.....
+ */
+
+
+/* Div que contiene tanto la parte de altura fija como la parte de altura variable */
+.DivPrincipal {
+	overflow:hidden;
+	border-color:#000;
+	border-width:1px;
+	border-style:dotted;
+	background-color:#EEE;
+	width:500px;
+}
+
+/* Clase que hace la animación que oculta el acordeon */
+.DivVariableOculto {
+	/* Chrome y safari */
+	-webkit-transition-property:height;
+    -webkit-transition-duration:0.5s;    
+	/* Mozilla */
+    -moz-transition-property:height;
+    -moz-transition-duration:0.5s;    
+	/* Opera */
+    -o-transition-property:height;
+    -o-transition-duration:0.5s;  	
+	/* Todos (no funciona hasta que la propiedad transition sea aceptada por todos los navegadores) */
+	transition-property:height;
+	transition-duration:0.5s;  
+	/* Altura 0% */
+	height:0px;
+}
+
+/* Clase que hace la animación que muestra el acordeon */
+.DivVariableVisible {
+	/* Chrome y safari */
+	-webkit-transition-property:height;
+    -webkit-transition-duration:1.0s;    
+	/* Mozilla */
+    -moz-transition-property:height;
+    -moz-transition-duration:1.0s;    
+	/* Opera */
+    -o-transition-property:height;
+    -o-transition-duration:1.0s;  	
+	/* Todos (no funciona hasta que la propiedad transition sea aceptada por todos los navegadores) */
+	transition-property:height;
+	transition-duration:1.0s;  
+	/* Altura 100% */
+	height:1000px;
+}
+
+/* FIX PARA LA ALTURA 
+	Si ponemos height:auto la animacion no funciona, por lo que debemos especificar la altura maxima del div oculto.
+ */
+
+/* Altura máxima para el acordeon 1 */
+#Acordeon_1 {
+	max-height:200px !important;
+	background-color:#DDD;
+}

@@ -1,0 +1,114 @@
+<!-- documento creado por Josep Antoni Bover el [12/01/2014] para devildrey33.es -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			/* Regla para la animación */
+			@-webkit-keyframes AniTabla {
+				0%   { width:700px; }
+				10%  { width:700px; }
+				90%  { width:400px; }
+				100% { width:400px; }
+			}
+			@keyframes AniTabla {
+				0%   { width:700px; }
+				10%  { width:700px; }
+				90%  { width:400px; }
+				100% { width:400px; }
+			}
+			.Tabla {
+				-webkit-animation:AniTabla 3s linear 0s infinite alternate;
+				animation:AniTabla 3s linear 0s infinite alternate;
+				border:1px solid #CCC;
+				background:#EEE;
+				white-space:nowrap;      /* Impide los saltos de línea automáticos */
+			}
+			/* Algoritmo de distribucion fijo */
+			.TablaFija { table-layout:fixed; }
+			/* Las dos primeras columnas de la tabla fija son de 120 pixeles de ancho */
+			.TablaFija td:nth-child(-n+2) {	width:120px; }
+			/* Celdas de la tabla */
+			.Tabla td  {
+				overflow:hidden;         /* Oculta el contenido que sobresale del contenedor */
+				text-overflow:ellipsis;  /* Si el texto excede el tamaño del contenedor mostrará "..." al final */
+			}
+		
+			.Tabla td:nth-child(-n+2) {
+				border-right:1px dashed #CCC;
+			}
+			tr td {
+				border-bottom:1px dashed #CCC;
+			}
+			tr:last-child td {
+				border-bottom:none;
+			}
+			/* Marca de los 700 pixeles */
+			.Marca700 {
+				position:absolute;
+				height:215px;
+				border-right:1px dashed green;
+				width:700px;
+				z-index:-2;
+                margin-left:-1px;
+			}
+			/* Marca de los 400 pixeles */
+			.Marca400 {
+				position:absolute;
+				height:215px;
+				border-right:1px dashed red;
+				width:400px;
+				z-index:-1;
+                margin-left:-1px;
+			}
+			caption {
+				text-align:left;
+			}
+		</style>
+	</head>
+	<body>
+        <div style='position:relative'>
+            <div class='Marca700'></div>
+            <div class='Marca400'></div>
+            <span style="color:red; position:absolute; left:350px;">400px</span>
+            <span style="color:green; position:absolute; left:650px;">700px</span>
+            <table class='Tabla TablaFija'>
+                <caption><code>table-layout:fixed</code></caption>
+                <tr>
+                    <td>nombre de pila</td>
+                    <td>A-1234567890</td>
+                    <td>Descripción larga utilizada para explicar el valor.</td>
+                </tr>
+                <tr>
+                    <td>nombre de pila</td>
+                    <td>A-1234567890</td>
+                    <td>Descripción larga utilizada para explicar el valor.</td>
+                </tr>
+                <tr>
+                    <td>nombre de pila</td>
+                    <td>A-1234567890</td>
+                    <td>Descripción larga utilizada para explicar el valor.</td>
+                </tr>
+            </table>				
+            <br />
+            <table class='Tabla'>
+                <caption><code>table-layout:auto</code></caption>
+                <tr>
+                    <td>nombre de pila</td>
+                    <td>A-1234567890</td>
+                    <td>Descripción larga utilizada para explicar el valor.</td>
+                </tr>
+                <tr>
+                    <td>nombre de pila</td>
+                    <td>A-1234567890</td>
+                    <td>Descripción larga utilizada para explicar el valor.</td>
+                </tr>
+                <tr>
+                    <td>nombre de pila</td>
+                    <td>A-1234567890</td>
+                    <td>Descripción larga utilizada para explicar el valor.</td>
+                </tr>
+            </table>
+        </div>
+	</body>
+</html>

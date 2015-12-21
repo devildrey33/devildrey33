@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+    	<!-- Estilos CSS -->
+    	<style>
+			/* Fondo oscuro que se muestra al visualizar una foto en grande*/
+        	#MostrarFoto_Fondo 		{ position:fixed; width:100%; height:100%; display:none; background:rgba(0,0,0,0.5); }
+			/* Div que centra el marco de la foto verticalmente */
+			#MostrarFoto_CentrarV 	{ display:table-cell; width:100%; vertical-align:middle; }
+			/* Marco de la foto centrado horizontalmente */
+			#MostrarFoto_Marco 		{ display:table; margin-left:auto; margin-right:auto; padding:5px; background-color:#FFF; border:1px #999 solid; }
+        </style>
+    	<!-- Código javascript --> 
+    	<script type='text/javascript'>	
+/* Función MAIN (Esta función se ejecuta cuando el navegador carga todo el código html de este documento) */
+window.onload = function() {
+	/* Obtenemos la tabla con la ID 'TablaFotos' */
+	TablaFotos = document.getElementById("TablaFotos");
+	/* obtenemos en un array todas las etiquetas TD de ta tabla */
+	ArrayTD = TablaFotos.getElementsByTagName("td");
+	/* Obtenemos el total de elementos TD dentro de la tabla */
+	TotalTD = ArrayTD.length;
+	/* Recorremos con un bucle de 0 al total de objetos TD de la tabla*/
+	for (i = 0; i < TotalTD; i++) {
+		/* En cada TD enlazamos el evento OnClick con una función que llamara a MostrarFoto */
+		document.get
+		ArrayTD.item(i).onclick = function(event) {
+			/* Obtengo el atributo URL de la etiqueta <img> hija */
+			URL = event.target.("img").item(0).getAttribute('src');
+			/* Muestro la imagen grande */
+			MostrarFoto(URL);
+		}
+	}
+	/* Establezco el evento OnClick del div que contiene el fondo negro que se muestra al hacer la imagen grande */
+	
+}
+
+/* Función para mostrar una foto en grande */
+function MostrarFoto(URL) {
+	document.getElementById('MostrarFoto_Fondo').style.display = "block";
+	document.getElementById('MostrarFoto_Marco').innerHTML = "<img src='" + URL + "'>";
+}
+/* Función que oculta el marco de las fotos grandes */
+function OcultarFoto() {
+	document.getElementById('MostrarFoto_Fondo').style.display = "none";
+}
+		</script>
+    </head>
+    <body>
+
+<!--[INICIO devildrey33.body]-->
+<!-- Fondo y marco para las fotos grandes -->
+<div id='MostrarFoto_Fondo'>
+    <div id='MostrarFoto_CentrarV'>
+        <div id='MostrarFoto_Marco'></div>
+    </div>
+</div>
+<!--[FIN devildrey33.body]-->
+    
+<!--[INICIO devildrey33.tablafotos]-->
+<!-- Tabla con 10 fotos pequeñas -->
+<table id ='TablaFotos'>
+    <tr>
+        <td><img src='/Graficos/155x125_ColoresXML.png'></td>
+        <td><img src='/Graficos/155x125_FotoVirus0506.png'></td>
+    </tr>
+    <tr>
+        <td><img src='/Graficos/'></td>
+        <td><img src='/Graficos/'></td>
+    </tr>
+    <tr>
+        <td><img src='/Graficos/'></td>
+        <td><img src='/Graficos/'></td>
+    </tr>
+    <tr>
+        <td><img src='/Graficos/'></td>
+        <td><img src='/Graficos/'></td>
+    </tr>
+    <tr>
+        <td><img src='/Graficos/'></td>
+        <td><img src='/Graficos/'></td>
+    </tr>
+</table>
+<!--[FIN devildrey33.tablafotos]-->
+
+    </body>
+</html>

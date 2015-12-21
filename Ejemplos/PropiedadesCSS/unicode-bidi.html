@@ -1,0 +1,39 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [02/01/2014] para devildrey33.es -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			#Div {	direction:rtl; unicode-bidi:bidi-override;	}
+			#Span { unicode-bidi:embed;	}
+		</style>
+        <script type="text/javascript">
+        	function CambiarBidi(ID) {
+				var Combo = document.getElementById("Ch" + ID);
+				document.getElementById(ID).style.unicodeBidi = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body>
+        <code>#Div { direction:rtl; </code><br />
+        <code style='margin-left:56px'>unicode-bidi:</code>
+        <select id='ChDiv' onChange="CambiarBidi('Div')">
+            <option>normal</option>
+            <option>embed</option>
+            <option selected='selected'>bidi-override</option>
+        </select>
+        <code>; }</code><br />
+        <code>#Span { unicode-bidi:</code>
+        <select id='ChSpan' onChange="CambiarBidi('Span')">
+            <option>normal</option>
+            <option selected='selected'>embed</option>
+            <option>bidi-override</option>
+		</select>
+        <code>; }</code>
+        <br />
+	    <div id='Div'>
+            <b>DIV</b> 
+            <span id='Span'>SPAN</span>
+        </div>
+	</body>
+</html>

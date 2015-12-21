@@ -1,0 +1,64 @@
+/* 	Archivo CSS para el tutorial 6 
+	Os encontrareis varios comentarios del estilo -[INICIO devildrey33.algo]-
+	Estos comentarios ignorad-los ya que son una forma de mostrar el código CSS en www.devildrey33.es
+	De esta forma no tengo que re-escribir el código para mostrarlo dentro del tutorial y me ahorra mucho tiempo.
+ */
+
+/* -[INICIO devildrey33.body]- */
+body {
+	background-image:url("http://img.devildrey33.es/Tutorial_HTML5_6_Fondo.jpg"); /* Imagen de fondo */
+	background-repeat:no-repeat;						/* Tipo de repetición */
+	background-position:center top;                     /* Posición del fondo */
+}
+/* -[FIN devildrey33.body]- */
+
+/* -[INICIO devildrey33.AnchoDocumento]- */
+.AnchoDocumento {
+	width:1000px;      /* Ancho en pixeles para el documento */
+}
+/* -[FIN devildrey33.AnchoDocumento]- */
+
+/* -[INICIO devildrey33.Centrado]- */
+.Centrado {
+	margin-left:auto;  /* Margen a la izquierda automatico */
+	margin-right:auto; /* Margen a la derecha automatico   */
+}
+/* -[FIN devildrey33.Centrado]- */
+
+/* -[INICIO devildrey33.Titulo]- */
+.Titulo {
+	text-align:center;                     /* Alineación del texto : centrado */
+	text-shadow:2px 2px 2px rgb(0, 0, 0);  /* Sombra para el texto */
+}
+/* -[FIN devildrey33.Titulo]- */
+
+/* -[INICIO devildrey33.MarcoTranslucido]- */
+.MarcoTranslucido {
+	position:relative;                         /* Posición relativa al objeto inmediatamente superior */
+	border-width:2px;                          /* Borde con el tamaño de un pixel */
+	border-color:rgb(0, 0, 0);                 /* Color del borde negro */
+	border-style:solid;                        /* Estilo del borde solido */
+	background-color:#333;                     /* Color del fondo */
+	color:rgb(255, 255, 255);                  /* Color del texto blanco */
+	border-radius:6px;                         /* Redondeamiento de las puntas del marco a 6 pixeles*/
+	opacity:0.9;                               /* Opacidad al 0.9% */
+	box-shadow:3px 3px 3px rgb(0, 0, 0);       /* Sombra para el marco */
+}
+/* -[FIN devildrey33.MarcoTranslucido]- */
+
+/* -[INICIO devildrey33.Documento]- */
+.Documento {
+	margin-top:10px;	/* Margen superior 10 pixeles */
+	width:700px;		/* Ancho 700 pixeles */
+	height:600px;       /* Alto 600 pixeles */
+	padding:5px;		/* Padding 5 pixeles */
+	float:left;         /* Posicionamiento hacia la izquierda */
+}
+.SeccionLateral {
+	margin-top:10px;    /* Margen superior 10 pixeles */
+	width:260px;		/* Ancho 260 pixeles */
+	height:600px;       /* Alto 600 pixeles */
+	padding:5px;		/* Padding 5 pixeles */
+	float:right;		/* Posicionamiento hacia la derecha */
+}
+/* -[FIN devildrey33.Documento]- */

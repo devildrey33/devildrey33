@@ -1,0 +1,34 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [02/01/2014] para devildrey33.es -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">	
+			#Texto {	word-break:normal;	}
+		</style>
+        <script type="text/javascript">
+			function CambiarWordBreak() {
+				var Combo = document.getElementById("ChWordBreak");
+				document.getElementById("Texto").style.wordBreak = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body>
+    	<code>#Texto {</code><br />
+        <code>&nbsp; &nbsp; word-break:</code>
+    	<select id='ChWordBreak' onChange="CambiarWordBreak()">
+        	<option>normal</option>
+        	<option>break-all</option>
+        	<option>keep-all</option>
+		</select>        
+        <code>;</code><br />
+        <code>}</code>
+		<p>
+        <b>NOTA :</b> En Chrome, Safari y Opera el valor <code>keep-all</code> no está implementado.
+        </p>
+        <p id='Texto'>
+			palabra01 palabra02 palabra03 palabra04 palabra05 palabra06 palabra07 palabra08 palabra09 palabra10 
+            palabra11 palabra12 palabra13 palabra14 palabra15 palabra16 palabra17 palabra18 palabra19 palabra20
+        </p>
+ 	</body>
+</html>

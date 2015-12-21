@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://apis.google.com/js/client.js"></script>    <!-- use this for full client API -->
+    <script src="https://apis.google.com/js/auth.js"></script>      <!-- use this for only CORS auth -->
+
+    <script type="text/javascript">
+
+          var clientId = '10.........................apps.googleusercontent.com';
+          var scopes = 'https://www.googleapis.com/auth/drive.metadata.readonly';
+
+        function checkAuth() {
+            $('body').append('<p>The authorization request has been launched</p>');
+            gapi.auth.authorize({
+                    'client_id': clientId,
+                    'scope'    : scopes,
+                    'immediate': true
+                },
+                handleAuthResult);
+        }
+
+        function handleAuthResult(authResult) {
+            if (authResult && !authResult.error) {
+                $('body').append('<p>The authorization request has been succesful</p>');
+                $('.send_request').removeAttr('disabled');
+            } else {
+                $('body').append('<p>There was an ERROR!</p>');
+            }
+        }
+    </script>
+</head>
+
+<body style=”width: 100%; height: 100%; overflow: hidden;”>
+
+    <h1> Google API access example </h1>
+    <button id=”authorize-button1″ onclick=”checkAuth();”> check Authorization </button>
+    <button class=”send_request” onclick=”method_1_request();” disabled=”true”> Request method 1 (request) </button>
+    <button class=”send_request” onclick=”method_2_request();” disabled=”true”> Request method 2 (load) </button>
+    <button class=”send_request” onclick=”method_3_request();” > Request method 3 (CORS) </button>
+
+</body>
+
+</html>

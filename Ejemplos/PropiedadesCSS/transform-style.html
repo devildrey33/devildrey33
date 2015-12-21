@@ -1,0 +1,115 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [30/12/2013] para devildrey33.es -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			body { background-color:#DDD; }
+			#MarcoOpciones {
+				background-color:#FFF;
+				width:670px;
+				display:table;
+				padding:4px 0px 4px 6px;
+				border:1px solid #CCC;
+				opacity:0.9;
+                z-index:2;
+                position:absolute;
+			}
+			#MarcoOpciones * {
+				vertical-align:top;
+			}
+			#MarcoOpciones .TextoLinea1 {
+				width:160px;
+				display:inline-block;
+			}
+			#MarcoOpciones .TextoLinea2 {
+				width:140px;
+				display:inline-block;
+			}
+			#MarcoOpciones .Valor {
+				width:70px;
+				display:inline-block;
+			}
+			.Tab1 { margin-left:20px; }
+			#Contenedor { position:absolute; }
+			#Objeto {
+				margin-left:500px;
+				-webkit-transform-style:preserve-3d;
+				-webkit-transform:perspective(1200px) rotate3d(0.4, 0.5, 0.6, 43deg);
+				transform-style:preserve-3d;
+				transform:perspective(1200px) rotate3d(0.4, 0.5, 0.6, 43deg);
+			}
+			/* #ObjetoDl = Delante */
+			#ObjetoDl, #ObjetoSu, #ObjetoIn, #ObjetoIz, #ObjetoDe, #ObjetoTr {
+				position:absolute;
+				background-color:#333;
+				background-image:url('http://img.devildrey33.es/logo400.png');
+				width:400px;
+				height:400px;
+				opacity:0.9;
+				border:1px solid #000;
+				z-index:1;
+			}
+			#ObjetoSu { /* Superior */
+				-webkit-transform-origin: top left;
+				-webkit-transform: rotateX(-90deg);
+				transform-origin: top left;
+				transform: rotateX(-90deg);
+			}
+			#ObjetoIn { /* Inferior */
+				-webkit-transform-origin: right bottom;
+				-webkit-transform: rotateX(90deg);
+				transform-origin: left bottom;
+				transform: rotateX(90deg);
+			}
+			#ObjetoIz { /* Izquierda */
+				-webkit-transform-origin: left top;
+				-webkit-transform: rotateY(90deg);
+				transform-origin: left top;
+				transform: rotateY(90deg);
+			}
+			#ObjetoDe { /* Derecha */
+				-webkit-transform-origin: right top;
+				-webkit-transform: rotateY(-90deg);
+				transform-origin: right top;
+				transform: rotateY(-90deg);
+			}
+			#ObjetoTr { /* Trasera */
+ 			    -webkit-transform: translateZ(-400px);
+				transform: translateZ(-400px);
+			}
+		</style>
+	    <script type="text/javascript">			
+			function ActualizarTransformStyle() {
+				var Combo = document.getElementById("ChTransformStyle");
+				document.getElementById("Objeto").style.transformStyle = Combo.options[Combo.selectedIndex].innerHTML;
+				document.getElementById("Objeto").style.webkitTransformStyle = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body onLoad="ActualizarTransformStyle()">
+    	<div id='MarcoOpciones'>
+            <div class='Tab1'>
+            	<div><code>transform:perspective(1200px) rotate3d(0.4, 0.5, 0.6, 43deg);</code></div>
+            </div>
+            <div class='Tab1'>
+                <code class='TextoLinea1'>transform-style</code><code>:</code>
+                <select id='ChTransformStyle' onChange="ActualizarTransformStyle()">
+					<option>preserve-3d</option>
+		            <option>flat</option>                
+                </select>
+                <code>;</code>
+            </div>
+		</div>		
+        <div id='Contenedor'>
+        	<div id='Objeto'>
+            	<div id='ObjetoDl'></div>
+            	<div id='ObjetoSu'></div>
+            	<div id='ObjetoIn'></div>
+            	<div id='ObjetoDe'></div>
+            	<div id='ObjetoIz'></div>
+            	<div id='ObjetoTr'></div>
+            </div>
+        </div>
+    </body>
+</html>

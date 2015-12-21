@@ -1,0 +1,56 @@
+<html>
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Canvas tutorial</title>
+
+		<script type="text/javascript">
+		
+function PintarDegradados() {
+	// Inicializo el canvas
+	var Canvas = document.getElementById("canvas");
+	if (Canvas.getContext) { Context = Canvas.getContext("2d");                          }
+	else                   { alert("Tu navegador no soporta el objeto canvas!"); return; }
+	// Pinto el fondo gris claro	
+	Context.fillStyle = "#EEEEEE";
+	Context.fillRect(0, 0, Context.canvas.width, Context.canvas.height);
+	
+	// Creo los degradados lineales
+	var GradientVertical = Context.createLinearGradient(0, 20, 0, 80);
+	GradientVertical.addColorStop(0, "blue");
+	GradientVertical.addColorStop(1, "green");
+
+	var GradientHorizontal = Context.createLinearGradient(120, 0, 180, 0);
+	GradientHorizontal.addColorStop(0, "blue");
+	GradientHorizontal.addColorStop(1, "green");
+
+	var GradientInclinado = Context.createLinearGradient(220, 20, 280, 80);
+	GradientInclinado.addColorStop(0, "blue");
+	GradientInclinado.addColorStop(1, "green");
+
+	// Pinto los degradados lineales
+	Context.fillStyle = GradientVertical;
+	Context.fillRect(20, 20, 80, 80);
+	Context.fillStyle = GradientHorizontal;
+	Context.fillRect(120, 20, 80, 80);
+	Context.fillStyle = GradientInclinado;
+	Context.fillRect(220, 20, 80, 80);
+	
+	// Pinto los textos con las coordenadas de los gradients lineales
+	Context.fillStyle = "#FFFFFF";
+	
+	Context.fillText("0,20", 22, 30);
+	Context.fillText("0,80", 22, 97);
+
+	Context.fillText("120,0", 122, 30);
+	Context.fillText("180,0", 170, 30);
+
+	Context.fillText("220,20", 222, 30);
+	Context.fillText("280,80", 265, 97);
+}
+ 
+		</script>
+	</head>
+	<body onLoad="PintarDegradados()">
+		<canvas id="canvas" width="600" height="200"></canvas>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			table {
+				border-spacing:2px;
+				border:1px solid red;
+			}
+			td { border:1px solid green; }
+		</style>
+	</head>
+	<body>
+    	<h1>empty-cells:show;</h1>
+    	<table>
+        	<tr><td>Celda 1</td><td></td></tr>
+        	<tr><td></td><td>Celda 4</td></tr>
+        </table>
+    	<h1>empty-cells:hide;</h1>
+    	<table style="empty-cells:hide;">
+        	<tr><td>Celda 1</td><td></td></tr>
+        	<tr><td></td><td>Celda 4</td></tr>
+        </table>
+	</body>
+</html>

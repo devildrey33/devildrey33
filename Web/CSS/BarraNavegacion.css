@@ -1,0 +1,534 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17-jul-2015, 20:59:17
+    Author     : devildrey33
+*/
+
+
+#BarraNavegacion {
+    position:fixed;
+    top:0px;
+    right:-100px;
+    z-index:1000;
+    transition:0.4s cubic-bezier(.32,-0.16,.68,1.13);
+    opacity:0.0;
+    display:flex-box;
+}
+
+#BarraNavegacion[Visible=true] {
+    right:0px;
+    opacity:1;
+}
+
+#BarraNavegacion_Indice, #BarraNavegacion_LabVer, #BarraNavegacion_LabExplorar {
+    text-align:center;
+    width:60px;
+    height:60px;    
+}
+
+body #BarraNavegacion_LabVer, body #BarraNavegacion_LabExplorar {
+    display:none;
+}
+
+body[tipo=Lab] #BarraNavegacion_LabVer, body[tipo=Lab] #BarraNavegacion_LabExplorar, body[tipo=LabError] #BarraNavegacion_LabVer, body[tipo=LabError] #BarraNavegacion_LabExplorar {
+    display:table;
+}
+
+/*#BarraNavegacion > a, #BarraNavegacion_Encuesta {
+    width:60px;
+    height:60px;
+    display:block;
+    color:#FFFFFF;
+    background:rgba(37,35,40, 0.95);
+    text-decoration:none;
+    position:relative;
+    transition:0.4s;
+    margin-bottom: 2px;
+    cursor:pointer;
+}
+
+#BarraNavegacion_Encuesta {
+    right:-100px;
+    transition:0.4s cubic-bezier(.17,-0.42,0,1.35);
+}
+
+#BarraNavegacion_Encuesta[Visible=true] {
+    right:0px;
+}
+
+#BarraNavegacion > a:hover, #BarraNavegacion_Indice:hover, #BarraNavegacion_LabExplorar:hover, #BarraNavegacion_Encuesta {
+    background:#EA504E;                
+}     */
+
+
+input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
+    width:100%;
+    background-position:center center;
+    background-repeat:no-repeat;
+    transition:0.4s;
+    position:relative;
+    display:table;
+    opacity:1;    
+}
+
+/*#BarraNavegacion_BotonExplorar_Estado:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span,
+#BarraNavegacion_BotonVer_Estado:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span,
+#BarraNavegacion_Indice_Estado:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span,
+#BarraNavegacion_PrevNext_Estado:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span,
+#BarraNavegacion_RedesSociales_Estado:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {*/
+input:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
+    opacity:0;    
+}
+/* Botones de los menus con imagenes */
+input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
+    width:58px;
+    height:58px;
+    top:-22px;
+    /*left:12px;*/
+    transition:0.4s;
+    position:relative;
+    display:table;
+    opacity:1;    
+}
+
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span[ver=columnas] > span { background-image: url('/Web/Graficos/BotonMixto.png');   }
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span[ver=filas]    > span { background-image: url('/Web/Graficos/BotonFilas.png');   }
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span[ver=codigo]   > span { background-image: url('/Web/Graficos/BotonCodigo.png');  }
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span[ver=preview]  > span { background-image: url('/Web/Graficos/BotonPreview.png'); }
+
+
+#BarraNavegacion_Indice_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
+    background-image: url('/Web/Graficos/BotonAncla.png');
+}
+
+#BarraNavegacion_PrevNext_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
+    background-image: url('/Web/Graficos/prevnext.png');
+}
+
+#BarraNavegacion_RedesSociales_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
+    background-image: url('/Web/Graficos/RedesSociales.png');
+}
+
+#BarraNavegacion_BotonExplorar_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
+    background-image: url('/Web/Graficos/BotonExplorar.png');
+}
+
+
+/* Por defecto oculto*/ 
+body #BarraNavegacion_LabGuardar, body #BarraNavegacion_LabGuardarCache { 
+    display:none; 
+    opacity:0; 
+    background-image: url('/Web/Graficos/BotonGuardar.png'); 
+    background-position:center center;
+    background-repeat:no-repeat;
+    transition:0.4s;
+    visibility:hidden;
+}
+/* Si soy administrador, y estoy en el lab */
+body[administrador33][tipo=Lab] #BarraNavegacion_LabGuardar, body[administrador33][tipo=Lab] #BarraNavegacion_LabGuardarCache { display:block; }
+/* Si soy administrador, estoy en el lab, y se ha modificado el archivo */
+body[administrador33][tipo=Lab][modificado=true] #BarraNavegacion_LabGuardar { visibility:visible; opacity:1; }
+/* Si soy administrador, estoy en el lab, y se ha modificado algun checkbox del explorador de archivos */
+body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuardarCache { visibility:visible; opacity:1; }
+
+#BarraNavegacion_Cerrar::before {
+    content:'';
+    position:absolute;
+    background-image:url('/Web/Graficos/BotonHome.png');
+/*    background-image:url('/Web/Graficos/Home20px.png');*/
+    display:table;
+    width:100%;
+    height:100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+/* Tamaños de los submenus según las columnas que se necesiten */
+.SubIndice_Columas_1                                                {    width:auto !important;        }
+.SubIndice_Columas_2                                                {    width:500px; /* 250 * 2 */    }
+.SubIndice_Columas_3, .SubIndice_Columas_4, .SubIndice_Columas_5    {    width:540px; /* 180 * 3 */    }
+.SubIndice_Columas_1 > div                                                          { display:block !important; }
+.SubIndice_Columas_2 > div                                                          { width:230px; }
+.SubIndice_Columas_3 > div, .SubIndice_Columas_4 > div, .SubIndice_Columas_5 > div  { width:155px; }
+
+
+#BarraNavegacion_Indice > #BarraNavegacion_SubIndice {
+/*    display:inline-flex;
+    flex-flow:column wrap;
+    justify-content: flex-start;
+    align-content:flex-end;
+    align-items:flex-end;*/
+    display:table;
+    
+    max-height:600px;
+    
+    position:absolute;
+    top:-3px;
+    right:64px;
+/*    height:600px;*/
+/*    min-width:400px;*/
+/*    width:300px;*/
+    background: rgba(37,35,40, 0.95);
+    padding:5px;
+    
+/*    transition-delay:0.2s; /* un segundo de delay para des-animar */
+}
+
+.Menu_BotonCheck {
+    position:relative;
+}
+
+#BarraNavegacion .Menu_BotonCheck > .BarraPrincipal_Boton_Input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu + div {
+    transition:0.4s cubic-bezier(.17,-0.42,0,1.35);
+    transform:perspective(600px) rotateY(-90deg);    
+    opacity:0;
+    transform-origin:right center;
+}
+#BarraNavegacion .Menu_BotonCheck > .BarraPrincipal_Boton_Input:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu + div  {    
+    transform:perspective(600px) rotateY(0deg);
+    opacity:0.95;    
+}
+
+/*#BarraNavegacion_Indice:hover > #BarraNavegacion_SubIndice, #BarraNavegacion_LabVer:hover > #BarraNavegacion_LabMarcoVer , #BarraNavegacion_LabExplorar:hover > #BarraNavegacion_LabMarcoExplorador {
+    transform:perspective(600px) rotateY(0deg);
+    opacity:0.95;
+}*/
+
+#BarraNavegacion_SubIndice > div {
+    display:inline-block;
+    text-align:left;
+}
+
+#BarraNavegacion_SubIndice > div, #BarraNavegacion_LabMarcoVer > div {
+    color:#FFF;
+    padding:10px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    height:20px;
+    cursor:pointer;
+}
+
+#BarraNavegacion_SubIndice > div:hover, #BarraNavegacion_LabMarcoVer > div:hover {
+    background: #EA504E;
+}
+
+#BarraNavegacion_LabVer > #BarraNavegacion_LabMarcoVer {
+    display:inline-block;
+    position:absolute;
+    top:0px;
+    right:64px;
+    padding:1px;
+    width:256px;
+    height:60px;
+    background:rgba(37,35,40, 0.95);
+    color:#FFF;
+}
+
+#BarraNavegacion_LabVer > #BarraNavegacion_LabMarcoVer > .BarraPrincipal_BotonMenu {
+    display:inline-block;
+}
+
+#BarraNavegacion_LabExplorar > #BarraNavegacion_LabMarcoExplorador {
+    right:60px !important;
+    position:fixed !important;
+    width:300px;
+    height:100%;
+    top:0px;
+    bottom:0px;
+    color:#FFF;
+    background:rgba(37,35,40, 0.95);
+/*    transition:0.4s cubic-bezier(.17,-0.42,0,1.35);
+    transform:perspective(600px) rotateY(-90deg);    
+    transform-origin:right center;
+    opacity:0;    */
+}
+
+/* Boton cerrar de 60 px */
+/*#BarraNavegacion > #BarraNavegacion_Cerrar::before, #BarraNavegacion > #BarraNavegacion_Cerrar::after {
+    content:'';
+    top:28px;
+    left:20px;
+    width:20px;
+    height:2px;
+    background-color:white;
+    position:absolute;
+}
+#BarraNavegacion > #BarraNavegacion_Cerrar::before {   transform: rotateZ(45deg);   }
+#BarraNavegacion > #BarraNavegacion_Cerrar::after {    transform: rotateZ(-45deg);  }*/
+
+/*
+
+#BarraNavegacion > #BarraNavegacion_Next + #BarraNavegacion_VentanaNext, 
+#BarraNavegacion > #BarraNavegacion_Prev + #BarraNavegacion_VentanaPrev {
+    background:rgba(0,0,0,0.8);
+    width:350px;
+    height:85px;
+    left:-354px;
+    position:absolute;
+    transition:0.4s cubic-bezier(.17,-0.42,0,1.35);
+    transform-origin:right center;
+    transform:perspective(600px) rotateY(-90deg);
+    opacity:0.0;
+    margin-top:-75px;
+}
+#BarraNavegacion > #BarraNavegacion_Next + #BarraNavegacion_VentanaNext > h3,
+#BarraNavegacion > #BarraNavegacion_Prev + #BarraNavegacion_VentanaPrev > h3 {
+    color:#FFFFFF;
+    text-align:center;
+    margin:0px 5px 0px 95px;
+    position:absolute;
+    top: 50%;
+    transform:translateY(-50%);
+    display:block;
+    width:calc(100% - 100px);
+}
+#BarraNavegacion > #BarraNavegacion_Next + #BarraNavegacion_VentanaNext > img,
+#BarraNavegacion > #BarraNavegacion_Prev + #BarraNavegacion_VentanaPrev > img {
+    margin:12px 0px 12px 12px;
+    width:75px;
+    height:60px;
+    float:left;
+    opacity:0.7;
+    border-radius:3px;
+    background:#FFF;
+}
+
+#BarraNavegacion > #BarraNavegacion_Next:hover + #BarraNavegacion_VentanaNext,
+#BarraNavegacion > #BarraNavegacion_Prev:hover + #BarraNavegacion_VentanaPrev {
+    transform:perspective(600px) rotateY(0deg);
+    opacity:1;
+}
+*/
+
+
+#BarraNavegacion_MarcoNextPrev_Desc  > img {
+    width:75px;
+    height:60px;
+    opacity:0.7;
+    border-radius:3px;
+    background:#FFF;    
+    display:inline-block;
+    position:relative;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+#BarraNavegacion_MarcoNextPrev_Desc > h3 {
+    margin:0px 10px 0px 5px;
+    display:inline-block;
+    color:#FFFFFF;
+    text-align:center;
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    display:inline-block;
+    width:calc(100% - 250px);
+}
+
+#BarraNavegacion_NextPrev {
+    display:none;
+}
+#BarraNavegacion_NextPrev[mostrar=true] {
+    display:block;
+}
+
+/* TODO : !!!!! REVIEW IDEA animar els butons (per resaltarlos) del sub-index al mostrar-lo !!!!!! */
+/*
+#BarraNavegacion_NextPrev[mostrar=true] > #BarraNavegacion_MarcoNextPrev > button {
+    animation:Ani_ResaltarBoton 10s ease;
+    -webkit-animation:Ani_ResaltarBoton 10s ease;
+}*/
+/* Animación para todos */    
+/*
+@keyframes Ani_ResaltarBoton {
+    0%   { color:rgba(255,255,255,1) !important; }                 
+    20%  { color:rgba(255,255,255,0) !important; }                 
+    40%  { color:rgba(255,255,255,1) !important; }                 
+    60%  { color:rgba(255,255,255,0) !important; }                 
+    80%  { color:rgba(255,255,255,1) !important; }                 
+    100% { color:rgba(255,255,255,0) !important; }                 
+}*/
+/* Animación para todos */    /*
+@-webkit-keyframes Ani_ResaltarBoton {
+    0%   { color:rgba(255,255,255,1) !important; }                 
+    20%  { color:rgba(255,255,255,0) !important; }                 
+    40%  { color:rgba(255,255,255,1) !important; }                 
+    60%  { color:rgba(255,255,255,0) !important; }                 
+    80%  { color:rgba(255,255,255,1) !important; }                 
+    100% { color:rgba(255,255,255,0) !important; }                 
+}*/
+
+#BarraNavegacion_MarcoNextPrev {
+    position:absolute;
+    display:block;
+    right:64px;
+    top:-8px;
+    background: rgba(37,35,40, 0.95);
+    color:#FFF;
+    border: 1px solid #353338;
+    width:470px;
+    height:78px;
+}
+
+#BarraNavegacion_MarcoNextPrev > button {
+    margin:10px !important;
+    display:inline-block;
+    width:60px;
+    height:60px;
+    position:relative;
+    top:-12px;
+    /* Si no en la vista de movil vertical se hacen enormes, ya que tienen un 200% por defecto */
+    zoom:1 !important;
+}
+
+#BarraNavegacion_MarcoNextPrev_Desc {
+    display:inline-block;
+    width:298px;
+    height:58px;
+    margin:10px 0px;
+    padding:0px;
+    border:1px solid transparent;
+    transition:0.4s;
+/*    margin:10px 0px;*/
+}
+
+#BarraNavegacion_MarcoNextPrev_Desc:hover {
+    cursor:pointer;
+    background:#EA504E;
+    border:1px solid red;
+}
+
+
+
+
+
+
+/* Boton Next 60px */
+#BarraNavegacion_MarcoNextPrev_Next::before,
+#BarraNavegacion_MarcoNextPrev_Next::after {
+    content:'';
+    top:27px;
+    left:25px;
+    width:10px;
+    height:2px;
+    background-color:#FFF;
+    position:absolute;
+}
+#BarraNavegacion_MarcoNextPrev_Next:disabled::before,
+#BarraNavegacion_MarcoNextPrev_Next:disabled::after,
+#BarraNavegacion_MarcoNextPrev_Prev:disabled::before,
+#BarraNavegacion_MarcoNextPrev_Prev:disabled::after {
+    background-color:#AAA;
+}
+
+#BarraNavegacion_MarcoNextPrev_Next::before {   transform: rotateZ(45deg);   }
+#BarraNavegacion_MarcoNextPrev_Next::after {    transform: rotateZ(-45deg);  top:34px; }
+
+/* Boton Prev 60px */
+#BarraNavegacion_MarcoNextPrev_Prev::before,
+#BarraNavegacion_MarcoNextPrev_Prev::after {
+    content:'';
+    top:27px;
+    left:25px;
+    width:10px;
+    height:2px;
+    background-color:white;
+    position:absolute;
+}            
+#BarraNavegacion_MarcoNextPrev_Prev::before {   transform: rotateZ(-45deg);   }
+#BarraNavegacion_MarcoNextPrev_Prev::after  {   transform: rotateZ(45deg);  top:34px; }
+
+
+
+
+
+
+#BarraNavegacion_MarcoRedesSociales {
+    position:absolute;
+    display:block;
+    right:64px;
+    top:-3px;
+    background: rgba(37,35,40, 0.95);
+    color:#FFF;
+    border: 1px solid #353338;
+    width: 262px;
+    height:62px;
+}
+
+#BarraNavegacion_MarcoRedesSociales > button {
+    display:inline-block;
+    width:58px;
+    height:58px;
+    margin:2px !important;
+    overflow:hidden;
+    zoom:1 !important;
+
+}
+
+#BarraNavegacion_MarcoRedesSociales_Facebook   { background-image: url('/Web/Graficos/BotonFacebook.png');   }
+#BarraNavegacion_MarcoRedesSociales_Twitter    { background-image: url('/Web/Graficos/BotonTwitter.png');    }
+#BarraNavegacion_MarcoRedesSociales_GooglePlus { background-image: url('/Web/Graficos/BotonGooglePlus.png'); }
+#BarraNavegacion_MarcoRedesSociales_Linkedin   { background-image: url('/Web/Graficos/BotonLinkedin.png'); }
+
+#BarraNavegacion_MarcoRedesSociales_Facebook:hover   { background-color: rgb(58, 88, 155) !important;  border-color: rgb(0,0,150) !important; }
+#BarraNavegacion_MarcoRedesSociales_Twitter:hover    { background-color: rgb(40, 168, 224) !important; border-color: rgb(0,0,250) !important; }
+#BarraNavegacion_MarcoRedesSociales_GooglePlus:hover { background-color: rgb(202, 70, 56) !important;  }
+#BarraNavegacion_MarcoRedesSociales_Linkedin:hover   { background-color: rgb(0, 122, 185) !important;  border-color: rgb(0,0,200) !important;}
+
+
+
+
+
+
+
+#BarraNavegacion_Inferior {
+    width:60px;
+    height:60px;
+    position:fixed;
+    display:none;
+/*    transition:0.5s;    
+    transition-delay:0.5s;*/
+    bottom:0px;
+    right:0px;    
+    z-index:100;
+}
+
+#BarraNavegacion_Inferior[mostrar=true] {
+    display:block;
+}
+
+#BarraNavegacion_Inferior > div:nth-child(1) {
+    position:absolute;
+    border-radius:50px;
+    width:40px;
+    height:40px;
+    border:10px solid transparent;
+    border-color:transparent #EA504E;
+    -webkit-animation:Rotacion 1s infinite ease-in-out;
+    animation:Rotacion 1s infinite ease-in-out;
+}
+
+#BarraNavegacion_Inferior > div:nth-child(2) {
+    position:absolute;
+    top:15px;
+    left:15px;
+    border-radius:20px;
+    width:20px;
+    height:20px;
+    border:5px solid transparent;
+    border-color:#EA504E transparent;
+    -webkit-animation:RotacionInv 1s infinite linear;
+    animation:RotacionInv 1s infinite linear;
+}
+
+
+@-webkit-keyframes Rotacion 	{ 0% { -webkit-transform:rotate(0deg); } 	100% { -webkit-transform:rotate(360deg); }  }
+@-webkit-keyframes RotacionInv 	{ 0% { -webkit-transform:rotate(0deg); } 	100% { -webkit-transform:rotate(-360deg); } }
+
+@keyframes Rotacion 		{ 0% { transform:rotate(0deg); } 		100% { transform:rotate(360deg); }          }
+@keyframes RotacionInv 		{ 0% { transform:rotate(0deg); } 		100% { transform:rotate(-360deg); }         }

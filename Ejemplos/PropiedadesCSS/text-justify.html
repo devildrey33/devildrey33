@@ -1,0 +1,49 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [02/01/2014] para devildrey33.es -->
+<!doctype html>
+<html>
+	<!-- Estilos CSS -->
+	<style type="text/css">
+		#Texto {
+			text-align:justify;
+		}
+	</style>
+	<script type="text/javascript">
+		function CambiarJustificaion() {
+			var Combo = document.getElementById("ChJustificacion");
+			var Valor = Combo.options[Combo.selectedIndex].innerHTML;
+			/* webkit y gekoo no soportan aun text-justify, pero lo dejo para cuando lo pongan */
+			document.getElementById("Texto").style.webkitTextJustify = Valor;
+			document.getElementById("Texto").style.mozTextJustify = Valor;
+			/* soportado unicamente por explorer */
+			document.getElementById("Texto").style.textJustify = Valor;
+		}
+    </script>
+	<body>
+        <h1>Este ejemplo solo funciona en explorer!</h1>
+		<div class='Marco'>
+            <code>text-justify:</code>
+            <select id='ChJustificacion' onChange="CambiarJustificaion()">
+                <option>auto</option>
+                <option>distribute</option>
+                <option>inter-cluster</option>
+                <option>inter-ideograph</option>
+                <option>inter-word</option>
+                <option>kashida</option>
+                <option>newspaper</option>
+            </select>
+            <code>;</code>
+        </div>
+        <p id='Texto'>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies eleifend turpis a aliquam. 
+            Mauris eget libero id leo euismod faucibus non a odio. Nam ac auctor risus. 
+            Proin vel nisl pretium felis interdum accumsan eu sit amet mauris. Etiam vitae commodo sem. 
+            Pellentesque ut massa sed erat dictum dictum quis nec diam. Cras et elit molestie, posuere nisl non, fringilla sem.
+            Ut fermentum ac leo ut tincidunt. Cras tristique leo tortor, vel tempor justo accumsan et.
+            Maecenas pellentesque ligula vulputate ante scelerisque porta. 
+            Cras est felis, viverra at dui in, imperdiet accumsan mi. 
+            Nunc iaculis pellentesque ligula, at rhoncus risus bibendum sit amet. 
+            Maecenas congue accumsan nunc, quis adipiscing urna sodales feugiat. 
+            Aliquam malesuada nibh ut libero fermentum vulputate.            
+        </p>
+	</body>
+</html>

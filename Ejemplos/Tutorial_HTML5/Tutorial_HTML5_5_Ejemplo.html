@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>                                                <!-- Documento HTML 5 -->
+<html>                                                         <!-- Inicio del documento HTML -->
+    <head>                                                     <!-- Inicio del head -->
+		<title>Ejemplo del tutorial 5</title>
+        <meta charset="UTF-8">
+        <!-- Hoja de estilos CSS para este documento -->
+		<style type="text/css">
+			/* Estilos para la etiqueta body */
+			body {
+				background-color:green; /* Color de fondo verde   */
+				color:white;            /* Color del texto blanco */
+			}
+			
+			/* Estilos para el texto */
+			.TextoSombreado {
+				text-shadow:1px 1px 1px rgb(255, 0, 0);
+			}
+			.Texto18px {
+				font-size:18px;
+			}
+			
+			/* Ejemplo del selector :hover */
+			.MovimientoDerecha {
+				position:relative;
+				color:blue;
+			}
+			.MovimientoDerecha:hover {
+				left:10px;
+				color:#0000AA;
+			}		
+		</style>
+	</head>                                                    <!-- Final del head -->
+    <body>                                                     <!-- Inicio del cuerpo para el documento HTML -->
+    	<header>                                               <!-- Inicio de la cabecera con el titulo -->
+        	<h1>Tutorial 5 : Creación de páginas web desde cero (5 Mas sobre estilos)</h1>
+        </header>                                              <!-- Inicio de la cabecera con el titulo -->
+		<!-- Texto normal siguiendo los atributos del body -->
+		<p>El color del fondo en este caso es verde, y las letras se ven de color blanco. Esto es porque dentro del archivo "<i>Tutorial_HTML5_5_Ejemplo.css</i>" hemos creado el estilo "<i>body</i>" y le hemos añadido las propiedades para el color del fondo y del texto.</p>
+
+		<!-- Ejemplo para las clases TextoSombreado y Texto18px -->
+        <p>Ejemplo para las clases <i>TextoSombreado</i> y <i>Texto18px</i> :</p>
+        <p>
+            <span>- Texto normal</span> 
+            <span class='TextoSombreado'>Texto sombreado</span> 
+            <span class='Texto18px'>Texto de 18 pixeles</span> 
+            <span class='TextoSombreado Texto18px'>Texto sombreado de 18 pixeles</span>
+        </p>		
+        
+		<!-- Ejemplo para la clase MovimientoDerecha que utiliza el selector :hover -->
+        <p>Ejemplo para la clase <i>MovimientoDerecha</i> que utiliza el selector <i>:hover</i></p>
+		<p>- <span class='MovimientoDerecha'><u>Pasa el mouse por este texto.</u></span></p>
+        
+		<footer>                                               <!-- Inicio del pie de pagina -->
+			<h5>Documento creado por devildrey33.</h5>
+		</footer>                                              <!-- Inicio del pie de pagina -->
+	</body>                                                    <!-- Final del cuerpo para el documento HTML -->
+</html>                                                        <!-- Final del documento HTML -->

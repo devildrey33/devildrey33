@@ -1,0 +1,289 @@
+<!-- Ejemplo creado para devildrey33.es el 01/09/2014 por Josep Antoni Bover -->
+
+<!-- Solo funciona en webkit (tiene que ver con el display table de algunas partes del cubo, no se si es un bug o que...) -->
+
+<!doctype>
+<html>
+	<head>
+    	<style>
+
+			cubo {
+				perspective:750px;
+				perspective-origin:50% 70%;
+				display:table;
+				margin-left:auto;
+				margin-right:auto;
+				padding:20px;
+			}
+
+			cubo_objeto {
+				transform-style:preserve-3d;
+				display:table;
+				position:relative;
+				width:200px;
+				height:200px;
+				transform:translateZ(0px);
+				transition:.6s ease-in-out;
+			}
+			
+			cubo:hover {
+				background:rgb(200, 200 ,200);
+			}
+			
+			cubo_cara_u, cubo_cara_d, cubo_cara_n, cubo_cara_s, cubo_cara_e, cubo_cara_w {
+				position:absolute;
+				z-index:10;
+				height:100%;
+				width:100%;
+				border:1px solid black;
+			}
+			
+			/*  El dado
+						*****
+						*s-6*
+						*****
+						
+						*****
+					  	*d-5*
+						*****
+						
+				*****	*****	*****
+				*e-3*	*n-1*	*w-4*
+				*****	*****	*****
+						
+						*****
+					    *u-2*
+						*****
+			*/
+			
+			cubo_cara_n { /* 1 parte delantera */
+				background:rgba(255, 0, 0, 0.7);
+				transform:rotateY(-90deg) translateX(50%) rotateY(90deg);
+				-webkit-animation:kf_cubo_carae1 1.5s ease-out both; 
+				animation:kf_cubo_carae1 1.5s ease-out both;
+			}
+
+			cubo_cara_s { /* 6 parte trasera */
+				background:rgba(255, 255, 0, 0.7);
+				transform:rotateY(-90deg) translateX(-50%) rotateY(90deg) rotateX(180deg);
+				-webkit-animation:kf_cubo_carae6 1.5s ease-out both; 
+				animation:kf_cubo_carae6 1.5s ease-out both;
+			}
+			
+			cubo_cara_e { /* 3 parte izquierda */
+				background:rgba(0, 255, 255, 0.7);
+				transform-origin:center left;
+				transform:rotateY(270deg)  translateX(-50%);
+				-webkit-animation:kf_cubo_carae3 1.5s ease-out both; 
+				animation:kf_cubo_carae3 1.5s ease-out both;
+			}
+
+			cubo_cara_w { /* 4 parte derecha*/
+				background:rgba(100, 100, 100, 0.7);
+				transform-origin:center right;
+				transform:rotateY(-90deg) translateX(50%);
+				-webkit-animation:kf_cubo_carae4 1.5s ease-out both; 
+				animation:kf_cubo_carae4 1.5s ease-out both;
+			}
+			
+			cubo_cara_u { /* 2 parte superior */
+				background:rgba(0, 255, 0, 0.7);
+				transform-origin:top center;
+				transform:rotateX(90deg) translateY(-50%);
+				-webkit-animation:kf_cubo_carae2 1.5s ease-out both; 
+				animation:kf_cubo_carae2 1.5s ease-out both;
+			}
+			
+			cubo_cara_d { /* 5 parte inferior */
+				background:rgba(0, 0, 255, 0.7);
+				transform-origin:bottom center;
+				transform:rotateX(270deg) translateY(50%);
+				-webkit-animation:kf_cubo_carae5 1.5s ease-out both; 
+				animation:kf_cubo_carae5 1.5s ease-out both;
+			}
+
+/*			cubo[cara="1"], cubo[cara="2"], cubo[cara="3"], cubo[cara="4"], cubo[cara="5"], cubo[cara="6"] {
+			}*/
+			
+			cubo[cara="1"] > cubo_objeto {	-webkit-animation:kf_cubo_cara1 1.5s ease-out both; animation:kf_cubo_cara1 1.5s ease-out both;}
+			cubo[cara="2"] > cubo_objeto {	-webkit-animation:kf_cubo_cara2 1.5s ease-out both; animation:kf_cubo_cara2 1.5s ease-out both;}
+			cubo[cara="3"] > cubo_objeto {	-webkit-animation:kf_cubo_cara3 1.5s ease-out both; animation:kf_cubo_cara3 1.5s ease-out both;}
+			cubo[cara="4"] > cubo_objeto {	-webkit-animation:kf_cubo_cara4 1.5s ease-out both; animation:kf_cubo_cara4 1.5s ease-out both;}
+			cubo[cara="5"] > cubo_objeto {	-webkit-animation:kf_cubo_cara5 1.5s ease-out both; animation:kf_cubo_cara5 1.5s ease-out both;}
+			cubo[cara="6"] > cubo_objeto {	-webkit-animation:kf_cubo_cara6 1.5s ease-out both; animation:kf_cubo_cara6 1.5s ease-out both;}
+
+
+
+/*			@-webkit-keyframes kf_cubo_carae1 {
+				0% 			{ transform:rotateY(-90deg) translateX(50%) rotateY(90deg); }
+				50% 		{ transform:rotateY(-90deg) translateX(100%) rotateY(90deg); }
+				100% 		{ transform:rotateY(-90deg) translateX(50%) rotateY(90deg); }
+			}
+			@keyframes kf_cubo_carae1 {
+				0% 			{ transform:rotateY(-90deg) translateX(50%) rotateY(90deg); }
+				50% 		{ transform:rotateY(-90deg) translateX(100%) rotateY(90deg); }
+				100% 		{ transform:rotateY(-90deg) translateX(50%) rotateY(90deg); }
+			}
+			@-webkit-keyframes kf_cubo_carae2 {
+				0% 			{ transform:rotateX(90deg) translateY(-50%); }
+				50% 		{ transform:rotateX(90deg) translateY(-100%); }
+				100% 		{ transform:rotateX(90deg) translateY(-50%); }
+			}
+			@-webkit-keyframes kf_cubo_carae3 {
+				0% 			{ transform:rotateY(270deg)  translateX(-50%); }
+				50% 		{ transform:rotateY(270deg)  translateX(-100%); }
+				100% 		{ transform:rotateY(270deg)  translateX(-50%); }
+			}
+			@-webkit-keyframes kf_cubo_carae4 {
+				0% 			{ transform:rotateY(-90deg) translateX(50%); }
+				50% 		{ transform:rotateY(-90deg) translateX(100%); }
+				100% 		{ transform:rotateY(-90deg) translateX(50%); }
+			}
+			@-webkit-keyframes kf_cubo_carae5 {
+				0% 			{ transform:rotateX(270deg) translateY(50%); }
+				50% 		{ transform:rotateX(270deg) translateY(100%); }
+				100% 		{ transform:rotateX(270deg) translateY(50%); }
+			}
+			@-webkit-keyframes kf_cubo_carae6 {
+				0% 			{ transform:rotateY(-90deg) translateX(-50%) rotateY(90deg) rotateX(180deg); }
+				50% 		{ transform:rotateY(-90deg) translateX(-100%) rotateY(90deg) rotateX(180deg); }
+				100% 		{ transform:rotateY(-90deg) translateX(-50%) rotateY(90deg) rotateX(180deg); }
+			}
+*/
+
+			
+			@-webkit-keyframes kf_cubo_cara1 {
+				100% 		{ transform:rotateY(0deg) rotateX(0deg); }
+			}
+			@keyframes kf_cubo_cara1 {
+				100% 		{ transform:rotateY(0deg) rotateX(0deg); }
+			}
+			
+			
+			
+			@-webkit-keyframes kf_cubo_cara2 {
+				100% 		{ transform:rotateY(0deg) rotateX(-90deg); }
+			}
+			@keyframes kf_cubo_cara2 {
+				100% 		{ transform:rotateY(0deg) rotateX(-90deg); }
+			}
+			
+			
+			
+			@-webkit-keyframes kf_cubo_cara3 {
+				100% 		{ transform:rotateY(90deg) rotateX(0deg); }
+			}
+			@keyframes kf_cubo_cara3 {
+				100% 		{ transform:rotateY(90deg) rotateX(0deg); }
+			}
+			
+			
+			
+			@-webkit-keyframes kf_cubo_cara4 {
+				100% 		{ transform:rotateY(-90deg) rotateX(-90deg); }
+			}
+			@keyframes kf_cubo_cara4 {
+				100% 		{ transform:rotateY(-90deg) rotateX(-90deg); }
+			}
+			
+			
+			
+			@-webkit-keyframes kf_cubo_cara5 {
+				100% 		{ transform:rotateY(0deg) rotateX(90deg); }
+			}
+			@keyframes kf_cubo_cara5 {
+				100% 		{ transform:rotateY(0deg) rotateX(90deg); }
+			}
+			
+			
+			
+			@-webkit-keyframes kf_cubo_cara6 {
+				100% 		{ transform:rotateY(0deg) rotateX(180deg); }
+			}
+			@keyframes kf_cubo_cara6 {
+				100% 		{ transform:rotateY(0deg) rotateX(180deg); }
+			}
+			
+			
+			
+			/* marco para los botones que cambian la cara del dado */
+			marco {
+				display:table; 
+				border:1px solid #666; 
+				background:rgba(20,20,20,0.9);
+				padding:20px; 
+				margin-left:auto; 
+				margin-right:auto; 
+				z-index:1000; 
+				transform:translateZ(300px)			
+			}
+			
+			marco > a {
+				text-decoration:none;
+				color:white;
+				padding:5px;
+				margin:2px;
+				border:1px solid #666;
+			}
+
+			marco > a:hover {
+				background:rgb(128, 128, 128);
+				color:yellow;
+			}
+			
+        </style>
+        
+        <script>
+			/* Función para establecer la cara del cubo */
+			/* IDCubo representa la ID del objeto que contiene el cubo */
+        	function Cubo_MostrarCara(Cara, IDCubo) {
+				if (typeof IDCubo == 'undefined') {
+					var Cubos =document.getElementsByTagName("cubo");
+					for (var i = 0; i < Cubos.length; i++) {
+						Cubos.item(i).setAttribute("cara", Cara);
+					}
+				}
+				else {
+					document.getElementById(IDCubo).setAttribute("cara", Cara);
+				}
+			}
+        </script>
+    </head>
+    <body>
+    	<br /><br /><br />
+        
+        <cubo cara="4">
+            <cubo_objeto>
+            	<cubo_cara_n>1</cubo_cara_n>
+            	<cubo_cara_s>6</cubo_cara_s>                
+            	<cubo_cara_e>3</cubo_cara_e>
+            	<cubo_cara_w>4</cubo_cara_W>
+            	<cubo_cara_u>2</cubo_cara_u>
+            	<cubo_cara_d>5</cubo_cara_d>
+            </cubo>
+        </div>
+        
+       <!-- <br /> <br /> <br /> <br /> 
+        
+        <cubo cara="6">
+            <cubo_objeto>
+            	<cubo_cara_n>1</cubo_cara_n>
+            	<cubo_cara_s>6</cubo_cara_s>                
+            	<cubo_cara_e>3</cubo_cara_e>
+            	<cubo_cara_w>4</cubo_cara_W>
+            	<cubo_cara_u>2</cubo_cara_u>
+            	<cubo_cara_d>5</cubo_cara_d>
+            </cubo>
+        </div> -->
+        
+        <marco>
+        	<a href="javascript:Cubo_MostrarCara('1')">1</a> 
+        	<a href="javascript:Cubo_MostrarCara('2')">2</a> 
+        	<a href="javascript:Cubo_MostrarCara('3')">3</a> 
+        	<a href="javascript:Cubo_MostrarCara('4')">4</a> 
+        	<a href="javascript:Cubo_MostrarCara('5')">5</a> 
+        	<a href="javascript:Cubo_MostrarCara('6')">6</a>
+        </marco>
+        
+    </body>
+</html>

@@ -1,0 +1,42 @@
+// Todos los nombres para los valores deben empezar al principio de la linea
+// El total de valores debe ser (7 + AltoTablero) en caso contrario no se cargara correctamente el nivel.
+// El total de caracteres para cada fila del tablero debe ser AnchoTablero, o no se cargara correctamente.
+// Todos los valores deben terminar con ;
+
+Numero Bolas             = 6;
+Velocidad Inicial        = 80;
+Ampliacion Velocidad     = 3;
+Tamaño Inicial Serpiente = 6;
+Puntos Para Pasar        = 1;
+Ancho Tablero            = 30;
+Alto Tablero             = 30;
+Tablero[0]               = .............................X;
+Tablero[1]               = .............................X;
+Tablero[2]               = .............................X;
+Tablero[3]               = .............................X;
+Tablero[4]               = .............................X;
+Tablero[5]               = .............................X;
+Tablero[6]               = .............................X;
+Tablero[7]               = .............................X;
+Tablero[8]               = .............................X;
+Tablero[9]               = .............................X;
+Tablero[10]              = .............................X;
+Tablero[11]              = .............................X;
+Tablero[12]              = .............................X;
+Tablero[13]              = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX;
+Tablero[14]              = X.............................;
+Tablero[15]              = X.............................;
+Tablero[16]              = X.............................;
+Tablero[17]              = X.............................;
+Tablero[18]              = X.............................;
+Tablero[19]              = X.............................;
+Tablero[20]              = X.............................;
+Tablero[21]              = X.............................;
+Tablero[22]              = X.............................;
+Tablero[23]              = X.............................;
+Tablero[24]              = X.............................;
+Tablero[25]              = X.............................;
+Tablero[26]              = X.............................;
+Tablero[27]              = X.............................;
+Tablero[28]              = X.............................;
+Tablero[29]              = X.............................;

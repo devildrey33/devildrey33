@@ -1,0 +1,130 @@
+<!-- Ejemplo creado por Josep Antoni Bover para devildrey33.es  
+	  Ultima actualización [11/01/2014] -->
+<!DOCTYPE html>
+<html>
+	<head>
+    	<style type="text/css">
+			div { display:table; border:1px dashed #999; padding:3px; margin:3px; }
+			div > i { display:block; }
+			/* Las etiquetas 'i' que sean el tercer hijo empezando por detrás tendrán el texto verde */
+			div > i:nth-last-child(3) { color:rgb(0, 200, 0); }
+			/* Las etiquetas span impares tendran el fondo de color azul */
+			/* También se podría representar con span:nth-last-child(2n+1) */
+			div > span:nth-last-child(odd) { background-color:blue; color:white; }
+			/* Las etiquetas span pares tendran el fondo de color rojo */
+			/* También se podría representar con span:nth-last-child(2n) */
+			div > span:nth-last-child(even) { background-color:red; }
+			/* Cada 4 elementos code empezando desde el final tienen el texto rojo */
+			/* Prueba tambien code:nth-last-child(4n-1) y code:nth-last-child(4n+1) */
+			div > code:nth-last-child(4n) { color:rgb(255, 0, 0); }
+		</style>
+        <script type="text/javascript">
+        	function CambiarHijo() {
+				var Combo = document.getElementById("ComboHijo");
+				var Valor = Combo.options[Combo.selectedIndex].innerHTML;
+				/* Asigno a todas las etiquetas p situadas dentro de un div, el color de texto negro */
+				var Objetos = document.querySelectorAll("div > i");
+				for (var i = 0; i < Objetos.length; i++) Objetos.item(i).style.color = "rgb(0, 0, 0)";
+				/* Asigno el color de texto verde a las etiquetas p que coinciden con el selector especificado */
+				var ObjetosSel = document.querySelectorAll("div > i:nth-last-child(" + Valor + ")");
+				for (var i = 0; i < ObjetosSel.length; i++) ObjetosSel.item(i).style.color = "rgb(0, 255, 0)";
+			}
+		
+			function CambiarFormula() {
+				var ComboA = document.getElementById("ComboFormula_A");
+				var ComboB = document.getElementById("ComboFormula_B");
+				var ValorA = ComboA.options[ComboA.selectedIndex].innerHTML;
+				var ValorB = ComboB.options[ComboB.selectedIndex].innerHTML;
+				var Objetos = document.querySelectorAll("div > code");
+				for (var i = 0; i < Objetos.length; i++) Objetos.item(i).style.color = "rgb(0, 0, 0)";
+				var ObjetosSel = document.querySelectorAll("div > code:nth-last-child(" + ValorA + "n" + ValorB + ")");
+				for (var i = 0; i < ObjetosSel.length; i++) ObjetosSel.item(i).style.color = "rgb(255, 0, 0)";
+			}
+		</script>
+    </head>
+    <body>
+    	<p>Ejemplo básico de posiciones únicas : <code>i:nth-last-child(</code>
+        <select id='ComboHijo' onChange="CambiarHijo()">
+				<option>1</option>            
+				<option>2</option>            
+				<option selected="selected">3</option>            
+				<option>4</option>            
+            </select>        
+        <code>)</code></p>
+    	<div> <!-- Ejemplo para i:nth-last-child -->
+            <div style="float:left"> 
+                <i>Cursiva 1</i>
+                <i>Cursiva 2</i>
+            </div>
+            <div style="float:left"> 
+                <i>Cursiva 1</i>
+                <i>Cursiva 2</i>
+                <i>Cursiva 3</i>
+            </div>
+            <div style="float:left"> 
+                <i>Cursiva 1</i>
+                <i>Cursiva 2</i>
+                <i>Cursiva 3</i>
+                <i>Cursiva 4</i>
+            </div>
+        </div>
+    	<p>Ejemplo de pares e impares : <code>p:nth-last-child(<b style="color:red">even</b> / 
+        <b style="color:blue">odd</b>)</code>, <b>even</b> son pares, y <b>odd</b> impares</p>
+    	<div> <!-- Ejemplo de pares e imapres [nth-last-child(even), nth-last-child(odd)] -->
+        	<span>Span 1 </span>
+        	<span>Span 2 </span>
+        	<span>Span 3 </span>
+        	<span>Span 4 </span>
+        	<span>Span 5 </span>
+        	<span>Span 6 </span>
+        	<span>Span 7 </span>
+        	<span>Span 8 </span>
+        	<span>Span 9 </span>
+        	<span>Span 10 </span>
+        	<span>Span 11 </span>
+        	<span>Span 12 </span>
+        </div>
+    	<p>Ejemplo utilizando una fórmula <code>code:nth-last-child(<i>a</i>n+<i>b</i>)</code>
+        , 'a' es el avance, y 'b' es el inicio (por defecto es 0 y es un valor opcional).</p>
+        <p>Siempre se empieza a contar desde el final.</p>
+        <code>div > code:nth-last-child(</code>
+        <select id='ComboFormula_A' onChange="CambiarFormula()">
+            <option>-</option>            
+            <option>1</option>            
+            <option>2</option>            
+            <option>3</option>            
+            <option selected="selected">4</option>            
+            <option>5</option>            
+            <option>6</option>            
+        </select>n
+        <select id='ComboFormula_B' onChange="CambiarFormula()">
+            <option>-5</option>            
+            <option>-4</option>            
+            <option>-3</option>            
+            <option>-2</option>            
+            <option>-1</option>            
+            <option selected="selected">+0</option>            
+            <option>+1</option>            
+            <option>+2</option>            
+            <option>+3</option>            
+            <option>+4</option>            
+            <option>+5</option>            
+        </select>        
+        <code>)</code>
+    	<div> <!-- Ejemplo utilizando una fórmula -->
+        	<code>Code 1 </code>
+        	<code>Code 2 </code>
+        	<code>Code 3 </code>
+        	<code>Code 4 </code>
+        	<code>Code 5 </code>
+        	<code>Code 6 </code>
+        	<code>Code 7 </code>
+        	<code>Code 8 </code>
+        	<code>Code 9 </code>
+        	<code>Code 10 </code>
+        	<code>Code 11 </code>
+        	<code>Code 12 </code>
+        </div>
+        <p>Por último prueba a poner en el ejemplo anterior <code>nth-last-child(<b>-</b>n<b>+4</b>)</code> para seleccionar los 4 elementos del final.</p>
+    </body>
+</html>

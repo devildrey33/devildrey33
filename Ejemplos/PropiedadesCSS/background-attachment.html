@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			/* El cuerpo tiene una imagen "fixed" que no se repite */
+			body {
+				background-attachment:fixed;
+				background-image:url('http://img.devildrey33.es/logo100.png');
+				background-repeat:no-repeat;
+			}
+			/* Margen de 100 pixeles para ver bien el texto sin la imagen debajo*/
+			p { margin-left:100px; }
+		</style>
+
+        <script type="text/javascript">
+        	function CambiarFondo() {
+				var Combo = document.getElementById("ChFondo");
+				document.body.style.backgroundAttachment = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+		</script>
+	</head>
+	<body>
+    	<p>
+        	<code>background-attachment:</code>
+            <select id='ChFondo' onChange="CambiarFondo()">
+                <option value ="0">fixed</option>
+                <option value ="1">scroll</option>
+            </select>
+            <code>;</code>
+		</p>
+        <p>Para ver la diferencia entre "<code>fixed</code>" y "<code>scroll</code>" prueba a utilizar el scroll de este documento.</p>
+		<p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p>
+		<p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p>
+		<p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p><p>Linea</p>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [11/01/2014] para devildrey33.es -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			#TextoDecorado { /* https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-line */
+				-webkit-text-decoration-line:overline underline line-through;	/* No funciona */
+				-moz-text-decoration-line:overline underline line-through;		/* Funciona (en la MDN dice que va sin prefijo...) */
+				-ms-text-decoration-line:overline underline line-through;		/* No funciona */
+				text-decoration-line:overline underline line-through;			/* No funciona */
+			}
+		</style>
+	    <script type="text/javascript">
+        	function CambiarDecorado() {
+				var Combo = document.getElementById("ComboDecorado");
+				var Valor = Combo.options[Combo.selectedIndex].innerHTML;
+				document.getElementById("TextoDecorado").style.webkitTextDecorationLine = Valor; 	/* No funciona */
+				document.getElementById("TextoDecorado").style.mozTextDecorationLine = Valor;		/* No funciona */
+				document.getElementById("TextoDecorado").style.msTextDecorationLine = Valor;		/* No funciona */
+				document.getElementById("TextoDecorado").style.textDecorationLine = Valor;			/* No funciona */
+			}
+        </script>
+	</head>
+	<body>
+    	<p><code>#TextoDecorado { text-decoration-line:</code> 
+        <select id='ComboDecorado' onChange="CambiarDecorado()">
+            <option>none</option>
+            <option>underline</option>
+            <option>overline</option>
+            <option>line-through</option>
+            <option>underline overline</option>
+            <option>underline line-through</option>
+            <option>overline line-through</option>
+            <option selected='selected'>overline underline line-through</option>
+        </select>
+        
+        <code>; }</code></p>
+    	<p id='TextoDecorado'>Prueba a cambiar el valor de <code>text-decoration-line</code></p>
+        <p>Este ejemplo solo funciona en FireFox.</p>
+        <p><b>NOTA : </b>El ComboBox no funciona ya que el objeto style no responde a 
+        '<code>mozTextDecorationLine</code>' ni a '<code>textDecorationLine</code>'.</p>
+    </body>
+</html>

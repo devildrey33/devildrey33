@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">	
+			div {
+				z-index:0;
+				position:absolute;
+				top:45px;
+				width:55%;
+				height:40px;
+			}
+			.DivDerecho {
+				background-color:#00F;
+				border-radius:20px 0px 0px 20px;
+				right:0px;
+			}
+			.DivDerecho:hover {
+				z-index:1;
+			}
+			.DivIzquierdo {
+				background-color:#F00;
+				border-radius:0px 20px 20px 0px;
+				left:0px;
+			}
+			.DivIzquierdo:hover {
+				z-index:1;
+			}
+		</style>
+	</head>
+	<body>
+    	<p>Pasa el mouse por encima de uno de los requadros de color para que se sobreponga al otro.</p>
+        <div class='DivIzquierdo'></div>
+        <div class='DivDerecho'></div><!-- Por defecto este div se queda por encima ya que es el ultimo que se ha creado -->
+	</body>
+</html>

@@ -1,0 +1,31 @@
+/* Estilos para el tag Diapositivas     */
+/* Creado por devildrey33 el 20/12/2012 */
+
+Diapositivas {
+	margin:0px;
+	padding:0px;
+	display:table;
+/*	display:inline-block; */
+	border:0px;
+	background:#000;
+	padding:0px;
+}
+
+.Diapositivas_Foto {
+	display:table;
+	margin:5px; 
+	float:left;
+/*	background:#CCC; */
+	width:auto;
+	height:auto;
+}
+
+.Diapositivas_Foto .Imagen_Normal {
+	margin:0px;
+	padding:0px;
+}
+
+.Diapositivas_Foto .Imagen_Seleccionada {
+	margin:0px;
+	padding:0px;
+}

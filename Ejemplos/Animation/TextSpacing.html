@@ -1,0 +1,33 @@
+<!-- Documento creado por Josep Antoni Bover el [21/01/2014] para devildrey33.es 
+		El ejemplo es un texto que sale desde la derecha, y que al llegar al tope izquierdo hace un efecto muelle.
+	-->
+
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.TextoAnimado {
+				position:absolute;
+				-webkit-animation:TA 1s 1 linear;   
+				animation:TA 1s 1 linear;         	
+				left:5px;
+				white-space:nowrap;
+			}
+
+			@-webkit-keyframes TA {   /* Chrome, Safari y Opera */
+				0%   { left:100%; letter-spacing:10px; }
+				75%  { left:5px; letter-spacing:-2px; }
+				100% { left:5px; letter-spacing:1px; }
+			}
+			@keyframes TA {   
+				0%   { left:1000px; letter-spacing:10px; }
+				75%  { left:3px; letter-spacing:-2px; }
+				100% { left:5px; letter-spacing:1px; }
+			}
+		</style>
+	</head>
+	<body>
+		<p class='TextoAnimado'>Texto animado</p>
+	</body>
+</html>

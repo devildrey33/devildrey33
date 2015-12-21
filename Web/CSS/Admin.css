@@ -1,0 +1,273 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25-ago-2015, 19:45:56
+    Author     : devildrey33
+*/
+
+/* Log.php */
+#Log_Contenedor {
+    width:100%;
+}
+
+.Log {
+    border:1px solid transparent;
+}
+
+.Log:hover {
+    border:1px dashed #EEE;
+    background-color:#DDD;
+}
+
+.Log_Tabla {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+
+.Log_TdIP {
+    display:table-cell;
+    width:135px;
+    color:rgb(70, 70, 70);
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;		
+}
+
+.Log_TdTotalEntradas {
+    display:table-cell; 
+    width:50px;
+    color:rgb(70, 70, 70);
+}
+
+.Log_TdURL {
+    display:table-cell; 
+/*		width:70%;*/
+    min-width:660px;
+    max-width:660px; 
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;		
+}
+
+/*	.Log_TdURL span {
+    white-space:nowrap;
+}*/
+
+.Log_TdPlataforma {
+    display:table-cell; 
+    width:160px;
+    text-align:right;
+}
+
+.Log_TdTiempo {
+    display:table-cell; 
+    width:150px; 
+    direction:rtl;
+    color:rgb(70, 70, 70);
+}
+
+.Log_Entradas {
+/*				border:1px dashed #CCC; */
+    display:none; 
+    padding-top:4px;
+/*		padding:4px;
+    margin:2px;
+    width:100%;*/
+}
+
+.Log_Entrada_Ataque 		{	color:red;		}
+.Log_Entrada_Advertencia 	{	color:orange;	}
+.Log_Entrada_Error 		{	color:purple;	}
+.Log_Entrada_Zip 		{	color:olive;	}
+.Log_Entrada_Documento 		{	color:green;	}
+.Log_Entrada_CSS 		{	color:blue;		}
+.Log_Entrada_JS 		{	color:brown;	}
+.Log_Entrada_Imagen 		{	color:gray;		}
+.Log_Entrada_Otros 		{	color:black;	}
+
+.Log_Cerrar {
+    position:relative;
+    display:table;
+    width:16px; /* + 5 del padding = 21 */
+    height:16px;
+    padding-top:1px;
+    padding-left:6px;
+    padding-right:0px;
+    overflow:hidden;
+    float:right;
+    border-radius:2px;
+    color:#FFF;
+    background-color:rgb(150, 0, 0);
+    margin:5px;
+    box-shadow:2px 2px 1px #BBB;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+.Log_Entradas > h1 {
+    margin:0px;
+}
+
+.Log_Cerrar:hover {
+    background-color:#ea504e;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Editar-Entradas.php */
+#devildrey33_Entradas {
+    width:100%;
+    table-layout:fixed;
+    border-spacing:0px;
+    border-collapse:separate;
+}
+
+#devildrey33_Entradas td {
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;		
+    padding-right:5px;
+}
+
+#devildrey33_Entradas thead {
+    background:#252328;
+    color:#FFF;
+}
+
+#devildrey33_Entradas > tbody > tr {
+    transition:0.2s;
+}
+
+#devildrey33_Entradas > tbody > tr:hover {
+    background:#EA504E;
+    cursor:pointer;
+    color:#FFF;
+    border:1px solid red;
+}
+
+#devildrey33_Entradas > tbody > tr > td {
+    border:1px solid transparent;
+
+}
+
+#devildrey33_Entradas > tbody > tr:hover > td, #devildrey33_Entradas > tbody > tr[seleccionado=true] > td {
+    border-top:1px solid red;
+    border-bottom:1px solid red;
+}
+
+#devildrey33_Entradas > tbody > tr:hover > td:first-child, #devildrey33_Entradas > tbody > tr[seleccionado=true] > td:first-child {
+    border-left:1px solid red;
+}
+
+#devildrey33_Entradas > tbody > tr:hover > td:last-child, #devildrey33_Entradas > tbody > tr[seleccionado=true] > td:last-child {
+    border-right:1px solid red;
+}
+
+#devildrey33_Entradas > tbody > tr:active {
+    background:#BA504E;
+}
+
+
+/* Titulo */
+#devildrey33_Entradas td:nth-child(1) { width:95px; }
+/* Tipo */
+#devildrey33_Entradas td:nth-child(6) { width:60px; }
+
+
+#Editor_BarraNavegacionInferior {
+    position:fixed;
+    bottom:0px;
+    right:0px;
+}
+
+#Editor_BotonAgregar {
+    border-bottom:none !important;
+}
+
+#Editor_BotonAgregar::before, #Editor_BotonAgregar::after {
+    content:'';
+    position:absolute;
+}
+
+#Editor_BotonAgregar::before {
+    background:#FFF;
+    width:28px;
+    height:2px;
+    right:14.5px;
+    top:28px;
+}
+
+#Editor_BotonAgregar::after {
+    background:#FFF;
+    width:2px;
+    height:28px;
+    right:28px;
+    top:14.5px;
+}
+
+
+
+
+
+
+#Editor_Blog {
+    left:calc(50% - 250px);
+    top:calc(50% - 170px);
+    position:fixed;
+    width:500px;
+    height:200px;
+    display:none;
+    border:1px solid #252328;
+    background:#252328;
+    box-shadow:2px 2px 2px rgba(50,50,50,0.7);
+    color:#FFF;
+    padding:10px;
+}
+
+#Editor_Blog > table {
+    margin-bottom:10px;
+}
+
+#Editor_Blog[Mostrar=true] {
+    display:table;
+}
+
+#Editor_Blog > div {
+    margin:4px auto;
+    display:table;
+}
+
+#Editor_Blog > div > button {
+    display:inline-block !important;
+    margin:2px;
+}
+
+#Editor_Blog > table input[type=text], #Editor_Blog > table input[type=date], #Editor_Blog > table input[type=url] {
+    width:430px;
+}
+/* lista de tags */
+#Editor_Blog > ul {
+    margin:4px 2px; 
+    padding:0px;
+    list-style: none;
+}
+
+#Editor_Blog > ul > li {
+    margin-left:1%;
+    width:30%;
+    display:inline-block;
+}

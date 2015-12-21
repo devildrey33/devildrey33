@@ -1,0 +1,80 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28-ago-2015, 17:53:46
+    Author     : devildrey33
+*/
+
+
+/* Escondo el logo si la altura es menor que 670 pixeles y solo lo muestro durante la animación de carga */
+@media screen and (max-height: 550px) {
+    #Logo           {    left:-200px;     }
+    .AnimacionLogo  {    display:block;   }
+}
+
+/*  1.25ddpx = 120   dpi  
+    1.3ddpx  = 124.8 dpi  
+    1.4ddpx  = 134.4 dpi  
+    1.5ddpx  = 144   dpi         */
+/* Vista vertical para la gran mayoria de moviles  */                             
+@media  only screen and (max-width: 360px),
+        only screen and (orientation:portrait) and (min-resolution: 1.2dppx), 
+        only screen and (orientation:portrait) and (-webkit-min-device-pixel-ratio: 1.2), 
+        only screen and (orientation:portrait) and (-moz-min-device-pixel-ratio: 1.2), 
+        only screen and (orientation:portrait) and (-o-min-device-pixel-ratio: 13/10),
+        only screen and (orientation:portrait) and (min-resolution: 120dpi) {
+    /* General */
+    body            { margin-left:85px; }  /* min-device-pixel-ratio */
+    .Codigo_Marco, .Codigo_Numeracion, pre  { font-size:2rem !important; }
+    .CodeMirror-linenumber { display:none; }
+    /* Zoom x2 en los siguientes elementos : */
+    h2, .nota, .postit, nota, postit, .Tabla, .BarraNavegacion_SubIndice, 
+    button, .Boton, #Logo, #BarraPrincipal, #BarraNavegacion, #Categorias, 
+    .Cabecera, #Comentarios_MarcoDatos, #Comentarios_Comentario, .devildrey33_Marco  { zoom:2 !important; }
+    
+    .Blog > .Cabecera > .Cabecera_Datos > h1 {
+        margin: 20px 0px 4px 0px !important;
+    }
+    
+    /* Ventanas */
+    #VentanaMensaje > p { font-size:3rem !important; }
+    
+    
+    #VotarDocumento[Mostrar=true] {
+        height:300px !important;
+    }
+/*    .VotarDocumento { zoom:2 !important; }*/
+    
+    #MarcoNavegacionLab { margin:0px 62px 0px 38px !important; }
+    #MarcoNavegacionLab .CodeMirror, .CodeMirror-linenumber { font-size:3.5rem !important; }
+    .Blog {  margin: 0px 140px 0px 70px !important; }
+    /* Barra navegación explorar entradas */
+    #BarraNavegacion_MarcoNextPrev      { width:370px !important; }
+    #BarraNavegacion_MarcoNextPrev_Desc { width:198px !important; }
+    /* Barra navegación SubIndice */
+    #BarraNavegacion_SubIndice { max-width:350px; }
+    /* Comentarios */
+    div[comentario], #Comentarios_Comentario, #Comentarios_MarcoDatos > input { border-width:2px !important; }
+    #Comentarios_MarcoDatos > input { width:80% !important; }
+    #Comentarios_MarcoDatos > input:focus { width:100% !important;  }
+    /* Index */
+    #Categorias > ul > li { min-width:40% !important; } 
+    #MarcoIndice > .Articulo_Portada { padding:40px 260px 40px 80px !important; }
+    .Articulo_Portada > h1 + span, #Comentarios_BarraControles { display:none !important; }
+    /* DocCSS */
+    .EnlacesRelacionados { 
+        -webkit-columns:1 auto !important;
+        -moz-columns:1 auto !important;
+        columns:1 auto !important;
+    }    
+    /* MiniLab */
+    .MiniLab { margin-bottom:130px !important; }
+    .MiniLab_VerMixto, .MiniLab_VerPreview, .MiniLab_VerCodigo, .MiniLab > a > button {
+        zoom:1.7 !important;
+    }
+    
+    .MiniLab_ContenedorBotones { zoom:1.7; }
+} 

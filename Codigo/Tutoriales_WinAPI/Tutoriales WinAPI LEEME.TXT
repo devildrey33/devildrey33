@@ -1,0 +1,43 @@
+Tutoriales devildrey33 (05/10/2011)
+
+Este directorio contiene los siguientes datos :
+
+.\Proyecto Visual Studio 2008\             <- Carpeta que contiene la soluci&oacute;n para Visual studio 2008 con todos los ejemplos
+.\Proyecto Visual Studio 2010\             <- Carpeta que contiene la soluci&oacute;n para Visual studio 2010 con todos los ejemplos
+-----------------------------------------
+.\Tutoriales WinAPI LEEME.TXT              <- Este archivo
+.\Tutorial_WinMain.cpp                     <- Archivo con c&oacute;digo del tutorial 1.01
+-----------------------------------------
+.\1.02 Tutorial crear Ventana\             <- Carpeta que contiene el ejemplo 1.02 (crear ventana)
+.\1.03 Tutorial crear ObjetoVentana\       <- Carpeta que contiene el ejemplo 1.03 (crear objeto ventana)
+.\1.04 Tutorial GDI\                       <- Carpeta que contiene el ejemplo 1.04 (GDI)
+.\1.05 Tutorial crear ObjetoBoton\         <- Carpeta que contiene el ejemplo 1.05 (crear objeto boton)
+.\1.06 Tutorial crear ObjetoMarcador\      <- Carpeta que contiene el ejemplo 1.06 (crear objeto marcador)
+.\1.07 Tutorial terminando Calculadora\    <- Carpeta que contiene el ejemplo 1.07 (terminando la calculadora)
+-----------------------------------------
+.\2.01 Tutorial introduccion Snake\        <- Carpeta que contiene el ejemplo 2.01 (ObjetoEscena y ObjetoVentanaTranslucida)
+.\2.02 Tutorial Tablero Marcador Mensaje\  <- Carpeta que contiene el ejemplo 2.02 (ObjetoEscena_Tablero, ObjetoEscena_Marcador, y ObjetoEscena_Mensaje)
+.\2.03 Tutorial Archivos y Directorios\    <- Carpeta que contiene el ejemplo 2.03 (ObjetoArchivo)
+.\2.04 Tutorial Records\                   <- Carpeta que contiene el ejemplo 2.04 (ObjetoEscena_Records)
+.\2.05 Tutorial Niveles Snake\             <- Carpeta que contiene el ejemplo 2.05 (ObjetoSnake_Nivel)
+.\2.06 Tutorial crear ObjetoSnake\         <- Carpeta que contiene el ejemplo 2.06 (ObjetoSnake)
+-----------------------------------------
+.\3.01 Tutorial crear ObjetoBarraProgreso\ <- Carpeta que contiene el ejemplo 3.01 (Creaci&oacute;n del ObjetoBarraProgreso)
+.\3.02 Tutorial CommonDialogs\             <- Carpeta que contiene el ejemplo 3.02 (Common Dialogs)
+.\3.03 Tutorial crear ObjetoEditBox\       <- Carpeta que contiene el ejemplo 3.03 (Creaci&oacute;n del ObjetoEditBox)
+.\3.04 Tutorial crear ObjetoButton\        <- Carpeta que contiene el ejemplo 3.04 (Creaci&oacute;n del ObjetoButton)
+.\3.05 Tutorial crear ObjetoComboBox\      <- Carpeta que contiene el ejemplo 3.05 (Creaci&oacute;n del ObjetoComboBox)
+.\3.06 Tutorial crear ObjetoProgressBar\   <- Carpeta que contiene el ejemplo 3.06 (Creaci&oacute;n del ObjetoProgressBar)
+.\3.07 Tutorial crear ObjetoListView\      <- Carpeta que contiene el ejemplo 3.07 (Creaci&oacute;n del ObjetoListView)
+.\3.08 Tutorial crear ObjetoTreeView\      <- Carpeta que contiene el ejemplo 3.08 (Creaci&oacute;n del ObjetoTreeView)
+.\3.09 Tutorial crear ObjetoZLIB\          <- Carpeta que contiene el ejemplo 3.09 (Creaci&oacute;n del ObjetoZLIB)
+.\3.10 Tutorial terminando Instalador\     <- Carpeta que contiene el ejemplo 3.10 (Terminando el Instalador)
+.\3.11 Tutorial terminando Ensamblador\    <- Carpeta que contiene el ejemplo 3.11 (Terminando el Ensamblador)
+-----------------------------------------
+.\4 Tutorial crear archivo DUMP\           <- Carpeta que contiene el ejemplo 4 (Creaci&oacute;n de archivos DUMP)
+-----------------------------------------
+.\Graficos\                                <- Carpeta que contiene graficos utilizados en los tutoriales
+-----------------------------------------
+.\Objetos Tutorial\                        <- Carpeta que contiene los objetos utilizados mas de una vez en los tutoriales
+-----------------------------------------
+.\zlib\                                    <- Carpeta que contiene el proyecto zlib utilizado para comprimir / descomprimir datos

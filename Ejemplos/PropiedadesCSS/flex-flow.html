@@ -1,0 +1,82 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [12/12/2015] para devildrey33.es -->
+<!doctype html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            /* Contenedor flex-box */
+            #ContenedorFlex {
+                max-width:456px;
+                margin:4px;
+                border:1px solid #000;
+                display:flex;
+                flex-flow:row nowrap;
+                background:#EEE;                
+            }
+            /* Objeto hijo del ContenedorFlex */
+            .ObjetoFlex {
+                width:100px;
+                height:100px;
+                margin:3px;
+                padding:3px;
+                border:1px solid #444;
+                color:#FFF;
+                text-shadow: 1px 1px 0px #000;
+            }
+            /* Para diferenciar los pares de los impares */
+            .ObjetoFlex:nth-child(odd)  {  background:#AAA; }
+            .ObjetoFlex:nth-child(even) {  background:#666; }
+            /* Propiedades alineadas en una columna */
+            .tab { display:inline-table; min-width:102px; }
+        </style>
+        <script>
+            // Función para cambiar la propiedad flex-direction del div #ContenedorFlex
+            function CambiarFlexFlow() {
+                document.getElementById("ContenedorFlex").style.flexFlow = ObtenerSelect("ChFlexDirection") + " " + ObtenerSelect("ChFlexWrap");
+            }
+            // Función para cambiar la propiedad direction del div #ContenedorFlex
+            function CambiarDirection() {
+                document.getElementById("ContenedorFlex").style.direction = ObtenerSelect("ChDirection");
+            }
+            // Función para obtener el texto seleccionado de una etiqueta select
+            function ObtenerSelect(ID) {
+                var Combo = document.getElementById(ID);
+                return Combo.options[Combo.selectedIndex].innerHTML;
+            }            
+        </script>
+    </head>
+    <body>
+        <!-- Combo box para la propiedad css direction -->
+        <code class='tab'>direction</code><code>:</code>
+        <select id='ChDirection' onChange="CambiarDirection()">
+            <option>ltr</option>
+            <option>rtl</option>
+        </select><code>;</code><br />
+        <!-- Combo box para la propiedad css flex-direction -->
+        <code class='tab'>flex-flow</code><code>:</code>
+        <select id='ChFlexDirection' onChange="CambiarFlexFlow()">
+            <option>row</option>
+            <option>row-reverse</option>
+            <option>column</option>
+            <option>column-reverse</option>
+        </select><code> </code>              
+        <select id='ChFlexWrap' onChange="CambiarFlexFlow()">
+            <option>nowrap</option>
+            <option>wrap</option>
+            <option>wrap-reverse</option>
+        </select><code>;</code><br />
+        <br />
+        
+        <!-- Contenedor flexbox para el ejemplo -->
+        <div id='ContenedorFlex'>
+            <div class='ObjetoFlex'>1</div>
+            <div class='ObjetoFlex'>2</div>
+            <div class='ObjetoFlex'>3</div>
+            <div class='ObjetoFlex'>4</div>
+            <div class='ObjetoFlex'>5</div>
+            <div class='ObjetoFlex'>6</div>
+            <div class='ObjetoFlex'>7</div>
+            <div class='ObjetoFlex'>8</div>
+        </div>
+    </body>
+</html>

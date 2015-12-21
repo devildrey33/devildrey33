@@ -1,0 +1,76 @@
+<!-- ejemplo creado por Josep Antoni Bover el [13/01/2014] para devildrey33.es -->
+<!-- Concepto para una nueva presentación del indice de devildrey33.es DESCARTADO -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .Flex {
+                width: 100%;
+                height: 300px;
+                display: flex;
+                flex-direction: row;
+                display: flex;
+            }
+
+            .Flex > div {
+                flex: 1 1 20%;
+                transition: min-width 0.7s ease-out 0.2s;
+                margin:2px;
+                padding:4px;
+            }
+
+            .Flex > div { border:1px solid #DDD; overflow:hidden; }
+            .Articulo > p, .Articulo > h1 { 
+                transition:opacity 0.7s ease-out 0.2s;
+                opacity:0.2; 
+            }
+            .Articulo:hover > p, .Articulo:hover > h1 { opacity:1.0; }
+            .Flex > div:hover { min-width: 700px; }
+
+            .Articulo {
+                width:700px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="Flex">
+            <div>
+                <div class="Articulo">
+                    <h1>FlexBox y documentos responsive</h1>
+                    <img src="/Graficos/155x125_Snake.png" style="float:left" /> 
+                    <p>El CSS sigue avanzando y el modelo FlexBox ya ha llegado a la fase de candidato final, por lo que ya funciona en todos los navegadores, aunque no al 100%.</p>
+                    <p>Hoy voy a explicar un poco como podemos crear un documento responsive, aprovechando las ventajas del modelo FlexBox. Si combinamos el FlexBox con la regla @media podemos conseguir documentos totalmente responsive con unas pocas declaraciones CSS, y un marquaje HTML muy claro.</p>
+                    <p>El modelo FlexBox nos permite tener un contenedor al cual podemos establecer si queremos mostrar sus hijos por columnas o por filas. La idea es crear una cabecera, un marco principal (que será la FlexBox), y un footer. Dentro del marco principal creariamos un menu de navegación, un articulo, y un menu lateral alternativo.</p>
+                </div>
+            </div>
+            <div>
+                <div class="Articulo">
+                    <h1>FlexBox y documentos responsive</h1>
+                    <img src="/Graficos/155x125_ComboBoxWeb.png" style="float:left" />
+                    <p>El CSS sigue avanzando y el modelo FlexBox ya ha llegado a la fase de candidato final, por lo que ya funciona en todos los navegadores, aunque no al 100%.</p>
+                    <p>Hoy voy a explicar un poco como podemos crear un documento responsive, aprovechando las ventajas del modelo FlexBox. Si combinamos el FlexBox con la regla @media podemos conseguir documentos totalmente responsive con unas pocas declaraciones CSS, y un marquaje HTML muy claro.</p>
+                    <p>El modelo FlexBox nos permite tener un contenedor al cual podemos establecer si queremos mostrar sus hijos por columnas o por filas. La idea es crear una cabecera, un marco principal (que será la FlexBox), y un footer. Dentro del marco principal creariamos un menu de navegación, un articulo, y un menu lateral alternativo.</p>
+                </div>
+            </div>
+            <div>
+                <div class="Articulo">
+                    <h1>FlexBox y documentos responsive</h1>
+                    <img src="/Graficos/155x125_CSS3.png" style="float:left" />
+                    <p>El CSS sigue avanzando y el modelo FlexBox ya ha llegado a la fase de candidato final, por lo que ya funciona en todos los navegadores, aunque no al 100%.</p>
+                    <p>Hoy voy a explicar un poco como podemos crear un documento responsive, aprovechando las ventajas del modelo FlexBox. Si combinamos el FlexBox con la regla @media podemos conseguir documentos totalmente responsive con unas pocas declaraciones CSS, y un marquaje HTML muy claro.</p>
+                    <p>El modelo FlexBox nos permite tener un contenedor al cual podemos establecer si queremos mostrar sus hijos por columnas o por filas. La idea es crear una cabecera, un marco principal (que será la FlexBox), y un footer. Dentro del marco principal creariamos un menu de navegación, un articulo, y un menu lateral alternativo.</p>
+                </div>
+            </div>
+            <div>
+                <div class="Articulo">
+                    <h1>FlexBox y documentos responsive</h1>
+                    <img src="/Graficos/155x125_CSS3.png" style="float:left" />
+                    <p>El CSS sigue avanzando y el modelo FlexBox ya ha llegado a la fase de candidato final, por lo que ya funciona en todos los navegadores, aunque no al 100%.</p>
+                    <p>Hoy voy a explicar un poco como podemos crear un documento responsive, aprovechando las ventajas del modelo FlexBox. Si combinamos el FlexBox con la regla @media podemos conseguir documentos totalmente responsive con unas pocas declaraciones CSS, y un marquaje HTML muy claro.</p>
+                    <p>El modelo FlexBox nos permite tener un contenedor al cual podemos establecer si queremos mostrar sus hijos por columnas o por filas. La idea es crear una cabecera, un marco principal (que será la FlexBox), y un footer. Dentro del marco principal creariamos un menu de navegación, un articulo, y un menu lateral alternativo.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            /* Todos los spans con las resoluciones empiezan invisibles */
+            span[id] { display:none; }            
+            /* Querys para cada resolución */
+            @media screen and (device-width:1920px) and (device-height:1080px) { #Resolucion-1920-1080 { display:inline-block; } } 
+            @media screen and (device-width:1776px) and (device-height:1000px) { #Resolucion-1776-1000 { display:inline-block; } } 
+            @media screen and (device-width:1680px) and (device-height:1050px) { #Resolucion-1680-1050 { display:inline-block; } } 
+            @media screen and (device-width:1600px) and (device-height:900px)  { #Resolucion-1600-900  { display:inline-block; } } 
+            @media screen and (device-width:1400px) and (device-height:1050px) { #Resolucion-1400-1050 { display:inline-block; } } 
+            @media screen and (device-width:1366px) and (device-height:768px)  { #Resolucion-1366-768  { display:inline-block; } } 
+            @media screen and (device-width:1360px) and (device-height:768px)  { #Resolucion-1360-769  { display:inline-block; } } 
+            @media screen and (device-width:1280px) and (device-height:1024px) { #Resolucion-1280-1024 { display:inline-block; } } 
+            @media screen and (device-width:1280px) and (device-height:768px)  { #Resolucion-1280-768  { display:inline-block; } } 
+            @media screen and (device-width:1280px) and (device-height:720px)  { #Resolucion-1280-720  { display:inline-block; } } 
+            @media screen and (device-width:1152px) and (device-height:864px)  { #Resolucion-1152-864  { display:inline-block; } } 
+            @media screen and (device-width:1152px) and (device-height:648px)  { #Resolucion-1152-648  { display:inline-block; } } 
+            @media screen and (device-width:1024px) and (device-height:768px)  { #Resolucion-1024-768  { display:inline-block; } } 
+            @media screen and (device-width:1024px) and (device-height:600px)  { #Resolucion-1024-600  { display:inline-block; } } 
+            @media screen and (device-width:800px)  and (device-height:600px)  { #Resolucion-800-600   { display:inline-block; } } 
+            
+            /* Tabla de querys para dispositivos moviles extraida de : https://css-tricks.com/snippets/css/media-queries-for-standard-devices/ */
+            
+            /* iPhone 4 y 4S */
+            @media screen and (min-device-width:320px) and (max-device-width:480px) and (min-device-pixel-ratio:2)  { #iPhone4  { display:inline-block; } }
+            /* iPhone 5 y 5S */
+            @media screen and (min-device-width:320px) and (max-device-width:568px) and (min-device-pixel-ratio:2)  { #iPhone5  { display:inline-block; } }
+            /* iPhone 6 */
+            @media screen and (min-device-width:375px) and (max-device-width:667px) and (min-device-pixel-ratio:2)  { #iPhone6  { display:inline-block; } }
+            /* iPhone 6+ */
+            @media screen and (min-device-width:414px) and (max-device-width: 736px) and (min-device-pixel-ratio:3) { #iPhone6p { display:inline-block; } }            
+            /* Samsung Galaxy S3 */
+            @media screen and (device-width:320px) and (device-height:640px) and (device-pixel-ratio:2) { #GalaxyS3 { display:inline-block; } }
+            /* Samsung Galaxy S4 */
+            @media screen and (device-width:320px) and (device-height:640px) and (device-pixel-ratio:3) { #GalaxyS4 { display:inline-block; } }
+            /* Samsung Galaxy S5 */
+            @media screen and (device-width:360px) and (device-height:640px) and (device-pixel-ratio:3) { #GalaxyS5 { display:inline-block; } }            
+            /* HTC One */
+            @media screen and (device-width:360px) and (device-height:640px) and (device-pixel-ratio:3) { #HTCOne { display:inline-block; } }
+            
+            /* iPad mini */
+            @media only screen and (min-device-width:768px) and (max-device-width:1024px) and (min-device-pixel-ratio:1) { #iPadMini { display:inline-block; } }
+            /* iPad 1 y 2 */
+            @media only screen and (min-device-width:768px) and (max-device-width:1024px) and (min-device-pixel-ratio:1) { #iPad12 { display:inline-block; } }
+            /* iPad 3 y 4 */
+            @media only screen and (min-device-width:768px) and (max-device-width:1024px) and (min-device-pixel-ratio:2) { #iPad34 { display:inline-block; } }            
+            /* Galaxy Tab 10.1 */
+            @media (min-device-width: 800px) and (max-device-width: 1280px) { #GalaxyTab { display:inline-block; } }            
+            /* Asus Nexus 7 */
+            @media screen and (device-width:601px) and (device-height:906px) and (min-device-pixel-ratio: 1.331) and (max-device-pixel-ratio: 1.332) { #AsusNexus7 { display:inline-block; } }            
+            /* Kindle Fire HD 7" */
+            @media only screen and (min-device-width:800px)  and (max-device-width:1280px)  and (min-device-pixel-ratio:1.5) { #KindleFire7 { display:inline-block; } }            
+            /* Kindle Fire HD 8.9" */
+            @media only screen and (min-device-width:1200px) and (max-device-width: 1600px) and (min-device-pixel-ratio:1.5) { #KindleFire8 { display:inline-block; } }
+            
+            /* Apple Watch */
+            @media (max-device-width:42mm) and (min-device-width:38mm) { #AppleWatch { display:inline-block; } }
+            /* Moto 360 Watch */
+            @media (max-device-width:218px) and (max-device-height:281px) { #Moto360Watch { display:inline-block; } }
+        </style>
+        <!-- Código javascript -->
+        <script type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <p>En este ejemplo obtiene la resolución de la pantalla utilizando media querys. Si se trata de un dispositivo movil conocido solo nos dice su modelo.</p>
+
+        <!-- Posibles resoluciones de escritorio (las que windows me permite con mi pantalla de 21"...) -->
+        <span id='Resolucion-1920-1080'> Resolución : 1920 x 1080 </span>
+        <span id='Resolucion-1776-1000'> Resolución : 1776 x 1000 </span>
+        <span id='Resolucion-1680-1050'> Resolución : 1680 x 1050 </span>
+        <span id='Resolucion-1600-900'>  Resolución : 1600 x 900  </span>
+        <span id='Resolucion-1400-1050'> Resolución : 1400 x 1050 </span>
+        <span id='Resolucion-1366-768'>  Resolución : 1366 x 768  </span>
+        <span id='Resolucion-1360-768'>  Resolución : 1360 x 768  </span>
+        <span id='Resolucion-1280-1024'> Resolución : 1280 x 1024 </span>
+        <span id='Resolucion-1280-768'>  Resolución : 1280 x 768  </span>
+        <span id='Resolucion-1280-720'>  Resolución : 1280 x 720  </span>
+        <span id='Resolucion-1152-864'>  Resolución : 1152 x 864  </span>
+        <span id='Resolucion-1152-648'>  Resolución : 1152 x 648  </span>
+        <span id='Resolucion-1024-768'>  Resolución : 1024 x 768  </span>
+        <span id='Resolucion-1024-600'>  Resolución : 1024 x 600  </span>
+        <span id='Resolucion-800-600'>   Resolución :  800 x 600  </span>
+        <!-- Posibles dispositivos moviles -->
+        <span id='iPhone4'>      iPhone 4 o iPhone 4s </span> 
+        <span id='iPhone5'>      iPhone 5 o iPhone 5s </span> 
+        <span id='iPhone6'>      iPhone 6             </span> 
+        <span id='iPhone6p'>     iPhone 6+            </span> 
+        <span id='GalaxyS3'>     Samsung Galaxy S3    </span> 
+        <span id='GalaxyS4'>     Samsung Galaxy S4    </span> 
+        <span id='GalaxyS5'>     Samsung Galaxy S5    </span> 
+        <span id='HTCOne'>       HTC One              </span> 
+        <span id='iPadMini'>     iPad Mini            </span> 
+        <span id='iPad12'>       iPad 1 o iPad 2      </span> 
+        <span id='iPad34'>       iPad 3 o iPad 4      </span>         
+        <span id='GalaxyTab'>    Samsung Galaxy Tab   </span> 
+        <span id='KindleFire7'>  Kindle Fire HD 7"    </span> 
+        <span id='KindleFire8'>  Kindle Fire HD 8.9"  </span> 
+        <span id='AppleWatch'>   Apple Watch          </span> 
+        <span id='Moto360Watch'> Moto 360 Watch       </span> 
+
+    </body>
+</html>

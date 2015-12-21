@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+    	<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <title>Ejemplo ContentEditable de devildrey33</title>
+		<script type="text/javascript">
+			// Función para activar el editor
+        	function Editor_Activar() {
+				document.getElementById('Editor').setAttribute('ContentEditable', 'true');
+				// Asignamos el foco al editor
+				document.getElementById('Editor').focus();
+			}
+			// Función para desactivar el editor
+        	function Editor_Desactivar() {
+				document.getElementById('Editor').setAttribute('ContentEditable', 'false');
+			}
+			// Función para activar / desactivar la negrita
+        	function Editor_Negrita() {
+				document.execCommand('bold', false, null);
+				// Reasignamos el foco al editor
+				document.getElementById('Editor').focus();
+			}
+			// Función para activar / desactivar la cursiva
+        	function Editor_Cursiva() {
+				document.execCommand('italic', false, null);
+				// Reasignamos el foco al editor
+				document.getElementById('Editor').focus();
+			}
+        </script>
+    </head>
+    <body>
+    	<p>
+        	<a href='javascript:Editor_Activar()'>Activar editor</a>, 
+            <a href='javascript:Editor_Desactivar()'>Desactivar editor</a>
+        </p>
+    	<div id='Editor' style="border:1px solid #AAA">Editor</div>
+    	<p>
+        	<a href='javascript:Editor_Negrita()'>Negrita</a>, 
+	        <a href='javascript:Editor_Cursiva()'>Cursiva</a>
+        </p>
+    </body>
+</html>

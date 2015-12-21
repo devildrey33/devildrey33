@@ -1,0 +1,25 @@
+/* Clase para crear un marco con borde negro y fondo gris */
+.Marco {
+	border-color:rgb(0, 0, 0);
+	border-style:solid;
+	border-width:1px;
+	padding:3px;
+	background-color:rgb(200, 200, 200);
+}
+/* Clase que representa el menu padre */
+.MenuPadre {
+	display:table;
+	margin-right:5px;
+	cursor:pointer;
+}
+
+.AlinearIzquierda         { float:left; }         /* Clase para alinear etiquetas a la izquierda */
+.SubMenu                  { position:absolute; }  /* Clase que representa un sub-menu */
+.MenuPadre .SubMenu       { visibility:hidden; }  /* Por defecto los submenus dentro de menu padre estan ocultos */
+.MenuPadre:hover .SubMenu { visibility:visible; } /* Al resaltar el menu padre, los submenus de dentro de hacen visibles */
+
+/* Clase que representa un enlace RESALTADO */
+.SubMenuItem:hover {
+	cursor:pointer;
+	background-color:rgb(240, 240, 240);	
+}

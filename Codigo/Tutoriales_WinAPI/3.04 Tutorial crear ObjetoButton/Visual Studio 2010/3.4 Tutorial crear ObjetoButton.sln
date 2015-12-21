@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3.4 Tutorial crear ObjetoButton", "3.4 Tutorial crear ObjetoButton.vcproj", "{FA7EBA5E-8EA9-43A1-ACB1-079C5F2A74CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA7EBA5E-8EA9-43A1-ACB1-079C5F2A74CB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FA7EBA5E-8EA9-43A1-ACB1-079C5F2A74CB}.Debug|Win32.Build.0 = Debug|Win32
+		{FA7EBA5E-8EA9-43A1-ACB1-079C5F2A74CB}.Release|Win32.ActiveCfg = Release|Win32
+		{FA7EBA5E-8EA9-43A1-ACB1-079C5F2A74CB}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>                                                <!-- Documento HTML 5 -->
+<html>                                                         <!-- Inicio del documento HTML -->
+    <head>                                                     <!-- Inicio del head -->
+		<title>Ejemplo del tutorial 7</title>
+        <!-- Codificacion UTF-8 -->
+		<meta charset="UTF-8">
+        <!-- Hoja de estilos CSS para este documento -->
+		<style>
+			/* Estilo para el botón */
+			.Boton1 {
+				/* Propieades para la visualización */
+				display:table;
+				padding:3px;
+				margin:3px;
+				/* Porpiedades para el borde */
+				border-color:rgb(50, 50, 50);
+				border-style:solid;
+				border-width:1px;
+				border-radius:4px;
+				/* Propiedades para el fondo */
+				background-color:rgb(0, 200, 0);
+				/* Sombra para el botón */
+				box-shadow: rgba(128,128,128, 0.5) 2px 2px 2px;
+			}
+			
+			/* Estilo para el botón cuando el mouse se encuentra encima */
+			.Boton1:hover {
+				/* Propiedades para el fondo */
+				background-color:rgb(0, 220, 0);
+				/* Cursor del mouse */
+				cursor:pointer;
+			}
+			
+			/* Estilos para los enlaces dentro del botón */
+			.Boton1 a {
+				text-decoration:none;
+				color:rgb(255, 255, 255);
+			}
+			/* Estilos para los enlaces resaltados dentro del botón */
+			.Boton1 a:hover {
+				text-decoration:none;
+				color:rgb(255, 255, 0);
+			}
+
+			/* Estilo para el botón de los garabatos */
+			.Boton2 {
+				/* Propieades para la visualización */
+				position:relative;
+				display:table;
+				padding:3px;
+				margin:3px;
+				width:100px;
+				/* Propiedades para el fondo */
+				background-image:url('http://img.devildrey33.es/Tutorial_HTML5_7_Ejemplo_Garabatos.png');
+				background-repeat:no-repeat;
+				/* Propiedades para el texto */
+				text-align:center;
+				text-shadow:1px 1px 1px rgb(0, 0, 0);
+			}
+			
+			/* Estilo para el botón de los garabatos RESALTADO */
+			.Boton2:hover {
+				/* Propiedades para el fondo */
+				background-position:-100px 0px;
+				/* Cursor del mouse */
+				cursor:pointer;
+			}
+			
+			/* Estilos para los enlaces dentro del botón */
+			.Boton2 a {
+				color:rgb(255, 255, 255);
+				text-decoration:none;
+			}
+			/* Estilos para los enlaces resaltados dentro del botón */
+			.Boton2:hover a {
+				color:rgb(255, 0, 0);
+				text-decoration:none;
+			}
+
+
+			/* Botón 3 */
+			.Boton3         { display:table; }
+			.Boton3:hover   { cursor:pointer; }
+			/* Enlaces dentro del botón 3*/
+			.Boton3 a       { color:rgb(50, 50, 50); text-decoration:none; }
+			.Boton3:hover a { color:rgb(0, 0, 0); text-decoration:none; }
+			
+			/* Parte izquierda del botón 3 */
+			.Boton3I {
+				/* Tamaño */
+				width:6px;
+				height:23px;
+				/* Imagen */
+				background-image:url('http://img.devildrey33.es/Tutorial_HTML5_7_Ejemplo_Boton3.png');
+				/* Posicionamiento */
+				float:left;
+			}
+			.Boton3:hover .Boton3I { background-position:0px -75px; }           /* Restamos 75 pixeles a la Y */
+			
+			/* Parte central del botón 3 */
+			.Boton3C {
+				/* Tamaño */
+				height:23px;
+				/* Imagen */
+				background-image:url('http://img.devildrey33.es/Tutorial_HTML5_7_Ejemplo_Boton3.png');
+				/* Posicionamiento */
+				background-position:0px -25px;                                  /* Restamos 25 pixeles a la Y */
+				float:left;
+				padding-top:2px;
+			}
+			.Boton3:hover .Boton3C { background-position:0px -100px; }          /* Restamos 100 pixeles a la Y */
+			
+			/* Parte derecha del botón 3 */
+			.Boton3D {
+				/* Tamaño */
+				width:6px;
+				height:23px;
+				/* Imagen */
+				background-image:url('http://img.devildrey33.es/Tutorial_HTML5_7_Ejemplo_Boton3.png');
+				/* Posicionamiento */
+				background-position:0px -50px;                                  /* Restamos 50 pixeles a la Y */
+				float:left;
+			}
+			.Boton3:hover .Boton3D { background-position:0px -125px; }          /* Restamos 125 pixeles a la Y */
+		
+        </style>
+        
+	</head>                                                    <!-- Final del head -->
+    <body>                                                     <!-- Inicio del cuerpo para el documento HTML -->
+	
+        <header>											   <!-- Inicio para la etiqueta de la cabecera -->
+           	<h1>Tutorial HTML5 parte 7 (Botones)</h1>          <!-- Titulo -->
+        </header>                                              <!-- Final para la etiqueta de la cabecera -->
+
+        <section>
+			<table>
+            	<tr>
+                	<td width="250px" valign="top">
+			        	<p>Botones con la clase "Boton1" : </p>
+                        <div class='Boton1'><a href="javascript:alert('Boton presionado')">Boton1</a></div>
+                        <div class='Boton1'><a href="javascript:alert('Boton presionado')">otro Boton1</a></div>
+                        <div class='Boton1'><a href="javascript:alert('Boton presionado')">Boton1 con mucho mas texto</a></div>
+            		</td>
+                    <td width="250px" valign="top">
+                        <p>Botones con la clase "Boton2" : </p>
+                        <div class='Boton2'><a href="javascript:alert('Boton presionado')">Boton2</a></div>
+                        <div class='Boton2'><a href="javascript:alert('Boton presionado')">otro Boton2</a></div>
+                        <div class='Boton2'><a href="javascript:alert('Boton presionado')">Boton2 con mucho mas texto</a></div>
+					</td>
+					<td width="250px" valign="top">
+                        <p>Botones con la clase "Boton3" : </p>
+                        <div class='Boton3'>
+                            <a href="javascript:alert('Boton presionado')">
+                                <div class='Boton3I'></div>
+                                <div class='Boton3C'>Boton3</div>
+                                <div class='Boton3D'></div>
+                            </a>
+                        </div>
+                        <div class='Boton3'>
+                            <a href="javascript:alert('Boton presionado')">
+                                <div class='Boton3I'></div>
+                                <div class='Boton3C'>otro Boton3</div>
+                                <div class='Boton3D'></div>
+                            </a>
+                        </div>
+                        <div class='Boton3'>
+                            <a href="javascript:alert('Boton presionado')">
+                                <div class='Boton3I'></div>
+                                <div class='Boton3C'>Boton3 con mucho mas texto</div>
+                                <div class='Boton3D'></div>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </section> 
+
+		<footer>                                               <!-- Inicio del pie de la pagina -->
+           	<p><b>Documento creado por devildrey33.</b></p>
+	    </footer>                                              <!-- Fin del pie de la pagina -->
+	</body>                                                    <!-- Final del cuerpo para el documento HTML -->
+</html>                                                        <!-- Final del documento HTML -->

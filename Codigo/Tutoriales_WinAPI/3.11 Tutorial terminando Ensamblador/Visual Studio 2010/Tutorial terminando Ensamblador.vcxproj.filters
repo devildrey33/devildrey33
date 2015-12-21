@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de recursos">
+      <UniqueIdentifier>{8fa909ec-ef33-41f6-a70c-4acd36de1ea8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\Tutorial terminando Ensamblador.rc">
+      <Filter>Archivos de recursos</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\DialogoEnsamblador.cpp" />
+    <ClCompile Include="..\DialogoNuevoProyecto.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoArchivo.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoButton.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoComboBox.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoControlEstandar.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoDialogo.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoDirectoriosWindows.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoDlgAbrir.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoDlgDirectorios.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoDlgGuardar.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoEditBox.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoHWND.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoListView.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoProgressBar.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoTreeView.cpp" />
+    <ClCompile Include="..\..\Objetos Tutorial\ObjetoZLIB.cpp" />
+    <ClCompile Include="..\ProyectoIPRJ.cpp" />
+    <ClCompile Include="..\Tutorial TerminandoEnsamblador.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\DialogoEnsamblador.h" />
+    <ClInclude Include="..\DialogoNuevoProyecto.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoArchivo.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoButton.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoComboBox.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoControlEstandar.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoDialogo.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoDirectoriosWindows.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoDlgAbrir.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoDlgDirectorios.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoDlgGuardar.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoEditBox.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoHWND.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoImageList.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoListView.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoProgressBar.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoTreeView.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\ObjetoZLIB.h" />
+    <ClInclude Include="..\..\Objetos Tutorial\PlantillaEventos.h" />
+    <ClInclude Include="..\ProyectoIPRJ.h" />
+    <ClInclude Include="..\resource.h" />
+  </ItemGroup>
+</Project>

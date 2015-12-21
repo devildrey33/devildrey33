@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+            /* Animación que se invierte (con alternate) */
+            .ObjetoAnimado1 {
+				color:#FFF;
+				background-color:rgb(0, 0, 120);
+				animation:MiAnimacion 5s ease 0s infinite alternate;
+				-webkit-animation:MiAnimacion 5s ease 0s infinite alternate; /* Chrome y Safari */
+            }
+			
+            /* Animación lineal */
+            .ObjetoAnimado2 {
+				color:#FFF;
+				background-color:rgb(120, 0, 0);
+				animation:MiAnimacion 5s ease 0s infinite normal;
+				-webkit-animation:MiAnimacion 5s ease 0s infinite normal; /* Chrome y Safari */
+            }
+            
+            /* Animación para Chrome y Safari */    
+            @-webkit-keyframes MiAnimacion {
+                0%   { opacity:0.0; }                 /* Al principio de la animación */
+                100% { opacity:1.0; }                 /* Al final de la animación */
+            }
+                        
+            /* Animación para todos */    
+            @keyframes MiAnimacion {
+                0%   { opacity:0.0; }                 /* Al principio de la animación */
+                100% { opacity:1.0; }                 /* Al final de la animación */
+            }
+            
+		</style>
+    	<!-- Código javascript -->
+		<script type="text/javascript">
+		</script>
+	</head>
+	<body>
+    	En este ejemplo se utiliza el mismo keyframe para las dos animaciones, pero se comportan de forma distinta porque
+        se ha definido la dirección normal en uno, y alternate(invertir) en el otro.
+        <p><b>NOTA : </b> Este ejemplo no funciona en Internet Explorer 9 e inferiores!</p>
+
+        <div class='ObjetoAnimado1'>
+        	Este objeto aparece y desaparece gradualmente. 
+            "<i>animation:MiAnimacion 5s ease 0 infinite <b>alternate</b></i>"
+        </div>
+        <br />
+        <div class='ObjetoAnimado2'>
+        	Este objeto aparece gradualmente, y desaparece de golpe. 
+            "<i>animation:MiAnimacion 5s ease 0 infinite <b>normal</b></i>"
+        </div>
+	</body>
+</html>

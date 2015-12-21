@@ -1,0 +1,85 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [31/12/2013] para devildrey33.es -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			body { background-color:#DDD; }
+			#MarcoOpciones {
+				background-color:#FFF;
+				display:table;
+				padding:4px 0px 4px 6px;
+				border:1px solid #CCC;
+                z-index:20;
+                position:absolute;
+			}
+			#MarcoOpciones * {
+				vertical-align:baseline;
+			}
+			#MarcoOpciones .TextoLinea1 {
+				width:160px;
+				display:inline-block;
+			}
+			#MarcoOpciones .TextoLinea2 {
+				width:140px;
+				display:inline-block;
+			}
+			#MarcoOpciones .Valor {
+				width:70px;
+				display:inline-block;
+			}
+			#Contenedor { position:absolute; }
+			#Objeto {
+				width:10px;
+				height:10px;
+				margin-left:300px;
+				z-index:1;
+				-webkit-transform-style:preserve-3d;
+				-webkit-animation:AnimRotacionY 10s linear 0s infinite;
+				transform-style:preserve-3d;
+				animation:AnimRotacionY 10s linear 0s infinite;
+			}
+			@-webkit-keyframes AnimRotacionY {
+				 0%     { -webkit-transform:perspective(12000px) rotateY(-360deg); }  
+				 100%   { -webkit-transform:perspective(12000px) rotateY(360deg); }  
+			}
+			@keyframes AnimRotacionY {
+				 0%     { transform:perspective(12000px) rotateY(-360deg); }  
+				 100%   { transform:perspective(12000px) rotateY(360deg); }  
+			}
+			
+			/* #ObjetoDl = Delante */
+			#Objeto {
+				position:absolute;
+				background-color:#333;
+				background-image:url('http://img.devildrey33.es/logo400.png');
+				width:400px;
+				height:400px;
+				z-index:1;
+			}
+
+		</style>
+	    <script type="text/javascript">			
+			function ActualizarBackfaceVisibility() {
+				var Combo = document.getElementById("ChBackfaceVisibility");
+				document.getElementById("Objeto").style.backfaceVisibility = Combo.options[Combo.selectedIndex].innerHTML;
+				document.getElementById("Objeto").style.webkitBackfaceVisibility = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body>
+    	<div id='MarcoOpciones'>
+            <div class='Tab1'>
+                <code class='TextoLinea1'>backface-visibility</code><code>:</code>
+                <select id='ChBackfaceVisibility' onChange="ActualizarBackfaceVisibility()">
+					<option>visible</option>
+		            <option>hidden</option>                
+                </select>
+                <code>;</code>
+            </div>
+		</div>		
+        <div id='Contenedor'>
+        	<div id='Objeto'></div>
+        </div>
+    </body>
+</html>

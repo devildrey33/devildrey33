@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			/* Fondo */
+			#Fondo {
+				border:10px dashed #CCC;  /* 10 pixeles de borde para ver bien la diferencia del border-box */
+				padding:10px;             /* 10 pixeles de padding para ver bien la diferencia del padding-box */
+				background-color:#09F;
+			}
+			.Marco {
+				border:1px solid #CCC;
+				background-color:#EEE;
+				display:table;
+			}
+		</style>
+        <script type="text/javascript">
+        	function CambiarFondo() {
+				var Combo = document.getElementById("ChFondo");
+				document.getElementById("Fondo").style.backgroundClip = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body onLoad="CambiarFondo()">
+    	<div class='Marco'>
+            <code>background-clip:</code>
+            <select id='ChFondo' onChange="CambiarFondo()">
+                <option value ="0">padding-box</option>
+                <option value ="1">border-box</option>
+                <option value ="2">content-box</option>
+            </select>
+            <code>;</code>
+        </div>
+        <br />
+        <div ID='Fondo'>
+	        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+            magna aliquam erat volutpat.
+            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+	        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore 
+            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+            magna aliquam erat volutpat.
+        </div>
+	</body>
+</html>

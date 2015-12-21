@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<style type="text/css">
+			/* Las etiqueta 'p' que sea el primer hijo (del mismo tipo) de su etiqueta predecesora 
+			   empezando por detras, tendrá el texto verde. */
+			p:nth-last-of-type(1) { color:rgb(0, 255, 0); }
+			/* (Laboratorio de pruebas) Modifica p:nth-last-of-type(1) por p:nth-last-of-type(2), para ver mas claro el asunto */
+		</style>
+    </head>
+    <body>
+        <div>Etiqueta 'div' primer hijo de la etiqueta 'body'</div>
+        <p>Etiqueta 'p' primera etiqueta, pero segundo hijo de la etiqueta 'body' (el tercero por detras)</p>    
+        <p>Etiqueta 'p' segunda etiqueta, pero tercer hijo de la etiqueta 'body' (el segundo por detras)</p>  
+        <p>Etiqueta 'p' primera etiqueta, pero segundo hijo de la etiqueta 'body' (el primero por detras)</p> <!-- verde -->
+    </body>
+</html>

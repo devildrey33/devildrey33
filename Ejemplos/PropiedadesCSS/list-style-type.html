@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			ul { list-style-type:none; }
+		</style>
+        <script type="text/javascript">
+			function CambiarTipoLista() {
+				var Combo = document.getElementById("TipoLista");
+				document.getElementsByTagName("ul").item(0).style.listStyleType = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body>
+		<p>Prueba los distintos tipos de lista :</p>
+    	<select id='TipoLista' onChange="CambiarTipoLista()">
+        	<option value ="0">armenian</option>
+        	<option value ="1">circle</option>
+        	<option value ="2">cjk-ideographic</option>
+        	<option value ="3">decimal</option>
+        	<option value ="4">decimal-leading-zero</option>
+        	<option value ="5">disc</option>
+        	<option value ="6">georgian</option>
+        	<option value ="7">hebrew</option>
+        	<option value ="8">hiragana</option>
+        	<option value ="9">hiragana-iroha</option>
+        	<option value ="10">katakana</option>
+        	<option value ="11">katakana-iroha</option>
+        	<option value ="12">lower-alpha</option>
+        	<option value ="13">lower-greek</option>
+        	<option value ="14">lower-latin</option>
+        	<option value ="15">lower-roman</option>
+        	<option value ="16" selected="selected">none</option>
+        	<option value ="17">square</option>
+        	<option value ="18">upper-alpha</option>
+        	<option value ="19">upper-latin</option>
+        	<option value ="20">upper-roman</option>
+        </select>
+        <ul>
+        	<li>Item lista 1</li>
+        	<li>Item lista 2</li>
+        	<li>Item lista 3</li>
+        	<li>Item lista 4</li>
+        	<li>Item lista 5</li>
+        </ul>
+    </body>
+</html>

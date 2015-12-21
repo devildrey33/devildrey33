@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<title>Canvas tutorial</title>
+
+		<script type="text/javascript">
+			// Variables globales
+			var Estrellas = 200;
+			var Context33;
+			var Espacio = Array();
+			var Temporizador = 0;
+			var Canvas33;
+			
+			// Atributos para cada estrella del espacio
+			function Estructura_Espacio(x, y, Velocidad, Tipo) {
+				this.x = x;
+				this.y = y;
+				this.Velocidad = Velocidad;
+				this.Tipo = Tipo;
+			}
+			
+			function EncenderTemporizador() {
+				if (Canvas33.getContext && Temporizador == 0) {
+					Temporizador = setInterval(PintarEspacio, 10);
+				}
+			}
+			
+			function PararTemporizador() {
+				if (Temporizador != 0) {
+					clearInterval(Temporizador);
+					Temporizador = 0;
+				}
+			}
+			
+			function IniciarAnimacion() {
+				PararTemporizador();
+				
+				Canvas33 = document.getElementById("canvas1");
+				if (Canvas33.getContext) {
+					Context33 = Canvas33.getContext("2d");
+					CrearEspacio(Estrellas);
+					EncenderTemporizador();
+				}
+				else {
+					alert("Tu navegador no soporta el objeto canvas!");
+				}
+			}
+			
+			function CrearEspacio(TotalEstrellas) {
+				for (var i= 0; i < TotalEstrellas; i++) {
+					Espacio[i] = new Estructura_Espacio( Context33.canvas.width * Math.random(),  // X
+														 Context33.canvas.height * Math.random(), // Y
+														 (5 * Math.random()) + 1,               // Velocidad
+														 (5 * Math.random()) + 1 );             // Tipo
+				}
+			}
+			
+			function PintarEspacio() {
+				Context33.fillStyle = "rgb(0, 0, 0)";
+				Context33.fillRect(0, 0, Context33.canvas.width, Context33.canvas.height);
+				var Color;
+				for (i = 0; i < Estrellas; i++) {
+					Espacio[i].x += Espacio[i].Velocidad;
+					// Se ha salido del recuadro
+					if (Espacio[i].x > Context33.canvas.width) {
+						Espacio[i].x = 0;
+						Espacio[i].y = Context33.canvas.height * Math.random();
+						Espacio[i].Velocidad = (5 * Math.random()) + 1;
+						Espacio[i].Tipo = (5 * Math.random()) + 1;
+					}
+					Color = 200 + Math.round(Espacio[i].Tipo * 10);
+					Context33.fillStyle = "rgb(" + Color + ", " + Color + ", " + Color + ")";
+					Context33.fillRect(Espacio[i].x, Espacio[i].y, 1, 1);
+				}
+			}
+
+		</script>
+	</head>
+	<body onUnload="PararTemporizador()">
+		<canvas id="canvas1" width="600" height="200"></canvas>
+        <p><b>NOTA</b> : En google chrome el temporizador de la animación se queda en memoria y si vuelves a cargar este ejemplo habra 2 temporizadores funcionando a la vez, y cuando le des a "Detener animación" solo se parara uno.....</p>
+        <a href="javascript:IniciarAnimacion()">Iniciar animación</a> <a href="javascript:PararTemporizador()">Detener animación.</a>
+	</body>
+</html>

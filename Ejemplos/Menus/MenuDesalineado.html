@@ -1,0 +1,126 @@
+<!-- Ejemplo Creado por Josep Antoni Bover el [06/02/2014] para devildrey33.es 
+	Menú creado totalmente en CSS no requiere nada de javascript
+    Esta construido con 2 transiciones diferentes :
+    	- Transición para el despliegue que rota y baja los items.
+        - Transición para aumentar la escala de un item al pasar por encima con el mouse.
+-->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.MenuDesalineado {
+				position:absolute;
+				padding:0px;
+				display:inline-block;
+				margin:0px;
+				-webkit-user-select: none; /* Chrome, Safari, y Opera 15 */
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+				color:white;
+				text-shadow:1px 1px 0px rgb(50,50,50);
+			}
+			/* MenuItem */
+			.MenuDesalineado > li > span {
+				margin:10px 0px 0px 60px;
+				display:table;
+				padding:5px;
+				border:1px solid rgb(0,0,0);
+				background-color:rgb(235, 0, 0);
+				position:relative;
+				-webkit-transform:scale(1.0,1.0);
+				transform:scale(1.0,1.0);
+				transition:-webkit-transform 0.3s ease-in 0s, color 0.5s ease-in 0s; 
+				transition:transform 0.3s ease-in 0s, color 0.5s ease-in 0s; 
+			}
+			
+
+			.MenuDesalineado > li:nth-child(2) > span {	background-color:rgb(235, 0, 0);	}
+			.MenuDesalineado > li:nth-child(3) > span {	background-color:rgb(225, 0, 0);	}
+			.MenuDesalineado > li:nth-child(4) > span {	background-color:rgb(215, 0, 0);	}
+			.MenuDesalineado > li:nth-child(5) > span {	background-color:rgb(205, 0, 0);	}
+			.MenuDesalineado > li:nth-child(6) > span {	background-color:rgb(195, 0, 0);	}
+			.MenuDesalineado > li:nth-child(7) > span {	background-color:rgb(185, 0, 0);	}
+
+			.MenuDesalineado > li:hover {
+				z-index:200;
+			}
+			
+			/* Escala */
+			.MenuDesalineado > li > span:hover {
+				-webkit-transform:scale(1.2, 1.2);
+				transform:scale(1.2, 1.2);
+				background-color:#F60;
+			}
+			/* Eje para las rotaciones de los menuitems */
+			.MenuDesalineado > li {
+				margin:12px auto;
+				display:table;
+				cursor:pointer;
+				position:absolute;
+				top:4px;
+				list-style:none;
+				border-radius:5px;
+				transform:rotateZ(-180deg);
+				-webkit-transform:rotateZ(-180deg);
+				/* (Aquí el delay es 1 porque es el mouseout) */
+				transition:-webkit-transform 0.5s ease-in 1.5s, top 0.5s ease-in 1.5s;
+				transition:transform 0.5s ease-in 1.5s, top 0.5s ease-in 1.5s;
+			}
+
+			/* El primer item se considera el menú padre */
+			.MenuDesalineado > .Pregunta {
+				font-weight:bold;
+				margin:15px auto;
+				padding: 14px 12px 14px 52px;
+				position:relative;
+				list-style:none;
+				border:1px solid rgb(0,0,0);
+				background-color:rgb(155, 0, 0);
+				z-index:100;
+				border-radius:5px;
+				transition:background-color 0.5s ease-in 0s;
+				background-image:url('http://img.devildrey33.es/Logo.png'), -webkit-linear-gradient(rgba(255, 0, 0, 0.7), rgb(150, 0, 0));
+				background-image:url('http://img.devildrey33.es/Logo.png'), linear-gradient(rgba(255, 0, 0, 0.7), rgb(150, 0, 0));
+				background-repeat:no-repeat, no-repeat;
+				background-position:left center; 				
+			}
+			.MenuDesalineado:hover > .Pregunta { 	background-color:rgb(255,0,0); 	}
+
+			
+			/* Posiciones para los items */
+			.MenuDesalineado > li:nth-child(2) > span {	z-index:99;		}
+			.MenuDesalineado > li:nth-child(3) > span {	z-index:98;		}
+			.MenuDesalineado > li:nth-child(4) > span {	z-index:97;		}
+			.MenuDesalineado > li:nth-child(5) > span {	z-index:96;		}
+			.MenuDesalineado > li:nth-child(6) > span {	z-index:95;		}
+			.MenuDesalineado > li:nth-child(7) > span {	z-index:94;		}
+			/* Transición del despliegue */			
+			.MenuDesalineado:hover > li {
+				/* Rotaciones para los items (Aquí el delay es 0 porque es el mouseover) */
+				transition:transform 0.5s ease-in 0s, top 0.5s ease-in 0s;		
+				transition:-webkit-transform 0.5s ease-in 0s, top 0.5s ease-in 0s;
+			}
+			/* Mozilla Firefox requiere el transition en el mismo selector que las propiedades (yo creo que es un bug..) */
+			.MenuDesalineado:hover > li:nth-child(2) {		transition:transform 0.5s ease-in 0s, top 0.5s ease-in 0s;		top:58px;		-webkit-transform:rotateZ(5deg);		transform:rotateZ(5deg);		}
+			.MenuDesalineado:hover > li:nth-child(3) {		transition:transform 0.5s ease-in 0s, top 0.5s ease-in 0s;		top:102px;		-webkit-transform:rotateZ(-363.5deg);	transform:rotateZ(-363.5deg);	}
+			.MenuDesalineado:hover > li:nth-child(4) {		transition:transform 0.5s ease-in 0s, top 0.5s ease-in 0s;		top:146px;		-webkit-transform:rotateZ(-1.3deg);		transform:rotateZ(-1.3deg);		}
+			.MenuDesalineado:hover > li:nth-child(5) {		transition:transform 0.5s ease-in 0s, top 0.5s ease-in 0s;		top:190px;		-webkit-transform:rotateZ(2deg);		transform:rotateZ(2deg);		}
+			.MenuDesalineado:hover > li:nth-child(6) {		transition:transform 0.5s ease-in 0s, top 0.5s ease-in 0s;		top:234px;		-webkit-transform:rotateZ(-1.9deg);		transform:rotateZ(-1.9deg);		}
+			.MenuDesalineado:hover > li:nth-child(7) {		transition:transform 0.5s ease-in 0s, top 0.5s ease-in 0s;		top:278px;		-webkit-transform:rotateZ(1.2deg);		transform:rotateZ(1.2deg);		}
+		</style>
+    </head>
+    <body>
+    	<ul class='MenuDesalineado'>
+        	<div class='Pregunta'>Cual es la mejor forma de derrotar a un demonio?</div>
+        	<li><span>Una estaca bien clavada en el ojo..</span></li>
+        	<li><span>Con sexo drogas y rock'n roll.</span></li>
+        	<li><span>Ácido corrosivo en las partes intimas.</span></li>
+        	<li><span>Un destructor imperial, nunca falla.</span></li>
+        	<li><span>Al modo tradicional, con espada y escudo.</span></li>
+        	<li><span>Agua bendita.</span></li>
+        </ul>
+    </body>
+</html>

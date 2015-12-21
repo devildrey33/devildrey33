@@ -1,0 +1,356 @@
+ /* Base para el tema de devildrey33 
+    Contiene las barras laterales, el cuerpo y las fuentes */
+@import url(http://fonts.googleapis.com/css?family=Architects+Daughter|Orbitron);
+@import url(http://fonts.googleapis.com/css?family=Karla);
+
+html, button, .boton {
+   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
+}
+html {
+   /*font-size: 0.9em;*/
+/*   font-size:14px;*/
+   font-size:62.5%;
+/*               line-height: 140%;                */
+   min-width:600px;
+   height:100%;    
+   transition:0.4s;
+}
+h1, h2, h3, h4, h5 { font-family: 'Karla', sans-serif; }
+h1 { font-size:2.5rem; }
+h2 { font-size:2rem; }
+body { 
+    margin:0px; 
+    padding:0px; 
+    margin-left:60px; 
+    background:#29272C;
+    min-width:600px;
+/*    overflow-y:scroll;*/
+    height:100%;    
+    font-size:1.4rem;
+    transition:0.4s;
+}
+i { background-color: rgba(255,255,255,0.8); }
+/*p, td { font-size:1.4rem; }*/
+/*pre, code { font-size:1.6rem; }*/
+a { color:rgb(234,80,78); text-decoration:none; text-shadow: 0px 0px 1px rgba(234,80,78, 0.6); }
+
+a:hover { text-decoration:underline; }
+
+img { max-width:100%; }
+
+pre, code, kbd, samp, tt, .Codigo_Numeracion {
+  font-family:monospace,monospace;
+  font-size:1.2rem;
+}
+/*pre, code {
+    font-size: 1.1em;
+}*/
+
+#MarcoNavegacion {
+    z-index:1;
+    position:relative;
+    background:rgb(240,240,240);
+    opacity:1.0;
+    transition:0.4s;
+    overflow:hidden;
+    min-height:100%;
+    height:auto !important;
+/*    text-align: center;*/
+}
+
+body[Tipo=Indice] > #MarcoNavegacion, body[Tipo=Lab] > #MarcoNavegacion, body[Tipo=LabError] > #MarcoNavegacion {
+    background:#29272C;
+}
+/*
+#MarcoNavegacion::after {
+    content:'';
+    position:absolute;
+    top:0px; left:90px; right:0px; bottom:0px;
+    opacity:1.0;
+    background:#29272C;
+    z-index:-1;
+}*/
+
+
+/* TextBox */
+input[type=text], input[type=url], input[type=email], input[type=date], input[type=password] {
+    outline-color:#EA504E;    
+}
+/* TextBox con foco */
+input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[type=date]:focus, input[type=password]:focus {
+    box-shadow:0px 0px 5px #EA504E;
+}
+
+.Boton, button {
+    margin:10px 5px;    
+    padding:10px;
+    display:inline-block;
+    background:rgb(60,60,60);
+    color:#FFFFFF;
+    transition:background 0.35s linear 0s, color 0.35s linear 0s;
+    border:1px solid #353338;
+    cursor:pointer;
+    text-align: center;
+    font-size:1.7rem;
+    outline-color:#EA504E;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;    
+}
+
+.Boton:disabled, button:disabled {
+    color:#CCC !important;
+    background:rgba(37,35,40, 0.95) !important;
+    border:1px solid rgba(37,35,40, 0.95);
+}
+
+.Boton:active, button:active {
+/*    padding-top:12px;
+    padding-bottom:8px; */
+    color:rgb(90,90,90);
+}
+
+.Boton:hover:enabled, button:hover:enabled {
+    background:#EA504E;
+    text-decoration:underline;
+    border:1px solid red;
+/*    padding:16px;
+    margin:1px auto;*/
+}
+
+
+
+
+
+
+
+.Centrado {
+    display:table;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+/* Cacharro drag&drop que hace salir el login */
+/*#MotaLog {
+    position:fixed;
+    bottom:0px;
+    left:15px;
+    width:30px;
+    height:30px;
+    border-radius:100px;
+    background:radial-gradient(rgba(53, 51, 56, 0.3), rgba(53, 51, 56, 0));
+    z-index:1000;
+    transition:background .4s;
+}*/
+/*
+#MotaLog[Luz=Roja] {
+    background:radial-gradient(rgba(203, 0, 0, 0.5), rgba(53, 0, 0, 0));    
+}
+#MotaLog[Luz=Verde] {
+    background:radial-gradient(rgba(0, 201, 0, 0.5), rgba(0, 51, 0, 0));    
+}
+*/
+
+/* El 500 no s'utilitza pel que sembla (deu ser el de la enquesta) */
+/*.MarcoVentana-500 { 
+    position:fixed; 
+    right:-700px;
+    top:0px;
+    display:table;      
+    background:#1D1A21;
+    color:#FFF;         
+    box-shadow:0px 2px 12px 4px #000;
+    z-index:3000;
+    transition:1.2s cubic-bezier(.17,-0.42,0,1.35);
+    transform:perspective(600px) rotateZ(-90deg) rotateY(-180deg);
+    opacity:0;    
+    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.MarcoVentana-500[Visible=true] {
+    transform:perspective(600px) rotateZ(0deg) rotateY(0deg);
+    opacity:1;    
+    right:calc(50% - 250px);
+    top:20%;
+    width:500px;
+    height:300px;    
+}*/
+
+.MarcoVentana-350, .MarcoVentana-250 {           /* Marco del mensaje */
+    position:fixed; 
+    bottom:-500px;            
+    right:0px;
+    display:table;      
+    background:#1D1A21;
+/*    background:#252328; */
+    color:#FFF;         
+    border-radius:6px 6px 1px 1px; 
+    padding:0px 30px;   
+    box-shadow:0px 2px 12px 4px #000;
+    z-index:3000;
+    transition:1.2s cubic-bezier(.17,-0.42,0,1.35);
+    transform:perspective(600px) rotateZ(-90deg) rotateY(-180deg);
+    opacity:0;    
+    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.MarcoVentana-350 { width:350px !important; }
+.MarcoVentana-250 { width:250px !important; }
+.MarcoVentana-350[Visible=true] {  right:calc(50% - 205px);  }
+.MarcoVentana-250[Visible=true] {  right:calc(50% - 155px);  }
+
+.MarcoVentana-350[Visible=true], .MarcoVentana-250[Visible=true]  {
+    transform:perspective(600px) rotateZ(0deg) rotateY(0deg);
+    opacity:1;
+    bottom:45%;            
+}
+
+
+
+.MarcoVentana-350::before, .MarcoVentana-250::before {   /* Titulo rojo */
+    position:relative;  
+    display:inline-block;   
+    content:'';
+    height:25px;        
+    padding:5px 0px 0px 5px;
+    left:-30px;         
+    background:#EA504E;     
+    width:calc(100% + 55px);                
+    box-shadow: 0 5px 5px -5px rgba(255,255,255, .9) inset;
+    border-radius:6px 6px 0px 0px;                
+    font-weight:bold;
+}    
+
+#VentanaLogin {
+    height:125px;
+}
+
+#VentanaLogin > table {
+    margin-top:15px;
+    width:100%;
+}
+
+.VentanaError_AnimacionError {
+    animation:VE_Animacion 0.5s ease-in-out 0s;
+}
+
+@keyframes VE_Animacion {
+    0% { transform:perspective(600px) rotateZ(0deg) rotateY(0deg); background:#1D1A21; }
+    30% { transform:perspective(600px) rotateZ(3deg) rotateY(75deg) translateZ(-20px);   }
+    35% { background:#EA504E; }
+    55% { background:#EA504E; }
+    70% { transform:perspective(600px) rotateZ(-3deg) rotateY(-75deg) translateZ(20px); }
+    100% { transform:perspective(600px) rotateZ(0deg) rotateY(0deg); background:#1D1A21; }
+}
+
+#VentanaLogin::before {    content:'Login'; backface-visibility:hidden; }
+#VentanaError::before {    content:'Error'; }
+
+
+#VentanaLogin input {
+    width:calc(100% - 8px);
+    margin:4px;
+    background:#29272C;
+    color:white;
+    border:1px solid #353338;
+}
+
+/*#VentanaLogin > * {
+    backface-visibility:hidden;
+}*/
+
+#VentanaMensaje, #VentanaError, #VentanaLogin, #BarraPrincipal, #BarraNavegacion_Inferior, #BarraNavegacion {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+/*    user-select: none;    */
+}
+
+
+#VentanaMensaje > p, #VentanaError > p {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+/*    user-select: none;    */
+}
+
+
+
+
+
+.CheckBox {
+    width:60px;
+    height:32px;
+    position:relative;
+    cursor:pointer;
+}
+
+.CheckBox:hover > div:nth-child(1) {
+    transform:scale(1.1);
+    border:1px solid red;
+}
+.CheckBox:hover > div:nth-child(2) {
+    border:1px solid red;
+}
+
+/* Boton */
+.CheckBox > div:nth-child(1) {
+    position:absolute;
+    border-radius:8px;
+    background:#333;
+    top:2px;
+    left:2px;
+    width:26px;
+    height:26px;
+    z-index:2;                
+    border:1px solid #353338;
+    box-shadow:0 2px 2px rgba(0,0,0,.13), 0 2px 2px rgba(0,0,0,.13) inset;
+    transition:left cubic-bezier(0.34,1.61,0.7,1) 250ms, transform cubic-bezier(0.34,1.61,0.7,1) 250ms, border-color 250ms;                
+}
+/* Carril */
+.CheckBox > div:nth-child(2) {
+    position:absolute;
+    border-radius:8px;
+    top:5px;
+    left:5px;
+    width:50px;
+    height:20px;
+    border:1px solid #353338;
+    background:#29272c;
+    z-index:1;
+    box-shadow:0 2px 2px rgba(0,0,0,.13) inset;
+    overflow:hidden;
+    transition:border-color 250ms;
+}
+
+.CheckBox > div:nth-child(2)::before {
+    content:'';
+    position:absolute;
+    background:#ea504e;
+    box-shadow:0 2px 2px rgba(0,0,0,.13) inset;
+    width:50px;
+    height:26px;
+    left:-30px;
+    transition:left cubic-bezier(0.34,1.61,0.7,1) 250ms;
+}            
+
+.CheckBox[marcado=true] > div:nth-child(1) {
+    left:30px;
+}
+.CheckBox[marcado=true] > div:nth-child(2)::before {
+    left:-10px;
+}
+
+
+
+

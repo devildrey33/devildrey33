@@ -1,0 +1,160 @@
+<!-- Pruebas de perspectiva utilizando CSS3 y JavaScript -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			#Vista {
+				width:400px;
+				height:400px;
+				margin:0 auto;
+				-webkit-perspective: 1200px;
+				-webkit-perspective-origin: 50% 10%;
+				-moz-perspective: 1200px;
+				-moz-perspective-origin: 50% 10%;
+				perspective: 1200px;
+				perspective-origin: 50% 10%;
+			}
+			
+			#Prespectiva {
+				height: inherit;
+				-webkit-transform-style: preserve-3d;
+				-moz-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}			            
+
+			#Cuerpo {
+				width:18em;
+				height:21em;
+			}
+			
+			.Pieza_Delantera, .Pieza_Trasera, .Pieza_Derecha, .Pieza_Izquierda, .Pieza_Superior, .Pieza_Inferior {
+				position:absolute;
+			}
+			
+			.Pieza_Delantera {
+				top:0;
+				left:0;
+				width:inherit;
+				height:inherit;
+				background-color:#F00;
+			}
+			
+			.Pieza_Trasera {
+				top:0;
+				left:0;
+				width:inherit;
+				height:inherit;
+				background-color:#A00;
+ 			    -webkit-transform: translateZ(-8em);
+				-moz-transform: translateZ(-8em);
+				transform: translateZ(-8em);
+			}
+
+			.Pieza_Derecha {
+				background-color:#C00;
+				top:0;
+				left:10em; /* El izquierdo ocupa 8em (total 18em)*/
+				width:8em;
+				height:inherit;
+				-webkit-transform-origin: right bottom;
+				-webkit-transform: rotateY(-90deg);
+				-moz-transform-origin: right bottom;
+				-moz-transform: rotateY(-90deg);
+				transform-origin: right bottom;
+				transform: rotateY(-90deg);
+			}
+			
+			.Pieza_Izquierda {
+				background-color:#C00;
+				top:0;
+				left:0;
+				width:8em;
+				height:inherit;
+				-webkit-transform-origin: left bottom;
+				-webkit-transform: rotateY(90deg);
+				-moz-transform-origin: left bottom;
+				-moz-transform: rotateY(90deg);
+				transform-origin: left bottom;
+				transform: rotateY(90deg);
+			}
+			
+			.Pieza_Superior {
+				top:0;
+				left:0;
+				background-color:#C00;
+				width: inherit;
+				height: 8em;
+				-webkit-transform-origin: top left;
+				-webkit-transform: rotateX(-90deg);
+				-moz-transform-origin: top left;
+				-moz-transform: rotateX(-90deg);
+				transform-origin: top left;
+				transform: rotateX(-90deg);
+			}
+			
+			.Pieza_Inferior {
+				top:21em;
+				left:0;
+				background-color:#C00;
+				width: inherit;
+				height: 8em;
+				-webkit-transform-origin: left top;
+				-webkit-transform: rotateX(-90deg);
+				-moz-transform-origin: left top;
+				-moz-transform: rotateX(-90deg);
+				transform-origin: left top;
+				transform: rotateX(-90deg);
+			}
+
+		</style>
+    	<!-- Código javascript -->
+		<script type='text/javascript' src='/js/jquery-2.0.3.min.js'></script>
+		<script type="text/javascript">
+			var xyz = {};
+			xyz.x = 0;
+			xyz.y = 0;
+			xyz.z = 0;
+		
+			$("#Prespectiva").css(
+				{
+					"-webkit-transform": "rotateX(" + xyz.x + "deg) rotateY(" + xyz.y + "deg) rotateZ(" + xyz.z + "deg)",
+					"-moz-transform": "rotateX(" + xyz.x + "deg) rotateY(" + xyz.y + "deg) rotateZ(" + xyz.z + "deg)",
+					"transform": "rotateX(" + xyz.x + "deg) rotateY(" + xyz.y + "deg) rotateZ(" + xyz.z + "deg)"
+				}
+			);
+			
+			$(document).on("mousemove", function(e) {
+				var cx = $(document).width() * 0.5;
+				var cy = $(document).height() * 0.5;
+		
+				var ex = e.pageX || e.originalEvent.touches[0].pageX;
+				var ey = e.pageY || e.originalEvent.touches[0].pageY;
+		
+				var xx = ((cy - ey) / cy) * 55;
+				var yy = ((cx - ex) / cx) * (-50);
+				$("#Prespectiva").css(
+					{
+						"-webkit-transform": "rotateX(" + xx + "deg) rotateY(" + yy + "deg) rotateZ(" + xyz.z + "deg)",
+						"-moz-transform": "rotateX(" + xx + "deg) rotateY(" + yy + "deg) rotateZ(" + xyz.z + "deg)",
+						"transform": "rotateX(" + xx + "deg) rotateY(" + yy + "deg) rotateZ(" + xyz.z + "deg)"
+					}
+				);
+			});
+		</script>
+	</head>
+    <body>
+        <div id="Vista">
+            <div id="Prespectiva">
+                <div id="Cuerpo">
+                    <div class='Pieza_Delantera'></div>
+                    <div class='Pieza_Derecha'></div>
+                    <div class='Pieza_Izquierda'></div>
+                    <div class='Pieza_Superior'></div>
+                    <div class='Pieza_Inferior'></div>
+                    <div class='Pieza_Trasera'></div>
+                </div>
+            </div>
+        </div>    	
+	</body>
+</html>

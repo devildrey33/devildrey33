@@ -1,0 +1,52 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [11/01/2014] para devildrey33.es 
+		Ultima modificación el [22/01/2014] -->
+<!DOCTYPE>
+<html>
+	<head>
+		<style>
+			/* Fondo blanco*/
+            body { background-color:rgb(255, 255, 255); }
+			/* Controles del tipo slider */
+			#Rango_R, #Rango_G, #Rango_B { height:10px; }
+			/* Marco donde se ubican los controles */
+			div {
+				display:inline-block;
+				background-color:rgb(240, 240, 240); 
+				border:1px dashed rgb(128, 128, 128);
+			}
+			/* Etiquetas para mostrar los valores RGB */
+			#Valor_R, #Valor_G, #Valor_B {	display:inline-block; width:30px;	}
+			#Valor_R { color:rgb(255,0,0); } 	
+			#Valor_G { color:rgb(0,255,0); } 	
+			#Valor_B { color:rgb(0,0,255); }	
+    	</style>
+	    <script type="text/javascript">
+			function ActualizarColor() {
+				/* Obtengo los valores */
+				var R = document.getElementById("Rango_R").value;
+				var G = document.getElementById("Rango_G").value;
+				var B = document.getElementById("Rango_B").value;
+				/* Asigno los valores a las etiquetas */
+				document.getElementById("Valor_R").innerHTML = R;
+				document.getElementById("Valor_G").innerHTML = G;
+				document.getElementById("Valor_B").innerHTML = B;				
+				/* Asigno el color del fondo utilizando los valores */
+				document.body.style.backgroundColor = "rgb(" + R + "," + G + "," + B + ")";
+			}
+		</script>
+    </head>
+	<body>
+    	<div>
+            <code>body { background-color:rgb(</code>
+            <span id='Valor_R' title='Rojo'>255</span>
+            <input id='Rango_R' type="range" min="0" max="255" value="255" title='Rojo' onchange="ActualizarColor()"> 
+            <code>,</code>
+            <span id='Valor_G' title='Verde'>255</span>
+            <input id='Rango_G' type="range" min="0" max="255" value="255" title='Verde' onchange="ActualizarColor()"> 
+            <code>,</code>
+            <span id='Valor_B' title='Azul'>255</span>
+            <input id='Rango_B' type="range" min="0" max="255" value="255" title='Azul' onchange="ActualizarColor()"> 
+            <code>); }</code>
+    	</div>
+    </body>
+</html>

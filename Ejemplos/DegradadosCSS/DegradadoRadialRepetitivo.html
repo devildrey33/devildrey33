@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Caja { 
+				float:left;
+				width:200px;
+				height:200px;
+				margin-right:20px;
+				border-radius:4px;
+				border:1px solid #999;
+			}
+			
+			.EjemploRadialRepetitivoSimple { 
+				background:-webkit-repeating-radial-gradient(rgb(0, 0, 255) 0%, rgb(0, 0, 100) 20%); 
+				background:-moz-repeating-radial-gradient(rgb(0, 0, 255) 0%, rgb(0, 0, 100) 20%); 
+				background:-o-repeating-radial-gradient(rgb(0, 0, 255) 0%, rgb(0, 0, 100) 20%); 
+				background:repeating-radial-gradient(rgb(0, 0, 255) 0%, rgb(0, 0, 100) 20%); 
+			}
+			
+			.EjemploRadialRepetitivo2 { 
+				background:-webkit-repeating-radial-gradient(70% 70%, yellow 0%, yellow 15%, red 15%, red 30%); 
+				background:-moz-repeating-radial-gradient(70% 70%, yellow 0%, yellow 15%, red 15%, red 30%); 
+				background:-o-repeating-radial-gradient(70% 70%, yellow 0%, yellow 15%, red 15%, red 30%); 
+				background:repeating-radial-gradient(70% 70%, yellow 0%, yellow 15%, red 15%, red 30%); 
+			}
+		 </style>
+	</head>
+	<body>
+    	<p>Este ejemplo no funciona en IE9 e inferiores!</p>
+    	<div class='Caja EjemploRadialRepetitivoSimple'></div>
+    	<div class='Caja EjemploRadialRepetitivo2'></div>
+	</body>
+</html>

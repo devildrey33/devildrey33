@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>                                                <!-- Documento HTML 5 -->
+<html>                                                         <!-- Inicio del documento HTML -->
+    <head>                                                     <!-- Inicio del head -->
+		<title>Ejemplo del tutorial 8</title>
+        <!-- Codificacion UTF-8 -->
+		<meta charset="UTF-8">
+        <!-- Hoja de estilos CSS para este documento -->
+		<style type="text/css">
+			/* Clase para crear un marco con borde negro y fondo gris */
+			.Marco {
+				border-color:rgb(0, 0, 0);
+				border-style:solid;
+				border-width:1px;
+				padding:3px;
+				background-color:rgb(200, 200, 200);
+			}
+			/* Clase que representa el menu padre */
+			.MenuPadre {
+				display:table;
+				margin-right:5px;
+				cursor:pointer;
+			}
+			
+			.AlinearIzquierda         { float:left; }         /* Clase para alinear etiquetas a la izquierda */
+			.SubMenu                  { position:absolute; }  /* Clase que representa un sub-menu */
+			.MenuPadre .SubMenu       { visibility:hidden; }  /* Por defecto los submenus dentro de menu padre estan ocultos */
+			.MenuPadre:hover .SubMenu { visibility:visible; } /* Al resaltar el menu padre, los submenus de dentro de hacen visibles */
+			
+			/* Clase que representa un enlace RESALTADO */
+			.SubMenuItem:hover {
+				cursor:pointer;
+				background-color:rgb(240, 240, 240);	
+			}		
+		</style>
+	</head>                                                    <!-- Final del head -->
+    <body>                                                     <!-- Inicio del cuerpo para el documento HTML -->
+	
+        <header>											   <!-- Inicio para la etiqueta de la cabecera -->
+           	<h1>Tutorial HTML5 parte 8 (Menus)</h1>            <!-- Titulo -->
+        </header>                                              <!-- Final para la etiqueta de la cabecera -->
+
+        <section>
+            <div class='MenuPadre AlinearIzquierda Marco'>	   <!-- Menú padre alineado a la izquierda -->
+                <div>Menú padre 1</div>                        <!-- Titulo del menú padre -->
+                <div class='SubMenu Marco'>                    <!-- Marco para el submenú inicialmente oculto -->
+                    <div class='SubMenuItem'>Sub Menú 1</div>
+                    <div class='SubMenuItem'>Sub Menú 2</div>
+                    <div class='SubMenuItem'>Sub Menú 3</div>
+                    <div class='SubMenuItem'>Sub Menú 4</div>
+                    <div class='SubMenuItem'>Sub Menú 5</div>
+                </div>                
+            </div>
+
+            <div class='MenuPadre AlinearIzquierda Marco'>	   <!-- Menú padre alineado a la izquierda -->
+                <div>Menú padre 2</div>                        <!-- Titulo del menú padre -->
+                <div class='SubMenu Marco'>                    <!-- Marco para el submenú inicialmente oculto -->
+                    <div class='SubMenuItem'>Sub Menú 1</div>
+                    <div class='SubMenuItem'>Sub Menú 2</div>
+                    <div class='SubMenuItem'>Sub Menú 3</div>
+                    <div class='SubMenuItem'>Sub Menú 4</div>
+                </div>                
+            </div>
+
+            <div class='MenuPadre Marco'>	                   <!-- Menú padre sin alineación -->
+                <div>Menú padre 3</div>                        <!-- Titulo del menú padre -->
+                <div class='SubMenu Marco'>                    <!-- Marco para el submenú inicialmente oculto -->
+                    <div class='SubMenuItem'>Sub Menú 1</div>
+                    <div class='SubMenuItem'>Sub Menú 2</div>
+                    <div class='SubMenuItem'>Sub Menú 3</div>
+                </div>
+            </div>
+        </section> 
+
+		<footer>                                               <!-- Inicio del pie de la pagina -->
+           	<p><b>Documento creado por devildrey33.</b></p>
+	    </footer>                                              <!-- Fin del pie de la pagina -->
+	</body>                                                    <!-- Final del cuerpo para el documento HTML -->
+</html>                                                        <!-- Final del documento HTML -->

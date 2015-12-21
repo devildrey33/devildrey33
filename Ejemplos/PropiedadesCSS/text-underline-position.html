@@ -1,0 +1,47 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [11/01/2014] para devildrey33.es -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			#TextoDecorado { 
+				text-decoration:underline;
+			}
+		</style>
+	    <script type="text/javascript">
+        	function CambiarDecorado() {
+				var Combo = document.getElementById("ComboDecorado");
+				var Valor = Combo.options[Combo.selectedIndex].innerHTML;
+				document.getElementById("TextoDecorado").style.webkitTextUnderlinePosition = Valor; 	/* No funciona */
+				document.getElementById("TextoDecorado").style.mozTextUnderlinePosition = Valor;		/* No funciona */
+				document.getElementById("TextoDecorado").style.msTextUnderlinePosition = Valor;		/* No funciona */
+				document.getElementById("TextoDecorado").style.textUnderlinePosition = Valor;			/* No funciona */
+			}
+        </script>
+	</head>
+	<body>
+    	<p><code>#TextoDecorado { text-underline-position:</code> 
+        <select id='ComboDecorado' onChange="CambiarDecorado()">
+            <option>auto</option>
+            <option>under</option>
+            <option>left</option>
+            <option>right</option>
+            <option>under left</option>
+            <option>right under</option>
+        </select>
+        <code>; }</code></p>
+    	<p id='TextoDecorado'>
+        	Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Pellentesque mattis magna sapien, et rutrum nisl venenatis id. 
+            Aliquam iaculis magna neque, eget commodo nulla consequat eget. 
+            Praesent ullamcorper augue quam, aliquet consequat sapien fermentum quis. 
+            Praesent cursus ut turpis sed venenatis. 
+            Vivamus consectetur varius metus, in commodo arcu ultrices sit amet. 
+            Etiam hendrerit neque quis diam gravida, convallis volutpat diam mattis. 
+            In pharetra tempor sodales. 
+            Cras non sollicitudin lectus. Morbi ut pellentesque risus. 
+            Phasellus egestas bibendum metus, eget pharetra mi mattis volutpat. 
+            Vestibulum sed felis scelerisque, dapibus eros at, tincidunt nunc. Maecenas id adipiscing eros.        
+        </p>
+    </body>
+</html>

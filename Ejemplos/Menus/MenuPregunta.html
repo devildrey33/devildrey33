@@ -1,0 +1,176 @@
+<!-- Ejemplo Creado por Josep Antoni Bover el [17/02/2014] para devildrey33.es 
+	Creado a partir del ejemplo MenuDesalineado.html para ver como funciona el menú sin escalas ni rotaciones des-alineadas,
+    unicamente se rotara desde -180deg a 0deg y viceversa para los menuitems.
+-->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.MenuPregunta {
+				-webkit-user-select: none; /* Chrome, Safari, y Opera 15 */
+				-moz-user-select:none;
+				-ms-user-select:none;
+				user-select: none;
+				position:relative;
+				margin:0px auto;
+				padding:0px;
+				display:table;
+			}
+			
+			.Pregunta {
+				display:table;
+				margin:8px auto;
+				padding:8px;
+				border:1px solid #CCC;
+				border-radius:4px;
+				background-color:#FFC;
+				font-weight:bold;
+				font-size:18px;
+				z-index:100;
+				position:relative;
+			}
+			
+			.MenuPregunta > li {
+				display:inline-block;
+				list-style:none;
+				margin:6px;
+				padding:4px;
+				border:1px solid #CCC;
+				border-radius:4px;
+				cursor:pointer;
+				position:relative;
+			}
+			
+			/* Excelente! */
+			.MenuPregunta > li:nth-child(2) {
+				background-color:#FFC;
+				border-color:#CCC;
+				top:-50px;
+				left:137px;
+				-webkit-transform:rotateZ(180deg);
+				transform:rotateZ(180deg);
+				transition:-webkit-transform 0.5s ease-in 1s, top 0.5s ease-in 1s, left 0.5s ease-in 1s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+				transition:transform 0.5s ease-in 1s, top 0.5s ease-in 1s, left 0.5s ease-in 1s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+			}
+			.MenuPregunta:hover > li:nth-child(2) {
+				top:0px;
+				left:0px;
+				-webkit-transform:rotateZ(0deg);
+				transform:rotateZ(0deg);				
+				transition:-webkit-transform 0.5s ease-in 0s, top 0.5s ease-in 0s, left 0.5s ease-in 0s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+				transition:transform 0.5s ease-in 0s, top 0.5s ease-in 0s, left 0.5s ease-in 0s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+			}
+			.MenuPregunta > li:nth-child(2):hover {
+				top:-5px;
+				background-color:#0F0;
+				border-color:#000;
+			}
+			
+			/* Bueno */
+			.MenuPregunta > li:nth-child(3) {
+				background-color:#FFC;
+				border-color:#CCC;
+				top:-50px;
+				left:65px;
+				-webkit-transform:rotateZ(180deg);
+				transform:rotateZ(180deg);
+				transition:-webkit-transform 0.5s ease-in 1s, top 0.5s ease-in 1s, left 0.5s ease-in 1s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+				transition:transform 0.5s ease-in 1s, top 0.5s ease-in 1s, left 0.5s ease-in 1s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+			}
+			
+			.MenuPregunta:hover > li:nth-child(3) {
+				top:0px;
+				left:0px;
+				-webkit-transform:rotateZ(0deg);
+				transform:rotateZ(0deg);				
+				transition:-webkit-transform 0.5s ease-in 0s, top 0.5s ease-in 0s, left 0.5s ease-in 0s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+				transition:transform 0.5s ease-in 0s, top 0.5s ease-in 0s, left 0.5s ease-in 0s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+			}
+			.MenuPregunta > li:nth-child(3):hover {
+				top:-5px;
+				background-color:#0A0;
+				border-color:#000;
+			}
+			
+			/* Regular */
+			.MenuPregunta > li:nth-child(4) {
+				background-color:#FFC;
+				border-color:#CCC;
+				transition:top 0.5s ease-in 1s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+				top:-50px;
+			}
+			.MenuPregunta:hover > li:nth-child(4) {
+				transition:top 0.5s ease-in 0s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+				top:0px;
+			}
+			.MenuPregunta > li:nth-child(4):hover {
+				top:-5px;
+				background-color:#CF0;
+				border-color:#000;
+			}
+
+			/* Malo */
+			.MenuPregunta > li:nth-child(5) {
+				background-color:#FFC;
+				border-color:#CCC;
+				top:-50px;
+				left:-50px;
+				-webkit-transform:rotateZ(-180deg);
+				transform:rotateZ(-180deg);
+				transition:-webkit-transform 0.5s ease-in 1s, top 0.5s ease-in 1s, left 0.5s ease-in 1s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+				transition:transform 0.5s ease-in 1s, top 0.5s ease-in 1s, left 0.5s ease-in 1s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+			}
+			.MenuPregunta:hover > li:nth-child(5) {
+				top:0px;
+				left:0px;
+				-webkit-transform:rotateZ(0deg);
+				transform:rotateZ(0deg);				
+				transition:-webkit-transform 0.5s ease-in 0s, top 0.5s ease-in 0s, left 0.5s ease-in 0s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+				transition:transform 0.5s ease-in 0s, top 0.5s ease-in 0s, left 0.5s ease-in 0s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+			}
+			.MenuPregunta > li:nth-child(5):hover {
+				top:-5px;
+				background-color:#F90;
+				border-color:#000;
+			}
+			
+			/* Bueno */
+			.MenuPregunta > li:nth-child(6) {
+				background-color:#FFC;
+				border-color:#CCC;
+				top:-50px;
+				left:-132px;
+				-webkit-transform:rotateZ(-180deg);
+				transform:rotateZ(-180deg);
+				transition:-webkit-transform 0.5s ease-in 1s, top 0.5s ease-in 1s, left 0.5s ease-in 1s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+				transition:transform 0.5s ease-in 1s, top 0.5s ease-in 1s, left 0.5s ease-in 1s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+			}
+			
+			.MenuPregunta:hover > li:nth-child(6) {
+				top:0px;
+				left:0px;
+				-webkit-transform:rotateZ(0deg);
+				transform:rotateZ(0deg);				
+				transition:-webkit-transform 0.5s ease-in 0s, top 0.5s ease-in 0s, left 0.5s ease-in 0s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+				transition:transform 0.5s ease-in 0s, top 0.5s ease-in 0s, left 0.5s ease-in 0s, background-color 0.5s ease-in 0s, border-color 0.5s ease-in 0s;
+			}
+			.MenuPregunta > li:nth-child(6):hover {
+				top:-5px;
+				background-color:#F30;
+				border-color:#000;
+			}
+			
+		</style>
+    </head>
+    <body>
+    	<ul class='MenuPregunta'>
+        	<div class='Pregunta'>Te ha resultado util este documento<span>?</span></div>
+        	<li><a>Excelente!</a></li>
+        	<li><a>Bueno</a></li>
+        	<li><a>Regular</a></li>
+        	<li><a>Malo</a></li>
+        	<li><a>De lo peor...</a></li>
+        </ul>
+    </body>
+</html>

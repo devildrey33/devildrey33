@@ -1,0 +1,96 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [31/12/2013] para devildrey33.es -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			input {
+				max-height:16px;
+			}
+			body {
+				background-color:#DDD;
+			}
+			#MarcoOpciones {
+				background-color:#FFF;
+				display:table;
+				padding:4px 6px 4px 6px;
+				border:1px solid #CCC;
+				opacity:0.9;
+                z-index:1000;
+                position:absolute;
+				
+			}
+			#MarcoOpciones * {
+				vertical-align:top;
+			}
+			#MarcoOpciones .TextoLinea1 {
+				width:210px;
+				display:inline-block;
+			}
+			#MarcoOpciones .TextoLinea2 {
+				width:140px;
+				display:inline-block;
+			}
+			#MarcoOpciones .Valor {
+				width:70px;
+				display:inline-block;
+			}
+			#Contenedor {
+				position:absolute;
+			}
+			.Tab1 { margin-left:20px; }
+			
+			#Objeto {
+				margin-left:500px;
+				background-color:#600;
+				background-image:url('http://img.devildrey33.es/logo400.png');
+				width:400px;
+				height:400px;
+				z-index:1;
+				-webkit-transform: rotateX(25deg); 
+				transform: rotateX(25deg);
+				
+			}
+		</style>
+	    <script type="text/javascript">			
+			function ActualizarPerspectiva() {
+				Perspectiva = parseInt(document.getElementById("ObjetoPerspectiva").value);
+				PerspectivaX = parseInt(document.getElementById("ObjetoPerspectivaX").value);
+				PerspectivaY = parseInt(document.getElementById("ObjetoPerspectivaY").value);
+				document.getElementById("ObjetoPerspectiva_Valor").innerHTML = Perspectiva + " px";
+				document.getElementById("ObjetoPerspectivaX_Valor").innerHTML = PerspectivaX + " %";
+				document.getElementById("ObjetoPerspectivaY_Valor").innerHTML = PerspectivaY + " %";
+				document.getElementById("Contenedor").style.perspective = Perspectiva + "px";
+				document.getElementById("Contenedor").style.webkitPerspective = Perspectiva + "px";
+				document.getElementById("Contenedor").style.perspectiveOrigin = PerspectivaX + "% " + PerspectivaY + "%";
+				document.getElementById("Contenedor").style.webkitPerspectiveOrigin = PerspectivaX + "% " + PerspectivaY + "%";
+			}
+        </script>
+	</head>
+	<body onLoad="ActualizarPerspectiva()">
+    	<div id='MarcoOpciones'>
+            <div><code>#Objeto { transform:rotateX(25deg); }</code></div>
+            <code >#Contenedor {</code><br />
+            <div class='Tab1'>
+                <code class='TextoLinea1'>perspective:</code>
+                <code class='Valor' id='ObjetoPerspectiva_Valor'>5000 px</code><code>;</code>
+                <input id='ObjetoPerspectiva' type="range" min="25" max="2000" value="1000" title='perspective' onChange="ActualizarPerspectiva()">
+
+            </div>
+			<div class='Tab1'>
+                <code class='TextoLinea1'>perspective-origin:</code>
+                <code class='Valor' id='ObjetoPerspectivaX_Valor'>50 %</code><code>,</code>
+                <input id='ObjetoPerspectivaX' type="range" min="0" max="100" value="50" title='perspective-origin X' onChange="ActualizarPerspectiva()">
+			</div>
+			<div class='Tab1'>
+                <code class='TextoLinea1'> </code>
+                <code class='Valor' id='ObjetoPerspectivaY_Valor'>50 %</code><code>;</code>
+                <input id='ObjetoPerspectivaY' type="range" min="0" max="100" value="50" title='perspective-origin Y' onChange="ActualizarPerspectiva()">
+			</div>
+            <code>}</code>
+		</div>		
+        <div id='Contenedor'>
+        	<div id='Objeto'></div>
+        </div>
+    </body>
+</html>

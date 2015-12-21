@@ -1,0 +1,78 @@
+/* TAG <devildrey33_ListaDesplegable> 
+	Este tag reserva el espacio en el documento para mostrar la ListaDesplegable sin desplegar la lista.
+	La ListaDesplegable utiliza position absolute, porque al desplegarse requiere espacio extra, y por ello se crea todo dentro de un DIV interno.
+ */
+ 
+/* Podemos usar el tag <devildrey33_ListaDesplegable> o un DIV con la clase devildrey33_ListaDesplegable */
+devildrey33_ListaDesplegable, .devildrey33_ListaDesplegable {
+	display:table;
+	margin:0px;
+	padding:0px;
+	cursor:default;
+	border:none;
+	outline:none;
+}
+
+/* Clase con el DIV que contiene la ListaDesplegable realmente 
+	(devildrey33_ListaDesplegable::ObjetoListaDesplegable) */
+.devildrey33_ListaDesplegable_Interna {
+	position:absolute; 
+	display:block;
+	overflow:hidden;
+	margin:0px;
+	padding:4px; 						/* Ojo porque IE8 e inferiores si no tienen el padding de 4 pixeles no se muestran bien... */
+	background-color:rgb(20, 20, 20); 	/* No podemos usar rgba si queremos que se vea en IE6.. */
+	border-radius:4px;
+	color:#FFF;
+}
+
+/* Item seleccionado 
+	(devildrey33_ListaDesplegable::ObjetoItemSeleccionado) */
+.devildrey33_ListaDesplegable_ItemSeleccionado {
+	white-space:nowrap;	/* FIX IE6 para que no me divida un item en 2 lienas */
+}
+
+/* Lista de items de la ListaDesplegable 
+	(devildrey33_ListaDesplegable::ObjetoListaItems) */
+.devildrey33_ListaDesplegable_ListaItems {
+	list-style-type:none;
+	margin:0px;
+	padding:3px; 		/* la lista necesita un máximo de 3 pixeles de padding para que no se muestre parte de un item cuando está oculta (esto solo ocurre con la opcion "DesplegarHaciaArriba") */ 
+	opacity:0.0;		/* La lista permanece oculta inicialmente (no puedo usar display:hidden si quiero que funcione en IE6...) */
+}
+
+/* Clase que pertenece a un LI con el Item de la ListaDesplegable */
+.devildrey33_ListaDesplegable_Item {
+	padding-left:3px;
+	padding-right:3px;
+	color:#FFF;	
+	cursor:pointer;
+	white-space:nowrap; /* FIX IE6 para que no me divida un item en 2 lienas */
+}
+
+/* Clase que pertenece a un LI con el Item de la ListaDesplegable resaltado */
+/* devildrey33_ListaDesplegable_ItemResaltado es una clase que solo se usa en IE6 para simular el :hover dentro de el LI */
+.devildrey33_ListaDesplegable_Item:hover, .devildrey33_ListaDesplegable_ItemResaltado {
+	color:yellow;
+	background-color:rgb(60, 60, 60);
+	border-radius:4px;
+
+	padding-left:3px;
+	padding-right:3px;
+	cursor:pointer;
+	white-space:nowrap; /* FIX IE6 para que no me divida un item en 2 lienas */
+}
+
+/* Imagen de la parte derecha que muestra una flecha */
+.devildrey33_ListaDesplegable_ImagenArribaNormal, .devildrey33_ListaDesplegable_ImagenArribaResaltada, .devildrey33_ListaDesplegable_ImagenAbajoNormal, .devildrey33_ListaDesplegable_ImagenAbajoResaltada {
+	background-image:url('../Graficos/devildrey33_ListaDesplegable_Flecha.png');
+	width:16px;
+	height:8px;
+	float:right;
+	display:table;
+}
+
+.devildrey33_ListaDesplegable_ImagenArribaNormal 	{ background-position:-32px 0px; }
+.devildrey33_ListaDesplegable_ImagenArribaResaltada { background-position:-48px 0px; }
+.devildrey33_ListaDesplegable_ImagenAbajoNormal 	{ background-position:0px 0px;   }
+.devildrey33_ListaDesplegable_ImagenAbajoResaltada 	{ background-position:-16px 0px; }

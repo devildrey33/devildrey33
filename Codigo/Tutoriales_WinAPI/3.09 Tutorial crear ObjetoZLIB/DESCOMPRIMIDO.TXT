@@ -1,0 +1,86 @@
+// www.devildrey33.es
+// Ejemplo 3.4 - Crear objeto Instalador
+// En este ejemplo podremos ver una ventana con un boton comprimir, y un boton descomprimir.
+// El boton compirmir comprime en memoria el archivo "Tutorial CrearObjetoInstalador.cpp"
+// El boton descomprimir descomprime la memoria y la guarda en "DESCOMPRIMIDO.TXT"
+// NOTA para que el ejemplo funcione correctamete deberas tener los permisos adecuados de lectura/escritura en la carpeta del ejemplo.
+// NOTA2 los paths de los archivos a leer y escribir son relativos, si estas en modo debug la aplicacion se creara en \3.4 Tutorial crear ObjetoInstalador\Debug\
+//       por lo que los paths relativos apuntan al directorio padre de Debug con "..\"
+
+//#include "resource.h"
+#include "..\Objetos Tutorial\ObjetoVentana.h"
+#include "..\Objetos Tutorial\ObjetoBoton.h"
+#include "..\Objetos Tutorial\ObjetoZLIB.h"
+
+#define ID_COMPRIMIR    100
+#define ID_DESCOMPRIMIR 101
+
+//-[INICIO devildrey33.MiVentana]-
+// Objeto final : ObjetoHWND -> PlantillaEventos -> ObjetoVentana -> MiVentana
+class MiVentana : public ObjetoVentana {
+ public :
+							MiVentana(void) { 
+								Crear();
+							};
+
+                           ~MiVentana(void) {
+ 							};
+							// Re-emplazamos el evento cerrar y añadimos la API PostQuitMessage
+							// De esta forma cuando se cierre la ventana se cerrara la aplicaci&oacute;n
+  LRESULT					Evento_Cerrar(void) { 		
+								PostQuitMessage(0);
+								return ObjetoVentana::Evento_Cerrar();
+							};
+							// -Re-emplazamos el evento ObjetoBoton_Click para realizar operaciones con el ObjetoInstalador
+  LRESULT					Evento_ObjetoBoton_Click(ObjetoBoton *BotonPresionado, const UINT Boton) {
+								if (BotonPresionado != NULL) {
+									ObjetoZLIB ZLIB;
+									switch (BotonPresionado->ID()) {
+										case ID_COMPRIMIR :
+											// Comprime el archivo en memoria
+											Datos.Borrar();
+											ZLIB.Comprimir(TEXT("..\\Tutorial CrearObjetoInstalador.cpp"), Datos);
+											BotonDescomprimir.Activado(true);
+											BotonDescomprimir.Repintar(true);
+											break;
+										case ID_DESCOMPRIMIR :
+											// Descomprime el archivo en DESCOMPRIMIDO.TXT (siempre que tengamos los privilegios apropiados)
+											ZLIB.Descomprimir(Datos, TEXT("..\\DESCOMPRIMIDO.TXT"));
+											break;
+									}
+								}
+								return 0;
+							};
+ protected :
+  void						Crear(void) {
+								CrearVentana( NULL, TEXT("MiVentana"), WS_OVERLAPPEDWINDOW | WS_VISIBLE, 
+                                           TEXT("Ejemplo tutorial 3.4"), 100, 100, 400, 160, NULL );
+								BotonComprimir.CrearBoton(_hWnd, TEXT("Comprimir"), 150, 30, 100, 20, ID_COMPRIMIR);
+								BotonDescomprimir.CrearBoton(_hWnd, TEXT("Descomprimir"), 150, 70, 100, 20, ID_DESCOMPRIMIR);
+								BotonDescomprimir.Activado(false);
+							};
+  
+
+  ObjetoBoton				BotonComprimir;
+  ObjetoBoton				BotonDescomprimir;
+							// Datos comprimidos en memoria
+  ContenedorBinario			Datos;
+
+};
+//-[FIN devildrey33.MiVentana]-
+
+
+
+//-[INICIO devildrey33.WinMain]-
+// WinMain
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+    MiVentana Ventana;
+    MSG Mensaje;
+    while (TRUE == GetMessage(&Mensaje, NULL, 0, 0)) {
+        TranslateMessage(&Mensaje);                     
+        DispatchMessage(&Mensaje);
+    }
+    return 0;
+}
+//-[FIN devildrey33.WinMain]-
+

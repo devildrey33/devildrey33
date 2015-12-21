@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">	
+			/* Función Linear */
+			.Linear {
+				-webkit-transition-timing-function:linear;       /* Safari */
+				transition-timing-function:linear;               /* Todos */
+			}
+			/* Función Ease */
+			.Ease {
+				-webkit-transition-timing-function:ease;         /* Safari */
+				transition-timing-function:ease;                 /* Todos */
+			}
+			/* Función EaseIn */
+			.EaseIn {
+				-webkit-transition-timing-function:ease-in;      /* Safari */
+				transition-timing-function:ease-in;              /* Todos */
+			}
+			/* Función EaseOut */
+			.EaseOut {
+				-webkit-transition-timing-function:ease-out;     /* Safari */
+				transition-timing-function:ease-out;             /* Todos */
+			}
+			/* Función EaseInOut */
+			.EaseInOut {
+				-webkit-transition-timing-function:ease-in-out;  /* Safari */
+				transition-timing-function:ease-in-out;          /* Todos */
+			}
+			/* Propiedades para la transición comunes para todos los objetos */
+			.Transicion .ObjetoAnimado {
+				-webkit-transition-property:padding-top, margin-top, background-color, color;
+				-webkit-transition-duration:5s;
+				transition-property:padding-top, margin-top, background-color, color;
+				transition-duration:5s;
+				float:left;
+				text-align:center;
+				margin-right:10px;
+				width:80px;
+				/* Propiedades a animar con la transición */
+				padding-top:0px; 
+				margin-top:200px;
+				background-color:#060;
+				color:#FFF;
+			}
+			/* Valores que debe adquirir la transición al pasar por encima el mouse */
+			.Transicion:hover .ObjetoAnimado {
+				padding-top:200px; 
+				margin-top:0px;
+				background-color:#0C0;
+				color:#000;
+			}
+			/* Marco gris que obtiene el evento hover */
+ 			.Transicion {
+				height:220px;
+				background-color:#CCC;
+			}
+		</style>
+	</head>
+	<body>
+    	<p>Entra y sal de encima de la zona gris oscura con el mouse, para ver el ejemplo.</p>
+        <p><b>NOTA : </b> Este ejemplo no funciona en Internet Explorer 9 e inferiores!</p>
+    	<div class='Transicion'>
+            <div class="ObjetoAnimado Linear">Linear</div>
+            <div class="ObjetoAnimado Ease">Ease</div>
+            <div class="ObjetoAnimado EaseIn">EaseIn</div>
+            <div class="ObjetoAnimado EaseOut">EaseOut</div>
+            <div class="ObjetoAnimado EaseInOut">EaseInOut</div>
+        </div>
+	</body>
+</html>

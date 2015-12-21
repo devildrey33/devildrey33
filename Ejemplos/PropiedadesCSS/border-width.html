@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Borde {
+				border-width:thin medium thick 10px;
+				border-style:solid;
+				display:table;
+			}            
+		</style>
+        <script type="text/javascript">
+			function CambiarBorde(Costado) {
+				var Combo = document.getElementById("Bordes_" + Costado);
+				var Valor = Combo.options[Combo.selectedIndex].innerHTML;
+				switch (Costado) { 
+					case "top"    : document.getElementById("IDBorde").style.borderTopWidth     = Valor; break;
+					case "right"  : document.getElementById("IDBorde").style.borderRightWidth   = Valor; break;
+					case "bottom" : document.getElementById("IDBorde").style.borderBottomWidth  = Valor; break;
+					case "left"   : document.getElementById("IDBorde").style.borderLeftWidth    = Valor; break;
+				}
+			}
+        </script>
+	</head>
+	<body>
+    	<p>En este ejemplo puedes seleccionar el tipo de borde que quieres mostrar en el siguiente div para cada costado.</p>
+		Top
+    	<select id='Bordes_top' onChange="CambiarBorde('top')">
+        	<option value ="0">thin</option>
+        	<option value ="1">medium</option>
+        	<option value ="2">thick</option>
+        	<option value ="3">1px</option>
+        	<option value ="4">10px</option>
+        	<option value ="5">20px</option>
+        </select>
+		Right
+    	<select id='Bordes_right' onChange="CambiarBorde('right')">
+        	<option value ="0">thin</option>
+        	<option value ="1" selected="selected">medium</option>
+        	<option value ="2">thick</option>
+        	<option value ="3">1px</option>
+        	<option value ="4">10px</option>
+        	<option value ="5">20px</option>
+        </select>
+		Bottom
+    	<select id='Bordes_bottom' onChange="CambiarBorde('bottom')">
+        	<option value ="0">thin</option>
+        	<option value ="1">medium</option>
+        	<option value ="2" selected="selected">thick</option>
+        	<option value ="3">1px</option>
+        	<option value ="4">10px</option>
+        	<option value ="5">20px</option>
+        </select>
+		Left
+    	<select id='Bordes_left' onChange="CambiarBorde('left')">
+        	<option value ="0">thin</option>
+        	<option value ="1">medium</option>
+        	<option value ="2">thick</option>
+        	<option value ="3">1px</option>
+        	<option value ="4" selected="selected">10px</option>
+        	<option value ="5">20px</option>
+        </select>
+        <br /><br />
+        <div class='Borde' id='IDBorde'><br /><br />Selecciona el tipo de borde.<br /><br /><br /></div>
+	</body>
+</html>

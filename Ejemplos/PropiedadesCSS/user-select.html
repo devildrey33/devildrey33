@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.NoSeleccionable {
+				/* Prevenir la selección de texto */
+				-webkit-user-select: none; /* Chrome, Safari, y Opera 15 */
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}            
+		</style>
+	</head>
+	<body>
+    	<p>Este ejemplo no funciona en IE9 e inferiores, tampoco funciona en Opera 12.1 e inferiores.</p>
+        <p>Texto seleccionable.</p>
+        <p class='NoSeleccionable'>Texto NO seleccionable.</p>
+	</body>
+</html>

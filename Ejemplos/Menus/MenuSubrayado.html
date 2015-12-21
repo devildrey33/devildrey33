@@ -1,0 +1,107 @@
+<!-- Ejemplo Creado por Josep Antoni Bover el [06/02/2014] para devildrey33.es
+		- Es un menu superior sin submenus, el cual tiene un efecto subrayado "diferente" al pasar el mouse por las opciones. 
+		- Utiliza JQuery porque en CSS veo muy complicado hacer algo asi de forma "dinámica", por dinámica me refiero a poder añadir/modificar menús sin tener que tocar el CSS.
+        	si por ejemplo cambias el texto del menú, utilizando unicamente CSS requeriría cambiar la transición y las posiciones/anchuras de la barra. 
+            En cambio con jquery/javascript haciendo una función que recorra todos los items, podemos añadir/modificar/eliminar cualquier cosa sin tocar ni CSS ni JavaScript.
+-->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			/* Div que contiene el menú, el logo y la barra animada */
+			.Principal {
+				-webkit-user-select: none; /* Chrome, Safari, y Opera 15 */
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			/* Logo del demonio */
+			.Logo {
+				position:absolute;
+				display:inline-block;
+				width:120px;
+				height:120px;
+				border-radius:60px;
+				border:1px solid black;
+				background-image:url('http://img.devildrey33.es/logo100.png'), -webkit-radial-gradient(rgb(150, 0, 0), rgba(255, 0, 0, 0.7));
+				background-image:url('http://img.devildrey33.es/logo100.png'), radial-gradient(rgb(150, 0, 0), rgba(255, 0, 0, 0.7));
+				background-repeat:no-repeat, no-repeat;
+				background-position:center; 				
+				
+/*				background:rgb(90, 80, 80) url('http://img.devildrey33.es/logo100.png') no-repeat center;*/
+				box-shadow:1px 1px 1px 1px rgba(80,80,80, 0.5); 
+				z-index:2;
+			}
+			/* Barra que simula el subrayado */
+			.Barra {
+				position:absolute;
+				width:1px;
+				height:3px;
+				left:10px;
+				top:85px;
+				background:red;
+				z-index:0;
+			}
+			/* Menu */
+			.MenuSubrayado {
+				position:absolute;
+				top:40px;
+				left:80px; 
+				z-index:1;
+			}
+			/* Items del menu */
+			.MenuSubrayado > li {
+				display:inline-block;
+				margin-left:25px;
+				font-family:Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+				font-size:24px;			
+				cursor:pointer;
+				color:rgb(0,0,0);
+			}
+			/* Item resaltado por el mouse */
+			.MenuSubrayado > li:hover {
+				color:rgb(255,0,0);
+			}
+		</style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script>
+			var Menu_Temporitzador = 0;
+			/* Al cargar la página */
+			$(window).load(function() {
+				/* Re-emplazo los eventos mouseover y mouseout */
+				$(".MenuSubrayado > li").on("mouseover", function() { 
+					Menu_AnimarSubrayat(this);
+				})
+				$(".MenuSubrayado > li").on("mouseout", function() { 
+					Menu_Temporitzador = setInterval(function() { 
+						/* Animación para devolver la barra detrás del logo */
+						$(".Barra").stop().animate({ "left" : "10px", width: "1px"}, 300, function() { 
+							clearInterval(Menu_Temporitzador); 
+							Menu_Temporitzador = 0; 
+						});
+					}, 500);
+				})
+			});
+			/* Función que localiza el li:hover y hace que se mueva la barra a su posición */
+			function Menu_AnimarSubrayat(Objecte) {
+				Menu = $(Objecte);
+				Barra = $(".Barra");
+				if (Menu_Temporitzador != 0) clearInterval(Menu_Temporitzador);
+				Barra.stop().animate({ "left" : Menu.offset().left + "px", "width" : Menu.outerWidth() + "px" }, 300, function() { });
+			}
+        </script>
+    </head>
+    <body>
+    	<div class='Principal'>
+            <ul class='MenuSubrayado'>
+                <li>Demonios</li>
+                <li>Alas más grandes</li>
+                <li>Colas más afiladas</li>
+                <li>Cornamentas</li>
+            </ul>
+            <div class='Barra'></div>
+            <div class='Logo'></div>
+        </div>
+    </body>
+</html>

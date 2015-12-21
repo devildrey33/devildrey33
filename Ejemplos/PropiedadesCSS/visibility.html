@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">	
+			div {
+				background-color:#0F0;
+				width:100px;
+				height:100px;
+			}
+		</style>
+        <script type="text/javascript">
+			function CambiarVisibilidad() {
+				var Combo = document.getElementById("DivVisible");
+				document.getElementsByTagName("div").item(0).style.visibility = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body>
+    	<div></div>
+    	<code>div {</code><br />
+        <code>&nbsp; &nbsp; visibility:</code>
+    	<select id='DivVisible' onChange="CambiarVisibilidad()">
+        	<option value ="0">visible</option>
+        	<option value ="1">hidden</option>
+		</select>        
+        <code>;</code><br />
+        <code>}</code>
+        <p>Fijaros que si ocultamos el div, aún se sigue reservando el espacio para él.</p>
+        <p>
+        	Si por el contrario no queremos que el navegador reserve el espacio para el objeto escondido, debemos utilizar 
+        	<code>display:none;</code>.
+        </p>
+	</body>
+</html>

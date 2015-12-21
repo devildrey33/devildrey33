@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- Ejemplo para la creación de un acordeón 100% css utilizando la técnica del selector :checked
+     Creado por Josep Antoni Bover el 24/09/2015 para devildrey33.es
+     PROS : 
+		- 100% CSS
+	 CONTRAS : 
+    	- Hay que establecer un tamaño máximo para hacer la animación, 
+			por lo que hay que saber la altura del item mas grande.
+		- Al establecer una altura fija , si ponemos que es 400px con el item grande
+            la animación se ve perfectamente, pero si se hace con un item de 200px de 
+            altura la animación ira el doble de rapido al recorrer 400px en un espacio
+            de 200px.
+-->
+<html>
+    <head>
+        <style>            
+            .Acordeon { 
+                padding:0px;
+                margin:0px;
+                list-style:none;
+            }
+            .Acordeon > .Acordeon_Item {
+                border:1px solid #000;
+                margin-bottom:2px;
+                border-radius:2px;
+            }
+            .Acordeon > .Acordeon_Item > input {
+                display:none;
+            }
+            
+            .Acordeon > .Acordeon_Item > input + label {
+                background:transparent;
+                padding:5px;
+                display:block; 
+                cursor:pointer;
+                transition:0.5s;
+            }
+            .Acordeon > .Acordeon_Item:hover > input + label {
+                background:#EA504E;
+                color:#FFF;
+            }            
+            
+            .Acordeon > .Acordeon_Item > input + label + .Acordeon_Contenido {
+                position:relative;
+                max-height:0px;            	
+                overflow:hidden;
+                transition:0.5s;
+            }
+            
+            .Acordeon > .Acordeon_Item > input + label + .Acordeon_Contenido > * {
+                padding:4px;
+            }
+            
+            .Acordeon > .Acordeon_Item > input:checked + label + .Acordeon_Contenido {
+                /* El truco está en poner un tamaño máximo del item más alto */
+                max-height:300px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <ul class='Acordeon'>
+            <li class='Acordeon_Item'>
+                <input id='Acordeon_Item1' type='checkbox' />
+                <label for='Acordeon_Item1'>Acordeón</label>            
+                <div class='Acordeon_Contenido'>                
+                    <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at ipsum eros. Vestibulum orci purus, rutrum luctus felis in, varius commodo nisl. In tristique dolor non mi maximus congue. Vivamus lorem mi, aliquam sed scelerisque a, pretium congue nunc. Praesent malesuada, justo id dictum viverra, erat erat rutrum lectus, sit amet tempor elit enim a lectus. In molestie accumsan nulla id tincidunt. Proin tempus imperdiet lacus eget feugiat. Nulla facilisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sapien justo, consequat ut lobortis sit amet, scelerisque quis justo. Phasellus luctus vestibulum augue feugiat cursus. Nulla quis placerat nibh. Suspendisse eget elit commodo, volutpat magna vel, egestas metus.</p>
+                </div>
+            </li>
+            <li class='Acordeon_Item'>
+                <input id='Acordeon_Item2' type='checkbox' />
+                <label for='Acordeon_Item2'>Acordeón</label>            
+                <div class='Acordeon_Contenido'>                
+                    <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at ipsum eros. Vestibulum orci purus, rutrum luctus felis in, varius commodo nisl. In tristique dolor non mi maximus congue. Vivamus lorem mi, aliquam sed scelerisque a, pretium congue nunc. Praesent malesuada, justo id dictum viverra, erat erat rutrum lectus, sit amet tempor elit enim a lectus. In molestie accumsan nulla id tincidunt. Proin tempus imperdiet lacus eget feugiat. Nulla facilisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sapien justo, consequat ut lobortis sit amet, scelerisque quis justo. Phasellus luctus vestibulum augue feugiat cursus. Nulla quis placerat nibh. Suspendisse eget elit commodo, volutpat magna vel, egestas metus.</p>
+                </div>
+            </li>
+            <li class='Acordeon_Item'>
+                <input id='Acordeon_Item3' type='checkbox' />
+                <label for='Acordeon_Item3'>Acordeón</label>            
+                <div class='Acordeon_Contenido'>                
+                    <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at ipsum eros. Vestibulum orci purus, rutrum luctus felis in, varius commodo nisl. In tristique dolor non mi maximus congue. Vivamus lorem mi, aliquam sed scelerisque a, pretium congue nunc. Praesent malesuada, justo id dictum viverra, erat erat rutrum lectus, sit amet tempor elit enim a lectus. In molestie accumsan nulla id tincidunt. Proin tempus imperdiet lacus eget feugiat. Nulla facilisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sapien justo, consequat ut lobortis sit amet, scelerisque quis justo. Phasellus luctus vestibulum augue feugiat cursus. Nulla quis placerat nibh. Suspendisse eget elit commodo, volutpat magna vel, egestas metus.</p>
+                </div>
+            </li>
+            
+        </div>
+    </body>
+</html>

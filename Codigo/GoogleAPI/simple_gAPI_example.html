@@ -1,0 +1,81 @@
+// Simple request method
+/* -[INICIO devildrey33.ID2]- */
+function method_1_request() {
+	$('body').append('<p>Drive API direct request has been launched</p>');
+	var restRequest = gapi.client.request({
+			'path'    : 'https://www.googleapis.com/drive/v2/files',
+			'method'  : 'GET',
+			'params'  : {'maxResults': 10, 'q' : 'trashed=false' }
+		});
+	restRequest.then(
+		function(resp)   { load_result(resp.result); },                         // Success function
+		function(reason) { $('body').append('<p>There was an ERROR!</p>'); });  // Error function
+}
+/* -[FIN devildrey33.ID2]- */
+
+/* -[INICIO devildrey33.ID3]- */
+{
+    "kind"          : "drive#fileList",
+    "etag"          : etag,
+    "selfLink"      : string,
+    "nextPageToken" : string,
+    "nextLink"      : string,
+    "items"         : [ files Resource ]
+}
+/* -[FIN devildrey33.ID3]- */
+
+// Load a list with the result of the API
+/* -[INICIO devildrey33.ID4]- */
+function load_result(resp) {
+	$('body').append('<p>Drive API direct request has been successful</p>');
+    var files = resp.items;
+	if (files && files.length > 0) {
+		$('body').append('<ul>');
+		for (var i = 0; i < files.length; i++) {
+			$('body').append('<li>' + files[i].title + ' - ' + files[i].id + '</li>');
+    	}
+		$('body').append('</ul>');
+	} else {
+		$('body').append('<p>No files found.</p>');
+    }
+}
+/* -[FIN devildrey33.ID4]- */
+
+// Load the API interface, and then, launch the request
+/* -[INICIO devildrey33.ID5]- */
+function method_2_request() {
+	gapi.client.load('drive', 'v2',
+		function() {
+			$('body').append('<p>Drive API interface loaded</p>');
+			var request = gapi.client.drive.files.list({ 'maxResults': 10, 'q' : 'trashed=false' });
+			request.execute(load_result);
+		}
+	);
+}
+/* -[FIN devildrey33.ID5]- */
+
+
+// Manual request with CORS
+/* -[INICIO devildrey33.ID7]- */
+function method_3_request() {
+	$('body').append('<p>Launching a manual request with CORS</p>');
+	gapi.auth.authorize({
+			client_id	: clientId,
+			scope		: scopes,
+			immediate	: true},
+			function() {
+				var oauthToken = gapi.auth.getToken();
+				var xhr = new XMLHttpRequest();
+				var url_request = 'https://www.googleapis.com/drive/v2/files?maxResults=10';
+				                  // + '&access_token=' + encodeURIComponent(oauthToken.access_token);
+				$('body').append('<p>xhr: ' + url_request + '</p>');
+				xhr.open('GET', url_request);
+				xhr.setRequestHeader('Authorization', 'Bearer ' + oauthToken.access_token);
+				xhr.onload = function() {
+					var obj_res = JSON.parse(xhr.responseText);
+					load_result(obj_res);
+				};
+				xhr.send();
+			});
+}
+/* -[FIN devildrey33.ID7]- */

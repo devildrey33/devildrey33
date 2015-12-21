@@ -1,0 +1,246 @@
+<!-- Ejemplo de transformaciones 3D solo con CSS -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			body {
+				margin-top:100px;
+			}
+			#Vista {
+				width:48em;
+				height:30em;
+				margin:0 auto;
+				-webkit-perspective:1200px;
+				-webkit-perspective-origin: 50% 10%;
+				-moz-perspective: 1200px;
+				-moz-perspective-origin: 50% 10%;
+				perspective: 1200px;
+				perspective-origin: 50% 10%;
+			}
+			
+			#Prespectiva {
+				-webkit-transform-style: preserve-3d;
+				-moz-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+/*				-webkit-animation:APerspectiva 50s linear infinite;*/
+				-webkit-transform:rotateX(20deg) rotateY(30deg)
+			}
+			
+			.Pieza_Delantera, .Pieza_Trasera, .Pieza_Derecha, .Pieza_Izquierda, .Pieza_Superior, .Pieza_Inferior, .Pieza_Delantera_PD, 
+			.Pieza_Delantera_PI, .Pieza_Delantera_PS, .Pieza_Izquierda_P, .Pieza_Inferior_P, .Pieza_Superior_P {
+				position:absolute;
+			}
+			.Pieza_Superior {
+				top:0;
+				left:4em;
+				width:18em;
+				height:4em;
+				background-color:#C00;
+				-webkit-transform-style: preserve-3d;
+				-webkit-transform:rotateX(-90deg);
+				-webkit-transform-origin: bottom left;
+				-webkit-animation:APieza_Superior 4s ease infinite alternate;
+			}
+
+			.Pieza_Superior_P {
+				left:-4em;
+				top:0em;
+				width:4em;
+				height:4em;
+				background-color:#B00;
+				-webkit-transform-origin:right bottom;
+				-webkit-transform:rotateY(90deg);
+				-webkit-animation:APieza_Izquierda_P2 4s ease infinite alternate;
+			}
+			
+			.Pieza_Trasera {
+				top:4em;
+				left:4em;
+				width:18em;
+				height:18em;
+				background-color:#A00;
+			}
+            
+			.Pieza_Izquierda {
+				top:4em;
+				left:0;
+				width:4em;
+				height:18em;
+				background-color:#C00;
+				-webkit-transform-style: preserve-3d;
+				-webkit-transform-origin:right bottom;
+				-webkit-transform:rotateY(90deg);
+				-webkit-animation:APieza_Izquierda 4s ease infinite alternate;
+			}
+			
+			.Pieza_Izquierda_P {
+				top:0em;
+				left:-4em;
+				width:4em;
+				height:18em;
+				background-color:#B00;
+				-webkit-transform-style: preserve-3d;
+				-webkit-transform-origin:right bottom;
+				-webkit-transform:rotateY(90deg);
+				-webkit-animation:APieza_Izquierda_P 4s ease infinite alternate;
+			}
+
+			.Pieza_Delantera {
+				top:0em;
+				left:4em;
+				width:18em;
+				height:18em;
+				background-color:#F00;
+				-webkit-transform-style: preserve-3d;
+				-webkit-transform-origin:left bottom;
+				-webkit-transform:rotateY(-90deg);
+				-webkit-animation:APieza_Derecha 4s ease infinite alternate;
+				
+/*				-webkit-backface-visibility:hidden;
+				background-image:url('/Graficos/Logo.png');
+				background-position:center;
+				background-repeat:no-repeat;*/
+			}
+			
+			.Pieza_Delantera_PS {
+				top:0em;
+				left:18em;
+				width:2em;
+				height:18em;
+				background-color:#B00;
+				-webkit-transform-origin:left bottom;
+				-webkit-transform:rotateY(-90deg);
+				-webkit-animation:APieza_Derecha 4s ease infinite alternate;
+				border-radius:0px 10px 10px 0px;
+			}
+
+			.Pieza_Delantera_PI {
+				top:-2em;
+				left:0em;
+				width:18em;
+				height:2em;
+				background-color:#B00;
+				-webkit-transform-origin:left bottom;
+				-webkit-transform:rotateY(-90deg);
+				-webkit-animation:APieza_Superior 4s ease infinite alternate;
+				border-radius:10px 10px 0px 0px;
+			}
+
+			.Pieza_Delantera_PD {
+				top:18em;
+				left:0em;
+				width:18em;
+				height:2em;
+				background-color:#B00;
+				-webkit-transform-origin:left top;
+				-webkit-transform:rotateY(-90deg);
+				-webkit-animation:APieza_Inferior 4s ease infinite alternate;
+				border-radius:0px 0px 10px 10px;
+			}
+			
+			.Pieza_Derecha {
+				top:4em;
+				left:22em;
+				width:4em;
+				height:18em;
+				background-color:#C00;
+				-webkit-transform-style: preserve-3d;
+				-webkit-transform-origin: left bottom;
+				-webkit-transform:rotateY(-90deg);
+				-webkit-animation:APieza_Derecha 4s ease infinite alternate;
+			}
+
+			.Pieza_Inferior {
+				top:22em;
+				left:4em;
+				width:18em;
+				height:4em;
+				background-color:#C00;
+				-webkit-transform-style: preserve-3d;
+				-webkit-transform-origin: left top;
+				-webkit-transform:rotateX(90deg);
+				-webkit-animation:APieza_Inferior 4s ease infinite alternate;
+			}
+			
+			.Pieza_Inferior_P {
+				left:-4em;
+				top:0em;
+				width:4em;
+				height:4em;
+				background-color:#B00;
+				-webkit-transform-origin:right bottom;
+				-webkit-transform:rotateY(90deg);
+				-webkit-animation:APieza_Izquierda_P2 4s ease infinite alternate;
+			}
+
+			#Cuerpo {
+				width:48em;
+				height:30em;
+			}
+			
+			@-webkit-keyframes APieza_Izquierda { 
+				from { -webkit-transform: rotateY(0deg); } 
+				to { -webkit-transform: rotateY(90deg);  } 
+			}
+			@-webkit-keyframes APieza_Izquierda_P { 
+				from { -webkit-transform: rotateY(0deg); } 
+				to { -webkit-transform: rotateY(170deg);  } 
+			}
+			@-webkit-keyframes APieza_Izquierda_P2 { 
+				0% { -webkit-transform: rotateY(0deg); } 
+				50% { -webkit-transform: rotateY(90deg);  } 
+				100% { -webkit-transform: rotateY(90deg);  } 
+			}
+			/* Este keyframe sirve tanto para la pieza derecha como para la
+			   delantera ya que esta va enganchada con la derecha */
+			@-webkit-keyframes APieza_Derecha { 
+				from { -webkit-transform: rotateY(0deg); } 
+				to { -webkit-transform: rotateY(-90deg); } 
+			}
+			@-webkit-keyframes APieza_Superior { 
+				0% { -webkit-transform: rotateX(0deg); } 
+				50% { -webkit-transform: rotateX(-90deg); } 
+				100% { -webkit-transform: rotateX(-90deg); } 
+			}
+			@-webkit-keyframes APieza_Inferior { 
+				0% { -webkit-transform: rotateX(0deg); } 
+				50% { -webkit-transform: rotateX(90deg);  } 
+				100% { -webkit-transform: rotateX(90deg);  } 
+			}
+			@-webkit-keyframes APerspectiva { 
+				from { -webkit-transform:rotateX(-10deg) rotateY(0deg); } 
+				to { -webkit-transform:rotateX(30deg) rotateY(-360deg);  } 
+			}
+		
+		</style>
+    	<!-- Código javascript -->
+		<script type="text/javascript">
+		</script>
+	</head>
+    <body>
+        <div id="Vista">
+            <div id="Prespectiva">
+                <div id="Cuerpo">
+                    <div class='Pieza_Superior'>
+	                    <div class='Pieza_Superior_P'></div>
+                    </div>
+                    <div class='Pieza_Izquierda'>
+	                    <div class='Pieza_Izquierda_P'></div>
+                    </div>
+                    <div class='Pieza_Trasera'></div>
+                    <div class='Pieza_Derecha'>
+	                    <div class='Pieza_Delantera'>
+                        	<div class='Pieza_Delantera_PD'></div>
+                        	<div class='Pieza_Delantera_PI'></div>
+                        	<div class='Pieza_Delantera_PS'></div>
+                        </div>
+                    </div>
+                    <div class='Pieza_Inferior'>
+	                    <div class='Pieza_Inferior_P'></div>
+                    </div>
+                </div>
+            </div>
+        </div>    	
+	</body>
+</html>

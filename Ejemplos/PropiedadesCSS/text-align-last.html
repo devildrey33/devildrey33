@@ -1,0 +1,57 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [02/01/2014] para devildrey33.es -->
+<!-- Actualmente la propiedad CSS text-align-last funciona solo en IE  y parcialmente en Firefox.
+		En firefox tiene el problema de que no responde a sus estilos  : style.mozTextAlignLast , style.textAlignLast -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			#Alineacion {
+			  text-align: justify;
+			  -webkit-text-align-last: center;
+			  -moz-text-align-last: center;
+			  -ms-text-align-last: end;
+			  text-align-last:center;
+			}		
+		</style>
+	    <script type="text/javascript">			
+			function ActualizarTextAlign() {
+				var Combo = document.getElementById("ChTextAlign");
+				document.getElementById("Alineacion").style.mozTextAlignLast = Combo.options[Combo.selectedIndex].innerHTML;
+				document.getElementById("Alineacion").style.textAlignLast = Combo.options[Combo.selectedIndex].innerHTML;
+				document.getElementById("Alineacion").style.msTextAlignLastt = Combo.options[Combo.selectedIndex].innerHTML;
+				document.getElementById("Alineacion").style.webkitTextAlignLast = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body onLoad="ActualizarTextAlign()">
+	    <p>
+            Este ejemplo solo funciona en IE 10 (utilizando su prefijo <code>-ms-</code>). En IE parece ignorar los valores "<code>start</code>" y "<code>end</code>".<br /> 
+        	En Firefox se puede usar con su prefijo en el CSS, PERO no se puede acceder mediante javascript al estilo.<br />
+            En Chrome Opera y Safari no funciona.
+		</p>
+        <code class='TextoLinea1'>text-align-last</code><code>:</code>
+        <select id='ChTextAlign' onChange="ActualizarTextAlign()">
+            <option>auto</option>
+            <option>start</option>                
+            <option>end</option>                
+            <option>left</option>                
+            <option>right</option>                
+            <option selected='selected'>center</option>                
+            <option>justify</option>                
+        </select>
+        <code>;</code>
+
+		<br /><br />
+        <div id='Alineacion'>
+        	Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Pellentesque mattis magna sapien, et rutrum nisl venenatis id. 
+            Aliquam iaculis magna neque, eget commodo nulla consequat eget. 
+            Praesent ullamcorper augue quam, aliquet consequat sapien fermentum quis. 
+            Praesent cursus ut turpis sed venenatis. Vivamus consectetur varius metus, in commodo arcu ultrices sit amet. 
+            Etiam hendrerit neque quis diam gravida, convallis volutpat diam mattis. In pharetra tempor sodales. 
+            Cras non sollicitudin lectus. Morbi ut pellentesque risus. Phasellus egestas bibendum metus, eget pharetra mi mattis volutpat. 
+            Vestibulum sed felis scelerisque, dapibus eros at, tincidunt nunc. Maecenas id adipiscing eros.
+        </div>
+    </body>
+</html>

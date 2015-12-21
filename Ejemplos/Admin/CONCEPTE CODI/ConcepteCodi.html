@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+            .bola {
+                position:absolute;
+                border-radius:50px;
+                width:50px;
+                height:50px;
+                background:rgb(55, 55, 55);
+                z-index:10;
+                box-shadow: 1px 1px 2px 0px rgba(50,50,50, 0.5);
+                background-image:-webkit-linear-gradient(top left, rgb(160, 160, 160) 0%, rgb(55, 55, 55) 60%, rgb(30, 30, 30) 100%); 
+            }
+            
+            .barrav {
+                background-image:-webkit-linear-gradient(top, rgb(130, 130, 130) 0%, rgb(55, 55, 55) 30%, rgb(30, 30, 30) 100%); 
+                box-shadow: 1px 1px 2px 0px rgba(50,50,50, 0.5), inset -1px -1px 1px 0px rgb(150, 150, 150);
+                position:relative;
+                width:500px;
+                height:30px;
+                /*background:rgb(220, 0, 0);*/
+                top:11px;
+                margin:10px;
+                border-radius:0px 12px 12px 0px;
+            }
+            
+            .barrah {
+                background-image:-webkit-linear-gradient(left, rgb(130, 130, 130) 0%, rgb(55, 55, 55) 30%, rgb(30, 30, 30) 100%); 
+                position:relative;
+                width:20px;
+                height:200px;
+                top:-10px;
+                left:16px;
+                border-radius:0px 0px 7px 7px;
+                box-shadow: 1px 1px 2px 0px rgba(50,50,50, 0.5), inset -1px -1px 1px 0px rgb(150, 150, 150);
+            }
+		</style>
+    	<!-- Código javascript -->
+		<script type="text/javascript">
+		</script>
+	</head>
+	<body>
+        <div>
+            <div class='bola'></div>
+            <div class='barrav'></div>
+            <div class='barrah'></div>
+        </div>
+        <div>
+            <div class='bola'></div>
+        </div>
+	</body>
+</html>

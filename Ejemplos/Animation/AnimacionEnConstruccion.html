@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.ContenedorEnConstruccion {
+                border:1px solid rgb(100, 100, 100);
+				background:-webkit-linear-gradient(top, rgb(200, 200, 200) 0%, rgb(0,0,0) 90%, rgb(50,50,50) 100%);
+				background:-moz-linear-gradient(top, rgb(200, 200, 200) 0%, rgb(0,0,0) 90%, rgb(50,50,50) 100%);
+				background:-ms-linear-gradient(top, rgb(200, 200, 200) 0%, rgb(0,0,0) 90%, rgb(50,50,50) 100%);
+				background:-o-linear-gradient(top, rgb(200, 200, 200) 0%, rgb(0,0,0) 90%, rgb(50,50,50) 100%);
+				background:linear-gradient(top, rgb(200, 200, 200) 0%, rgb(0,0,0) 90%, rgb(50,50,50) 100%);
+                overflow:hidden;
+				width:200px;
+				height:10px;
+                box-shadow: 0 0 8px rgb(60, 60, 0);
+			}
+			
+			.BarraAmarilla {
+				background:-webkit-linear-gradient(top, rgba(255, 255, 0, 0.8) 0%, rgb(200, 200 ,0) 90%, rgb(170, 170, 0) 100%);
+				background:-moz-linear-gradient(top, rgba(255, 255, 0, 0.8) 0%, rgb(200, 200 ,0) 90%, rgb(170, 170, 0) 100%);
+				background:-ms-linear-gradient(top, rgba(255, 255, 0, 0.8) 0%, rgb(200, 200 ,0) 90%, rgb(170, 170, 0) 100%);
+				background:-o-linear-gradient(top, rgba(255, 255, 0, 0.8) 0%, rgb(200, 200 ,0) 90%, rgb(170, 170, 0) 100%);
+				background:linear-gradient(top, rgba(255, 255, 0, 0.8) 0%, rgb(200, 200 ,0) 90%, rgb(170, 170, 0) 100%);
+                -webkit-transform:skew(-45deg, 0deg);
+                -moz-transform:skew(-45deg, 0deg);
+                -ms-transform:skew(-45deg, 0deg);
+                -o-transform:skew(-45deg, 0deg);
+                transform:skew(-45deg, 0deg);
+				width:10px;
+				height:10px;
+				margin-right:10px;
+                float:left;
+			}
+            
+            .BarrasAmarillas {
+				-webkit-animation:Desplazamiento 0.5s linear 0 infinite; /* Chrome y Safari */
+				-moz-animation:Desplazamiento 0.5s linear 0 infinite;    /* Firefox */
+				-ms-animation:Desplazamiento 0.5s linear 0 infinite;     /* IE 10 */
+				-o-animation:Desplazamiento 0.5s linear 0 infinite;      /* Opera */
+				animation:Desplazamiento 0.5s linear 0 infinite;         
+                width:400px;
+            }
+		
+            @-webkit-keyframes Desplazamiento           { 0% { margin-left:-20px; } 	100% { margin-left:0px; }  }
+            @-moz-keyframes Desplazamiento 		{ 0% { margin-left:-20px; } 	100% { margin-left:0px; }  }
+            @-ms-keyframes Desplazamiento 		{ 0% { margin-left:-20px; } 	100% { margin-left:0px; }  }
+            @-o-keyframes Desplazamiento 		{ 0% { margin-left:-20px; } 	100% { margin-left:0px; }  }
+            @keyframes Desplazamiento 			{ 0% { margin-left:-20px; } 	100% { margin-left:0px; }  }
+		</style>
+	</head>
+	<body>
+    	<div class='ContenedorEnConstruccion'>
+            <div class='BarrasAmarillas'>
+                <div class='BarraAmarilla'></div>
+                <div class='BarraAmarilla'></div>
+                <div class='BarraAmarilla'></div>
+                <div class='BarraAmarilla'></div>        	
+                <div class='BarraAmarilla'></div>        	
+                <div class='BarraAmarilla'></div>        	
+                <div class='BarraAmarilla'></div>        	
+                <div class='BarraAmarilla'></div>
+                <div class='BarraAmarilla'></div>
+                <div class='BarraAmarilla'></div>
+                <div class='BarraAmarilla'></div>        	
+                <div class='BarraAmarilla'></div>        	
+            </div>
+        </div>
+	</body>
+</html>

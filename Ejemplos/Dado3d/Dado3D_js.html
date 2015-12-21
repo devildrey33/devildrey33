@@ -1,0 +1,310 @@
+<!-- Ejemplo creado para devildrey33.es el 01/09/2014 por Josep Antoni Bover 
+		Objetivo : crear un cubo 3D que pueda tener ancho y alto variable para cada cara
+        TODO     : - Hay que hacer las animaciones mediante JQuery.
+        			 Las animaciones se hacen mediante transition y eso es un problema ya que hay veces que se mueven las piezas por su cuenta, por ejemplo al ampliar la vista.
+                   - Se tiene que poder cambiar el tamaño de cada cara del cubo al hacer la rotación. Por ejemplo si estamos en la cara 1 de 100x100, que se pueda pasar a la cara 6 y que pueda ser de 200x100.
+                     Para ello hay que calcular todos los anchos de cada cara basandose en la posición de la rotación, ya que si estamos en la cara 1, al hacer la rotacion hacia la cara 2, el ancho y alto de la cara 1 no se corresponderan con sus anteriores tamaños.
+                     Al pasar de la cara 1 a la cara 2, la cara 1 pasa a ser la parte inferior y su anterior altura representara la Z.
+					 
+        Solo funciona en webkit (tiene que ver con el display table de algunas partes del cubo, no se si es un bug o que...)
+					 
+        CONCLUSIÓN : Hay que hacer todo de nuevo utilizando el transform-origin en "center center" para TODAS las caras sin excepción.
+		Ultima modificación 11/09/2014
+-->
+<!doctype>
+<html>
+	<head>
+    	<style>
+/*  El dado						
+						*****
+					    * 2 *
+						*****
+						
+				*****	*****	*****
+				* 3 *	* 1 *	* 4 *
+				*****	*****	*****
+						
+						*****
+					  	* 5 *
+						*****
+				
+						*****
+						* 6 *
+						*****
+			*/
+			cubo {
+				perspective:1550px;
+				perspective-origin:50% 70%;
+				display:table;
+				margin-left:auto;
+				margin-right:auto;
+				padding:20px;
+				transition:.6s ease-in-out;
+			}
+
+			cubo_objeto {
+				transform-style:preserve-3d;
+				display:table;
+				position:relative;
+				width:50px;
+				height:50px;
+				transform:translateZ(0px);
+				transition:.6s ease-in-out;
+				opacity:0;
+			}
+			
+			cubo:hover {
+				background:rgb(200, 200 ,200);
+			}
+			
+			cubo_cara1, cubo_cara2, cubo_cara3, cubo_cara4, cubo_cara5, cubo_cara6 {
+				position:absolute;
+				z-index:10;
+				height:100%;
+				width:100%;
+				border:1px solid black;
+				transition:.6s ease-in-out;
+			}
+			
+			/* Rotacións son fixes i translates variables */
+			
+			cubo_cara1 { /* 1 parte delantera */
+				background:rgba(255, 0, 0, 0.7);
+/*				transform:rotateY(-90deg) translateX(50%) rotateY(90deg);*/
+				transform:translateZ(101px); /* Necesito un pixel mes perque no es vegi la bora de les altres cares sobresosrtir */
+											 /* aixo per collons es un bug i no se si es del webkit o general de la especificació */
+			}
+
+			cubo_cara6 { /* 6 parte trasera */
+				background:rgba(255, 255, 0, 0.7);
+				/*transform:rotateY(-90deg) translateX(-50%) rotateY(90deg) rotateX(180deg);*/
+				/*        Fixe             variable  */
+				transform:rotateX(180deg) translateZ(100px) ;
+			}
+			
+			cubo_cara3 { /* 3 parte izquierda */
+				background:rgba(0, 255, 255, 0.7);
+				transform-origin:center left;
+				/*        Fixe             variable  */
+				transform:rotateY(270deg)  translateX(-100px);
+			}
+
+			cubo_cara4 { /* 4 parte derecha*/
+				background:rgba(100, 100, 100, 0.7);
+				transform-origin:center right;
+				/*        Fixe           variable  */
+				transform:rotateY(90deg) translateX(50px);
+			}
+			
+			cubo_cara2 { /* 2 parte superior */
+				background:rgba(0, 255, 0, 0.7);
+				transform-origin:top center;
+				/*        Fixe           variable  */
+				transform:rotateX(90deg) translateY(-100px);
+			}
+			
+			cubo_cara5 { /* 5 parte inferior */
+				background:rgba(0, 0, 255, 0.7);
+/*				transform-origin:bottom center;
+				transform:rotateX(90deg) rotateY(180deg) rotateZ(-180deg) translateY(100px) translateZ(-100px);*/
+				/*        Fixe            variable           varariable   */
+				transform-origin:top center;
+				transform:rotateX(270deg) translateY(-100px) translateZ(50px);
+			}
+
+			
+			/* marco para los botones que cambian la cara del dado */
+			marco {
+				display:table; 
+				border:1px solid #666; 
+				background:rgba(20,20,20,0.9);
+				padding:20px; 
+				margin-left:auto; 
+				margin-right:auto; 
+				z-index:10000; 
+				transform:translateZ(300px)			
+			}
+			
+			marco > a {
+				text-decoration:none;
+				color:white;
+				padding:5px;
+				margin:2px;
+				border:1px solid #666;
+			}
+
+			marco > a:hover {
+				background:rgb(128, 128, 128);
+				color:yellow;
+			}
+			
+        </style>
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        
+        <script>
+			// Requisitos para la inicialización
+			// - Tamaño del contenedor para el cubo (el cubo puede crecer y sobresalir del tamaño del contenedor.
+			// -
+		
+			
+		
+			var Cubo_Cara 		= "1"; 								/* Cara del cubo actual */
+			var Cubo_PosRot  	= Cubo_ObtenerPosCara(Cubo_Cara);	/* Posición final de los ejes X y Y al terminar la animación del cubo  */
+			var Cubo_UPosRot;										/* Posición inicial de los ejes X y Y al empezar la animación del cubo  */
+		
+			$(window).load(function() {
+				  Cubo_Iniciar();
+			});			
+		
+			function Cubo_Iniciar() {
+				$("cubo").each(function(index, element) {
+                    ($(element).attr("Ancho")) 				? Ancho 			= $(element).attr("Ancho") 				: Ancho				= "200";
+                    ($(element).attr("Alto")) 				? Alto 				= $(element).attr("Alto") 				: Alto 				= "100";
+					($(element).attr("Cara")) 				? Cara 				= $(element).attr("Cara") 				: Cara 				= "1";
+                    ($(element).attr("AnchoContenedor")) 	? AnchoContenedor 	= $(element).attr("AnchoContenedor") 	: AnchoContenedor 	= Ancho;
+                    ($(element).attr("AltoContenedor")) 	? AltoContenedor 	= $(element).attr("AltoContenedor") 	: AltoContenedor 	= Alto;
+					$(element).css({ "width" : AnchoContenedor, "height" : AltoContenedor });
+					Cubo_PosRot = Cubo_ObtenerPosCara(Cara);
+					switch (Cara) {
+						case "1" : case "6" :
+							$(element).find("cubo_objeto").css({ "width" : Ancho, "height" : Alto, "transform" : "rotateX(" + Cubo_PosRot.X + "deg) rotateY(" + Cubo_PosRot.Y + "deg)", "opacity" : "1" });
+							$(element).find("cubo_cara1").css({ "width" : Ancho, "height" : Alto, "transform" : "translateZ(" + (Alto / 2) + "px)" });
+							$(element).find("cubo_cara6").css({ "width" : Ancho, "height" : Alto, "transform" : "rotateX(180deg) translateZ(" + (Alto / 2) + "px)" });
+							$(element).find("cubo_cara3").css({ "width" : Alto,  "height" : Alto, "transform" : "rotateY(270deg) translateX(-" + (Alto / 2) + "px)" });
+							$(element).find("cubo_cara4").css({ "width" : Alto,  "height" : Alto, "transform" : "rotateY(90deg) translateX(" + (Alto / 2) + "px) translateZ(" + (Ancho - Alto) + "px)" });
+							$(element).find("cubo_cara2").css({ "width" : Ancho, "height" : Alto, "transform" : "rotateX(90deg) translateY(-" + (Alto / 2) + "px)" });
+							$(element).find("cubo_cara5").css({ "width" : Ancho, "height" : Alto, "transform" : "rotateX(270deg) translateY(-" + (Alto / 2) + "px) translateZ(" + Alto + "px)" });
+							break;
+					}
+					/* Activo las transiciones una vez colocado inicialmente el cubo */
+					/* Aunque active las transiciones una vez asignados los tamaños del cubo se hace la transición igual.. */
+/*					$(element).css({ "transition" : ".6s ease-in-out" });
+					$(element).find("cubo_cara1, cubo_cara2, cubo_cara3, cubo_cara4, cubo_cara5, cubo_cara6, cubo_objeto").css({ "transition" : ".6s ease-in-out" });*/
+                });
+			}
+		
+			/* Función que determina la rotación de la camara para todo el cubo */
+			/* Segun la cara especificada retorna la rotación necesaria de los ejes X e Y */
+			function Cubo_ObtenerPosCara(Cara) {
+				switch (Cara) {
+					case "1" : 	this.X = 0; 	this.Y = 0;		break;
+					case "2" : 	this.X = -90; 	this.Y = 0;		break;
+					case "3" : 	this.X = 0; 	this.Y = 90;	break;
+					case "4" : 	this.X = 0; 	this.Y = -90;	break;
+					case "5" : 	this.X = 90; 	this.Y = 0;		break;
+					case "6" : 	this.X = 180; 	this.Y = 0;		break;
+				}
+				return this;		
+			}
+		
+			/* Función para establecer la cara del cubo */
+			/* IDCubo representa la ID del objeto que contiene el cubo */
+        	function Cubo_MostrarCara(Cara, Ancho, Alto, IDCubo) {
+				if (Cubo_Cara == Cara) return;
+				Cubo_Cara = Cara;
+				Cubo_UPosRot = Cubo_PosRot;
+				Cubo_PosRot = Cubo_ObtenerPosCara(Cara);				
+				
+				
+				if (typeof IDCubo == 'undefined') 	Cubo_Objeto = $("cubo > cubo_objeto");
+				else								Cubo_Objeto = $("#" + IDCubo + " > cubo_objeto");
+					
+				
+				/* Posiciono la rotación del cubo y dejo que la transición haga la animación */
+				Cubo_Objeto.css({ "transform" : "rotateX(" + Cubo_PosRot.X + "deg) rotateY(" + Cubo_PosRot.Y + "deg)" });
+
+				/* Animación que rota el cubo a su posición */
+				/*
+				Cubo_Objeto.css({ "PasoAnimacion" : 0 }).animate({ "PasoAnimacion" : 900 }, { duration : 700, step : function(Paso, Params) {
+					if (Params.prop === "PasoAnimacion") {
+						// Calculo el incremento del eje X 
+						(Cubo_UPosRot.X > Cubo_PosRot.X) ? 
+							IncX = -(((Cubo_UPosRot.X - Cubo_PosRot.X) / 900) * Paso) : 
+							IncX = ((Cubo_PosRot.X - Cubo_UPosRot.X) / 900) * Paso;
+						// Calculo el incremento del eje Y 
+						(Cubo_UPosRot.Y > Cubo_PosRot.Y) ? 
+							IncY = -(((Cubo_UPosRot.Y - Cubo_PosRot.Y) / 900) * Paso) : 
+							IncY = ((Cubo_PosRot.Y - Cubo_UPosRot.Y) / 900) * Paso;
+							$(this).css({ transform : "rotateX(" + (Cubo_UPosRot.X + IncX) + "deg) rotateY(" + (Cubo_UPosRot.Y + IncY) + "deg)" });
+					}
+				}});*/
+				
+				/* Animación que asigna el nuevo tamaño del cubo */
+/*				if (typeof Ancho == 'undefined' || typeof Alto == 'undefined') return;
+				switch (Cubo_Cara) {
+					case "2" : 
+						$("cubo_objeto").css({ "width" : Ancho, "height" : Alto  });
+						$("cubo_cara1, cubo_cara6").animate({ "width" : Ancho, "height" : Alto }, 700);
+						$("cubo_cara3, cubo_cara4").animate({ "width" : Alto, "height" : Ancho }, 700);
+						$("cubo_cara2, cubo_cara5").animate({ "width" : Ancho, "height" : Alto }, 700);
+						break;
+					
+				}*/
+				
+			}
+        </script>
+    </head>
+    <body>
+    	<br /><br /><br />
+        
+        <cubo Ancho="100" Alto="100">
+            <cubo_objeto>
+            	<cubo_cara1>1</cubo_cara1>
+            	<cubo_cara2>2</cubo_cara2>
+            	<cubo_cara3>3</cubo_cara3>
+            	<cubo_cara4>4</cubo_cara4>
+            	<cubo_cara5>5</cubo_cara5>
+            	<cubo_cara6>6</cubo_cara6>                
+            </cubo_objeto>
+        </cubo>
+        
+       <br /> <br /> 
+
+        <cubo Ancho="150" Alto="100">
+            <cubo_objeto>
+            	<cubo_cara1>1</cubo_cara1>
+            	<cubo_cara2>2</cubo_cara2>
+            	<cubo_cara3>3</cubo_cara3>
+            	<cubo_cara4>4</cubo_cara4>
+            	<cubo_cara5>5</cubo_cara5>
+            	<cubo_cara6>6</cubo_cara6>                
+            </cubo_objeto>
+        </cubo>
+
+       <br /> <br /> 
+
+        <cubo Ancho="100" Alto="150">
+            <cubo_objeto>
+            	<cubo_cara1>1</cubo_cara1>
+            	<cubo_cara2>2</cubo_cara2>
+            	<cubo_cara3>3</cubo_cara3>
+            	<cubo_cara4>4</cubo_cara4>
+            	<cubo_cara5>5</cubo_cara5>
+            	<cubo_cara6>6</cubo_cara6>                
+            </cubo_objeto>
+        </cubo>
+
+        
+     <!--   <cubo>
+            <cubo_objeto>
+            	<cubo_cara1>1</cubo_cara1>
+            	<cubo_cara6>6</cubo_cara6>                
+            	<cubo_cara3>3</cubo_cara3>
+            	<cubo_cara4>4</cubo_cara4>
+            	<cubo_cara2>2</cubo_cara2>
+            	<cubo_cara5>5</cubo_cara5>
+            </cubo_objeto>
+        </cubo> -->
+        
+        <marco>
+        	<a href="javascript:Cubo_MostrarCara('1')">1</a> 
+        	<a href="javascript:Cubo_MostrarCara('2', 100, 200)">2</a> 
+        	<a href="javascript:Cubo_MostrarCara('3')">3</a> 
+        	<a href="javascript:Cubo_MostrarCara('4')">4</a> 
+        	<a href="javascript:Cubo_MostrarCara('5')">5</a> 
+        	<a href="javascript:Cubo_MostrarCara('6')">6</a>
+        </marco>
+        
+    </body>
+</html>

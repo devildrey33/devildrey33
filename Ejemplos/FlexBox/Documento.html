@@ -1,0 +1,74 @@
+<!-- ejemplo creado por Josep Antoni Bover el [13/01/2014] para devildrey33.es -->
+<!-- Redimensiona el ancho de la ventana manualmente, o cambia la vista a modo columnas y usa el separador para redimensionar el ancho. -->
+<!DOCTYPE html>
+<html lang='es'>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <style>
+header, footer, #Principal > article, #Principal > nav, #Principal > aside {
+	border:1px solid #CCC;
+	min-height:50px;
+	margin:2px;
+	padding:2px;
+	background-color:rgba(210, 210, 210, 0.9);
+	text-align:center;
+}
+#Principal > article { min-height:170px; }
+
+/* -[INICIO devildrey33.FlexCSS1]- */
+/* Marco Principal que hace de Flex-Box a modo columnas */
+#Principal {
+	display:flex;           /* Establecemos el contenedor como FlexBox */
+	flex-flow:row;          /* Flujo del contendio de izquierda a derecha */
+}
+/* Articulo en medio con un 60% del tamaño si estamos a mas de 500 pixeles de ancho */
+#Principal > article {
+	flex:70%;               /* Establecemos el tamaño al 70% */
+	order:2;                /* Cambiamos el orden de forma que el article quede en medio */
+	background-color:rgba(230, 230, 230, 0.9);
+}
+/* Nav a la izquierda con un 15% del tamaño si estamos a mas de 500 pixeles de ancho */
+#Principal > nav {
+	flex:15%;               /* Establecemos el tamaño al 15% */
+	order:1;                /* Cambiamos el orden de forma que el nav quede a la izquierda */
+}
+/* ASide a la derecha con un 15% del tamaño si estamos a mas de 500 pixeles de ancho */
+#Principal > aside {
+	flex:15%;               /* Establecemos el tamaño al 15% */
+	order:3;                /* Cambiamos el orden de forma que el nav quede a la derecha */
+}
+/* -[FIN devildrey33.FlexCSS1]- */
+/* -[INICIO devildrey33.FlexCSS2]- */
+/* Regla para resoluciones menores de 500 pixeles de ancho */
+@media all and (max-width: 500px) {
+	/* Marco Principal que hace de Flex-Box a modo filas */
+	#Principal {
+		flex-flow:column;   /* Flujo del contendio de arriba a abajo */
+	}	
+	/* Modifico el tamaño minimo para el articulo */
+	#Principal > article { min-height:150px; }	
+	/* Volvemos al orden inicial : Articulo, Nav, Aside */
+	#Principal > article, #Principal > nav, #Principal > aside {
+		order:0;            /* Reseteamos el orden a 0 */
+	}
+	/* Altura del header, footer, nav y aside a 25 pixeles */
+	header, footer, #Principal > nav, #Principal > aside {
+		min-height:25px;
+	}
+}
+/* -[FIN devildrey33.FlexCSS2]- */
+			
+    </style>
+</head>    
+<!--[INICIO devildrey33.FlexHTML]-->
+<body>
+    <header>Cabecera</header>
+    <div id='Principal'>			<!-- Div que usaremos como FlexBox -->
+        <article>Articulo</article> 
+        <nav>Nav</nav>
+        <aside>Aside</aside>
+    </div>
+    <footer>Pie de página</footer>
+</body>
+<!--[FIN devildrey33.FlexHTML]-->    
+</html>

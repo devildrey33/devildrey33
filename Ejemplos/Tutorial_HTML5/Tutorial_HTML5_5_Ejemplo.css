@@ -1,0 +1,22 @@
+/* Estilos para la etiqueta body */
+body {
+	background-color:green; /* Color de fondo verde   */
+	color:white;            /* Color del texto blanco */
+}
+
+/* Estilos para el texto */
+.TextoSombreado {
+    text-shadow:1px 1px 1px rgb(255, 0, 0);
+}
+.Texto18px {
+    font-size:18px;
+}
+
+/* Ejemplo del selector :hover */
+.MovimientoDerecha {
+    position:relative;
+    color:blue;
+}
+.MovimientoDerecha:hover {
+    left:10px;
+}

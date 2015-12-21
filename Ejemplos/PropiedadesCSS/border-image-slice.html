@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			#BordeImagen {	
+				width:200px;
+				height:200px;
+
+				border-image-source:url('http://img.devildrey33.es/border-image2.png');
+				border-image-width:15px;
+				border-image-repeat:stretch;	
+				border-image-slice:33%;
+				border-image-outset:0;
+			}			
+		</style>
+        <!-- Código JavaScript CSS -->
+        <script type="text/javascript">
+			// Función que cambia el borde segun los valores H y V especificados.
+			function CambiarBorde() {
+				var Top     = ObtenerValor("ChTop");
+				var Right   = ObtenerValor("ChRight");
+				var Bottom  = ObtenerValor("ChBottom");
+				var Left    = ObtenerValor("ChLeft");
+				document.getElementById("BordeImagen").style.borderImageSlice = Top + Right + Bottom + Left;
+			}
+			// Función que obtiene el valor del ComboBox especificado
+			function ObtenerValor(ID) {
+				var Combo = document.getElementById(ID);
+				return Combo.options[Combo.selectedIndex].innerHTML;
+			}
+			
+		</script>
+	</head>
+	<body>
+    	<div>
+        	<code>border-image-slice:</code>
+            <select id='ChTop' onChange="CambiarBorde()">
+                <option>33%</option>
+                <option>66%</option>
+                <option>100%</option>
+                <option>5</option>
+                <option>10</option>
+                <option>50</option>
+                <option>100</option>
+            </select>
+			<!-- Es importante mantener el espacio inicial de los options para que funcione el javascript -->
+            <select id='ChRight' onChange="CambiarBorde()">
+                <option></option>
+                <option> 33%</option>
+                <option> 66%</option>
+                <option> 100%</option>
+                <option> 5</option>
+                <option> 10</option>
+                <option> 50</option>
+                <option> 100</option>
+            </select>
+			<!-- Es importante mantener el espacio inicial de los options para que funcione el javascript -->
+            <select id='ChBottom' onChange="CambiarBorde()">
+                <option></option>
+                <option> 33%</option>
+                <option> 66%</option>
+                <option> 100%</option>
+                <option> 5</option>
+                <option> 10</option>
+                <option> 50</option>
+                <option> 100</option>
+            </select>
+			<!-- Es importante mantener el espacio inicial de los options para que funcione el javascript -->
+            <select id='ChLeft' onChange="CambiarBorde()">
+                <option></option>
+                <option> 33%</option>
+                <option> 66%</option>
+                <option> 100%</option>
+                <option> 5</option>
+                <option> 10</option>
+                <option> 50</option>
+                <option> 100</option>
+            </select>
+            <code>;</code>
+        </div>
+    
+    	<div id='BordeImagen'></div>
+        Imagen utilizada de 90x90 para el borde de la imagen.<br />
+        <img src='http://img.devildrey33.es/border-image2.png' />
+        <p><b>NO</b> funciona en IE 10 e inferiores.</p>
+	</body>
+</html>

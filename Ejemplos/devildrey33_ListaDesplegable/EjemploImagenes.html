@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+
+    	<script type="text/javascript" src="./js/devildrey33_ListaDesplegable.js" ></script>
+        <link rel="stylesheet" href="./css/devildrey33_ListaDesplegable.css" type="text/css" />	
+        
+        <style type="text/css">
+			#Img1, #Img2, #Img3, #Img4 {
+				margin-right:4px;
+				width:19px;
+				height:19px; /* Para ir bien la imagen debe medir igual o menos de alto que lo que ocupa el item seleccionado (con la fuente por defecto 19px) */
+				float:left;
+			}
+			#Img1 {	background:url('Img1.png');	}
+			#Img2 {	background:url('Img2.png');	}
+			#Img3 {	background:url('Img3.png');	}
+			#Img4 {	background:url('Img4.png');	}
+        </style>
+        
+        <!-- NOTA.. en IE7 e inferiores el bug del float no muestra correctamente el item y la imagen en la misma linea, pero se podria conseguir con tablas facilmente por ejemplo.... -->
+        <script type="text/javascript">
+			var ArrayItems = Array(	"<div id='Img1'></div>Item1", 
+									"<div id='Img2'></div>Item2", 
+									"<div id='Img3'></div>Item3", 
+									"<div id='Img4'></div>Item4" 
+									);
+			
+			ListaDesplegable = new devildrey33_ListaDesplegable("LD_Abajo", { "ListaItems" : ArrayItems });
+        </script>
+    </head>
+    
+	<body>
+        <h1>devildrey33_ListaDesplegable Ejemplo con imagenes</h1>
+        <p>En IE7 e inferiores el texto del item se desplaza hacia abajo... es un bug del IE y no del control, si en ve de usar un div con <code>float</code> ponemos una <code>table</code> por ejemplo se vería bien.</p>
+        <p>IE 6 no acepta imagenes con fondo transparente asi que es un poco inviable este ejemplo para ese navegador...</p>
+        <div class='devildrey33_ListaDesplegable' id='LD_Abajo'></div>
+		<br />
+
+		<a href="http://www.devildrey33.es/devildrey33_ListaDesplegable_2.0.php">Volver a devildrey33</a>
+    </body>
+</html>

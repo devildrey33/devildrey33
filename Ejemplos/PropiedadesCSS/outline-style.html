@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Borde {
+				outline-style:solid;
+			}            
+		</style>
+        <script type="text/javascript">
+			function CambiarBorde() {
+				var Combo = document.getElementById("Bordes");
+				document.getElementById("IDBorde").style.outlineStyle = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body onLoad="CambiarBorde()">
+    	<p>En este ejemplo puedes seleccionar el tipo de borde exterior que quieres mostrar en el siguiente span.</p>
+    	<select id='Bordes' onChange="CambiarBorde()">
+        	<option value ="0">none</option>
+        	<option value ="1">dotted</option>
+        	<option value ="2">dashed</option>
+        	<option value ="3" selected='selected'>solid</option>
+        	<option value ="4">double</option>
+        	<option value ="5">groove</option>
+        	<option value ="6">ridge</option>
+        	<option value ="7">inset</option>
+        	<option value ="8">outset</option>
+        </select>
+        <span class='Borde' id='IDBorde'>Selecciona el tipo de borde superior.</span>
+	</body>
+</html>

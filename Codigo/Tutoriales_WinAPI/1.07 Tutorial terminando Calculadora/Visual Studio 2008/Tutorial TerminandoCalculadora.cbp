@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="1.7 Tutorial TerminandoCalculadora" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="Tutorial TerminandoCalculadora" prefix_auto="1" extension_auto="1" />
+				<Option object_output="..\..\Debug Win32" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-W" />
+					<Add option="-g" />
+					<Add option="-O0" />
+				</Compiler>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="Tutorial TerminandoCalculadora" prefix_auto="1" extension_auto="1" />
+				<Option object_output="..\..\Release Win32" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-W" />
+					<Add option="-O2" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Unit filename="..\Tutorial TerminandoCalculadora.cpp" />
+		<Unit filename="..\..\Objetos Tutorial\ObjetoBoton.cpp" />
+		<Unit filename="..\..\Objetos Tutorial\ObjetoBoton.h" />
+		<Unit filename="..\..\Objetos Tutorial\ObjetoControl.cpp" />
+		<Unit filename="..\..\Objetos Tutorial\ObjetoControl.h" />
+		<Unit filename="..\..\Objetos Tutorial\ObjetoHWND.cpp" />
+		<Unit filename="..\..\Objetos Tutorial\ObjetoHWND.h" />
+		<Unit filename="..\..\Objetos Tutorial\ObjetoMarcador.cpp" />
+		<Unit filename="..\..\Objetos Tutorial\ObjetoMarcador.h" />
+		<Unit filename="..\..\Objetos Tutorial\ObjetoVentana.cpp" />
+		<Unit filename="..\..\Objetos Tutorial\ObjetoVentana.h" />
+		<Unit filename="..\..\Objetos Tutorial\PlantillaEventos.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,417 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12-mar-2015, 0:09:31
+    Author     : devildrey33
+*/
+
+.Blog {
+    margin: 0px 75px 0px 25px;
+    padding : 0px 0px 25px 0px;
+}
+
+.Blog img {
+    border:1px solid rgb(200, 200, 200);
+}
+
+.ImagenPortada {
+    float:left;
+    margin-right:15px;
+    border:1px solid rgb(200,200,200);
+    margin-top:1em;
+    background:rgb(255,255,255);
+}
+.ImagenPortada2 {
+    float:right;
+    margin-left:15px;
+    border:1px solid rgb(200,200,200);
+    margin-top:1em;
+    background:rgb(255,255,255);
+}
+
+h3, h4 {
+/*    clear:both;*/
+    margin:0px;
+}
+
+
+/* postit para las notas */
+/* La diferencia entre la nota y el postit, es que la nota muestra el texto 'NOTA :' */
+.nota, nota, postit, .postit {
+    border:1px solid rgb(200, 200, 200);
+    background-color:rgb(249, 249, 222);
+    display:table;
+    margin:3px;
+    padding:3px 4px 3px 3px;
+}
+html[lang='es'] nota::before, html[lang='es'] .nota::before {
+    content:"NOTA :";
+}
+html[lang='en'] nota::before, html[lang='en'] .nota::before  {
+    content:"NOTE :";
+}
+.nota::before, nota::before {
+    display:table-cell;
+    position:relative;
+    font-weight:bold;
+    white-space:nowrap;
+    padding-right:5px;
+}
+
+
+/* postit para las notas */
+/* La diferencia entre la nota y el postit, es que la nota muestra el texto 'NOTA :' */
+/*.nota, nota, postit, .postit {
+    border:1px solid rgb(200, 200, 200);
+    background-color:rgb(249, 249, 222);
+    display:table;
+    margin:3px;
+    padding:3px 4px 3px 3px;
+}
+.nota::before, nota::before {
+    content:"NOTA :";
+    display:table-cell;
+    position:relative;
+    font-weight:bold;
+    white-space:nowrap;
+    padding-right:5px;
+}*/
+
+h2 {
+    display:table;
+    margin:0px 0px 0px 0px;
+}
+
+article h2 {
+    display:table;
+    margin:50px 0px 0px 0px;
+}
+
+
+h2:before {
+    content:'';
+    display:table-cell;
+    position:relative;
+    padding-right:5px;
+/*    margin-left:-20px;*/
+    top:-5px;
+    height:30px;
+    width:30px;
+    background-image:url('/Web/Graficos/Ancla30pxN.png');
+    background-repeat:no-repeat; 
+    background-position:0px 2px;
+}
+
+
+
+
+.FechaEntrada {
+    color:rgb(200, 200, 200);
+    font-size:12px;
+/*    padding-right:100px;    */
+}
+
+.Blog > .Cabecera > .Cabecera_Datos > h1 {
+    margin: 50px 0px 4px 0px;
+}
+
+.Blog > .Cabecera > .Cabecera_Fondo {
+    z-index:11; 
+    height:600px;
+    position:relative;
+    width:calc(100% + 100px); /* 100 pixels mes ample per que l'animacio es pugui moure fins a 100 pixels a la dreta '*/
+    left:-100px;              /* Coloco el fondo 100 pixels a l'esquerra ja que es 100 pixels mes gran i per l'esquerra no sobresortira '*/
+    top:-10px;
+    background-repeat: no-repeat;
+    background-position: right -100px;     
+}
+
+.Blog > .Cabecera[animar=true] > .Cabecera_Fondo {
+    animation: AnimacionCabecera 20s infinite ease-in-out alternate;
+}
+
+
+.Blog > .Cabecera > .Cabecera_Datos {
+    top:-1px;
+    position:absolute;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0, 0.75);
+    z-index:12;
+    padding:6px 74px 58px 25px;
+/*    padding:4px 4px 56px 25px;
+    margin:0px -75px 0px -25px;*/
+}
+
+.Blog > .Cabecera {
+/*    background: rgba(0,0,0, 0.75);*/
+/*    background:-webkit-radial-gradient(right top, farthest-side, rgb(100,100,100) 5%, rgb(29,26,33));
+    background:-moz-radial-gradient(right top, farthest-side, rgb(100,100,100) 5%, rgb(29,26,33));
+    background:-ms-radial-gradient(right top, farthest-side, rgb(100,100,100) 5%, rgb(29,26,33));
+    background:radial-gradient(right top, farthest-side, rgb(100,100,100) 5%, rgb(29,26,33));*/
+    margin:0px -75px 0px -25px;
+    height:182px;
+    border-top:none;
+    border:1px solid #353338;
+    color:#FFFFFF;
+    z-index:10;
+	position:relative;
+/*    min-height:125px;*/
+    width:calc(100% + 100px);
+    overflow:hidden;
+}
+
+.Blog > .Cabecera > .Cabecera_Img1 {    background-image:url('/Web/Graficos/FondoBlog1.png');   }
+.Blog > .Cabecera > .Cabecera_Img2 {    background-image:url('/Web/Graficos/FondoBlog2.png');   }
+.Blog > .Cabecera > .Cabecera_Img3 {    background-image:url('/Web/Graficos/FondoBlog3.png');   }
+.Blog > .Cabecera > .Cabecera_Img4 {    background-image:url('/Web/Graficos/FondoBlog4.png');   }
+
+
+
+hr {
+    border:none;
+    border-bottom:1px solid rgb(200,200,200);
+}
+
+
+@keyframes AnimacionCabecera {
+    0%   { background-position: right -100px; transform:translateX(40px); }
+    33%  { background-position: right -45px; transform:translateX(100px); }
+    66%  { background-position: right -60px; transform:translateX(50px); }
+    100% { background-position: right 0px; transform:translateX(15px); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Compatibilidad navegadores */
+.Compatibilidad_Navegadores {
+    height:31px;
+}
+
+.Navegador_Chrome, .Navegador_FireFox, .Navegador_Opera, .Navegador_Safari, .Navegador_IE {
+    height:32px;
+    width:32px;
+    float:left; 
+    margin-right:3px;
+}
+
+.Navegador_Chrome       { background-image:url("/Web/Graficos/Chrome.png");  }
+.Navegador_FireFox      { background-image:url("/Web/Graficos/Firefox.png"); }
+.Navegador_Opera        { background-image:url("/Web/Graficos/Opera.png");   }
+.Navegador_Safari       { background-image:url("/Web/Graficos/Safari.png");  }
+.Navegador_IE           { background-image:url("/Web/Graficos/IE9.png");     }
+.Navegador_NoSoportado  { opacity:0.4;    }
+/* FIN Compatibilidad navegadores */
+
+
+/* Recuadros para ColoresCSS */
+.ColRes { 
+    display:table;
+    width:20px;
+    height:20px;
+    border:1px solid #CCC;
+    background-color:#FFFFFF;
+}
+
+/* Tablas dentro de tablas tienen el borde mas pequeño y claro */
+.Tabla .Tabla {
+    border:1px solid rgb(150, 150, 150);
+}
+
+.Tabla {
+    border:2px solid #BBB;
+    border-spacing: 0px;
+    border-collapse: separate;
+    background: #FFFFFF;
+}
+
+.Tabla td {
+    padding:3px 10px;
+    border-bottom:1px solid #AAA;
+    border-right:1px solid #AAA;
+}
+
+.Tabla td:last-child {
+    border-right:none !important;
+}
+
+.Tabla tr:last-child td {
+    border-bottom:none !important;
+}
+
+
+.Tabla th {
+    background: rgb(100,100,100);
+    color:#FFFFFF;
+    border-right:none;
+    padding:4px;
+}
+/*
+.Tabla td:nth-last-child {
+    border-right:none !important;
+}
+
+.Tabla tr:nth-last-child td {
+    border-bottom:none !important;
+}
+*/
+.Tabla pre {
+    margin:0px;
+}
+
+
+.TablaDocCSS {
+    table-layout:fixed;
+    width:100%;    
+    margin-top:3px;
+}
+/* Imagenes que corresponden a la compatibilidad de navegadores a 18x18 */
+.TablaDocCSS img {
+    border:none !important;
+    width:18px;
+    height:18px;
+    position:relative;
+    top:2px;
+}
+.TablaDocCSS th {
+    text-align: left;
+}
+.TablaDocCSS td {
+    white-space: nowrap;
+    padding:0px 3px ;
+    border-right:none;
+}
+
+.TablaDocCSS th:nth-child(1), .TablaDocCSS td:nth-child(1) {
+    width:200px;
+}
+.TablaDocCSS th:nth-child(2), .TablaDocCSS td:nth-child(2) {
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.TablaDocCSS th:nth-child(3), .TablaDocCSS td:nth-child(3) {
+    width:110px;
+}
+.TablaDocCSS th:nth-child(4), .TablaDocCSS td:nth-child(4) {
+    width:25px;
+    text-align:center;
+}
+
+
+.MiniNoSoportado {
+    display:inline-block;
+    width: 18px;
+    height:18px;
+}
+
+
+
+.Sintaxis {
+    border:1px solid rgb(200, 200, 200);
+    background:#FFFFFF;
+    padding:2px;
+}
+
+
+
+.Marco, .devildrey33_Marco {
+    background:#FFFFFF;
+    border:1px solid  rgb(200, 200, 200);
+}
+
+/* Enlaces relacionados de la documentación CSS */
+.EnlacesRelacionados {
+    -webkit-columns:3 auto;
+    -moz-columns:3 auto;
+    columns:3 auto;
+}
+
+/* Sintaxis de la documentación CSS  */
+.Pre_Sintaxis {
+    display:table;
+    font-size:2rem;
+}
+
+
+#VotarDocumento {
+    border-top: 1px solid transparent; 
+    overflow:hidden;
+    transition:0.5s;
+    height:0px;
+}
+
+#VotarDocumento[Mostrar=true] {
+    border-top: 1px solid rgb(200, 200, 200); 
+    height:150px;
+}
+
+.VotarDocumento {
+    display:table;
+    margin:25px auto 0px auto;
+/*    background: #252328;    
+    border: 1px solid #353338;
+    color:#FFF;*/
+    padding:10px;
+}
+.VotarDocumento > span {
+    font-size:1.5rem;
+    display:table;
+    margin:0px auto;
+}
+
+html[lang=es] .VotarDocumento > span:nth-child(1)::after {    content:'Por favor puntúa este documento del 1 al 5';     }
+html[lang=en] .VotarDocumento > span:nth-child(1)::after {    content:'Please rate this document form 1 to 5';     }
+
+html[lang=es] .VotarDocumento > span:nth-child(2)::after {    content:'De esta forma me ayudas a mejorar la web';     }
+html[lang=en] .VotarDocumento > span:nth-child(2)::after {    content:'Doing this you are helping me to improve it.';     }
+
+
+/*.VotarDocumento > button {
+    margin:2px auto !important;
+}*/
+
+.VotarDocumento_Estrellas {
+    display:table;
+    margin:4px auto 0px auto;    
+}
+
+.VotarDocumento_Estrellas > button {
+    width:48px;
+    height:48px;
+    display:inline-block;
+    padding:0px;
+    margin:2px;
+    zoom:1!important;
+/*    
+    border:1px solid #353338;
+    background:#888;
+    text-align: center;
+    padding-top:6px;
+    cursor:pointer;
+    background: #252328;    
+    border: 1px solid #353338;  
+    color:#FFF;*/
+/*    background-image:url('/Web/Graficos/Estrella.png');*/
+/*    background-position:32px 0px;*/
+    
+}
+
+
+
+

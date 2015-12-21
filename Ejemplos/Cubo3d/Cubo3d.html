@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cubo 3d</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .Cubo_Vista {
+                perspective:750px;
+                perspective-origin:50% 70%;
+                display:table;
+                margin-left:auto;
+                margin-right:auto;
+                padding:20px;
+                position:static;
+            }
+            
+            .CuboControles {
+                background:rgba(0,0,0, 0.7);
+                z-index:100;
+                position:absolute;
+                display:table;
+                top:60%;
+                width:276px;
+                left:calc(50% - 140px);
+            }
+            
+            .CuboControles > input {
+                display:none;
+            }
+            
+            .CuboControles > input + label {
+                display:inline-block;
+                width:40px;
+                height:30px;
+                margin:2px;
+                border:1px solid #000;
+                transition:0.4s;
+                background:#29272C;
+                color:#FFF;
+                text-align:center;
+                padding-top:10px;
+            }
+            
+            .CuboControles > input:checked + label {
+                background:#ea504e;
+                border:1px solid red;
+            }
+            
+            .Cubo {
+                transform-style:preserve-3d;
+                display:inline-block;
+                position:relative;
+                width:10em;
+                height:10em;
+                transform:translateZ(0px);
+                transition:.6s ease-in-out;
+            }
+            
+            .Cubo > div {
+                position:absolute;
+                z-index:10;
+                height:100%;
+                width:100%;
+                border:1px solid black;
+                text-align:center;                
+            }
+            /* 1 parte delantera */			
+            .Cubo > div:nth-child(1) { 
+                background:rgba(255, 0, 0, 0.7);     
+                transform:translateZ(5em);	
+            } 
+            /* 6 parte trasera   */
+            .Cubo > div:nth-child(2) { 
+                background:rgba(255, 255, 0, 0.7);   
+                transform:rotateX(180deg) translateZ(5em) ;	
+            } 
+            /* 3 parte izquierda */			
+            .Cubo > div:nth-child(3) {
+                background:rgba(0, 255, 255, 0.7);   
+                transform:rotateY(-90deg) translateZ(5em);	
+            } 
+            /* 4 parte derecha   */			
+            .Cubo > div:nth-child(4) { 
+                background:rgba(100, 100, 100, 0.7); 
+                transform:rotateY(90deg) translateZ(5em);    
+            } 
+            /* 2 parte superior  */
+            .Cubo > div:nth-child(5) { 
+                background:rgba(0, 255, 0, 0.7);     
+                transform:rotateX(90deg) translateZ(5em);	
+            } 
+            /* 5 parte inferior  */
+            .Cubo > div:nth-child(6) { 
+                background:rgba(0, 0, 255, 0.7);     
+                transform:rotateX(-90deg) translateZ(5em);	
+            } 
+            
+        </style>
+        
+        <script> 
+            /* Por desgracia no encuentro mentalmente la forma de hacer este ejemplo 100% CSS, por lo que voy a necesitar algo de JavaScript*/
+            
+        </script>
+    </head>
+    <body>
+        <div class="CuboControles">
+            <input id='Input_Cara1' type='radio' name='Input_Cara' />
+            <label for='Input_Cara1'>1</label>
+            <input id='Input_Cara2' type='radio' name='Input_Cara' />
+            <label for='Input_Cara2'>2</label>
+            <input id='Input_Cara3' type='radio' name='Input_Cara' />
+            <label for='Input_Cara3'>3</label>
+            <input id='Input_Cara4' type='radio' name='Input_Cara' />
+            <label for='Input_Cara4'>4</label>
+            <input id='Input_Cara5' type='radio' name='Input_Cara' />
+            <label for='Input_Cara5'>5</label>
+            <input id='Input_Cara6' type='radio' name='Input_Cara' />
+            <label for='Input_Cara6'>6</label>
+        </div>
+        <div class="Cubo_Vista">
+            <div class="Cubo"> 
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </body>
+</html>

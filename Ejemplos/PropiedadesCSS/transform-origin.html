@@ -1,0 +1,92 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [23/12/2013] para devildrey33.es -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			input {
+				max-height:16px;
+			}
+			body {
+				background-color:#DDD;
+			}
+			#MarcoOpciones {
+				background-color:#FFF;
+				width:470px;
+				display:table;
+				padding:4px 0px 4px 6px;
+				border:1px solid #CCC;
+				opacity:0.9;
+                z-index:1000;
+                position:absolute;
+			}
+			#MarcoOpciones * {
+				vertical-align:top;
+			}
+			#MarcoOpciones .TextoLinea1 {
+				width:160px;
+				display:inline-block;
+			}
+			#MarcoOpciones .TextoLinea2 {
+				width:140px;
+				display:inline-block;
+			}
+			#MarcoOpciones .Valor {
+				width:70px;
+				display:inline-block;
+			}
+			.Tab1 { margin-left:20px; }
+			.Tab2 { margin-left:40px; }
+			#Contenedor {
+				position:absolute;
+			}
+			
+			#Objeto {
+				margin-left:500px;
+				-webkit-transform:perspective(600px) rotateX(20deg);
+				transform:perspective(600px) rotateX(20deg);
+				background-color:#006;
+				background-image:url('http://img.devildrey33.es/logo400.png');
+				width:400px;
+				height:400px;
+				z-index:1;
+			}
+		</style>
+	    <script type="text/javascript">			
+			function ActualizarTransformOrigin() {
+				var X = parseInt(document.getElementById("ObjetoOriginX").value);
+				var Y = parseInt(document.getElementById("ObjetoOriginY").value);
+				var Z = parseInt(document.getElementById("ObjetoOriginZ").value);
+				document.getElementById("ObjetoOriginX_Valor").innerHTML = X + " %";
+				document.getElementById("ObjetoOriginY_Valor").innerHTML = Y + " %";
+				document.getElementById("ObjetoOriginZ_Valor").innerHTML = Z + " px";
+				document.getElementById("Objeto").style.transformOrigin = X + "% " + Y + "% " + Z + "px";
+				document.getElementById("Objeto").style.webkitTransformOrigin = X + "% " + Y + "% " + Z + "px";
+			}
+        </script>
+	</head>
+	<body onLoad="ActualizarTodo()">
+    	<div id='MarcoOpciones'>
+            <div class='Tab1'>
+            	<div><code>transform:perspective(600px) rotateX(20deg);</code></div>
+                <code class='TextoLinea1'>transform-origin</code><code>:</code>
+                <code class='Valor' id='ObjetoOriginX_Valor'>50 %</code>
+                <input id='ObjetoOriginX' type="range" min="-100" max="200" value="50" title='transform-origin X' onChange="ActualizarTransformOrigin()">
+            </div>
+            <div class='Tab2'>
+                <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
+                <code class='Valor' id='ObjetoOriginY_Valor'>50 %</code>
+                <input id='ObjetoOriginY' type="range" min="-100" max="200" value="50" title='transform-origin Y' onChange="ActualizarTransformOrigin()">
+            </div>
+            <div class='Tab2'>
+                <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
+                <code class='Valor' id='ObjetoOriginZ_Valor'>100 px</code>
+                <input id='ObjetoOriginZ' type="range" min="-100" max="200" value="100" title='transform-origin Z' onChange="ActualizarTransformOrigin()">
+                <code>)</code>
+            </div>
+		</div>		
+        <div id='Contenedor'>
+        	<div id='Objeto'></div>
+        </div>
+    </body>
+</html>

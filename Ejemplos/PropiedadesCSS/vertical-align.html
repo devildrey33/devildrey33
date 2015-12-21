@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">	
+			span {
+				color:#090;
+			}
+		</style>
+        <script type="text/javascript">
+			function ObtenerValor(IDObjeto) {
+				var Combo = document.getElementById(IDObjeto);
+				return Combo.options[Combo.selectedIndex].innerHTML;
+			}
+		
+			function CambiarVA() {
+				document.getElementsByTagName("span").item(0).style.verticalAlign = ObtenerValor("DivVA");
+			}
+        </script>
+	</head>
+	<body>
+    	<div><p>Texto normal, <span>span con alineación vertical</span></p></div>
+    	<code>div {</code><br />
+        <code>&nbsp; &nbsp; vertical-align:</code>
+    	<select id='DivVA' onChange="CambiarVA()">
+        	<option>baseline</option>
+        	<option>sub</option>
+        	<option>super</option>
+        	<option>top</option>
+        	<option>text-top</option>
+        	<option>middle</option>
+        	<option>bottom</option>
+        	<option>text-bottom</option>
+        	<option>10px</option>
+        	<option>-10px</option>
+        	<option>10%</option>
+        	<option>90%</option>
+		</select>        
+        <code>;</code><br />
+        <code>}</code>
+	</body>
+</html>

@@ -1,0 +1,140 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Español resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)
+#ifdef _WIN32
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_MODERN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ENSAMBLADOR DIALOGEX 100, 100, 551, 264
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | WS_MINIMIZEBOX | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Ensamblador"
+FONT 8, "Tahoma", 400, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_ARBOL,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | WS_BORDER | WS_HSCROLL | WS_TABSTOP,7,19,126,176
+    CONTROL         "",IDC_LISTA,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,140,19,317,176
+    COMBOBOX        IDC_COMBO_PATH,7,221,170,86,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Directorio por defecto de la instalación",IDC_STATIC,7,211,236,8
+    PUSHBUTTON      "Cargar proyecto",IDC_CARGAR,464,35,80,12
+    PUSHBUTTON      "Guardar proyecto",IDC_GUARDAR,464,51,80,12
+    PUSHBUTTON      "Añadir archivo",IDC_AGREGAR_ARCHIVO,464,83,80,12
+    PUSHBUTTON      "Añadir directorio",IDC_AGREGAR_DIRECTORIO,464,99,80,12
+    PUSHBUTTON      "Borrar seleccionado",IDC_BORRAR,464,115,80,12
+    EDITTEXT        IDC_RUTA_INSTALAR,7,245,410,12,ES_AUTOHSCROLL
+    LTEXT           "Ruta del instalador vacio",IDC_STATIC,7,235,138,8
+    PUSHBUTTON      "Buscar",IDC_BUSCAR,422,245,35,12
+    LTEXT           "Lista de directorios para el instalador",IDC_STATIC,7,10,147,8
+    LTEXT           "Lista de archivos que creara el instalador, con sus directorios relativos",IDC_STATIC,140,10,236,9
+    PUSHBUTTON      "Crear Instalador",IDC_CREAR,464,238,80,19
+    CONTROL         "",IDC_TOTAL,"msctls_progress32",WS_BORDER,7,199,450,6
+    PUSHBUTTON      "Nuevo proyecto",IDC_NUEVO,464,19,80,12
+    LTEXT           "\\",IDC_STATIC,179,222,8,8
+    EDITTEXT        IDC_EDIT_PATH,184,221,273,12,ES_AUTOHSCROLL
+END
+
+IDD_NUEVO_PROYECTO DIALOGEX 0, 0, 190, 45
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Nombre del proyecto"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_NOMBRE_PROYECTO,7,7,176,12,ES_AUTOHSCROLL | ES_WANTRETURN
+    PUSHBUTTON      "Aceptar",IDOK,76,24,50,14
+    PUSHBUTTON      "Cancelar",IDCANCEL,133,24,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ENSAMBLADOR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 544
+        VERTGUIDE, 133
+        VERTGUIDE, 140
+        VERTGUIDE, 457
+        VERTGUIDE, 464
+        TOPMARGIN, 10
+        BOTTOMMARGIN, 257
+        HORZGUIDE, 19
+        HORZGUIDE, 195
+        HORZGUIDE, 209
+    END
+
+    IDD_NUEVO_PROYECTO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 183
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 38
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Español resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

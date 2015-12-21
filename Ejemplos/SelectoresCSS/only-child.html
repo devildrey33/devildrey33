@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<style type="text/css">
+			/* Las etiquetas 'p' que son el unico hijo contando todas las etiquetas de un elemento tienen el texto verde */
+			p:only-child { color:rgb(0, 255, 0); }
+		</style>
+    </head>
+    <body>
+       	<p>Etiqueta 'p' hija unica de la etiqueta 'body'</p>
+    	<div>
+        	<p>Etiqueta 'p' hija unica de la etiqueta 'div'</p>	<!-- verde -->
+        </div>
+    	<div>
+        	<p>Etiqueta 'p' primer hijo de la etiqueta 'div'</p>
+        	<p>Etiqueta 'p' segundo hijo de la etiqueta 'div'</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Ejemplo Canvas2D 4</title>
+        
+		<script type="text/javascript">
+			// Variables globales
+			var Imagen = new Image();
+			var Canvas;
+			var Context;
+			
+			// Función que inicia el objeto Canvas y carga la imagen del bender
+			function Empezar() {
+				Canvas = document.getElementById("CanvasBender");
+				if (Canvas.getContext) {
+					Context = Canvas.getContext("2d");
+				}
+				else {
+					alert("Tu navegador no soporta el objeto canvas!");
+					return;
+				}		
+				Imagen.onload = Pintar;
+				Imagen.src = "/Graficos/bender.jpg";
+			}
+			
+			// Función que pinta la imagen original y luego pinta las imagenes con un solo canal
+			function Pintar() {
+				Context.drawImage(Imagen, 0, 0);
+				PintarCanal(0, 192, 0);     // Pinta el canal rojo
+				PintarCanal(1, 192 * 2, 0); // Pinta el canal verde
+				PintarCanal(2, 192 * 3, 0); // Pinta el canal azul
+			}
+			
+			// Función que pinta la imagen utilizando uno de los tres canales RGB. 
+			// ConservarRGB = 0 (rojo)
+			// ConservarRGB = 1 (verde)
+			// ConservarRGB = 2 (azul)
+			function PintarCanal(ConservarRGB, nX, nY) {
+				var Origen  = Context.getImageData(0, 0, 192, 192);		
+				var Destino = Context.createImageData(192, 192);
+				// Obtenemos el tamaño de la imagen
+				var Ancho = Origen.width;
+				var Alto  = Origen.height;
+				var Posicion = 0;
+				// de 0 al ancho de la imagen
+				for (var An = 0; An < Ancho; An++) {
+					// de 0 a la altura de la imagen
+					for (var Al = 0; Al < Alto; Al++) {
+						// de 0 a 3 (R, G, B)
+						for (var CanalRGB = 0; CanalRGB < 3; CanalRGB++) {
+							Posicion = (((An * Alto) + Al) * 4) + CanalRGB;
+							if (CanalRGB == ConservarRGB) 	Destino.data[Posicion] = Origen.data[Posicion];
+							else          					Destino.data[Posicion] = 0;
+						}
+						// Conservamos el canal alpha
+						Destino.data[Posicion + 1] = Origen.data[Posicion + 1];
+					}
+				}
+				Context.putImageData(Destino, nX, nY);
+			}
+  		</script>
+	</head>
+	<body onload="Empezar()">
+		<canvas width="768" height="200" id="CanvasBender"></canvas>
+	</body>
+</html>

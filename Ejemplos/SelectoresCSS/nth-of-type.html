@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<style type="text/css">
+			/* Las etiqueta 'p' que sea el segundo hijo (del mismo tipo) de su etiqueta predecesora tendrá el texto verde. */
+			p:nth-of-type(2) { color:rgb(0, 255, 0); }
+			/* (Laboratorio de pruebas) Modifica p:nth-of-type(2) por p:nth-of-type(3), para ver mas claro el asunto */
+		</style>
+    </head>
+    <body>
+        <div>Etiqueta 'div' primer hijo de la etiqueta 'body'</div>
+        <p>Etiqueta 'p' primera etiqueta, pero segundo (primero del tipo 'p') hijo de la etiqueta 'body'</p>    
+        <p>Etiqueta 'p' segunda etiqueta, pero tercer (segundo del tipo 'p')  hijo de la etiqueta 'body'</p>  <!-- verde -->
+        <p>Etiqueta 'p' primera etiqueta, pero segundo (tercero del tipo 'p')  hijo de la etiqueta 'body'</p>
+    </body>
+</html>

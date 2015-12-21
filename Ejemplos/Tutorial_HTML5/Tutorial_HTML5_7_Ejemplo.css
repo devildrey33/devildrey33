@@ -1,0 +1,125 @@
+
+/* -[INICIO devildrey33.Boton1]- */
+/* Estilo para el botón */
+.Boton1 {
+	/* Propieades para la visualización */
+	display:table;
+	padding:3px;
+	margin:3px;
+	/* Porpiedades para el borde */
+	border-color:rgb(50, 50, 50);
+	border-style:solid;
+	border-width:1px;
+	border-radius:4px;
+	/* Propiedades para el fondo */
+	background-color:rgb(0, 200, 0);
+	/* Sombra para el botón */
+	box-shadow: rgba(128,128,128, 0.5) 2px 2px 2px;
+}
+
+/* Estilo para el botón cuando el mouse se encuentra encima */
+.Boton1:hover {
+	/* Propiedades para el fondo */
+	background-color:rgb(0, 220, 0);
+	/* Cursor del mouse */
+	cursor:pointer;
+}
+
+/* Estilos para los enlaces dentro del botón */
+.Boton1 a {
+	text-decoration:none;
+	color:rgb(255, 255, 255);
+}
+/* Estilos para los enlaces resaltados dentro del botón */
+.Boton1 a:hover {
+	text-decoration:none;
+	color:rgb(255, 255, 0);
+}
+/* -[FIN devildrey33.Boton1]- */
+
+
+
+/* -[INICIO devildrey33.Boton2]- */
+/* Estilo para el botón de los garabatos */
+.Boton2 {
+	/* Propieades para la visualización */
+	position:relative;
+	display:table;
+	padding:3px;
+	margin:3px;
+	width:100px;
+	/* Propiedades para el fondo */
+	background-image:url('Tutorial_HTML5_7_Ejemplo_Garabatos.png');
+	background-repeat:no-repeat;
+	/* Propiedades para el texto */
+	text-align:center;
+	text-shadow:1px 1px 1px rgb(0, 0, 0);
+}
+
+/* Estilo para el botón de los garabatos RESALTADO */
+.Boton2:hover {
+	/* Propiedades para el fondo */
+	background-position:-100px 0px;
+	/* Cursor del mouse */
+	cursor:pointer;
+}
+
+/* Estilos para los enlaces dentro del botón */
+.Boton2 a {
+	color:rgb(255, 255, 255);
+	text-decoration:none;
+}
+/* Estilos para los enlaces resaltados dentro del botón */
+.Boton2:hover a {
+	color:rgb(255, 0, 0);
+	text-decoration:none;
+}
+/* -[FIN devildrey33.Boton2]- */
+
+
+/* -[INICIO devildrey33.Boton3]- */
+/* Botón 3 */
+.Boton3         { display:table; }
+.Boton3:hover   { cursor:pointer; }
+/* Enlaces dentro del botón 3*/
+.Boton3 a       { color:rgb(50, 50, 50); text-decoration:none; }
+.Boton3:hover a { color:rgb(0, 0, 0); text-decoration:none; }
+
+/* Parte izquierda del botón 3 */
+.Boton3I {
+	/* Tamaño */
+	width:6px;
+	height:23px;
+	/* Imagen */
+	background-image:url('http://img.devildrey33.es/Tutorial_HTML5_7_Ejemplo_Boton3.png');
+	/* Posicionamiento */
+	float:left;
+}
+.Boton3:hover .Boton3I { background-position:0px -75px; }           /* Restamos 75 pixeles a la Y */
+
+/* Parte central del botón 3 */
+.Boton3C {
+	/* Tamaño */
+	height:23px;
+	/* Imagen */
+	background-image:url('http://img.devildrey33.es/Tutorial_HTML5_7_Ejemplo_Boton3.png');
+	/* Posicionamiento */
+	background-position:0px -25px;                                  /* Restamos 25 pixeles a la Y */
+	float:left;
+	padding-top:2px;
+}
+.Boton3:hover .Boton3C { background-position:0px -100px; }          /* Restamos 100 pixeles a la Y */
+
+/* Parte derecha del botón 3 */
+.Boton3D {
+	/* Tamaño */
+	width:6px;
+	height:23px;
+	/* Imagen */
+	background-image:url('http://img.devildrey33.es/Tutorial_HTML5_7_Ejemplo_Boton3.png');
+	/* Posicionamiento */
+	background-position:0px -50px;                                  /* Restamos 50 pixeles a la Y */
+	float:left;
+}
+.Boton3:hover .Boton3D { background-position:0px -125px; }          /* Restamos 125 pixeles a la Y */
+/* -[FIN devildrey33.Boton3]- */

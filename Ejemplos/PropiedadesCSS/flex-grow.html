@@ -1,0 +1,47 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [13/12/2015] para devildrey33.es -->
+<!doctype html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            /* Contenedor flex-box */
+            #ContenedorFlex {
+                max-width:800px;
+                margin:4px;
+                border:1px solid #000;
+                display:flex;
+                background:#EEE;                
+            }
+            /* Objeto hijo del ContenedorFlex */
+            .ObjetoFlex {
+                margin:3px;
+                padding:3px;
+                border:1px solid #444;
+                color:#FFF;
+                text-shadow: 1px 1px 0px #000;
+                flex-grow:1; /* Por defecto todos tienen la proporción 1 */
+                transition:0.5s;
+            }
+            /* Para diferenciar los pares de los impares */
+            .ObjetoFlex:nth-child(odd)  {  background:#AAA; }
+            .ObjetoFlex:nth-child(even) {  background:#666; }
+            /* Objeto hijo resaltado con el ratón */
+            .ObjetoFlex:hover {
+                background:red;                
+                flex-grow:100; /* Proporción 100 a 1 */
+            }
+            /* Propiedades alineadas en una columna */
+            .tab { display:inline-table; min-width:102px; }
+        </style>
+    </head>
+    <body>
+        <p>Pasa el mouse por encima de un objeto para ver el resultado.</p>
+        <!-- Contenedor flexbox para el ejemplo -->
+        <div id='ContenedorFlex'>
+            <div class='ObjetoFlex'>Objeto 1</div>
+            <div class='ObjetoFlex'>Objeto 2</div>
+            <div class='ObjetoFlex'>Objeto 3</div>
+            <div class='ObjetoFlex'>Objeto 4</div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Borde {
+				border-width:5px;
+				border-style:dotted dashed solid double;
+				display:table;
+			}            
+		</style>
+        <script type="text/javascript">
+			function CambiarBorde(Costado) {
+				var Combo = document.getElementById("Bordes_" + Costado);
+				var Valor = Combo.options[Combo.selectedIndex].innerHTML;
+				switch (Costado) {
+					case "left" :   document.getElementById("IDBorde").style.borderLeftStyle = Valor;   break;
+					case "right" :  document.getElementById("IDBorde").style.borderRightStyle = Valor;  break;
+					case "top" :    document.getElementById("IDBorde").style.borderTopStyle = Valor;    break;
+					case "bottom" : document.getElementById("IDBorde").style.borderBottomStyle = Valor; break;
+				}
+			}
+        </script>
+	</head>
+	<body>
+    	<p>En este ejemplo puedes seleccionar el tipo de borde que quieres mostrar en el siguiente div.</p>
+    	Top 
+        <select id='Bordes_top' onChange="CambiarBorde('top')">
+        	<option value ="0">none</option>
+        	<option value ="1">hidden</option>
+        	<option value ="2" selected="selected">dotted</option>
+        	<option value ="3">dashed</option>
+        	<option value ="4">solid</option>
+        	<option value ="5">double</option>
+        	<option value ="6">groove</option>
+        	<option value ="7">ridge</option>
+        	<option value ="8">inset</option>
+        	<option value ="9">outset</option>
+        </select>
+        Right
+    	<select id='Bordes_right' onChange="CambiarBorde('right')">
+        	<option value ="0">none</option>
+        	<option value ="1">hidden</option>
+        	<option value ="2">dotted</option>
+        	<option value ="3" selected="selected">dashed</option>
+        	<option value ="4">solid</option>
+        	<option value ="5">double</option>
+        	<option value ="6">groove</option>
+        	<option value ="7">ridge</option>
+        	<option value ="8">inset</option>
+        	<option value ="9">outset</option>
+        </select>
+        Bottom
+    	<select id='Bordes_bottom' onChange="CambiarBorde('bottom')">
+        	<option value ="0">none</option>
+        	<option value ="1">hidden</option>
+        	<option value ="2">dotted</option>
+        	<option value ="3">dashed</option>
+        	<option value ="4" selected="selected">solid</option>
+        	<option value ="5">double</option>
+        	<option value ="6">groove</option>
+        	<option value ="7">ridge</option>
+        	<option value ="8">inset</option>
+        	<option value ="9">outset</option>
+        </select>
+        Left
+    	<select id='Bordes_left' onChange="CambiarBorde('left')">
+        	<option value ="0">none</option>
+        	<option value ="1">hidden</option>
+        	<option value ="2">dotted</option>
+        	<option value ="3">dashed</option>
+        	<option value ="4">solid</option>
+        	<option value ="5" selected="selected">double</option>
+        	<option value ="6">groove</option>
+        	<option value ="7">ridge</option>
+        	<option value ="8">inset</option>
+        	<option value ="9">outset</option>
+        </select>
+        <br /><br />
+        <div class='Borde' id='IDBorde'><br /><br />Selecciona el tipo de borde.<br /><br /><br /></div>
+	</body>
+</html>

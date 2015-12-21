@@ -1,0 +1,71 @@
+<!-- Icono de un sol animado 
+    Creado el 12/06/2015 por Josep Antoni Bover para devildrey33.es
+-->
+<!doctype html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            html { font-size:62.5%; }
+            .Sol {
+                position:relative;
+                margin:1rem;
+                width:2rem;
+                height:2rem;
+                border-radius:2rem;
+                border:0.3rem solid #333;
+                animation: Rotar360 12s infinite linear;
+            }
+
+            @keyframes Rotar360 {
+                100% { transform: rotate(360deg); }
+            }
+            
+            
+            .Rayos {
+                position: absolute;
+                top: -1.3rem;
+                left: 50%;
+                display: block;
+                width: 0.275rem;
+                height: 0.8rem;
+                margin-left: -0.1875rem;
+                background: #000;
+                border-radius: 1.5rem;
+                box-shadow: 0 3.8rem #000;
+            }
+            .Rayos::before, .Rayos::after {
+              content: '';
+              position: absolute;
+              top: 0rem;
+              left: 0rem;
+              display: block;
+              width: 0.275rem;
+              height: 0.8rem;
+              transform: rotate(60deg);
+              transform-origin: 50% 2.35rem;
+              background: #000;
+              border-radius: 2rem;
+              box-shadow: 0 3.8rem #000;
+            }
+            .Rayos::before {
+              transform: rotate(120deg);
+            }            
+        </style>
+        
+        <!-- Si deseas JQuery descomenta la siguiente línea -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        
+        <!-- Código javascript -->
+        <script type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div style='font-size:300%'>
+            <div class='Sol'>
+                <div class='Rayos'>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

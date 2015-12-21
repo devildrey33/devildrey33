@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+    	<!-- CSS -->
+    	<style type="text/css">
+			div { 
+				overflow:hidden;
+				white-space:nowrap; 
+				width:100px; 
+				border:1px dashed #999;
+				margin:5px;
+			}
+        </style>
+    	<!-- JavaScript -->
+    	<script type="text/javascript">
+        	function CambiarTextOverflow() {
+				var Combo = document.getElementById("ChTO");
+				document.getElementsByTagName("div").item(0).style.textOverflow = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+    </head>
+	<body>
+	    <code>text-overflow:clip;</code>
+        <div style ='text-overflow:clip'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <hr />
+	    <code>text-overflow:ellipsis;</code>
+        <div style ='text-overflow:ellipsis'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+    </body>
+</html>

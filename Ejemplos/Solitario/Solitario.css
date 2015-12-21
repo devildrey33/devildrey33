@@ -1,0 +1,290 @@
+/* Ejemplo creado por Josep Antoni Bover Comas para devildrey33.es el 28/11/2015 
+    Se distribuye bajo licencia Creative Commons. (http://es.creativecommons.org/blog/licencias/) 
+    Versión 1.0
+    Última modificación : 15/12/2015  
+     TODO :
+                - Hacer un set de cartas mas pequeño para resoluciones bajas.
+                - Crear opcion para que juegue solo, para asi poder revisar algunos detalles de la IA.
+                - Revisar la detección de la derrota, he visto alguna cosa rara... pero necesito ver mas..
+ */
+body { 
+    margin:0px; 
+    padding:0px;
+    -webkit-user-select: none; /* Chrome, Safari, y Opera 15 */
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select: none;
+    background:-webkit-radial-gradient(10px 20px, farthest-side, darkgreen 15%, green);
+    background:radial-gradient(10px 20px, farthest-side, darkgreen 15%, green);
+}
+
+Tablero {
+    position:relative;
+    min-width:1240px;
+    min-height:530px;
+    height:100%;
+    display:table;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+Opciones {
+    display:inline-block;
+    left:0px;
+    width:60px;
+    min-height:211px;
+    color:#FFF;
+    text-shadow: 1px 1px 1px #000;
+}
+
+mMenu {
+    position:absolute;
+    z-index:10000;
+}
+mMenu > input {
+    display:none;
+}
+/* Objeto invisible por delante del boton del menú que capta el evento y lo manda al input */
+mMenu > input + label {
+    width:60px;
+    height:60px;
+    position:absolute;
+    z-index:10;
+    cursor:pointer;
+}
+
+
+mMenu > input + label + BotonMenu {
+    display:table;
+    position:absolute;    
+    width:60px;
+    height:60px;
+    transition:0.4s;
+    z-index:9;
+    border:1px solid #333;
+    border-radius:4px;
+    background:rgb(50, 50, 150);
+}
+
+mMenu > input + label:hover + BotonMenu {
+    background:rgb(50, 50, 250); 
+}
+
+
+mMenu > input + label + BotonMenu > IconoMenu::before,
+mMenu > input + label + BotonMenu > IconoMenu::after,
+mMenu > input + label + BotonMenu > IconoMenu {
+    content:'';
+    display:inline-block;
+    position:absolute;
+    width:20px;
+    height:2px;
+    background:#FFF;
+    transition:0.4s;
+}
+
+mMenu > input:checked + label + BotonMenu > IconoMenu {
+    width:0px;
+    left:30px;
+}
+
+mMenu > input + label + BotonMenu > IconoMenu::before { top:-7px; }
+mMenu > input + label + BotonMenu > IconoMenu::after  { top:7px;  }
+
+mMenu > input:checked + label + BotonMenu > IconoMenu::before { top:0px; left:-10px; transform:rotateZ(-45deg); }
+mMenu > input:checked + label + BotonMenu > IconoMenu::after  { top:0px; left:-10px; transform:rotateZ(45deg); }
+
+mMenu > input + label + BotonMenu > IconoMenu {
+    top:29px;
+    left:20px;
+}
+
+mMenu > input:checked + label + BotonMenu > IconoMenu {
+    transform:rotateZ(180deg);
+}
+
+mMenu > input + label + BotonMenu + VentanaMenu,  mMenu > input + label + BotonMenu + DebugIA {
+    position:absolute;
+    top:15px;
+    left:15px;
+    width:5px;
+    height:5px;
+    border:1px solid #333;
+    border-radius:4px;
+    display:inline-block;
+    transition:0.4s;
+    overflow:hidden;
+    opacity:0.3;
+}
+
+mMenu > input:checked + label + BotonMenu + VentanaMenu {
+    width:240px;
+    height:340px;
+    padding:40px 20px;
+    background:rgba(0,0,100, 0.8);
+    opacity:1;
+}
+
+VentanaMenu a       {  color:#DDD; transition:0.3s; }
+VentanaMenu a:hover {  color:yellow; }
+VentanaMenu p {
+    margin:10px;
+}
+
+VentanaMenu button {
+    display:table;
+    margin-left:auto;
+    margin-right:auto;
+    border:1px solid #000;
+    color:#FFF;
+    background:rgb(50, 50, 150);
+    font-size:1.2rem;
+    cursor:pointer;
+    padding:10px;
+    margin:10px;
+    min-width:220px;
+    transition:0.4s;
+}
+
+VentanaMenu button:hover {
+    background:rgb(50, 50, 255); 
+}
+VentanaMenu button > span {
+    font-size:1rem;
+    color:#DDD;
+}
+
+Movimientos {
+    position:relative;
+    display:table;
+    top:100px;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:1.5rem;
+}
+
+Baraja, Solucion, Columna, Opciones /*, Carta:after */ {
+    position:absolute;
+}
+
+Baraja, Solucion, Columna, Carta /*, Carta:after */{
+    display:inline-block;
+    width:148px;
+    min-height:211px;
+    border:1px solid rgb(50, 150, 50);
+    border-radius:4px;
+}
+
+Baraja, Solucion, Opciones {	top:20px;	}
+/* Columna oculta para la imagen del drag & drop */
+Columna[num='0'] { left:-12000px; bottom:0px; }
+
+Baraja[num='1']                         {	left:90px;	}
+Columna[num='1']                        {	left:0px;	}
+Baraja[num='2']                  	{	left:270px;	}
+Columna[num='2']                        {       left:180px;     }
+Columna[num='3']                        {	left:360px;	}
+Solucion[num='1'], Columna[num='4']	{	left:540px;     }
+Solucion[num='2'], Columna[num='5']	{	left:720px;	}
+Solucion[num='3'], Columna[num='6']	{	left:900px;	}
+Solucion[num='4'], Columna[num='7']	{	left:1080px;	}
+
+Columna { top:290px; }
+Columna Carta > Carta { top:25px; }
+/* Cartas dentro de las barajas o de las soluciones */
+Baraja Carta > Carta, Solucion Carta > Carta { top:1px; }
+Carta {
+    background-color:white;
+    margin-top:-1px;
+    margin-left:-1px;
+    border:1px solid #111;
+    position:relative;
+    left:0px;
+    background-image:url('Cartas.png');
+}
+
+Carta[hover], Carta[hover] Carta, Baraja[num='1']:hover {
+    box-shadow: rgb(50,250,250) 0px 0px 7px 2px;
+}
+
+Carta[ayuda1], Carta[ayuda1] Carta, Solucion[ayuda1], Baraja[ayuda1], Columna[ayuda1] {
+    box-shadow: red 0px 0px 12px 6px !important;    
+}
+Carta[ayuda2], Carta[ayuda2] Carta, Solucion[ayuda2], Baraja[ayuda2], Columna[ayuda2] {
+    box-shadow: orange 0px 0px 12px 6px !important;
+}
+
+
+Victoria, Derrota {
+    position:relative;
+    display:none;
+    padding:8px;
+    border-radius:6px;
+    color:#FFF;
+    text-shadow: 1px 1px 1px #000;
+    width:90%;
+    text-align:center;
+    top:243px;
+    font-size:20px;
+    box-shadow:1px 1px 4px #333;
+}
+
+Victoria {
+    background:rgba(0, 255, 0, 0.8);
+    border:1px solid green;    
+}
+
+Derrota {
+    background:rgba(255, 0, 0, 0.8);
+    border:1px solid red;
+}
+/*Carta:after {
+    top:-1px;
+    left:-1px;
+    content:'';
+    background-color:red;
+    border:1px solid #111;
+}*/
+/* Oculto la cara trasera si la carta no está tapada */
+/*Carta[Tapada='false']:after {
+    display:none;
+}*/
+
+Carta[palo='1'], Carta[palo='2']  {    color:red;    }
+Carta[palo='3'], Carta[palo='4']  {    color:black;  }
+
+Carta[valor='1']  { background-position-x: -2px; }
+Carta[valor='2']  { background-position-x: -166px; }
+Carta[valor='3']  { background-position-x: -331px; }
+Carta[valor='4']  { background-position-x: -495px; }
+Carta[valor='5']  { background-position-x: -660px; }
+Carta[valor='6']  { background-position-x: -825px; }
+Carta[valor='7']  { background-position-x: -989px; }
+Carta[valor='8']  { background-position-x: -1154px; }
+Carta[valor='9']  { background-position-x: -1318px; }
+Carta[valor='10'] { background-position-x: -1483px; }
+Carta[valor='11'] { background-position-x: -1647px; }
+Carta[valor='12'] { background-position-x: -1811px; }
+Carta[valor='0']  { background-position-x: -1976px; }
+
+Carta[palo='2'] { background-position-y:-2px; }
+Carta[palo='3'] { background-position-y:213px; }
+Carta[palo='1'] { background-position-y:444px; }
+Carta[palo='4'] { background-position-y:675px; }
+
+Carta[Tapada='true'] {
+    background-position-y:448px !important; 
+    background-position-x:-2141px !important;
+}
+
+body[debug] debugia {
+    display:table;
+}
+
+debugia {
+    border:1px solid 
+}
+
+palo[num='1'] {
+    
+}

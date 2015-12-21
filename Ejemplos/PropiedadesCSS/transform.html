@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Objeto {
+                position:absolute;
+				display:table;
+				width:200px;
+				height:200px;
+                border:1px solid #000;
+                color:#FFF;
+			}
+            #Original {
+                background-color:#999;
+            }
+            #Transform {
+                background-color:#009;
+                opacity:0.8;
+                z-index:11;
+            }
+		</style>
+	    <script type="text/javascript">
+        	function CambiarTransform() {
+				var Combo = document.getElementById("ChTransform");
+				document.getElementById("Transform").style.transform = Combo.options[Combo.selectedIndex].innerHTML;
+				document.getElementById("Transform").style.webkitTransform = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body>
+       	<div class='Marco'>
+            <code>transform:</code>
+            <select id='ChTransform' onChange="CambiarTransform()">
+                <option>none</option>
+                <option>matrix(0.75, 0.5, -0.5, 0.75, 0, 0)</option>
+                <option>perspective(250px) matrix3d(1, 0, 0, 0,   0, 0.5, -0.866, 0,    0, 0.866, 0.5, 0,   0, 0, 0, 1)</option>
+                <option>translate(100px, 100px)</option>
+                <option>translateX(100px)</option>
+                <option>translateY(100px)</option>
+	            <option>perspective(250px) translateZ(20px)</option>
+                <option>scale(0.9, 0.9)</option>
+                <option>perspective(250px) scale3d(1, 0.5, 0.5)</option>
+                <option>scaleX(0.8)</option>
+                <option>scaleY(0.8)</option>
+                <option>perspective(250px) scaleZ(0.8)</option> <!-- :/ -->
+                <option>rotate(90deg)</option>
+                <option>rotate3d(10, 10, 10, 45deg)</option>
+                <option>perspective(250px) rotateX(30deg)</option>
+                <option>perspective(250px) rotateY(30deg)</option>
+                <option>perspective(250px) rotateZ(30deg)</option>
+                <option>skew(20deg, 20deg)</option>
+                <option>skewX(45deg)</option>
+                <option>skewY(45deg)</option>
+            </select>
+            <code>;</code>
+        </div>
+		<br />
+		<div class='Objeto' id='Original'>Original</div>
+		<div class='Objeto' id='Transform'>Transform</div>
+	</body>
+</html>

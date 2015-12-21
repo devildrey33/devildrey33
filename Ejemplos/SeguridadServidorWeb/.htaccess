@@ -1,0 +1,44 @@
+<Limit GET>
+order allow,deny
+#INICIO ips baneadas
+deny from 213.5.64.19 		#spamer conocido
+#FIN ips baneadas
+allow from all
+</Limit> 
+
+Redirect 301 /muieblackcat 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /admin 			http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /admin/pma 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /db 			http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /dbadmin 			http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /myadmin 			http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /mysql 			http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /mysqladmin 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /typo3/phpmyadmin 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpadmin 			http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpMyAdmin 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpmyadmin 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpmyadmin1 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpmyadmin2 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /pma 			http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /web/phpMyAdmin 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /xampp/phpmyadmin 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /websql 			http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpMyAdmin-2 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /php-my-admin 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpMyAdmin-2.2.3 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpMyAdmin-2.2.6 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.1 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.4 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.5-rc1 	http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.5-rc2 	http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.5-pl1 	http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.6-rc1 	http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.6-rc2 	http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.6 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.7 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.7-pl1 	http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /wp-login.php 		http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /blog/wp-login.php 	http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /wordpress/wp-login.php 	http://www.devildrey33.es/devildrey33_BanearIP.php
+Redirect 301 /wp/wp-login.php 		http://www.devildrey33.es/devildrey33_BanearIP.php

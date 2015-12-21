@@ -1,0 +1,31 @@
+<!-- documento creado por Josep Antoni Bover para devildrey33.es, ultima modificación [12/01/2014] -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Padre { position:relative; height:600px; }
+			.Bottom1 { background:#006; position:absolute; bottom:100px; }          /* AZUL */
+			.Bottom2 { background:#060; position:relative; bottom:-100px; }         /* VERDE */
+			.Bottom3 { background:#600; position:fixed; bottom:0px; }               /* ROJO */
+			.Bottom1, .Bottom2, .Bottom3 { border:1px solid #BBB; padding:4px; color:#ddd; }
+			code { font-weight:bolder; color:#fff; }
+		</style>
+	</head>
+	<body>
+    	<div class='Padre'>
+            <div class='Bottom1'> <!-- AZUL -->
+                Elemento con la posición absoluta que empieza desde abajo del padre. 
+                "<code>position:absolute; bottom:100px;</code>"
+            </div>
+            <div class='Bottom2'> <!-- VERDE -->
+                Elemento con la posición relativa que empieza 100 pixeles mas abajo de su posición original. 
+                "<code>position:relative; bottom:-100px;</code>"
+            </div>
+            <div class='Bottom3'> <!-- ROJO -->
+                Elemento con la posición fija que se muestra siempre pegado al final de la ventana. 
+                "<code>position:fixed; bottom:0px;</code>"
+            </div>
+        </div>
+	</body>
+</html>

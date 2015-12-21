@@ -1,0 +1,17 @@
+<Menu>
+	<CrearMenu Nombre="Padre 1" Url="">
+		<CrearMenu Nombre="SubMenu 1.1" Url="">
+			<CrearMenu Nombre="SubMenu 1.1.1" Url="javascript:alert('SubMenu')">
+				<CrearMenu Nombre="SubMenu 1.1.1.1" Url="javascript:alert('SubMenu')" />
+			</CrearMenu>
+		</CrearMenu>
+		<CrearMenu Nombre="SubMenu 1.2" Url="" />
+		<CrearMenu Nombre="SubMenu 1.3" Url="" />
+		<CrearMenu Nombre="SubMenu 1.4" Url="">
+			<CrearMenu Nombre="SubMenu 1.4.1" Url="javascript:alert('SubMenu')" />
+		</CrearMenu>
+	</CrearMenu>
+	<CrearMenu Nombre="Padre 2" Url="">
+		<CrearMenu Nombre="SubMenu 2.1" Url="javascript:alert('SubMenu')" />
+	</CrearMenu>
+</Menu>

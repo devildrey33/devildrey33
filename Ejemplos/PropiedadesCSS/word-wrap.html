@@ -1,0 +1,34 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [02/01/2014] para devildrey33.es -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">	
+			#Texto {	
+				word-wrap:normal;	
+				width:100px;
+				border:1px solid #CCC;
+			}
+		</style>
+        <script type="text/javascript">
+			function CambiarWordWrap() {
+				var Combo = document.getElementById("ChWordWrap");
+				document.getElementById("Texto").style.wordWrap = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body>
+    	<code>#Texto {</code><br />
+        <code>&nbsp; &nbsp; word-wrap:</code>
+    	<select id='ChWordWrap' onChange="CambiarWordWrap()">
+        	<option>normal</option>
+        	<option>break-word</option>
+		</select>        
+        <code>;</code><br />
+        <code>}</code>
+        <div id='Texto'>
+			esto es un texto que contiene UnaPalabraSobradamenteAncha para poder comprobar 
+            la propiedad <code>word-break</code> dentro de un div con un ancho limitado.
+        </div>
+ 	</body>
+</html>

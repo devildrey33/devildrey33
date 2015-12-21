@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">	
+			/* Propiedades para la transición comunes para todos los objetos */
+			.Transicion {
+				-webkit-transition:width 5s linear 0s, height 5s linear 0s; /* Safari */
+				transition:width 5s linear 0s, height 5s linear 0s;         /* Todos  */
+				background-color:#F30;
+				width:50px;
+				height:50px;				
+			}
+			/* Valores que debe adquirir la transición al pasar por encima el mouse */
+			.Transicion:hover {
+				width:250px;
+				height:250px;				
+			}
+		</style>
+	</head>
+	<body>
+        <p>Pasa el mouse por encima del cuadrado para ver como se hace mas grande.</p>
+        <p><b>NOTA : </b> Este ejemplo no funciona en Internet Explorer 9 e inferiores!</p>
+    	<div class='Transicion'>
+        </div>
+	</body>
+</html>

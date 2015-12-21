@@ -1,0 +1,30 @@
+/* Archivo que contiene los colores para pintar el código CSS */
+.Codigo_Verde {
+	color: #006600;
+	font-family: Courier New;
+	font-size: 12px;
+}
+
+.Codigo_Azul {
+	font-family: Courier New;
+	font-size: 12px;
+	color: #0000FF;
+}
+
+.Codigo_AzulOscuro {
+	font-family: Courier New;
+	font-size: 12px;
+	color:#009;
+}
+
+.Codigo_Gris {
+	font-family: Courier New;
+	font-size: 12px;
+	color:rgb(128, 128, 128);
+}
+
+.Codigo_Rosa {
+	font-family: Courier New;
+	font-size: 12px;
+	color:rgb(255, 58, 255);
+}

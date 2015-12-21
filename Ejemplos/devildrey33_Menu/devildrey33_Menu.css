@@ -1,0 +1,109 @@
+/* Estilos para los menus */
+.devildrey33_Menu {
+/*	float:right;*/
+	display:table;
+	position:relative;
+}
+
+.devildrey33_MenuSuperior {
+	float:left;
+	display:table;
+	position:relative;
+	top:7px;
+	padding-left:3px;
+	padding-right:3px;
+	padding-top:4px;
+	margin-right:10px;
+	font-family:'UbuntuTitlingBold';
+	background-color:#333;
+	border-color:#000;
+	border-style:solid;
+	border-width:1px;
+	font-size:18px;
+	border-radius:4px;
+	color:#FFFFFF;
+}
+
+.devildrey33_MenuSuperior a { color:#FFFFFF; text-decoration:none; }
+.devildrey33_MenuSuperior_Resaltado a {	color:#FF0; text-decoration:none; }
+.devildrey33_MenuSuperior_Resaltado a:hover { color:#FF0; text-decoration:none; }
+
+.devildrey33_MenuSuperior_Resaltado {
+	float:left;
+	display:table;
+	position:relative;
+	top:7px;
+	padding-left:3px;
+	padding-right:3px;
+	padding-top:4px;
+	margin-right:10px;
+	font-family:'UbuntuTitlingBold';
+	background-color:#333;
+	border-color:#000;
+	border-style:solid;
+	border-width:1px;
+	font-size:18px;
+	color:#FF0;
+	opacity:0.95;
+	z-index:10001;
+	border-radius:4px 4px 0px 0px;
+	background-color:#444;
+	border-bottom-width:0px;
+	padding-bottom:8px;
+	cursor:pointer;
+}
+
+.devildrey33_SubMenu {
+	position:fixed;
+	display:none;
+	background-color:#444;
+	border-color:#000;
+	border-style:solid;
+	border-width:1px;
+	border-top-width:0px;
+	z-index:10000;
+	padding:3px;
+	opacity:0.95;
+}
+
+.devildrey33_SubMenuItem {
+	font-family:'UbuntuTitlingBold';
+	font-size:12px;
+	color:#FFF;
+	padding-left:4px;
+	padding-right:4px;
+	padding-top:6px;
+	padding-bottom:2px;
+}
+
+.devildrey33_SubMenuItem a { color:#FFF; text-decoration:none; }
+
+.devildrey33_SubMenuItem_Resaltado {
+	font-family:'UbuntuTitlingBold';
+	font-size:12px;
+	background-color:#F30;
+	border-radius:2px;
+	color:#FF0;
+	padding-left:4px;
+	padding-right:4px;
+	padding-top:6px;
+	padding-bottom:2px;
+	cursor:pointer;
+}
+
+.devildrey33_SubMenuItem_Resaltado a { color:#FF0; text-decoration:none; }
+.devildrey33_SubMenuItem_Resaltado a:hover { color:#FF0; text-decoration:none; }
+
+.devildrey33_SubMenuItem_Resaltado .devildrey33_SubMenuFlecha {
+	background-position:5px 0px;
+}
+
+.devildrey33_SubMenuFlecha {
+	display:table-column;
+	margin-left:5px;
+	background-image:url("../Graficos/FlechaDerecha.png");
+	width:5px;
+	height:12px;
+	float:right;
+	position:relative;
+}

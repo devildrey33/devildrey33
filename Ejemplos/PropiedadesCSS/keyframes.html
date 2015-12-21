@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+            .ObjetoAnimado {
+                position:relative;
+				-webkit-animation:MiAnimacion 2s ease 0 infinite alternate; /* Chrome y Safari */
+				animation:MiAnimacion 2s ease 0 infinite alternate;
+            }
+            
+            /* Animación para Chrome y Safari */    
+            @-webkit-keyframes MiAnimacion {
+                0%   { width:0px; height:0px; background-color:rgba(0, 120, 0, 0.0); }      /* Al principio de la animación */
+                100% { width:100px; height:100px; background-color:rgba(0, 120, 0, 1.0); }  /* Al final de la animación */
+            }
+            
+            
+            /* Animación para todos (Firefox, Opera, IE10+) */    
+            @keyframes MiAnimacion {
+                0%   { width:0px; height:0px; background-color:rgba(0, 120, 0, 0.0); }      /* Al principio de la animación */
+                100% { width:100px; height:100px; background-color:rgba(0, 120, 0, 1.0); }  /* Al final de la animación */
+            }
+            
+		</style>
+    	<!-- Código javascript -->
+		<script type="text/javascript">
+		</script>
+	</head>
+	<body>
+        <p>
+            En este ejemplo hay una animación que dura 5 segundos.<br />
+            Al principio (0%) el recuadro tiene 0 pixeles de ancho y alto, además es 100% translucido.<br />
+            Al final (100%) el recuadro tiene 100 pixeles de ancho y alto, además es 100% opaco.<br />
+            Como se ha especificado en el animation "<i>alternate</i>" la animacion se invierte al terminar.
+        </p>
+        <p><b>NOTA : </b> Este ejemplo no funciona en Internet Explorer 9 e inferiores!</p>
+        <div class='ObjetoAnimado'></div>
+	</body>
+</html>

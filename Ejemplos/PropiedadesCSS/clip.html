@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Elemento {
+				position:absolute;
+				width:100px;
+				height:100px;
+				background:#09F;
+				border:1px solid #000;
+				clip:rect(0px, 102px, 102px, 0px);
+			}
+		</style>
+        <script type="text/javascript">
+			function CambiarClip() {
+				var Combo = document.getElementById("ChClip");
+				document.getElementsByClassName("Elemento").item(0).style.clip = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body>
+        <select id='ChClip' onChange="CambiarClip()">
+            <option>auto</option>
+            <option>rect(20px, 80px, 80px, 20px)</option>
+            <option>rect(0px, 30px, 30px, 0px)</option>
+            <option>rect(60px, 102px, 102px, 60px)</option>
+        </select><br /><br />
+    	<div class='Elemento'>Espeficica el rectangulo que debe mostrarse de este elemento.</div>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+    <head>
+<title>Bola expandible</title>
+<style>
+        .Bola_Expandible {
+            width:40px;
+            height:40px;
+            position:relative;
+            border-radius:20px;
+            box-shadow:2px 2px 2px #999;
+            margin:4px;
+            -webkit-transition-property:width;
+            -webkit-transition-duration:0.3s;	
+            transition-property:width;
+            transition-duration:0.3s;	
+        }
+
+        .Bola_Expandible:hover {
+            width:100px;
+        }
+
+        .Bola_Expandible .Bola_Expandible_Texto {
+            -webkit-transition-property:color, text-shadow;
+            -webkit-transition-duration:0.3s, 0.3s;	
+            transition-property:color, text-shadow;
+            transition-duration:0.3s, 0.3s;	
+            color:#000;
+            text-shadow:1px 1px 1px #AAA;
+        }
+
+        .Bola_Expandible:hover .Bola_Expandible_Texto {
+            color:#FFF;
+            text-shadow:1px 1px 1px #000;
+        }
+
+        .Bola_Expandible_Texto {
+            padding-top:11px;
+            padding-bottom:11px;
+            padding-left:50px;
+            font-size:14px;
+        }
+    </style>
+    </head>
+    <body>
+    <div class='Bola_Expandible' style='background:red;'>
+        <div class='Bola_Expandible_Texto'>Rojo</div>
+    </div>
+    <div class='Bola_Expandible' style='background:green;'>
+        <div class='Bola_Expandible_Texto'>Verde</div>
+    </div>
+    <div class='Bola_Expandible' style='background:blue;'>
+        <div class='Bola_Expandible_Texto'>Azul</div>
+    </div>
+    </body>
+</html>

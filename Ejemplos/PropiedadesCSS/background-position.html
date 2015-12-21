@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			/* Fondo */
+			body { 
+				background-image:url('http://img.devildrey33.es/logo100.png');
+				background-repeat:no-repeat;
+			}
+			/* Marco */
+			.Marco {
+				border:1px solid #CCC;
+				display:table;
+				margin-left:200px;
+			}
+		</style>
+        <script type="text/javascript">
+			/* Función que desmarca los checks y marca solo el proporcionado por la ID */ 
+			function MarcarCheck(ID) {
+				document.getElementById("KW").checked = false;
+				document.getElementById("PC").checked = false;
+				document.getElementById("PX").checked = false;
+				document.getElementById(ID).checked = true;
+			}
+			/* Función que posiciona el fondo según los keywords */
+        	function FondoKeyWord() {
+				var ComboH = document.getElementById("KW_H");
+				TextoEstilo = ComboH.options[ComboH.selectedIndex].innerHTML;
+				var ComboV = document.getElementById("KW_V");
+				TextoEstilo = TextoEstilo + " " + ComboV.options[ComboV.selectedIndex].innerHTML;
+				document.getElementById("Codigo").innerHTML = "background-position:" + TextoEstilo + ";";
+				document.body.style.backgroundPosition = TextoEstilo;
+				MarcarCheck("KW");
+			}
+			/* Función que posiciona el fondo según los porcentajes */
+        	function FondoPorcentaje() {
+				var ComboH = document.getElementById("PC_H");
+				TextoEstilo = ComboH.options[ComboH.selectedIndex].innerHTML;
+				var ComboV = document.getElementById("PC_V");
+				TextoEstilo = TextoEstilo + " " + ComboV.options[ComboV.selectedIndex].innerHTML;
+				document.body.style.backgroundPosition = TextoEstilo;
+				document.getElementById("Codigo").innerHTML = "background-position:" + TextoEstilo + ";";
+				MarcarCheck("PC");
+			}
+			/* Función que posiciona el fondo según los pixeles */
+        	function FondoPixeles() {
+				var ComboH = document.getElementById("PX_H");
+				TextoEstilo = ComboH.options[ComboH.selectedIndex].innerHTML;
+				var ComboV = document.getElementById("PX_V");
+				TextoEstilo = TextoEstilo + " " + ComboV.options[ComboV.selectedIndex].innerHTML;
+				document.body.style.backgroundPosition = TextoEstilo;
+				document.getElementById("Codigo").innerHTML = "background-position:" + TextoEstilo + ";";
+				MarcarCheck("PX");
+			}
+        </script>
+	</head>
+	<body>
+    	<div class='Marco'>
+        	<label><input type="checkbox" checked="checked" id="KW" disabled="true">Keywords</label>
+        	<br />
+            <select id='KW_H' onChange="FondoKeyWord()">
+				<option value ="0">left</option>            
+				<option value ="1">right</option>            
+				<option value ="2">center</option>            
+            </select>
+            <select id='KW_V' onChange="FondoKeyWord()">
+				<option value ="0">top</option>            
+				<option value ="1">bottom</option>            
+				<option value ="2">center</option>            
+            </select>
+        </div>
+        <br />
+    	<div class='Marco'>
+        	<label><input type="checkbox" id="PC" disabled="true">Porcentajes</label>
+        	<br />
+            <select id='PC_H' onChange="FondoPorcentaje()">
+				<option value ="0">0%</option>            
+				<option value ="1">25%</option>            
+				<option value ="2">50%</option>            
+				<option value ="3">75%</option>            
+				<option value ="4">100%</option>            
+            </select>
+            <select id='PC_V' onChange="FondoPorcentaje()">
+				<option value ="0">0%</option>            
+				<option value ="1">25%</option>            
+				<option value ="2">50%</option>            
+				<option value ="3">75%</option>            
+				<option value ="4">100%</option>            
+            </select>
+        </div>
+        <br />
+    	<div class='Marco'>
+        	<label><input type="checkbox" id="PX" disabled="true">Pixeles</label>
+        	<br />
+            <select id='PX_H' onChange="FondoPixeles()">
+				<option value ="0">0px</option>            
+				<option value ="1">25px</option>            
+				<option value ="2">50px</option>            
+				<option value ="3">75px</option>            
+				<option value ="4">100px</option>            
+            </select>
+            <select id='PX_V' onChange="FondoPixeles()">
+				<option value ="0">0px</option>            
+				<option value ="1">25px</option>            
+				<option value ="2">50px</option>            
+				<option value ="3">75px</option>            
+				<option value ="4">100px</option>            
+            </select>
+        </div>
+        <br />
+        <div class='Marco'>
+	        <code id='Codigo'>background-position:0px 0px;</code>
+        </div>
+	</body>
+</html>

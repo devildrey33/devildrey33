@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Javascript para cambiar el estilo de la fuente -->
+        <script type="text/javascript">
+			function CambiarFuente() {
+				var Combo = document.getElementById("EstiloFuente");
+				document.getElementById("IDEstiloFuente").style.fontStyle = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body onLoad="CambiarFuente()">
+    	<p>En este ejemplo puedes seleccionar estilo que se usara para mostrar la fuente.</p>
+    	<select id='EstiloFuente' onChange="CambiarFuente()">
+        	<option value ="0">normal</option>
+        	<option value ="1">italic</option>
+        	<option value ="2">oblique</option>
+        	<option value ="3">inherit</option>
+        </select>
+        <span id='IDEstiloFuente'>Selecciona el estilo para la fuente.</span>
+	</body>
+</html>

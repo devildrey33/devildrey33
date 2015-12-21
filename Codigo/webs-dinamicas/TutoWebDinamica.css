@@ -1,0 +1,97 @@
+body {
+    margin:0px;
+    transition:0.3s;
+    background:#FFF;
+}
+/* Fondo negro al cargar un documento dinámico */
+body[cargando] {
+    background:#111;
+}
+
+h1 {
+    margin-bottom:0px;
+    padding-bottom:0px;
+}
+/* Texto cargando en medio de la pantalla */
+body[cargando]::after {
+    content:'Cargando';
+    position:fixed;
+    top:calc(50% - 23px);
+    left:calc(50% - 78px);
+    color:rgb(0, 200, 0);
+    font-size:40px;
+    text-shadow: 0px 0px 2px rgb(50, 50, 50);  
+}
+
+/* Div oculto que contiene datos sobre la página */
+#InformacionDinamica {
+    display:none;
+}
+
+#MarcoDinamico {
+    padding:10px 100px;  
+}
+
+#MenuSuperior {
+    background:#111;
+    display:table;
+    width:100%;
+}
+
+#MenuSuperior > ul {
+    list-style: none;
+    padding:0px;
+    display:table;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#MenuSuperior > ul > li {
+    display:inline-table;
+}
+
+
+#MenuSuperior > ul > li > a {
+    color:#FFF !important;
+    padding:5px 10px;
+    margin:2px;
+    background:#444;
+    transition:0.4s;
+    border:1px solid rgb(94, 94, 94);
+}
+
+/* Menus marcados 
+    La función ActualizarContenido actualiza el atributo 'archivo' del <ul> cada vez que se carga una pagina. */
+#MenuSuperior > ul[archivo="Amarillo.php"]  > li > a[href="Amarillo.php"],
+#MenuSuperior > ul[archivo="Azul.php"]      > li > a[href="Azul.php"],
+#MenuSuperior > ul[archivo="Verde.php"]     > li > a[href="Verde.php"],
+#MenuSuperior > ul[archivo="Rojo.php"]      > li > a[href="Rojo.php"],
+#MenuSuperior > ul[archivo="Blanco.php"]    > li > a[href="Blanco.php"],
+#MenuSuperior > ul[archivo="Negro.php"]     > li > a[href="Negro.php"]   {   
+    background:rgb(0, 200, 0);  
+    border:1px solid rgb(155, 155, 155); 
+    text-shadow: 0px 0px 1px rgb(50, 50, 50);  
+}
+
+
+#MenuSuperior > ul > li > a:hover {
+    background:#777;
+}
+
+nota {
+    border:1px solid rgb(200, 200, 200);
+    background-color:rgb(249, 249, 222);
+    display:table;
+    margin:3px;
+    padding:3px 4px 3px 3px;
+    transition:0.3s;
+}
+
+body[cargando] nota {
+    background-color:#111;
+}
+
+/*#MarcoDinamico > .EnlacesPie {
+    width:200px;
+    -webkit-column-count:2;
+}*/

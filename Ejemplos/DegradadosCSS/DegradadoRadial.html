@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Caja { 
+				float:left;
+				width:200px;
+				height:200px;
+				margin-right:20px;
+				border-radius:4px;
+				border:1px solid #999;
+			}
+			
+			.EjemploRadialSimple {
+				background:-webkit-radial-gradient(rgb(0, 0, 200), rgba(255, 255, 255, 0.08));
+				background:-moz-radial-gradient(rgb(0, 0, 200), rgba(255, 255, 255, 0.08));
+				background:-o-radial-gradient(rgb(0, 0, 200), rgba(255, 255, 255, 0.08));
+				background:radial-gradient(rgb(0, 0, 200), rgba(255, 255, 255, 0.08));
+			}
+	
+			.EjemploRadial2 { 
+				background:-webkit-radial-gradient(30px 60px, farthest-side, #FFFFFF 15%, green 90%, rgb(0, 100, 0)); 
+				background:-moz-radial-gradient(30px 60px, farthest-side, #FFFFFF 15%, green 90%, rgb(0, 100, 0)); 
+				background:-o-radial-gradient(30px 60px, farthest-side, #FFFFFF 15%, green 90%, rgb(0, 100, 0)); 
+				background:radial-gradient(30px 60px, farthest-side, #FFFFFF 15%, green 90%, rgb(0, 100, 0)); 
+			}
+		</style>
+	</head>
+	<body>
+    	<p>Este ejemplo no funciona en IE9 e inferiores!</p>
+    	<div class='Caja EjemploRadialSimple'></div>
+    	<div class='Caja EjemploRadial2'></div>
+	</body>
+</html>

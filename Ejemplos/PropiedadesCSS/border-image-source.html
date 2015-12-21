@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Borde {
+				border:15px solid transparent;
+				width:330px;
+				height:20px;
+			}
+			.BordeImagen {	
+				border-image-source:url('http://img.devildrey33.es/border-image.png');
+				border-image-width:15px;
+				border-image-repeat:stretch;	
+				border-image-slice:33%;
+				border-image-outset:0;
+			}			
+			.BordeDegradado   {	
+				border-image-source:linear-gradient(rgb(255, 0, 0), rgb(100, 0, 0));
+				border-image-width:15px;
+				border-image-repeat:stretch;	
+				border-image-slice:33%;
+				border-image-outset: 0;			
+			}
+			.Degradado {
+				display:table;
+				width:90px;
+				height:90px;
+				background-image:linear-gradient(rgb(255, 0, 0), rgb(100, 0, 0));
+			}
+		</style>
+	</head>
+	<body>
+    	<div class='Borde BordeImagen'>Borde creado a partir de una imagen.</div>
+        <br />
+    	<div class='Borde BordeDegradado'>Borde creado a partir de un degradado.</div>
+        <br />
+        Imagen utilizada de 90x90 para el borde de la imagen.<br />
+        <img src='http://img.devildrey33.es/border-image.png' />
+        <br />
+        Degradado utilizado para el borde degradado.<br />
+        <div class="Degradado" ></div>
+        <p><b>NO</b> funciona en IE 10 e inferiores.</p>
+	</body>
+</html>

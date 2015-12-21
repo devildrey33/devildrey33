@@ -1,0 +1,42 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [11/01/2014] para devildrey33.es -->
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			#TextoDecorado { 
+				text-decoration:underline;
+				-webkit-text-decoration-style:wavy;	/* No funciona */
+				-moz-text-decoration-style:wavy;	/* Solo funciona en firefox */
+				-ms-text-decoration-style:wavy;		/* No funciona */
+				text-decoration-style:wavy;			/* No funciona */
+			}
+		</style>
+	    <script type="text/javascript">
+        	function CambiarDecorado() {
+				var Combo = document.getElementById("ComboDecorado");
+				var Valor = Combo.options[Combo.selectedIndex].innerHTML;
+				document.getElementById("TextoDecorado").style.webkitTextDecorationStyle = Valor; 	/* No funciona */
+				document.getElementById("TextoDecorado").style.mozTextDecorationStyle = Valor;		/* No funciona */
+				document.getElementById("TextoDecorado").style.msTextDecorationStyle = Valor;		/* No funciona */
+				document.getElementById("TextoDecorado").style.textDecorationStyle = Valor;			/* No funciona */
+			}
+        </script>
+	</head>
+	<body>
+    	<p><code>#TextoDecorado { text-decoration-style:</code> 
+        <select id='ComboDecorado' onChange="CambiarDecorado()">
+            <option>solid</option>
+            <option>double</option>
+            <option>dotted</option>
+            <option>dashed</option>
+            <option selected='selected'>wavy</option>
+        </select>
+        
+        <code>; }</code></p>
+    	<p id='TextoDecorado'>Prueba a cambiar el valor de <code>text-decoration-style</code></p>
+        <p>Este ejemplo solo funciona en FireFox.</p>
+        <p><b>NOTA : </b>El ComboBox no funciona ya que el objeto style no responde a 
+        '<code>mozTextDecorationStyle</code>' ni a '<code>textDecorationStyle</code>'.</p>
+    </body>
+</html>

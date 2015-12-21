@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Borde {
+				border-width:5px;
+				border-style:solid;
+			}            
+		</style>
+        <script type="text/javascript">
+			function CambiarBorde() {
+				var Combo = document.getElementById("Bordes");
+				document.getElementById("IDBorde").style.borderTopStyle = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body onLoad="CambiarBorde()">
+    	<p>En este ejemplo puedes seleccionar el tipo de borde superior que quieres mostrar en el siguiente span.</p>
+    	<select id='Bordes' onChange="CambiarBorde()">
+        	<option>none</option>
+        	<option>hidden</option>
+        	<option>dotted</option>
+        	<option>dashed</option>
+        	<option>solid</option>
+        	<option>double</option>
+        	<option>groove</option>
+        	<option>ridge</option>
+        	<option>inset</option>
+        	<option>outset</option>
+        </select>
+        <span class='Borde' id='IDBorde'>Selecciona el tipo de borde superior.</span>
+	</body>
+</html>

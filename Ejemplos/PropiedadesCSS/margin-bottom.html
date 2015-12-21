@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Marco { 
+				border:1px solid #CCC;
+				display:table
+			}
+			#ObjetoMargen {
+				background-color:#09F;
+				border:1px solid #CCC;
+			}
+		</style>
+        <script type="text/javascript">
+        	function CambiarMargen() {
+				document.getElementById("ObjetoMargen").style.marginBottom = ObtenerMargenCheck("ChBottom");
+			}
+			
+			function ObtenerMargenCheck(ID) {
+				var Combo = document.getElementById(ID);
+				return Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body>
+    	<div class='Marco'>
+            <code>margin-bottom:</code>
+            <select id='ChBottom' onChange="CambiarMargen()">
+                <option value ="0">1px</option>
+                <option value ="1">5px</option>
+                <option value ="2">10px</option>
+                <option value ="3">25px</option>
+            </select>
+            <code>;</code>
+        </div>
+        <br />
+        <div class='Marco'>
+            <div id='ObjetoMargen'>Objeto</div>
+        </div>
+	</body>
+</html>

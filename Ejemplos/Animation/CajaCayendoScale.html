@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+/* -[INICIO devildrey33.Animacion]- */
+.Animacion {
+	width:155px;                              /* Ancho */
+	height:125px;                             /* Altura */
+	position:relative;                        /* Posición relativa (permite mover el objeto) */
+	background-color:#FFF;                    /* Fondo blanco */
+	border:solid 1px #333;                    /* Borde de 1 pixel negro */
+	float:left;                               /* Alineado hacia la izquierda */
+	margin-left:20px;                         /* Margen de 20 pixeles a la izquierda */
+	-webkit-animation:CajaCayendo 1s linear;  /* Animación para Chrome y Safari */
+	-moz-animation:CajaCayendo 1s linear;     /* Animación para FireFox */
+	-ms-animation:CajaCayendo 1s linear;      /* Animación para IE 10 */
+	-o-animation:CajaCayendo 1s linear;       /* Animación para Opera */
+	animation:CajaCayendo 1s linear;          /* Animación para navegadores modernos (en un futuro) */
+}
+/* -[FIN devildrey33.Animacion]- */
+
+/* -[INICIO devildrey33.Duracion]- */
+/* Varias duraciones distintas para la animación del banner */
+.Duracion1 { -webkit-animation-duration:0.5s;   -moz-animation-duration:0.5s;   
+             -ms-animation-duration:0.5s;       -o-animation-duration:0.5s;     animation-duration:0.5s;   }
+			 
+.Duracion2 { -webkit-animation-duration:0.4s;   -moz-animation-duration:0.4s;   
+             -ms-animation-duration:0.4s;       -o-animation-duration:0.4s;     animation-duration:0.4s;   }
+			 
+.Duracion3 { -webkit-animation-duration:0.45s;  -moz-animation-duration:0.45s;
+             -ms-animation-duration:0.45s;      -o-animation-duration:0.45s;    animation-duration:0.45s;  } 
+			 
+.Duracion4 { -webkit-animation-duration:0.3s;   -moz-animation-duration:0.3s;   
+             -ms-animation-duration:0.3s;       -o-animation-duration:0.3s;     animation-duration:0.3s;   }
+			 
+.Duracion5 { -webkit-animation-duration:0.55s;  -moz-animation-duration:0.55s;  
+             -ms-animation-duration:0.55s;      -o-animation-duration:0.55s;    animation-duration:0.55s;  }
+			 
+.Duracion6 { -webkit-animation-duration:0.375s; -moz-animation-duration:0.375s;
+             -ms-animation-duration:0.375s;     -o-animation-duration:0.375s;   animation-duration:0.375s; }
+/* -[FIN devildrey33.Duracion]- */
+			
+/* -[INICIO devildrey33.CajaCayendo]- */
+@-webkit-keyframes CajaCayendo {
+	0%  { top:-600px; }
+	75% { top:0px; -webkit-transform: scale(1, 1); }
+	90% { top:15px; -webkit-transform: scale(1, 0.8); } 
+	100% { top:0px; -webkit-transform: scale(1, 1); }
+}
+/* -[FIN devildrey33.CajaCayendo]- */
+
+@-moz-keyframes CajaCayendo {
+	0%  { top:-600px; }
+	75% { top:0px; -moz-transform: scale(1, 1); }
+	90% { top:15px; -moz-transform: scale(1, 0.8); } 
+	100% { top:0px; -moz-transform: scale(1, 1); }
+}
+
+@-ms-keyframes CajaCayendo {
+	0%  { top:-600px; }
+	75% { top:0px; -ms-transform: scale(1, 1); }
+	90% { top:15px; -ms-transform: scale(1, 0.8); } 
+	100% { top:0px; -ms-transform: scale(1, 1); }
+}
+
+@-o-keyframes CajaCayendo {
+	0%  { top:-600px; }
+	75% { top:0px; -o-transform: scale(1, 1); }
+	90% { top:15px; -o-transform: scale(1, 0.8); } 
+	100% { top:0px; -o-transform: scale(1, 1); }
+}
+
+@keyframes CajaCayendo {
+	0%  { top:-600px; }
+	75% { top:0px; transform: scale(1, 1); }
+	90% { top:15px; transform: scale(1, 0.8); } 
+	100% { top:0px; transform: scale(1, 1); }
+}
+		</style>
+    	<!-- Código javascript -->
+		<script type="text/javascript"> 
+		</script>
+	</head>
+	<body>
+  		<p>Animación para el banner de devildrey33.es (unicamente testeado en chrome, aunque deberia funcionar en todos menos en IE 9 e inferiores)</p>
+        <br />Agrega un espacio en el código al final de una linea para repetir la animación.<br /><br /><br /><br />
+        <div class="Animacion Duracion1"><img src='http://img.devildrey33.es/155x125_BuscarPHP.png'></div>
+        <div class="Animacion Duracion2"><img src='http://img.devildrey33.es/155x125_BubaTronik061.png'></div>
+        <div class="Animacion Duracion3"><img src='http://img.devildrey33.es/155x125_Calculadora.png'></div>
+        <div class="Animacion Duracion4"><img src='http://img.devildrey33.es/155x125_Candado.png'></div>
+        <div class="Animacion Duracion5"><img src='http://img.devildrey33.es/155x125_ColoresCPP.png'></div>
+        <div class="Animacion Duracion6"><img src='http://img.devildrey33.es/155x125_CSS3.png'></div>
+
+	</body>
+</html>

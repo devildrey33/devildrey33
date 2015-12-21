@@ -1,0 +1,64 @@
+.MiTabla {
+    -webkit-animation:AniTabla 3s linear 0s infinite alternate;
+    animation:AniTabla 3s linear 0s infinite alternate;
+}
+/* -[INICIO devildrey33.TablaCSS]- */
+.MiTabla {
+    border:1px solid #CCC;
+    background:#FFF;
+    white-space:nowrap;      /* Impide los saltos de línea automáticos */
+}
+/* Algoritmo de distribucion fijo */
+.MiTablaFija { table-layout:fixed; }
+/* Las dos primeras columnas de la tabla fija son de 120 pixeles de ancho */
+.MiTablaFija td:nth-child(-n+2) {	width:120px; }
+/* Celdas de la tabla */
+.MiTabla td  {
+	overflow:hidden;         /* Oculta el contenido que sobresale del contenedor */
+	text-overflow:ellipsis;  /* Si el texto excede el tamaño del contenedor mostrará "..." al final */
+}
+/* -[FIN devildrey33.TablaCSS]- */
+
+.MiTabla td:nth-child(-n+2) {
+        border-right:1px dashed #CCC;
+}
+.MiTabla.MiTablaFija > tr td {
+        border-bottom:1px dashed #CCC;
+}
+.MiTabla.MiTablaFija > tr:last-child td {
+        border-bottom:none;
+}
+
+@-webkit-keyframes AniTabla {
+        0%   { width:700px; }
+        10%  { width:700px; }
+        90%  { width:400px; }
+        100% { width:400px; }
+}
+@keyframes AniTabla {
+        0%   { width:700px; }
+        10%  { width:700px; }
+        90%  { width:400px; }
+        100% { width:400px; }
+}
+/* Marca de los 700 pixeles */
+.Marca700 {
+        position:absolute;
+        height:205px;
+        border-right:1px dashed green;
+        width:700px;
+        z-index:-2;
+        margin-left:-1px;
+}
+/* Marca de los 400 pixeles */
+.Marca400 {
+        position:absolute;
+        height:205px;
+        border-right:1px dashed red;
+        width:400px;
+        z-index:-1;
+        margin-left:-1px;
+}
+caption {
+        text-align:left;
+}

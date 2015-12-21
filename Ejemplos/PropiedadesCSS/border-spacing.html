@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			table {
+				border-spacing:0px;
+				border:1px solid red;
+			}
+			td { border:1px solid green; }
+		</style>
+        <script type="text/javascript">
+			function CambiarBorde() {
+				var Combo = document.getElementById("Bordes");
+				document.getElementsByTagName("table").item(0).style.borderSpacing = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body onLoad="CambiarBorde()">
+    	<select id='Bordes' onChange="CambiarBorde()">
+        	<option value ="0">0px</option>
+        	<option value ="1">5px</option>
+        	<option value ="2">10px 5px</option>
+        	<option value ="3">5px 10px</option>
+        	<option value ="4">20px</option>
+        	<option value ="5">10px 20px</option>
+        	<option value ="6">20px 10px</option>
+        </select>
+		<br /><br />
+    	<table>
+        	<tr><td>Celda 1</td><td>Celda 2</td></tr>
+        	<tr><td>Celda 3</td><td>Celda 4</td></tr>
+        </table>
+	</body>
+</html>

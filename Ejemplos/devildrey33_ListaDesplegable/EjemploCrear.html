@@ -1,0 +1,323 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+
+    	<script type="text/javascript" src="./js/devildrey33_ListaDesplegable.js" ></script>
+        <link rel="stylesheet" href="./css/devildrey33_ListaDesplegable.css" type="text/css" />	
+        
+        <script type="text/javascript">
+			var MiLista;
+			
+			// Función para obtener el texto de un item de la lista
+			function ObtenerTexto() {
+				alert(MiLista.Texto(parseInt(document.getElementById("ObtenerItemPosicion").value)));
+			}
+
+			// Función para asignar texto a un item de la lista
+			function AsignarTexto() {
+				if (MiLista.Texto(parseInt(document.getElementById("ModificarItemPosicion").value), document.getElementById("ModificarItemTexto").value) == false)
+					alert("No se puede modificar el item de la posición " + parseInt(document.getElementById("ModificarItemPosicion").value));
+			}
+			
+			// Función para seleccionar un item de la lista
+			function Seleccionar() {
+				if (MiLista.Seleccion(parseInt(document.getElementById("Seleccion").value)) == false)
+					alert("No se puede asignar la selección al indice " + parseInt(document.getElementById("Seleccion").value));
+			}
+			
+			// Función para agregar un item de la lista
+			function AgregarItem() {
+				var Pos = document.getElementById("AgregarItemPosicion").value;
+				if (parseInt(Pos) != "NaN")	Pos = parseInt(Pos);
+				else						Pos = document.getElementById("AgregarItemPosicion").value.substr(1, Pos.length -2);
+				MiLista.AgregarItem(document.getElementById("AgregarItemTexto").value, Pos);
+			}
+
+			// Función para eliminar un item de la lista
+			function EliminarItem() {
+				if (MiLista.EliminarItem(parseInt(document.getElementById("EliminarItem").value)) == false) {
+					alert("No se puede eliminar el item de la posición " + document.getElementById("EliminarItem").value);
+				}
+			}
+			
+			// Funcion que pasa una variable a Boolean
+			function ParseBool(Val) {
+				if (Val == 0 || Val == "0") return false;
+				return true;
+			}
+			
+			// Función que crea la lista desplegable usando los parametros introducidos en la web
+			function CrearLista() {
+				var Animacion 					= ParseBool(document.getElementById("OptAnimacion").value);
+				var AnimacionTiempo 			= parseInt(document.getElementById("OptAnimacionTiempo").value);
+				var DesplegarHaciaArriba		= ParseBool(document.getElementById("OptDesplegarHaciaArriba").value);
+				var ItemSeleccionado			= parseInt(document.getElementById("OptItemSeleccionado").value);
+				var MinimoAncho					= parseInt(document.getElementById("OptMinimoAncho").value);
+				var MinimoAlto					= parseInt(document.getElementById("OptMinimoAlto").value);
+				var MostrarFlecha				= ParseBool(document.getElementById("OptMostrarFlecha").value);
+				var OcultarItemSeleccionado		= ParseBool(document.getElementById("OptOcultarItemSeleccionado").value);
+				var OcultarListaAlHacerClick	= ParseBool(document.getElementById("OptOcultarListaAlHacerClick").value);
+
+				var OI = document.getElementById("OptOrdenarItems");
+				var OrdenarItems				= OI.options[parseInt(OI.value)].text;
+				if (OrdenarItems == "null") OrdenarItems = null;
+				else						OrdenarItems = OrdenarItems.substr(1, OrdenarItems.length -2);
+				
+				MiLista = new devildrey33_ListaDesplegable("MiControl", { "Animacion" 					: Animacion, 
+ 																		  "AnimacionTiempo" 			: AnimacionTiempo, 
+																		  "DesplegarHaciaArriba" 		: DesplegarHaciaArriba, 
+																		  "FuncionItemClick" 			: MiFuncionItemClick, 
+																		  "FuncionItemMouseOver" 		: MiFuncionItemMouseOver, 
+																		  "FuncionItemMouseOut" 		: MiFuncionItemMouseOut, 
+																		  "FuncionMostrarLista"			: MiFuncionMostrarLista, 
+																		  "FuncionOcultarLista"			: MiFuncionOcultarLista, 
+																		  "ItemSeleccionado" 			: ItemSeleccionado, 
+																		  "MinimoAncho" 				: MinimoAncho, 
+																		  "MinimoAlto" 					: MinimoAlto, 
+																		  "MostrarFlecha" 				: MostrarFlecha, 
+																		  "ListaItems" 					: Array("Item1", "Item2", "Item3", "Item4", "Item5"),
+																		  "OcultarItemSeleccionado" 	: OcultarItemSeleccionado, 
+																		  "OcultarListaAlHacerClick" 	: OcultarListaAlHacerClick, 
+																		  "OrdenarItems" 				: OrdenarItems
+																		 });
+																		 
+				document.getElementById("Funciones").style.display = "block";
+				document.getElementById("LOGListaDesplegable").innerHTML = "";
+			}
+			// Función que obtiene cuando se pasa por encima de un item de la lista
+			function MiFuncionItemMouseOver(ListaDesplegable, Posicion) {
+				Log(ListaDesplegable.ID + " MouseOver : " + Posicion);
+			}
+			// Función que es llamada cuando el mouse sale del área de un item de la lista
+			function MiFuncionItemMouseOut(ListaDesplegable, Posicion) {
+				Log(ListaDesplegable.ID + " MouseOut : " + Posicion);
+			}
+			// Función que es llamada al empezar a desplegar la lista y al terminar de desplegar la lista
+			function MiFuncionMostrarLista(ListaDesplegable) {
+				Log(ListaDesplegable.ID + " MostrarLista");
+			}
+			// Función que es llamada al empezar a ocultar la lista y al terminar de ocultar la lista
+			function MiFuncionOcultarLista(ListaDesplegable) {
+				Log(ListaDesplegable.ID + " OcultarLista");
+			}
+			// Función que recibirá cuando se hace click encima de un item de la lista
+			function MiFuncionItemClick(ListaDesplegable, Posicion) { 
+				Log(ListaDesplegable.ID + " Click en el item " + Posicion + " : '" + ListaDesplegable.Texto() + "'");
+			}
+			
+			function Log(Texto) {
+				var ObjetoLog = document.getElementById("LOGListaDesplegable");
+				ObjetoLog.innerHTML = ObjetoLog.innerHTML + Texto + "<br />";
+				ObjetoLog.scrollTop = ObjetoLog.scrollHeight;
+			}
+        </script>
+        
+        <style>
+			.Codigo			{ background:#EEE; border:1px dashed #CCC;				}
+			.Codigo:hover	{ background:rgb(245, 245,245); border:1px dashed #999;	}
+			.Azul, .Texto	{ color:#0000FF;										}
+			.AzulOscuro 	{ color:#009; 											}
+			.Lila 			{ color:rgb(153, 0, 153);								}
+			.Verde 			{ color:rgb(0, 153, 153);   							}
+			.Gris			{ color:rgb(128, 128, 128);								}
+			.Bool			{ color:#009; font-weight:bold; 						}
+			.Numero			{ color:#CC0000; width:53px; margin-left:2px;			}
+			.Ayuda			{ cursor:help;											}
+			#LOGListaDesplegable {
+				position:absolute; 
+				height:360px; 
+				width:400px; 
+				border:1px solid #999; 
+				margin-left:7px; 
+				margin-top:3px;
+				background:#FFF;
+				overflow:scroll;
+				overflow-x:hidden;
+				font-family:"Courier New", Courier, monospace;
+				font-size:14px;
+				
+			}
+        </style>
+    </head>
+    
+	<body>
+    	<div style='width:1180px; margin-left:auto; margin-right:auto'>
+            <div class='Codigo'>
+                <code>
+                <span class='Gris'>// Creación de la lista desplegable</span><br />
+                <span class="AzulOscuro">var</span> MiLista <span class="Azul">=</span> <span class="AzulOscuro">new</span> devildrey33_ListaDesplegable<span class="AzulOscuro">(</span><span class="Azul Ayuda" title='ID única para esta lista desplegable'>"MiControl"</span>, <span class="AzulOscuro">{</span> 
+                <span class="Azul Ayuda" title='Al mostrar y ocultar la lista se puede aplicar una animacion a la altura (true), o se puede mostrar / ocultar de golpe (false).'>"Animacion"</span> <span style='margin-left:116px;'>:</span></code>
+                <select id='OptAnimacion' class='Bool'>
+                    <option value="0">false</option>
+                    <option value="1" selected="selected">true</option>
+                </select><code>,</code>
+                <br />
+                <div id='LOGListaDesplegable'>
+                
+                </div>
+                
+                <div style="padding-left:493px">
+                    <table>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Tiempo que se usará para animar la lista al mostrar o ocultar sus elementos en milisegundos.'>"AnimacionTiempo"</code></td>
+                            <td><code>:</code></td>
+                            <td><input id='OptAnimacionTiempo' type="number" value="100" class="Numero"><code>,</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Dirección en la que se desplegará lista partiendo de la posición del control : true hacia arriba, false hacia abajo.'>"DesplegarHaciaArriba"</code></td>
+                            <td><code>:</code></td>
+                            <td><select id='OptDesplegarHaciaArriba' class='Bool'><option value="0" selected="selected">false</option><option value="1">true</option></select><code>,</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Función que recibirá cuando se hace click encima de un item.'>"FuncionItemClick"</code></td>
+                            <td><code>:</code></td>
+                            <td><code style='margin-left:3px'>MiFuncionItemClick,</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Función que recibirá cuando pasa el mouse por encima de un item.'>"FuncionItemMouseOver"</code></td>
+                            <td><code>:</code></td>
+                            <td><code style='margin-left:3px'>MiFuncionItemMouseOver,</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Función que recibirá cuando el mouse sale del área de un item.'>"FuncionItemMouseOut"</code></td>
+                            <td><code>:</code></td>
+                            <td><code style='margin-left:3px'>MiFuncionItemMouseOut,</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Función que recibirá cuando despliega la lista.'>"FuncionMostrarLista"</code></td>
+                            <td><code>:</code></td>
+                            <td><code style='margin-left:3px'>MiFuncionMostrarLista,</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Función que recibirá cuando se oculta la lista.'>"FuncionOcultarLista"</code></td>
+                            <td><code>:</code></td>
+                            <td><code style='margin-left:3px'>MiFuncionOcultarLista,</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Posición del item que inicialmente estará seleccionado.'>"ItemSeleccionado"</code></td>
+                            <td><code>:</code></td>
+                            <td><input id='OptItemSeleccionado' type="number" value="0" class="Numero"><code>,</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Ancho minimo para el control en pixeles sin contar margin, padding, y border.'>"MinimoAncho"</code></td>
+                            <td><code>:</code></td>
+                            <td><input id='OptMinimoAncho' type="number" value="60" class="Numero"><code>,</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Altura mínima para el control con la lista oculta. Por defecto es 0 lo que hace que se autocalcule.'>"MinimoAlto"</code></td>
+                            <td><code>:</code></td>
+                            <td><input id='OptMinimoAlto' type="number" value="0" class="Numero"><code>,</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Esta opción permite mostrar una flecha que indica la dirección hacia donde se desplegará el control al mostrar la lista : true se mostrará la imagen, false no se mostrará.'>"MostrarFlecha"</code></td>
+                            <td><code>:</code></td>
+                            <td><select id='OptMostrarFlecha' class='Bool'><option value="0">false</option><option value="1" selected="selected">true</option></select><code>,</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Array de items que se usará para rellenar la lista inicialmente.'>"ListaItems"</code></td>
+                            <td><code>:</code></td>
+                            <td><code style='margin-left:3px'><span class="Verde">Array</span><span class="AzulOscuro">(</span><span class="Azul">"Item1"</span>, <span class="Azul">"Item2"</span>, <span class="Azul">"Item3"</span>, <span class="Azul">"Item4"</span>, <span class="Azul">"Item5"</span><span class="AzulOscuro">)</span>,</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Esta opción permite ocultar el item seleccionado dentro de la lista, por lo que solo se veria en la cabecera : true ocultar, false mostrar.'>"OcultarItemSeleccionado"</code></td>
+                            <td><code>:</code></td>
+                            <td><select id='OptOcultarItemSeleccionado' class='Bool'><option value="0" selected="selected">false</option><option value="1">true</option></select><code>,</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Esta opción permite indicar si al hacer click en un item hay que ocultar la lista : true se ocultara, false se quedara visible.'>"OcultarListaAlHacerClick"</code></td>
+                            <td><code>:</code></td>
+                            <td><select id='OptOcultarListaAlHacerClick' class='Bool'><option value="0">false</option><option value="1" selected="selected">true</option></select><code>,</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="Azul Ayuda" title='Esta opcion permite especificar como se ordenarán los items de la lista por defecto : null (sin modificar), "OrdenAsc", "OrdenDesc", "Aleatorio"'>"OrdenarItems"</code></td>
+                            <td><code>:</code></td>
+                            <td><select id='OptOrdenarItems' class="Texto"><option value="0" selected="selected">null</option><option value="1">"OrdenAsc"</option><option value="2">"OrdenDesc"</option><option value="3">"Aleatorio"</option></select><code> <span class="AzulOscuro">})</span>;</code></td>
+                        </tr>
+                    </table>
+                </div>
+				<a href="http://www.devildrey33.es/devildrey33_ListaDesplegable_2.0.php" style="margin-left:10px">Volver a devildrey33</a>
+                <input type="button" value="Crear control!" style="font-size:1.5em; cursor:pointer; font-weight:bold; margin-left:380px;" onClick="CrearLista()" title='Puedes volver a crear el control las veces que quieras cambiando las opciones.'>
+            </div>
+            <br />
+            <div class='devildrey33_ListaDesplegable' id='MiControl' style="margin-left:auto; margin-right:auto"></div>
+            <br />
+            
+            <div id="Funciones" style="display:none">
+                <div style="float:left; width:645px">
+                    <div class='Codigo'>
+                        <code class='Gris'>// Función AgregarItem(Texto, Posicion)</code><br />
+                        <code class='Gris'>// En la posición puedes poner un valor numerico sin comillas o una de las </code><br />
+                        <code class='Gris'>// siguientes opciones : "<b>Inicio</b>", "<b>Final</b>", "<b>OrdenAsc</b>", "<b>OrdenDesc</b>", "<b>Aleatorio</b>"</code><br />
+                        <code>MiLista.AgregarItem<span class="AzulOscuro">("</span><input type="text" id='AgregarItemTexto' value="Nuevo item"><span class="AzulOscuro">"</span>, <input type="text" id='AgregarItemPosicion' value='"Inicio"'><span class="AzulOscuro">)</span>;</code>
+                        <input type="button" value="Usar!" style="cursor:pointer; float:right;" onClick="AgregarItem();">
+                    </div>            
+                    <br />
+                    <div class='Codigo'>
+                        <code class='Gris'>// Función para eliminar un item solo acepta valores numericos en la posición.</code><br />                    
+                        <code>MiLista.EliminarItem<span class="AzulOscuro">(</span><input id='EliminarItem' type="number" value="0" class="Numero"><span class="AzulOscuro">)</span>;</code>
+                        <input type="button" value="Usar!" style="cursor:pointer; float:right;" onClick="EliminarItem();">
+                    </div>            
+                    <br />
+                    <div class='Codigo'>
+                        <code class='Gris'>// Obtener el texto seleccionado.</code><br />
+                        <code><span class="Lila">alert</span><span class="AzulOscuro">(</span>MiLista.Texto<span class="AzulOscuro">())</span>;</code>
+                        <input type="button" value="Usar!" style="cursor:pointer; float:right; margin-top:-3px" onClick="alert(MiLista.Texto());">
+                    </div>                          
+                    <br />
+                    <div class='Codigo'>
+                        <code class='Gris'>// Obtener el texto de un item de la posición especificada.</code><br />
+                        <code><span class="Lila">alert</span><span class="AzulOscuro">(</span>MiLista.Texto<span class="AzulOscuro">(</span><input id='ObtenerItemPosicion' type="number" value="0" class="Numero"><span class="AzulOscuro">))</span>;</code>
+                        <input type="button" value="Usar!" style="cursor:pointer; float:right;" onClick="ObtenerTexto();">
+                    </div>
+                    <br />
+                    <div class='Codigo'>
+                        <code class='Gris'>// Modificar el texto de un item en la posición especificada.</code><br />
+                        <code>MiLista.Texto<span class="AzulOscuro">(</span><input id='ModificarItemPosicion' type="number" value="0" class="Numero">, <span class="AzulOscuro">"</span><input type="text" id='ModificarItemTexto' value="Texto modificado"><span class="AzulOscuro">")</span>;</code>
+                        <input type="button" value="Usar!" style="cursor:pointer; float:right;" onClick="AsignarTexto();">
+                    </div>
+                </div>
+        
+                <div style="float:right; width:500px">
+                    <div class='Codigo'>
+                        <code class='Gris'>// Función que elimina el contendio de la lista desplegable.</code><br />
+                        <code>MiLista.BorrarTodo<span class="AzulOscuro">()</span>;</code>
+                        <input type="button" value="Usar!" style="cursor:pointer; float:right; margin-top:-3px" onClick="MiLista.BorrarTodo();">
+                    </div>  
+    
+                    <br />
+                    <div class='Codigo'>
+                        <code class='Gris'>// Función que devuelve la posición del item seleccionado.</code><br />
+                        <code><span class="Lila">alert</span><span class="AzulOscuro">(</span>MiLista.Seleccion<span class="AzulOscuro">())</span>;</code>
+                        <input type="button" value="Usar!" style="cursor:pointer; float:right; margin-top:-3px" onClick="alert(MiLista.Seleccion());">
+                    </div>
+                    <br />
+                    <div class='Codigo'>
+                        <code class='Gris'>// Función que asigna el item seleccionado.</code><br />
+                        <code>MiLista.Seleccion<span class="AzulOscuro">(</span><input type="number" class="Numero" value="0" id='Seleccion'><span class="AzulOscuro">)</span>;</code>
+                        <input type="button" value="Usar!" style="cursor:pointer; float:right;" onClick="Seleccionar();">
+                    </div>
+                    <br />
+                    <div class='Codigo'>
+                        <code class='Gris'>// Función para mostrar la lista.</code><br />
+                        <code>MiLista.MostrarLista<span class="AzulOscuro">()</span>;</code>
+                        <input type="button" value="Usar!" style="cursor:pointer; float:right; margin-top:-3px" onClick="MiLista.MostrarLista();">
+                    </div>
+                    <br />
+                    <div class='Codigo'>
+                        <code class='Gris'>// Función para ocultar la lista.</code><br />
+                        <code>MiLista.OcultarLista<span class="AzulOscuro">()</span>;</code>
+                        <input type="button" value="Usar!" style="cursor:pointer; float:right; margin-top:-3px" onClick="MiLista.OcultarLista();">
+                    </div>
+                    <br />
+                    <div class='Codigo'>
+                        <code class='Gris'>// Función para obtener el total de items en la lista.</code><br />
+                        <code><span class="Lila">alert</span><span class="AzulOscuro">(</span>MiLista.TotalItems<span class="AzulOscuro">())</span>;</code>
+                        <input type="button" value="Usar!" style="cursor:pointer; float:right; margin-top:-3px" onClick="alert(MiLista.TotalItems());">
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+	</body>
+</html>

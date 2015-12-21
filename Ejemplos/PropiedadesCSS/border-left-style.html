@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Borde {
+				border-width:5px;
+				border-style:solid;
+				display:table;
+			}            
+		</style>
+        <script type="text/javascript">
+			function CambiarBorde() {
+				var Combo = document.getElementById("Bordes");
+				document.getElementById("IDBorde").style.borderLeftStyle = Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body onLoad="CambiarBorde()">
+    	<p>En este ejemplo puedes seleccionar el tipo de borde izquierdo que quieres mostrar en el siguiente div.</p>
+    	<select id='Bordes' onChange="CambiarBorde()">
+        	<option value ="0">none</option>
+        	<option value ="1">hidden</option>
+        	<option value ="2">dotted</option>
+        	<option value ="3">dashed</option>
+        	<option value ="4">solid</option>
+        	<option value ="5">double</option>
+        	<option value ="6">groove</option>
+        	<option value ="7">ridge</option>
+        	<option value ="8">inset</option>
+        	<option value ="9">outset</option>
+        </select>
+        <div class='Borde' id='IDBorde'><br /><br />Selecciona el tipo de borde izquierdo.<br /><br /><br /></div>
+	</body>
+</html>

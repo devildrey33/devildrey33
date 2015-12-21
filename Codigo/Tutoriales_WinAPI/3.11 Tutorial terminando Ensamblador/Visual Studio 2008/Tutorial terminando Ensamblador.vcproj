@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9,00"
+	Name="3.11 Tutorial terminando Ensamblador"
+	ProjectGUID="{88E8C74A-5285-412E-A2DE-EBC43A7386DB}"
+	RootNamespace="TutorialterminandoEnsamblador"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="..\..\$(ConfigurationName)"
+			IntermediateDirectory="..\..\$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="..\..\..\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Archivos de recursos"
+			>
+			<File
+				RelativePath="..\Tutorial terminando Ensamblador.rc"
+				>
+			</File>
+		</Filter>
+		<File
+			RelativePath="..\DialogoEnsamblador.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\DialogoEnsamblador.h"
+			>
+		</File>
+		<File
+			RelativePath="..\DialogoNuevoProyecto.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\DialogoNuevoProyecto.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoArchivo.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoArchivo.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoButton.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoButton.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoComboBox.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoComboBox.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoControlEstandar.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoControlEstandar.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoDialogo.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoDialogo.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoDirectoriosWindows.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoDirectoriosWindows.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoDlgAbrir.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoDlgAbrir.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoDlgDirectorios.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoDlgDirectorios.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoDlgGuardar.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoDlgGuardar.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoEditBox.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoEditBox.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoHWND.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoHWND.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoImageList.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoListView.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoListView.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoProgressBar.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoProgressBar.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoTreeView.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoTreeView.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoZLIB.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\ObjetoZLIB.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Objetos Tutorial\PlantillaEventos.h"
+			>
+		</File>
+		<File
+			RelativePath="..\ProyectoIPRJ.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\ProyectoIPRJ.h"
+			>
+		</File>
+		<File
+			RelativePath="..\resource.h"
+			>
+		</File>
+		<File
+			RelativePath="..\Tutorial TerminandoEnsamblador.cpp"
+			>
+		</File>
+	</Files>
+	<Globals>
+		<Global
+			Name="RESOURCE_FILE"
+			Value="\Programacio\www.devildrey33.es\Tutoriales_WinAPI\3.8 Tutorial terminando Ensamblador\Tutorial terminando Ensamblador.rc"
+		/>
+	</Globals>
+</VisualStudioProject>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">
+			.Caja {
+				position:relative;
+				text-shadow:1px 1px 5px red;
+			}
+			.SombraMultiple {
+				position:relative;
+				text-shadow: 5px  5px 5px rgba(255, 0, 0, 0.5), 
+						    -5px  5px 5px rgba(0, 255, 0, 0.5), 
+						     5px -5px 5px rgba(200, 200, 0, 0.5),
+						    -5px -5px 5px rgba(0, 0, 255, 0.5);
+			}
+		</style>
+        <!-- Código JavaScript CSS -->
+        <script type="text/javascript">
+			// Función que cambia el borde segun los valores H y V especificados.
+			function CambiarSombra() {
+				var H = ObtenerValor("ValorH");
+				var V = ObtenerValor("ValorV");
+				var Dif = ObtenerValor("Difuminado");
+				var Col = document.getElementById("Color").value;
+				document.getElementById("IDCaja").style.textShadow = V + " " + H + " " + Dif + " " + Col;
+			}
+			// Función que obtiene el valor del ComboBox especificado
+			function ObtenerValor(Nombre) {
+				var Combo = document.getElementById(Nombre);
+				return Combo.options[Combo.selectedIndex].innerHTML;
+			}
+        </script>
+	</head>
+	<body>
+    	
+    	ValorH
+    	<select id='ValorH' onChange="CambiarSombra()">
+        	<option>10px</option>
+        	<option>5px</option>
+        	<option>3px</option>
+        	<option selected="selected">1px</option>
+        	<option>0px</option>
+        	<option>-1px</option>
+        	<option>-3px</option>
+        	<option>-5px</option>
+        	<option>-10px</option>
+        </select>
+    	ValorV
+    	<select id='ValorV' onChange="CambiarSombra()">
+        	<option>10px</option>
+        	<option>5px</option>
+        	<option>3px</option>
+        	<option selected="selected">1px</option>
+        	<option>0px</option>
+        	<option>-1px</option>
+        	<option>-3px</option>
+        	<option>-5px</option>
+        	<option>-10px</option>
+        </select>
+		Difuminado
+    	<select id='Difuminado' onChange="CambiarSombra()">
+        	<option>10px</option>
+        	<option selected="selected">5px</option>
+        	<option>3px</option>
+        	<option>1px</option>
+        	<option>0px</option>
+        </select>
+        Color
+        <input type="text" value='red' onChange="CambiarSombra()" id='Color'>
+        
+        <h1 class='Caja' id='IDCaja'>Lorem ipsum</h1>
+        <hr>
+        Texto con cuatro sombras
+        <h1 class='SombraMultiple'>Lorem ipsum</h1>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Estilos CSS -->
+		<style type="text/css">	
+			#Texto {
+				max-width:600px;
+				border:1px solid #CCC;
+				font-family:Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+			}
+		</style>
+
+		<!-- Código JavaScript CSS -->
+        <script type="text/javascript">
+            // Función que cambia el estilo white-space.
+            function CambiarWhiteSpace() {
+                document.getElementById("Texto").style.whiteSpace = ObtenerValor();
+            }
+            // Función que obtiene el valor del ComboBox para el white-space.
+            function ObtenerValor() {
+                var Combo = document.getElementById("ChWS");
+                return Combo.options[Combo.selectedIndex].innerHTML;
+            }
+        </script>
+    </head>
+	<body>
+		<code>#Texto { white-space</code>
+		<select id='ChWS' onChange="CambiarWhiteSpace()">
+            <option>normal</option>
+            <option>nowrap</option>
+            <option>pre</option>
+            <option>pre-line</option>
+            <option>pre-wrap</option>
+        </select>
+        <code>; }</code>
+        <p id='Texto'>
+            white-space:<b>normal</b>   Las sequencias de multiples espacios en blanco se convertirán a un unico espacio en blanco. 
+                                        El texto terminará cuando sea necesario.<br />
+            white-space:<b>nowarp</b>   Las sequencias de multiples espacios en blanco se convertirán a un unico espacio en blanco. 
+                                        El texto no se ajustará a la siguiente linea. 
+                                        El texto continúa en la misma linea hasta que se encuentra una etiqueta &lt;br&gt;.
+                                        Los saltos de línea son ignorados.<br />
+            white-space:<b>pre</b>      Las sequencias de multiples espacios en blanco se conservan tal cual. 
+                                        El texto continua siempre en la misma linea hasta que se encuentra una etiqueta &lt;br&gt; o un salto de línea.<br />
+            white-space:<b>pre-line</b> Las sequencias de multiples espacios en blanco se convertirán a un unico espacio en blanco. 
+                                        El texto terminará cuando sea necesario y en los saltos de línea.<br />
+            white-space:<b>pre-wrap</b> Las sequencias de multiples espacios en blanco se conservan tal cual. 
+                                        El texto terminará cuando sea necesario y en los saltos de línea.
+        </p>
+        <p><b>NOTA</b> : Las sequencias multiples de espacios en blanco son dos o mas espacios en blanco, o una o mas tabulaciones, o una combinación de uno o mas espacios y una o mas tabulaciones.</p>
+	</body>
+</html>
