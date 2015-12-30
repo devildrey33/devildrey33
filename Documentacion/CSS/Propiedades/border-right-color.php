@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar el color del borde para la parte derecha del objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>border-right-color: <b>Color</b> | <b>transparent</b> | <b>inherit</b>;</pre>
+<pre class='Sintaxis'>border-right-color: <b>Color</b> | <b>transparent</b> | <b>inherit</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>Color</b></td>

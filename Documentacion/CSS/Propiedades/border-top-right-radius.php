@@ -1,7 +1,7 @@
 <p>Esta propiedad permite establecer la figura del borde superior derecho de forma que se pueda redondear el borde.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'><code style="display:table; float:left; padding-right:20px">border-top-right-radius: <i>ValorVH</i>;
+<pre class='Sintaxis'><code style="display:table; float:left; padding-right:20px">border-top-right-radius: <i>ValorVH</i>;
 border-top-right-radius: ValorV ValorH;
 </code>
 <code style="display:table; float:right; color:#999">/* 1 valor para todos los definir tanto vertical como horizontal. */

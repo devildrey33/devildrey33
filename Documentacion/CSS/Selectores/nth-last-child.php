@@ -6,7 +6,7 @@
 <hr />
 <h2>Sintaxis</h2>
 
-<pre class='devildrey33_Marco Pre_Sintaxis'><code style="display:table; float:left; padding-right:20px">:nth-last-child( <i>Posición</i> ) { };
+<pre class='Sintaxis'><code style="display:table; float:left; padding-right:20px">:nth-last-child( <i>Posición</i> ) { };
 :nth-last-child( <i>even | odd</i> ) { };
 :nth-last-child( <i>A</i>n+<i>B</i> ) { };
 :nth-last-child( <i>-</i>n+<i>B</i> ) { };
@@ -18,7 +18,7 @@
 </code>
 </pre>
 
-<pre class='devildrey33_Marco Pre_Sintaxis'></pre>
+<pre class='Sintaxis'></pre>
 
 <table class='devildrey33_Marco'>
     <tr>

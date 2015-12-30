@@ -1,7 +1,7 @@
 <p>Esta propiedad define como debe repetirse la imagen si el borde es de mayor tamaño.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'><code style="display:table; float:left; padding-right:20px">border-image-repeat: <i>ValorHV</i>;
+<pre class='Sintaxis'><code style="display:table; float:left; padding-right:20px">border-image-repeat: <i>ValorHV</i>;
 border-image-repeat: Horizontal Vertical;
 </code>
 <code style="display:table; float:right; color:#999">/* 1 valor. */

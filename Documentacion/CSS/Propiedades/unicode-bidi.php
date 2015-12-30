@@ -2,7 +2,7 @@
 <div class='nota'>Esta propiedad resulta util para escribir en varios idiomas que no compartan la misma dirección al escribir. En castellano escribimos de izquierda a derecha, pero por ejemplo con el japonés se escribe de derecha a izquierda.</div>
 <br />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>unicode-bidi: valor;</pre>
+<pre class='Sintaxis'>unicode-bidi: valor;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>normal</b></td>

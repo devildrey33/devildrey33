@@ -2337,7 +2337,7 @@
     'Nombre' => 'flex-shrink',
     'Tipo' => 0,
     'Grupo' => 3,
-    'Descripcion' => '',
+    'Descripcion' => 'Especifica el factor de contracción para un flex-item.',
     'Version' => 3,
     'Soportada' => 
     array (
@@ -3828,7 +3828,7 @@
     'Nombre' => 'order',
     'Tipo' => 0,
     'Grupo' => 3,
-    'Descripcion' => '',
+    'Descripcion' => 'Especifica el orden de un flex-item dentro de un contenedor flex.',
     'Version' => 3,
     'Soportada' => 
     array (

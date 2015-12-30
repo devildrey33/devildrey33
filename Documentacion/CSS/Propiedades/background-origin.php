@@ -2,7 +2,7 @@
 <div class='nota'>Puede parecer que <code><a href="background-clip" target="_blank">background-clip</a></code> sea igual que esta propiedad, pero no lo es, ya que esta propiedad está mas enfocada a imagenes de fondo.</div>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>background-origin: <b>valor</b>;</pre>
+<pre class='Sintaxis'>background-origin: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>border-box</b></td>

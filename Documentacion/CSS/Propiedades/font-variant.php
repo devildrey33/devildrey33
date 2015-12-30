@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar de que forma se mostraran los caracteres, con mayusculas y minusculas normales, o convirtiendo todos los caracteres a mayusculas y haciendo mas pequeños aquellos que representan minusculas.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>font-variant: <b>valor</b> ;</pre>
+<pre class='Sintaxis'>font-variant: <b>valor</b> ;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>normal</b></td>

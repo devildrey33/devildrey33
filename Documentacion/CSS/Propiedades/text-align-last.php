@@ -2,7 +2,7 @@
 <div class='nota'>Para utilizar esta propiedad debes establecer el valor de la propiedad <a href="text-align" target="_blank">text-align</a> a <code>justify</code>.</div>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>text-align-last: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>text-align-last: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td style='min-width:110px'><b>auto</b></td>

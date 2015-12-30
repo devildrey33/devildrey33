@@ -1,7 +1,7 @@
 <p>Esta funcion define un color utilizando 3 canales de color (<b>R</b>ed, <b>G</b>reen, <b>B</b>lue). Cada canal tiene un rango de 0 a 255.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>rgb( ValorR, ValorG, ValorB );</pre>
+<pre class='Sintaxis'>rgb( ValorR, ValorG, ValorB );</pre>
 <table class='Tabla'>
     <tr>
         <td>Valor<b>R</b></td>

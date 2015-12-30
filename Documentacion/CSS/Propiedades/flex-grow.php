@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar el factor de crecimiento para un <code>flex-item</code>. De esta forma tenemos la habilidad de poder hacer crecer un flex-item especificando una proporción.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>flex-grow: Valor;</pre>
+<pre class='Sintaxis'>flex-grow: Valor;</pre>
 
 <table class='Tabla'>
     <tr>

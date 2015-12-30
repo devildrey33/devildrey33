@@ -1,6 +1,6 @@
 <p>Esta propiedad se usa para retardar el inicio del efecto de la transición durante el tiempo especificado. El tiempo se puede especificar en segundos (s) o milisegundos (ms).</p>
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>transition-delay: <b>Tiempo</b>;</pre>
+<pre class='Sintaxis'>transition-delay: <b>Tiempo</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>Tiempo</b></td>

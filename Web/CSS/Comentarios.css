@@ -231,10 +231,10 @@ body[administrador33=true] #Comentarios_Datos > div[comentario] > .Comentarios_C
     width:40%;    
 }
 
-#Comentarios_MarcoDatos > input:focus:valid {
+#Comentarios_MarcoDatos > input:focus:valid, #Comentarios_MarcoDatos > input:valid:hover {
     box-shadow: 0 0 5px #5cd053;
 }
-#Comentarios_MarcoDatos > input:focus:invalid {    
+#Comentarios_MarcoDatos > input:focus:invalid, #Comentarios_MarcoDatos > input:invalid:hover {     
     box-shadow: 0 0 5px #d45252;
 }
 

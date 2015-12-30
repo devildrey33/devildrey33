@@ -13,5 +13,6 @@ div::before {   /* Titulo rojo */
     box-shadow: 0 5px 5px -5px rgba(255,255,255, .9) inset;
     border-radius:6px 6px 0px 0px;                
     font-weight:bold;
-}            
+}
 div > p { text-align:center; }
+ 

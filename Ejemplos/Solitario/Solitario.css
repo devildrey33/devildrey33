@@ -1,10 +1,13 @@
 /* Ejemplo creado por Josep Antoni Bover Comas para devildrey33.es el 28/11/2015 
     Se distribuye bajo licencia Creative Commons. (http://es.creativecommons.org/blog/licencias/) 
-    Versión 1.0
-    Última modificación : 15/12/2015  
+    Versión 1.01
+    Última modificación : 27/12/2015  
+        - Solucionado bug en firefox por el que se mostraban todas las cartas iguales (en firefox no existe background-position-x ni background-position-y...)
+            Si el bug persiste cargar http://devildrey33.es/Ejemplos/Solitario/Solitario.html desde el navegador, para obligar a refrescar la cache de firefox.
+        - En explorer no me atrevo a mirarlo mas mínimo hasta el 2016, pero normal no era...
      TODO :
                 - Hacer un set de cartas mas pequeño para resoluciones bajas.
-                - Crear opcion para que juegue solo, para asi poder revisar algunos detalles de la IA.
+                - Crear opción para que juegue solo, para asi poder revisar algunos detalles de la IA.
                 - Revisar la detección de la derrota, he visto alguna cosa rara... pero necesito ver mas..
  */
 body { 
@@ -14,8 +17,9 @@ body {
     -moz-user-select:none;
     -ms-user-select:none;
     user-select: none;
-    background:-webkit-radial-gradient(10px 20px, farthest-side, darkgreen 15%, green);
-    background:radial-gradient(10px 20px, farthest-side, darkgreen 15%, green);
+/*    background:-webkit-radial-gradient(10px 20px, farthest-side, darkgreen 15%, green);
+    background:radial-gradient(10px 20px, farthest-side, darkgreen 15%, green);*/
+    background:darkgreen;
 }
 
 Tablero {
@@ -62,7 +66,7 @@ mMenu > input + label + BotonMenu {
     transition:0.4s;
     z-index:9;
     border:1px solid #333;
-    border-radius:4px;
+    border-radius:6px;
     background:rgb(50, 50, 150);
 }
 
@@ -222,7 +226,7 @@ Victoria, Derrota {
     border-radius:6px;
     color:#FFF;
     text-shadow: 1px 1px 1px #000;
-    width:90%;
+    width:calc(100% - 28px);
     text-align:center;
     top:243px;
     font-size:20px;
@@ -250,10 +254,67 @@ Derrota {
     display:none;
 }*/
 
+
 Carta[palo='1'], Carta[palo='2']  {    color:red;    }
 Carta[palo='3'], Carta[palo='4']  {    color:black;  }
 
-Carta[valor='1']  { background-position-x: -2px; }
+/* Firefox no soporta background-position-x, background-position-y, por lo que hay que hacerlo uno por uno... */
+Carta[valor='1'][palo='1']  { background-position: -2px    444px; }
+Carta[valor='2'][palo='1']  { background-position: -166px  444px; }
+Carta[valor='3'][palo='1']  { background-position: -331px  444px; }
+Carta[valor='4'][palo='1']  { background-position: -495px  444px; }
+Carta[valor='5'][palo='1']  { background-position: -660px  444px; }
+Carta[valor='6'][palo='1']  { background-position: -825px  444px; }
+Carta[valor='7'][palo='1']  { background-position: -989px  444px; }
+Carta[valor='8'][palo='1']  { background-position: -1154px 444px; }
+Carta[valor='9'][palo='1']  { background-position: -1318px 444px; }
+Carta[valor='10'][palo='1'] { background-position: -1483px 444px; }
+Carta[valor='11'][palo='1'] { background-position: -1647px 444px; }
+Carta[valor='12'][palo='1'] { background-position: -1811px 444px; }
+Carta[valor='0'][palo='1']  { background-position: -1976px 444px; }
+
+Carta[valor='1'][palo='2']  { background-position: -2px    -2px; }
+Carta[valor='2'][palo='2']  { background-position: -166px  -2px; }
+Carta[valor='3'][palo='2']  { background-position: -331px  -2px; }
+Carta[valor='4'][palo='2']  { background-position: -495px  -2px; }
+Carta[valor='5'][palo='2']  { background-position: -660px  -2px; }
+Carta[valor='6'][palo='2']  { background-position: -825px  -2px; }
+Carta[valor='7'][palo='2']  { background-position: -989px  -2px; }
+Carta[valor='8'][palo='2']  { background-position: -1154px -2px; }
+Carta[valor='9'][palo='2']  { background-position: -1318px -2px; }
+Carta[valor='10'][palo='2'] { background-position: -1483px -2px; }
+Carta[valor='11'][palo='2'] { background-position: -1647px -2px; }
+Carta[valor='12'][palo='2'] { background-position: -1811px -2px; }
+Carta[valor='0'][palo='2']  { background-position: -1976px -2px; }
+
+Carta[valor='1'][palo='3']  { background-position: -2px    213px; }
+Carta[valor='2'][palo='3']  { background-position: -166px  213px; }
+Carta[valor='3'][palo='3']  { background-position: -331px  213px; }
+Carta[valor='4'][palo='3']  { background-position: -495px  213px; }
+Carta[valor='5'][palo='3']  { background-position: -660px  213px; }
+Carta[valor='6'][palo='3']  { background-position: -825px  213px; }
+Carta[valor='7'][palo='3']  { background-position: -989px  213px; }
+Carta[valor='8'][palo='3']  { background-position: -1154px 213px; }
+Carta[valor='9'][palo='3']  { background-position: -1318px 213px; }
+Carta[valor='10'][palo='3'] { background-position: -1483px 213px; }
+Carta[valor='11'][palo='3'] { background-position: -1647px 213px; }
+Carta[valor='12'][palo='3'] { background-position: -1811px 213px; }
+Carta[valor='0'][palo='3']  { background-position: -1976px 213px; }
+ 
+Carta[valor='1'][palo='4']  { background-position: -2px    675px; }
+Carta[valor='2'][palo='4']  { background-position: -166px  675px; }
+Carta[valor='3'][palo='4']  { background-position: -331px  675px; }
+Carta[valor='4'][palo='4']  { background-position: -495px  675px; }
+Carta[valor='5'][palo='4']  { background-position: -660px  675px; }
+Carta[valor='6'][palo='4']  { background-position: -825px  675px; }
+Carta[valor='7'][palo='4']  { background-position: -989px  675px; }
+Carta[valor='8'][palo='4']  { background-position: -1154px 675px; }
+Carta[valor='9'][palo='4']  { background-position: -1318px 675px; }
+Carta[valor='10'][palo='4'] { background-position: -1483px 675px; }
+Carta[valor='11'][palo='4'] { background-position: -1647px 675px; }
+Carta[valor='12'][palo='4'] { background-position: -1811px 675px; }
+Carta[valor='0'][palo='4']  { background-position: -1976px 675px; }
+/*Carta[valor='1']  { background-position-x: -2px; }
 Carta[valor='2']  { background-position-x: -166px; }
 Carta[valor='3']  { background-position-x: -331px; }
 Carta[valor='4']  { background-position-x: -495px; }
@@ -270,11 +331,10 @@ Carta[valor='0']  { background-position-x: -1976px; }
 Carta[palo='2'] { background-position-y:-2px; }
 Carta[palo='3'] { background-position-y:213px; }
 Carta[palo='1'] { background-position-y:444px; }
-Carta[palo='4'] { background-position-y:675px; }
+Carta[palo='4'] { background-position-y:675px; }*/
 
 Carta[Tapada='true'] {
-    background-position-y:448px !important; 
-    background-position-x:-2141px !important;
+    background-position:-2141px 448px !important;
 }
 
 body[debug] debugia {

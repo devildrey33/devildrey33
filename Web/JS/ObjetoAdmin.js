@@ -98,7 +98,7 @@ $Admin = new function() {
     /***************/    
     
     this.Lab_Guardar = function() {        
-        Archivo = $("#MarcoNavegacionLab").attr("archivo");
+        Archivo = $("#MarcoNavegacionLab").attr("pagina");
         Codigo = $Lab.Editor.getValue();
         console.log("Admin.Lab_Guardar", Archivo, Codigo, $("body").attr("modificado"));
         if ($("body").attr("modificado") === "false") {
@@ -173,7 +173,7 @@ $Admin = new function() {
                 Lista.push(Objeto.attr("path"));
             }
         });
-        if (Lista.length == 0) { $Base.MostrarMensaje("No se han seleccionado archivos ni directorios!"); return; }
+        if (Lista.length === 0) { $Base.MostrarMensaje("No se han seleccionado archivos ni directorios!"); return; }
         console.log("Admin.LabExplorar_GenerarCache", Lista);
         JLista = JSON.stringify(Lista);
 

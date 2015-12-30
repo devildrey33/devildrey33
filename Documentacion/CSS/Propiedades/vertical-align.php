@@ -2,7 +2,7 @@
 <div class='nota'>Dependiendo del valor de la propiedad <a href="display" target="_blank">display</a> la propiedad vertical-align puede ser ignorada.</div>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>vertical-align: <b>valor</b>;</pre>
+<pre class='Sintaxis'>vertical-align: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td style='width:100px'><b>baseline</b></td>

@@ -1,7 +1,7 @@
 <p>Esta propìedad nos permite especificar el tamaño de la parte superior del borde para el objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>border-top-width: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>border-top-width: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>thin</b></td>

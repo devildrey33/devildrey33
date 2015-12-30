@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite establecer como se debe tratar el contenido que sobresalga del contenedor.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>overflow-x: Valor;</pre>
+<pre class='Sintaxis'>overflow-x: Valor;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>visible</b></td>

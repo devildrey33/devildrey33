@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite definir el color del fondo para el objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>background-color: <b>Color</b>;</pre>
+<pre class='Sintaxis'>background-color: <b>Color</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>Color</b></td>

@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar el eje y la dirección de un contenedor flex. El eje puede ser columnas o filas (<code>column|row</code>), y la dirección normal o invertida.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>flex-direction: Valor;</pre>
+<pre class='Sintaxis'>flex-direction: Valor;</pre>
 <table class='Tabla'>
     <tr>
         <td style='width:120px'><b>row</b></td>

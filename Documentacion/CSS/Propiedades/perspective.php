@@ -2,7 +2,7 @@
 <div class='nota'>Esta propiedad puede combinarse con la propiedad <a href="perspective-origin" target="_blank">perspective-origin</a>.</div>
 <br />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>perspective: valor;</pre>
+<pre class='Sintaxis'>perspective: valor;</pre>
 <table class='Tabla'>
     <tr>
         <td><b><i>valor</i></b></td>

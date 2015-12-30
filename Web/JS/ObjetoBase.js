@@ -16,6 +16,14 @@ $Base = new function() {
     this.PosPrevNext_Tipo   = 0;
     /* Objeto que contiene la ultima petición ajax */
     this.PeticionAjax       = 0;
+    /* Ancla especificada */
+    this.Ancla;
+    /* Temporizador para la animación del resaltado del h2 */
+    this.TemporizadorAncla  = 0;
+    /* Variable para almacenar la función que se utilizara al finalizar la carga dinámica de un CSS */
+    this.FuncionCargarCSS  = function() { };
+    /* Variable para almacenar la función que se utilizara al finalizar la carga dinámica de un JS */
+    this.FuncionCargarJS  = function() { };
     
     this.URL                = "";
     this.nURL               = "";
@@ -25,11 +33,15 @@ $Base = new function() {
     
     this.Iniciar = function() {
         /* Botones de las vistas del lab */
+//        $("#BarraNavegacion_LabVer > .BarraPrincipal_BotonMenu").on("click"), function() { $("#BarraNavegacion_BotonVer_Estado").trigger("click") }
         $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(2)").click(function(e){ $Lab.AjustarVista("0"); });
         $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(4)").click(function(e){ $Lab.AjustarVista("1"); });
         $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(6)").click(function(e){ $Lab.AjustarVista("2"); });
         $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(8)").click(function(e){ $Lab.AjustarVista("3"); });
         /* Explorador del laboratorio */
+//        $("#BarraNavegacion_LabExplorar > .BarraPrincipal_BotonMenu > .IcoTexto > svg").on("click"), function() { $("#BarraNavegacion_BotonExplorar_Estado").trigger("click"); }
+        $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(8)").click(function(e){ $Lab.AjustarVista("3"); });
+
         $("#BarraNavegacion_Explorador .Lab_Archivo").off("click").on("click", function()       {   $Lab.ClickArchivo($(this));     });
         $("#BarraNavegacion_Explorador .Lab_Directorio").off("click").on("click", function()    {   $Lab.ClickDirectorio($(this));  });
 
@@ -50,6 +62,7 @@ $Base = new function() {
         $("#BarraNavegacion_Indice_Estado").click(function(e){              $Base.ClickMenu(9); });
         $("#BarraNavegacion_PrevNext_Estado").click(function(e){            $Base.ClickMenu(10); });
         $("#BarraNavegacion_RedesSociales_Estado").click(function(e){       $Base.ClickMenu(11); });
+        $("#BarraNavegacion_Votacion_Estado").click(function(e){            $Base.ClickMenu(12); });
         
         $("#BarraPrincipal_MarcoBuscar_BotonBuscar").click(function(e) {                    $Base.Buscar(); });
         $("#BarraPrincipal_MarcoBuscar_Edit").keyup(function(e) { if (event.which === 13) { $Base.Buscar(); } });
@@ -204,6 +217,7 @@ $Base = new function() {
         if (Menu === 8) { $("#BarraPrincipal_Boton_Estado").removeAttr("checked"); }
         if (Menu !== 10) { $("#BarraNavegacion_PrevNext_Estado").removeAttr("checked"); }
         if (Menu !== 11) { $("#BarraNavegacion_RedesSociales_Estado").removeAttr("checked"); }
+        if (Menu !== 12) { $("#BarraNavegacion_Votacion_Estado").removeAttr("checked"); }
     };
     
 
@@ -224,16 +238,17 @@ $Base = new function() {
             return false;
         });
         
-        Pagina = $("#MarcoNavegacion > article.Blog").attr("pagina");
-        if (typeof localStorage["Voto_" + Pagina] === "undefined") {
-            $("#VotarDocumento").attr({ "Mostrar" : true });
-            $("#VotarDocumento .VotarDocumento_Estrellas > button").off("click").on("click", function(e)  {
+        Pagina = $("#MarcoNavegacion > article").attr("pagina");
+/*        if (typeof localStorage["Voto_" + Pagina] === "undefined") {
+            $("#BarraNavegacion_Votacion").attr({ "Mostrar" : true });
+            $("#BarraNavegacion_Votacion .VotarDocumento_Estrellas > button").off("click").on("click", function(e)  {
                 $Base.VotarWeb($(this).html());
             });
         }
-        else {
-            $(".VotarDocumento").removeAttr("Mostrar");
-        }
+        else {*/
+        $("#BarraNavegacion_Votacion").removeAttr("Mostrar");
+        this.ComprobarScrollVotacion();
+        //}
         // Enlazo las etiquetas linea al objeto PintarCodigo
         $PintarCodigo.EnlazarEtiquetas();
 
@@ -245,15 +260,19 @@ $Base = new function() {
         
     /* Vota la web */    
     this.VotarWeb = function(Valor) {
-        Pagina = $("#MarcoNavegacion > article.Blog").attr("pagina");
+        Pagina = $("#MarcoNavegacion > article").attr("pagina");
+        // Desmarco el boton de las votaciones
+        $("#BarraNavegacion_Votacion_Estado").removeAttr("checked");
+        
         console.log("Base.VotarWeb", Valor, Pagina);
         if (typeof localStorage["Voto_" + Pagina] === "undefined") {
             localStorage["Voto_" + Pagina] = Valor;
             $.post( "/cmd/VotarPagina.cmd", { "Pagina" : Pagina, "Valor" : Valor, "URL" : window.location.href }).done(function(data) {
                 if (data !== "false") {
                     $(".Cabecera_Datos > .FechaEntrada > span").html(data);
-                    $("#VotarDocumento").removeAttr("Mostrar");
-                    $Base.MostrarMensaje("La votación se ha relaizado correctamente, muchas gracias.");
+                    $("#BarraNavegacion_Votacion").removeAttr("Mostrar");
+                    if ($("html").attr("lang") === "es") { $Base.MostrarMensaje("La votación se ha relaizado correctamente, muchas gracias!"); }
+                    else                                 { $Base.MostrarMensaje("Your vote is annotated, thank you!"); }
                 }
                 /*RedireccionarLinks();*/
             }).fail(function( jqXHR, textStatus, tError ) {
@@ -264,7 +283,8 @@ $Base = new function() {
             });                    
         }
         else {
-            $Base.MostrarMensaje("Solo puedes votar una vez por página.");
+            if ($("html").attr("lang") === "es") { $Base.MostrarMensaje("Solo puedes votar una vez por página."); }
+            else                                 { $Base.MostrarMensaje("Only you can vote one time per page."); }
         }
     };
         
@@ -353,7 +373,7 @@ $Base = new function() {
             Ret["TipoPagina"] = "Lab";
             nURL = "";
         }
-        if (URL.indexOf("/Web/") > -1) {
+        if (URL.indexOf("/Web/") > -1 || URL.indexOf("/FaqBarba") > -1) {
             Ret["TipoPagina"] = "Web";
             nURL = "";
         }
@@ -514,10 +534,17 @@ $Base = new function() {
     
     /* Busca la posición del ancla presionada y mueve el scroll para que quede en la parte superior de la pantalla. */
     this.BuscarAncla = function(Pos) {
-        var ScPos = $("#MarcoNavegacion h2").eq(Pos).offset();
-        console.log("Base.BuscarAncla("+ Pos +")", ScPos);
-        /* body pel chrome, html pel firefox */
-        $("body, html").stop().animate({ scrollTop : ScPos.top - 25 });
+        this.Ancla = $("#MarcoNavegacion h2").eq(Pos);
+        var PosAncla = this.Ancla.offset().top;
+        var PosScroll = $(document).scrollTop();
+        var AltoVentana = $(window).height();
+        console.log("Base.BuscarAncla("+ Pos +")", PosAncla, AltoVentana, PosScroll);
+        if (!(PosAncla > PosScroll - AltoVentana && PosAncla < PosScroll + AltoVentana)) {
+            $("body, html").stop().animate({ scrollTop : PosAncla - 25 });
+        }
+        this.Ancla.attr({ "resaltado" : "true" });
+        if (this.TemporizadorAncla != 0) { clearTimeout(this.TemporizadorAncla); }
+        this.TemporizadorAncla = setTimeout(function() { $Base.Ancla.removeAttr("resaltado"); $Base.TemporizadorAncla = 0; }, 1000);
     };
     
     /* Escanea el documento en busca de etiquetas h2 para enumerarlas en la lista de anclas */
@@ -675,10 +702,10 @@ $Base = new function() {
         console.log("Base.Loguear(" + pass + ")");
         this.Cargando("TRUE");
         $.post("/cmd/Loguear.cmd", { "l" : l,  "p" : pass }).done(function(data) {
-            console.log("Base.Loguear", data);
+//            console.log("Base.Loguear", data);
             Datos = JSON.parse(data);
             if (Datos.Mensaje === "Correcto!") { // Logueado
-                $Base.CargarJS("ObjetoAdmin.js");                
+                $Base.CargarJS("ObjetoAdmin.js", function() { $Admin.Iniciar(); });
                 localStorage["Comentarios_Usuario"] = $("#devildrey33_Usuario").val();
                 $("#devildrey33_Password").val("");
                 $("#VentanaLogin").attr({ visible : false });
@@ -690,7 +717,7 @@ $Base = new function() {
                 $("#BarraNavegacion_Explorador .Lab_Directorio").off("click").on("click", function() { $Lab.ClickDirectorio($(this)); });
                 
                 // Espero medio segundo a que se cargue el javascript para iniciarlo
-                setTimeout(function() { $Admin.Iniciar(); }, 500);
+//                setTimeout(function() { $Admin.Iniciar(); }, 500);
             }
             else {  // Error login o password incorrectos
                 $("#VentanaLogin").removeClass("VentanaError_AnimacionError");
@@ -737,21 +764,35 @@ $Base = new function() {
     };
     
     
-    /* Carga un archivo JS dinamicamente */
-    this.CargarJS = function(Nombre) {
+    /* Carga un archivo JS dinamicamente 
+       - Nombre  : Nombre del archivo JS sin ningun path
+       - Funcion : Función a ejecutar una vez cargado el JS (puede ser NULL) */
+    this.CargarJS = function(Nombre, Funcion) {
+        if (typeof(Funcion) !== "undefined") {  this.FuncionCargarJS = Funcion;        }
+        else                                 {  this.FuncionCargarJS = function() { }; }
+        
         for (var i = 0; i < this.JSDinamico.length; i++) {
             if (this.JSDinamico[i] === Nombre) {
                 console.log("Base.CargarJS(" + Nombre + ") ya se había cargado...");
+                this.FuncionCargarJS();
                 return;
             }
         }
-        this.JSDinamico.push(Nombre);
+
+/*        this.JSDinamico.push(Nombre);
         var Script = document.createElement('script');
         Script.setAttribute("type","text/javascript");
         Script.setAttribute("src", "/Web/JS/" + Nombre);
-        // No se puede hacer un try / catch con el append child :(
-        if (typeof Script !== "undefined") document.getElementsByTagName("head")[0].appendChild(Script);
-        console.log("Base.CargarJS(" + Nombre + ")");    
+        // No se puede hacer un try / catch con el append child :(, por lo que los errores 404 no se pueden detectar...
+        if (typeof Script !== "undefined") document.getElementsByTagName("head")[0].appendChild(Script);*/
+        $.getScript("/Web/JS/" + Nombre, function(data, textStatus, jqxhr) {
+            console.log("Base.CargarJS(" + Nombre + ")");    
+            $Base.FuncionCargarJS();            
+        }).fail(function(jqxhr, settings, exception) { 
+            console.log("Base.CargarJS Error Ajax", jqxhr, settings, exception);    
+            $Base.MostrarErrorAjax(jqXHR.status, false);
+        });
+        
     };
     
 
@@ -768,7 +809,7 @@ $Base = new function() {
         Script.setAttribute("rel", "stylesheet");
         Script.setAttribute("type", "text/css");
         Script.setAttribute("href", "/Web/CSS/" + Nombre);
-        // No se puede hacer un try / catch con el append child :(
+        // No se puede hacer un try / catch con el append child :(, por lo que los errores 404 no se pueden detectar...
         if (typeof Script !== "undefined") document.getElementsByTagName("head")[0].appendChild(Script);
         
         console.log("Base.CargarCSS(" + Nombre + ")");    
@@ -853,6 +894,23 @@ $Base = new function() {
             
         }
     };*/
+                                            
+    this.ComprobarScrollVotacion = function() {
+        if ($(window).scrollTop() > ($(document).height() - ($(window).height() * 2))) {
+            console.log("Base.ComprobarScrollVotacion");
+//        if ($(window).scrollTop() > 190 && Header.attr("animar")) {
+            if (typeof localStorage["Voto_" + Pagina] === "undefined") {
+                $("#BarraNavegacion_Votacion").attr({ "Mostrar" : true });
+                $("#BarraNavegacion_Votacion .VotarDocumento_Estrellas > button").off("click").on("click", function(e)  {
+                    $Base.VotarWeb($(this).html());
+                });
+            }
+        }
+        
+/*        else {
+            $("#BarraNavegacion_Votacion").removeAttr("Mostrar");
+        }        */
+    };
 };
 
 /* Función añadida para convertir la fecha de hoy al formato que usan los input[type=date] */
@@ -871,4 +929,4 @@ window.addEventListener('popstate', function(event) {
 /* Al cargar */
 $(window).load(function()   { $Base.Iniciar(); });
 /* Al usar el scroll */
-$(window).scroll(function() { $Base.AnimarCabeceraBlog();     });
+$(window).scroll(function() { $Base.AnimarCabeceraBlog();   $Base.ComprobarScrollVotacion();     });

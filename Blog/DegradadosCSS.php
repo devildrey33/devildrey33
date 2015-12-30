@@ -138,7 +138,7 @@
                 <p>En esta ocasión el primer parámetro define el punto de inicio en grados, (0 grados indica la izquierda) 45 grados indica abajo a la izquierda. Luego se han especificado 3 colores : amarillo hasta llegar al 20%, luego rojo hasta llegar al 60% y por último el verde.</p>
                 <h3>Compatibilidad</h3>
                 <p>Esta propiedad es soportada por :</p>
-                <table class='Marco'>
+                <table class='postit'>
                     <tr>
                         <td><div class='Navegador_Chrome' title='Google Chrome'></div></td>
                         <td>Versiones 4.0 hasta 25 utilizando el prefijo <code>-webkit-</code>.</td>
@@ -182,7 +182,7 @@
                 <p>Lo único destacable es que yo le digo dos colores un verde claro desde el 0% y un verde oscuro hasta el 10%, y el navegador se encarga de repetirlos hasta completar todo el objeto.</p>
                 <h3>Compatibilidad</h3>
                 <p>Esta propiedad es soportada por :</p>
-                <table class='Marco'>
+                <table class='postit'>
                     <tr>
                         <td><div class='Navegador_Chrome' title='Google Chrome'></div></td>
                         <td>Versiones 4.0 hasta 25 utilizando el prefijo <code>-webkit-</code>.</td>
@@ -242,7 +242,7 @@
 <!--                            <table>
                             	<tr> 
                                     <td style="vertical-align:top"> -->
-                                        <img src='/Graficos/radial-gradient.png' style="float:right; border:none; margin:4px" alt='La parte azul representa la caja donde pintamos el degradado, y los circulos de puntos rojos son partes del degradado que estan tanto dentro como fuera de la caja.' />
+                                        <img src='/Graficos/radial-gradient.png' style="float:right; margin:4px 4px 4px 8px; padding:4px" alt='La parte azul representa la caja donde pintamos el degradado, y los circulos de puntos rojos son partes del degradado que estan tanto dentro como fuera de la caja.' />
                                         <table class='Tabla'>
                                             <tr>
                                                 <td style="white-space:nowrap">1 <b>closest-side</b></td>
@@ -334,7 +334,7 @@
                 <p>En este caso se ha definido una posición inicial distinta para el centro del degradado (10 pixeles desde la izquierda, y 20 pixeles desde arriba), el tamaño del degradado está limitado por <code>farthest-side</code> lo que hace que el ultimo color quede prácticamente plano. Hay 3 colores, blanco, verde, y un verde oscuro, fijaros que el verde oscuro llega un punto que tiene la misma tonalidad, esto es porque al llegar al tamaño máximo del elipse definido por <code>farthest-side</code> ya no se aplican más degradados y se queda el color plano.</p>
                 <h3>Compatibilidad</h3>
                 <p>Esta propiedad es soportada por :</p>
-                <table class='Marco'>
+                <table class='postit'>
                     <tr>
                         <td><div class='Navegador_Chrome' title='Google Chrome'></div></td>
                         <td>Versiones 4.0 hasta 25 utilizando el prefijo <code>-webkit-</code>.</td>
@@ -390,7 +390,7 @@
                 
                 <div style='display:inline-block; width:67px; height:67px; margin-left:20px; border-radius:2px; border:1px solid #999; background:-webkit-repeating-radial-gradient(70% 70%, yellow 0%, yellow 15%, red 15%, red 30%); background:repeating-radial-gradient(70% 70%, yellow 0%, yellow 15%, red 15%, red 30%);'></div>
 		<p>En este último ejemplo aunque deje de ser un degradado estrictamente hablando, es un efecto fácil de hacer para crear una diana por ejemplo. El truco de porque no hace el degradado entre el rojo y el amarillo está en que he añadido 2 veces cada color y no hay ninguna separación entre ellos, fijaros que el amarillo va del 0% al 15%, y luego el rojo va del 15% al 30%.</p>
-                <table class='Marco'>
+                <table class='postit'>
                     <tr>
                         <td><div class='Navegador_Chrome' title='Google Chrome'></div></td>
                         <td>Versiones 4.0 hasta 25 utilizando el prefijo <code>-webkit-</code>.</td>

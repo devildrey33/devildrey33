@@ -275,7 +275,7 @@ function IrEstructuracion(Num) {
                 <p>A continuación podeis ver una referencia completa de todas las funciónes disponibles para trabajar con este objeto.</p>
 
 
-   				<div class='devildrey33_Marco'>
+   				<div class='Tabla'>
                     <table class="TD_Cabecera">
                         <tr>
                             <td class="TD_Propiedad">Función</td>
@@ -288,9 +288,9 @@ function IrEstructuracion(Num) {
                     <?php CrearPropiedad("constructor", "Constructor para crear el control.", "Constructor"); ?>
                     	Este constructor crea el control según los parámetros especificados.<br /><br />
                         <h3>Prototipo</h3>
-                        <pre class='devildrey33_Marco Pre_Sintaxis'>function devildrey33_ListaDesplegable(<b>nID</b>, <b>nItems</b>, <b>FuncionOnChange</b>, [opcional] <b>Opciones</b>)</pre>
+                        <pre class='Sintaxis'>function devildrey33_ListaDesplegable(<b>nID</b>, <b>nItems</b>, <b>FuncionOnChange</b>, [opcional] <b>Opciones</b>)</pre>
                         <h3>Parámetros</h3>
-                        <table class='devildrey33_Marco'>
+                        <table class='Tabla'>
                         	<tr>
                             	<td class='TD_Sintaxis'><b>nID</b></td>
                                 <td class='TD_Sintaxis'>ID única para la etiqueta principal del combobox (la etiqueta debe ser un &lt;div class='devildrey33_ListaDesplegable'&gt; o un &lt;devildrey33_ListaDesplegable&gt;.</td>
@@ -307,7 +307,7 @@ function IrEstructuracion(Num) {
                             	<td class='TD_SintaxisU'><b>Opciones</b>&nbsp;[opcional]</td>
                                 <td class='TD_SintaxisU'>
                                 	Array que contiene una o mas opciones de creación para este control.
-                                    <table class='devildrey33_Marco'>
+                                    <table class='Tabla'>
                                         <tr>
                                             <td class='TD_Sintaxis'><b>MostrarItemSeleccionadoEnLista</b></td>
                                             <td class='TD_Sintaxis'>Esta opción permite indicar al control que siempre debe mostrar el item seleccionado dentro de la lista. Este párametro puede ser <i>true</i> o <i>false</i>. Por defecto el item seleccionado se oculta en la lista, y solo se muestra en la cabecera del control.</td>
@@ -351,9 +351,9 @@ function IrEstructuracion(Num) {
                     <?php CrearPropiedad("AgregarItem", "Función que permite agregar items al control dinamicamente."); ?>
                     	Esta función se usa para agregar un item en la posición especificada, se puede omitir la posición para agregar el item al final de la lista.<br /><br />
                         <h3>Prototipo</h3>
-                        <pre class='devildrey33_Marco Pre_Sintaxis'>function AgregarItem(<b>nTexto</b>, [<i>opcional</i>] <b>nPos</b>)</pre>
+                        <pre class='Sintaxis'>function AgregarItem(<b>nTexto</b>, [<i>opcional</i>] <b>nPos</b>)</pre>
                         <h3>Parámetros</h3>
-                        <table class='devildrey33_Marco'>
+                        <table class='Tabla'>
                         	<tr>
                             	<td class='TD_Sintaxis'><b>nTexto</b></td>
                                 <td class='TD_Sintaxis'>Texto para el item, puede incluir etiquetas HTML, por ejemplo podemos poner imagenes ademas de texto.</td>
@@ -372,7 +372,7 @@ function IrEstructuracion(Num) {
                     <?php CrearPropiedad("BorrarTodo", "Función para borrar todo el contenido de este control."); ?>
                     	Esta función borra todo el contenido del control, incluido el texto seleccionado.<br /><br />
                         <h3>Prototipo</h3>
-                        <pre class='devildrey33_Marco Pre_Sintaxis'>function BorrarTodo()</pre>
+                        <pre class='Sintaxis'>function BorrarTodo()</pre>
                         <h3>Parámetros</h3><br />
                         Sin parámetros.<br /><br />
                         <h3>Retorno</h3><br />
@@ -384,9 +384,9 @@ function IrEstructuracion(Num) {
                     <?php CrearPropiedad("EliminarItem", "Función para eliminar el item especificado por la posición."); ?>
                     	Esta función borra el item especificado por la posición. Si el item que queremos borrar es el item seleccionado, la selección se reseteara a la posición 0.<br /><br />
                         <h3>Prototipo</h3>
-                        <pre class='devildrey33_Marco Pre_Sintaxis'>function EliminarItem(<b>nPos</b>)</pre>
+                        <pre class='Sintaxis'>function EliminarItem(<b>nPos</b>)</pre>
                         <h3>Parámetros</h3><br />
-                        <table class='devildrey33_Marco'>
+                        <table class='Tabla'>
                         	<tr>
                             	<td class='TD_SintaxisU'><b>nPos</b></td>
                                 <td class='TD_SintaxisU'>Posición del item que queremos eliminar.</td>
@@ -401,9 +401,9 @@ function IrEstructuracion(Num) {
                     <?php CrearPropiedad("Item", "Función que devuelve el item de la posición especificada."); ?>
                     	Esta función devuelve el item de la posición especificada en forma de <a href='#devildrey33_ListaDesplegable_Item'>devildrey33_ListaDesplegable_Item</a>.<br /><br />
                         <h3>Prototipo</h3>
-                        <pre class='devildrey33_Marco Pre_Sintaxis'>function Item(<b>nPos</b>)</pre>
+                        <pre class='Sintaxis'>function Item(<b>nPos</b>)</pre>
                         <h3>Parámetros</h3><br />
-                        <table class='devildrey33_Marco'>
+                        <table class='Tabla'>
                         	<tr>
                             	<td class='TD_SintaxisU'><b>nPos</b></td>
                                 <td class='TD_SintaxisU'>Posición del item que queremos obtener.</td>
@@ -418,7 +418,7 @@ function IrEstructuracion(Num) {
                     <?php CrearPropiedad("MostrarLista", "Función despliega la lista de items."); ?>
                     	Esta función despliega la lista de items del control.
                         <h3>Prototipo</h3>
-                        <pre class='devildrey33_Marco Pre_Sintaxis'>function MostrarLista()</pre>
+                        <pre class='Sintaxis'>function MostrarLista()</pre>
                         <h3>Parámetros</h3><br />
                         Sin parámetros.<br /><br />
                         <h3>Retorno</h3><br />
@@ -430,7 +430,7 @@ function IrEstructuracion(Num) {
                     <?php CrearPropiedad("OcultarLista", "Función oculta la lista de items."); ?>
                     	Esta función oculta la lista de items del control.<br /><br />
                         <h3>Prototipo</h3>
-                        <pre class='devildrey33_Marco Pre_Sintaxis'>function OcultarLista()</pre>
+                        <pre class='Sintaxis'>function OcultarLista()</pre>
                         <h3>Parámetros</h3><br />
                         Sin parámetros.<br /><br />
                         <h3>Retorno</h3><br />
@@ -442,9 +442,9 @@ function IrEstructuracion(Num) {
                     <?php CrearPropiedad("Seleccion", "Función para asignar / obtener la posición de la selección."); ?>
                     	Esta función se usa para asignar o obtener la posición de la selección.<br /><br />
                         <h3>Prototipo</h3>
-                        <pre class='devildrey33_Marco Pre_Sintaxis'>function Seleccion([<i>opcional</i>] <b>nPos</b>)</pre>
+                        <pre class='Sintaxis'>function Seleccion([<i>opcional</i>] <b>nPos</b>)</pre>
                         <h3>Parámetros</h3>
-                        <table class='devildrey33_Marco'>
+                        <table class='Tabla'>
                         	<tr>
                             	<td class='TD_SintaxisU'><b>nPos</b> [opcional]</td>
                                 <td class='TD_SintaxisU'>Posición del item que queremos seleccionar. Si omitimos este parámetro esta función devolverá el item seleccionado</td>
@@ -459,7 +459,7 @@ function IrEstructuracion(Num) {
                     <?php CrearPropiedad("TotalItems", "Función para obtener el total de items que contiene este control."); ?>
                     	Esta función se usa para obtener el total de items que contiene este control.<br /><br />
                         <h3>Prototipo</h3>
-                        <pre class='devildrey33_Marco Pre_Sintaxis'>function TotalItems()</pre>
+                        <pre class='Sintaxis'>function TotalItems()</pre>
                         <h3>Parámetros</h3><br />
                         Sin parámetros.<br /><br />
                         <h3>Retorno</h3><br />
@@ -478,7 +478,7 @@ function IrEstructuracion(Num) {
 				<h2><a id='devildrey33_ListaDesplegable_Item'></a>devildrey33_ListaDesplegable_Item</h2>
                 <p>A continuación podeis ver una referencia completa de todas las funciónes disponibles para trabajar con este objeto.</p>
                 
-   				<div class='devildrey33_Marco'>
+   				<div class='Tabla'>
                     <table class="TD_Cabecera">
                         <tr>
                             <td class="TD_Propiedad">Función</td>
@@ -497,9 +497,9 @@ function IrEstructuracion(Num) {
                     <?php CrearPropiedad("Texto", "Función que permite asignar / obtener el texto del item."); ?>
                     	Esta función se usa para asignar o obtener el texto del item.<br /><br />
                         <h3>Prototipo</h3>
-                        <pre class='devildrey33_Marco Pre_Sintaxis'>function Texto([opcional] nTexto)</pre>
+                        <pre class='Sintaxis'>function Texto([opcional] nTexto)</pre>
                         <h3>Parámetros</h3><br />
-                        <table class='devildrey33_Marco'>
+                        <table class='Tabla'>
                         	<tr>
                             	<td class='TD_SintaxisU'><b>nTexto</b>&nbsp;[opcional]</td>
                                 <td class='TD_SintaxisU'>Si especificamos el parámetro podemos asignar el texto para el item. Si omitimos el parámetro la función devolvera el texto del item.</td>

@@ -135,7 +135,7 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_CSS3.png" alt="Colores CSS" />
+                <img class="ImagenPortada2" src="/Web/Graficos/250x200_CSS3.png" alt="Colores CSS" />
                 <p>Dentro de los estilos CSS muchas veces necesitamos definir algún color, hoy veremos qué alternativas tenemos a la hora de definir estos colores y que compatibilidad tenemos en cada alternativa.</p>
                 <p>Estas alternativas las podemos separar en : colores en hexadecimal, colores en RGB (Red, Green, Blue), colores en RGBA (Red, Green, Blue, Alpha), colores en HSL (Hue, Saturation, Lightness), colores en HSLA (Hue, Saturation, Lightness, Alpha) y colores predefinidos por los navegadores.</p>
                 <!-- FIN_INTRODUCCION -->

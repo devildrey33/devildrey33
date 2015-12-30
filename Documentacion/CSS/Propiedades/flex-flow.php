@@ -1,7 +1,7 @@
 <p>Esta propiedad es un atajo para las propiedades <a href='/Doc/CSS/Propiedades/flex-direction'>flex-direction</a> y <a href='/Doc/CSS/Propiedades/flex-wrap'>flex-wrap</a>.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>flex-flow: direction wrap;</pre>
+<pre class='Sintaxis'>flex-flow: direction wrap;</pre>
 
 <h2>flex-direction</h2>
 <p>La propiedad <code>flex-direction</code> permite especificar el eje y la dirección de un contenedor flex. El eje puede ser columnas o filas (<code>column|row</code>), y la dirección normal o invertida.</p>

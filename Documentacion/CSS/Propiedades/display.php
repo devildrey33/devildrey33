@@ -2,7 +2,7 @@
 <p>Cada etiqueta tiene su valor por defecto, por ejemplo las etiquetas <code>div</code> por defecto vienen con <code>display:block</code>, las etiqquetas <code>span</code> vienen por defecto con <code>display:inline</code>, las etiquetas <code>table</code> con <code>display:table</code>, etc...</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>display: Valor;</pre>
+<pre class='Sintaxis'>display: Valor;</pre>
 <h2>Valores básicos</h2>
 <table class='Tabla' style="table-layout:fixed">
     <tr>

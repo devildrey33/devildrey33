@@ -4,7 +4,7 @@
 <div class='nota'>El atributo puede contener varias palabras, solo hace falta que coincida una de ellas. No hace falta mencionar que las palabras están delimitadas por espacios inicio o final de línea.</div><br />
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>Elemento[Atributo~=Valor] { };</pre>
+<pre class='Sintaxis'>Elemento[Atributo~=Valor] { };</pre>
 <hr />
 <h2>Compatibilidad</h2>
 <p>Esta propiedad es soportada por todos los navegadores compatibles con CSS2.</p>

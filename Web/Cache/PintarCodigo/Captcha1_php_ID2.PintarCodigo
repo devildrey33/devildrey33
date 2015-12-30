@@ -1,1 +1,0 @@
-<div class='Codigo_Marco' id='ID2'><div class='Codigo_Titulo'>Hack para el captcha</div><div class='Codigo_Numeracion'>1<br></div><pre class='Codigo_PRECodigo'><div l=1><span class='TxtNegro'><span class='TxtLila'>document</span>.getElementById(<span class='TxtAmarillo'>"ResultadoCaptcha"</span>).value = (Valor1 + Valor2); ValidarCaptcha();</span></div></pre></div>

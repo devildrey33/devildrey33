@@ -1,7 +1,7 @@
 <p>Esta funcion define un color utilizando el modelo HSL (<b>H</b>ue, <b>S</b>aturation, <b>L</b>ight) con canal <b>A</b>lpha. La matríz (hue) se expresa en grados (0-360), la saturación y la luminosidad se repesentan en porcentajes (0%-100%).</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>hsl( ValorH, ValorS, ValorL );</pre>
+<pre class='Sintaxis'>hsl( ValorH, ValorS, ValorL );</pre>
 <table class='Tabla'>
     <tr>
         <td>Valor<b>H</b></td>

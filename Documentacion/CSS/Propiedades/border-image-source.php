@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar la ruta de la imagen que se usara para pintar el borde.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>border-image-source: <b>url()</b>;
+<pre class='Sintaxis'>border-image-source: <b>url()</b>;
 border-image-source: <b>FunciónDegradado()</b></pre>
 <table class='Tabla'>
     <tr>

@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar si este elemento es flotante, y hacia que lado apunta.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>float: Valor;</pre>
+<pre class='Sintaxis'>float: Valor;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>none</b></td>

@@ -1,7 +1,7 @@
 <p>Esta propiedad corta nos permite asginar las propiedades "<a href="margin-bottom"><i>margin-bottom</i></a>", "<a href="margin-left"><i>margin-left</i></a>", "<a href="margin-right"><i>margin-right</i></a>", y "<a href="margin-bottom"><i>margin-bottom</i></a>" en la misma linea.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>margin: Top Right Bottom Left;</pre>
+<pre class='Sintaxis'>margin: Top Right Bottom Left;</pre>
 <div class='nota'>Los valores van en el siguiente orden : Top, Right, Bottom, Left. Si omitimos el left, este tomara el valor de Right. Si omitimos el Bottom, este tomara el valor de Top. Si solo ponemos un valor, se aplicara a los 4 valores.</div><br />
 <table class='Tabla'>
     <tr>

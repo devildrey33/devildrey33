@@ -1,7 +1,7 @@
 <p>Esta prpopiedad nos permite especificar el color del borde exterior.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>outline-color: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>outline-color: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b><i>Color</i></b></td>

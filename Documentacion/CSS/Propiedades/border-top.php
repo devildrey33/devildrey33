@@ -1,7 +1,7 @@
 <p>Esta propiedad corta nos permite asginar las propiedades "<a href="border-top-width"><i>border-top-width</i></a>", "<a href="border-top-style"><i>border-top-style</i></a>", y "<a href="border-top-color"><i>border-top-color</i></a>" en la misma linea.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>border-top: <b>width</b>&nbsp;<b>style</b>&nbsp;<b>color</b>;</pre>
+<pre class='Sintaxis'>border-top: <b>width</b>&nbsp;<b>style</b>&nbsp;<b>color</b>;</pre>
 <div class='nota'>No importa el orden en el que se especifiquen las propiedades, y tambien se pueden omitir una o mas propiedades.</div><br />
 <table class='Tabla'>
     <tr>

@@ -1,6 +1,6 @@
 <p>Esta propiedad nos permite definir que tipo de curva de velocidad usara la transición. Para entenderlo mejor vamos a imaginar una animación que mueve 10 pixeles un objeto durante 10 segundos, una curva "<i>linear</i>" moveria 1 pixel en cada segndo, pero por ejemplo si usamos "<i>ease-in</i>" los primeros segundos se movera mas lenta, y luego continuara de forma normal.</p>
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>transition-timing-function: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>transition-timing-function: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>linear</b></td>

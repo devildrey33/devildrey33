@@ -1,7 +1,7 @@
 <p>Propiedad que permite establecer si los elementos hijos preservaran su posición 3D.</p>
 <br />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>transform-style: <i>valor</i>;</pre>
+<pre class='Sintaxis'>transform-style: <i>valor</i>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>flat</b></td>

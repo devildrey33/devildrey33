@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar si los hijos deben mostrarse en la misma línea, o si pueden fluir en varias líneas.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>flex-wrap: Valor;</pre>
+<pre class='Sintaxis'>flex-wrap: Valor;</pre>
 <table class='Tabla'>
     <tr>
         <td style='width:120px'><b>nowrap</b></td>

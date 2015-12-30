@@ -1,7 +1,7 @@
 <p>Esta propiedad corta nos permite especificar las propiedades <a href="font-family">font-family</a>, <a href="font-size">font-size</a>, <a href="font-style">font-style</a>, <a href="font-weight">font-weight</a>, <a href="font-variant">font-variant</a>, y <a href="line-height">line-height</a> en la misma declaración.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>font:<b>valores</b>;</pre>
+<pre class='Sintaxis'>font:<b>valores</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td style='width:175px;'><a href='font-family'><b>font-family</b></a></td>

@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar el tamaño con el que queremos mostrar la imagen de fondo independientemente de su tamaño original.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>background-size: <b>valor</b>;</pre>
+<pre class='Sintaxis'>background-size: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>auto</b></td>

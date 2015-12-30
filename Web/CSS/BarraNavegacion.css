@@ -75,13 +75,13 @@ input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
     opacity:1;    
 }
 
-/*#BarraNavegacion_BotonExplorar_Estado:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span,
-#BarraNavegacion_BotonVer_Estado:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span,
-#BarraNavegacion_Indice_Estado:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span,
-#BarraNavegacion_PrevNext_Estado:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span,
-#BarraNavegacion_RedesSociales_Estado:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {*/
-input:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
+input:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span, input:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > svg {
     opacity:0;    
+}
+
+input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > svg {
+    transition:0.4s;
+    opacity:1;
 }
 /* Botones de los menus con imagenes */
 input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
@@ -101,52 +101,49 @@ input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
 #BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span[ver=preview]  > span { background-image: url('/Web/Graficos/BotonPreview.png'); }
 
 
-#BarraNavegacion_Indice_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
-    background-image: url('/Web/Graficos/BotonAncla.png');
-}
-
-#BarraNavegacion_PrevNext_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
-    background-image: url('/Web/Graficos/prevnext.png');
-}
-
-#BarraNavegacion_RedesSociales_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
-    background-image: url('/Web/Graficos/RedesSociales.png');
-}
-
-#BarraNavegacion_BotonExplorar_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
-    background-image: url('/Web/Graficos/BotonExplorar.png');
-}
+/*#BarraNavegacion_Indice_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {          background-image: url('/Web/Graficos/BotonAncla.png');  }
+#BarraNavegacion_PrevNext_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {        background-image: url('/Web/Graficos/Botonprevnext.png');    }
+#BarraNavegacion_RedesSociales_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {   background-image: url('/Web/Graficos/BotonRedesSociales.png');   }
+#BarraNavegacion_BotonExplorar_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {   background-image: url('/Web/Graficos/BotonExplorar.png');   }*/
 
 
 /* Por defecto oculto*/ 
 body #BarraNavegacion_LabGuardar, body #BarraNavegacion_LabGuardarCache { 
     display:none; 
     opacity:0; 
-    background-image: url('/Web/Graficos/BotonGuardar.png'); 
+/*    background-image: url('/Web/Graficos/BotonGuardar.png'); 
     background-position:center center;
-    background-repeat:no-repeat;
-    transition:0.4s;
-    visibility:hidden;
+    background-repeat:no-repeat;*/
+    height:0px !important;
+    transform:perspective(600px) rotateY(-90deg);    
+    transform-origin:right center;      
+    transition:0.4s cubic-bezier(.17,-0.42,0,1.35);  
 }
 /* Si soy administrador, y estoy en el lab */
 body[administrador33][tipo=Lab] #BarraNavegacion_LabGuardar, body[administrador33][tipo=Lab] #BarraNavegacion_LabGuardarCache { display:block; }
-/* Si soy administrador, estoy en el lab, y se ha modificado el archivo */
-body[administrador33][tipo=Lab][modificado=true] #BarraNavegacion_LabGuardar { visibility:visible; opacity:1; }
+
+body[administrador33][tipo=Lab][modificado=true] #BarraNavegacion_LabGuardar,               /* Si soy administrador, estoy en el lab, y se ha modificado el archivo */
+body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuardarCache {    /* Si soy administrador, estoy en el lab, y se ha modificado algun checkbox del explorador de archivos */
+    opacity:1;
+    transform:perspective(600px) rotateY(0deg);    
+    height:58px !important;
+}
 /* Si soy administrador, estoy en el lab, y se ha modificado algun checkbox del explorador de archivos */
 body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuardarCache { visibility:visible; opacity:1; }
 
-#BarraNavegacion_Cerrar::before {
+/*#BarraNavegacion_Cerrar::before {
     content:'';
-    position:absolute;
-    background-image:url('/Web/Graficos/BotonHome.png');
+    position:absolute;*/
+/*    background-image:url('/Web/Graficos/BotonHome.png');*/
+/*    background-image:url('/Web/Graficos/EstrellaDeLaMortTotal.png'); */
 /*    background-image:url('/Web/Graficos/Home20px.png');*/
-    display:table;
+/*    display:table;
     width:100%;
     height:100%;
     background-repeat: no-repeat;
     background-position: center center;
 }
-
+*/
 /* Tamaños de los submenus según las columnas que se necesiten */
 .SubIndice_Columas_1                                                {    width:auto !important;        }
 .SubIndice_Columas_2                                                {    width:500px; /* 250 * 2 */    }
@@ -182,11 +179,14 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
     position:relative;
 }
 
+
+/* Equivale a las ID : BarraNavegacion_Marco??????? */
 #BarraNavegacion .Menu_BotonCheck > .BarraPrincipal_Boton_Input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu + div {
     transition:0.4s cubic-bezier(.17,-0.42,0,1.35);
     transform:perspective(600px) rotateY(-90deg);    
     opacity:0;
     transform-origin:right center;
+    z-index:100000;
 }
 #BarraNavegacion .Menu_BotonCheck > .BarraPrincipal_Boton_Input:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu + div  {    
     transform:perspective(600px) rotateY(0deg);
@@ -223,7 +223,7 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
     top:0px;
     right:64px;
     padding:1px;
-    width:256px;
+    width:240px;
     height:60px;
     background:rgba(37,35,40, 0.95);
     color:#FFF;
@@ -443,12 +443,10 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
 #BarraNavegacion_MarcoNextPrev_Prev::before {   transform: rotateZ(-45deg);   }
 #BarraNavegacion_MarcoNextPrev_Prev::after  {   transform: rotateZ(45deg);  top:34px; }
 
+/*#BarraNavegacion_Votacion                   {    display:none;  }
+#BarraNavegacion_Votacion[Mostrar='true']   {    display:block; }*/
 
-
-
-
-
-#BarraNavegacion_MarcoRedesSociales {
+#BarraNavegacion_MarcoVotacion {
     position:absolute;
     display:block;
     right:64px;
@@ -456,9 +454,59 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
     background: rgba(37,35,40, 0.95);
     color:#FFF;
     border: 1px solid #353338;
-    width: 262px;
+    width:346px;
+    height:114px;
+    padding-top:10px;
+}
+
+#BarraNavegacion_MarcoVotacion > span {
+    font-size:1.5rem;
+    display:table;
+    margin:0px auto;
+}
+
+html[lang=es] #BarraNavegacion_MarcoVotacion > span:nth-child(1)::after {    content:'Por favor puntúa este documento del 1 al 5';   }
+html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(1)::after {    content:'Please rate this document form 1 to 5';        }
+
+html[lang=es] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    content:'De esta forma me ayudas a mejorar la web';     }
+html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    content:'Doing this you are helping me to improve it.'; }
+
+#BarraNavegacion_MarcoVotacion > .VotarDocumento_Estrellas {
+    display:table;
+    margin:4px auto 0px auto;    
+}
+
+#BarraNavegacion_MarcoVotacion > .VotarDocumento_Estrellas > button {
+    width:48px;
+    height:48px;
+    display:inline-block;
+    padding:0px;
+    margin:2px;
+    zoom:1!important;
+}
+
+
+
+
+
+
+
+
+/* REDES SOCIALES */
+#BarraNavegacion_MarcoRedesSociales {
+    position:absolute;
+    display:block;
+    right:64px;
+    top:-3px;
+    background: rgba(37,35,40, 0.95);
+    color:#FFF;
+    border:1px solid #353338;
+    width:186px;
     height:62px;
 }
+
+/* Boton LinkEdin de momento oculto */
+#BarraNavegacion_MarcoRedesSociales > #BarraNavegacion_MarcoRedesSociales_Linkedin { display:none; }
 
 #BarraNavegacion_MarcoRedesSociales > button {
     display:inline-block;
@@ -467,23 +515,67 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
     margin:2px !important;
     overflow:hidden;
     zoom:1 !important;
-
 }
 
 #BarraNavegacion_MarcoRedesSociales_Facebook   { background-image: url('/Web/Graficos/BotonFacebook.png');   }
 #BarraNavegacion_MarcoRedesSociales_Twitter    { background-image: url('/Web/Graficos/BotonTwitter.png');    }
 #BarraNavegacion_MarcoRedesSociales_GooglePlus { background-image: url('/Web/Graficos/BotonGooglePlus.png'); }
-#BarraNavegacion_MarcoRedesSociales_Linkedin   { background-image: url('/Web/Graficos/BotonLinkedin.png'); }
+/*#BarraNavegacion_MarcoRedesSociales_Linkedin   { background-image: url('/Web/Graficos/BotonLinkedin.png'); }*/
 
 #BarraNavegacion_MarcoRedesSociales_Facebook:hover   { background-color: rgb(58, 88, 155) !important;  border-color: rgb(0,0,150) !important; }
 #BarraNavegacion_MarcoRedesSociales_Twitter:hover    { background-color: rgb(40, 168, 224) !important; border-color: rgb(0,0,250) !important; }
 #BarraNavegacion_MarcoRedesSociales_GooglePlus:hover { background-color: rgb(202, 70, 56) !important;  }
-#BarraNavegacion_MarcoRedesSociales_Linkedin:hover   { background-color: rgb(0, 122, 185) !important;  border-color: rgb(0,0,200) !important;}
+/*#BarraNavegacion_MarcoRedesSociales_Linkedin:hover   { background-color: rgb(0, 122, 185) !important;  border-color: rgb(0,0,200) !important;}*/
+
+/* Bug raro en chrome que hace sobresalir una parte inexistente del span .IconoTexto mas abajo del limite del boton */
+/* No se puede aplicar a todos los .BarraPrincipal_BotonMenu, ya que oculta tambien su tool-tip (con los 4 botones de la vista del editor) */
+#BarraNavegacion_RedesSociales_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu {
+    overflow:hidden;
+}
 
 
+/* Votación */
+#BarraNavegacion_Votacion {
+    height:0px !important;
+    transform:perspective(600px) rotateY(-90deg);    
+    transform-origin:right center;      
+    transition:0.4s cubic-bezier(.17,-0.42,0,1.35);  
+}
+/* OJO no englobar este mostrar, porque hay problemas con algunos marcos (el de explorar ejemplos del lab el primero y mas crítico)*/
+#BarraNavegacion_Votacion[mostrar='true'] {
+    transform:perspective(600px) rotateY(0deg);
+    height:60px !important;
+}
+#BarraNavegacion_Votacion[mostrar='true'] > .BarraPrincipal_BotonMenu {
+    animation:Ani-ResaltarFondoBoton 0.5s ease 0s 6 alternate;
+}
+
+#BarraNavegacion_Votacion[mostrar='true'] > #BarraNavegacion_Votacion_Estado + .BarraPrincipal_Boton {
+    animation:Ani-ResaltarBordeBoton 0.5s ease 0s 6 alternate;
+}
+
+#BarraNavegacion_Votacion[mostrar='true']:hover > #BarraNavegacion_Votacion_Estado + .BarraPrincipal_Boton {
+    animation-play-state: paused;
+}
+
+#BarraNavegacion_Votacion[mostrar='true']:hover  > .BarraPrincipal_BotonMenu {
+    animation-play-state: paused;
+}
 
 
+@keyframes Ani-ResaltarFondoBoton {
+    0%   { background:#29272c; }
+    100% { background:#ea504e; }
+}
+@keyframes Ani-ResaltarBordeBoton {
+    0%   { border:1px solid #353338; }
+    100% { border:1px solid #FF0000; }
+}
 
+.IcoTexto > svg {
+    top:-22px;
+    position:relative;
+}
 
 
 #BarraNavegacion_Inferior {
@@ -491,8 +583,6 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
     height:60px;
     position:fixed;
     display:none;
-/*    transition:0.5s;    
-    transition-delay:0.5s;*/
     bottom:0px;
     right:0px;    
     z-index:100;
@@ -532,3 +622,59 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
 
 @keyframes Rotacion 		{ 0% { transform:rotate(0deg); } 		100% { transform:rotate(360deg); }          }
 @keyframes RotacionInv 		{ 0% { transform:rotate(0deg); } 		100% { transform:rotate(-360deg); }         }
+
+
+
+/* Tooltips multiidioma */
+html[lang='es'] *[tooltip-es]::before, html[lang='en'] *[tooltip-en]::before {
+    position:absolute;
+    
+    display:block;
+    background:#EA504E;
+    border:1px solid red;        
+    border-left:6px solid red;
+    color:#FFF;
+    text-shadow:1px 1px 1px #000;
+/*    background:#29272C;
+    border:1px solid #353338;        
+    border-left:6px solid #555;
+    color:#FFF;
+    text-shadow:1px 1px 1px #000;*/
+/*    background:rgb(249, 249, 222);
+    border:1px solid yellow;    
+    border-left:6px solid yellow;
+    color:#000;
+    text-shadow:1px 1px 1px #FFF;*/
+    border-radius:2px;
+    padding:10px;
+    font-size:1em;
+    opacity:0;
+    width:0px;
+    transition:.4s cubic-bezier(.17,-0.42,0,1.35);
+    content:'';
+    transform:perspective(600px) rotateX(-90deg);
+    transform-origin:center top;
+    text-align:center;
+    z-index:1;
+    overflow:hidden;
+}
+
+[tooltip-pos='R']::before { top:8px; right:66px; } /* Desde la derecha '*/
+/*[tooltip-pos='L']::before { top:10px; left:70px;  }*/ /* Desde la izquierda */
+[tooltip-pos='T']::before { top:70px; right:0px;  } /* Desde arriba */
+
+#Lab_VerCodigo_Estado + [tooltip-pos='T']::before   { right:-65px; }
+#Lab_VerColumnas_Estado + [tooltip-pos='T']::before { right:-130px; }
+#Lab_VerFilas_Estado + [tooltip-pos='T']::before    { right:-195px; }
+
+/* Asigno el contenido del idioma segun el atributo lang del HTML */
+html[lang='es'] *[tooltip-es]::before { content:attr(tooltip-es); }
+html[lang='en'] *[tooltip-en]::before { content:attr(tooltip-en); }
+
+/* Muestro el tooltip siempre que sea un a, o un boton que tiene un input antes */
+html[lang='es'] input:not(:checked) + *[tooltip-es]:hover::before, html[lang='en'] input:not(:checked) + *[tooltip-en]:hover::before,
+html[lang='es'] a[tooltip-es]:hover::before, html[lang='en'] a[tooltip-en]:hover::before {
+    transform:perspective(600px) rotateX(0deg);
+    opacity:1;
+    width:224px;
+}

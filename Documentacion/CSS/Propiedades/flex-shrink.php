@@ -1,7 +1,7 @@
 <p>Esta propiedad se utiliza para especificar factor de contracción de un <code>flex-item</code>.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>flex-shrink: Valor;</pre>
+<pre class='Sintaxis'>flex-shrink: Valor;</pre>
 
 <table class='Tabla'>
     <tr>

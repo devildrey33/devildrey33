@@ -2,7 +2,7 @@
 <p>Los canales RGB tienen un rango de 0 a 255, y el canal Alpha va desde 0.0 (transparente) a 1.0 (opaco).</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>rgba( ValorR, ValorG, ValorB, ValorA );</pre>
+<pre class='Sintaxis'>rgba( ValorR, ValorG, ValorB, ValorA );</pre>
 <table class='Tabla'>
     <tr>
         <td>Valor<b>R</b></td>

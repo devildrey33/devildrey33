@@ -32,7 +32,7 @@
                 <p>Este es un menú simple sin sub-menús que tiene una animación en el subrayado implementada en JQuery. Esta animación debe calcular el ancho y la posición del item donde está el mouse para calcular el ancho y la posición inicial de la barra de subrayado.</p>
                 <p>Se podría hacer también con CSS, pero no veo ninguna forma de hacerlo dinámico es decir que calcule automáticamente los items del menú para desplazar la barra del subrayado, así que la única solución viable que veo seria medir cada parte del menú, e implementar una transición especificando la posición para cada parte del menú.</p>
                 <p>Para este caso en concreto yo he apostado por la comodidad de poder añadir/modificar/eliminar items sin tener que tocar código javascript ni css.</p>
-                <iframe src='/Ejemplos/Menus/MenuSubrayado.html' class='devildrey33_Marco Centrado' id="Marco1"></iframe>
+                <iframe src='/Ejemplos/Menus/MenuSubrayado.html' class='postit Centrado' id="Marco1"></iframe>
                	
                 <a href="/Lab/Ejemplos/Menus/MenuSubrayado.html" class="Boton Centrado">Ver código de ejemplo</a>
 
@@ -46,7 +46,7 @@
                 <p>Otra cosa que no me ha gustado y que creo que mejoraría con JavaScript es el efecto de la escala, ya que por alguna razón repinta todos los items y se hacen como borrosos. Curiosamente en internet explorer 10 es donde se ve mas fino.</p>
                 <p>Por ultimo también hay que remarcar que tiene una transición en el marco principal con el degradado, y que al pasar el mouse por encima se hace mas luminoso. Aunque algunos navegadores antiguos no soporten transiciones con degradados de fondo, se puede hacer un degradado con uno de los colores translucido, y luego modificarlo haciendo un <a href="/Doc/CSS/Propiedades/transition" target="_blank">transition</a> a la propiedad <a href="/Doc/CSS/Propiedades/background-color" target="_blank">background-color</a>.</p>
 
-                <iframe class='devildrey33_Marco' id='Marco2' src="/Ejemplos/Menus/MenuDesalineado.html"></iframe>
+                <iframe class='postit' id='Marco2' src="/Ejemplos/Menus/MenuDesalineado.html"></iframe>
                
                 <a href="/Lab/Ejemplos/Menus/MenuDesalineado.html" class="Boton Centrado">Ver código de ejemplo</a>
 
@@ -56,7 +56,7 @@
                 <p>Este menú sigue en la dinámica del anterior con la diferencia de que muestra sus items en una sola fila.</p>
                 <p>A diferencia del menú anterior este se centra en el documento, y sus items tienen el <a href="/Doc/CSS/Propiedades/position" target="_blank">position</a> a <code>relative</code>, para poder centrar el contenido sin complicaciones.</p>
                 <p>La parte de la animación del despliegue se ha hecho con la propiedad <a href="/Doc/CSS/Propiedades/transition" target="_blank">transition</a> aplicado a las propiedades <a href="/Doc/CSS/Propiedades/top" target="_blank">top</a>, <a href="/Doc/CSS/Propiedades/left" target="_blank">left</a>, y <a href="/Doc/CSS/Propiedades/transform" target="_blank">transform</a> (<a href="/Doc/CSS/Funciones/rotateZ" target="_blank">rotateZ</a>).</p>
-                <iframe id='Marco3' class='devildrey33_Marco' src="/Ejemplos/Menus/MenuPregunta.html"></iframe>
+                <iframe id='Marco3' class='postit' src="/Ejemplos/Menus/MenuPregunta.html"></iframe>
                 
                 <a href="/Lab/Ejemplos/Menus/MenuPregunta.html" class="Boton Centrado">Ver código de ejemplo</a>
 
@@ -65,7 +65,7 @@
                 <p>Este menú es sin duda el que mejor me ha quedado, y además es el único desde mi punto de vista que realmente merece la pena crear en puro CSS3 y posicionar sus items a mano.</p>
                 <p>Cada esfera pequeña tiene su propia transición para empezar con 100 milisegundos de retraso la animación.</p>
                 <p>Al perder el foco también requiere una transición para cada esfera, ya que queremos dejar un retardo (Delay) de como mínimo medio segundo (100 milisegundos más para cada esfera pequeña) para que el usuario tenga tiempo de mover el mouse por las esferas sin que se vuelvan a su posición oculta/inicial.</p>
-                <iframe id='Marco4' class='devildrey33_Marco' src="/Ejemplos/Menus/MenuEsfera.html"></iframe>
+                <iframe id='Marco4' class='postit' src="/Ejemplos/Menus/MenuEsfera.html"></iframe>
 
                 <a href="/Lab/Ejemplos/Menus/MenuEsfera.html" class="Boton Centrado">Ver código de ejemplo</a>
 

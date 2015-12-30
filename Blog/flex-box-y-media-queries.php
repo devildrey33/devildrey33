@@ -26,7 +26,7 @@
                 <p>El modelo FlexBox nos permite tener un contenedor al cual podemos establecer si queremos mostrar sus hijos por columnas o por filas. La idea es crear una cabecera, un marco principal (que será la FlexBox), y un footer. Dentro del marco principal crearíamos un menú de navegación, un artículo, y un menú lateral alternativo.</p>
                 <!-- FIN_INTRODUCCION -->
                 <p>El objetivo es que si la resolución es menor que 500 pixeles la página se muestre únicamente a base de filas, ya que los menús laterales no cabrían.</p>
-                <div style='position:relative'>
+                <div style='position:relative; padding-top:20px;'>
                     <div class='Marca800'></div>
                     <div class='Marca500'></div>
                     <div class='Marca300'></div>

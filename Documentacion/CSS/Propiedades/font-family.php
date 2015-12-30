@@ -5,7 +5,7 @@
 </div>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>font-family: <b>valor</b> ;</pre>
+<pre class='Sintaxis'>font-family: <b>valor</b> ;</pre>
 <div class='nota'>Se pueden añadir uno o mas valores separados por ujna coma. Si el valor incluye espacios debemos marcarlo entre comillas.</div>
 <br />
 <table class='Tabla'>

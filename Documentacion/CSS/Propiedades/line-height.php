@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar la separación las líneas de un texto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>line-height: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>line-height: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>normal</b></td>

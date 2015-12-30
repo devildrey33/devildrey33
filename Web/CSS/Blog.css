@@ -17,93 +17,50 @@ and open the template in the editor.
     border:1px solid rgb(200, 200, 200);
 }
 
-.ImagenPortada {
-    float:left;
-    margin-right:15px;
-    border:1px solid rgb(200,200,200);
+.ImagenPortada, .ImagenPortada2 {
+    border:1px solid rgb(200,200,200) !important;        
     margin-top:1em;
     background:rgb(255,255,255);
-}
-.ImagenPortada2 {
-    float:right;
-    margin-left:15px;
-    border:1px solid rgb(200,200,200);
-    margin-top:1em;
-    background:rgb(255,255,255);
+    transition:0.4s;
 }
 
-h3, h4 {
-/*    clear:both;*/
-    margin:0px;
-}
+.ImagenPortada  { float:left;   margin-right:15px;  border-left:6px solid darkblue !important; }
+.ImagenPortada2 { float:right;  margin-left:15px;                                              }
+
+.ImagenPortada:hover  { border:1px solid darkblue !important;   border-left:6px solid darkblue !important; }
+.ImagenPortada2:hover { border:1px solid darkblue !important;                                              }
 
 
-/* postit para las notas */
-/* La diferencia entre la nota y el postit, es que la nota muestra el texto 'NOTA :' */
-.nota, nota, postit, .postit {
-    border:1px solid rgb(200, 200, 200);
-    background-color:rgb(249, 249, 222);
-    display:table;
-    margin:3px;
-    padding:3px 4px 3px 3px;
-}
-html[lang='es'] nota::before, html[lang='es'] .nota::before {
-    content:"NOTA :";
-}
-html[lang='en'] nota::before, html[lang='en'] .nota::before  {
-    content:"NOTE :";
-}
-.nota::before, nota::before {
-    display:table-cell;
-    position:relative;
-    font-weight:bold;
-    white-space:nowrap;
-    padding-right:5px;
-}
 
 
-/* postit para las notas */
-/* La diferencia entre la nota y el postit, es que la nota muestra el texto 'NOTA :' */
-/*.nota, nota, postit, .postit {
-    border:1px solid rgb(200, 200, 200);
-    background-color:rgb(249, 249, 222);
-    display:table;
-    margin:3px;
-    padding:3px 4px 3px 3px;
-}
-.nota::before, nota::before {
-    content:"NOTA :";
-    display:table-cell;
-    position:relative;
-    font-weight:bold;
-    white-space:nowrap;
-    padding-right:5px;
-}*/
-
-h2 {
-    display:table;
-    margin:0px 0px 0px 0px;
-}
-
+/* Marge superior pels articles */
 article h2 {
-    display:table;
     margin:50px 0px 0px 0px;
 }
+/*
+article h2, article h3 {
+    border:1px solid transparent;
+    border-left:6px solid yellow;
+    padding-left:10px;
+}
 
-
+article h2:hover, article h3:hover {
+    border:1px solid yellow;
+    border-left:6px solid yellow;
+}*/
+/*
 h2:before {
     content:'';
     display:table-cell;
     position:relative;
     padding-right:5px;
-/*    margin-left:-20px;*/
-    top:-5px;
+    top:-2px;
     height:30px;
     width:30px;
     background-image:url('/Web/Graficos/Ancla30pxN.png');
     background-repeat:no-repeat; 
     background-position:0px 2px;
-}
+}*/
 
 
 
@@ -229,89 +186,7 @@ hr {
     background-color:#FFFFFF;
 }
 
-/* Tablas dentro de tablas tienen el borde mas pequeño y claro */
-.Tabla .Tabla {
-    border:1px solid rgb(150, 150, 150);
-}
 
-.Tabla {
-    border:2px solid #BBB;
-    border-spacing: 0px;
-    border-collapse: separate;
-    background: #FFFFFF;
-}
-
-.Tabla td {
-    padding:3px 10px;
-    border-bottom:1px solid #AAA;
-    border-right:1px solid #AAA;
-}
-
-.Tabla td:last-child {
-    border-right:none !important;
-}
-
-.Tabla tr:last-child td {
-    border-bottom:none !important;
-}
-
-
-.Tabla th {
-    background: rgb(100,100,100);
-    color:#FFFFFF;
-    border-right:none;
-    padding:4px;
-}
-/*
-.Tabla td:nth-last-child {
-    border-right:none !important;
-}
-
-.Tabla tr:nth-last-child td {
-    border-bottom:none !important;
-}
-*/
-.Tabla pre {
-    margin:0px;
-}
-
-
-.TablaDocCSS {
-    table-layout:fixed;
-    width:100%;    
-    margin-top:3px;
-}
-/* Imagenes que corresponden a la compatibilidad de navegadores a 18x18 */
-.TablaDocCSS img {
-    border:none !important;
-    width:18px;
-    height:18px;
-    position:relative;
-    top:2px;
-}
-.TablaDocCSS th {
-    text-align: left;
-}
-.TablaDocCSS td {
-    white-space: nowrap;
-    padding:0px 3px ;
-    border-right:none;
-}
-
-.TablaDocCSS th:nth-child(1), .TablaDocCSS td:nth-child(1) {
-    width:200px;
-}
-.TablaDocCSS th:nth-child(2), .TablaDocCSS td:nth-child(2) {
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-.TablaDocCSS th:nth-child(3), .TablaDocCSS td:nth-child(3) {
-    width:110px;
-}
-.TablaDocCSS th:nth-child(4), .TablaDocCSS td:nth-child(4) {
-    width:25px;
-    text-align:center;
-}
 
 
 .MiniNoSoportado {
@@ -322,18 +197,13 @@ hr {
 
 
 
-.Sintaxis {
-    border:1px solid rgb(200, 200, 200);
-    background:#FFFFFF;
-    padding:2px;
-}
 
 
-
+/* DEPRECATED
 .Marco, .devildrey33_Marco {
     background:#FFFFFF;
     border:1px solid  rgb(200, 200, 200);
-}
+}*/
 
 /* Enlaces relacionados de la documentación CSS */
 .EnlacesRelacionados {
@@ -343,10 +213,14 @@ hr {
 }
 
 /* Sintaxis de la documentación CSS  */
-.Pre_Sintaxis {
+/*.Pre_Sintaxis {
     display:table;
     font-size:2rem;
-}
+}*/
+
+
+
+
 
 
 #VotarDocumento {
@@ -364,9 +238,6 @@ hr {
 .VotarDocumento {
     display:table;
     margin:25px auto 0px auto;
-/*    background: #252328;    
-    border: 1px solid #353338;
-    color:#FFF;*/
     padding:10px;
 }
 .VotarDocumento > span {
@@ -381,11 +252,6 @@ html[lang=en] .VotarDocumento > span:nth-child(1)::after {    content:'Please ra
 html[lang=es] .VotarDocumento > span:nth-child(2)::after {    content:'De esta forma me ayudas a mejorar la web';     }
 html[lang=en] .VotarDocumento > span:nth-child(2)::after {    content:'Doing this you are helping me to improve it.';     }
 
-
-/*.VotarDocumento > button {
-    margin:2px auto !important;
-}*/
-
 .VotarDocumento_Estrellas {
     display:table;
     margin:4px auto 0px auto;    
@@ -398,18 +264,6 @@ html[lang=en] .VotarDocumento > span:nth-child(2)::after {    content:'Doing thi
     padding:0px;
     margin:2px;
     zoom:1!important;
-/*    
-    border:1px solid #353338;
-    background:#888;
-    text-align: center;
-    padding-top:6px;
-    cursor:pointer;
-    background: #252328;    
-    border: 1px solid #353338;  
-    color:#FFF;*/
-/*    background-image:url('/Web/Graficos/Estrella.png');*/
-/*    background-position:32px 0px;*/
-    
 }
 
 

@@ -14,7 +14,7 @@
 </ul></div>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>::first-line { };</pre>
+<pre class='Sintaxis'>::first-line { };</pre>
 <hr />
 <h2>Compatibilidad</h2>
 <p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1.</p>

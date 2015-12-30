@@ -1,7 +1,7 @@
 <p>La propiedad outline nos permite asignar un borde exterior al objeto. Esta propiedad en concreto permite especificar las propiedades "<a href="outline-color"><i>outline-color</i></a>", "<a href="outline-style"><i>outline-style</i></a>", y "<a href="outline-width"><i>outline-width</i></a>" en una sola línea.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>outline: <b>Color</b>&nbsp;<b>Estilo</b>&nbsp;<b>Tamaño</b>;</pre>
+<pre class='Sintaxis'>outline: <b>Color</b>&nbsp;<b>Estilo</b>&nbsp;<b>Tamaño</b>;</pre>
 <div class='nota'>Los valores pueden ser insertados en cualquier orden, y podemos omitir uno o mas valores. Para los valores omitidos se utilizara su valor por defecto.</div><br />
 <table class='Tabla'>
     <tr>

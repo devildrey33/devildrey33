@@ -1,7 +1,7 @@
 <p>Esta propìedad nos permite especificar como se deben cortar las lineas de texto. Por lo general el navegador calcula el ancho de cada palabra y cuando ve que una de ellas sobresale del ancho total termina la linea. Esta propiedad nos permite justamente modificar ese comportamiento.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>word-break: <b>valor</b>;</pre>
+<pre class='Sintaxis'>word-break: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td style='width:80px'><b>normal</b></td>

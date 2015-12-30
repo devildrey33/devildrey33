@@ -1,7 +1,7 @@
 <p>Esta propiedad permite establecer el tamaño del borde exterior.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>outline-width: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>outline-width: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>thin</b></td>

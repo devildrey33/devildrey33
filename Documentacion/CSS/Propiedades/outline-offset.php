@@ -1,7 +1,7 @@
 <p>Esta propiedad permite establecer la distancia entre el borde interior y el borde exterior del objeto. El borde interior se especifica con la propiedad "<a href="border"><i>border</i></a>".</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>outline-offset: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>outline-offset: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>Valor</b></td>

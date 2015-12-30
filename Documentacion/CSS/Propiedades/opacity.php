@@ -1,7 +1,7 @@
 <p>Esta propìedad nos permite especificar la opacidad para el objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>opacity: <b>valor</b>;</pre>
+<pre class='Sintaxis'>opacity: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>valor</b></td>

@@ -1,7 +1,7 @@
 <p>Propiedad que permite establecer la parte trasera de un objeto 3D es visible o no.</p>
 <br />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>backface-visibility: <i>valor</i>;</pre>
+<pre class='Sintaxis'>backface-visibility: <i>valor</i>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>visible</b></td>

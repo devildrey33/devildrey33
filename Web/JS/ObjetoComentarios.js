@@ -264,9 +264,7 @@ $Comentarios = new function() {
             Pos = $("#Comentarios_Datos div[comentario=" + Num + "]").offset().top;
             Tam = $("#Comentarios_Datos div[comentario=" + Num + "]").height() + 40; // 40 pixels mas de margen
             PosScroll = $("body").scrollTop() || $("html").scrollTop();            
-            if (Pos > PosScroll && Pos < PosScroll + ($(window).height() - Tam)) {
-            }
-            else {
+            if (!(Pos > PosScroll && Pos < PosScroll + ($(window).height() - Tam))) {
                 $("body, html").stop().animate({ scrollTop : Pos - ($(window).height() - Tam) }, 200);
             }
 

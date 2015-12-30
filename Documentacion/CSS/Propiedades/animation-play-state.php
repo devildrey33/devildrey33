@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite si la animación debe ejecutarse o estar pausada. Ojo porque una vez termina la animación por mucho que se le asigne el estado "<i>running</i>" no será reactivada.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>animation-play-state: <b>paused | running</b>;</pre>
+<pre class='Sintaxis'>animation-play-state: <b>paused | running</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>paused</b></td>

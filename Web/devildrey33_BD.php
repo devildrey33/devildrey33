@@ -10,7 +10,7 @@ class devildrey33_BD {
         $ArrayDatos = (require dirname(__FILE__).'/Passwords.php');
         
         if (strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false)    $this->_mysqli = new mysqli($ArrayDatos["URL-BD"], $ArrayDatos["USER-BD"], $ArrayDatos["PASS-BD"], $ArrayDatos["NOM-BD"]);
-        else                                                                $this->_mysqli = new mysqli("localhost", "root", "porlabirrahermanos", $ArrayDatos["NOM-BD"]);
+        else                                                                $this->_mysqli = new mysqli("localhost", "root", $ArrayDatos["PASS-BD-LOCAL"], $ArrayDatos["NOM-BD"]);
         
         if ($this->_mysqli->connect_errno) {            
             echo "<h1 style='color:red'>Error iniciando la BD : ".mysqli_connect_error()."</h1>";
@@ -35,6 +35,7 @@ class devildrey33_BD {
         if (is_numeric($Valor)) {
             //$URL = str_replace("http://www.", "http://", $URL);
             if ($Valor > 5) $Valor = 5;
+            if ($Valor < 1) $Valor = 1;
             $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina = '".$this->_mysqli->real_escape_string($Archivo)."'");
             if ($Resultado) {
                 Base::EnviarEmail("Se ha votado en $URL ($Valor/5)", 
@@ -92,16 +93,18 @@ class devildrey33_BD {
 
 
     // Al sumar una visita es posible que no exista la tabla para sumar visitas, o que no exista la entrada para la pagina especificada
-    public function SumarVisita($Archivo, $SumarVisita) {
+    public function SumarVisita($Archivo, $bSumarVisita) {
         $Visitas = 0;
 
+        $Archivo = $this->_mysqli->real_escape_string(str_replace(array("?Preview"), "", $Archivo));
+        
         // Comprobamos si existe algun registro de la pagina 
-        $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina='".$this->_mysqli->real_escape_string($Archivo)."'");
+        $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina='".$Archivo."'");
         if ($Resultado && $Resultado->num_rows == 1) {
             $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
             if ($Datos) $Visitas = $Datos['Visitas'];
         }
-
+        
         // Comprobamos si existe la tabla Paginas
         $Resultado = $this->_mysqli->query("SELECT * FROM paginas");
         if (!$Resultado || $Resultado->num_rows == 0) { // La tabla no existe, la creamos
@@ -113,16 +116,16 @@ class devildrey33_BD {
         // Comprobamos si existe la entrada para la pagina actual
         $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina='".$Archivo."'");
         if (!$Resultado || $Resultado->num_rows == 0) { // La entrada no existe, la creamos
-            if (!$Resultado = $this->_mysqli->query("INSERT INTO paginas (Pagina, Visitas) VALUES('".$this->_mysqli->real_escape_string($Archivo)."', '1')")) {
+            if (!$Resultado = $this->_mysqli->query("INSERT INTO paginas (Pagina, Visitas, VotosTotal, VotosValor) VALUES('".$Archivo."', '1', '0', '0')")) {
                 echo '<br />Error creando entrada dentro de la tabla Paginas : '.$this->_mysqli->error.'<br />';
             }
         } 
 
-        if ($SumarVisita === true) {
+        if ($bSumarVisita === true) {
             // Actualizamos las visitas
             $Visitas ++;
-            if (!$Resultado = $this->_mysqli->query("UPDATE paginas SET Visitas='".$Visitas."' WHERE Pagina='".$this->_mysqli->real_escape_string($Archivo)."'"))
-                echo '<br />Error sumando visitas a la pagina'.$this->_mysqli->real_escape_string($Archivo).' : '.$this->_mysqli->error.'<br />';
+            if (!$Resultado = $this->_mysqli->query("UPDATE paginas SET Visitas='".$Visitas."' WHERE Pagina='".$Archivo."'"))
+                echo '<br />Error sumando visitas a la pagina '.$Archivo.' : '.$this->_mysqli->error.'<br />';
         }
         return $Visitas;
     }
@@ -133,7 +136,8 @@ class devildrey33_BD {
         $Votos       = 0;
         $Visitas     = 0;
         $Comentarios = 0;
-        $NombreArchivo = $this->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", $Archivo));
+        $Archivo = str_replace("?Preview", "", $Archivo);
+        $NombreArchivo = $this->_mysqli->real_escape_string(str_replace(array(".", "-"), "", $Archivo));
         // Comprobamos el numero de comentarios
         $Resultado = $this->_mysqli->query("SELECT * FROM comentarios__".strtolower($NombreArchivo));
         if ($Resultado) $Comentarios = $Resultado->num_rows;

@@ -1,7 +1,7 @@
 <p>Esta propiedad se utiliza para especificar el tamaño de un <code>flex-item</code> antes de distribuir el tamaño disponible según las normas del contenedor flexible.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>flex-basis: Valor;</pre>
+<pre class='Sintaxis'>flex-basis: Valor;</pre>
 
 <table class='Tabla'>
     <tr>

@@ -2,7 +2,7 @@
 <div class='nota'>Para imagenes de fondo, esta propiedad cortara la imagen si esta sobresale del rectangulo especificado.</div>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>background-clip: <b>valor</b>;</pre>
+<pre class='Sintaxis'>background-clip: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>border-box</b></td>

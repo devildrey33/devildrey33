@@ -1,7 +1,7 @@
 <p>Esta propiedad nos establecer una imagen de fondo. Los navegadores modernos soportan mas de una imagen de fondo y fondos creados mediante <a href="../DegradadosCSS.php" target="_blank">Degradados CSS</a>.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>background-image: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>background-image: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>Valor</b></td>

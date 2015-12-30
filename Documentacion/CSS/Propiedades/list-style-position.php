@@ -1,7 +1,7 @@
 <p>Esta prpopiedad nos permite especificar donde se ubicara la marca de cada item de la lista. La marca se puede ubicar fuera del item (por defecto), o dentro del item.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>list-image-position: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>list-image-position: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>inside</b></td>

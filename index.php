@@ -30,7 +30,7 @@
         $Base->InicioPlantilla(basename(__FILE__), "devildrey33", "");    
     }
     $Base->BD = new devildrey33_BD();
-    echo GenerarIndice($Base->BD, $Categoria);
+    echo Indice::GenerarIndice($Base->BD, $Categoria, 0);
 
     if (isset($_GET["Loguear"])) { 
         echo "<script>".

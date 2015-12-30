@@ -83,7 +83,7 @@
                 $NombreComp = $this->NormalizarNombre($CSS["Nombre"]);
                 $NombreComp2 = $this->NormalizarNombre($Nombre);
                 if ($NombreComp == $NombreComp2) {
-                    echo "<table class='devildrey33_Marco'>";
+                    echo "<table class='postit'>";
                     echo    "<tr>";
                     echo 	"<td><div class='Navegador_Chrome".(($CSS["Soportada"][0] == 0) ? " Navegador_NoSoportado" : "")."' title='Google Chrome'></div></td>";
                     if ($CSS["Soportada"][0] > 1000) 	echo "<td>Soportado a partir de la versión ".($CSS["Soportada"][0] - 1000)." con el prefijo <code>-webkit-</code></td>";
@@ -393,7 +393,7 @@
             $this->AgregarCSS("flex-direction",			CSSTipo::Propiedad, 	CSSGrupo::CajasFlex,			3, 	array(31, 22, 11, 12.10, 0),		"Especifica el eje y la dirección de un contenedor flex.");
             $this->AgregarCSS("flex-flow",			CSSTipo::Propiedad, 	CSSGrupo::CajasFlex,			3, 	array(31, 28, 11, 12.10, 1006.1),	"Propiedad corta para flex-direction y flex-wrap.");
             $this->AgregarCSS("flex-grow",			CSSTipo::Propiedad, 	CSSGrupo::CajasFlex,			3, 	array(31, 20, 11, 12.10, 1006.1),	"Especifica el factor de crecimiento para un flex-item.");
-            $this->AgregarCSS("flex-shrink",			CSSTipo::Propiedad, 	CSSGrupo::CajasFlex,			3, 	array(31, 20, 11, 12.10, 0),		"");
+            $this->AgregarCSS("flex-shrink",			CSSTipo::Propiedad, 	CSSGrupo::CajasFlex,			3, 	array(31, 20, 11, 12.10, 0),		"Especifica el factor de contracción para un flex-item.");
             $this->AgregarCSS("flex-wrap",			CSSTipo::Propiedad, 	CSSGrupo::CajasFlex,			3, 	array(31, 28, 11, 12.10, 1006.1),	"Especifica si los objetos hijos deben permanecer en la misma línea.");
             $this->AgregarCSS("float",				CSSTipo::Propiedad, 	CSSGrupo::Posicion,			1, 	array(1, 1, 4, 7, 1),			"Especifica si el elemento es flotante, y hacia que lado se decanta.");
             $this->AgregarCSS(":focus",				CSSTipo::Selector, 	CSSGrupo::PseudoClase,			2, 	array(1, 1, 8, 7, 1),			"Selecciona elemento que tiene el foco del teclado.", "input:focus");
@@ -467,7 +467,7 @@
             $this->AgregarCSS("opacity",			CSSTipo::Propiedad, 	CSSGrupo::Color,			3, 	array(1, 1, 9, 9, 1.2),			"Especifica la altura maxima para el objeto.");
             $this->AgregarCSS("opacity()",			CSSTipo::Funcion, 	CSSGrupo::Filtro,			3, 	array(1018, 0, 0, 1017, 3),		"");
             $this->AgregarCSS(":optional",			CSSTipo::Selector, 	CSSGrupo::PseudoClase,			3, 	array(10, 4, 10, 10, 5),		"", ":optional"); 
-            $this->AgregarCSS("order",				CSSTipo::Propiedad, 	CSSGrupo::CajasFlex,			3, 	array(1021, 20, 1010, 12.10, 0),	"");
+            $this->AgregarCSS("order",				CSSTipo::Propiedad, 	CSSGrupo::CajasFlex,			3, 	array(1021, 20, 1010, 12.10, 0),	"Especifica el orden de un flex-item dentro de un contenedor flex.");
             $this->AgregarCSS("orphans",			CSSTipo::Propiedad, 	CSSGrupo::Impresion,			3, 	array(25, 0, 8, 9.2, 0),		"");
             $this->AgregarCSS("outline",			CSSTipo::Propiedad, 	CSSGrupo::Contorno,			2, 	array(1, 1, 8, 7, 1.2),			"Propiedad corta que nos permite asignar el tamaño, el color, y el estilo del contorno / borde exterior.");
             $this->AgregarCSS("outline-color",			CSSTipo::Propiedad, 	CSSGrupo::Contorno,			2, 	array(1, 1, 8, 7, 1.2),			"Especifica el color del contorno / borde exterior.");

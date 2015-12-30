@@ -23,7 +23,8 @@ return array(
                                     "/CSS/Comentarios.css",
                                     "/CSS/Index.css",
                                     "/CSS/Media.css",
-                                    "/CSS/Codemirror.css"
+                                    "/CSS/Codemirror.css",
+                                    "/CSS/Tablas.css"
                 ),				  
     /* Archivos JS */
     'js' => array(

@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite definir como se comportara la imagen de fondo cuando el usuario utiliza la barra de scroll.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>background-attachment: <b>valor</b>;</pre>
+<pre class='Sintaxis'>background-attachment: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>fixed</b></td>

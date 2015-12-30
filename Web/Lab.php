@@ -45,7 +45,7 @@
     echo "</pre>";*/
 
     
-    echo "<div id='MarcoNavegacionLab'>";
+    echo "<article id='MarcoNavegacionLab' pagina='".$Archivo."'>";
     echo '<textarea id="Lab_Codigo" name="code" style="display:none">'.$CArchivo["Datos"].'</textarea>'.
          '<iframe id="Lab_Preview"></iframe>'.
 /*         "<div id='Lab_Explorador_Buscar'>".
@@ -56,7 +56,7 @@
          "</div>".
          "<div id='Lab_Barra2'></div>".
          "<div id='Lab_ParcheIframe'></div>";
-    echo "</div>";
+    echo "</article>";
 //    echo substr($_SERVER["REQUEST_URI"], 5);
 $Vista = -1;
 if (isset($sArchivo[1])) {

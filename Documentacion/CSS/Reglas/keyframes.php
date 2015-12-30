@@ -4,7 +4,7 @@
 <h2>Sintaxis</h2>
 <br />
 <br />
-<pre class='devildrey33_Marco Pre_Sintaxis'>@keyframes <b>NombreAnimación</b> { <b>Selector</b> { <b>EstilosCSS</b>; }}</pre>
+<pre class='Sintaxis'>@keyframes <b>NombreAnimación</b> { <b>Selector</b> { <b>EstilosCSS</b>; }}</pre>
 <table class='Tabla'>
     <tr>
         <td><b>NombreAnimación</b></td>

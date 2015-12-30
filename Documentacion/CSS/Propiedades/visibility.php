@@ -2,7 +2,7 @@
 <div class='nota'>Aunque ocultemos el elemento. el navegador seguira reservando el espacio que ocupa el objeto.</div>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>visibility: <b>estado</b>;</pre>
+<pre class='Sintaxis'>visibility: <b>estado</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>visible</b></td>

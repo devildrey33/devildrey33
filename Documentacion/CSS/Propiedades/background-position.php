@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite definir la posición inicial de la imagen de fondo.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>background-position: <b>valores</b>;</pre>
+<pre class='Sintaxis'>background-position: <b>valores</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>Palabras clave</b></td>

@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite indicar si el titulo de la tabla se mostrará arriba o abajo.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>caption-side: <b>valor</b>;</pre>
+<pre class='Sintaxis'>caption-side: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>top</b></td>

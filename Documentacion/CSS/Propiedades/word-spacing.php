@@ -1,7 +1,7 @@
 <p>Esta propìedad nos permite especificar el espacio entre cada palabra.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>word-spacing: <b>valor</b>;</pre>
+<pre class='Sintaxis'>word-spacing: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td style='width:80px'><b>normal</b></td>

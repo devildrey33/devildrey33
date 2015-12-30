@@ -2,7 +2,7 @@
 <div class='nota'>Una sequencia multiple de espacios en blanco puede ser : dos o mas espacios en blanco, una tabulación, o cualquier combinación de espacios y tabulaciones.</div>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>white-space: <b>valor</b>;</pre>
+<pre class='Sintaxis'>white-space: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td style='width:80px'><b>normal</b></td>

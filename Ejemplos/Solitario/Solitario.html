@@ -1,10 +1,13 @@
 <!-- Ejemplo creado por Josep Antoni Bover Comas para devildrey33.es el 28/11/2015 
      Se distribuye bajo licencia Creative Commons. (http://es.creativecommons.org/blog/licencias/) 
-     Versión 1.0
-     Última modificación : 15/12/2015  
+     Versión 1.01
+     Última modificación : 27/12/2015  
+        - Solucionado bug en firefox por el que se mostraban todas las cartas iguales (en firefox no existe background-position-x ni background-position-y...)
+            Si el bug persiste cargar http://devildrey33.es/Ejemplos/Solitario/Solitario.html desde el navegador, para obligar a refrescar la cache de firefox.
+        - En explorer no me atrevo a mirarlo mas mínimo hasta el 2016, pero normal no era...
       TODO :
                 - Hacer un set de cartas mas pequeño para resoluciones bajas.
-                - Crear opcion para que juegue solo, para asi poder revisar algunos detalles de la IA.
+                - Crear opción para que juegue solo, para asi poder revisar algunos detalles de la IA.
                 - Revisar la detección de la derrota, he visto alguna cosa rara... pero necesito ver mas..
  -->
 <html>
@@ -18,7 +21,7 @@
     <body>
     	<Tablero>
             <!-- Marco para mostrar los posibles movimientos y su valoración según la IA -->           
-            <Opciones>
+            <Opciones>  
                 <mMenu>
                     <input id='Input_Menu' type='checkbox' />
                     <label for='Input_Menu'></label>                    
@@ -34,13 +37,14 @@
                         <p>Diseño cartas : <a href="http://www.snap2objects.com/2012/01/free-vector-playing-cards-deck/" target="_blank">Charles</a>.</p>
                     </VentanaMenu>
                     
-                    <input id='Input_Debug' type='checkbox' />
+<!--                    <input id='Input_Debug' type='checkbox' />
                     <label for='Input_Debug'></label>                    
                     <BotonMenu>
                         <IconoMenu></IconoMenu>
                     </BotonMenu>                    
+
                     <DebugIA>aaa
-                    </DebugIA>
+                    </DebugIA> -->
                     
                     
                 </mMenu>

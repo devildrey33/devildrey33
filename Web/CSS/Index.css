@@ -46,12 +46,12 @@
 /*#Categorias.Categorias_Cerrado     { max-height:20px; }
 #Categorias.Categorias_Desplegado  { max-height:256px; } */
 
-#Categorias > ul {
+#Categorias > div {
     list-style:none;
     padding:0px;                
-    margin-bottom:0px;    
+    margin-top:10px;    
 }
-#Categorias > ul > li {
+#Categorias > div > div {
     font-family: 'Karla', sans-serif;
     font-size:21px;
     padding:5px 0px;
@@ -62,7 +62,7 @@
     background:#1D1A21;
     margin-right:20px;
 }
-#Categorias > ul > li:hover {
+#Categorias > div > div:hover {
     color:#EA504E;
     padding-left:10px;
     margin-right:10px;

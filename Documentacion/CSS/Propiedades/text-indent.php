@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar la sangría de la primera línea de un bloque de texto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>text-indent: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>text-indent: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>valor</b></td>

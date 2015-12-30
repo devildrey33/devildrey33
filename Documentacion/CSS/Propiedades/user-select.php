@@ -1,6 +1,6 @@
 <p>Esta propiedad permite deshabilitar la selección con el mouse. Hasta hace poco los navegadores permitian la selección con el mouse en toda la pagina, pero ahora con esta propiedad podemos crear controles, imagenes y texto que no se puedan seleccionar.</p>
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>user-select: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>user-select: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>none</b></td>

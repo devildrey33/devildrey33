@@ -1,10 +1,10 @@
 <p>Esta propìedad nos permite especificar el tamaño del borde para el objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'><code style="display:table; float:left; padding-right:20px">border-color: <i>valor</i>;
-border-width: TopBottom LeftRight;
-border-width: Top LeftRight Bottom;
-border-width: Top Left Bottom Right;
+<pre class='Sintaxis'><code style="display:table; float:left; padding-right:20px">border-color: <i>valor</i>;
+border-width: <i>TopBottom LeftRight</i>;
+border-width: <i>Top LeftRight Bottom</i>;
+border-width: <i>Top Left Bottom Right</i>;
 </code>
 <code style="display:table; float:right; color:#999">/* 1 valor para todos los costados. */
 /* 2 valores : arriba y abajo, derecha y izquierda. */

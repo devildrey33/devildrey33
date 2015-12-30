@@ -35,7 +35,7 @@
                 <p>En este ejemplo se ha elegido la fuente "<i>Verdana</i>" para la clase "<i>Fuente1</i>" si se diera el caso de que esa fuente no se encuentra disponible se buscaría la fuente "<i>Geneva</i>", y en caso de que esa fuente tampoco se encuentre disponible se buscaría la fuente "<i>sans-serif</i>".</p>
                 <div class='nota'>Si elegimos una fuente que tiene un nombre con espacios por ejemplo "<i>Times New Roman</i>" debemos especificarla con comillas. También debéis saber que no hace falta especificar 3 fuentes, podéis especificar las que queráis, pero si especificáis solo una os arriesgáis a que si el sistema del usuario no tiene dicha fuente elija la que el navegador quiera.</div>
                 <p>A continuación veamos una lista de las combinaciones de fuentes más comunes :</p>
-                    <table class="devildrey33_Marco">
+                    <table class="Tabla">
                 	<tr>
                     	<td style="background-color:#333; color:#FFF"><b>Fuentes Serif</b></td>
                         <td style="background-color:#333; color:#FFF"><b>Ejemplo</b></td>

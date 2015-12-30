@@ -81,14 +81,14 @@
                 <p>Antes de nada deberíais saber que el Grub es el gestor de arranque que se usa actualmente en la mayoría de distribuciones linux, que además tiene una versión compatible con dos/windows (Grub4dos). Este gestor es totalmente configurable aunque es algo complicado de configurar.</p>
                 <p>Para no liar mucho la cosa editando el menú del grub os he hecho un zip con varios archivos que <b>deberéis copiar dentro de la raíz del pendrive</b> que podéis descargar desde este enlace : </p>
                 
-                <a class='Boton' href="/Descargas/Tutorial_USBBoot.zip" target="_blank">Menu + Drivers</a>
+                <a class='Boton Centrado' href="/Descargas/Tutorial_USBBoot.zip" target="_blank">Menu + Drivers</a>
                 
                 
                 <p>Una vez copiados los archivos del zip dentro del pendrive os debería quedar la siguiente estructura :</p>
                 <img src="/Graficos/EstructuraUSB.png" alt='Estructura pendrive' /><br />
 				<p>He montado el menu.lst de forma que si no encuentra alguno de los sistemas operativos, no lo mostrará en el menú. Este menu.lst soporta los siguientes sistemas operativos y utilidades :</p>
 				<h2>Sistemas operativos en formato ISO</h2>
-                <table class="devildrey33_Marco">
+                <table class="Tabla">
                     <tr>
                     	<td width="300px">Windows Vista x86 (32 bits)</td>
                     	<td><b>/Isos/WindowsVista/WinVista_x86.iso</b></td>
@@ -132,7 +132,7 @@
                 </table><br />
 
 				<h2>Utilidades</h2>
-                <table class="devildrey33_Marco">
+                <table class="Tabla">
                     <tr>
                     	<td width="300px"><a href="http://www.kaspersky.com/sp/anti-virus-trial" target="_blank" title='Enlace oficial de Kaspersky 2013 trial necesario para crear el disco de rescate'>Disco de rescate de KasperSky 2013</a> </td>
                     	<td><b>/Isos/Utilidades/KasperSky2013.iso</b></td>

@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite asignar las propiedades "<i><a href="border-image-source">border-image-source</a></i>", "<i><a href="border-image-slice">border-image-slice</a></i>", "<i><a href="border-image-width">border-image-width</a></i>", "<i><a href="border-image-outset">border-image-outset</a></i>", y "<i><a href="border-image-repeat">border-image-repeat</a></i>" en la misma linea.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>border-image: <b>source</b>&nbsp;<b>slice</b>&nbsp;<b>width</b>&nbsp;<b>outset</b>&nbsp;<b>repeat</b>;</pre>
+<pre class='Sintaxis'>border-image: <b>source</b>&nbsp;<b>slice</b>&nbsp;<b>width</b>&nbsp;<b>outset</b>&nbsp;<b>repeat</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><a href="border-image-source"><b>border-image-source</b></a></td>

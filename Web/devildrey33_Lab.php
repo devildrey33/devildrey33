@@ -44,6 +44,8 @@
                 if (strpos($Archivo, "Ejemplos/") !== false /*|| strpos($Archivo, "Tutoriales_WinAPI/") !== false*/) {
                     // Es un archivo permitido (html, js, css)
                     if (substr($Archivo, strlen($Archivo) - 5) == ".html" || substr($Archivo, strlen($Archivo) - 3) == ".js" || substr($Archivo, strlen($Archivo) - 4) == ".css") {
+                        $BD = new devildrey33_BD;
+                        $BD->SumarVisita($Archivo, true);
                         $Ret = 200;
                     }
                     else {// No se permite acceder a archivos que no sean .html, .js, y .css 
@@ -68,9 +70,9 @@
         
         static public function _EscanearDirectorio($Directorio, $CheckBox = TRUE) {
             $Entradas = (require dirname(__FILE__).'/Config/ListaLab.php');
-            $Ret = "<ul>".Intro();            
+            $Ret = "<div class='Lab_Lista'>".Intro();            
             $Dir = opendir($Directorio);
-            if ($Dir === FALSE) { $Ret .= "<li>Error abriendo el directorio : ".$Directorio."</li>".Intro()."</ul>";  return $Ret;}
+            if ($Dir === FALSE) { $Ret .= "<div>Error abriendo el directorio : ".$Directorio."</div>".Intro()."</div>";  return $Ret;}
             while (false !== ($Archivo = readdir($Dir))) {
                 if ($Archivo != "." && $Archivo != "..") {
                     $HREF = str_replace($_SERVER['DOCUMENT_ROOT'], "/Lab", $Directorio."/".$Archivo);
@@ -84,10 +86,10 @@
                             else 
                                 $Ret .= "<input class='Lab_Explorador_Check' type='checkbox' def='0' />".Intro();
                         }
-                        $Ret .= "<li class='Lab_Directorio' path='".$HREF."/'>".Intro().
+                        $Ret .= "<div class='Lab_Directorio' path='".$HREF."/'>".Intro().
                                     "<div class='Lab_IcoDirectorioC'></div>".Intro().
                                     "<span>".$Archivo."</span>".Intro().
-                                "</li>".Intro().
+                                "</div>".Intro().
                                 "<div class='Lab_Directorio_Animacion'>".Intro();
                         $Ret .= devildrey33_Lab::_EscanearDirectorio($Directorio."/".$Archivo, $CheckBox);
                         $Ret .=    "</div>".Intro().
@@ -103,16 +105,16 @@
                             else
                                 $Ret .= "<input class='Lab_Explorador_Check' type='checkbox' def='0' />".Intro();
                         }
-                        $Ret .=    "<li class='Lab_Archivo' path='".$HREF."'>".Intro().
+                        $Ret .= "<div class='Lab_Archivo' path='".$HREF."'>".Intro().
                                     "<div class='Lab_IcoArchivo'></div>".Intro().
                                     "<span>".$Archivo."</span>".Intro().
                                     "<a href='".$HREF."'>".$Archivo."</a>".Intro(). // link invisible para los buscadores
-                                "</li>".Intro().
+                                "</div>".Intro().
                             "</div>".Intro();
                     }
                 }
             }            
-            $Ret .= "</ul>".Intro();
+            $Ret .= "</div>".Intro();
             return $Ret;
         }
         
@@ -147,9 +149,9 @@
         static public function _EscanearDirectorioGG($Directorio) {
             $Entradas = (require dirname(__FILE__).'/Config/ListaLab.php');
 //            static $ID = 0;
-            $Codigo = "<ul>";
+            $Codigo = "<div class='Lab_Lista'>";
             $Dir = opendir($Directorio);
-            if ($Dir === FALSE) { $Codigo .= "<li>Error abriendo el directorio : ".$Directorio."</li></ul>";  return;}
+            if ($Dir === FALSE) { $Codigo .= "<div>Error abriendo el directorio : ".$Directorio."</div></div>";  return;}
             while (false !== ($Archivo = readdir($Dir))) {
                 if ($Archivo != "." && $Archivo != "..") {
                     // Directorio                
@@ -158,10 +160,10 @@
                         if (devildrey33_Lab::_Buscar($Entradas, $HREF) == TRUE) {
                             $Codigo .= "<div class='Lab_Item'>".Intro();
     //                        if ($CheckBox === TRUE) echo "<input class='Lab_Explorador_Check' type='checkbox'".(devildrey33_Lab::_Buscar($Entradas, $HREF) == TRUE ? " checked='checked'" : "" )." />";
-                            $Codigo .=    "<li class='Lab_Directorio' path='".$HREF."'>".Intro().
+                            $Codigo .="<div class='Lab_Directorio' path='".$HREF."'>".Intro().
                                         "<div class='Lab_IcoDirectorioC'></div>".Intro().
                                         "<span>".$Archivo."</span>".Intro().
-                                    "</li>".Intro().
+                                    "</div>".Intro().
                                     "<div class='Lab_Directorio_Animacion'>".Intro();
                             $Codigo .= devildrey33_Lab::_EscanearDirectorioGG($Directorio."/".$Archivo);
                             $Codigo .=    "</div>".Intro().
@@ -174,17 +176,17 @@
                         if (devildrey33_Lab::_Buscar($Entradas, $HREF) == TRUE) {
                             $Codigo .= "<div class='Lab_Item'>".Intro();
 //                        if ($CheckBox === TRUE) echo "<input class='Lab_Explorador_Check' type='checkbox'".(devildrey33_Lab::_Buscar($Entradas, $HREF) == TRUE ? " checked='checked'" : "" )." />";
-                            $Codigo .=    "<li class='Lab_Archivo' path='".$HREF."'>".Intro().
+                            $Codigo .= "<div class='Lab_Archivo' path='".$HREF."'>".Intro().
                                         "<div class='Lab_IcoArchivo'></div>".Intro().
                                         "<span>".$Archivo."</span>".Intro().
                                         "<a href='".$HREF."'>".$Archivo."</a>".Intro(). // link invisible para los buscadores
-                                    "</li>".Intro().
+                                    "</div>".Intro().
                                 "</div>".Intro();
                         }
                     }
                 }
             }            
-            $Codigo .= "</ul>".Intro();
+            $Codigo .= "</div>".Intro();
             return $Codigo;            
         }        
         

@@ -3,46 +3,64 @@
 /* Pintar código */
 /*****************/
 .Codigo_Marco {
+    border-right:1px solid transparent;
+    border-top:1px solid transparent;
+    border-bottom:1px solid transparent;
+    border-left:6px solid green;
     display:inline-block;
-    background:#353338;
+/*    background:#353338;*/
     position:relative;
     max-width:100%;
     overflow-x:auto;
-    border:2px solid #353338;
-    border-bottom:1px solid #353338;
+    clear:both;
+    margin-top:10px;
+    transition:0.4s;
+    border-radius:0px 4px 8px 0px;
+/*    border-bottom:1px solid rgb(225, 225, 225);
+    border-right:1px solid rgb(215, 215, 215);
+    border-top:1px solid rgb(205, 205, 205);*/
+/*    border:2px solid #353338;
+    border-bottom:1px solid #353338;*/
 }
 
+.Codigo_Marco:hover {
+    border-right:1px solid #888;
+    border-top:1px solid #888;
+    border-bottom:1px solid #888;
+    border-left:6px solid green;
+}
 
 .Codigo_Titulo {
-    color:#FFFFFF;
     position:relative;
     display:table-caption;
-    background:rgb(100, 100, 100);
-    padding-left:25px;
-    padding-top:4px;
-    padding-bottom:5px;
+/*    background:rgb(230, 230, 230);*/
+    background:#f7f7f7;
+    padding:10px 10px 10px 25px;
+    font-weight:bold;
+    font-size:1.5rem;
 }
-
+/* Si el titulo está visible añado 2 pixeles de borde por la parte superior */
+.Codigo_Titulo  + .Codigo_Numeracion + .Codigo_PRECodigo {
+    border-top:2px solid rgb(240,240,240);
+}
 .Codigo_PRECodigo {
     background:#FFFFFF;
     position:relative;
-    padding:2px;
+    padding:10px;
     display:table-cell;
-    border-top:2px solid #353338;
-    border-left:2px solid #353338;
-    border-bottom:1px solid #353338;
+    border-left:2px solid rgb(240,240,240);
+    border-bottom:1px solid rgb(240,240,240);
     font-family:monospace;
     font-size:13px;
 }
 
 .Codigo_Numeracion {
-    color:#FFFFFF;
     display:table-cell;
     position:relative;
     text-align:right;
-    padding:0px 4px;
-    background:rgb(100, 100, 100);
-    border-bottom:1px solid #353338;
+    padding:0px 6px;
+/*    background:rgb(230, 230, 230);*/
+    background:#f7f7f7;
     font-family:monospace;
     font-size:13px;
 }
@@ -76,17 +94,18 @@ linea {
 linea:hover {
     text-decoration:underline;   
 }
- .Codigo_PRECodigo > div[l] {
+
+.Codigo_PRECodigo > div[l] {
     transition:0.4s;
     background-color:rgb(255,255,255);
     min-height:14px;
 }
 
 .Codigo_PRECodigo > div[l][click] {
-    background-color:rgba(0, 128, 0, 0.5) !important;
+    background-color:rgb(170, 225, 170) !important;
 }
 
 .Codigo_PRECodigo > div[l][hover] {
     font-weight:900;
-    background-color:rgb(220, 220, 220);
+    background-color:rgb(215, 240, 205);
 }

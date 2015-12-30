@@ -1,7 +1,10 @@
- /* Base para el tema de devildrey33 
-    Contiene las barras laterales, el cuerpo y las fuentes */
+/* Base para el tema de devildrey33.es */
+@charset "UTF-8"; /* Especificar el charset SOLO en este archivo, que es el primero a minificar */
+
 @import url(http://fonts.googleapis.com/css?family=Architects+Daughter|Orbitron);
 @import url(http://fonts.googleapis.com/css?family=Karla);
+/* NETBEANS Marca como error esta línea */
+
 
 html, button, .boton {
    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
@@ -16,8 +19,12 @@ html {
    transition:0.4s;
 }
 h1, h2, h3, h4, h5 { font-family: 'Karla', sans-serif; }
+h2, h3, h4, h5 { margin:0px; }
 h1 { font-size:2.5rem; }
-h2 { font-size:2rem; }
+h2 { font-size:2.5rem; display:table; transition:0.4s; } /* transición para la animación del ancla */
+h3 { font-size:2.0rem; display:table; }
+h2[resaltado] { color:#EA504E; }
+
 body { 
     margin:0px; 
     padding:0px; 
@@ -29,6 +36,13 @@ body {
     font-size:1.4rem;
     transition:0.4s;
 }
+
+/* Todas las capas svg se pintan en blanco por defecto */
+/* El primer selector apunta al objeto svg primario, el segundo selector es para firefox, que no acepta el primero... */
+body > svg > g > *, use > * {
+    fill:white;
+}
+
 i { background-color: rgba(255,255,255,0.8); }
 /*p, td { font-size:1.4rem; }*/
 /*pre, code { font-size:1.6rem; }*/

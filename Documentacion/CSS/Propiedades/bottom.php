@@ -6,7 +6,7 @@
 
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>bottom: <i>valor</i>;</pre>
+<pre class='Sintaxis'>bottom: <i>valor</i>;</pre>
 <table class='Tabla'>
     <tr>
         <td>valor</td>

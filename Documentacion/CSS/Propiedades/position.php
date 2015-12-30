@@ -4,7 +4,7 @@
 <p>Dependiendo del valor que asignemos a la propiedad <code>position</code> trabajaremos relativamente a la ventana (<code style="color:red">window</code>), o a el documento (<code style="color:orange">document</code>).</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>position: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>position: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>static</b></td>

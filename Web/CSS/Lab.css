@@ -88,7 +88,7 @@ and open the template in the editor.
     user-select: none;
 }
 
-.Lab_Explorador li {
+.Lab_Explorador .Lab_Directorio, .Lab_Explorador .Lab_Archivo {
     list-style-type:none;
     /*transition:0.2s;*/
     border-radius:1px;
@@ -97,18 +97,18 @@ and open the template in the editor.
     cursor:pointer;
 }
 
-.Lab_Explorador li:hover {
+.Lab_Explorador .Lab_Directorio:hover, .Lab_Explorador .Lab_Archivo:hover {
     background:#EA504E;
     color:#FFFFFF;
 }
 
 
-.Lab_Explorador > ul {
+.Lab_Explorador > .Lab_Lista {
     padding:5px 0px 0px 10px !important;
     display:table !important;
 }
 
-.Lab_Explorador ul {
+.Lab_Explorador .Lab_Lista {
     padding:0px 0px 0px 20px;
     margin:0px;
 /*    display:none; */
@@ -257,9 +257,17 @@ and open the template in the editor.
     width:100%;
     display:block;
     height:320px;
-    border:1px solid #999;
+    border:1px solid transparent;
+    border-left:6px solid purple;
     position:relative;
     margin-bottom:90px;
+    transition:0.4s;
+    border-radius:4px 4px 8px 4px;
+}
+
+.MiniLab:hover {
+    border:1px solid purple;
+    border-left:6px solid purple;    
 }
 
 .MiniLab[oculto='true'] {
@@ -293,17 +301,18 @@ and open the template in the editor.
     top:0px;
     background:#FFF;
     height:calc(100%);
+    border-radius:0px 4px 8px 0px;
 }
 
 .MiniLab[ver=preview] > .MiniLab_Preview {
-    width:calc(100% - 2px);
+    width:calc(100% - 4px);
     left:0px;
 }
 
 .MiniLab[ver=mixto] > .MiniLab_Preview {
-    width:calc(50% - 2px);
+    width:calc(50% - 4px);
     left:50%;
-    border-left:1px solid #999;
+    border-left:4px solid rgb(230, 230, 230);
 }
 
 .MiniLab[ver=codigo] > .MiniLab_Preview                                          { display:none;  }

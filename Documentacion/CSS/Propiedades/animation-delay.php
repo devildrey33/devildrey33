@@ -1,7 +1,7 @@
 <p>Esta propiedad se usa para retardar el inicio de la animación durante el tiempo especificado. El tiempo se puede especificar en segundos (s) o milisegundos (ms).</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>animation-delay: <b>Tiempo</b>;</pre>
+<pre class='Sintaxis'>animation-delay: <b>Tiempo</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>Tiempo</b></td>

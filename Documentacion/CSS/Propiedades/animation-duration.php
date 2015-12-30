@@ -1,7 +1,7 @@
 <p>Esta propiedad indica el tiempo que se utilizará para realizar toda la animación.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>animation-duration: <b>Tiempo</b>;</pre>
+<pre class='Sintaxis'>animation-duration: <b>Tiempo</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>Tiempo</b></td>

@@ -1,6 +1,7 @@
 <?php
     /* Archivo para peticiones ajax, tambien se puede utilizar a modo de consola MUY básica. */
-    include("devildrey33.php");
+    //include("devildrey33.php");
+    include($_SERVER['DOCUMENT_ROOT']."/GenerarIndice.php");
 
     
     /* Elimino el ".php" final que se añade por la redirección del .htaccess */
@@ -32,10 +33,13 @@
         case "VotarPagina"                  :
             $BD = new devildrey33_BD();
             echo $BD->VotarWeb($_POST["Pagina"], $_POST["Valor"], str_replace("http://www.", "http://", $_POST["URL"]));
-            break;
-        
+            break;        
         case "LabAbrirEjemplo" : 
             echo json_encode(devildrey33_Lab::AbrirEjemplo($_POST["Archivo"], $_POST["ID"], TRUE));
+            break;
+        case "IndiceObtener10Mas" : 
+            $BD = new devildrey33_BD();
+            echo Indice::GenerarArticulos($BD, $_POST["Categoria"], $_POST["Inicio"]);
             break;
     }
     

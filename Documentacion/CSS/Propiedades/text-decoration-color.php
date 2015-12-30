@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite definir el color de la decoración del texto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>color: <b>Color</b>;</pre>
+<pre class='Sintaxis'>color: <b>Color</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>Color</b></td>

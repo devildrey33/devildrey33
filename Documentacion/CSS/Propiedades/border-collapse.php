@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar si el borde de la tabla se generara unido, o separado para cada celda.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>border-collapse: <b>valor</b>;</pre>
+<pre class='Sintaxis'>border-collapse: <b>valor</b>;</pre>
 <div class='nota'>Si no se especifica un <code>!DOCTYPE</code> la propiedad border-collapse puede producir resultados inesperados.</div>
 <br />
 <table class='Tabla'>

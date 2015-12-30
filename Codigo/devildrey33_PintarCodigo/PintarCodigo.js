@@ -1,7 +1,4 @@
-// OnLoad para los tests
-$(window).load(function()   { $PintarCodigo.EnlazarEtiquetas(); });
-
-/* Objeto PintarCodigo creado el 26/11/2015 para devildrey33.es */
+/* Objeto PintarCodigo creado el 26/11/2015 por Josep Antoni Bover Comas para devildrey33.es */
 $PintarCodigo = new function() {
     // Etiqueta línea actual
     this.CodigoDivC         = [];
@@ -73,3 +70,8 @@ $PintarCodigo = new function() {
     };
     
 };
+
+
+// OnLoad para los tests
+$(window).load(function()   { $PintarCodigo.EnlazarEtiquetas(); });
+

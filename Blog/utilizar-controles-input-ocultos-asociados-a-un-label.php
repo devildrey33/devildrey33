@@ -10,10 +10,10 @@
 	<meta name='keywords' content='html5 checkbox, html5 radio, html5 label, :checked, Selector :checked, CSS3 :checked, ocultar input, ocultar checkbox, ocultar radio'>";
 
         if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Utilizar controles input[checkbox/radio] ocultos asociados a un label.", $META);
+            $Base->InicioPlantilla(basename(__FILE__), "Utilizar controles input ocultos asociados a un label.", $META);
         }
         
-        $Base->InicioBlog(basename(__FILE__), "Utilizar controles input[checkbox/radio] ocultos asociados a un label.");
+        $Base->InicioBlog(basename(__FILE__), "Utilizar controles input ocultos asociados a un label.");
 
 ?>	
 

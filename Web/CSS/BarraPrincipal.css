@@ -128,7 +128,7 @@ body[administrador33] #Logo {
 /*.Menu_BotonCheck > .BarraPrincipal_Boton_Input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu + div  {
 }*/
 #BarraPrincipal_Boton33_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
-    background-image: url('/Web/Graficos/BotonAdmin.png');
+    background-image: url('/Web/Graficos/EstrellaDeLaMortTotal.png');
 }
 
 /* Div que contiene los datos del submenu  de un BotonCheck */
@@ -351,19 +351,20 @@ body[administrador33] #Marco33 {
     border:1px solid #353338;
     cursor:pointer;
     text-align:center;
+/*    overflow:hidden;*/
 }
 
 
 
 /* Efecto over para los botones del menu */
 .BarraPrincipal_Boton:hover {
-    border:1px solid red !important;
+    border:1px solid red;
 }
 .BarraPrincipal_BotonMenu:hover, 
 .BarraPrincipal_Boton:hover + .BarraPrincipal_BotonMenu, 
 .BarraPrincipal_Boton:hover + #BarraPrincipal_Submenus + .BarraPrincipal_BotonMenu {
     background-color:#EA504E;                
-    border:1px solid red !important;
+    border:1px solid red;
 }            
 
 
@@ -426,11 +427,14 @@ body[administrador33] #Marco33 {
 }
 #BarraPrincipal_Boton_Icono::before, #BarraPrincipal_Boton_Icono:before {    top:7px;   }
 #BarraPrincipal_Boton_Icono::after,  #BarraPrincipal_Boton_Icono::after {    top:-7px;  }
-
+/* Todos los botones EXCEPTO el burguer del menu lateral izquierdo*/
+.BarraPrincipal_Boton_Input:not(#BarraPrincipal_Boton_Estado):checked + label {
+    border:1px solid red !important;
+}
 .BarraPrincipal_Boton_Input:checked + .BarraPrincipal_Boton + #BarraPrincipal_Submenus + .BarraPrincipal_BotonMenu,
 .BarraPrincipal_Boton_Input:checked + label + .BarraPrincipal_BotonMenu  {
     background-color:#EA504E;
-    border:1px solid red;
+    border:1px solid red !important;
 }
 .BarraPrincipal_Boton_Input:checked + .BarraPrincipal_Boton + #BarraPrincipal_Submenus + #Marco33 + .BarraPrincipal_BotonMenu > #BarraPrincipal_Boton_Icono {
     width:0px;

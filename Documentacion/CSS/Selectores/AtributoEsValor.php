@@ -3,7 +3,7 @@
 <div class='nota'>El valor debe estar delimitado por un guion (no he encontrado ninguna referencia sobre esto, pero es la única forma en que he conseguido que funcione).</div><br />
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>Elemento[Atribut|=Valor] { };</pre>
+<pre class='Sintaxis'>Elemento[Atribut|=Valor] { };</pre>
 <hr />
 <h2>Compatibilidad</h2>
 <p>Esta propiedad es soportada por todos los navegadores compatibles con CSS2.</p>

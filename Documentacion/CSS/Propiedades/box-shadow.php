@@ -1,7 +1,7 @@
 <p>Esta propiedad permite especificar una o mas sombras para la caja / contenedor. Cada sombra se define con un maximo de 6 valores, los dos primeros son la posición horizontal y vertical de la sombra, luego el desenfoque y la propagación, y por ultimo el color y el tipo de sombra.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>box-shadow: <b>Horizontal</b>&nbsp;<b>Vertical</b> [opcional] <b>Desenfoque</b> [opcional] <b>Dispersion</b> [opcional] <b>Color</b> [opcional] Tipo;</pre>
+<pre class='Sintaxis'>box-shadow: <b>Horizontal</b>&nbsp;<b>Vertical</b> [opcional] <b>Desenfoque</b> [opcional] <b>Dispersion</b> [opcional] <b>Color</b> [opcional] Tipo;</pre>
 <div class='nota'>Los tamaños omitidos se quedaran en 0, el color si se omite se quedara transparente y el tipo en outset.</div>
 <table class='Tabla'>
     <tr>

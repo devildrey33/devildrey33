@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar como se tratará el texto, si una parte de él está oculta.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>text-overflow: <b>valor</b>;</pre>
+<pre class='Sintaxis'>text-overflow: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>clip</b></td>

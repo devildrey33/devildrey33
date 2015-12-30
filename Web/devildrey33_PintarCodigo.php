@@ -941,18 +941,18 @@ class devildrey33_PintarCodigo {
     // - $Titulo      : Titulo del marco
     // - $TotalLineas : Numero total de lineas del código (para imprimir a la izquierda la numeración)
     private function _IniciarMarco($IDMarco, $Titulo, $TotalLineas) {
-        $PRE = "<div class='Codigo_Marco' id='".$IDMarco."'>".
-                    "<div class='Codigo_Titulo'>".$Titulo."</div>".
-                        "<div class='Codigo_Numeracion'>";
+        $PRE = "<div class='Codigo_Marco' id='".$IDMarco."'>";
+        if ($Titulo != "") {
+            $PRE .= "<div class='Codigo_Titulo'>".$Titulo."</div>";
+        }
+        $PRE .=     "<div class='Codigo_Numeracion'>";
         if ($TotalLineas == 0) $TotalLineas = 1;
         for ($i = 1; $i < $TotalLineas + 1; $i++) {
             $PRE .= $i."<br>";
 //                $PRE .= "<div l=".$i.">".$i."</div>";
         }
-        $PRE = $PRE.    "</div>".
-                        "<pre class='Codigo_PRECodigo'>";
-
-
+        $PRE = $PRE."</div>".
+                    "<pre class='Codigo_PRECodigo'>";
         return $PRE;
     }
 

@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite definir el estilo de las lineas para la decoración del texto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'><code style="display:table; float:left; padding-right:20px">text-decoration-line: <i>none</i>;
+<pre class='Sintaxis'><code style="display:table; float:left; padding-right:20px">text-decoration-line: <i>none</i>;
 text-decoration-line: <i>underline</i>;
 text-decoration-line: <i>overline</i>;
 text-decoration-line: <i>line-through</i>;

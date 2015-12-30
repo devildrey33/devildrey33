@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar la transformación para el texto en : Mayúsculas, Minúsculas, Primera letra de cada palabra mayúscula. </p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>text-transform: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>text-transform: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>none</b></td>

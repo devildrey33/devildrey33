@@ -3,7 +3,7 @@
 <div class='nota'>Personalmente prefiero evitar el tener que resetear todos los estilos del documento, y prefiero hacer-lo para cada etiqueta individualmente.</div><br />
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>* { };</pre>
+<pre class='Sintaxis'>* { };</pre>
 <hr />
 <h2>Compatibilidad</h2>
 <p>Esta propiedad es soportada por todos los navegadores compatibles con CSS2.</p>

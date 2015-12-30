@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite asignar el relleno superior del objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>padding-top: valor;</pre>
+<pre class='Sintaxis'>padding-top: valor;</pre>
 <table class='devildrey33_Marco'>
     <tr>
         <td class='TD_SintaxisU'><b>valor</b></td>

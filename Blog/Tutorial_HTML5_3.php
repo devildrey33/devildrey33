@@ -113,7 +113,7 @@
                     $Base->PintarCodigo->PintarArchivoHTML("ID6", "Etiquetas de titulo", basename(__FILE__), "ID6"); 
                 ?>
 				<br />
-				<table class='devildrey33_Marco'><tr><td>
+				<table class='Tabla'><tr><td>
                     <h1 style="font-size:28px">Titulo H1</h1><br />
                     <h1 style="font-size:1.5em">Titulo H2</h1><br />
                     <h3>Titulo H3</h3><br />

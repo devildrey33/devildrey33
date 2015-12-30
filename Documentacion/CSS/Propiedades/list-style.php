@@ -1,7 +1,7 @@
 <p>Esta prpopiedad nos permite especificar una imagen para el marcador del item.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>list-style: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>list-style: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><a href="list-style-type"><b>list-style-type</b></a></td>

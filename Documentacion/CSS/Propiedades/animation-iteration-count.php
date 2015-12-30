@@ -1,7 +1,7 @@
 <p>Esta propiedad define el numero de veces que se repetirá la animación.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>animation-iteration-count: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>animation-iteration-count: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>Valor</b></td>

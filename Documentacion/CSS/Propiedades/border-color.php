@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar el color del borde del objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'><code style="display:table; float:left; padding-right:20px">border-color: <i>valor</i>;
+<pre class='Sintaxis'><code style="display:table; float:left; padding-right:20px">border-color: <i>valor</i>;
 border-color: TopBottom LeftRight;
 border-color: Top LeftRight Bottom;
 border-color: Top Left Bottom Right;

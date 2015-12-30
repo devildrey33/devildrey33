@@ -2,7 +2,7 @@
 <div class='nota'>El valor asignado a esta propiedad no incluye ni el <a href="margin">margin</a> ni el <a href="padding">padding</a>, ni los <a href="border">border</a>, ni los <a href="outline">outline</a>.</div>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>max-width: <b>tamaño</b>;</pre>
+<pre class='Sintaxis'>max-width: <b>tamaño</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>none</b></td>

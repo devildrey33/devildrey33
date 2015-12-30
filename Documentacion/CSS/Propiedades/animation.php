@@ -2,7 +2,7 @@
 <p>Podemos especificar hasta 6 propiedades de la animación con esta propiedad : <a href="animation-name"><i>animation-name</i></a>, <a href="animation-duration"><i>animation-duration</i></a>, <a href="animation-timing-function"><i>animation-timing-function</i></a>, <a href="animation-delay"><i>animation-delay</i></a>, <a href="animation-iteration-count"><i>animation-iteration-count</i></a>, y <a href="animation-direction"><i>animation-direction</i></a>.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>animation <b>NombreAnimación</b>&nbsp;<b>Duración</b>&nbsp;<b>FunciónTiempo</b>&nbsp;<b>Retraso</b>&nbsp;<b>Iteraciones</b>&nbsp;<b>Dirección</b></pre>
+<pre class='Sintaxis'>animation <b>NombreAnimación</b>&nbsp;<b>Duración</b>&nbsp;<b>FunciónTiempo</b>&nbsp;<b>Retraso</b>&nbsp;<b>Iteraciones</b>&nbsp;<b>Dirección</b></pre>
 <table class='Tabla'>
     <tr>
         <td><b>NombreAnimación</b></td>

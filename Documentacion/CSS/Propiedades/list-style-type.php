@@ -1,7 +1,7 @@
 <p>Esta prpopiedad nos permite seleccionar que tipo de marcación se utilizará para la lista.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>list-image-type: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>list-image-type: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>armenian</b></td>

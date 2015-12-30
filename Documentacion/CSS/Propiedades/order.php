@@ -2,7 +2,7 @@
 <div class='nota'>El <code>order</code> se refiere únicamente al orden visual, y no afecta al orden real de las etiquetas. No debe utilizarse la propiedad <code>order</code> el <a href='/Doc/Css/Reglas/@media'>medios</a> no visuales como por ejemplo el <code>speech</code>.</div>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>order: Valor;</pre>
+<pre class='Sintaxis'>order: Valor;</pre>
 <table class='Tabla'>
     <tr>
         <td style='width:120px'><i>Valor</i></td>

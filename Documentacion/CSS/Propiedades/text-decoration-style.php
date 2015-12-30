@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite definir el estilo de las lineas para la decoración del texto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>text-decoration-style: <i>valor</i>;</code>
+<pre class='Sintaxis'>text-decoration-style: <i>valor</i>;</code>
 </pre>
 <table class='Tabla'>
     <tr>

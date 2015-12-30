@@ -1,7 +1,7 @@
 <p>Esta propìedad nos permite especificar si se deben cortar forzosamente las palabras que excedan el ancho del objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>word-wrap: <b>valor</b>;</pre>
+<pre class='Sintaxis'>word-wrap: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td style='width:100px'><b>normal</b></td>

@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar el tamaño del espacio entre celdas. Podemos especificar el espacio horizontal y el espacio vertical por separado, o usar un solo valor para horizontal y vertical.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>border-spacing: <b>valor</b>;</pre>
+<pre class='Sintaxis'>border-spacing: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>valor</b></td>

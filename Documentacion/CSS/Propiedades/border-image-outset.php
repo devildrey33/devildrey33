@@ -1,7 +1,7 @@
 <p>Esta propiedad permite asignar el tamaño del borde que excederá al contenedor.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'><code style="display:table; float:left; padding-right:20px">border-image-outset: <i>ValorTRBL</i>;
+<pre class='Sintaxis'><code style="display:table; float:left; padding-right:20px">border-image-outset: <i>ValorTRBL</i>;
 border-image-outset: TopBottom LeftRight;
 border-image-outset: Top LeftRight Bottom;
 border-image-outset: Top Left Bottom Right;

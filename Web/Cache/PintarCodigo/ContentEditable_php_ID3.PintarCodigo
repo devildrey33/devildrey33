@@ -1,1 +1,0 @@
-<div class='Codigo_Marco' id='ID3'><div class='Codigo_Titulo'>Función document.execCommand</div><div class='Codigo_Numeracion'>1<br></div><pre class='Codigo_PRECodigo'><div l=1><span class='TxtNegro'><span class='TxtLila'>document</span>.execCommand(Comando, Interface, Valor);</span></div></pre></div>

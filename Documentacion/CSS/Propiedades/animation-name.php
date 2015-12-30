@@ -1,7 +1,7 @@
 <p>Esta propiedad se usa para enlazar un <a href="/Doc/CSS/Reglas/@keyframes" target="_blank">@keyframes</a> especifico a la animación.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>animation-name: <b>NombreKeyframe | none</b>;</pre>
+<pre class='Sintaxis'>animation-name: <b>NombreKeyframe | none</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>NombreKeyframe</b></td>

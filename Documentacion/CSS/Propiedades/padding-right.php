@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite asignar el relleno derecho del objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>padding-right: valor;</pre>
+<pre class='Sintaxis'>padding-right: valor;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>valor</b></td>

@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar si se deben mostrar los bordes y colores de fondo en las celdas vacias.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>empty-cells: <b>valor</b>;</pre>
+<pre class='Sintaxis'>empty-cells: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>show</b></td>

@@ -2,7 +2,7 @@
 <p>Si quieres alguna fuente que no sea convencional, te recomiendo buscar en la siguiente pagina <a href="http://www.fontsquirrel.com/fonts" target="_blank">Font Squirrel</a>, la cual tiene cientos de fuentes gratis compatibles para la web listas para la descarga.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>@font-face { <b>Propiedades</b> }</pre>
+<pre class='Sintaxis'>@font-face { <b>Propiedades</b> }</pre>
 <table class='Tabla'>
     <tr>
         <td><a href='/Doc/CSS/Propiedades/font-family' target="_blank"><b>font-family</b></a></td>

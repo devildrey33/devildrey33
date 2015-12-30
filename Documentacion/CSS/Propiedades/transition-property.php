@@ -1,6 +1,6 @@
 <p>Esta propiedad nos permite especificar que propiedades se usarán para la transición.</p>
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>transition-property: <b>Propiedades</b>;</pre>
+<pre class='Sintaxis'>transition-property: <b>Propiedades</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>Propiedades</b></td>

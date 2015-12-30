@@ -1,7 +1,7 @@
 <p>Esta propiedad permite establecer la figura del borde inferior derecho de forma que se pueda redondear el borde.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>border-bottom-right-radius: <b>ValorH</b>&nbsp;<b>ValorV</b>;</pre>
+<pre class='Sintaxis'>border-bottom-right-radius: <b>ValorH</b>&nbsp;<b>ValorV</b>;</pre>
 <div class='nota'>Se puede omitir el <i>ValorV</i>, en ese caso se copiará del <i>ValorH</i>.</div>
 <p>Los dos valores definen los radios de una cuarta parte de la elipse que dan forma a la esquina del borde. </p>
 <table class='Tabla'>

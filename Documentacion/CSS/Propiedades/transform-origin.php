@@ -1,7 +1,7 @@
 <p>Propiedad que permite modificar la posición del objeto transformado.</p>
 <br />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>transform-origin: X Y Z;</pre>
+<pre class='Sintaxis'>transform-origin: X Y Z;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>X</b></td>

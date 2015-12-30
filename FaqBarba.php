@@ -146,12 +146,17 @@
         <p>Si necesites afegir un CSS o JS extra s'hauran de carregar via JavaScript just a sota de la <linea cid='ID1' l='14'>linea 14</linea>.</p>
 <?php 
 /* -[INICIO devildrey33.IDC2]-
+// Carregar CSS
 <script>$Base.CargarCSS("Blog_how-to-use-google-app-scripts.css");</script>
+// Carregar script JS
 <script>$Base.CargarJS("Blog_how-to-use-google-app-scripts.js");</script>
+// Carregar script i executar funció d'aquest script un cop s'ha carregat
+<script>$Base.CargarJS("Blog_how-to-use-google-app-scripts.js", function() { FuncioInici(); });</script>
  -[FIN devildrey33.IDC2]-*/
     $Base->PintarCodigo->PintarArchivoPHP("ID2", "Carregar javascript o css extern", basename(__FILE__), 'IDC2'); 
 ?>
         <p>Aquestes funcions miren directament als directoris <i>/Web/CSS</i>, i <i>/Web/JS</i>, no els hi posis cap path. Tambe s'hauria de respectar la nomenclatura afegint davan "Blog_" i despres el nom del php. D'aquesta forma en un futur ho podre automatitzar...</p>
+        <p>A la <linea cid='ID2' l='6'>línea 6</linea> carrego un script i ames executo una funció del script un cop s'ha carregat.</p>
         <div class='nota'>La web carrega tots els documents dinamicament, i la forma mes neta que he trobat per carregar CSS/JS dinamicament es aquesta.</div>
         <br />
 <?php 
@@ -209,7 +214,33 @@
             <tr>
                 <td><b>.Tabla</b></td>
                 <td>table</td>
-                <td>Aquesta taula.
+                <td>Aquesta taula, pot contenir taules filla i neta.
+                    <table class='Tabla'>
+                        <thead>
+                            <tr>
+                                <th>Head taula filla</th>
+                                <th>Head taula filla</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>valor</td>
+                            <td>
+                                <table class='Tabla'>
+                                    <thead>
+                                        <tr>
+                                            <th>Head taula neta</th>
+                                            <th>Head taula neta</th>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <td>valor</td>
+                                        <td>valor</td>
+                                    </tr>
+                                </table>
+                                
+                            </td>
+                        </tr>
+                    </table>
                 </td>                
             </tr>
             <tr>
@@ -221,6 +252,11 @@
                 <td><b>.nota</b></td>
                 <td>*</td>
                 <td><div class='nota'>Post-it amb el texte 'NOTA :' en negreta.</div></td>                
+            </tr>
+            <tr>
+                <td><b>.Sintaxis</b></td>
+                <td>pre</td>
+                <td><pre class='Sintaxis'>Per <b>remarcar</b> sintaxis <i>etiqueta &lt;i&gt;</i>, etiqueta <code>&lt;code&gt;</code>.</pre></td>                
             </tr>
             <tr>
                 <td><b>.Boton</b></td>

@@ -6,7 +6,7 @@
     <meta name="keywords" content="Web dinámica, Webs dinámicas, window.history.pushState, history.pushState, modificar url, modificar url javascript">';
 
     if (!isset($_POST["SinPlantilla"])) {
-        $Base->InicioPlantilla(basename(__FILE__), "Webs dinámicas", $META);
+        $Base->InicioPlantilla(basename(__FILE__), "Webs de contenido dinámico", $META);
     }
 
     $Base->InicioBlog(basename(__FILE__), "Webs de contenido dinámico");

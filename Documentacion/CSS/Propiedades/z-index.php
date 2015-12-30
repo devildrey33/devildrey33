@@ -2,7 +2,7 @@
 <div class='nota'>Solo funciona con objetos que tengan la propiedad <code>position</code> a : <code>absolute</code>, <code>relative</code>, y <code>fixed</code></div>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>z-index: <b>posición</b>;</pre>
+<pre class='Sintaxis'>z-index: <b>posición</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>auto</b></td>

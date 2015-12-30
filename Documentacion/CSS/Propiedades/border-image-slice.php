@@ -5,7 +5,7 @@
 </div>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'><code style="display:table; float:left; padding-right:20px">border-image-slice: <i>ValorTRBL</i>;
+<pre class='Sintaxis'><code style="display:table; float:left; padding-right:20px">border-image-slice: <i>ValorTRBL</i>;
 border-image-slice: TopBottom LeftRight;
 border-image-slice: Top LeftRight Bottom;
 border-image-slice: Top Left Bottom Right;

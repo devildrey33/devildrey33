@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar el estilo del borde para la parte izquierda del objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>border-left-style: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>border-left-style: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>none</b></td>

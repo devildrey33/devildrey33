@@ -1,7 +1,7 @@
 <p>Propiedad corta que nos permite especificar una o mas propiedades para el fondo.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>background: <b>valores</b>;</pre>
+<pre class='Sintaxis'>background: <b>valores</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b><code><a href="background-attachment">background-attachment</a></code></b></td>

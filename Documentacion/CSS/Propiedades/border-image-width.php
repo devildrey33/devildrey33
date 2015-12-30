@@ -1,7 +1,7 @@
 <p>Esta propiedad permite asignar el tamaño del borde para la imagen.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'><code style="display:table; float:left; padding-right:20px">border-image-width: <i>ValorTRBL</i>;
+<pre class='Sintaxis'><code style="display:table; float:left; padding-right:20px">border-image-width: <i>ValorTRBL</i>;
 border-image-width: TopBottom LeftRight;
 border-image-width: Top LeftRight Bottom;
 border-image-width: Top Left Bottom Right;

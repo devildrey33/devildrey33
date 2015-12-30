@@ -27,7 +27,7 @@
                 <p>En este caso el servidor ya no se guarda el resultado de la operación, si no que se guarda la ID de la imagen con el resultado correcto.</p>
                 <h2>Estructuración</h2>
                 <p>Este ejemplo va a estar dividido en varios archivos :</p>
-                <table class="devildrey33_Marco">
+                <table class="Tabla">
                 	<tr>
                     	<td style="vertical-align:top"><b>Captcha3_Ejemplo.php</b></td>
                         <td style="vertical-align:top">:</td>

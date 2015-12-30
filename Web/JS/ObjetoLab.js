@@ -6,7 +6,7 @@
 
 $Lab = new function() {
     /* Temporizador para actualizar el resultado */
-//    this.Lab_Temporizador     = 0;
+    this.Lab_Temporizador     = 0;
     /* Objeto que contiene el codemirror */
     this.Editor  = new Object;
     /* Path del archivo que se está editando */
@@ -46,9 +46,15 @@ $Lab = new function() {
         });
         
         this.Editor.on("change", function(cm, change) {
-            $Lab.ActualizarResultado();
-            if ($Lab.Original !== $Lab.Editor.getValue()) { $("body").attr({ "modificado" : "true" });  }
-            else                                          { $("body").attr({ "modificado" : "false" }); }
+            if ($Lab.Lab_Temporizador !== 0) {
+                clearTimeout($Lab.Lab_Temporizador);
+            }
+            $Lab.Lab_Temporizador = setTimeout(function() { 
+                $Lab.ActualizarResultado();
+                if ($Lab.Original !== $Lab.Editor.getValue()) { $("body").attr({ "modificado" : "true" });  }
+                else                                          { $("body").attr({ "modificado" : "false" }); }
+                $Lab.Lab_Temporizador = 0;
+            }, 400);
         });
         
         this.Original = $("#Lab_Codigo").val();
@@ -63,7 +69,7 @@ $Lab = new function() {
     this.ClickDirectorio = function(Objeto) {
         console.log("Lab.ClickDirectorio", Objeto);
         Animacion = Objeto.next();
-        Directorio = Animacion.find("ul");
+        Directorio = Animacion.find(".Lab_Lista");
         // Asigno la altura en pixeles del directorio por abrir
         var Altura = Animacion.css("height");
         var AltoPadre = 0;
@@ -100,7 +106,7 @@ $Lab = new function() {
         $Base.Cargando("TRUE");
         var nopush = false;
         console.log("Lab.CargarArchivo", Archivo);
-        if (Archivo === undefined) { Archivo = this.Archivo; nopush = true; }
+        if (Archivo === null) { Archivo = this.Archivo; nopush = true; }
         if (ID === undefined)      { ID = -1; }        
         $Base.PeticionAjax = $.post("/cmd/LabAbrirEjemplo.cmd",  { "Archivo" : Archivo, "ID" : ID }, function(data) {
             Datos = JSON.parse(data);            
@@ -113,7 +119,7 @@ $Lab = new function() {
                     $Lab.Editor.setValue(Datos["Datos"]);  
                     $Lab.AjustarVista(Datos["Vista"]);  
                     URL = "/Lab/" + Datos["Archivo"];
-                    $("#MarcoNavegacionLab").attr({"archivo" : Datos["Archivo"]});
+                    $("#MarcoNavegacionLab").attr({"pagina" : Datos["Archivo"]});
                     if (nopush === false) {
                         $Base.Entrada = $Base.IdentificarEntrada(URL, URL);    
                         $Base.Entrada["Titulo"] = "Lab : " + Datos["Archivo"];

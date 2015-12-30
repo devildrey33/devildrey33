@@ -138,7 +138,7 @@
 
             $Fecha = date("d/m/Y", filemtime($PathDoc));
             echo "<div style='position:relative'>".
-                    "<div class='postit' style='position:absolute; right:0px; top:-83px; '>Documento modificado por última vez : <i>".$Fecha."</i><br />";
+                    "<div class='postit' style='position:absolute; right:0px; top:-107px; '>Documento modificado por última vez : <i>".$Fecha."</i><br />";
             if ($FechaEjemplo != "") echo "Ejemplo modificado por última vez : <i style='float:right'>".$FechaEjemplo."</i>";
             echo    "</div>".
                 "</div>";            

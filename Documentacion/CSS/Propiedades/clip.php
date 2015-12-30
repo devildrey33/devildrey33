@@ -1,7 +1,7 @@
 <p>Esta propiedad permite especificar una porción rectangular del objeto para mostrar, mientras el resto permanecerá oculto.</p>
 <div class='nota'>Esta propiedad no funciona si el objeto tiene <code>overflow:visible</code>.</div><br />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>clip: <b>Valor</b>;</pre>
+<pre class='Sintaxis'>clip: <b>Valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>auto</b></td>

@@ -18,7 +18,7 @@
 ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_DUMP.png" alt="Tutorial WINAPI 4" />
+                <img class="ImagenPortada2" src="/Web/Graficos/250x200_DUMP.png" alt="Tutorial WINAPI 4" />
                 <p>Los archivos DUMP son una forma de depurar aplicaciones con windows. La idea consiste en que cuando una aplicación falla críticamente se guarda un archivo con el contenido de la memoria de esta.</p>
                 <p>Más tarde podemos abrir esos archivos con el Visual Studio y depurar la aplicación (siempre que tengamos su código fuente a mano).</p>
                 <p>Por ejemplo <a href='/Blog/BubaTronik'>BubaTronik</a> si tiene un error critico, crea un archivo dump y pide al usuario permiso para mandarme este archivo dump a mi cuenta de correo. Cosa que es muy útil para depurar errores que yo no he visto en mi maquina.</p>

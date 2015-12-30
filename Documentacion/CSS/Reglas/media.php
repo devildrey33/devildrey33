@@ -1,7 +1,7 @@
 <p>Esta regla nos permite especificar un conjunto de selectores que solo se utilizaran en el caso de estar en el medio especificado.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>@media not|only &lt;tipo de medio&gt; and (Caracteristicas) { <b>Selectores</b> }</pre>
+<pre class='Sintaxis'>@media not|only &lt;tipo de medio&gt; and (Caracteristicas) { <b>Selectores</b> }</pre>
 <div class='nota'>Si no especificamos <code>not</code> o <code>only</code> por defecto se tratará como <code>only</code>.</div>
 <h2>Tipos de medio</h2>
 <table class='Tabla'>

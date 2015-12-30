@@ -1,11 +1,11 @@
 <p>Esta propiedad es un atajo para las propiedades <a href='/Doc/CSS/Propiedades/flex-grow'>flex-grow</a>, <a href='/Doc/CSS/Propiedades/flex-shrink'>flex-shrink</a>, y <a href='/Doc/CSS/Propiedades/flex-basis'>flex-basis</a>.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>flex: grow shrink basis;</pre>
+<pre class='Sintaxis'>flex: grow shrink basis;</pre>
 <hr />
 <h2>flex-grow</h2>
 <p>La propiedad <a href='/Doc/CSS/Propiedades/flex-grow'>flex-grow</a> nos permite especificar el factor de crecimiento para un <code>flex-item</code>. De esta forma tenemos la habilidad de poder hacer crecer un flex-item especificando una proporción.</p>
-<p><b>Por defecto es 0</b>, si es 0 no se aplicará ninguna correción de tamaño al <code>flex-item</code>. En caso de no ser 0, el valor determina la proporción de espacio que debe utilizar un <code>flex-item</code> en relación con los demás <code>flex-items</code></p>. 
+<p><b>Por defecto es 0</b>, si es 0 no se aplicará ninguna correción de tamaño al <code>flex-item</code>. En caso de no ser 0, el valor determina la proporción de espacio que debe utilizar un <code>flex-item</code> en relación con los demás <code>flex-items</code>.</p> 
 <div class='nota'>No se puede especificar valores negarivos.</div>
 <br />
 <hr />

@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite definir si deseamos repetir la imagen de fondo.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>background-repeat: <b>valor</b>;</pre>
+<pre class='Sintaxis'>background-repeat: <b>valor</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b>repeat</b></td>

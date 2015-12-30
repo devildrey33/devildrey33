@@ -39,7 +39,7 @@ allow from all
 				<p>Ahora vamos a meternos en la piel de un hacker que desea acceder a nuestra web, el no sabe realmente desde donde acceder a la web, por lo que tiene que ir probando métodos conocidos, como por ejemplo entrar en la carpeta "<i>admin</i>" y ver si existe, y ver si puede hacer algo desde ella.</p>
                 <p>Aunque nosotros no tengamos dicha carpeta admin, si baneamos a ese usuario al probar de entrar en la carpeta 'admin' nos ahorraremos sus siguientes pruebas, y este se verá obligado a cambiar de IP para saltarse el baneo, a la que lleve 10 veces haciendo esto es posible que desista y busque otro objetivo mas fácil que nuestra web.</p>
                 <p>He elaborado una lista con los directorios / archivos en los que suelen mirar basada en mi propia experiencia :</p>
-                <table class="devildrey33_Marco" style="float:left; margin-right:10px;">
+                <table class="Tabla" style="float:left; margin-right:10px;">
                 	<tr><td>/muieblackcat/</td></tr>
 	                <tr><td>/admin/</td></tr>
 	                <tr><td>/admin/pma/</td></tr>
@@ -50,7 +50,7 @@ allow from all
 	                <tr><td>/mysqladmin/</td></tr>
 	                <tr><td>/typo3/phpmyadmin/</td></tr>
                 </table>
-                <table class="devildrey33_Marco" style="float:left; margin-right:10px;">
+                <table class="Tabla" style="float:left; margin-right:10px;">
 	                <tr><td>/phpadmin/</td></tr>
 	                <tr><td>/phpMyAdmin/</td></tr>
 	                <tr><td>/phpmyadmin/</td></tr>
@@ -61,7 +61,7 @@ allow from all
 	                <tr><td>/xampp/phpmyadmin/</td></tr>
 	                <tr><td>/websql/</td></tr>
 				</table>
-                <table class="devildrey33_Marco" style="float:left; margin-right:10px;">
+                <table class="Tabla" style="float:left; margin-right:10px;">
 	                <tr><td>/phpMyAdmin-2/</td></tr>
 	                <tr><td>/php-my-admin/</td></tr>
 	                <tr><td>/phpMyAdmin-2.2.3/</td></tr>
@@ -72,7 +72,7 @@ allow from all
 	                <tr><td>/phpMyAdmin-2.5.5-rc2/</td></tr>
 	                <tr><td>/phpMyAdmin-2.5.5-pl1/</td></tr>
 				</table>
-                <table class="devildrey33_Marco">                
+                <table class="Tabla">                
 	                <tr><td>/phpMyAdmin-2.5.6-rc1/</td></tr>
 	                <tr><td>/phpMyAdmin-2.5.6-rc2/</td></tr>
 	                <tr><td>/phpMyAdmin-2.5.6/</td></tr>

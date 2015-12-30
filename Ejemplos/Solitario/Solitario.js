@@ -4,7 +4,7 @@
     Última modificación : 18/12/2015  
      TODO :
                 - Hacer un set de cartas mas pequeño para resoluciones bajas.
-                - Crear opcion para que juegue solo, para asi poder revisar algunos detalles de la IA.
+                - Crear opción para que juegue solo, para asi poder revisar algunos detalles de la IA.
                 - Revisar la detección de la derrota, he visto alguna cosa rara... pero necesito ver mas..
  */
 

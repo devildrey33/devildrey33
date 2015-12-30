@@ -2,7 +2,7 @@
 <div class='nota'>Las transiciónes se suelen utilizar para el selector <code>:hover</code>, aunque tambien se pueden utilizar para el selector <code>:active</code>.</div>
 <br />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>transition: <b>transition-property</b>&nbsp;<b>transition-duration</b>&nbsp;<b>transition-timing-function</b>&nbsp;<b>transition-delay</b>;</pre>
+<pre class='Sintaxis'>transition: <b>transition-property</b>&nbsp;<b>transition-duration</b>&nbsp;<b>transition-timing-function</b>&nbsp;<b>transition-delay</b>;</pre>
 <table class='Tabla'>
     <tr>
         <td><b><a href="transition-property">transition-property</a></b></td>

@@ -1,7 +1,7 @@
 <p>Esta propiedad nos permite especificar el estilo del borde del objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'><code style="display:table; float:left; padding-right:20px">border-style: <i>valor</i>;
+<pre class='Sintaxis'><code style="display:table; float:left; padding-right:20px">border-style: <i>valor</i>;
 border-style: TopBottom LeftRight;
 border-style: Top LeftRight Bottom;
 border-style: Top Left Bottom Right;
