@@ -898,6 +898,7 @@ $Base = new function() {
     this.ComprobarScrollVotacion = function() {
         if ($(window).scrollTop() > ($(document).height() - ($(window).height() * 2))) {
             console.log("Base.ComprobarScrollVotacion");
+            Pagina = $("#MarcoNavegacion > article").attr("pagina");
 //        if ($(window).scrollTop() > 190 && Header.attr("animar")) {
             if (typeof localStorage["Voto_" + Pagina] === "undefined") {
                 $("#BarraNavegacion_Votacion").attr({ "Mostrar" : true });

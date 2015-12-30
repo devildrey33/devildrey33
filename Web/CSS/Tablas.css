@@ -1,50 +1,10 @@
 /* Archivo que contiene reglas para tablas y marcos.
     Clase .Tabla diseñada para contener hasta 2 tablas dentro de ella. (la tabla hijo tiene la mitad de margen izquierdo que la tabla padre, y la la tabla nieto tiene la mitad de margen izquierdo que la tabla hijo)
     Tambien contiene otros marcos como .Sintaxis (sintaxis de documentación), nota / postit (marcos tipo post-it)
-/* 
+ 
     Created on : 23-dic-2015, 4:12:30
     Author     : devildrey33
 */
-
-
-
-/* Tabla rectangular vintage (de la época del netscape) */
-/*
-.Tabla .Tabla {
-    border:1px solid rgb(150, 150, 150);
-}
-
-.Tabla {
-    border:2px solid #BBB;
-    border-spacing: 0px;
-    border-collapse: separate;
-    background: #FFFFFF;
-}
-
-.Tabla td {
-    padding:3px 10px;
-    border-bottom:1px solid #AAA;
-    border-right:1px solid #AAA;
-}
-
-.Tabla td:last-child {
-    border-right:none !important;
-}
-
-.Tabla tr:last-child td {
-    border-bottom:none !important;
-}
-
-
-.Tabla th {
-    background: rgb(100,100,100);
-    color:#FFFFFF;
-    border-right:none;
-    padding:4px;
-}
-.Tabla pre {
-    margin:0px;
-} */
 
 
 /*********************/
@@ -52,42 +12,39 @@
 /*********************/
 
 .Tabla {
-    border:1px solid rgb(240,240,240);
-    border-left:6px solid #666;
-    border-spacing: 0px;
-    border-collapse: separate;
-    background: #FFFFFF;
+    outline:1px solid rgb(240,240,240);
+    border-left:4px solid #666;
+    border-spacing:0px;
+    border-collapse:separate;
+    background:#FFFFFF;
     margin-top:10px;    
+    display:table;
     transition:0.4s;
-    border-radius:4px 4px 8px 4px;
 }
 
+
 .Tabla:hover {
-    border:1px solid #666;
-    border-left:6px solid #666;
+    outline:1px solid #999;
 }
 
 /* Tablas dentro de tablas tienen el borde mas pequeño y claro */
 .Tabla .Tabla {
-    border:1px solid #FFFFFF;
+/*    border:1px solid #FFFFFF;*/
     border-left:4px solid #888;
 }
 
-.Tabla .Tabla:hover {
-    border:1px solid #888;
-    border-left:4px solid #888;
-}
+/*.Tabla .Tabla:hover {
+    outline:1px solid #999;
+}*/
 
 /* Tabla dentro de Tabla dentro de Tabla */
 .Tabla .Tabla .Tabla {
-    border:1px solid #FFFFFF;
-    border-left:3px solid #AAA;
+    border-left:4px solid #AAA;
 }
 
-.Tabla .Tabla .Tabla:hover {
-    border:1px solid #AAA;
-    border-left:3px solid #AAA;
-}
+/*.Tabla .Tabla .Tabla:hover {
+    outline:1px solid #999;
+}*/
 
 .Tabla img {
     border:2px solid rgb(240,240,240);
@@ -144,19 +101,18 @@
 
 /* Marco <pre> para la sintáxis de la documentación CSS */
 .Sintaxis {
-    border:1px solid transparent;
-    border-left:6px solid brown;
+    outline:1px solid transparent;
+    border-left:4px solid brown;
     padding:10px;
     background:#FFFFFF;
     font-size:1.5rem;
     transition:0.4s;
-    border-radius:4px;
+/*    border-radius:4px;*/
     display:table;
 }
 
 .Sintaxis:hover {
-    border:1px solid brown;    
-    border-left:6px solid brown;
+    outline:1px solid brown;    
 }
 
 .Sintaxis > code {
@@ -213,18 +169,18 @@
 /*****************/
 /* La diferencia entre la nota y el postit, es que la nota muestra el texto 'NOTA :' */
 .nota, nota, postit, .postit {
-    border:1px solid transparent;
-    border-left:6px solid orange;
+    outline:1px solid transparent;
+    border-left:4px solid orange;
     background-color:rgb(249, 249, 222);
     display:table;
     margin:10px 0px;
     padding:10px;
     transition:0.4s;
-    border-radius:4px;
+/*    border-radius:4px;*/
 }
 .nota:hover, nota:hover, postit:hover, .postit:hover {
-    border:1px solid orange;
-    border-left:6px solid orange;
+    outline:1px solid orange;
+/*    border-left:6px solid orange;*/
 }
 html[lang='es'] nota::before, html[lang='es'] .nota::before {
     content:"NOTA :";

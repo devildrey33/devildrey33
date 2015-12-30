@@ -18,18 +18,16 @@ and open the template in the editor.
 }
 
 .ImagenPortada, .ImagenPortada2 {
-    border:1px solid rgb(200,200,200) !important;        
     margin-top:1em;
     background:rgb(255,255,255);
-    transition:0.4s;
 }
 
-.ImagenPortada  { float:left;   margin-right:15px;  border-left:6px solid darkblue !important; }
-.ImagenPortada2 { float:right;  margin-left:15px;                                              }
-
-.ImagenPortada:hover  { border:1px solid darkblue !important;   border-left:6px solid darkblue !important; }
-.ImagenPortada2:hover { border:1px solid darkblue !important;                                              }
-
+.ImagenPortada  { float:left;   margin-right:15px;  }
+.ImagenPortada2 { float:right;  margin-left:15px;   }
+/*
+.ImagenPortada:hover  { outline:1px solid #999; }
+.ImagenPortada2:hover { outline:1px solid #999; }
+*/
 
 
 

@@ -15,5 +15,5 @@
     </tr>
 </table><br />
 <hr />
-<h3>Compatibilidad</h3><br />
+<h2>Compatibilidad</h2><br />
 <p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3, y tambien por Internet Explorer 9.</p>

@@ -19,10 +19,10 @@ Millores de la web :
  X      - Ara no valida cap etiqueta amb atributs no-estandar (mostrar, tooltips, paths, etc...), i aixo si que no ho penso tocar...
  V  - El login utilitza la funcio Admin.Iniciar 500ms despres de carregar les eines d'administració. S'ha de fer en ajax i mirar quan torna el request per utilitzar Admin.Iniciar
  V      - Afegit parametre a Base.CargarJS per executar una funció al carregar el script.
-    - Les bores de color no han de ser amb el border, s'ha de fer amb un ::before un rectangle de color, aixi no hi ha lio amb les puntes
+ V  - Les bores de tots els marcs en el hover han de ser en gris (excepte els nota/postit que seran taronja).
+ V  - Neteja del CSS dels butons dels menus (renombrat .BarraPrincipal_Boton a .BarraPrincipal_Boton_Label, i eliminats estils del label. El que porta els estils del buto es .BarraPrincipal_BotonMenu
     - El codi estatic i el codi del lab no tenen la mateixa configuracio de color (NO POT SER)
     - Probar els butons de la barra lateral dreta amb fondo gris clar translucid, i les imatges en gris fosc
-    - Les bores de tots els marcs en el hover han de ser en gris.
 
 
 +o- - Pasar a svg tots els icones dels menús laterals, excepte el burguer i la creu de tancar. (em falten els 4 de la vista del lab, que s'han de refer...)

@@ -3,10 +3,8 @@
 /* Pintar código */
 /*****************/
 .Codigo_Marco {
-    border-right:1px solid transparent;
-    border-top:1px solid transparent;
-    border-bottom:1px solid transparent;
-    border-left:6px solid green;
+    outline:1px solid transparent;
+    border-left:4px solid green;
     display:inline-block;
 /*    background:#353338;*/
     position:relative;
@@ -24,10 +22,7 @@
 }
 
 .Codigo_Marco:hover {
-    border-right:1px solid #888;
-    border-top:1px solid #888;
-    border-bottom:1px solid #888;
-    border-left:6px solid green;
+    outline:1px solid #999;
 }
 
 .Codigo_Titulo {

@@ -18,6 +18,6 @@
     </tr>
 </table><br />
 <hr />
-<h3>Compatibilidad</h3><br />
+<h2>Compatibilidad</h2>
 <p>Esta propiedad es soportada por todos los navegadores compatibles con CSS2.</p>
 <div class='nota'>En IE8 hay que declarar un <i>!DOCTYPE</i> para que esta propiedad funcione. Para versiones anteriores de IE esta propiedad no está soportada.</div>

@@ -257,17 +257,17 @@ and open the template in the editor.
     width:100%;
     display:block;
     height:320px;
-    border:1px solid transparent;
+    outline:1px solid transparent;
     border-left:6px solid purple;
     position:relative;
     margin-bottom:90px;
     transition:0.4s;
-    border-radius:4px 4px 8px 4px;
+/*    border-radius:4px 4px 8px 4px;*/
 }
 
 .MiniLab:hover {
-    border:1px solid purple;
-    border-left:6px solid purple;    
+    outline:1px solid purple;
+/*    border-left:6px solid purple;    */
 }
 
 .MiniLab[oculto='true'] {

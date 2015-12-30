@@ -65,7 +65,7 @@ body[tipo=Lab] #BarraNavegacion_LabVer, body[tipo=Lab] #BarraNavegacion_LabExplo
 }     */
 
 
-input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
+input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {
     width:100%;
     background-position:center center;
     background-repeat:no-repeat;
@@ -75,16 +75,16 @@ input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
     opacity:1;    
 }
 
-input:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span, input:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > svg {
+input:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span, input:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > svg {
     opacity:0;    
 }
 
-input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > svg {
+input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > svg {
     transition:0.4s;
     opacity:1;
 }
 /* Botones de los menus con imagenes */
-input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
+input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {
     width:58px;
     height:58px;
     top:-22px;
@@ -95,16 +95,16 @@ input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {
     opacity:1;    
 }
 
-#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span[ver=columnas] > span { background-image: url('/Web/Graficos/BotonMixto.png');   }
-#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span[ver=filas]    > span { background-image: url('/Web/Graficos/BotonFilas.png');   }
-#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span[ver=codigo]   > span { background-image: url('/Web/Graficos/BotonCodigo.png');  }
-#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span[ver=preview]  > span { background-image: url('/Web/Graficos/BotonPreview.png'); }
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=columnas] > span { background-image: url('/Web/Graficos/BotonMixto.png');   }
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=filas]    > span { background-image: url('/Web/Graficos/BotonFilas.png');   }
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=codigo]   > span { background-image: url('/Web/Graficos/BotonCodigo.png');  }
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=preview]  > span { background-image: url('/Web/Graficos/BotonPreview.png'); }
 
 
-/*#BarraNavegacion_Indice_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {          background-image: url('/Web/Graficos/BotonAncla.png');  }
-#BarraNavegacion_PrevNext_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {        background-image: url('/Web/Graficos/Botonprevnext.png');    }
-#BarraNavegacion_RedesSociales_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {   background-image: url('/Web/Graficos/BotonRedesSociales.png');   }
-#BarraNavegacion_BotonExplorar_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu > span > span {   background-image: url('/Web/Graficos/BotonExplorar.png');   }*/
+/*#BarraNavegacion_Indice_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {          background-image: url('/Web/Graficos/BotonAncla.png');  }
+#BarraNavegacion_PrevNext_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {        background-image: url('/Web/Graficos/Botonprevnext.png');    }
+#BarraNavegacion_RedesSociales_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {   background-image: url('/Web/Graficos/BotonRedesSociales.png');   }
+#BarraNavegacion_BotonExplorar_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {   background-image: url('/Web/Graficos/BotonExplorar.png');   }*/
 
 
 /* Por defecto oculto*/ 
@@ -181,14 +181,14 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
 
 
 /* Equivale a las ID : BarraNavegacion_Marco??????? */
-#BarraNavegacion .Menu_BotonCheck > .BarraPrincipal_Boton_Input + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu + div {
+#BarraNavegacion .Menu_BotonCheck > .BarraPrincipal_Boton_Input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu + div {
     transition:0.4s cubic-bezier(.17,-0.42,0,1.35);
     transform:perspective(600px) rotateY(-90deg);    
     opacity:0;
     transform-origin:right center;
     z-index:100000;
 }
-#BarraNavegacion .Menu_BotonCheck > .BarraPrincipal_Boton_Input:checked + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu + div  {    
+#BarraNavegacion .Menu_BotonCheck > .BarraPrincipal_Boton_Input:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu + div  {    
     transform:perspective(600px) rotateY(0deg);
     opacity:0.95;    
 }
@@ -223,7 +223,7 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
     top:0px;
     right:64px;
     padding:1px;
-    width:240px;
+    width:254px;
     height:60px;
     background:rgba(37,35,40, 0.95);
     color:#FFF;
@@ -501,7 +501,7 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     background: rgba(37,35,40, 0.95);
     color:#FFF;
     border:1px solid #353338;
-    width:186px;
+    min-width:195px;
     height:62px;
 }
 
@@ -529,7 +529,7 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
 
 /* Bug raro en chrome que hace sobresalir una parte inexistente del span .IconoTexto mas abajo del limite del boton */
 /* No se puede aplicar a todos los .BarraPrincipal_BotonMenu, ya que oculta tambien su tool-tip (con los 4 botones de la vista del editor) */
-#BarraNavegacion_RedesSociales_Estado + .BarraPrincipal_Boton + .BarraPrincipal_BotonMenu {
+#BarraNavegacion_RedesSociales_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu {
     overflow:hidden;
 }
 
@@ -550,11 +550,11 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     animation:Ani-ResaltarFondoBoton 0.5s ease 0s 6 alternate;
 }
 
-#BarraNavegacion_Votacion[mostrar='true'] > #BarraNavegacion_Votacion_Estado + .BarraPrincipal_Boton {
-    animation:Ani-ResaltarBordeBoton 0.5s ease 0s 6 alternate;
+#BarraNavegacion_Votacion[mostrar='true'] > #BarraNavegacion_Votacion_Estado + .BarraPrincipal_Boton_Label {
+/*    animation:Ani-ResaltarBordeBoton 0.5s ease 0s 6 alternate;*/
 }
 
-#BarraNavegacion_Votacion[mostrar='true']:hover > #BarraNavegacion_Votacion_Estado + .BarraPrincipal_Boton {
+#BarraNavegacion_Votacion[mostrar='true']:hover > #BarraNavegacion_Votacion_Estado + .BarraPrincipal_Boton_Label {
     animation-play-state: paused;
 }
 
@@ -564,8 +564,8 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
 
 
 @keyframes Ani-ResaltarFondoBoton {
-    0%   { background:#29272c; }
-    100% { background:#ea504e; }
+    0%   { background:#29272c; border:1px solid #353338; }
+    100% { background:#ea504e; border:1px solid #FF0000; }
 }
 @keyframes Ani-ResaltarBordeBoton {
     0%   { border:1px solid #353338; }

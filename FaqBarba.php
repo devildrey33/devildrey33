@@ -8,7 +8,7 @@
     
     $ArrayDatos = (require dirname(__FILE__).'/Web/Passwords.php');
 ?>
-    <article class='Blog'>
+    <article class='Blog' pagina='FaqBarba.php'>
         <br />
         <h2>Instalació</h2>
 <?php echo "<p>Has de crear la BD <b>".$ArrayDatos["NOM-BD"]."</b> amb login '<b>root</b>', pass '<b>".$ArrayDatos["PASS-Barba"]."</b>'.</p>"; ?>

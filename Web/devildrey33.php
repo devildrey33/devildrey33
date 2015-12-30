@@ -205,14 +205,14 @@ class devildrey33 {
                 
         "<nav id='BarraPrincipal'>".Intro().
             "<input id='BarraPrincipal_Boton_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-            "<label class='BarraPrincipal_Boton' for='BarraPrincipal_Boton_Estado'></label>".Intro().
-            
+            "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_Boton_Estado'></label>".Intro().
+            "<div class='BarraPrincipal_BotonMenu'><div id='BarraPrincipal_Boton_Icono'></div></div>".Intro().
             "<div id='BarraPrincipal_Submenus'>".Intro().
                 "<div id='BarraPrincipal_Fondo'></div>".Intro().
                 // <!-- CSS -->
                 "<div class='Menu_BotonCheck' mostrar='true'>".Intro().
                     "<input id='BarraPrincipal_BotonCSS_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                    "<label class='BarraPrincipal_Boton' for='BarraPrincipal_BotonCSS_Estado'></label>".Intro().
+                    "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonCSS_Estado'></label>".Intro().
                     "<div class='BarraPrincipal_BotonMenu'>".Intro().
                         "<span class='IcoTexto'>CSS</span>".Intro().
                     "</div>".Intro().
@@ -230,7 +230,7 @@ class devildrey33 {
                 // <!-- C / C++ -->
                 "<div class='Menu_BotonCheck' mostrar='true'>".Intro().
                     "<input id='BarraPrincipal_BotonCPP_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                    "<label class='BarraPrincipal_Boton' for='BarraPrincipal_BotonCPP_Estado'></label>".Intro().
+                    "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonCPP_Estado'></label>".Intro().
                     "<div class='BarraPrincipal_BotonMenu'>".Intro().
                         "<span class='IcoTexto'>C++</span>".Intro().
                     "</div>".Intro().
@@ -247,7 +247,7 @@ class devildrey33 {
                 // <!-- JS -->
                 "<div class='Menu_BotonCheck' mostrar='true'>".Intro().
                     "<input id='BarraPrincipal_BotonJS_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                    "<label class='BarraPrincipal_Boton' for='BarraPrincipal_BotonJS_Estado'></label>".Intro().
+                    "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonJS_Estado'></label>".Intro().
                     "<div class='BarraPrincipal_BotonMenu'>".Intro().
                         "<span class='IcoTexto'>JS</span>".Intro().
                     "</div>".Intro().
@@ -263,7 +263,7 @@ class devildrey33 {
                 // <!-- PHP -->
                 "<div class='Menu_BotonCheck' mostrar='true'>".Intro().
                     "<input id='BarraPrincipal_BotonPHP_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                    "<label class='BarraPrincipal_Boton' for='BarraPrincipal_BotonPHP_Estado'></label>".Intro().
+                    "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonPHP_Estado'></label>".Intro().
                     "<div class='BarraPrincipal_BotonMenu'>".Intro().
                         "<span class='IcoTexto'>PHP</span>".Intro().
                     "</div>".Intro().
@@ -278,7 +278,7 @@ class devildrey33 {
                 // <!-- Buscar -->
                 "<div class='Menu_BotonCheck' mostrar='true'>".Intro().
                     "<input id='BarraPrincipal_BotonBuscar_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                    "<label class='BarraPrincipal_Boton' for='BarraPrincipal_BotonBuscar_Estado'></label>".Intro().
+                    "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonBuscar_Estado'></label>".Intro().
                     "<div class='BarraPrincipal_BotonMenu'>".Intro().
                         "<span class='IcoLupa20x20'></span>". // <!-- lupa a morphejar -->
                     "</div>".Intro().
@@ -295,9 +295,7 @@ class devildrey33 {
             "<div id='Marco33' class='Menu_BotonCheck' mostrar='true'>".Intro(); // Marco que contiene las herramientas de administrador
             $HA = $this->HerramientasAdmin("", "", FALSE);
             echo $HA["HTMLAdmin"];
-            echo "</div>".Intro().
-
-            "<div class='BarraPrincipal_BotonMenu'><div id='BarraPrincipal_Boton_Icono'></div></div>".Intro().
+            echo "</div>".Intro().            
         "</nav>".Intro().
         //"<div id='MotaLog'></div>".
         
@@ -317,7 +315,7 @@ class devildrey33 {
             /* Lab Ver */
             "<div id ='BarraNavegacion_LabVer' class='Menu_BotonCheck'  mostrar='true'>".Intro().
                 "<input id='BarraNavegacion_BotonVer_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                "<label class='BarraPrincipal_Boton' for='BarraNavegacion_BotonVer_Estado' tooltip-es='Vista del editor' tooltip-en='Editor's view' tooltip-pos='R'></label>".Intro().
+                "<label class='BarraPrincipal_Boton_Label' for='BarraNavegacion_BotonVer_Estado' tooltip-es='Vista del editor' tooltip-en='Editor's view' tooltip-pos='R'></label>".Intro().
                 "<div class='BarraPrincipal_BotonMenu'>".Intro().
                     "<span class='IcoTexto' id='BarraNavegacion_Lab_IconoVer'>".Intro().
                         "<span></span>".Intro(). 
@@ -342,7 +340,7 @@ class devildrey33 {
             /* Lab explorar */
             "<div id='BarraNavegacion_LabExplorar' class='Menu_BotonCheck' mostrar='true'>".Intro().                    
                 "<input id='BarraNavegacion_BotonExplorar_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                "<label class='BarraPrincipal_Boton' for='BarraNavegacion_BotonExplorar_Estado' tooltip-es='Explorar ejemplos' tooltip-en='Examples explorer' tooltip-pos='R'></label>".Intro().
+                "<label class='BarraPrincipal_Boton_Label' for='BarraNavegacion_BotonExplorar_Estado' tooltip-es='Explorar ejemplos' tooltip-en='Examples explorer' tooltip-pos='R'></label>".Intro().
                 "<div class='BarraPrincipal_BotonMenu'>".Intro().
                     "<span class='IcoTexto'>".Intro(). 
                         "<svg viewBox='-170 -200 800 800'>".Intro().
@@ -365,7 +363,7 @@ class devildrey33 {
             /* NOTA!! va el primero porque puede tener un tamaño muy grande, y asi aprovecha el máximo de altura*/
             "<div id='BarraNavegacion_Indice' class='Menu_BotonCheck' mostrar='true'>".Intro().
                 "<input id='BarraNavegacion_Indice_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                "<label class='BarraPrincipal_Boton' for='BarraNavegacion_Indice_Estado' tooltip-es='Secciones del documento' tooltip-en='Document sections' tooltip-pos='R'></label>".Intro().
+                "<label class='BarraPrincipal_Boton_Label' for='BarraNavegacion_Indice_Estado' tooltip-es='Secciones del documento' tooltip-en='Document sections' tooltip-pos='R'></label>".Intro().
                 "<div class='BarraPrincipal_BotonMenu'>".Intro().
                     "<span class='IcoTexto'>".Intro().
                         "<svg viewBox='-240 -290 950 950'>".Intro().
@@ -379,7 +377,7 @@ class devildrey33 {
             /* Prev / Next (navegación) */
             "<div id='BarraNavegacion_NextPrev' class='Menu_BotonCheck' mostrar='true'>".Intro().
                 "<input id='BarraNavegacion_PrevNext_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                "<label class='BarraPrincipal_Boton' for='BarraNavegacion_PrevNext_Estado' tooltip-es='Navegación por el Blog' tooltip-en='Navigate' tooltip-pos='R'></label>".Intro().
+                "<label class='BarraPrincipal_Boton_Label' for='BarraNavegacion_PrevNext_Estado' tooltip-es='Navegación por el Blog' tooltip-en='Navigate' tooltip-pos='R'></label>".Intro().
                 "<div class='BarraPrincipal_BotonMenu'>".Intro().
                     "<span class='IcoTexto'>".Intro().
                         "<svg viewBox='-240 -280 950 950'>".Intro().
@@ -399,7 +397,7 @@ class devildrey33 {
             /* Redes sociales */
             "<div id='BarraNavegacion_RedesSociales' class='Menu_BotonCheck' mostrar='true'>".Intro().
                 "<input id='BarraNavegacion_RedesSociales_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                "<label class='BarraPrincipal_Boton' for='BarraNavegacion_RedesSociales_Estado' tooltip-es='Redes sociales' tooltip-en='Social networks' tooltip-pos='R'></label>".Intro().
+                "<label class='BarraPrincipal_Boton_Label' for='BarraNavegacion_RedesSociales_Estado' tooltip-es='Redes sociales' tooltip-en='Social networks' tooltip-pos='R'></label>".Intro().
                 "<div class='BarraPrincipal_BotonMenu'>".Intro().
                     "<span class='IcoTexto'>".Intro().
                         "<svg viewBox='-5 16 60 60'>".Intro().
@@ -418,7 +416,7 @@ class devildrey33 {
             /* Votación para el documento */
             "<div id='BarraNavegacion_Votacion' class='Menu_BotonCheck'>".Intro().
                 "<input id='BarraNavegacion_Votacion_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                "<label class='BarraPrincipal_Boton' for='BarraNavegacion_Votacion_Estado' tooltip-es='Valoración del documento' tooltip-en='Document valoration' tooltip-pos='R'></label>".Intro().
+                "<label class='BarraPrincipal_Boton_Label' for='BarraNavegacion_Votacion_Estado' tooltip-es='Valoración del documento' tooltip-en='Document valoration' tooltip-pos='R'></label>".Intro().
                 "<div class='BarraPrincipal_BotonMenu'>".Intro().
                     "<span class='IcoTexto'>".Intro().
                         "<svg viewBox='-18 -12 130 130'>".Intro().
@@ -497,7 +495,7 @@ class devildrey33 {
             $HTAccess = new devildrey33_htaccess;
             $ValHT = $HTAccess->ObtenerValores();
             $HTMLAdmin = "<input id='BarraPrincipal_Boton33_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                "<label class='BarraPrincipal_Boton' for='BarraPrincipal_Boton33_Estado'></label>".Intro().
+                "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_Boton33_Estado'></label>".Intro().
                 "<div class='BarraPrincipal_BotonMenu'>".Intro().
                     "<span class='IcoTexto'>".Intro().
                         '<svg viewBox="-7 -8 50 50">'.Intro().
