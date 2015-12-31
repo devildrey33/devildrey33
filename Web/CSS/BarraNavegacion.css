@@ -145,23 +145,22 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
 }
 */
 /* Tamaños de los submenus según las columnas que se necesiten */
-.SubIndice_Columas_1                                                {    width:auto !important;        }
+.SubIndice_Columas_1                                                {    width:300px !important;        }
 .SubIndice_Columas_2                                                {    width:500px; /* 250 * 2 */    }
 .SubIndice_Columas_3, .SubIndice_Columas_4, .SubIndice_Columas_5    {    width:540px; /* 180 * 3 */    }
-.SubIndice_Columas_1 > div                                                          { display:block !important; }
-.SubIndice_Columas_2 > div                                                          { width:230px; }
-.SubIndice_Columas_3 > div, .SubIndice_Columas_4 > div, .SubIndice_Columas_5 > div  { width:155px; }
+.SubIndice_Columas_1 > div                                                          { flex:1 1 280px; }
+.SubIndice_Columas_2 > div                                                          { flex:1 1 230px; }
+.SubIndice_Columas_3 > div, .SubIndice_Columas_4 > div, .SubIndice_Columas_5 > div  { flex:1 1 155px; }
 
 
 #BarraNavegacion_Indice > #BarraNavegacion_SubIndice {
-/*    display:inline-flex;
-    flex-flow:column wrap;
+    display:flex;
+    flex-flow:row wrap;
     justify-content: flex-start;
-    align-content:flex-end;
-    align-items:flex-end;*/
-    display:table;
-    
-    max-height:600px;
+    align-content: stretch;
+    justify-content: center;
+/*    display:table;
+    max-height:600px;*/
     
     position:absolute;
     top:-3px;
@@ -171,8 +170,14 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
 /*    width:300px;*/
     background: rgba(37,35,40, 0.95);
     padding:5px;
+    color:#FFF;
     
 /*    transition-delay:0.2s; /* un segundo de delay para des-animar */
+}
+
+#BarraNavegacion_Indice > #BarraNavegacion_SubIndice > div {
+    padding:10px;
+    cursor:pointer;
 }
 
 .Menu_BotonCheck {
@@ -678,8 +683,11 @@ html[lang='en'] *[tooltip-en]::before { content:attr(tooltip-en); }
 html[lang='es'] #BarraNavegacion_LabMarcoVer > *[tooltip-es]:hover::before, html[lang='en'] #BarraNavegacion_LabMarcoVer > *[tooltip-en]:hover::before,
 /* Muestro el tooltip para los botones que contienen un sub-menu, y no están marcados */
 html[lang='es'] input:not(:checked) + *[tooltip-es]:hover::before, html[lang='en'] input:not(:checked) + *[tooltip-en]:hover::before,
-/* Muestro el tooltip para los botones a href estandar */
-html[lang='es'] a[tooltip-es]:hover::before, html[lang='en'] a[tooltip-en]:hover::before {
+/* Muestro el tooltip para los botones <a href> estandar */
+html[lang='es'] a[tooltip-es]:hover::before, html[lang='en'] a[tooltip-en]:hover::before,
+/* Muestro el tooltip para los botones <div> sin marcos desplegables */
+html[lang='es'] #BarraNavegacion_LabGuardar[tooltip-es]:hover::before, html[lang='en'] #BarraNavegacion_LabGuardar[tooltip-en]:hover::before,
+html[lang='es'] #BarraNavegacion_LabGuardarCache[tooltip-es]:hover::before, html[lang='en'] #BarraNavegacion_LabGuardarCache[tooltip-en]:hover::before {    
     transform:perspective(600px) rotateX(0deg);
     opacity:1;
     width:224px;
@@ -688,6 +696,6 @@ html[lang='es'] a[tooltip-es]:hover::before, html[lang='en'] a[tooltip-en]:hover
 /* FIX para el boton HOME, y para los botones de la vista del lab */
 /* En realidad el fix es porque algunos svg sobresalen del boton, y dan falsos mouse hover fuera dfel boton, por lo que necesito el overflow hidden */
 /* El problema es que el Boton HOME tiene él mismo el tooltip, y los botones de la lista del lab muestran el tooltip debajo. */
-#BarraNavegacion_LabMarcoVer > .BarraPrincipal_BotonMenu, #BarraNavegacion_Cerrar {
+#BarraNavegacion_LabMarcoVer > .BarraPrincipal_BotonMenu, #BarraNavegacion_Cerrar, #BarraNavegacion_LabGuardar, #BarraNavegacion_LabGuardarCache  {
     overflow:visible !important;
 }

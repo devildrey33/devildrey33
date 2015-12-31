@@ -127,8 +127,8 @@ $Lab = new function() {
             else                           { 
                 // Laboratorio principal
                 if (Datos["ID"] === -1) {
-                    $Lab.Original = Datos["Datos"];
                     $Lab.Editor.setValue(Datos["Datos"]);  
+                    $Lab.Original = $Lab.Editor.getValue();
                     $Lab.AjustarVista(Datos["Vista"]);  
                     URL = "/Lab/" + Datos["Archivo"];
                     $("#MarcoNavegacionLab").attr({"pagina" : Datos["Archivo"]});
@@ -141,6 +141,7 @@ $Lab = new function() {
                         document.title = $Base.Entrada["Titulo"];
                     }
                     $("body").attr({ "modificado" : "false" });
+                    $Base.ComprobarScrollVotacion();
                 }
                 // Instancia de un minilab
                 else {
