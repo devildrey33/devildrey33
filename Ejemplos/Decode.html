@@ -1,0 +1,74 @@
+<!-- herramienta para trastear strings codificados  -->
+<!doctype html>
+<html>
+    <style>
+    </style>
+    <script>
+String.prototype.hexEncode8 = function(){
+    var hex, i;
+    var result = "";
+    for (i=0; i<this.length; i++) {
+        hex = this.charCodeAt(i).toString(16);
+        result += ("0"+hex).slice(-2);
+    }
+    return result;
+};
+    
+String.prototype.hexEncode16 = function(){
+    var hex, i;
+    var result = "";
+    for (i=0; i<this.length; i++) {
+        hex = this.charCodeAt(i).toString(16);
+        result += ("000"+hex).slice(-4);
+    }
+    return result;
+};
+
+String.prototype.hexDecode8 = function(){
+    var j;
+    var hexes = this.match(/.{1,2}/g) || [];
+    var back = "";
+    for(j = 0; j<hexes.length; j++) {
+        back += String.fromCharCode(parseInt(hexes[j], 16));
+    }
+    return back;
+};
+
+String.prototype.hexDecode16 = function(){
+    var j;
+    var hexes = this.match(/.{1,4}/g) || [];
+    var back = "";
+    for(j = 0; j<hexes.length; j++) {
+        back += String.fromCharCode(parseInt(hexes[j], 16));
+    }
+    return back;
+};
+
+String.prototype.base64Encode = function() { return window.btoa(unescape(encodeURIComponent(this))); };
+String.prototype.base64Decode = function() { try { return decodeURIComponent(escape(window.atob(this))); } catch(err) { return ""; } };
+
+String.prototype.reverse = function() { return this.split("").reverse().join("") };
+
+var Txt = "d7dfd8cdf91bec96cf29e3c9c9ea747c860aca6340751e5357945b39a44fd06882c6bef2d3fea2ebb3172ba4d2adedc8";
+document.write("<ul>" + 
+                    "<li>" + Txt + "</li>" +
+//                    "<li>" + Txt.hexEncode16() + "</li>" +
+//                    "<li>" + Txt.hexEncode8() + "</li>" +
+                    "<li>" + Txt.hexDecode16() + "</li>" +
+                    "<li>" + Txt.hexDecode16().reverse() + "</li>" +
+                    "<li>" + Txt.reverse().hexDecode16() + "</li>" +
+                    "<li>" + Txt.hexDecode8() + "</li>" +
+                    "<li>" + Txt.hexDecode8().reverse() + "</li>" +
+                    "<li>" + Txt.reverse().hexDecode8() + "</li>" +
+//                    "<li>" + Txt.base64Encode() + "</li>" +
+                    "<li>" + Txt.base64Decode() + "</li>" +
+                    "<li>" + Txt.base64Decode().reverse() + "</li>" +
+                    "<li>" + Txt.reverse().base64Decode() + "</li>" +
+                "</ul>");
+//alert(Txt.hex16Encode());
+
+    </script>
+    <body>
+        <input type="text" />
+    </body>
+</html>

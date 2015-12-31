@@ -258,7 +258,7 @@ and open the template in the editor.
     display:block;
     height:320px;
     outline:1px solid transparent;
-    border-left:6px solid purple;
+    border-left:4px solid purple;
     position:relative;
     margin-bottom:90px;
     transition:0.4s;
@@ -266,7 +266,7 @@ and open the template in the editor.
 }
 
 .MiniLab:hover {
-    outline:1px solid purple;
+    outline:1px solid #999;
 /*    border-left:6px solid purple;    */
 }
 

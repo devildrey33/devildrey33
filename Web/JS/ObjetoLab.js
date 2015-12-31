@@ -58,7 +58,19 @@ $Lab = new function() {
         });
         
         this.Original = $("#Lab_Codigo").val();
-        this.AjustarVista(this.ForzarVista, false);
+        if (this.ForzarVista === '-1') {
+            this.ForzarVista = (typeof(localStorage["Lab_Vista"]) === "undefined")? "0" : localStorage["Lab_Vista"]; 
+        }
+        switch (this.ForzarVista) {
+//            case "-1" :    $(".Lab_BotonVerFilas").trigger("click");      break; // Auto
+            case "0" :     $(".Lab_BotonVerFilas").trigger("click");      break; // Auto
+            case "1" :     $(".Lab_BotonVerColumnas").trigger("click");      break; // Auto
+            case "2" :     $(".Lab_BotonVerCodigo").trigger("click");      break; // Auto
+            case "3" :     $(".Lab_BotonVerPreview").trigger("click");      break; // Auto
+            
+        }
+//        this.AjustarVista(this.ForzarVista, false);
+        
         this.ActualizarResultado();
         
 //        this.CargarArchivo();  
@@ -291,15 +303,6 @@ $Lab = new function() {
         preview.close();    
     };
     
-    
-    
-    this.AsignarCodigoPreview = function(Codigo) {
-        var previewFrame = document.getElementById('Lab_Explorar_Preview');
-        var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
-        preview.open();
-        preview.write(Codigo);
-        preview.close();    
-    };
 
 
 
@@ -384,7 +387,7 @@ $Lab = new function() {
 
 // Al cambiar el tamaño de la ventana, actualizo la vista del laboratorio
 $(window).resize(function() {
-    $Lab.AjustarVista("-1");
+    $Lab.AjustarVista("-1", false);
 });
 
     

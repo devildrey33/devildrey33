@@ -46,7 +46,7 @@
     border-left:2px solid rgb(240,240,240);
     border-bottom:1px solid rgb(240,240,240);
     font-family:monospace;
-    font-size:13px;
+    font-size:1.6rem;
 }
 
 .Codigo_Numeracion {
@@ -57,7 +57,7 @@
 /*    background:rgb(230, 230, 230);*/
     background:#f7f7f7;
     font-family:monospace;
-    font-size:13px;
+    font-size:1.6rem;
 }
 
 /* Colores para los codigos */

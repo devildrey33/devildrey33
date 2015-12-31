@@ -161,6 +161,9 @@ Redirect 301 /blog/wp-login.php                                     	/cmd/Banear
 Redirect 301 /wordpress/wp-login.php                                    /cmd/BanearIP.php
 Redirect 301 /wp/wp-login.php 		                        	/cmd/BanearIP.php
 Redirect 301 /wpfoot1.php                                               /cmd/BanearIP.php
+Redirect 301 /uploadify/uploadify.php                                   /cmd/BanearIP.php
+Redirect 301 /wp-content                                                /cmd/BanearIP.php
+Redirect 301 /wp-admin                                                  /cmd/BanearIP.php
 Redirect 301 /sites/all/libraries/elfinder/php/connector.minimal.php    /cmd/BanearIP.php
 Redirect 301 /sites/all/libraries/elfinder/files/wpfoot6.php            /cmd/BanearIP.php
 

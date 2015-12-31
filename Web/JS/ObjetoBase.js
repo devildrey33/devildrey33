@@ -40,7 +40,7 @@ $Base = new function() {
         $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(8)").click(function(e){ $Lab.AjustarVista("3"); });
         /* Explorador del laboratorio */
 //        $("#BarraNavegacion_LabExplorar > .BarraPrincipal_BotonMenu > .IcoTexto > svg").on("click"), function() { $("#BarraNavegacion_BotonExplorar_Estado").trigger("click"); }
-        $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(8)").click(function(e){ $Lab.AjustarVista("3"); });
+//        $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(8)").click(function(e){ $Lab.AjustarVista("3"); });
 
         $("#BarraNavegacion_Explorador .Lab_Archivo").off("click").on("click", function()       {   $Lab.ClickArchivo($(this));     });
         $("#BarraNavegacion_Explorador .Lab_Directorio").off("click").on("click", function()    {   $Lab.ClickDirectorio($(this));  });

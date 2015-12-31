@@ -217,13 +217,13 @@ class devildrey33 {
                         "<span class='IcoTexto'>CSS</span>".Intro().
                     "</div>".Intro().
                     "<div id ='BarraPrincipal_MarcoCSS'>".Intro().
-                        "<a href='/Doc/CSS/Colores' class='BarraPrincipal_BotonSubMenu'>"."<span>Colores</span>"."</a>".Intro().
-                        "<a href='/Doc/CSS/Degradados' class='BarraPrincipal_BotonSubMenu'>"."<span>Degradados</span>"."</a>".Intro().
-                        "<a href='/Doc/CSS/Funciones' class='BarraPrincipal_BotonSubMenu'>"."<span>Funciones</span>"."</a>".Intro().
-                        "<a href='/Doc/CSS/Propiedades' class='BarraPrincipal_BotonSubMenu'>"."<span>Propiedades</span>"."</a>".Intro().
-                        "<a href='/Doc/CSS/Reglas' class='BarraPrincipal_BotonSubMenu'>"."<span>Reglas</span>"."</a>".Intro().
-                        "<a href='/Doc/CSS/Selectores' class='BarraPrincipal_BotonSubMenu'>"."<span>Selectores</span>"."</a>".Intro().
-                        "<a href='/Doc/CSS/Unidades' class='BarraPrincipal_BotonSubMenu'>"."<span>Unidades</span>"."</a>".Intro().
+                        "<a href='/Doc/CSS/Colores'>Colores</a>".Intro().
+                        "<a href='/Doc/CSS/Degradados'>Degradados</a>".Intro().
+                        "<a href='/Doc/CSS/Funciones'>Funciones</a>".Intro().
+                        "<a href='/Doc/CSS/Propiedades'>Propiedades</a>".Intro().
+                        "<a href='/Doc/CSS/Reglas'>Reglas</a>".Intro().
+                        "<a href='/Doc/CSS/Selectores'>Selectores</a>".Intro().
+                        "<a href='/Doc/CSS/Unidades'>Unidades</a>".Intro().
                     "</div>".Intro().
                 "</div>".Intro().
                 
@@ -235,11 +235,11 @@ class devildrey33 {
                         "<span class='IcoTexto'>C++</span>".Intro().
                     "</div>".Intro().
                     "<div id ='BarraPrincipal_MarcoCPP'>".Intro().
-                        "<a href='/Blog/Tutorial_WINAPI_1_0' class='BarraPrincipal_BotonSubMenu'>"."<span>Calculadora</span>"."</a>".Intro().
-                        "<a href='/Blog/Tutorial_WINAPI_2_0' class='BarraPrincipal_BotonSubMenu'>"."<span>Snake</span>"."</a>".Intro().
-                        "<a href='/Blog/Tutorial_WINAPI_3_0' class='BarraPrincipal_BotonSubMenu'>"."<span>Instalador</span>"."</a>".Intro().
-                        "<a href='/Blog/Tutorial_WINAPI_4' class='BarraPrincipal_BotonSubMenu'>"."<span>DUMP</span>"."</a>".Intro().
-                        "<a href='/Blog/BubaTronik' class='BarraPrincipal_BotonSubMenu'>"."<span>BubaTronik</span>"."</a>".Intro().
+                        "<a href='/Blog/Tutorial_WINAPI_1_0'>Calculadora</a>".Intro().
+                        "<a href='/Blog/Tutorial_WINAPI_2_0'>Snake</a>".Intro().
+                        "<a href='/Blog/Tutorial_WINAPI_3_0'>Instalador</a>".Intro().
+                        "<a href='/Blog/Tutorial_WINAPI_4'>DUMP</a>".Intro().
+                        "<a href='/Blog/BubaTronik'>BubaTronik</a>".Intro().
                     "</div>".Intro().
                 "</div>".Intro().
                 // <!-- HTML -->
@@ -252,11 +252,12 @@ class devildrey33 {
                         "<span class='IcoTexto'>JS</span>".Intro().
                     "</div>".Intro().
                     "<div id ='BarraPrincipal_MarcoJS'>".Intro().
-                        "<a href='/Blog/Canvas2D_1' class='BarraPrincipal_BotonSubMenu'>"."<span>Canvas 2D 1</span>"."</a>".Intro().
-                        "<a href='/Blog/Canvas2D_2' class='BarraPrincipal_BotonSubMenu'>"."<span>Canvas 2D 2</span>"."</a>".Intro().
-                        "<a href='/Blog/Canvas2D_3' class='BarraPrincipal_BotonSubMenu'>"."<span>Canvas 2D 3</span>"."</a>".Intro().
-                        "<a href='/Blog/Canvas2D_4' class='BarraPrincipal_BotonSubMenu'>"."<span>Canvas 2D 4</span>"."</a>".Intro().
-                        "<a href='/Blog/devildrey33_ListaDesplegable_2-0' class='BarraPrincipal_BotonSubMenu'>"."<span>Lista desplegable</span>"."</a>".Intro().
+                        "<a href='/Blog/Canvas2D_1'>Canvas 2D 1</a>".Intro().
+                        "<a href='/Blog/Canvas2D_2'>Canvas 2D 2</a>".Intro().
+                        "<a href='/Blog/Canvas2D_3'>Canvas 2D 3</a>".Intro().
+                        "<a href='/Blog/Canvas2D_4'>Canvas 2D 4</a>".Intro().
+                        "<a href='/Blog/devildrey33_ListaDesplegable_2-0'>Lista desplegable</a>".Intro().
+                        "<a href='/Lab/Ejemplos/Solitario/Solitario.html?Preview'>Solitario HTML5</a>".Intro().                
                     "</div>".Intro().
                 "</div>".Intro().
 
@@ -268,10 +269,10 @@ class devildrey33 {
                         "<span class='IcoTexto'>PHP</span>".Intro().
                     "</div>".Intro().
                     "<div id ='BarraPrincipal_MarcoPHP'>".Intro().
-                        "<a href='/Blog/Captcha1' class='BarraPrincipal_BotonSubMenu'>"."<span>Captchas 1</span>"."</a>".Intro().
-                        "<a href='/Blog/Captcha2' class='BarraPrincipal_BotonSubMenu'>"."<span>Captchas 2</span>"."</a>".Intro().
-                        "<a href='/Blog/Captcha3' class='BarraPrincipal_BotonSubMenu'>"."<span>Captchas 3</span>"."</a>".Intro().
-                        "<a href='/Blog/ColorearCodigoPHP_XML' class='BarraPrincipal_BotonSubMenu'>"."<span>Pintar Código</span>"."</a>".Intro().
+                        "<a href='/Blog/Captcha1'>Captchas 1</a>".Intro().
+                        "<a href='/Blog/Captcha2'>Captchas 2</a>".Intro().
+                        "<a href='/Blog/Captcha3'>Captchas 3</a>".Intro().
+                        "<a href='/Blog/ColorearCodigoPHP_XML'>Pintar Código</a>".Intro().
                     "</div>".Intro().
                 "</div>".Intro().
                 

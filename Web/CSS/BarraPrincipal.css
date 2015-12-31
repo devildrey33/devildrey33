@@ -117,13 +117,6 @@ body[administrador33] #Logo {
     height:2000px;
 }
 
-#BarraPrincipal_MarcoBuscar {
-    display:block !important;
-    width:320px;
-    height:60px;
-    top:-1px;  
-    background:#EA504E !important;
-}
 
 /*.Menu_BotonCheck > .BarraPrincipal_Boton_Input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu + div  {
 }*/
@@ -131,21 +124,58 @@ body[administrador33] #Logo {
     background-image: url('/Web/Graficos/EstrellaDeLaMortTotal.png');
 }*/
 
-/* Div que contiene los datos del submenu  de un BotonCheck */
+/* Div que contiene los datos del submenu de un BotonCheck */
+/* #BarraPrincipal_MarcoCPP, #BarraPrincipal_MarcoCSS, #BarraPrincipal_MarcoJS, #BarraPrincipal_MarcoPHP */
 #BarraPrincipal .Menu_BotonCheck > .BarraPrincipal_Boton_Input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu + div  {
     position:absolute;
-    display:table;
+    display:flex !important;
+    flex-flow: row wrap;
+    align-content: stretch;
+    justify-content:center;
+/*    align-content:center;*/
+    min-width:420px;
+/*    max-height:300px;*/
+    top:0px;
     background-color:rgba(37,35,40, 0.95);
     border:1px solid #353338;
     z-index:1;
     transition:0.5s cubic-bezier(.17,-0.42,0,1.35);
     box-shadow:2px 2px 2px rgba(50,50,50,0.7);
     opacity:0;
-/*    line-height:0px;*/
     transform-origin:left center;
     transform:perspective(600px) rotateY(90deg);
     left:65px;
 }
+
+
+#BarraPrincipal .Menu_BotonCheck > .BarraPrincipal_Boton_Input:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu + div {
+    transform:perspective(600px) rotateY(0deg);
+    z-index:10;
+    opacity:2;
+}
+
+/*#BarraPrincipal_MarcoCPP, #BarraPrincipal_MarcoCSS, #BarraPrincipal_MarcoJS, #BarraPrincipal_MarcoPHP {
+}*/
+
+#BarraPrincipal_MarcoCPP > a, #BarraPrincipal_MarcoCSS > a, #BarraPrincipal_MarcoJS > a, #BarraPrincipal_MarcoPHP > a {
+    display:block;
+    flex:1 1 100px;
+    padding:15px 5px;
+    color:#FFF;
+    margin:1px;
+    border:1px solid #333;
+    transition:0.4s;
+    line-height:100%;
+}
+
+#BarraPrincipal_MarcoCPP > a:hover, #BarraPrincipal_MarcoCSS > a:hover, #BarraPrincipal_MarcoJS > a:hover, #BarraPrincipal_MarcoPHP > a:hover {
+    border:1px solid #red;
+    background-color:#EA504E;
+}
+
+
+
+
 /* Marco que contiene el boton de la administración */
 #Marco33 {
     position:fixed;
@@ -165,7 +195,7 @@ body[administrador33] #Marco33 {
 #BarraPrincipal_Marco33 {
     width:432px;
     height:302px; 
-    top:-248px;    
+    top:-248px !important;    
     transition:0.4s ease-in-out !important;    
 /*    background:#252328 !important;
     opacity:0.98;*/
@@ -241,61 +271,27 @@ body[administrador33] #Marco33 {
     margin:10px 0px 0px 10px !important;
 }
 
-#BarraPrincipal_MarcoCPP, #BarraPrincipal_MarcoCSS, #BarraPrincipal_MarcoJS, #BarraPrincipal_MarcoPHP {
-    width:300px;
-    top:-3px;
-}
 
-/*#BarraPrincipal_MarcoCSS {
-    width:300px;
-    top:-3px;
-}
-
-#BarraPrincipal_MarcoJS {
-    width:300px;
-    top:-3px;
-}
-
-#BarraPrincipal_MarcoPHP {
-    width:300px;
-    top:-3px;
-}
-*/
-/*
-#BarraPrincipal_Lab > .BarraPrincipal_Boton_Label, #BarraPrincipal_Lab > .BarraPrincipal_BotonMenu  {
-    left:-100px;
-    transition:0.4s cubic-bezier(.17,-0.42,.63,1.24);
-}
-
-
-#BarraPrincipal_Lab[Visible=true] > .BarraPrincipal_Boton_Label, #BarraPrincipal_Lab[Visible=true] > .BarraPrincipal_BotonMenu  {
-    left:0px;
-}*/
-
-/*#BarraPrincipal_BotonLabExplorador_Estado:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu + #BarraPrincipal_MarcoLabExplorador,
-#BarraPrincipal_BotonLab_Estado:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu + #BarraPrincipal_MarcoLab,*/
-
-#BarraPrincipal .Menu_BotonCheck > .BarraPrincipal_Boton_Input:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu + div {
-    transform:perspective(600px) rotateY(0deg);
-    z-index:10;
-    opacity:1;
+#BarraPrincipal_MarcoBuscar {
+/*    display:block !important;*/
+    background:#EA504E !important;
 }
 
 #BarraPrincipal_MarcoBuscar_Edit {
     position:relative;
-    top:19px;
-    width:240px;
+    top:18px;
+    width:340px;
     height:20px;
     border:1px solid #353338;
-    left:-14px;
+    left:10px;
 }
 #BarraPrincipal_MarcoBuscar_BotonBuscar {
     position:relative;
     display:block;
     width:60px;
     height:60px;
-    top:-24px;
-    left:264px;
+    top:-1px;
+    left:10px;
     cursor:pointer;
 }
 
@@ -303,7 +299,7 @@ body[administrador33] #Marco33 {
 
 
 
-
+/* NO SE SI S'UTILITZA ENCARA */
 .BarraPrincipal_BotonSubMenu {
     position:relative;
     z-index: 1000;
@@ -325,9 +321,10 @@ body[administrador33] #Marco33 {
     /* padding: 4px 0px 0px 0px; */
 }
 
-.BarraPrincipal_Boton_Label:hover + div + div + .BarraPrincipal_BotonMenu {
+/* ?????????? */
+/*.BarraPrincipal_Boton_Label:hover + div + div + .BarraPrincipal_BotonMenu {
     background-color:#EA504E;    
-}
+}*/
 
 .BarraPrincipal_BotonSubMenu:hover {
     background-color:#EA504E;
@@ -351,7 +348,7 @@ body[administrador33] #Marco33 {
     border:1px solid #353338;
     cursor:pointer;
     text-align:center;
-/*    overflow:hidden;*/
+    overflow:hidden;
 }
 
 
@@ -393,10 +390,7 @@ body[administrador33] #Marco33 {
 .BarraPrincipal_Boton_Label {
     width:60px;
     height:60px;
-/*    width:4.4em;
-    height:4.4em;*/
     display:table;
-/*    border:1px solid #353338;*/
     position:absolute;
     z-index:1010;
     cursor:pointer;
