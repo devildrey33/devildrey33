@@ -24,14 +24,16 @@ Millores de la web :
  V  - Retocats butons dels submenus del menu principal (menu esquerra), ara es mostren en un flex box.
  V  - El codi estatic i el codi del lab no tenen la mateixa configuracio de color (NO POT SER)
  V  - Afegides noves URL a la llista de bans, que ultimament veig molta cosa rara de gent que proba aviam si tinc word-press en el log.
+ V  - No van alguns comentaris en la documentació... (El problema ve de la URL que no te les mateixes majuscules i minuscules)
     - Probar els butons de la barra lateral dreta amb fondo gris clar translucid, i les imatges en gris fosc.
+        
 
 
 +o- - Pasar a svg tots els icones dels menús laterals, excepte el burguer i la creu de tancar. (em falten els 4 de la vista del lab, que s'han de refer...)
     - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
     - Re-estudiar el menu de l'esquerra, com fer poques categories que a l'hora que englobin la majoria de la web. 
-    - Retocar l'animació de carrega de sota a l'esquerra i afegirli una rotacio de la Z a cada cercle.
-    - El buscador del menu principal (amb google)... aviam si al 2016 el faig.. xd
+    - Retocar l'animació de carrega de sota a la dreta i afegirli una rotacio de la Z a cada cercle.
+    - El buscador del menú principal (amb google)... aviam si al 2016 el faig.. xd
 
 NOTA : l'arxiu /Blog/Tutorial_WINAPI_4.php no te h2's apart del de comentaris!
 

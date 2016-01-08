@@ -360,20 +360,21 @@ $Base = new function() {
         }
 
         nURL = "";
+        cURL = URL.toLowerCase();
         /* Es una entrada del blog o Documentación */
-        if (URL.indexOf("/Blog/") > -1) {
+        if (cURL.indexOf("/blog/") > -1) {
             Ret["TipoPagina"] = "Blog";
             nURL = URL.substr(6);
         }
-        if (URL.indexOf("/Doc/CSS") > -1) {
+        if (cURL.indexOf("/doc/css") > -1) {
             Ret["TipoPagina"] = "DocCSS";
             nURL = URL.substr(8);
         }
-        if (URL.indexOf("/Lab/") > -1) {
+        if (cURL.indexOf("/lab/") > -1) {
             Ret["TipoPagina"] = "Lab";
             nURL = "";
         }
-        if (URL.indexOf("/Web/") > -1 || URL.indexOf("/FaqBarba") > -1) {
+        if (cURL.indexOf("/web/") > -1 || cURL.indexOf("/faqbarba") > -1) {
             Ret["TipoPagina"] = "Web";
             nURL = "";
         }

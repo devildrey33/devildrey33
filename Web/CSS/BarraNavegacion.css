@@ -640,7 +640,7 @@ html[lang='es'] *[tooltip-es]::before, html[lang='en'] *[tooltip-en]::before {
     display:block;
     background:#EA504E;
     border:1px solid red;        
-    border-left:6px solid red;
+    border-left:4px solid red;
     color:#FFF;
     text-shadow:1px 1px 1px #000;
 /*    background:#29272C;
@@ -653,7 +653,6 @@ html[lang='es'] *[tooltip-es]::before, html[lang='en'] *[tooltip-en]::before {
     border-left:6px solid yellow;
     color:#000;
     text-shadow:1px 1px 1px #FFF;*/
-    border-radius:2px;
     padding:10px;
     font-size:1em;
     opacity:0;
