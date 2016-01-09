@@ -28,7 +28,7 @@ Millores de la web :
     - Probar els butons de la barra lateral dreta amb fondo gris clar translucid, i les imatges en gris fosc.
         
 
-
+jhlkjh
 +o- - Pasar a svg tots els icones dels menús laterals, excepte el burguer i la creu de tancar. (em falten els 4 de la vista del lab, que s'han de refer...)
     - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
     - Re-estudiar el menu de l'esquerra, com fer poques categories que a l'hora que englobin la majoria de la web. 
