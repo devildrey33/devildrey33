@@ -24,7 +24,7 @@ Millores de la web :
  V  - Retocats butons dels submenus del menu principal (menu esquerra), ara es mostren en un flex box.
  V  - El codi estatic i el codi del lab no tenen la mateixa configuracio de color (NO POT SER)
  V  - Afegides noves URL a la llista de bans, que ultimament veig molta cosa rara de gent que proba aviam si tinc word-press en el log.
- V  - No van alguns comentaris en la documentació... (El problema ve de la URL que no te les mateixes majuscules i minuscules)
+ V  - No van alguns comentaris en la documentació... (El problema ve de la funció Base.IdentificarEntrada, que no reconeix la URL si no te les mateixes majuscules i minuscules)
     - Probar els butons de la barra lateral dreta amb fondo gris clar translucid, i les imatges en gris fosc.
         
 
