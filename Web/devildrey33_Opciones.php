@@ -14,13 +14,13 @@ class devildrey33_Opciones {
     // Constructor que comprueba el tiempo de actividad para borrar ciertas cookies según el tiempo
     public function __construct(/*$Admin = 0, $MinCSS = 1, $MinJS = 1, $Consola = 0*/) {
         
-        session_unset();
+//        session_unset();
         
         // Tiempo de validez para la sesion 30 minutos desde la ultima actividad
         if (isset($_SESSION["Opciones"]['UltimaActividadMS'])) {
             if ((time() - $_SESSION["Opciones"]['UltimaActividadMS'] > 1800)) 	{ 	unset($_SESSION["Opciones"]["Administrador"]);	}	// 30 minutos
-            if ((time() - $_SESSION["Opciones"]['UltimaActividadMS'] > 3600)) 	{ 	unset($_SESSION["Opciones"]["Administrador"]);	}	// 1 hora
-            if ((time() - $_SESSION["Opciones"]['UltimaActividadMS'] > 18000)) 	{ 	unset($_SESSION["Opciones"]["PaginasVistas"]);	}	// 5 horas
+//            if ((time() - $_SESSION["Opciones"]['UltimaActividadMS'] > 3600)) 	{ 	unset($_SESSION["Opciones"]["Administrador"]);	}	// 1 hora
+            if ((time() - $_SESSION["Opciones"]['UltimaActividadMS'] > 3600 * 24)) 	{ 	unset($_SESSION["Opciones"]["PaginasVistas"]);	}	// 1 dia
         }
         $_SESSION["Opciones"]['UltimaActividadMS'] = time(); // Guardo el tiempo de la ultima actividad
 
