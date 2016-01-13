@@ -605,7 +605,7 @@
         const Selector 	= 1;
         const Funcion 	= 2;
         const Regla 	= 3;
-        function Singular($Tipo) {
+        static public function Singular($Tipo) {
             switch ($Tipo) {
                 case CSSTipo::Propiedad : return "Propiedad";
                 case CSSTipo::Selector 	: return "Selector";
@@ -613,7 +613,7 @@
                 case CSSTipo::Regla 	: return "Regla";
             }
         }
-        function Plural($Tipo) {
+        static public function Plural($Tipo) {
             switch ($Tipo) {
                 case CSSTipo::Propiedad : return "Propiedades";
                 case CSSTipo::Selector 	: return "Selectores";

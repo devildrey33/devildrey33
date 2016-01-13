@@ -89,7 +89,7 @@ RewriteRule ^Doc/DWL/([^/]+) 			/DWL/$1 [NC]
 RewriteRule ^Doc/DWL/ 				/DWL/ [NC]
 RewriteRule ^Doc 				/Web/Doc_ParseadorUrl.php [NC]
 
-RewriteRule ^Categorias/([^/]*)(.*)$ 		index.php?Categoria=$1&NumPagina=$2 [L,QSA]
+#RewriteRule ^Categorias/([^/]*)(.*)$ 		index.php?Categoria=$1&NumPagina=$2 [L,QSA]
 RewriteRule ^Categorias/([^/]+) 		index.php?Categoria=$1 [NC]
 
 RewriteRule ^Buscar/([^/]+) 			/Web/devildrey33_Buscador?Search=$1 [NC]

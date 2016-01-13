@@ -11,6 +11,14 @@
     
     /* Comandos para cualquier usuario */
     switch ($Comando) {
+        case "ClearSession"                     :   
+            session_unset();
+            break;
+        case "PrintSession"                     :   
+            echo "<pre>";
+            print_r($_SESSION);
+            echo "</pre>";
+            break;
         case "BanearIP"                         :   
             $HT = new devildrey33_htaccess();
             $HT->BanearIP($_SERVER['REMOTE_ADDR']);

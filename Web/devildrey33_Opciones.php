@@ -7,8 +7,14 @@ include("Base.php");
         Por otra parte tambien controla los timeouts de ciertas variables que no deben ser guardadas durante mucho tiempo.
          */
 class devildrey33_Opciones {
+    
+    public static $ServidorDebug = FALSE;
+    
+    
     // Constructor que comprueba el tiempo de actividad para borrar ciertas cookies según el tiempo
     public function __construct(/*$Admin = 0, $MinCSS = 1, $MinJS = 1, $Consola = 0*/) {
+        
+        session_unset();
         
         // Tiempo de validez para la sesion 30 minutos desde la ultima actividad
         if (isset($_SESSION["Opciones"]['UltimaActividadMS'])) {
@@ -25,6 +31,11 @@ class devildrey33_Opciones {
         else {
             $_SESSION["Opciones"]['PaginasVistas'] ++;
         }        
+        
+        // Si no es el servidor de internet, se activa el modo depuración por defecto.
+        if (strpos($_SERVER["SERVER_NAME"], "devildrey33.es") === false) {
+            devildrey33_Opciones::$ServidorDebug = TRUE;
+        }
         /*$_SESSION["Opciones"]['Administrador']  = $Admin;
         $_SESSION["Opciones"]['MostrarConsola'] = $Consola;
         $_SESSION["Opciones"]['Minificar_CSS']  = $MinCSS;
@@ -53,16 +64,24 @@ class devildrey33_Opciones {
     /* Funciones para obtener / asignar los valores 
             NOTA : Si $Valor es -1 devuelve el valor de la cookie, si valor es distinto a -1 asigna ese valor y lo devuelve.
                                                                                                                    Nombre de la variable        Si es el servidor de internet                         Valor por defecto         Parámetro	*/
-    static public function MostrarConsola($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("MostrarConsola", 		(strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false) ? 0 : 1, 		$Valor);	}
+    static public function MostrarConsola($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("MostrarConsola", 		(devildrey33_Opciones::$ServidorDebug === FALSE) ? 0 : 1, 		$Valor);	}
+    static public function Administrador($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("Administrador",                                                                     0, 		$Valor);	}
+    static public function Minificar_CSS($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_CSS", 		(devildrey33_Opciones::$ServidorDebug === FALSE) ? 1 : 0, 		$Valor);	}
+    static public function Minificar_JS($Valor = -1)        {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_JS", 		(devildrey33_Opciones::$ServidorDebug === FALSE) ? 1 : 0, 		$Valor);	}
+    static public function Minificar_HTML($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_HTML", 		(devildrey33_Opciones::$ServidorDebug === FALSE) ? 1 : 0, 		$Valor);	}
+    static public function ActualizarCache($Valor = -1)     {	return devildrey33_Opciones::_ObtenerAsignarValor("ActualizarCache", 		(devildrey33_Opciones::$ServidorDebug === FALSE) ? 0 : 1, 		$Valor);	}
+    static public function PaginasVistas($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("PaginasVistas",                                                                     0, 		$Valor);	}
+    static public function UltimaActividadMS($Valor = -1)   {	return devildrey33_Opciones::_ObtenerAsignarValor("UltimaActividadMS",                                                                 0, 		$Valor);	}
+
+/*    static public function MostrarConsola($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("MostrarConsola", 		(strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false) ? 0 : 1, 		$Valor);	}
     static public function Administrador($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("Administrador",                                                                              0, 		$Valor);	}
     static public function Minificar_CSS($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_CSS", 		(strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false) ? 1 : 0, 		$Valor);	}
     static public function Minificar_JS($Valor = -1)        {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_JS", 		(strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false) ? 1 : 0, 		$Valor);	}
     static public function Minificar_HTML($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_HTML", 		(strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false) ? 1 : 0, 		$Valor);	}
     static public function ActualizarCache($Valor = -1)     {	return devildrey33_Opciones::_ObtenerAsignarValor("ActualizarCache", 		(strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false) ? 0 : 1, 		$Valor);	}
-//    static public function Minificar_HTML($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_HTML",                                                                   false, 			$Valor);	}
     static public function PaginasVistas($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("PaginasVistas",                                                                              0, 		$Valor);	}
-    static public function UltimaActividadMS($Valor = -1)   {	return devildrey33_Opciones::_ObtenerAsignarValor("UltimaActividadMS",                                                                          0, 		$Valor);	}
-
+    static public function UltimaActividadMS($Valor = -1)   {	return devildrey33_Opciones::_ObtenerAsignarValor("UltimaActividadMS",                                                                          0, 		$Valor);	}*/
+    
     static public function SumaErrorLogin()   {
         if (isset($_SESSION["Opciones"]["ErrorLogin"])) { $_SESSION["Opciones"]["ErrorLogin"] ++; } 
         else { $_SESSION["Opciones"]["ErrorLogin"] = 1; }

@@ -120,7 +120,7 @@ $Lab = new function() {
         console.log("Lab.CargarArchivo", Archivo);
         if (Archivo === null) { Archivo = this.Archivo; nopush = true; }
         if (ID === undefined)      { ID = -1; }        
-        $Base.PeticionAjax = $.post("/cmd/LabAbrirEjemplo.cmd",  { "Archivo" : Archivo, "ID" : ID }, function(data) {
+        $Base.PeticionAjax = $.post("/cmd/LabAbrirEjemplo",  { "Archivo" : Archivo, "ID" : ID }, function(data) {
             Datos = JSON.parse(data);            
             if      (Datos["Ret"] === 404) { $Base.MostrarErrorAjax(404, false); }
             else if (Datos["Ret"] === 403) { $Base.MostrarErrorAjax(403, false); }

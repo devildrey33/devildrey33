@@ -107,7 +107,7 @@ $Admin = new function() {
         }
         $Base.Cargando("TRUE");
         $Lab.Original = Codigo;
-        $.post("/cmd/LabGuardarEjemplo.cmd", { "Archivo" : Archivo, "Codigo" : Codigo }).done(function(data) {
+        $.post("/cmd/LabGuardarEjemplo", { "Archivo" : Archivo, "Codigo" : Codigo }).done(function(data) {
             Datos = JSON.parse(data);
             $Base.MostrarMensaje(Datos["Mensaje"]);
             $("body").attr({"modificado" : "false"});
@@ -154,7 +154,7 @@ $Admin = new function() {
 /*    this.LabExplorar_CargarPreview = function(Archivo) {
         console.log("Admin.LabExplorar_CargarPreview", Archivo);
         //if (Archivo === undefined) { Archivo = Lab_Archivo; }
-        $.post("/cmd/LabAbrirEjemplo.cmd",  { "Archivo" : Archivo, "ID" : -1 }, function(data) {
+        $.post("/cmd/LabAbrirEjemplo",  { "Archivo" : Archivo, "ID" : -1 }, function(data) {
             Datos = JSON.parse(data);            
             if      (Datos["Ret"] === 404) { $Base.MostrarErrorAjax(404, false); }
             else if (Datos["Ret"] === 403) { $Base.MostrarErrorAjax(403, false); }
@@ -496,7 +496,7 @@ $Admin = new function() {
         Pagina = $(".Blog").attr("pagina");
         NumC = $(Boton).parent().parent().attr("comentario"); 
         console.log("Admin.Comentarios_VerEmail", Pagina, NumC);
-        nAjax = $.post("/cmd/VerEmailComentario.cmd", { "Pagina" : Pagina,  "NumComentario" : NumC }).done(function(data) {
+        nAjax = $.post("/cmd/VerEmailComentario", { "Pagina" : Pagina,  "NumComentario" : NumC }).done(function(data) {
             $Base.MostrarMensaje(data);
         }).fail(function(jqXHR, textStatus, tError) { 
             console.log("Admin.Comentarios_VerEmail Error ajax", jqXHR, textStatus, tError);
@@ -514,7 +514,7 @@ $Admin = new function() {
 
         $Base.Cargando("TRUE");
         // ajax para votar
-        nAjax = $.post("/cmd/EliminarComentario.cmd", { "Pagina" : Pagina,  "NumComentario" : NumC }).done(function(data) {
+        nAjax = $.post("/cmd/EliminarComentario", { "Pagina" : Pagina,  "NumComentario" : NumC }).done(function(data) {
             // Al terminar la petición ajax correctamente
             Datos = JSON.parse(data);
             if (Datos.Mensaje === "Comentario Eliminado") {
@@ -559,9 +559,9 @@ $Admin = new function() {
             console.log("Admin.Comentarios_Edicion_Guardar", this.Comentarios_Edicion.attr("comentario"));
             $Base.Cargando("TRUE");
             
-            nAjax = $.post("/cmd/EditarComentario.cmd", { "Pagina"        : $(".Blog").attr("pagina"),  
-                                                          "NumComentario" : NumC,
-                                                          "Mensaje"       : this.Comentarios_Edicion.find("div:nth-child(3)").html()
+            nAjax = $.post("/cmd/EditarComentario", {   "Pagina"        : $(".Blog").attr("pagina"),  
+                                                        "NumComentario" : NumC,
+                                                        "Mensaje"       : this.Comentarios_Edicion.find("div:nth-child(3)").html()
             }).done(function(data) {
                 // Al terminar la petición ajax correctamente
                 Datos = JSON.parse(data);

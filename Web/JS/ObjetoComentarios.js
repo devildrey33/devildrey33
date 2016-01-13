@@ -103,9 +103,9 @@ $Comentarios = new function() {
         console.log("Comentarios.BotonMasUno");
 
         // ajax para votar
-        nAjax = $.post("/cmd/VotarComentario.cmd", { "Pagina"        : Pagina,
-                                                     "NumComentario" : NumC,
-                                                     "Valor"         : Valor
+        nAjax = $.post("/cmd/VotarComentario", { "Pagina"        : Pagina,
+                                                 "NumComentario" : NumC,
+                                                 "Valor"         : Valor
         // Al terminar la petición ajax correctamente
         }).done(function(data) { 
             Datos = JSON.parse(data);
@@ -160,14 +160,14 @@ $Comentarios = new function() {
         localStorage["Comentarios_Correo"]  = $("#Comentarios_Correo").val();
               
         if ($("#Comentarios_Web").val() !== "") { localStorage["Comentarios_Web"] = $("#Comentarios_Web").val(); }
-        nAjax = $.post("/cmd/EnviarComentario.cmd", { "URL"         : window.location.href,
-                                                      "Nombre"      : $("#Comentarios_Nombre").val(),
-                                                      "Email"       : $("#Comentarios_Correo").val(),
-                                                      "Web"         : $("#Comentarios_Web").val(),
-                                                      "Comentario"  : $("#Comentarios_Comentario").html(),
-                                                      "Pagina"      : $("#MarcoNavegacion > article.Blog").attr("pagina"),
-                                                      "Autor"       : $(".Cabecera_Datos > .FechaEntrada > .Autor").html()
-                                                  } );
+        nAjax = $.post("/cmd/EnviarComentario", { "URL"         : window.location.href,
+                                                  "Nombre"      : $("#Comentarios_Nombre").val(),
+                                                  "Email"       : $("#Comentarios_Correo").val(),
+                                                  "Web"         : $("#Comentarios_Web").val(),
+                                                  "Comentario"  : $("#Comentarios_Comentario").html(),
+                                                  "Pagina"      : $("#MarcoNavegacion > article.Blog").attr("pagina"),
+                                                  "Autor"       : $(".Cabecera_Datos > .FechaEntrada > .Autor").html()
+                                                } );
         console.log("Comentarios.BotonEnviarComentario");
         nAjax.done(function(data) { 
             // Se ha detectado un error, parseando en el PHP 
@@ -203,7 +203,7 @@ $Comentarios = new function() {
         Desde = $("#Comentarios_Datos div[comentario]:last-child").attr("comentario");
         console.log("Comentarios.Obtener20", Pagina, Desde);
         this.Obteniendo = true;
-        nAjax = $.post("/cmd/ObtenerComentarios.cmd", { "Pagina" : Pagina,  "Desde" : Desde - 1, "Hasta" : Desde - 21 } );
+        nAjax = $.post("/cmd/ObtenerComentarios", { "Pagina" : Pagina,  "Desde" : Desde - 1, "Hasta" : Desde - 21 } );
         nAjax.done(function(data) { 
             $("div[puntoscroll=true]").removeAttr("puntoscroll");
             $("#Comentarios_Datos").html($("#Comentarios_Datos").html() + data);
@@ -232,7 +232,7 @@ $Comentarios = new function() {
         Desde = $("#Comentarios_Datos div[comentario]:last-child").attr("comentario");
         console.log("Comentarios.ObtenerHastaNum", Pagina, Desde);
         this.Obteniendo = true;
-        nAjax = $.post("/cmd/ObtenerComentarios.cmd", { "Pagina" : Pagina,  "Desde" : Desde - 1, "Hasta" : Num } );
+        nAjax = $.post("/cmd/ObtenerComentarios", { "Pagina" : Pagina,  "Desde" : Desde - 1, "Hasta" : Num } );
         nAjax.done(function(data) { 
             $("div[puntoscroll=true]").removeAttr("puntoscroll");
             $("#Comentarios_Datos").html($("#Comentarios_Datos").html() + data);
