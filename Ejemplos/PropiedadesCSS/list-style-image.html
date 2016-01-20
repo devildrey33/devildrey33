@@ -4,14 +4,14 @@
 		<!-- Estilos CSS -->
 		<style type="text/css">
 			ul { 
-				list-style-image:url('http://img.devildrey33.es/ImagenLista1.png');
+				list-style-image:url('/Web/Graficos/ImagenLista1.png');
 			}
 		</style>
         <script type="text/javascript">
 			function CambiarLista() {
 				switch (document.getElementById('ComboLista').value) {
-					case "0" : Valor = "url('http://img.devildrey33.es/ImagenLista1.png')"; break;
-					case "1" : Valor = "url('http://img.devildrey33.es/ImagenLista2.png')"; break;
+					case "0" : Valor = "url('/Web/Graficos/ImagenLista1.png')"; break;
+					case "1" : Valor = "url('/Web/Graficos/ImagenLista2.png')"; break;
 					case "2" : Valor = "none";                                              break;
 				}
 				document.getElementsByTagName("ul").item(0).style.listStyleImage = Valor;

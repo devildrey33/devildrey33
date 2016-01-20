@@ -229,14 +229,14 @@ class devildrey33_Comentarios {
         if ($Nombre != "devildrey33") {
             Base::EnviarEmail("Nuevo mensaje en $PaginaPadre2", 
                               "Nuevo mensaje de $Nombre en : ".str_replace("www.", "", $URL)."\nIp : ".$_SERVER['REMOTE_ADDR'], 
-                              "contacto@devildrey33.es", 
+                              "contacto@".$_SERVER["SERVER_NAME"], 
                               "devildrey33@hotmail.com");
         }
         // Si l'ha fet el barba pero no ha escrit el missatge
         if ($Autor == "Joel Barba" && $Nombre != "Joel Barba") {
             Base::EnviarEmail("Nuevo mensaje en $PaginaPadre2", 
                               "Nuevo mensaje de $Nombre en : ".str_replace("www.", "", $URL)."\nIp : ".$_SERVER['REMOTE_ADDR'], 
-                              "contacto@devildrey33.es", 
+                              "contacto@".$_SERVER["SERVER_NAME"], 
                               "joel.barba.vidal@gmail.com");
         }
         

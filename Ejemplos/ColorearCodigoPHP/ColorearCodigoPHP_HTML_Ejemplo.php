@@ -347,7 +347,7 @@ echo PintarHTML("
 </html>"); ?>
 	    	</pre></td>
         </tr></table>
-        <a href="http://www.devildrey33.es/ColorearCodigoPHP_HTML.php">
+        <a href="/Blog/ColorearCodigoPHP_HTML">
         	Volver a devildrey33
         </a>.
     </body>

@@ -30,7 +30,7 @@ class devildrey33_htaccess {
         fclose($Archivo);
         
         // Me envio un correo
-        Base::EnviarEmail("Intento de ataque de script", "IP BANEADA ".$IP." http://devildrey33.es/?Loguear", "Ataques@devildrey33.es");
+        Base::EnviarEmail("Intento de ataque de script", "IP BANEADA ".$IP." http://".$_SERVER["SERVER_NAME"]."/?Loguear", "Ataques@devildrey33.es");
     }
     
     /* Función para borrar la lista de baneados */

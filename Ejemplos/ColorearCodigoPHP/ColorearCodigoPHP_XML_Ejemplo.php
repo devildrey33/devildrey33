@@ -81,6 +81,6 @@ function PintarXML($Texto) {
 <?php echo PintarXML('<!-- Comentario -->
 <Etiqueta Atributo="Cadena de caracteres">Conjunto de datos</Etiqueta>'); ?>
     	</pre>
-        <a href="http://www.devildrey33.es/ColorearCodigoPHP_XML.php">Volver a devildrey33</a>.
+        <a href="/Blog/ColorearCodigoPHP_XML">Volver a devildrey33</a>.
     </body>
 </html>

@@ -302,6 +302,6 @@ function NombreFuncion(Parametro) {
 }");
 ?>
     	</pre>
-        <a href="http://www.devildrey33.es/ColorearCodigoPHP_JavaScript.php">Volver a devildrey33</a>.
+        <a href="/Blog/ColorearCodigoPHP_JavaScript">Volver a devildrey33</a>.
     </body>
 </html>

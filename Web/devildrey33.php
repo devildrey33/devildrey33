@@ -86,13 +86,13 @@ class devildrey33 {
     //        "<meta name='twitter:description' content='Page description less than 200 characters'>".Intro().        
             "<meta name='twitter:creator' content='@author_handle' />".Intro().        
             /* Twitter Summary card images must be at least 200x200px */
-            "<meta name='twitter:image' content=' http://img.devildrey33.es/250x200_".$Entrada["Imagen"]."' />".Intro().        
+            "<meta name='twitter:image' content=' /Web/Graficos/250x200_".$Entrada["Imagen"]."' />".Intro().        
 
             /* Open Graph data */
             "<meta property='og:title' content='".$Titulo."' />".Intro().        
             "<meta property='og:type' content='article' />".Intro().        
-            "<meta property='og:url' content=' http://devildrey33.es/Blog/".$Entrada["URL"]."' />".Intro().        
-            "<meta property='og:image' content=' http://img.devildrey33.es/250x200_".$Entrada["Imagen"]."' />".Intro().        
+            "<meta property='og:url' content=' http://".$_SERVER["SERVER_NAME"]."/Blog/".$Entrada["URL"]."' />".Intro().        
+            "<meta property='og:image' content=' /Web/Graficos/250x200_".$Entrada["Imagen"]."' />".Intro().        
     //        "<meta property='og:description' content='Description Here' />".Intro().        
             "<meta property='og:site_name' content='devildrey33' />".Intro();
     //        "<meta property='fb:admins' content='Facebook numeric ID' />".Intro().        
@@ -100,8 +100,8 @@ class devildrey33 {
                 
         echo $Meta.Intro().    
         '<meta name="msapplication-config" content="none"/>'.Intro(). // Para que el explorer no busque el archivo BrowserConfig.xml de las pelotas.
-        "<link rel='shortcut icon' href='http://".$_SERVER["SERVER_NAME"]."/Web/Graficos/devildrey33.ico' />".Intro().
-        "<link rel='alternate' type='application/rss+xml' title='RSS 2.0' href='http://devildrey33.es/rss.xml' />".Intro();
+        "<link rel='shortcut icon' href='http://".$_SERVER["SERVER_NAME"]."/Web/Graficos/devildrey33.ico' />".Intro();
+//        "<link rel='alternate' type='application/rss+xml' title='RSS 2.0' href='http://devildrey33.es/rss.xml' />".Intro();
         $this->Head_CSS();      // Enlace/s de los estilos CSS
         $this->Head_JS();	// Enlace/s de los archivos JavaScript
         echo "<script>";

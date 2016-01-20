@@ -10,8 +10,8 @@
 	</head>
     <body>
     	<p>Ejemplo de devildrey33_PintarCodigo :</p>
-        <a href="http://www.devildrey33.es/ColorearCodigoPHP_devildrey33_PintarCodigo.php">Volver a devildrey33</a>.
+        <a href="/Blog/ColorearCodigoPHP_devildrey33_PintarCodigo">Volver a devildrey33</a>.
         <?php $PintarCodigo->PintarCodigo->PintarArchivoPHP("IDEjemplo", "devildrey33_PintarCodigo.php", "devildrey33_PintarCodigo.php"); ?>
-        <a href="http://www.devildrey33.es/ColorearCodigoPHP_devildrey33_PintarCodigo.php">Volver a devildrey33</a>.
+        <a href="/Blog/ColorearCodigoPHP_devildrey33_PintarCodigo">Volver a devildrey33</a>.
 	</body>
 </html>

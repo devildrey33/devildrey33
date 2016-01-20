@@ -1,6 +1,6 @@
 <p>Esta propiedad nos permite especificar el tipo de posicionamiento para un objeto.</p>
 <p>Antes de nada hay que tener bien claro el concepto de que es la ventana y que es el documento. Si os fijáis en la siguiente foto sale un navegador con mi web, en él podemos ver un recuadro rojo que enmarca lo que sería el objeto <code>window</code> (ventana en castellano), y más abajo se puede ver con un marco naranja saliendo de la foto del navegador, lo que representa que queda del <code>document</code> (documento en castellano).</p>
-<img src='http://img.devildrey33.es/window-document.png' alt="Diferencias entre ventana y documento">
+<img src='/Web/Graficos/window-document.png' alt="Diferencias entre ventana y documento">
 <p>Dependiendo del valor que asignemos a la propiedad <code>position</code> trabajaremos relativamente a la ventana (<code style="color:red">window</code>), o a el documento (<code style="color:orange">document</code>).</p>
 <hr />
 <h2>Sintaxis</h2>

@@ -346,6 +346,6 @@ function PintarC($Texto) {
 #endif'); 
 ?>
     	</pre>
-        <a href="http://www.devildrey33.es/ColorearCodigoPHP_CPP.php">Volver a devildrey33</a>.
+        <a href="/Blog/ColorearCodigoPHP_CPP">Volver a devildrey33</a>.
     </body>
 </html>

@@ -96,6 +96,6 @@ function PintarCSS($Texto) {
     cursor:pointer;
 }'); ?>
     	</pre>
-        <a href="http://www.devildrey33.es/ColorearCodigoPHP_CSS.php">Volver a devildrey33</a>.
+        <a href="/Blog/ColorearCodigoPHP_CSS">Volver a devildrey33</a>.
     </body>
 </html>

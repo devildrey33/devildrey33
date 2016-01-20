@@ -347,6 +347,6 @@ function MiFuncion($Parametro = 'NADA', $Valor = 0) {
 "); ?>
         
     	</pre>
-        <a href="http://www.devildrey33.es/ColorearCodigoPHP_PHP.php">Volver a devildrey33</a>.
+        <a href="/Blog/ColorearCodigoPHP_PHP">Volver a devildrey33</a>.
     </body>
 </html>

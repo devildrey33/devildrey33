@@ -17,6 +17,6 @@
         <br />
         <br />
         <br />
-        <p><a href="http://www.devildrey33.es/MenuWebFijo.php">Volver a devildrey33</a>.</p>
+        <p><a href="/Blog/MenuWebFijo">Volver a devildrey33</a>.</p>
     </body>
 </html>

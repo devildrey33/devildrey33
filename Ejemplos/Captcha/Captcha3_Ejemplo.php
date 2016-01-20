@@ -16,6 +16,6 @@
 			CrearCaptcha();
 		?>
         <br />
-        <a href="http://www.devildrey33.es/Captcha3.php">Volver a devildrey33.</a>
+        <a href="/Blog/Captcha3">Volver a devildrey33.</a>
 	</body>
 </html>

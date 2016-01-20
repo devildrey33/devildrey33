@@ -106,7 +106,7 @@
             <tr>
                 <td>/Web/Graficos</td>
                 <td>/Web/Graficos</td>
-                <td>Directori on es guarden totes les imatges, tambe es pot accedir desde http://img.devildrey33.es</td>               
+                <td>Directori on es guarden totes les imatges, <strike>també es pot accedir desde http://img.devildrey33.es</strike></td>               
             </tr>
             <tr>
                 <td>/Web/JS</td>
