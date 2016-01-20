@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4">
         <file>
-            <url>Web/JS/ObjetoBase.js</url>
-            <bookmark id="4">
-                <name/>
-                <line>242</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
             <url>Web/JS/ObjetoAdmin.js</url>
             <bookmark id="1">
                 <name/>
@@ -30,55 +22,130 @@
                 <key/>
             </bookmark>
         </file>
+        <file>
+            <url>Web/JS/ObjetoBase.js</url>
+            <bookmark id="4">
+                <name/>
+                <line>242</line>
+                <key/>
+            </bookmark>
+        </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS_BD.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Base.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/devildrey33_ListaDesplegable/EjemploImagenes.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_cmd.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/utilizar-controles-input-ocultos-asociados-a-un-label.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Chromerror.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Log2.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Solitario/Solitario.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Lab.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoLab.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ColorearCodigoPHP/ColorearCodigoPHP_PHP_Ejemplo.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoIndice.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Cache/Lab_Explorador.txt</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/EntradasBlog.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/BarraPrincipal.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoComentarios.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/ArchivosMinify.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/SelectoresCSS/AtributoValor.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/devildrey33_Menu/Ejemplo.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_BD.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Tablas.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/order.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/FaqBarba.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Lab.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/overflow-x.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/perspective-origin.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/TODO.txt</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoBase.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/outline.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Cache/devildrey33.min.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/PintarCodigo.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/.htaccess</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Blog.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Index.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Decode.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/BarraNavegacion.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ColoresCSS.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/flex.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Passwords.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/transform-style.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/PHPyXML.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_2_1.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Log.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Solitario/Solitario.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/GenerarIndice.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/index.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/border-top-left-radius.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/USB_Boot.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Opciones.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_6_Ejemplo.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_7_Ejemplo.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/background-image.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Admin.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/perspective.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoAdmin.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Solitario/Solitario.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/flex-box-y-media-queries.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ColorearCodigoPHP/ColorearCodigoPHP_XML_Ejemplo.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Menus/MenuDesalineado.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_4.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/outline-width.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/SelectoresCSS/link.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS_BD.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/SelectoresCSS/active.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/utilizar-controles-input-ocultos-asociados-a-un-label.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Chromerror.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoLab.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/transform-origin.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/FeedsRSS.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/BarraPrincipal.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/background-repeat.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Tablas.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/devildrey33_ListaDesplegable/Ejemplo.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/background-origin.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Blog.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/border-image-width.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/SeguridadServidorWeb/.htaccess</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Solitario/index.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/flex.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ColorearCodigoPHP/ColorearCodigoPHP_CPP_Ejemplo.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ColorearCodigoPHP/ColorearCodigoPHP_HTML_Ejemplo.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_htaccess.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/GenerarIndice.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/index.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/BubaTronik_Notas.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Opciones.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/FuncionesCSS/hsla.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/devildrey33_ListaDesplegable/EjemploCrear.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/background.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Solitario/Solitario.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Captcha/Captcha2_Ejemplo.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Log2.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Solitario/Solitario.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Lab.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Menus/MenuSubrayado.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_2_4.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/background-position.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_7_Ejemplo.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/EntradasBlog.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_3_Ejemplo.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoComentarios.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/FaqBarba.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ReglasCSS/font-face.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/FuncionesCSS/rgba.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/.htaccess</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Index.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/transform3d.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Decode.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/border-image-outset.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Animation/CajaCayendoScale.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/border-top-left-radius.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/USB_Boot.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Admin/devildrey33_Diapositivas/Ejemplo.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/backface-visibility.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ColorearCodigoPHP/ColorearCodigoPHP_devildrey33_PintarCodigo_Ejemplo.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/border-image-source.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Base.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Checked/RadioButton-personalizado.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/border-image-slice.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Cache/Lab_Explorador.txt</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/background-attachment.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/border-image.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/position.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_6_Ejemplo.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Comentarios.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Animation/Rotacion3D.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Cache/devildrey33.min.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/PintarCodigo.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/BarraNavegacion.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ColoresCSS.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ColorearCodigoPHP/ColorearCodigoPHP_JavaScript_Ejemplo.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Passwords.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ColorearCodigoPHP/ColorearCodigoPHP_CSS_Ejemplo.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/list-style-image.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Menus/MenuEsfera.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/notas-actualizacion-web.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/overflow.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Captcha/Captcha3_Ejemplo.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Captcha/Captcha1_Ejemplo.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/border-image-repeat.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/overflow-y.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/flex-box-y-media-queries.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/background-size.html</file>
         </group>
     </open-files>
 </project-private>

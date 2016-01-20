@@ -86,7 +86,7 @@ class devildrey33 {
     //        "<meta name='twitter:description' content='Page description less than 200 characters'>".Intro().        
             "<meta name='twitter:creator' content='@author_handle' />".Intro().        
             /* Twitter Summary card images must be at least 200x200px */
-            "<meta name='twitter:image' content=' /Web/Graficos/250x200_".$Entrada["Imagen"]."' />".Intro().        
+            "<meta name='twitter:image' content='http://".$_SERVER["SERVER_NAME"]."/Web/Graficos/250x200_".$Entrada["Imagen"]."' />".Intro().        
 
             /* Open Graph data */
             "<meta property='og:title' content='".$Titulo."' />".Intro().        
