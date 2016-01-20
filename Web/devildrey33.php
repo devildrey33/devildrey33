@@ -92,7 +92,7 @@ class devildrey33 {
             "<meta property='og:title' content='".$Titulo."' />".Intro().        
             "<meta property='og:type' content='article' />".Intro().        
             "<meta property='og:url' content=' http://".$_SERVER["SERVER_NAME"]."/Blog/".$Entrada["URL"]."' />".Intro().        
-            "<meta property='og:image' content=' /Web/Graficos/250x200_".$Entrada["Imagen"]."' />".Intro().        
+            "<meta property='og:image' content='http://".$_SERVER["SERVER_NAME"]."/Web/Graficos/250x200_".$Entrada["Imagen"]."' />".Intro().        
     //        "<meta property='og:description' content='Description Here' />".Intro().        
             "<meta property='og:site_name' content='devildrey33' />".Intro();
     //        "<meta property='fb:admins' content='Facebook numeric ID' />".Intro().        
