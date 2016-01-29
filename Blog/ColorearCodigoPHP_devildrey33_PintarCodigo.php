@@ -84,10 +84,8 @@ int MiFuncionEjemplo(void) { return 0: };
                 <p>Si descargáis el ejemplo fijaros que dentro hay una carpeta PintarCodigo, en ella es donde se guardaran los archivos parseados. Podéis borrar los archivos que hay dentro, pero ojo no me borréis la carpeta, o el código PHP os puede dar más de un warning / error.</p>
                 <p>Y esto es todo! espero que esta clase os saque de algún apuro y que como mínimo os ahorre tiempo.</p>
 
-                <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Ejemplos/ColorearCodigoPHP/ColorearCodigoPHP_devildrey33_PintarCodigo_Ejemplo.php" target="_blank">Ver Ejemplo</a></td>
-                	<td><a class='Boton' href="/Descargas/devildrey33_PintarCodigo.zip" target="_blank">Descargar Ejemplo</a></td>
-                </tr></table>
+
+                <div class='nota'>Este código ha quedado obsoleto, por favor echa un vistazo a la versión 2 : <a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintáxis de un código fuente</a>.</div>
                 
 <?php
     $Base->FinBlog();

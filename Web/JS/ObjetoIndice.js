@@ -36,7 +36,7 @@ $Indice = new function() {
                 $Base.Cargando("TRUE");
                 Inicio = $("#MarcoIndice > .Articulo_Portada").length;
 
-                nAjax = $.post("/cmd/IndiceObtener10Mas", { "Categoria" : $("#Categorias").attr("categoria"),  "Inicio" : Inicio } );
+                nAjax = $.post("/cmd/IndiceObtener15Mas.cmd", { "Categoria" : $("#Categorias").attr("categoria"),  "Inicio" : Inicio } );
                 nAjax.done(function(data) { 
                     $("div[puntoscroll=true]").removeAttr("puntoscroll");
                     $("#MarcoIndice").html($("#MarcoIndice").html() + data);

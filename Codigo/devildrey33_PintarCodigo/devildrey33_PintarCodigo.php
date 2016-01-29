@@ -1,8 +1,8 @@
 <?php
 /* Clase devildrey33_PintarCodigo creada por Josep Antoni Bover el 09/10/2011 para www.devildrey33.es
-   Ultima modificación : 20/11/2015
+   Ultima modificación : 29/01/2016
 
-   Versión             : 2.0
+   Versión             : 2.02
 
    Explicación         : Esta clase consiste en un conjunto de funciones que permiten pintar cadenas de texto, archivos, o partes de archivo XML, PHP, C, C++, HTML, JavaScript, y CSS
                          La idea es parsear una parte de un archivo para introducir en las palabras especificadas etiquetas span con colores especificos.
@@ -13,24 +13,27 @@
                          De esta forma puedo añadir directamente los archivos de código en la web, y esta se encarga de colorearlos si son solicitados.
 
    TODO                : Diccionario C++ estilo NetBeans
-                         Captar y pintar atributos style del HTML. 
-                         Reservar las 10 ultimas palabras del diccionario para colores del parsing báisco (comentarios, numeros, strings, etc..)
-                            - De esta forma se puede optimizar algo mas las funciónes _PintarPalabrasClave y _BuscarEtiqueta
+                         Captar y parsear con el tipo CSS los atributos style del HTML. 
 
    Licencia            : GPL3 (http://www.gnu.org/licenses/gpl-3.0.html)
 
    NOVEDADES           : La version 2.0 antes de escanear el código lo divide por lineas. Al dividir el código por líneas se puede remarcar luego en el HTML.
-                         Eliminadas las funciones "PintarTextoC", "PintarTextoCSS", "PintarTextoHTML", "PintarTextoXML", "PintarTextoPHP", y "PintarTextoJavaScript". Ya que estas siempre hacian el parsing al vuelo y no lo guardaban en la cache. Solo se ha dejado la función "PintarTexto" que es ideal para pintar código de consola (blanco y negro).
+                         Eliminadas las funciones "PintarTextoC", "PintarTextoCSS", "PintarTextoHTML", "PintarTextoXML", "PintarTextoPHP", y "PintarTextoJavaScript". Ya que estas siempre hacian el parsing al vuelo y no lo guardaban en el disco. Solo se ha dejado la función "PintarTexto" que es ideal para pintar código de consola (blanco y negro).
                          Eliminadas las funciónes para parsear XML, si necesitas parsear XML utiliza la función para HTML.
                          Replanteado el algoritmo de pintado del CSS para asemejarlo a los demas lenguajes.
-                         Se han unificado todas las funciones de parsing en una sola. Se ha optimizado el motor de parsing respecto a la versión 1.x, eliminando algunos estados innecesarios.
+                         Se han unificado todas las funciones de parsing en una sola. Se ha optimizado el motor de parsing respecto a la versión 1.x, eliminando algunas fases innecesareas.
                          Creados diccionarios de colores para cada lenguaje, por el momento existen diccionarios que simulan los siguientes IDE : VC, NetBeans, y DreamWeaver.
                          Se puede especificar a la hora de pintar, que diccionario queremos utilizar.
+                         La versión 2.01 pintaba ciertas palabras del diccionario HTML si se las encontraba sueltas por el código HTML sin los caracteres <>.
 */
 
 
 // Objeto que realiza el parsing básico para normas complejas, y especificas para cada lenguaje
 class devildrey33_PintarCodigo {
+                // Path relativo al archivo devildrey33_PintarCodigo.php, para guardar y leer los archivos cache
+    private     $_PathCache                 = "/Cache/PintarCodigo/";
+                // Path relativo al archivo devildrey33_PintarCodigo.php, donde están ubicados los diccionarios de colores
+    private     $_PathDiccionario           = "/PintarCodigo/";
                 // Sin depurador se hace lo que se puede... (Imprimo el array de palabras y estados)
                 // El modo depuración anula la escritura del texto coloreado en cache, por lo que siempre parseara al vuelo el código
     private     $_Debug = false;
@@ -44,8 +47,6 @@ class devildrey33_PintarCodigo {
     private     $_DelimitadoresC            = array(" ", "(", ")", "[", "]", "+", "-", "/", "*", "=", "!", ",", ".", ";", ":", "	", "\n", "\r", "&");
                 // Array de los caracteres delimitadores para CSS    
     private     $_DelimitadoresCSS          = array(" ", ":", ";", "(", ")" , "{", "}", ",");
-
-    
     
     // Función que pinta el string especificado dentro de un marco de código
     // - $IDMarco : ID para el marco (utilizable desde HTML)
@@ -57,8 +58,7 @@ class devildrey33_PintarCodigo {
         $l          = 1;
         foreach ($Lineas as $Linea) {
             echo "<div l='".$l++."'>".$Linea."</div>";
-        }
-        
+        }        
         echo $this->_TerminarMarco();
     }
     
@@ -210,7 +210,7 @@ class devildrey33_PintarCodigo {
         
        Tabla de estados del parsing básico por lenguajes 
                  ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- --------------
-                | Comentarios | ComentariosML | String1 | String2 | Numeros | Variables | Directivas | EtiquetaHTML | SelectorCSS | PropiedadCSS |
+                | Comentarios | ComentariosML | String1 | String2 | Números | Variables | Directivas | EtiquetaHTML | SelectorCSS | PropiedadCSS |
      ----------- ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- --------------
     |   C/C++   |      X      |       X       |    X    |    X    |    X    |           |      X     |              |             |              |
      ----------- ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- --------------
@@ -253,42 +253,42 @@ class devildrey33_PintarCodigo {
             case "HTML" :
                 $Delimitadores = $this->_DelimitadoresHTML;
                 switch ($Tema) {
-                    case "NetBeans" :  case "PorDefecto" :  default :       $Diccionario = (require dirname(__FILE__).'/Diccionarios/HTML-NetBeans.php');    break;
-                    case "DreamWeaver" :                                    $Diccionario = (require dirname(__FILE__).'/Diccionarios/HTML-DreamWeaver.php'); break;
+                    case "NetBeans" :  case "PorDefecto" :  default :       $Diccionario = (require dirname(__FILE__).$this->_PathDiccionario.'HTML-NetBeans.php');    break;
+                    case "DreamWeaver" :                                    $Diccionario = (require dirname(__FILE__).$this->_PathDiccionario.'HTML-DreamWeaver.php'); break;
                 }
                 break;
             case "CSS" :
                 $Delimitadores = $this->_DelimitadoresCSS;
                 switch ($Tema) {
-                    case "NetBeans" :  case "PorDefecto" :  default :       $Diccionario = (require dirname(__FILE__).'/Diccionarios/CSS-NetBeans.php');    break;
-                    case "DreamWeaver" :                                    $Diccionario = (require dirname(__FILE__).'/Diccionarios/CSS-DreamWeaver.php'); break;
+                    case "NetBeans" :  case "PorDefecto" :  default :       $Diccionario = (require dirname(__FILE__).$this->_PathDiccionario.'CSS-NetBeans.php');    break;
+                    case "DreamWeaver" :                                    $Diccionario = (require dirname(__FILE__).$this->_PathDiccionario.'CSS-DreamWeaver.php'); break;
                 }
                 break;
             case "JS" :
                 $Delimitadores = $this->_DelimitadoresJavaScript;
                 switch ($Tema) {
-                    case "NetBeans" :  case "PorDefecto" :  default :       $Diccionario = (require dirname(__FILE__).'/Diccionarios/JS-NetBeans.php');    break;
-                    case "DreamWeaver" :                                    $Diccionario = (require dirname(__FILE__).'/Diccionarios/JS-DreamWeaver.php'); break;
+                    case "NetBeans" :  case "PorDefecto" :  default :       $Diccionario = (require dirname(__FILE__).$this->_PathDiccionario.'JS-NetBeans.php');    break;
+                    case "DreamWeaver" :                                    $Diccionario = (require dirname(__FILE__).$this->_PathDiccionario.'JS-DreamWeaver.php'); break;
                 }
                 break;
             case "PHP" :
                 $Delimitadores = $this->_DelimitadoresPHP;
                 switch ($Tema) {
-                    case "NetBeans" :  case "PorDefecto" :  default :       $Diccionario = (require dirname(__FILE__).'/Diccionarios/PHP-NetBeans.php');    break;
-                    case "DreamWeaver" :                                    $Diccionario = (require dirname(__FILE__).'/Diccionarios/PHP-DreamWeaver.php'); break;
+                    case "NetBeans" :  case "PorDefecto" :  default :       $Diccionario = (require dirname(__FILE__).$this->_PathDiccionario.'PHP-NetBeans.php');    break;
+                    case "DreamWeaver" :                                    $Diccionario = (require dirname(__FILE__).$this->_PathDiccionario.'PHP-DreamWeaver.php'); break;
                 }
                 break;
             case "C" :
-                $Delimitadores = $this->_DelimitadoresC;
+                $Delimitadores = $this->_DelimitadoresC; 
                 switch ($Tema) {
-                    case "VC" :  case "PorDefecto" :  default :             $Diccionario = (require dirname(__FILE__).'/Diccionarios/C-VC.php');    break;
+                    case "VC" :  case "PorDefecto" :  default :             $Diccionario = (require dirname(__FILE__).$this->_PathDiccionario.'C-VC.php');    break;
                 }            
                 break;
         }
         $NuevoParsing = "";
         $NuevoParsingLinea = 0;
         
-        // Analisis de las normas básicas
+        // Análisis de las normas básicas
         for ($i = 0; $i < count($Lineas); $i++) {            
             if ($SubParsing == true && count($Lineas) == 1) { //////////////// Una sola línea en el subparsing
                 $this->_EscanearLinea($Lineas[$i], $Diccionario, $Delimitadores, $Palabras, $TotalPalabras, $l, $Estado, $Tipo, false, false, $NuevoParsing, $NuevoParsingLinea);
@@ -304,7 +304,7 @@ class devildrey33_PintarCodigo {
             }
         }        
         // Analisis de las palabras clave
-        return $this->_PintarPalabrasClave($Palabras, $Diccionario, $Delimitadores);
+        return $this->_PintarPalabrasClave($Palabras, $Diccionario, $Delimitadores, $Tipo);
     }
     
     /* Función interna para iniciar la $PalabraActual con o sin la abertura del div de la línea */
@@ -353,7 +353,6 @@ class devildrey33_PintarCodigo {
             case "CSS_Selector" :
                 $Palabras[$TotalPalabras ++] = $this->_DivInicial($l, $this->_Color($Diccionario, 8), $Estado, $AbrirDivLinea, $Spans);
                 break; 
-            
             case "HTML_FinPHP" : case "HTML_FinJS" : case "HTML_FinCSS" :
                 $NuevoParsing .= "\n";
                 break;
@@ -428,7 +427,6 @@ class devildrey33_PintarCodigo {
                     else if ($Linea[$i] == "<" && $Tipo == "HTML") {
                         if (substr($Linea, $i, 5) == "<?php")  { // PHP
                             $Estado = "HTML_FinPHP"; $i += 5; $NuevoParsing = "<?php "; $NuevoParsingLinea = $l;
-//                            $PalabraActual["Texto"] .= "<?php ";
                             $Palabras[$TotalPalabras ++] = $PalabraActual;                            
                             $PalabraActual = array("Texto" => "", "Estado" => $Estado);                                                        
                         }
@@ -722,29 +720,31 @@ class devildrey33_PintarCodigo {
     }
     
     // Fase final del parsing comparamos las palabras sin estado con la lista de palabras del diccionario
-    public function _PintarPalabrasClave(&$Palabras, &$Diccionario, &$Delimitadores) {
+    public function _PintarPalabrasClave(&$Palabras, &$Diccionario, &$Delimitadores, $Tipo) {
         $TextoColoreado = "";
         // Busco en el array de palabras las palabras reservadas que tienen su propio color
         foreach ($Palabras as $p) {
             if (isset($p["Texto"])) {
-                if (strpos($p["Estado"], '_') === FALSE && $p["Texto"][0] != '<') { // Si no tiene estado y no empieza por una etiqueta
-                    foreach ($Diccionario as $Palabra) {				
-                        if (isset($Palabra['Palabra'])) {
-                            $PosPalabra = strpos($p["Texto"], $Palabra['Palabra']);
-                            if ($PosPalabra !== false) { // El operador !== también puede ser usado. Puesto que != no funcionará como se espera porque si la posición de la palabra es 0. La declaración (0 != false) se evalúa a false.
-                                $DelimitadorInicio = false;
-                                $DelimitadorFin = false;
-                                $TamPalabra = strlen($Palabra['Palabra']);
-                                // Miramos si el caracter anterior es un delimitador
-                                if ($PosPalabra == 0) 	$DelimitadorInicio = true;
-                                else			$DelimitadorInicio = $this->_BuscarDelimitador($p["Texto"][$PosPalabra - 1], $Delimitadores);
-                                // Miramos si el caracter inmediatamente siguiente a la palabra es un delimitador
-                                if ($PosPalabra + $TamPalabra == strlen($p["Texto"])) $DelimitadorFin = true;
-                                else                                                  $DelimitadorFin = $this->_BuscarDelimitador($p["Texto"][$PosPalabra + $TamPalabra], $Delimitadores);
-                                // Si la palabra esta bien delimitada la coloreamos
-                                if ($DelimitadorInicio == true && $DelimitadorFin == true) { 
-                                    $p["Texto"] = str_replace($Palabra['Palabra'], "<span class='".$Palabra['Color']."'>".$Palabra['Palabra']."</span>", $p["Texto"]);
-                                    break; // Salimos del foreach para no colorear 2 veces la misma palabra
+                if (isset($p["Texto"][0]) && $Tipo !== "HTML") {
+                    if (strpos($p["Estado"], '_') === FALSE && $p["Texto"][0] != '<') { // Si no tiene estado y no empieza por una etiqueta
+                        foreach ($Diccionario as $Palabra) {				
+                            if (isset($Palabra['Palabra'])) {
+                                $PosPalabra = strpos($p["Texto"], $Palabra['Palabra']);
+                                if ($PosPalabra !== false) { // El operador !== también puede ser usado. Puesto que != no funcionará como se espera porque si la posición de la palabra es 0. La declaración (0 != false) se evalúa a false.
+                                    $DelimitadorInicio = false;
+                                    $DelimitadorFin = false;
+                                    $TamPalabra = strlen($Palabra['Palabra']);
+                                    // Miramos si el caracter anterior es un delimitador
+                                    if ($PosPalabra == 0) 	$DelimitadorInicio = true;
+                                    else			$DelimitadorInicio = $this->_BuscarDelimitador($p["Texto"][$PosPalabra - 1], $Delimitadores);
+                                    // Miramos si el caracter inmediatamente siguiente a la palabra es un delimitador
+                                    if ($PosPalabra + $TamPalabra == strlen($p["Texto"])) $DelimitadorFin = true;
+                                    else                                                  $DelimitadorFin = $this->_BuscarDelimitador($p["Texto"][$PosPalabra + $TamPalabra], $Delimitadores);
+                                    // Si la palabra esta bien delimitada la coloreamos
+                                    if ($DelimitadorInicio == true && $DelimitadorFin == true) { 
+                                        $p["Texto"] = str_replace($Palabra['Palabra'], "<span class='".$Palabra['Color']."'>".$Palabra['Palabra']."</span>", $p["Texto"]);
+                                        break; // Salimos del foreach para no colorear 2 veces la misma palabra
+                                    }
                                 }
                             }
                         }
@@ -864,9 +864,8 @@ class devildrey33_PintarCodigo {
     private function _ComprobarPintado($Archivo, $ID = "") {
         $ID = $this->_RetocarNombreArchivo($ID);
         $NombreArchivo = $this->_RetocarNombreArchivo($Archivo);
-        
-        if ($ID != "") 	$NombrePintado = dirname(__FILE__)."/Cache/".$NombreArchivo."_".$ID.".PintarCodigo";
-        else		$NombrePintado = dirname(__FILE__)."/Cache/".$NombreArchivo.".PintarCodigo";
+        if ($ID != "") 	$NombrePintado = dirname(__FILE__).$this->_PathCache.$NombreArchivo."_".$ID.".PintarCodigo";
+        else		$NombrePintado = dirname(__FILE__).$this->_PathCache.$NombreArchivo.".PintarCodigo";
         // Si existe una version pintada
         if (file_exists($NombrePintado) == true) {
             if (filemtime($Archivo) > filemtime($NombrePintado)) {
@@ -889,8 +888,8 @@ class devildrey33_PintarCodigo {
     private function _GuardarPintado($Archivo, $Datos, $ID = "") {
         $ID = $this->_RetocarNombreArchivo($ID);
         $NombreArchivo = $this->_RetocarNombreArchivo($Archivo);
-        if ($ID != "") 	$NombrePintado = dirname(__FILE__)."/Cache/".$NombreArchivo."_".$ID.".PintarCodigo";
-        else		$NombrePintado = dirname(__FILE__)."/Cache/".$NombreArchivo.".PintarCodigo";
+        if ($ID != "") 	$NombrePintado = dirname(__FILE__).$this->_PathCache.$NombreArchivo."_".$ID.".PintarCodigo";
+        else		$NombrePintado = dirname(__FILE__).$this->_PathCache.$NombreArchivo.".PintarCodigo";
         $ArchivoPrePintado = fopen($NombrePintado, "w");
         fwrite($ArchivoPrePintado, $Datos, strlen($Datos));
         fclose($ArchivoPrePintado);
@@ -947,18 +946,18 @@ class devildrey33_PintarCodigo {
     // - $Titulo      : Titulo del marco
     // - $TotalLineas : Numero total de lineas del código (para imprimir a la izquierda la numeración)
     private function _IniciarMarco($IDMarco, $Titulo, $TotalLineas) {
-        $PRE = "<div class='Codigo_Marco' id='".$IDMarco."'>".
-                    "<div class='Codigo_Titulo'>".$Titulo."</div>".
-                        "<div class='Codigo_Numeracion'>";
+        $PRE = "<div class='Codigo_Marco' id='".$IDMarco."'>";
+        if ($Titulo != "") {
+            $PRE .= "<div class='Codigo_Titulo'>".$Titulo."</div>";
+        }
+        $PRE .=     "<div class='Codigo_Numeracion'>";
         if ($TotalLineas == 0) $TotalLineas = 1;
         for ($i = 1; $i < $TotalLineas + 1; $i++) {
             $PRE .= $i."<br>";
 //                $PRE .= "<div l=".$i.">".$i."</div>";
         }
-        $PRE = $PRE.    "</div>".
-                        "<pre class='Codigo_PRECodigo'>";
-
-
+        $PRE = $PRE."</div>".
+                    "<pre class='Codigo_PRECodigo'>";
         return $PRE;
     }
 

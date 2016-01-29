@@ -99,13 +99,9 @@
                 <p>Para más información sobre la función PintarPHP podéis consultar <a href="ColorearCodigoPHP_PHP.php" target="_new">Colorear código con PHP (Parte 4 PHP)</a>.</p>
                 <p>A parte de esto faltaría por ver las funciones <b>_FinString1</b>, <b>_FinString2</b> y <b>_BuscarEtiqueta</b>. Pero como estas funciones se han comentado sobradamente en los tutoriales anteriores las omitiremos por hoy. Si deseáis más información sobre dichas funciones os recomiendo mirar el siguiente tutorial <a href="ColorearCodigoPHP_JavaScript.php" target="_new">Colorear código con PHP (Parte 3 JavaScript)</a>.</p>
                 <p>Y con esto terminamos por hoy! aunque no ponemos punto y final a los tutoriales para pintar código con PHP. Mañana podréis ver la clase <a href="ColorearCodigoPHP_devildrey33_PintarCodigo.php">devildrey33_PintarCodigo</a> que se utiliza en esta web.</p>
-                <p>Como siempre os dejo la posibilidad de ver y descargar el ejemplo de hoy :</p>
+                <p><strike>Como siempre os dejo la posibilidad de ver y descargar el ejemplo de hoy :</strike></p>
 
-                <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Ejemplos/ColorearCodigoPHP/ColorearCodigoPHP_HTML_Ejemplo.php" target="_blank">Ver Ejemplo</a></td>
-                	<td><a class='Boton' href="/Descargas/ColorearCodigoPHP_HTML.zip" target="_blank">Descargar Ejemplo</a></td>
-                </tr></table>
-                
+<div class='nota'>Este código ha quedado obsoleto, por favor echa un vistazo a la versión 2 : <a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintáxis de un código fuente</a>.</div>                
 <?php
     $Base->FinBlog();
     if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 

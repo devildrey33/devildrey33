@@ -63,8 +63,8 @@
                         $Codigo .= "<div finscrollinfinito='true'></div>".Intro();   
                     }
 //                }
-                // Cuando se leen 10 articulos paramos
-                if (9 === $Contador) { 
+                // Cuando se leen 15 articulos paramos
+                if (14 === $Contador) { 
                     return $Codigo;
                 }
             }

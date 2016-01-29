@@ -258,7 +258,7 @@ $Base = new function() {
     };
         
         
-    /* Vota la web */    
+    /* Vota la entrada */    
     this.VotarWeb = function(Valor) {
         Pagina = $("#MarcoNavegacion > article").attr("pagina");
         // Desmarco el boton de las votaciones
@@ -267,7 +267,7 @@ $Base = new function() {
         console.log("Base.VotarWeb", Valor, Pagina);
         if (typeof localStorage["Voto_" + Pagina] === "undefined") {
             localStorage["Voto_" + Pagina] = Valor;
-            $.post( "/cmd/VotarPagina", { "Pagina" : Pagina, "Valor" : Valor, "URL" : window.location.href }).done(function(data) {
+            $.post( "/cmd/VotarPagina.cmd", { "Pagina" : Pagina, "Valor" : Valor, "URL" : window.location.href }).done(function(data) {
                 if (data !== "false") {
                     $(".Cabecera_Datos > .FechaEntrada > span").html(data);
                     $("#BarraNavegacion_Votacion").removeAttr("Mostrar");
@@ -702,7 +702,7 @@ $Base = new function() {
         }
         console.log("Base.Loguear(" + pass + ")");
         this.Cargando("TRUE");
-        $.post("/cmd/Loguear", { "l" : l,  "p" : pass }).done(function(data) {
+        $.post("/cmd/Loguear.cmd", { "l" : l,  "p" : pass }).done(function(data) {
 //            console.log("Base.Loguear", data);
             Datos = JSON.parse(data);
             if (Datos.Mensaje === "Correcto!") { // Logueado
@@ -736,7 +736,7 @@ $Base = new function() {
     /* Función para enviar comandos simples */
     /* TODOS los comandos requieren ser administrador */
     this.cmd = function(Comando) {
-        $.post("/cmd/" + Comando).done(function(data) {
+        $.post("/cmd/" + Comando + ".cmd").done(function(data) {
             console.log("Base.cmd(" + Comando + ")", data);
         }).fail(function( jqXHR, textStatus, tError ) { 
             console.log("Base.cmd Error ajax", jqXHR, textStatus, tError);
@@ -897,7 +897,12 @@ $Base = new function() {
     };*/
                                             
     this.ComprobarScrollVotacion = function() {
-        if ($(window).scrollTop() > ($(document).height() - ($(window).height() * 2))) {
+        console.log($("#Comentarios_Datos"), $("#Comentarios_Datos").offset())
+        if (typeof($("#Comentarios_Datos").offset()) !== "undefined") { FinalPagina = $("#Comentarios_Datos").offset().top;  }
+        else                                                          { FinalPagina = $(document).height();                 }
+        console.log($(window).scrollTop(), FinalPagina - ($(window).height() * 2))
+        if ($(window).scrollTop() > FinalPagina - ($(window).height() * 2)) {
+//        if ($(window).scrollTop() > ($(document).height() - ($(window).height() * 2))) {
             console.log("Base.ComprobarScrollVotacion");
             Pagina = $("#MarcoNavegacion > article").attr("pagina");
 //        if ($(window).scrollTop() > 190 && Header.attr("animar")) {

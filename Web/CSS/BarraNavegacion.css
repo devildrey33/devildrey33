@@ -557,10 +557,10 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
 #BarraNavegacion_Votacion[mostrar='true'] > .BarraPrincipal_BotonMenu {
     animation:Ani-ResaltarFondoBoton 0.5s ease 0s 6 alternate;
 }
-
+/*
 #BarraNavegacion_Votacion[mostrar='true'] > #BarraNavegacion_Votacion_Estado + .BarraPrincipal_Boton_Label {
-/*    animation:Ani-ResaltarBordeBoton 0.5s ease 0s 6 alternate;*/
-}
+/*    animation:Ani-ResaltarBordeBoton 0.5s ease 0s 6 alternate;
+}*/
 
 #BarraNavegacion_Votacion[mostrar='true']:hover > #BarraNavegacion_Votacion_Estado + .BarraPrincipal_Boton_Label {
     animation-play-state: paused;
@@ -570,6 +570,29 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     animation-play-state: paused;
 }
 
+/* Transición de resaltado para los iconos en SVG con rotaciones y escalas */
+.Menu_BotonCheck > .BarraPrincipal_BotonMenu > .IcoTexto > svg > use, 
+#BarraNavegacion > a > svg > use {
+    transform-origin:center center;
+    transform:perspective(600px) rotateX(0deg) rotateY(0deg) scale(1, 1);
+    transition: 0.75s cubic-bezier(.33,.05,.69,1.59);
+}
+.Menu_BotonCheck:hover > .BarraPrincipal_BotonMenu > .IcoTexto > svg > use, 
+#BarraNavegacion > a:hover > svg > use {
+    transform:perspective(600px) rotateX(7deg) rotateY(6deg) scale(1.2, 1.2);    
+}
+
+/* Animación para resaltar algo mas la votación */
+#BarraNavegacion_Votacion[mostrar='true'] > .BarraPrincipal_BotonMenu > .IcoTexto > svg {
+    animation:Ani-RotarVotacion 13s cubic-bezier(.3,-0.5,.23,.78) 0s infinite alternate;
+}
+@keyframes Ani-RotarVotacion {
+    0%   { transform:perspective(600px) rotateY(0deg) rotateX(0deg);     }
+    45%  { transform:perspective(600px) rotateY(0deg) rotateX(0deg);     }
+    65%  { transform:perspective(600px) rotateY(385deg) rotateX(7deg);  }
+    70%  { transform:perspective(600px) rotateY(360deg) rotateX(7deg);  }
+    100% { transform:perspective(600px) rotateY(360deg) rotateX(0deg); }
+}
 
 @keyframes Ani-ResaltarFondoBoton {
     0%   { background:#29272c; border:1px solid #353338; }

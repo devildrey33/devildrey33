@@ -39,8 +39,8 @@
             }
         </script>
     </head>
-    <body>
-        <?php $MiVariable = true; ?>
+    <body> 
+        <?php $MiVariable = true; ?> 
         <?php 
             function MiFuncion($Var, $Var2 = "string") {
                 return $Var2." ".($Var * 10);

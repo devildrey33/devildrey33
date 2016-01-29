@@ -120,7 +120,7 @@ $Lab = new function() {
         console.log("Lab.CargarArchivo", Archivo);
         if (Archivo === null) { Archivo = this.Archivo; nopush = true; }
         if (ID === undefined)      { ID = -1; }        
-        $Base.PeticionAjax = $.post("/cmd/LabAbrirEjemplo",  { "Archivo" : Archivo, "ID" : ID }, function(data) {
+        $Base.PeticionAjax = $.post("/cmd/LabAbrirEjemplo.cmd",  { "Archivo" : Archivo, "ID" : ID }, function(data) {
             Datos = JSON.parse(data);            
             if      (Datos["Ret"] === 404) { $Base.MostrarErrorAjax(404, false); }
             else if (Datos["Ret"] === 403) { $Base.MostrarErrorAjax(403, false); }
@@ -136,12 +136,13 @@ $Lab = new function() {
                         $Base.Entrada = $Base.IdentificarEntrada(URL, URL);    
                         $Base.Entrada["Titulo"] = "Lab : " + Datos["Archivo"];
                         window.history.pushState($Base.Entrada, document.title, URL);
-                        /* Pongo el scroll arriba DESPUES de identificar la URL y haber guardado el scroll para el historial */
+                        /* Pongo el scroll arriba DESPUÉS de identificar la URL y haber guardado el scroll para el historial */
                         $(window).scrollTop(0);
                         document.title = $Base.Entrada["Titulo"];
                     }
                     $("body").attr({ "modificado" : "false" });
                     $Base.ComprobarScrollVotacion();
+                    $Lab.ActualizarResultado(); 
                 }
                 // Instancia de un minilab
                 else {
@@ -296,6 +297,7 @@ $Lab = new function() {
 
     /* Función que actualiza el marco del resultado */
     this.ActualizarResultado = function() {
+        if (this.Lab_Temporizador !== 0) clearTimeout(this.Lab_Temporizador);
         // Para eliminar todos los temporizadores que pueda haber cargados en el ejemplo elimino la etiqueta iframe y la vuelvo a crear.
         var Estilos = $("#Lab_Preview").attr( "style" );
         $("#Lab_Preview").remove();
@@ -307,6 +309,7 @@ $Lab = new function() {
         var Codigo = this.Editor.getValue();
         preview.write(Codigo);
         preview.close();    
+        this.Lab_Temporizador = 0;
     };
     
 

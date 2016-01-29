@@ -13,6 +13,7 @@
     switch ($Comando) {
         case "ClearSession"                     :   
             session_unset();
+            echo "OK";
             break;
         case "PrintSession"                     :   
             echo "<pre>";
@@ -45,7 +46,7 @@
         case "LabAbrirEjemplo" : 
             echo json_encode(devildrey33_Lab::AbrirEjemplo($_POST["Archivo"], $_POST["ID"], TRUE));
             break;
-        case "IndiceObtener10Mas" : 
+        case "IndiceObtener15Mas" :  
             $BD = new devildrey33_BD();
             echo Indice::GenerarArticulos($BD, $_POST["Categoria"], $_POST["Inicio"]);
             break;
@@ -78,11 +79,11 @@
 /*            case "ConvertirVotaciones" :
                 $BD = new devildrey33_BD(); 
                 $BD->ConvertirVotaciones();
-                break;*/
-        
+                break;*/        
             case "help" :
                 echo "<p>Lista de comandos</p>".
                     "<ul>".
+                        "<li>ClearSession / PrintSession</li>".
                         "<li>ActivarMantenimiento / DesactivarMantenimiento</li>".
                         "<li>ActivarCheckSpelling / DesactivarCheckSpelling</li>".
                         "<li>ActivarCompresionGZip / DesactivarCompresionGZip</li>".

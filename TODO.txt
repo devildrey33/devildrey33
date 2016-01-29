@@ -1,4 +1,4 @@
-﻿Millores de la web :
+Millores de la web :
  V  - Moure les votacións de les webs al menu lateral dret.
  V      - Trobar / fer icona per les votacions. (i es un svg!)
  V      - Resaltar el buto al arribar al final del document (afegides animacións independents per ocultar cada buto del menu lateral dret)
@@ -28,26 +28,33 @@
     - Probar els butons de la barra lateral dreta amb fondo gris clar translucid, i les imatges en gris fosc.
         
 +o- - Pasar a svg tots els icones dels menús laterals, excepte el burguer i la creu de tancar. (em falten els 4 de la vista del lab, que s'han de refer...)
- V  - Solucionar bug del timer en el lab.
+ V      - Afegir efectes 3d en el hover dels svgs
     - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
     - Re-estudiar el menu de l'esquerra, com fer poques categories que a l'hora que englobin la majoria de la web. 
-    - Retocar l'animació de carrega de sota a la dreta i afegirli una rotacio de la Z a cada cercle.
+    - Retocar l'animació de carrega de sota a la dreta i afegirli una rotacio de la X a cada cercle.
     - El buscador del menú principal (amb google)... aviam si al 2016 el faig.. xd
-    - La valoració del document (nota) en articles que tenen comentaris, no surt fins que no has vist varis comentaris, s'hauria de fer com a la del 2014, quan arribi a l'altura del h2 "Comentarios"
+ V  - La valoració del document (nota) en articles que tenen comentaris, no surt fins que no has vist varis comentaris, s'hauria de fer com a la del 2014, quan arribi a l'altura del h2 "Comentarios"
+ V  - Retocar animació de la nota, per que resalti mes (animació amb una rotació del eix X del svg cada 10 segons +o-)
     - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
+    - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
 
--Estils movils
+
+Estils movils :
     - Probar l'index en Google Nexus 10, no es pot accedir a les seguents entrades amb l'escroll.
-    - En el ipad e
+    - Revisar estils de tablets i de movils (mirar que tots els que deixa probar el chrome es vegin be)
 
-NOTA : l'arxiu /Blog/Tutorial_WINAPI_4.php no te h2's apart del de comentaris!
-
+Lab :
+ V  - Al actualitzxar un codi, (ja sigui perque s'ha modificat, o perque s'ha carregat un nou codi) s'han de eliminar tots els timers del codi anterior.
+ V      - La solució era mes facil del que pensaba, i consisteix en borrar el iframe del dom i tornar-lo a crear.
+ V  - Al carregar un codi, si no es el primer cop que entra al lab, triga els 500 ms del OnChange. S'ha de fer instantani.
+    - Afegir barra per modificar l'amplada de la vista mixta en el minilab.
 
 Blog :
     - devildrey33_PintarCodigo 2.0
     - Mirar de començar a fer coses amb SVG's (Ejemplos/SVG/Iconos.html)
     - Revisar document "CSS3_Transition_Transform.php", te estils inline i s'han de posar amb un CSS a part.
         - el "DegradadosCSS.php" te estils inline colocats al HEAD.... revisar tambè
+        - l'arxiu /Blog/Tutorial_WINAPI_4.php no te h2's apart del de comentaris!
     
 Doc/CSS :
     - cubic-bezier chulo al estil de http://cubic-bezier.com/

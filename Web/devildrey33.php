@@ -218,11 +218,11 @@ class devildrey33 {
                     "<div id ='BarraPrincipal_MarcoCSS'>".Intro().
                         "<a href='/Doc/CSS/Colores'>Colores</a>".Intro().
                         "<a href='/Doc/CSS/Degradados'>Degradados</a>".Intro().
+                        "<a href='/Doc/CSS/Unidades'>Unidades</a>".Intro().
                         "<a href='/Doc/CSS/Funciones'>Funciones</a>".Intro().
-                        "<a href='/Doc/CSS/Propiedades'>Propiedades</a>".Intro().
                         "<a href='/Doc/CSS/Reglas'>Reglas</a>".Intro().
                         "<a href='/Doc/CSS/Selectores'>Selectores</a>".Intro().
-                        "<a href='/Doc/CSS/Unidades'>Unidades</a>".Intro().
+                        "<a href='/Doc/CSS/Propiedades'>Propiedades</a>".Intro().
                     "</div>".Intro().
                 "</div>".Intro().
                 
@@ -237,7 +237,7 @@ class devildrey33 {
                         "<a href='/Blog/Tutorial_WINAPI_1_0'>Calculadora</a>".Intro().
                         "<a href='/Blog/Tutorial_WINAPI_2_0'>Snake</a>".Intro().
                         "<a href='/Blog/Tutorial_WINAPI_3_0'>Instalador</a>".Intro().
-                        "<a href='/Blog/Tutorial_WINAPI_4'>DUMP</a>".Intro().
+                        "<a href='/Blog/Tutorial_WINAPI_4'>Archivos DUMP</a>".Intro().
                         "<a href='/Blog/BubaTronik'>BubaTronik</a>".Intro().
                     "</div>".Intro().
                 "</div>".Intro().
@@ -271,7 +271,7 @@ class devildrey33 {
                         "<a href='/Blog/Captcha1'>Captchas 1</a>".Intro().
                         "<a href='/Blog/Captcha2'>Captchas 2</a>".Intro().
                         "<a href='/Blog/Captcha3'>Captchas 3</a>".Intro().
-                        "<a href='/Blog/ColorearCodigoPHP_XML'>Pintar Código</a>".Intro().
+                        "<a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintáxis de un código fuente</a>".Intro().
                     "</div>".Intro().
                 "</div>".Intro().
                 
@@ -323,13 +323,13 @@ class devildrey33 {
                 "</div>".Intro().
                 "<div id ='BarraNavegacion_LabMarcoVer'>".Intro().                                       
                     "<input id='Lab_VerFilas_Estado' class='BarraPrincipal_Boton_Input' type='radio' name='Lab_Ver' />".Intro().
-                    "<label tooltip-es='Filas' tooltip-en='Rows' tooltip-pos='T' class='BarraPrincipal_BotonMenu Lab_BotonVerFilas' for='Lab_VerFilas_Estado'></label>".Intro().
+                    "<label tooltip-es='Ver Filas' tooltip-en='Rows' tooltip-pos='T' class='BarraPrincipal_BotonMenu Lab_BotonVerFilas' for='Lab_VerFilas_Estado'></label>".Intro().
                     "<input id='Lab_VerColumnas_Estado' class='BarraPrincipal_Boton_Input' type='radio' name='Lab_Ver' />".Intro().
-                    "<label tooltip-es='Columnas' tooltip-en='Columns' tooltip-pos='T' class='BarraPrincipal_BotonMenu Lab_BotonVerColumas' for='Lab_VerColumnas_Estado'></label>".Intro().
+                    "<label tooltip-es='Ver Columnas' tooltip-en='Columns' tooltip-pos='T' class='BarraPrincipal_BotonMenu Lab_BotonVerColumas' for='Lab_VerColumnas_Estado'></label>".Intro().
                     "<input id='Lab_VerCodigo_Estado' class='BarraPrincipal_Boton_Input' type='radio' name='Lab_Ver' />".Intro().
-                    "<label tooltip-es='Código' tooltip-en='Code' tooltip-pos='T' class='BarraPrincipal_BotonMenu Lab_BotonVerCodigo' for='Lab_VerCodigo_Estado'></label>".Intro().
+                    "<label tooltip-es='Ver Código' tooltip-en='Code' tooltip-pos='T' class='BarraPrincipal_BotonMenu Lab_BotonVerCodigo' for='Lab_VerCodigo_Estado'></label>".Intro().
                     "<input id='Lab_VerPreview_Estado' class='BarraPrincipal_Boton_Input' type='radio' name='Lab_Ver' />".Intro().
-                    "<label tooltip-es='Pre-visualización' tooltip-en='Preview' tooltip-pos='T' class='BarraPrincipal_BotonMenu Lab_BotonVerPreview' for='Lab_VerPreview_Estado'></label>".Intro().
+                    "<label tooltip-es='Ver Pre-visualización' tooltip-en='Preview' tooltip-pos='T' class='BarraPrincipal_BotonMenu Lab_BotonVerPreview' for='Lab_VerPreview_Estado'></label>".Intro().
 /*                    "<div><span>Filas</span></div>".Intro().
                     "<div><span>Columnas</span></div>".Intro().
                     "<div><span>Código</span></div>".Intro().

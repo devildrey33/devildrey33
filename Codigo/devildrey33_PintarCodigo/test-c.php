@@ -22,6 +22,8 @@
     #define Macro(x) x     // Marco simple
     #include <Cabcerea1.h> // Cabecera directorio por defecto
     #include "Cabecera2.h" // Cabecera directorio actual
+    
+    const wchar_t Cadena[] = L"Cadena de caracteres";
 
     /* Comentario multilinea antes de la plantilla
        algunas trampas "String\" if else endif */

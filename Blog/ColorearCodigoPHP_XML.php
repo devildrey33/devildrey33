@@ -57,11 +57,7 @@
                 <p>Y finalmente devolvemos el texto coloreado.</p>
                 <p>Esto es todo por hoy, espero que este documento os sirva de ayuda si algún día queréis hacer una función para pintar códigos XML para vuestra web.</p>
 
-                <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Ejemplos/ColorearCodigoPHP/ColorearCodigoPHP_XML_Ejemplo.php" target="_blank">Ver Ejemplo</a></td>
-                	<td><a class='Boton' href="/Descargas/ColorearCodigoPHP_XML.zip" target="_blank">Descargar Ejemplo</a></td>
-                </tr></table>
-                
+                <div class='nota'>Este código ha quedado obsoleto, por favor echa un vistazo a la versión 2 : <a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintáxis de un código fuente</a>.</div>                
 <?php
     $Base->FinBlog();
     if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 

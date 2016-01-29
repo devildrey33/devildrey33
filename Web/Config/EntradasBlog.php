@@ -3,6 +3,15 @@
 
     return array(
         
+array(	"Titulo" 	=> "Resaltar sintáxis de un código fuente",
+        "Fecha" 	=> "29/01/2016",
+        "URL" 		=> "resaltar-sintaxis-codigo-fuente",
+        "Tags" 		=> array("PHP", "JavaScript", "CSS", "HTML", "Programación"),
+        "Tipo"		=> "Blog",
+        "Autor"         => "Josep Antoni Bover",
+        "Idioma"        => "es",
+        "Imagen"	=> "ResaltarSintaxis.png"),
+        
 array(	"Titulo" 	=> "Working with google APIs",
         "Fecha" 	=> "16/12/2015",
         "URL" 		=> "working-with-google-apis",

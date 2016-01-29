@@ -2,47 +2,31 @@
 if (!isset($_SESSION)) session_start();
 
 include("Base.php");
+
+// Tiempo de validez para la sesion 30 minutos desde la ultima actividad
+if (isset($_SESSION["Opciones"]['UltimaActividadMS'])) {
+    if ((time() - $_SESSION["Opciones"]['UltimaActividadMS'] > 1800))           { 	unset($_SESSION["Opciones"]["Administrador"]);	}	// 30 minutos
+    if ((time() - $_SESSION["Opciones"]['UltimaActividadMS'] > 3600 * 24)) 	{ 	unset($_SESSION["Opciones"]["PaginasVistas"]);	}	// 1 dia
+}
+$_SESSION["Opciones"]['UltimaActividadMS'] = time(); // Guardo el tiempo de la ultima actividad
+
+// Controla el número de paginas visitadas en esta sesion
+if (!isset($_SESSION["Opciones"]['PaginasVistas'])) {    $_SESSION["Opciones"]['PaginasVistas'] = 1;     }
+else                                                {    $_SESSION["Opciones"]['PaginasVistas'] ++;      }       
+
+// Disposición de las opciones según si el servidor es local o de internet
+if (strpos($_SERVER["SERVER_NAME"], "devildrey33.esy.es") !== false)  {  devildrey33_Opciones::$ServidorDebug = FALSE; }
+else if (strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false) {  devildrey33_Opciones::$ServidorDebug = FALSE; }
+else                                                                  {  devildrey33_Opciones::$ServidorDebug = TRUE;  }
+
+
 /* Esta clase contiene todas las variables que pueda necesitar de la variable $_SESSION de forma que si no estan definidas devuelve su valor por defecto sin necesidad de crearla en la cookie.
         En definitiva solo se reservara espacio para la cookie si la variable en concreto no tiene su valor por defecto.
-        Por otra parte tambien controla los timeouts de ciertas variables que no deben ser guardadas durante mucho tiempo.
-         */
+        Por otra parte tambien controla los timeouts de ciertas variables que no deben ser guardadas durante mucho tiempo.           */
 class devildrey33_Opciones {
-    
-    public static $ServidorDebug = FALSE;
-    
-    
-    // Constructor que comprueba el tiempo de actividad para borrar ciertas cookies según el tiempo
-    public function __construct(/*$Admin = 0, $MinCSS = 1, $MinJS = 1, $Consola = 0*/) {
-        
-//        session_unset();
-        
-        // Tiempo de validez para la sesion 30 minutos desde la ultima actividad
-        if (isset($_SESSION["Opciones"]['UltimaActividadMS'])) {
-            if ((time() - $_SESSION["Opciones"]['UltimaActividadMS'] > 1800)) 	{ 	unset($_SESSION["Opciones"]["Administrador"]);	}	// 30 minutos
-//            if ((time() - $_SESSION["Opciones"]['UltimaActividadMS'] > 3600)) 	{ 	unset($_SESSION["Opciones"]["Administrador"]);	}	// 1 hora
-            if ((time() - $_SESSION["Opciones"]['UltimaActividadMS'] > 3600 * 24)) 	{ 	unset($_SESSION["Opciones"]["PaginasVistas"]);	}	// 1 dia
-        }
-        $_SESSION["Opciones"]['UltimaActividadMS'] = time(); // Guardo el tiempo de la ultima actividad
-
-        // Controla el número de paginas visitadas en esta sesion
-        if (!isset($_SESSION["Opciones"]['PaginasVistas'])) {
-            $_SESSION["Opciones"]['PaginasVistas'] = 1;
-        }
-        else {
-            $_SESSION["Opciones"]['PaginasVistas'] ++;
-        }        
-        
-        // Si no es el servidor de internet, se activa el modo depuración por defecto.
-        if (strpos($_SERVER["SERVER_NAME"], "devildrey33.es") === false) {
-            devildrey33_Opciones::$ServidorDebug = TRUE;
-        }
-        /*$_SESSION["Opciones"]['Administrador']  = $Admin;
-        $_SESSION["Opciones"]['MostrarConsola'] = $Consola;
-        $_SESSION["Opciones"]['Minificar_CSS']  = $MinCSS;
-        $_SESSION["Opciones"]['Minificar_JS']   = $MinJS;*/
-        
-    }
-
+    // Variable que determina las opciones predeterminadas segun si es el servidor local o de internet
+    public static $ServidorDebug = FALSE;    
+           
     /* Función interna utilizada por las funciones "pseudo variable por referencia" para asignar y obtener los valores */
     static protected function _ObtenerAsignarValor($Nombre, $ValorDefecto, $Valor) {
         /* Si el valor no es -1 es que se está asignando un valor */

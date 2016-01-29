@@ -19,9 +19,9 @@
 			}
 			
 			function EncenderTemporizador() {
-				if (Canvas33.getContext && Temporizador == 0) {
+				if (Canvas33.getContext && Temporizador == 0) {   
 					Temporizador = setInterval(PintarEspacio, 10);
-				}
+				} 
 			}
 			
 			function PararTemporizador() {
@@ -77,7 +77,7 @@
 	</head>
 	<body onUnload="PararTemporizador()">
 		<canvas id="canvas1" width="600" height="200"></canvas>
-        <p><b>NOTA</b> : En google chrome el temporizador de la animación se queda en memoria y si vuelves a cargar este ejemplo habra 2 temporizadores funcionando a la vez, y cuando le des a "Detener animación" solo se parara uno.....</p>
+        <br />
         <a href="javascript:IniciarAnimacion()">Iniciar animación</a> <a href="javascript:PararTemporizador()">Detener animación.</a>
 	</body>
 </html>

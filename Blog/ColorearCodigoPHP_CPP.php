@@ -47,13 +47,10 @@
                 <?php $Base->PintarCodigo->PintarArchivoPHP("IDPintarC3", "Función PintarC parte 3, post-escaneo", "../Ejemplos/ColorearCodigoPHP/ColorearCodigoPHP_CPP_Ejemplo.php", "PintarC3"); ?>
                 <p>Esta ultima parte tiene por objetivo recorrer el array <b>$Palabras</b> que se ha construido anteriormente y determinar que partes del array no han sido inspeccionadas, para ellos simplemente miramos el primer carácter de cada posición del array y comprobamos si el carácter es "<b>&lt;</b>". En caso de que no sea el carácter "<b>&lt;</b>" sabemos que esa posición del array no empieza con un "<b>span</b>", y por lo tanto necesita ser analizada para buscar si tiene alguna palabra reservada que necesite ser pintada.</p>
                 <p>A parte de este código nos quedan varias funciones por comentar : _FinString1. _FinString2, y _BuscarDelimitadorC. Pero como son en esencia prácticamente iguales por no decir idénticas que en los dos últimos ejemplos las omitiré por hoy.</p>
-                <p>Y esto es todo! espero que este tutorial os sirva de ayuda. Como siempre podéis descargar el ejemplo, o ver la versión online.</p>
+                <p>Y esto es todo! espero que este tutorial os sirva de ayuda. <strike>Como siempre podéis descargar el ejemplo, o ver la versión online</strike>.</p>
                 
-                <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Ejemplos/ColorearCodigoPHP/ColorearCodigoPHP_CPP_Ejemplo.php" target="_blank">Ver Ejemplo</a></td>
-                	<td><a class='Boton' href="/Descargas/ColorearCodigoPHP_CPP.zip" target="_blank">Descargar Ejemplo</a></td>
-                </tr></table>
-                
+                <div class='nota'>Este código ha quedado obsoleto, por favor echa un vistazo a la versión 2 : <a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintáxis de un código fuente</a>.</div>
+
 <?php
     $Base->FinBlog();
     if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 

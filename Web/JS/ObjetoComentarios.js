@@ -103,9 +103,9 @@ $Comentarios = new function() {
         console.log("Comentarios.BotonMasUno");
 
         // ajax para votar
-        nAjax = $.post("/cmd/VotarComentario", { "Pagina"        : Pagina,
-                                                 "NumComentario" : NumC,
-                                                 "Valor"         : Valor
+        nAjax = $.post("/cmd/VotarComentario.cmd", { "Pagina"        : Pagina,
+                                                     "NumComentario" : NumC,
+                                                     "Valor"         : Valor
         // Al terminar la petición ajax correctamente
         }).done(function(data) { 
             Datos = JSON.parse(data);

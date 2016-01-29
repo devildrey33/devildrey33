@@ -41,32 +41,34 @@ $PintarCodigo = new function() {
         // Si hay un temporizador activado, lo elimino y elimino el atributo click de la línea
         if (this.CodigoTemporizador != 0) {  
             clearTimeout(this.CodigoTemporizador); 
-            this.CodigoDivC.removeAttr("click"); 
+            $(".Codigo_PRECodigo > div[l]").removeAttr("click"); 
             this.CodigoTemporizador = 0;  
         }
-        this.CodigoDivC = $("#" + ID + " > .Codigo_PRECodigo > div[l=" + Linea[0] + "]");
-        this.CodigoDivC.attr({ "click" : "true" });
+        for (var i = 0; i < Lineas.length; i++) {
+            $("#" + ID + " > .Codigo_PRECodigo > div[l=" + Linea[i] + "]").attr({ "click" : "true" });
+        }
+        
+//        this.CodigoDivC = $("#" + ID + " > .Codigo_PRECodigo > div[l=" + Linea[0] + "]");
+//        this.CodigoDivC.attr({ "click" : "true" });
         // Creo un nuevo temporizador para resaltar en verde la línea
         this.CodigoTemporizador = setTimeout(function() { 
-            $PintarCodigo.CodigoDivC.removeAttr("click"); 
+            $(".Codigo_PRECodigo > div[l]").removeAttr("click"); 
             $PintarCodigo.CodigoTemporizador = 0;
         }, 900);
         
+        var CodigoDivC = $("#" + ID + " > .Codigo_PRECodigo > div[l=" + Linea[0] + "]");
         // Movemos el scroll a la posición de la linea si no está visible
-        if (this.CodigoDivC.offset()) {
-            Pos          = this.CodigoDivC.offset().top - 10;
-            Tam          = this.CodigoDivC.height() + 20; // 20 pixels mas de margen
+        if (CodigoDivC.offset()) {
+            Pos          = CodigoDivC.offset().top - 10;
+            Tam          = CodigoDivC.height() + 20; // 20 pixels mas de margen
             PosScroll    = $("body").scrollTop() || $("html").scrollTop();                        
             WindowHeight = $(window).height();
             console.log("PintarCodigo.MostrarLineaCodigo (reposicionando)", Pos, PosScroll, Tam, WindowHeight);            
-            if (Pos > PosScroll && Pos < PosScroll + (WindowHeight - Tam)) {
-                   // El scroll está bien posicionado
-            }
-            else { // Reposicionamos el scroll                
+            if (!(Pos > PosScroll && Pos < PosScroll + (WindowHeight - Tam))) {
                 if (Pos > PosScroll) {  $("body, html").stop().animate({ scrollTop : Pos - (WindowHeight - Tam) }, 200);  } // Por debajo de la etiqueta linea                
                 else                 {  $("body, html").stop().animate({ scrollTop : Pos }, 200);                         } // Por encima de la etiqueta linea
             }            
-        }        
+        }    
     };
     
 };
