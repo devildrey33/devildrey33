@@ -296,6 +296,11 @@ $Lab = new function() {
 
     /* Función que actualiza el marco del resultado */
     this.ActualizarResultado = function() {
+        // Para eliminar todos los temporizadores que pueda haber cargados en el ejemplo elimino la etiqueta iframe y la vuelvo a crear.
+        var Estilos = $("#Lab_Preview").attr( "style" );
+        $("#Lab_Preview").remove();
+        $("<iframe id='Lab_Preview' style='" + Estilos +"'></iframe>").insertBefore($( "#Lab_Barra1" ));
+        // Actualizo el ejemplo
         var previewFrame = document.getElementById('Lab_Preview');
         var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
         preview.open();

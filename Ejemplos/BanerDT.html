@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            /* Objecte principal */
+            #BannerSlider {                
+                width:300px; 		/* Ample del banner */
+                height:250px;		/* Altura del banner */
+                overflow:hidden;
+            }
+            /* Marc amb les fotografies */
+            #MarcoSlider {                
+                width:calc(300px * 20); /* 320 pixels d'ample multiplicat per 20 fotografies */ 
+                position:relative;
+                /* Transició d'imatge 1.6 segons -> http://cubic-bezier.com/ */
+/*                transition:1.6s cubic-bezier(.33,.33,.23,.78);*/                
+                transition:1.6s cubic-bezier(.3,-0.5,.23,.78); 
+            }
+            /* Marc per cada fotografia */
+            #BannerSlider > #MarcoSlider > div {
+                display:inline-block;
+                margin-right:-4px;
+            }
+        </style>
+        <script type="text/javascript">
+			function ClaseAnuncis () {
+                this.Imatge 		= -1;		// Imatge actual NO TOCAR
+                this.AmpleImatge 	= 300;		// Ample de la imatge en pixels
+                this.Temps 			= 4000; 	// Temps per canviar d'una imatge a unaltre en milisegons
+                
+                // Funció per canviar l'imatge
+				this.CanviarImatge = function() {
+					this.Imatge ++; 													// Sumo 1 al contador de la imatge actual
+                    var Imatges = document.getElementsByClassName("ImatgeAnuncis");		// Llista d'imatges                     
+                    if (this.Imatge === Imatges.length) { this.Imatge = 0; }			// Si ha arribat al final, tornem a la primera imatge
+					document.getElementById("MarcoSlider").style.left = "-" + this.Imatge * this.AmpleImatge + "px";
+				};				
+                
+                // Funció per iniciar l'animació
+				this.Iniciar = function() {
+                    Anuncis.CanviarImatge();
+                    // Temporitzador per canviar l'imatge
+					setInterval(function() { Anuncis.CanviarImatge(); }, 4000);
+				};
+            };
+            
+			var Anuncis = new ClaseAnuncis();
+
+			// MAIN
+			window.addEventListener ? window.addEventListener("load", Anuncis.Iniciar, false) : window.attachEvent && window.attachEvent("onload", Anuncis.Iniciar);
+            
+        </script>
+    </head>
+    <body>
+        <div id='BannerSlider'>
+            <div id='MarcoSlider'>                
+                <div class="ImatgeAnuncis">
+                    <a href="http://www.pontemasfuerte.es" target="_new">
+                        <img src="http://www.diarideterrassa.es/elementosWeb/gestionCajas/DDT/Image/Estatics/Banner/egaralife/banner1.gif">
+                    </a>
+                </div>
+                <div class="ImatgeAnuncis">
+                    <a href="http://www.pontemasfuerte.es" target="_new">
+                        <img src="http://www.diarideterrassa.es/elementosWeb/gestionCajas/DDT/Image/Estatics/Banner/egaralife/banner2.gif">
+                    </a>            
+                </div>
+                <div class="ImatgeAnuncis">
+                    <a href="http://www.pontemasfuerte.es" target="_new">
+                        <img src="http://www.diarideterrassa.es/elementosWeb/gestionCajas/DDT/Image/Estatics/Banner/egaralife/banner4.gif">
+                    </a>            
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>

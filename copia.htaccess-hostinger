@@ -61,8 +61,8 @@ RewriteRule ^([^\.]+)$ $1.php [NC,L]
 # [NC] NoCase   Ignora majuscules i minuscules [Internal redirect]
 
 # Treure les "www" de la URL
-RewriteCond %{http_host} ^www\.devildrey33\.es [NC]
-RewriteRule ^(/*)$ http://devildrey33.es/$1 [R=301,NC]
+RewriteCond %{http_host} ^www\.devildrey33\.esy.es [NC]
+RewriteRule ^(/*)$ http://devildrey33.esy.es/$1 [R=301,NC]
 
 
 #paths antics
@@ -89,7 +89,7 @@ RewriteRule ^Doc/DWL/([^/]+) 			/DWL/$1 [NC]
 RewriteRule ^Doc/DWL/ 				/DWL/ [NC]
 RewriteRule ^Doc 				/Web/Doc_ParseadorUrl.php [NC]
 
-RewriteRule ^Categorias/([^/]*)(.*)$ 		index.php?Categoria=$1&NumPagina=$2 [L,QSA]
+#RewriteRule ^Categorias/([^/]*)(.*)$ 		index.php?Categoria=$1&NumPagina=$2 [L,QSA]
 RewriteRule ^Categorias/([^/]+) 		index.php?Categoria=$1 [NC]
 
 RewriteRule ^Buscar/([^/]+) 			/Web/devildrey33_Buscador?Search=$1 [NC]
@@ -115,9 +115,9 @@ RewriteRule .* - [L]
 # Anti hotlink (en localhost s'ha de comentar)
 #RewriteEngine On
 #RewriteCond %{HTTP_REFERER} !^$
-#RewriteCond %{HTTP_REFERER} !^http://(www\.)?devildrey33\.es/ [NC]
+#RewriteCond %{HTTP_REFERER} !^http://(www\.)?devildrey33\.esy.es/ [NC]
 #RewriteCond %{REQUEST_URI} !Hotlink\.(gif|png) [NC]
-#RewriteRule .*\.(gif|jpg|png)$ http://devildrey33.es/Graficos/Hotlink.png [NC]
+#RewriteRule .*\.(gif|jpg|png)$ http://devildrey33.esy.es/Graficos/Hotlink.png [NC]
 
 
 
@@ -167,7 +167,7 @@ Redirect 301 /wp-admin                                                  /cmd/Ban
 Redirect 301 /sites/all/libraries/elfinder/php/connector.minimal.php    /cmd/BanearIP.php
 Redirect 301 /sites/all/libraries/elfinder/files/wpfoot6.php            /cmd/BanearIP.php
 Redirect 301 /scripts/fckeditor/editor/                                 /cmd/BanearIP.php
-Redirect 301 /images/stories/3xp.php					/cmd/BanearIP.php
+Redirect 301 /images/stories/3xp.php									/cmd/BanearIP.php
 
 
 #INICIO redirecciones Blog

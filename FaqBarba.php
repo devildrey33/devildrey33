@@ -84,6 +84,11 @@
                 <td>Directori del projecte de netbeans</td>               
             </tr>
             <tr>
+                <td>/Fuentes</td>
+                <td></td>
+                <td>Tipografies web</td>               
+            </tr>
+            <tr>
                 <td>/Web</td>
                 <td>/Web</td>
                 <td>Directori principal del codi PHP</td>               
@@ -106,7 +111,7 @@
             <tr>
                 <td>/Web/Graficos</td>
                 <td>/Web/Graficos</td>
-                <td>Directori on es guarden totes les imatges, <strike>també es pot accedir desde http://img.devildrey33.es</strike></td>               
+                <td>Directori on es guarden totes les imatges, també es pot accedir desde http://img.devildrey33.es</td>               
             </tr>
             <tr>
                 <td>/Web/JS</td>

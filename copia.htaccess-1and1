@@ -167,7 +167,7 @@ Redirect 301 /wp-admin                                                  /cmd/Ban
 Redirect 301 /sites/all/libraries/elfinder/php/connector.minimal.php    /cmd/BanearIP.php
 Redirect 301 /sites/all/libraries/elfinder/files/wpfoot6.php            /cmd/BanearIP.php
 Redirect 301 /scripts/fckeditor/editor/                                 /cmd/BanearIP.php
-Redirect 301 /images/stories/3xp.php					/cmd/BanearIP.php
+Redirect 301 /images/stories/3xp.php									/cmd/BanearIP.php
 
 
 #INICIO redirecciones Blog

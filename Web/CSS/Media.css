@@ -33,7 +33,7 @@ and open the template in the editor.
     /* Zoom x2 en los siguientes elementos : */
     h2, .nota, .postit, nota, postit, .Tabla, .BarraNavegacion_SubIndice, 
     button, .Boton, #Logo, #BarraPrincipal, #BarraNavegacion, #Categorias, 
-    .Cabecera, #Comentarios_MarcoDatos, #Comentarios_Comentario, .devildrey33_Marco  { zoom:2 !important; }
+    .Cabecera, #Comentarios_MarcoDatos, #Comentarios_Comentario, .devildrey33_Marco  { zoom:1.6 !important; }
     
     .Blog > .Cabecera > .Cabecera_Datos > h1 {
         margin: 20px 0px 4px 0px !important;

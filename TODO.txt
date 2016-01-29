@@ -1,4 +1,4 @@
-Millores de la web :
+﻿Millores de la web :
  V  - Moure les votacións de les webs al menu lateral dret.
  V      - Trobar / fer icona per les votacions. (i es un svg!)
  V      - Resaltar el buto al arribar al final del document (afegides animacións independents per ocultar cada buto del menu lateral dret)
@@ -28,12 +28,17 @@ Millores de la web :
     - Probar els butons de la barra lateral dreta amb fondo gris clar translucid, i les imatges en gris fosc.
         
 +o- - Pasar a svg tots els icones dels menús laterals, excepte el burguer i la creu de tancar. (em falten els 4 de la vista del lab, que s'han de refer...)
+ V  - Solucionar bug del timer en el lab.
     - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
     - Re-estudiar el menu de l'esquerra, com fer poques categories que a l'hora que englobin la majoria de la web. 
     - Retocar l'animació de carrega de sota a la dreta i afegirli una rotacio de la Z a cada cercle.
     - El buscador del menú principal (amb google)... aviam si al 2016 el faig.. xd
     - La valoració del document (nota) en articles que tenen comentaris, no surt fins que no has vist varis comentaris, s'hauria de fer com a la del 2014, quan arribi a l'altura del h2 "Comentarios"
     - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
+
+-Estils movils
+    - Probar l'index en Google Nexus 10, no es pot accedir a les seguents entrades amb l'escroll.
+    - En el ipad e
 
 NOTA : l'arxiu /Blog/Tutorial_WINAPI_4.php no te h2's apart del de comentaris!
 
@@ -56,11 +61,3 @@ Solitario :
 
     - En el explorer va chungo chungo xd
  V  - En firefox mostra malament totes les cartes (el firefox no pilla background-position-x y background-position-y. S'ha de fer amb background-position lo que em fa escriure un selector per carta).
-
-
-HOSTINGER :
- V  - En l'index no es veuen el número de comentaris de cada article (sempre mostra 0)
- V  - La codificació de caracters de la BD al importarla ha gripat... (s'ha de modificar el SQL a ma... i canviar els caracters 'Ã' pel seu equivalent accentuat o la ñ)
-    - No disposo d'access als logs com en el 1and1 :(, s'ha de mirar si es pot activar d'alguna forma en el CMS de hostinger...
-    - He vist que hi ha un limit de CPU... s'haura d'apretar i veure si mel menjo amb un mes de visites normal i corrent...
-        - Per anar bé hauria de redirigir tot el trafic a partir del 1 de febrer de http://devildrey33.es a http://devildrey33.esy.es/
