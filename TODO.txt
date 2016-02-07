@@ -3,14 +3,11 @@ Millores de la web :
  V      - Trobar / fer icona per les votacions. (i es un svg!)
  V      - Resaltar el buto al arribar al final del document (afegides animacións independents per ocultar cada buto del menu lateral dret)
  V  - Solucionar obtenció de dades d'arxius del lab quan es mostren a l'index (visites, votacions, comentaris)
- -  - Implementar o eliminar buto linkedin de les reds socials (a series danko tinc un exemple pero es raro....)
- V      - De moment l'oculto.
+ V  - Implementar o eliminar buto linkedin de les reds socials (a series danko tinc un exemple pero es raro....) De moment queda ocultat...
  V  - Mirar d'optimitzar el temps de carrega de l'index principal (lo millor será mostrar els 10 primers, i fer un scroll infinit amb ajax...)
  V  - Eliminar ul i li del combo de les categories de l'index, ja que si li poso atributs, no valida correctament en html5. (amb divs si que valida)
  V  - Resaltar el H2 amb una animació del color al utilitzar el menú de la cadena. Ames el sistema mou SEMPRE el scroll, i nomes l'ha de moure si no es veu per pantalla.
  V  - Modificar aspecte de .Tabla segons el esboç de l'escriptori "concepte devildrey33.es (.tabla).png", "concepte devildrey33.es (.tabla) II.png"
- V      - Probar amb linea verda blava i grisa (bora del color del fondo del article)
- V      - Probar dissey amb http://devildrey33.st0rm/Doc/CSS/Degradados , i ensenyar al mestre taliba.
  V  - Modificar l'aspecte dels marcs de PintarCodigo amb la mateixa aparença que el .Tabla pero amb la bora esquerra de color verd (el mateix verd que l'etiqueta linea) de forma que el color verd quedi associat a codis d'exemple visualment.
  V  - El lab refresca maça rapid el codi, s'ha de posar un temporitzador de mig segon o algo aixi desde l'ultim keyup... (500ms desde l'ultim onChange)
  V  - Retocar inputs del comentari i afegir en el :hover la sombra que poso en el :active.
@@ -29,32 +26,45 @@ Millores de la web :
         
 +o- - Pasar a svg tots els icones dels menús laterals, excepte el burguer i la creu de tancar. (em falten els 4 de la vista del lab, que s'han de refer...)
  V      - Afegir efectes 3d en el hover dels svgs
-    - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
-    - Re-estudiar el menu de l'esquerra, com fer poques categories que a l'hora que englobin la majoria de la web. 
-    - Retocar l'animació de carrega de sota a la dreta i afegirli una rotacio de la X a cada cercle.
-    - El buscador del menú principal (amb google)... aviam si al 2016 el faig.. xd
  V  - La valoració del document (nota) en articles que tenen comentaris, no surt fins que no has vist varis comentaris, s'hauria de fer com a la del 2014, quan arribi a l'altura del h2 "Comentarios"
  V  - Retocar animació de la nota, per que resalti mes (animació amb una rotació del eix X del svg cada 10 segons +o-)
+    - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
+    - Re-estudiar el menu de l'esquerra, com fer poques categories que a l'hora que englobin la majoria de la web. 
+ V  - Retocar l'animació de carrega de sota a la dreta i afegirli una rotacio de la X a cada cercle. Ara com a minim si es queda trabat dona pilotaço xd
+    - El buscador del menú principal (amb google)... aviam si al 2016 el faig.. xd
     - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
     - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
+ V  - Crear enllaços del tipo <linea> amb etiquetes <a>, i ja de pas treure el verd, i posar unaltre color mes semblant als enllaços normals.
+
 
 
 Estils movils :
-    - Probar l'index en Google Nexus 10, no es pot accedir a les seguents entrades amb l'escroll.
+    - Probar l'index en Google Nexus 10, no es pot accedir a les seguents entrades amb l'escroll. 
+        - Amb el kindle del principi es pitjor... habia ampliat a 15 pero no es suficient, d'alguna forma sha de mostrar els items que hi caben a la pantalla...
     - Revisar estils de tablets i de movils (mirar que tots els que deixa probar el chrome es vegin be)
+    - Estic per refer els media especialment per cada dispositiu que mostra el chrome.
+    
+Index : 
+    - Conservar el número d'entrades carregades en l'index per carregarles de cop despres si es torna a carregar l'index.
 
 Lab :
  V  - Al actualitzxar un codi, (ja sigui perque s'ha modificat, o perque s'ha carregat un nou codi) s'han de eliminar tots els timers del codi anterior.
  V      - La solució era mes facil del que pensaba, i consisteix en borrar el iframe del dom i tornar-lo a crear.
  V  - Al carregar un codi, si no es el primer cop que entra al lab, triga els 500 ms del OnChange. S'ha de fer instantani.
+ V  - A l'explorador d'arxius els enllaços no van amb un link 'a href' NO MOLA.
+        - Aixo ha creat un bug visual amb el firefox..... abans amb <span> funcionaba perfecte pero ara que es un <a> no calcula bè l'espai...
+ V  - S'ha de fer per defecte sempre la vista mixta horitzontal si no s'especifica unaltre cosa.
+ V      - S'han de poguer especificar les opcions que queden apart del ?Preview
+ V  - Al recarregar la web amb F5 que miri si l'exemple esta guardat i mostri un missatge per guardar o no (teclat FULL)
+        - Falta tambè fer un parche a Base.CargarURL i a Lab.CargarArchivo per avisar que no s'ha guardat l'arxiu.
     - Afegir barra per modificar l'amplada de la vista mixta en el minilab.
 
 Blog :
-    - devildrey33_PintarCodigo 2.0
+ V  - devildrey33_PintarCodigo 2.02
+ X  - Revisar document "CSS3_Transition_Transform.php", te estils inline i s'han de posar amb un CSS a part. (el mateix css es l'exemple i incluo l'etiqueta script, per lo que no el puc moure a un css...)
+ V  - el "DegradadosCSS.php" te estils inline colocats al HEAD.... revisar tambè (estils dels degradats fets inline, a la merda xd)
+ V  - l'arxiu /Blog/Tutorial_WINAPI_4.php no te h2's apart del de comentaris! (afegits h2 i a mes l'he omplert de <linea> xd)
     - Mirar de començar a fer coses amb SVG's (Ejemplos/SVG/Iconos.html)
-    - Revisar document "CSS3_Transition_Transform.php", te estils inline i s'han de posar amb un CSS a part.
-        - el "DegradadosCSS.php" te estils inline colocats al HEAD.... revisar tambè
-        - l'arxiu /Blog/Tutorial_WINAPI_4.php no te h2's apart del de comentaris!
     
 Doc/CSS :
     - cubic-bezier chulo al estil de http://cubic-bezier.com/
@@ -68,3 +78,11 @@ Solitario :
 
     - En el explorer va chungo chungo xd
  V  - En firefox mostra malament totes les cartes (el firefox no pilla background-position-x y background-position-y. S'ha de fer amb background-position lo que em fa escriure un selector per carta).
+
+ESPECIFIC NAVEGADORS :    
+ V  - Les fonts de les etiquetes <pre> i <code> monospace no tenen la mida iguals en chrome i firefox. He pillat una monospace del google i ara sembla que tenen la mateixa mida en tots.
+    Firefox :         
+        - Els icones svg no fan bè l'animació en el hover (no la fan centrada).
+    Explorer 11 :
+        - Els svgs es veuen minis.
+

@@ -287,6 +287,7 @@
                         <li><b>cid</b> es la ID del marc del códi.</li>
                         <li><b>l</b> es el número de línea a resaltar (pots especificar varies lineas separades per una coma <b>i sense espais</b>).</li>
                     </ul>
+                    <div class='nota'>Ara tambè pots fer servir una etiqueta &lt;a&gt; amb els atributs <code>cid</code> i <code>l</code>, per fer un enllaç que a mes resalti una o varies lineas de codi. <a href='/FaqBarba' cid='ID3' l='1'>Exemple</a>.</div>
                 </td>                
                 
             </tr>

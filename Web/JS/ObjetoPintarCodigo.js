@@ -1,5 +1,7 @@
 /* Objeto PintarCodigo creado el 26/11/2015 para devildrey33.es 
- * Última modificación el 28/11/2015 */
+   Última modificación el 02/02/2016 
+   Licencia            : GPL3 (http://www.gnu.org/licenses/gpl-3.0.html)
+ */
 $PintarCodigo = new function() {
     // Etiqueta línea actual
 //    this.CodigoDivC         = [];
@@ -15,7 +17,7 @@ $PintarCodigo = new function() {
             $PintarCodigo.MostrarLineaCodigo($(this).attr("cid"), $(this).attr("l"));
         });
         // Evento mousehover para la etiqueta <linea>
-        $("linea").off("mouseover").on("mouseover", function(e) {
+        $("linea, a[cid][l]").off("mouseover").on("mouseover", function(e) {
             Lineas = $(this).attr("l").split(",");
             console.log("$PintarCodigo.EnlazarEtiquetas > linea:mousehover", Lineas);
             for (var i = 0; i < Lineas.length; i++) {
@@ -23,7 +25,7 @@ $PintarCodigo = new function() {
             }
         });
         // Evento mouseout para la etiqueta <linea>
-        $("linea").off("mouseout").on("mouseout", function(e) {
+        $("linea, a[cid][l]").off("mouseout").on("mouseout", function(e) {
             Lineas = $(this).attr("l").split(",");
             console.log("$PintarCodigo.EnlazarEtiquetas > linea:mouseout", Lineas);
             for (var i = 0; i < Lineas.length; i++) {

@@ -159,7 +159,9 @@ and open the template in the editor.
 }*/
 
 .Lab_Explorador .Lab_Archivo > a {
-    display:none;
+/*    display:none;*/
+    color:#FFF;
+    display:inline-block;
 }
 
 /*#Lab_Explorador input[type=checkbox] {

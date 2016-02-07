@@ -65,7 +65,7 @@
                 <p>Y con esto terminamos por hoy, espero que este tutorial os sirva si algún día tenéis la intención de pintar un código JavaScript en vuestra web, o almenos para haceros una idea de como parsear códigos complicados con PHP.</p>
 
 
-<div class='nota'>Este código ha quedado obsoleto, por favor echa un vistazo a la versión 2 : <a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintáxis de un código fuente</a>.</div>                
+<div class='nota'>Este código ha quedado obsoleto, por favor echa un vistazo a la versión 2 : <a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintaxis de un código fuente</a>.</div>                
 <?php
     $Base->FinBlog();
     if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 

@@ -97,7 +97,7 @@ class devildrey33_BD {
     public function SumarVisita($Archivo, $bSumarVisita) {
         $Visitas = 0;
 
-        $Archivo = $this->_mysqli->real_escape_string(str_replace(array("?Preview"), "", $Archivo));
+        $Archivo = $this->_mysqli->real_escape_string(str_replace(array("?Preview", "?Filas", "?Columnas", "?Codigo"), "", $Archivo));
         
         // Comprobamos si existe algun registro de la pagina 
         $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina='".$Archivo."'");
@@ -137,7 +137,7 @@ class devildrey33_BD {
         $Votos       = 0;
         $Visitas     = 0;
         $Comentarios = 0;
-        $Archivo = str_replace("?Preview", "", $Archivo);
+        $Archivo = str_replace(array("?Preview", "?Filas", "?Columnas", "?Codigo"), "", $Archivo);
         $NombreArchivo = $this->_mysqli->real_escape_string(str_replace(array(".", "-"), array("_", ""), $Archivo));
         // Comprobamos el numero de comentarios
         $Resultado = $this->_mysqli->query("SELECT * FROM comentarios__".strtolower($NombreArchivo));

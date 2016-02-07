@@ -3,7 +3,7 @@
 
     return array(
         
-array(	"Titulo" 	=> "Resaltar sintáxis de un código fuente",
+array(	"Titulo" 	=> "Resaltar sintaxis de un código fuente",
         "Fecha" 	=> "29/01/2016",
         "URL" 		=> "resaltar-sintaxis-codigo-fuente",
         "Tags" 		=> array("PHP", "JavaScript", "CSS", "HTML", "Programación"),

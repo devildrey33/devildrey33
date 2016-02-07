@@ -33,8 +33,10 @@
         const T     Funcion(int ValorEntero, wchar_t Caracter);
     }
 #endif
+// También se puede resaltar una op varias líneas utilizando un enlace
 -[FIN devildrey33.Cpp]- -->
             <?php $PintarCodigo->PintarArchivoC("Cpp", "Test C/Cpp", basename(__FILE__), "Cpp"); ?>
+            <p>eitqueta <code>&lt;linea&gt;</code> : Resaltado en el hover y posicionamiento al hacer click</p>
             <ul>
                 <li><linea cid="Cpp" l="1">Línea 1</linea></li>
                 <li><linea cid="Cpp" l="5">Línea 5</linea></li>
@@ -42,6 +44,14 @@
                 <li><linea cid="Cpp" l="12">Línea 12</linea></li>
                 <li><linea cid="Cpp" l="14">Línea 14</linea></li>
                 <li><linea cid="Cpp" l="1,4,5,7">Línea 1, 4, 5, 7</linea></li>
+            </ul>
+            <hr>
+            <p>eitqueta <code>&lt;a&gt;</code> : Resaltado en el hover, al hacer click va al enlace como de costumbre.</p>            
+            <ul>
+                <li><a href='test-css.php'  cid='Cpp' l='17'>test-css.php</a></li>
+                <li><a href='test-html.php' cid='Cpp' l='17'>test-html.php</a></li>
+                <li><a href='test-js.php'   cid='Cpp' l='17'>test-js.php</a></li>
+                <li><a href='test-php.php'  cid='Cpp' l='17'>test-php.php</a></li>
             </ul>
         </div>
     </body>

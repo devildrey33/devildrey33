@@ -85,7 +85,7 @@ int MiFuncionEjemplo(void) { return 0: };
                 <p>Y esto es todo! espero que esta clase os saque de algún apuro y que como mínimo os ahorre tiempo.</p>
 
 
-                <div class='nota'>Este código ha quedado obsoleto, por favor echa un vistazo a la versión 2 : <a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintáxis de un código fuente</a>.</div>
+                <div class='nota'>Este código ha quedado obsoleto, por favor echa un vistazo a la versión 2 : <a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintaxis de un código fuente</a>.</div>
                 
 <?php
     $Base->FinBlog();

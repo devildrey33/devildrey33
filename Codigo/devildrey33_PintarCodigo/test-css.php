@@ -39,8 +39,10 @@ div {
     .AnimacionLogo  {    display:block;   }
     a               {    display:block;   }
 }
+/* También se puede resaltar una op varias líneas utilizando un enlace */
  -[FIN devildrey33.CSS]- -->    
             <?php $PintarCodigo->PintarArchivoCSS("CSS", "Test CSS", basename(__FILE__), "CSS"); ?>
+            <p>eitqueta <code>&lt;linea&gt;</code> : Resaltado en el hover y posicionamiento al hacer click</p>
             <ul>
                 <li><linea cid="CSS" l="21">Línea 21</linea></li>
                 <li><linea cid="CSS" l="5">Línea 5</linea></li>
@@ -48,6 +50,14 @@ div {
                 <li><linea cid="CSS" l="12">Línea 12</linea></li>
                 <li><linea cid="CSS" l="14">Línea 14</linea></li>
                 <li><linea cid="CSS" l="1,4,5,7">Línea 1, 4, 5, 7</linea></li>
+            </ul>
+            <hr>
+            <p>eitqueta <code>&lt;a&gt;</code> : Resaltado en el hover, al hacer click va al enlace como de costumbre.</p>            
+            <ul>
+                <li><a href='test-php.php'  cid='CSS' l='23'>test-php.php</a></li>
+                <li><a href='test-html.php' cid='CSS' l='23'>test-html.php</a></li>
+                <li><a href='test-js.php'   cid='CSS' l='23'>test-js.php</a></li>
+                <li><a href='test-c.php'    cid='CSS' l='23'>test-c.php</a></li>
             </ul>
         </div>
     </body>

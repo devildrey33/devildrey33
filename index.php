@@ -25,6 +25,7 @@
         exit;
     }
     
+    
     $Base = new devildrey33;
     if (!isset($_POST["SinPlantilla"])) {
         $Base->InicioPlantilla(basename(__FILE__), "devildrey33", "");    

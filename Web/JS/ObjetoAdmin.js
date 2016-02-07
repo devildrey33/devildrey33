@@ -77,8 +77,9 @@ $Admin = new function() {
         nAjax.done(function(data) {
             console.log("Admin.Desloguear", data);
             $("#BarraNavegacion_Explorador").html(data);
-            $("#BarraNavegacion_Explorador .Lab_Archivo").off("click").on("click", function() { $Lab.ClickArchivo($(this)); });
-            $("#BarraNavegacion_Explorador .Lab_Directorio").off("click").on("click", function() { $Lab.ClickDirectorio($(this)); });
+            
+            $Lab.EnlazarEventosExplorador();
+            
             $Base.Cargando("FALSE");
         });
         nAjax.fail(function( jqXHR, textStatus, tError ) { 
@@ -149,18 +150,6 @@ $Admin = new function() {
 
     };
     
-    // DEPRECATED
-    /* Funcion para cargar previews en la vista de administración */
-/*    this.LabExplorar_CargarPreview = function(Archivo) {
-        console.log("Admin.LabExplorar_CargarPreview", Archivo);
-        //if (Archivo === undefined) { Archivo = Lab_Archivo; }
-        $.post("/cmd/LabAbrirEjemplo.cmd",  { "Archivo" : Archivo, "ID" : -1 }, function(data) {
-            Datos = JSON.parse(data);            
-            if      (Datos["Ret"] === 404) { $Base.MostrarErrorAjax(404, false); }
-            else if (Datos["Ret"] === 403) { $Base.MostrarErrorAjax(403, false); }
-            else                           { $Lab.AsignarCodigoPreview(Datos["Datos"]);    }        
-        });
-    }; */
     
 
     /* Función para generar el archivo de la cache que contiene los elementos permitidos para verse en el lab (SOLO ADMIN) */
@@ -714,3 +703,13 @@ $Admin = new function() {
 
 
 $(window).load(function() { $Admin.Iniciar(); });
+
+
+/* Avisa cuando recargas la pagina sin guardar el codumento del Lab */
+window.onbeforeunload = function() { 
+    if (typeof $Admin !== "undefined") {
+        if ($("body").attr("tipo") === "Lab" && $("body").attr("modificado") === "true" && $("body").attr("administrador33") === "true") {
+            return "Atención no has guardado el documento!!";
+        }
+    }
+};

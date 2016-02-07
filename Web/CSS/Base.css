@@ -1,10 +1,13 @@
 /* Base para el tema de devildrey33.es */
 @charset "UTF-8"; /* Especificar el charset SOLO en este archivo, que es el primero a minificar */
 
-@import url(http://fonts.googleapis.com/css?family=Architects+Daughter|Orbitron);
-@import url(http://fonts.googleapis.com/css?family=Karla);
-/* NETBEANS Marca como error esta línea */
-
+/* Fuente del logo vertical del menú de la izquierda */
+@import url('http://fonts.googleapis.com/css?family=Architects+Daughter|Orbitron');
+/* Fuente para las etiquetas h1, h2, h3, h4, h5*/
+@import url('http://fonts.googleapis.com/css?family=Karla');
+/* Fuente para las etiquetas pre, code, y otyras que necesiten una fuente monoespaciada */
+/*@import url('http://fonts.googleapis.com/css?family=Nova+Mono');*/
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext');
 
 html, button, .boton {
    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
@@ -44,8 +47,6 @@ body > svg > g > *, use > * {
 }
 
 i { background-color: rgba(255,255,255,0.8); }
-/*p, td { font-size:1.4rem; }*/
-/*pre, code { font-size:1.6rem; }*/
 a { color:rgb(234,80,78); text-decoration:none; text-shadow: 0px 0px 1px rgba(234,80,78, 0.6); }
 
 a:hover { text-decoration:underline; }
@@ -53,8 +54,9 @@ a:hover { text-decoration:underline; }
 img { max-width:100%; }
 
 pre, code, kbd, samp, tt, .Codigo_Numeracion {
-  font-family:monospace,monospace;
-  font-size:1.2rem;
+/*  font-family:'Nova Mono',monospace !important;*/
+  font-family:Inconsolata,monospace !important;
+  font-size:1.4rem !important;
 }
 /*pre, code {
     font-size: 1.1em;
@@ -257,7 +259,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
 .VentanaError_AnimacionError {
     animation:VE_Animacion 0.5s ease-in-out 0s;
 }
-
+/* Animación para el error en la ventana del login */
 @keyframes VE_Animacion {
     0% { transform:perspective(600px) rotateZ(0deg) rotateY(0deg); background:#1D1A21; }
     30% { transform:perspective(600px) rotateZ(3deg) rotateY(75deg) translateZ(-20px);   }

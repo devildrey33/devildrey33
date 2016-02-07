@@ -271,7 +271,7 @@ class devildrey33 {
                         "<a href='/Blog/Captcha1'>Captchas 1</a>".Intro().
                         "<a href='/Blog/Captcha2'>Captchas 2</a>".Intro().
                         "<a href='/Blog/Captcha3'>Captchas 3</a>".Intro().
-                        "<a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintáxis de un código fuente</a>".Intro().
+                        "<a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintaxis de un código fuente</a>".Intro().
                     "</div>".Intro().
                 "</div>".Intro().
                 
@@ -825,7 +825,7 @@ class devildrey33 {
         
         echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>'.Intro();
         echo '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>'.Intro();
-        echo "<script type='text/javascript' src='https://www.google.es/jsapi'></script>";
+        echo "<script type='text/javascript' src='https://www.google.es/jsapi'></script>".Intro();
         /* addons del codemirror */
         echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/JS/codemirror.min.js'></script>".Intro();
         echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/Cache/EntradasBlog.js'></script>".Intro();

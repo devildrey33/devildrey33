@@ -42,9 +42,7 @@ $Base = new function() {
 //        $("#BarraNavegacion_LabExplorar > .BarraPrincipal_BotonMenu > .IcoTexto > svg").on("click"), function() { $("#BarraNavegacion_BotonExplorar_Estado").trigger("click"); }
 //        $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(8)").click(function(e){ $Lab.AjustarVista("3"); });
 
-        $("#BarraNavegacion_Explorador .Lab_Archivo").off("click").on("click", function()       {   $Lab.ClickArchivo($(this));     });
-        $("#BarraNavegacion_Explorador .Lab_Directorio").off("click").on("click", function()    {   $Lab.ClickDirectorio($(this));  });
-
+        $Lab.EnlazarEventosExplorador();
 
         /* Eventos click para los botones del menú principal 
          *  Obtengo el evento del control input que va asociado a un label invisible que ocupa el mismo espacio que el boton.
@@ -643,6 +641,16 @@ $Base = new function() {
             console.log("Base.CargarURL Error, se ha intentado abrir una URL mientras se estaba cargando otra.");
             return false;
         }*/
+/*        
+        if (typeof $Admin !== "undefined") {
+            if ($("body").attr("tipo") === "Lab" && $("body").attr("modificado") === "true" && $("body").attr("administrador33") === "true") {
+                return "Atención no has guardado el documento!!";
+            }
+        }*/
+
+        
+        
+        
         /* Escondo los menús de la barra de navegación */
         $("#BarraNavegacion > .Menu_BotonCheck > input[type=checkbox]").removeAttr("checked");
         this.LogoCargando("TRUE");
@@ -714,8 +722,9 @@ $Base = new function() {
                 $("#Marco33").html(Datos.HTMLAdmin);
                 // Carpeta ejemplos completa con checkboxes para añadir / eliminar de la versión de usuario.
                 $("#BarraNavegacion_Explorador").html(Datos.ExplorarLab);
-                $("#BarraNavegacion_Explorador .Lab_Archivo").off("click").on("click", function() { $Lab.ClickArchivo($(this)); });
-                $("#BarraNavegacion_Explorador .Lab_Directorio").off("click").on("click", function() { $Lab.ClickDirectorio($(this)); });
+                $Lab.EnlazarEventosExplorador();
+/*                $("#BarraNavegacion_Explorador .Lab_Archivo").off("click").on("click", function() { $Lab.ClickArchivo($(this)); });
+                $("#BarraNavegacion_Explorador .Lab_Directorio").off("click").on("click", function() { $Lab.ClickDirectorio($(this)); });*/
                 
                 // Espero medio segundo a que se cargue el javascript para iniciarlo
 //                setTimeout(function() { $Admin.Iniciar(); }, 500);

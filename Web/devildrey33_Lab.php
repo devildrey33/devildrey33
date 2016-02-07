@@ -107,7 +107,7 @@
                         }
                         $Ret .= "<div class='Lab_Archivo' path='".$HREF."'>".Intro().
                                     "<div class='Lab_IcoArchivo'></div>".Intro().
-                                    "<span>".$Archivo."</span>".Intro().
+//                                    "<span>".$Archivo."</span>".Intro().
                                     "<a href='".$HREF."'>".$Archivo."</a>".Intro(). // link invisible para los buscadores
                                 "</div>".Intro().
                             "</div>".Intro();
@@ -178,7 +178,7 @@
 //                        if ($CheckBox === TRUE) echo "<input class='Lab_Explorador_Check' type='checkbox'".(devildrey33_Lab::_Buscar($Entradas, $HREF) == TRUE ? " checked='checked'" : "" )." />";
                             $Codigo .= "<div class='Lab_Archivo' path='".$HREF."'>".Intro().
                                         "<div class='Lab_IcoArchivo'></div>".Intro().
-                                        "<span>".$Archivo."</span>".Intro().
+//                                        "<span>".$Archivo."</span>".Intro().
                                         "<a href='".$HREF."'>".$Archivo."</a>".Intro(). // link invisible para los buscadores
                                     "</div>".Intro().
                                 "</div>".Intro();

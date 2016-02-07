@@ -1,0 +1,274 @@
+<!-- NOTA : OJU, La web del diari de terrassa es HTML4, i ara mostreu directament un codi HTML5 a dintr, que funciona, pero no te perque funcionar sempre.
+        El millor que es pot fer, per no tenir problemes es posar el codi de l'anunci dintre d'una etiqueta <iframe> per que agafi el DOCTYPE HTML5 que fa servir l'anunci 
+        Tot el codi de l'anunci funciona amb HTML5 i CSS3, per aprofitar les animacións mitjançant hardware i no software.
+-->
+<!-- <iframe> -->
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <style type="text/css">
+            /* Font de google */
+            @import url('https://fonts.googleapis.com/css?family=Oswald:700&subset=latin,latin-ext');
+            
+            /* Modificar ample i altura dels anuncis desde aquestes dues clases */
+            .Ample  { width:300px;  }
+            .Altura { height:250px; }
+            
+            /* Objecte principal */
+            #BannerSlider {                
+                background:url('/Ejemplos/BanersDT/img-fondo.png');
+                overflow:hidden;                 
+            }
+       
+            /* Marc amb les fotografies */
+            #MarcSlider {                
+                position:relative;
+                /* Transició d'imatge 1.6 segons -> http://cubic-bezier.com/ */
+/*                transition:1.6s cubic-bezier(.33,.33,.23,.78); */                
+/*                transition:1.6s cubic-bezier(.3,-0.5,.23,.78); */
+            }
+                            
+            /* Contenidor per cada diapositiva */
+            .ContenidorAnunci {
+                width:300px; 		
+                height:250px;		
+                text-decoration:none; /* Treu el subrayat pels textes ja que el Aquest div es una etiqueta <a> i marca tot el texte sub-rayat */
+                position:relative;
+                display:block;
+                color:#FFF;
+                font-size:1.5rem;
+                text-align: center;
+            }
+            
+            /* Marc per centrar verticalment el contingut del ContenidorAnuncis */
+            .ContenidorAnunci > .CentratVertical {
+                max-width:280px;
+                /*height:250px;*/
+                display:inline-block;
+                vertical-align: middle;                
+                margin-left:auto;
+                margin-right:auto;
+                position:relative;                
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            /* Fila de texte / imatge del ContenidorAnunci */
+            .ContenidorAnunci > .CentratVertical > div { 
+                position:relative;
+                margin-left:auto;
+                margin-right:auto;
+                display:block;                
+                animation-duration:1s; /* Si no especificamos la duración, por defecto es 0 */
+                animation-timing-function:cubic-bezier(.3,-0.5,.23,.78);  
+                animation-iteration-count:1;
+            }
+            
+            /* Fila de texte del ContenidorAnunci */
+            .ContenidorAnunci > .CentratVertical > .Texte {            
+                text-align:center;
+                left:150%;
+                font-family:'Oswald', sans-serif; /* Font Oswald del google */
+/*                animation:DeAniScrollDreta 1s cubic-bezier(.3,-0.5,.23,.78) 0s 1 normal;                */
+                animation-name:DeAniScrollDreta;
+            }            
+            
+            /* Fila de texte del ContenidorAnunci que s'esta mostran actualment '*/
+            .ContenidorAnunci[actual=true] > .CentratVertical > .Texte {
+                animation-name:AniScrollDreta;
+
+                animation-fill-mode: forwards;
+            }
+            
+            /* Fila amb una imatge pel ContenidorAnunci */
+            .ContenidorAnunci > .CentratVertical > div[class^="Imatge-"] {            
+                opacity:0;
+                animation-name:DeAniOpacitat;
+            }
+
+            /* Fila d'una imatge del ContenidorAnunci que s'esta mostran actualment '*/
+            .ContenidorAnunci[actual=true] > .CentratVertical > div[class^="Imatge-"] {            
+                animation-name:AniOpacitat;
+                animation-duration:0.75s; /* Si no especificamos la duración, por defecto es 0 */
+                animation-fill-mode: forwards;
+            }
+            
+            .Delay01 { animation-delay:0.1s; }
+            .Delay02 { animation-delay:0.2s; }
+            .Delay03 { animation-delay:0.3s; }
+            .Delay04 { animation-delay:0.4s; }
+            .Delay05 { animation-delay:0.5s; }
+            .Delay06 { animation-delay:0.6s; }
+            .Delay07 { animation-delay:0.7s; }
+            .Delay08 { animation-delay:0.8s; }
+            .Delay09 { animation-delay:0.9s; }
+            .Delay10 { animation-delay:1.0s; }
+            .Delay11 { animation-delay:1.1s; }
+            .Delay12 { animation-delay:1.2s; }
+            .Delay13 { animation-delay:1.3s; }
+            .Delay14 { animation-delay:1.4s; }
+            .Delay15 { animation-delay:1.5s; }
+            .Delay16 { animation-delay:1.6s; }
+            .Delay17 { animation-delay:1.7s; }
+            .Delay18 { animation-delay:1.8s; }
+            .Delay19 { animation-delay:1.9s; }
+            .Delay20 { animation-delay:2.0s; }
+            
+            /* Animació per cada fila del ContenidorAnuncis */    
+            @keyframes AniScrollDreta {
+                0%   { left:150%; }     /* Al principio de la animación */
+                100% { left:0%; }                   /* Al final de la animación */
+            }
+
+            /* Animació per cada fila del ContenidorAnuncis */    
+            @keyframes DeAniScrollDreta {
+                0%   { left:0%; }                   /* Al principio de la animación */
+                100% { left:150%; }    /* Al final de la animación */
+            }
+            
+            /* Animació per cada fila del ContenidorAnuncis */    
+            @keyframes AniOpacitat {
+                0%   { opacity:0; }     /* Al principio de la animación */
+                100% { opacity:1; }                   /* Al final de la animación */
+            }
+
+            /* Animació per cada fila del ContenidorAnuncis */    
+            @keyframes DeAniOpacitat {
+                0%   { opacity:1; }      /* Al principio de la animación */
+                100% { opacity:0; }    /* Al final de la animación */
+            }
+            
+            
+            
+            /* Logo DT */
+            .Imatge-Logo280px {
+                background-repeat:no-repeat;                
+                background-image:url('/Ejemplos/BanersDT/cabecera280x49.png'); /* OJU Maxim d'ample pel logo 280px */
+                width:280px;
+                height:49px;
+                margin-left:auto;
+                margin-right:auto;                
+            }
+            .Imatge-Logo140px {
+                background-repeat:no-repeat;                
+                background-image:url('/Ejemplos/BanersDT/cabecera140x24.png'); /* OJU Maxim d'ample pel logo 280px */
+                width:140px;
+                height:24px;
+                margin-left:auto;
+                margin-right:auto;                
+            }
+            .Imatge-olla {
+                background-repeat:no-repeat;                
+                background-image:url('/Ejemplos/BanersDT/olla2.png'); /* OJU Maxim d'ample pel logo 280px */
+                width:140px;
+                height:112px;
+                margin-left:auto;
+                margin-right:auto;                
+            }
+            
+            /* DEPURACIÓ (Activa l'atribut debug a l'estiqueta body per veure el contenidor amb ajudes visuals per depurar)*/
+            /* Veure tots els marcs (per depurar) */
+            body[debug=true] #BannerSlider {        overflow:visible !important;        }                             
+            /* Veure tots els marcs (per depurar) */
+            body[debug=true] .ContenidorAnunci {    border:1px solid red !important;    }            
+        </style>
+        <script type="text/javascript">
+/*            function ClaseAnuncis () {
+                this.Imatge 		= -1;		// Imatge actual NO TOCAR
+                this.AmpleImatge 	= 300;		// Ample de la imatge en pixels
+                this.Temps 		= 5000; 	// Temps per canviar d'una imatge a unaltre en milisegons
+                
+                // Funció per canviar l'imatge
+                this.CanviarImatge = function() {
+                    // Obtinc l'ultim contenidor que s'ha animat
+                    var ContenidorAnuncisActual = document.querySelector('[actual=true]');                   
+                    ContenidorAnuncisActual.removeAttribute("actual"); // Elimino l'atribut actual que comença l'animació de les files
+                    
+                    this.Imatge ++; 								// Sumo 1 al contador de la imatge actual
+                    var Imatges = document.getElementsByClassName("ContenidorAnunci");		// Llista d'imatges                     
+                    if (this.Imatge === Imatges.length) { this.Imatge = 0; }			// Si ha arribat al final, tornem a la primera imatge
+                    Imatges[this.Imatge].setAttribute("actual", "true"); // Asigno l'atribut actual al contenidor actual per començar l'animació de les files
+                    document.getElementById("MarcSlider").style.left = "-" + this.Imatge * this.AmpleImatge + "px";
+                };				
+                
+                // Funció per iniciar l'animació
+                this.Iniciar = function() {
+                    Anuncis.CanviarImatge();
+                    // Temporitzador per canviar l'imatge
+                    setInterval(function() { Anuncis.CanviarImatge(); }, Anuncis.Temps);
+                };
+            };
+            
+            var Anuncis = new ClaseAnuncis();
+
+            // MAIN
+//            window.addEventListener ? window.addEventListener("load", Anuncis.Iniciar, false) : window.attachEvent && window.attachEvent("onload", Anuncis.Iniciar);
+      */      
+     /*
+            function ClaseAnuncis () {
+                this.Imatge 		= -1;		// Imatge actual NO TOCAR
+                this.AlturaImatge 	= 250;		// Ample de la imatge en pixels
+                this.Temps 		= 4000; 	// Temps per canviar d'una imatge a unaltre en milisegons
+                
+                // Funció per canviar l'imatge
+                this.CanviarImatge = function() {
+                    this.Imatge ++; 													// Sumo 1 al contador de la imatge actual
+                    var Imatges = document.getElementsByClassName("ContenidorAnunci");		// Llista d'imatges                     
+                    if (this.Imatge === Imatges.length) { this.Imatge = 0; }			// Si ha arribat al final, tornem a la primera imatge
+                        document.getElementById("MarcSlider").style.top = "-" + this.Imatge * this.AlturaImatge + "px";
+                        Imatges[this.Imatge].setAttribute("actual", "true"); // Asigno l'atribut actual al contenidor actual per començar l'animació de les files
+                    };				
+                
+                // Funció per iniciar l'animació
+                this.Iniciar = function() {
+                    Anuncis.CanviarImatge();
+                    // Temporitzador per canviar l'imatge
+                    setInterval(function() { Anuncis.CanviarImatge(); }, Anuncis.Temps);
+                };
+            };
+            
+            var Anuncis = new ClaseAnuncis();
+
+            // MAIN
+            window.addEventListener ? window.addEventListener("load", Anuncis.Iniciar, false) : window.attachEvent && window.attachEvent("onload", Anuncis.Iniciar);
+                 */
+        </script>
+    </head>
+<!--    <body> -->
+    <body debug='false'>
+        <div id='BannerSlider' class='Altura Ample'>
+            <div id='MarcSlider'>                
+                <a class='ContenidorAnunci Altura Ample' href='http://servidor.dom/enllaç.html' actual='true'>
+                    <div class='CentratVertical'>                         
+                        <div class='Texte               Delay04'   style='top:-5px;'>
+                            <span style="color:red">Q</span>ue no se t'escapi<span style="color:red">!!</span> 
+                        </div>                	
+                        <div class='Texte               Delay05'   style='top:-10px;'>
+                            <span style="color:red">Aconsegueix</span> el
+                        </div>
+                        <div class='Texte               Delay06'   style='top:-10px;'>
+                            <span style="color:red">R</span>obot de <span style="color:red">cuina</span>
+                        </div>                	
+                        <div class='Imatge-olla         Delay09'   style='top:-8px;      animation-duration:2s !important;'></div>
+                        <div class='Imatge-Logo140px    Delay03'   style='top:-6px;'></div>
+                    </div>
+                </a>
+                <a class='ContenidorAnunci Altura Ample' href='http://servidor.dom/enllaç.html'>
+                    <div class='CentratVertical'> 
+                        <div class='Texte' >Lorem ipsum</div>                	
+                        <div class='Texte' >Lorem ipsum</div>                	
+                    </div>
+                </a>
+                <a class='ContenidorAnunci Altura Ample' href='http://servidor.dom/enllaç.html'>
+                    <div class='CentratVertical'> 
+                        <div class='Texte' >Lorem ipsum</div>                	
+                        <div class='Texte' >Lorem ipsum</div>                	
+                    <div>
+                </a>
+            </div>
+            
+        </div>
+    </body>
+</html>
+<!-- </iframe> -->

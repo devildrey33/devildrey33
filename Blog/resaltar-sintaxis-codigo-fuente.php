@@ -2,10 +2,10 @@
     include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
     $Base = new devildrey33;	
 
-    $META = '<meta name="description" content="Resaltar sintáxis de código fuente (C/C++, PHP, HTML, JavaScript, CSS) para PHP">
-    <meta name="keywords" content="Resaltador de código, Resaltador de sintáxis, Dar formato código, Pintar código, Resaltar código, Marcar código, Resaltar sintáxis, Resaltar código">';
+    $META = '<meta name="description" content="Resaltar sintaxis de un código fuente (C/C++, PHP, HTML, JavaScript, CSS) para PHP">'.Intro().
+            '<meta name="keywords" content="Resaltador de código, Resaltador de sintaxis, Dar formato código, Pintar código, Pintar código fuente, Resaltar código, Resaltar código fuente, Marcar código, Resaltar sintaxis">';
 
-    $Titulo = "Resaltar sintáxis de un código fuente";
+    $Titulo = "Resaltar sintaxis de un código fuente";
     
     if (!isset($_POST["SinPlantilla"])) {
         $Base->InicioPlantilla(basename(__FILE__), $Titulo, $META);
@@ -18,9 +18,9 @@
     <img class="ImagenPortada" src="/Web/Graficos/250x200_ResaltarSintaxis.png" alt="Resaltar código para mostrar en una web" />
     
     <p>Uno de los primeros problemas que me encontré al empezar esta web en el 2009 fue la necesidad de mostrar código fuente de varios lenguajes resaltando su sintaxis.</p>
-    <p>Al investigar sobre el tema, me di cuenta que la mayoría de soluciones (por lo menos las mas aceptables) estaban hechas con JavaScript. Lo que al final con el tiempo me llevo a crearme mi propia herramienta para remarcar la sintáxis en php, ya que yo consideraba mejor hacer el parsing en php y guardarlo en archivos "cache", de forma que solo se realizaba el parsing si la fecha de modificación del archivo cache era inferior a la fecha de modificación del archivo de código.</p>
+    <p>Al investigar sobre el tema, me di cuenta que la mayoría de soluciones (por lo menos las mas aceptables) estaban hechas con JavaScript. Lo que al final con el tiempo me llevo a crearme mi propia herramienta para remarcar la sintaxis en php, ya que yo consideraba mejor hacer el parsing en php y guardarlo en archivos "cache", de forma que solo se realizaba el parsing si la fecha de modificación del archivo cache era inferior a la fecha de modificación del archivo de código.</p>
 
-    <p>Por el 2011 publique varias entradas en el blog sobre el tema de remarcar sintaxis en php, en las que explicaba como parsear determinados lenguajes y resaltar su sintáxis :
+    <p>Por el 2011 publique varias entradas en el blog sobre el tema de remarcar sintaxis en php, en las que explicaba como parsear determinados lenguajes y resaltar su sintaxis :
         <a href='/Blog/ColorearCodigoPHP_XML'>Colorear código XML</a>, 
         <a href='/Blog/ColorearCodigoPHP_CSS'>Colorear código CSS</a>,
         <a href='/Blog/ColorearCodigoPHP_JavaScript'>Colorear código JavaScript</a>,
@@ -30,7 +30,7 @@
         Al final dichas entradas del blog acabaron fusionadas para formar el objeto devildrey33_PintarCodigo.
     </p>
     
-    <p>Hace cosa de un par de meses se me metió en la cabeza que necesitaba poder resaltar ciertas líneas de código con enlaces parecidos a un link. Y esto me llevo a re-escribir prácticamente por completo el objeto devildrey33_PintarCodigo. Y este es el resultado, ahora se pueden resaltar <linea cid='HTML' l='4'>una</linea> o <linea cid='HTML' l='6,7,8,9,14,15,22,23,24'>varias</linea> líneas de código pasando por encima de los enlaces verdes. Si la línea no está visible en la pantalla, al hacer click en el enlace verde <linea cid='HTML' l='38'>nos lleva hasta ella</linea>.</p>
+    <p>Hace cosa de un par de meses se me metió en la cabeza que necesitaba poder resaltar ciertas líneas de código con enlaces parecidos a un link. Y esto me llevo a re-escribir prácticamente por completo el objeto devildrey33_PintarCodigo. El resultado, es que ahora se pueden resaltar <linea cid='HTML' l='4'>una</linea> o <linea cid='HTML' l='6,7,8,9,14,15,22,23,24'>varias</linea> líneas de código pasando por encima de los enlaces verdes. Si la línea no está visible en la pantalla, al hacer click en el enlace verde <linea cid='HTML' l='38'>nos lleva hasta ella</linea>.</p>
 
 <?php 
 /* -[INICIO devildrey33.HTML]-
@@ -195,28 +195,28 @@
             <td>Archivo que contiene el script que hace funcionar los enlaces verdes.</td><td><b>(OPCIONAL)</b></td>            
         </tr>
         <tr>
-            <td>/test-c.php</td>
+            <td>/<a href='/Codigo/devildrey33_PintarCodigo/test-c.php' target='_blank'>test-c.php</a></td>
             <td>Pequeño test sobre un código C++</td><td></td>            
         </tr>
         <tr>
-            <td>/test-css.php</td>
+            <td>/<a href='/Codigo/devildrey33_PintarCodigo/test-css.php' target='_blank'>test-css.php</a></td>
             <td>Pequeño test sobre una hoja de estilos CSS</td><td></td>         
         </tr>
         <tr>
-            <td>/test-html.php</td>
+            <td>/<a href='/Codigo/devildrey33_PintarCodigo/test-html.php' target='_blank'>test-html.php</a></td>
             <td>Pequeño test sobre un código HTML que contiene además PHP, CSS, y JavaScript.</td><td></td>          
         </tr>
         <tr>
-            <td>/test-js.php</td>
+            <td>/<a href='/Codigo/devildrey33_PintarCodigo/test-js.php' target='_blank'>test-js.php</a></td>
             <td>Pequeño test sobre un código JavaScript.</td><td></td>  
         </tr>
         <tr>
-            <td>/test-php.php</td>
+            <td>/<a href='/Codigo/devildrey33_PintarCodigo/test-php.php' target='_blank'>test-php.php</a></td>
             <td>Pequeño test sobre un código PHP.</td><td></td>       
         </tr>        
     </table>
     
-    <div class='Centrado'><a href='../Descargas/devildrey33_PintarCodigo.2.03.zip' target='_blank' class='Boton'>Descargar ejemplo</a></div>
+    <div class='Centrado'><a href='../Descargas/devildrey33_PintarCodigo.2.02.zip' target='_blank' class='Boton'>Descargar ejemplo</a></div>
     
     
 <?php

@@ -1,12 +1,12 @@
+/* Declaraciones CSS para el objeto devildrey33_PintarCodigo
+    Creado por Josep Antoni Bover Comas para devildrey33.es el 09/10/2011
+    Ultima modificación : 06/02/2016    */
 
-/*****************/
-/* Pintar código */
-/*****************/
+/* Marco con el título, númeración de las líneas, y el código*/
 .Codigo_Marco {
     outline:1px solid transparent;
-    border-left:4px solid green;
+    border-left:4px solid rgb(184,80,78);
     display:inline-block;
-/*    background:#353338;*/
     position:relative;
     max-width:100%;
     overflow-x:auto;
@@ -14,30 +14,24 @@
     margin-top:10px;
     transition:0.4s;
     border-radius:0px 4px 8px 0px;
-/*    border-bottom:1px solid rgb(225, 225, 225);
-    border-right:1px solid rgb(215, 215, 215);
-    border-top:1px solid rgb(205, 205, 205);*/
-/*    border:2px solid #353338;
-    border-bottom:1px solid #353338;*/
 }
-
 .Codigo_Marco:hover {
     outline:1px solid #999;
 }
-
+/* Marco para el titulo */
 .Codigo_Titulo {
     position:relative;
     display:table-caption;
-/*    background:rgb(230, 230, 230);*/
     background:#f7f7f7;
     padding:10px 10px 10px 25px;
     font-weight:bold;
     font-size:1.5rem;
 }
 /* Si el titulo está visible añado 2 pixeles de borde por la parte superior */
-.Codigo_Titulo  + .Codigo_Numeracion + .Codigo_PRECodigo {
+.Codigo_Titulo + .Codigo_Numeracion + .Codigo_PRECodigo {
     border-top:2px solid rgb(240,240,240);
 }
+/* Marco del código */
 .Codigo_PRECodigo {
     background:#FFFFFF;
     position:relative;
@@ -48,18 +42,16 @@
     font-family:monospace;
     font-size:1.6rem;
 }
-
+/* Numeración del código */
 .Codigo_Numeracion {
     display:table-cell;
     position:relative;
     text-align:right;
     padding:0px 6px;
-/*    background:rgb(230, 230, 230);*/
     background:#f7f7f7;
     font-family:monospace;
     font-size:1.6rem;
 }
-
 /* Colores para los codigos */
 .TxtNegro 	{	color:#000000;			}
 .TxtVerde 	{	color:#006600;			}
@@ -75,32 +67,36 @@
 .TxtGrisClaro 	{	color:rgb(98, 143, 181);	}
 .TxtMarron 	{	color:rgb(109, 50, 6);		}
 .TxtNegrita 	{	font-weight:bold;		}
-
-
-
 /* Etiqueta linea para resaltar una línea de un ejemplo */
 linea { 
     display:inline;    
     cursor:pointer;
-    color:green;
+    color:rgb(184,80,78);
     text-shadow: 0px 0px 1px rgba(0, 128, 0, 0.6);
 }
-
 linea:hover {
     text-decoration:underline;   
 }
-
+/* Las etiquetas <a> se pueden utilizar para resaltar código en el hover */
+a[cid][l]{    
+    transition:0.4s;  
+}
+a[cid][l]:hover {
+    color:rgb(184,80,78);
+    text-shadow: 0px 0px 1px rgba(0, 128, 0, 0.6);
+}
+/* Línea de código normal */
 .Codigo_PRECodigo > div[l] {
     transition:0.4s;
     background-color:rgb(255,255,255);
     min-height:14px;
 }
-
+/* Línea de código al hacer click en una etiqueta <linea> */
 .Codigo_PRECodigo > div[l][click] {
-    background-color:rgb(170, 225, 170) !important;
+    background-color:rgba(184,80,78, 0.5) !important;
 }
-
+/* Línea de código cuando se hace hover en una etiqueta <linea> o <a cid='' l=''> */
 .Codigo_PRECodigo > div[l][hover] {
     font-weight:900;
-    background-color:rgb(215, 240, 205);
+    background-color:rgba(184,80,78, 0.25);
 }

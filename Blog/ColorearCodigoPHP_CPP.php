@@ -49,7 +49,7 @@
                 <p>A parte de este código nos quedan varias funciones por comentar : _FinString1. _FinString2, y _BuscarDelimitadorC. Pero como son en esencia prácticamente iguales por no decir idénticas que en los dos últimos ejemplos las omitiré por hoy.</p>
                 <p>Y esto es todo! espero que este tutorial os sirva de ayuda. <strike>Como siempre podéis descargar el ejemplo, o ver la versión online</strike>.</p>
                 
-                <div class='nota'>Este código ha quedado obsoleto, por favor echa un vistazo a la versión 2 : <a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintáxis de un código fuente</a>.</div>
+                <div class='nota'>Este código ha quedado obsoleto, por favor echa un vistazo a la versión 2 : <a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintaxis de un código fuente</a>.</div>
 
 <?php
     $Base->FinBlog();

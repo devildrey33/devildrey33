@@ -1,6 +1,6 @@
 <?php
-/* Clase devildrey33_PintarCodigo creada por Josep Antoni Bover el 09/10/2011 para www.devildrey33.es
-   Ultima modificación : 29/01/2016
+/* Clase devildrey33_PintarCodigo creada por Josep Antoni Bover Comas el 09/10/2011 para www.devildrey33.es
+   Ultima modificación : 07/02/2016
 
    Versión             : 2.02
 
@@ -31,9 +31,9 @@
 // Objeto que realiza el parsing básico para normas complejas, y especificas para cada lenguaje
 class devildrey33_PintarCodigo {
                 // Path relativo al archivo devildrey33_PintarCodigo.php, para guardar y leer los archivos cache
-    private     $_PathCache                 = "/Cache/PintarCodigo/";
+    private     $_PathCache                 = "/Cache/";
                 // Path relativo al archivo devildrey33_PintarCodigo.php, donde están ubicados los diccionarios de colores
-    private     $_PathDiccionario           = "/PintarCodigo/";
+    private     $_PathDiccionario           = "/Diccionarios/";
                 // Sin depurador se hace lo que se puede... (Imprimo el array de palabras y estados)
                 // El modo depuración anula la escritura del texto coloreado en cache, por lo que siempre parseara al vuelo el código
     private     $_Debug = false;

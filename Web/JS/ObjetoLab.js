@@ -19,9 +19,8 @@ $Lab = new function() {
     /* Función que inicializa el laboratorio */
     this.Iniciar = function() {
         console.log("Lab.Iniciar", this.Archivo);
-        $("#MarcoNavegacion .Lab_Archivo").off("click").on("click", function() { $Lab.ClickArchivo($(this)); });
-        $("#MarcoNavegacion .Lab_Directorio").off("click").on("click", function() { $Lab.ClickDirectorio($(this)); });
-        $(".Lab_Archivo > a").off("click").on("click", function(e) {  e.preventDefault(); });
+        /* Enlazo los eventos click para el explorador */
+        this.EnlazarEventosExplorador();        
         
         this.Editor = CodeMirror.fromTextArea(document.getElementById('Lab_Codigo'), {
             mode                : 'text/html',
@@ -59,14 +58,15 @@ $Lab = new function() {
         
         this.Original = $("#Lab_Codigo").val();
         if (this.ForzarVista === '-1') {
-            this.ForzarVista = (typeof(localStorage["Lab_Vista"]) === "undefined")? "0" : localStorage["Lab_Vista"]; 
+//            this.ForzarVista = (typeof(localStorage["Lab_Vista"]) === "undefined")? "0" : localStorage["Lab_Vista"]; 
+            this.ForzarVista = "0"; 
         }
         switch (this.ForzarVista) {
 //            case "-1" :    $(".Lab_BotonVerFilas").trigger("click");      break; // Auto
-            case "0" :     $(".Lab_BotonVerFilas").trigger("click");      break; // Auto
-            case "1" :     $(".Lab_BotonVerColumnas").trigger("click");      break; // Auto
-            case "2" :     $(".Lab_BotonVerCodigo").trigger("click");      break; // Auto
-            case "3" :     $(".Lab_BotonVerPreview").trigger("click");      break; // Auto
+            case "0" :     $(".Lab_BotonVerFilas").trigger("click");        break; 
+            case "1" :     $(".Lab_BotonVerColumnas").trigger("click");     break; 
+            case "2" :     $(".Lab_BotonVerCodigo").trigger("click");       break; 
+            case "3" :     $(".Lab_BotonVerPreview").trigger("click");      break; 
             
         }
 //        this.AjustarVista(this.ForzarVista, false);
@@ -74,6 +74,19 @@ $Lab = new function() {
         this.ActualizarResultado();
         
 //        this.CargarArchivo();  
+    };
+    
+    /* Función que asigna los eventos para el explorador del laboratorio */
+    this.EnlazarEventosExplorador = function() {
+        console.log("Lab.EnlazarEventosExplorador");
+        $(".Lab_Explorador .Lab_Archivo").off("click").on("click", function() { $Lab.ClickArchivo($(this)); });
+        $(".Lab_Explorador .Lab_Directorio").off("click").on("click", function() { $Lab.ClickDirectorio($(this)); });
+        $(".Lab_Explorador .Lab_Archivo > a").off("click").on("click", function(e) {  
+            $Lab.ClickArchivo($(this).parent());
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            return false;
+        });        
     };
     
     
@@ -101,13 +114,13 @@ $Lab = new function() {
     this.ClickArchivo = function(Objeto, Dest) {
         console.log("Lab_ClickArchivo", Objeto);
         var Rec = Objeto;
-        var Ret = Rec.find("span").html();
+        var Ret = Rec.find("a").html();
 
         while (Rec !== null) {
             Rec = Rec.parent().parent().parent().prev();
             if (Rec.attr("class") !== "Lab_Directorio") break;
             Ret = Rec.find("span").html() + "/" + Ret;
-        }
+        }        
         Ret = "Ejemplos/" + Ret;
         if (Dest) { $Admin.LabExplorar_CargarPreview(Ret); }
         else      { this.CargarArchivo(Ret); }
@@ -400,7 +413,6 @@ $(window).resize(function() {
 });
 
     
-
 
 
 

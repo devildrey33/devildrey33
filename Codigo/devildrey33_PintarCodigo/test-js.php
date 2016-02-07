@@ -33,8 +33,10 @@ function NombreFuncion(Parametro) {
     }
     if (MiCadena == parseInt(MiNumero)) alert("Imposible!");
 }
+// También se puede resaltar una op varias líneas utilizando un enlace
 -[FIN devildrey33.JS]- -->    
             <?php $PintarCodigo->PintarArchivoJavaScript("JS", "Test JS", basename(__FILE__), "JS"); ?>
+            <p>eitqueta <code>&lt;linea&gt;</code> : Resaltado en el hover y posicionamiento al hacer click</p>
             <ul>
                 <li><linea cid="JS" l="1">Línea 1</linea></li>
                 <li><linea cid="JS" l="5">Línea 5</linea></li>
@@ -42,6 +44,14 @@ function NombreFuncion(Parametro) {
                 <li><linea cid="JS" l="12">Línea 12</linea></li>
                 <li><linea cid="JS" l="15">Línea 15</linea></li>
                 <li><linea cid="JS" l="1,4,5,7">Línea 1, 4, 5, 7</linea></li>
+            </ul>
+            <hr>
+            <p>eitqueta <code>&lt;a&gt;</code> : Resaltado en el hover, al hacer click va al enlace como de costumbre.</p>            
+            <ul>
+                <li><a href='test-php.php'  cid='JS' l='17'>test-php.php</a></li>
+                <li><a href='test-html.php' cid='JS' l='17'>test-html.php</a></li>
+                <li><a href='test-css.php'  cid='JS' l='17'>test-css.php</a></li>
+                <li><a href='test-c.php'    cid='JS' l='17'>test-c.php</a></li>
             </ul>
         </div>
     </body>

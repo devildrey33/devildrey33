@@ -48,9 +48,11 @@
         ?>
     </body>
 </html>
+ <!-- También se puede resaltar una op varias líneas utilizando un enlace -->
 -[FIN devildrey33.HTML]- */    
                 $PintarCodigo->PintarArchivoHTML("HTML", "Test HTML", basename(__FILE__), "HTML"); 
             ?>
+            <p>eitqueta <code>&lt;linea&gt;</code> : Resaltado en el hover y posicionamiento al hacer click</p>
             <ul>
                 <li><linea cid="HTML" l="6">Línea 6</linea></li>
                 <li><linea cid="HTML" l="17">Línea 17</linea></li>
@@ -58,6 +60,14 @@
                 <li><linea cid="HTML" l="24">Línea 24</linea></li>
                 <li><linea cid="HTML" l="29">Línea 29</linea></li>
                 <li><linea cid="HTML" l="1,4,5,7">Línea 1, 4, 5, 7</linea></li>
+            </ul>
+            <hr>
+            <p>eitqueta <code>&lt;a&gt;</code> : Resaltado en el hover, al hacer click va al enlace como de costumbre.</p>            
+            <ul>
+                <li><a href='test-php.php' cid='HTML' l='31'>test-php.php</a></li>
+                <li><a href='test-css.php' cid='HTML' l='31'>test-css.php</a></li>
+                <li><a href='test-js.php'  cid='HTML' l='31'>test-js.php</a></li>
+                <li><a href='test-c.php'   cid='HTML' l='31'>test-c.php</a></li>
             </ul>
         </div>
     </body>

@@ -101,7 +101,7 @@
                 <p>Y con esto terminamos por hoy! aunque no ponemos punto y final a los tutoriales para pintar código con PHP. Mañana podréis ver la clase <a href="ColorearCodigoPHP_devildrey33_PintarCodigo.php">devildrey33_PintarCodigo</a> que se utiliza en esta web.</p>
                 <p><strike>Como siempre os dejo la posibilidad de ver y descargar el ejemplo de hoy :</strike></p>
 
-<div class='nota'>Este código ha quedado obsoleto, por favor echa un vistazo a la versión 2 : <a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintáxis de un código fuente</a>.</div>                
+<div class='nota'>Este código ha quedado obsoleto, por favor echa un vistazo a la versión 2 : <a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintaxis de un código fuente</a>.</div>                
 <?php
     $Base->FinBlog();
     if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 

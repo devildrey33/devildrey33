@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <style type="text/css">
+            /* Font de google */
+            @import url('https://fonts.googleapis.com/css?family=Oswald:700&subset=latin,latin-ext');
+
+            /* Estructura :
+            <div id='BannerSlider'>                                                                     <!-- Marc per toit el control -->
+                <div id='MarcoSlider'>                                                                  <!-- Marc intern per canviar d'anunci -->      
+                    <a class='ContenidorAnunci' href='http://servidor.dom/enllaç.html' actual=true>     <!-- Contenidor per cada anunci -->
+                        <div class='CentratVertical'>                                                   <!-- Marc per centrar els elements de l'anunci verticalment -->
+                            <div>Lorem ipsum</div>                                                      <!-- Requadre amb una línea de texte -->
+                            <div class='Logo'></div>                                                    <!-- Requadre amb el logo -->
+                            <div>Lorem ipsum</div>                                                      <!-- Requadre amb una línea de texte -->
+                        <div>                                                                           <!-- Tancament del centrat vertical -->
+                    </a>                                                                                <!-- Tancament contenidor de l'anunci -->
+                </div>                                                                                  <!-- Tancament marc que conte tots els anuncis -->
+            </div>                                                                                      <!-- Tancament del control -->                                
+            */
+            
+            /* Objecte principal */
+            #BannerSlider {                
+                width:300px; 		/* Ample del banner */
+                height:250px;		/* Altura del banner */
+                background:url('/Ejemplos/BanersDT/img-fondo.png');
+                overflow:hidden;                 
+            }
+            /* Veure tots els marcs (per depurar) */
+            body[debug=true] #BannerSlider {
+                overflow:visible !important;                 
+            }
+                        
+            /* Marc amb les fotografies */
+            #MarcoSlider {                
+                width:calc(300px * 20); /* 320 pixels d'ample multiplicat per 20 fotografies */ 
+                position:relative;
+                /* Transició d'imatge 1.6 segons -> http://cubic-bezier.com/ */
+/*                transition:1.6s cubic-bezier(.33,.33,.23,.78);*/                
+                transition:1.6s cubic-bezier(.3,-0.5,.23,.78); 
+            }
+            
+            
+            /* Contenidor per cada diapositiva */
+            .ContenidorAnunci {
+                width:300px; 		
+                height:250px;		
+                text-decoration:none; /* Treu el subrayat pels textes ja que el Aquest div es una etiqueta <a> i marca tot el texte sub-rayat */
+                /* background:rgba(200,200,200,.8); */
+                align-items: center;
+                border:1px solid red;
+/*  justify-content: center; */
+                position:relative;
+                display:block;
+                color:#000;
+                text-align: center;
+/*                vertical-align: middle;                */
+            }
+            /* Marc per centrar verticalment el contingut del ContenidorAnuncis */
+            .ContenidorAnunci > .CentratVertical {
+                max-width:280px;
+                height:auto;
+                display:table-cell;
+                vertical-align: middle;                
+                margin-left:auto;
+                margin-right:auto;
+                position:absolute;
+                
+            }
+            /* Fila de texte / imatge del ContenidorAnunci */
+            .ContenidorAnunci > .CentratVertical > div {            
+                position:relative;
+                margin-left:auto;
+                margin-right:auto;
+                display:block;
+                text-align:center;
+                left:calc(300px * 20);
+                font-family: 'Oswald', sans-serif; /* Font Oswald del google */
+                animation:DeAniFilaContenidorAnuncis 1s cubic-bezier(.3,-0.5,.23,.78) 0s 1 normal;
+            }            
+            
+            .ContenidorAnunci[actual=true] > .CentratVertical  > div {
+                animation:AniFilaContenidorAnuncis 1s cubic-bezier(.3,-0.5,.23,.78) 0s 1 normal;
+                animation-fill-mode: both;
+            }
+            
+            /* Animació per cada fila del ContenidorAnuncis */    
+            @keyframes AniFilaContenidorAnuncis {
+                0%   { left:calc(300px * 20); }     /* Al principio de la animación */
+                100% { left:0%; }                   /* Al final de la animación */
+            }
+
+            /* Animació per cada fila del ContenidorAnuncis */    
+            @keyframes DeAniFilaContenidorAnuncis {
+                0%   { left:0%; }                   /* Al principio de la animación */
+                100% { left:calc(-300px * 20); }    /* Al final de la animación */
+            }
+            
+            
+            /* Logo DT */
+            .Logo {
+                background-repeat:no-repeat;                
+                background-image:url('/Ejemplos/BanersDT/cabecera2.png'); /* OJU Maxim d'ample pel logo 280px */
+                width:280px;
+                height:49px;
+                margin-left:auto;
+                margin-right:auto;                
+            }
+            
+        </style>
+        <script type="text/javascript">
+            function ClaseAnuncis () {
+                this.Imatge 		= -1;		// Imatge actual NO TOCAR
+                this.AmpleImatge 	= 300;		// Ample de la imatge en pixels
+                this.Temps 		= 5000; 	// Temps per canviar d'una imatge a unaltre en milisegons
+                
+                // Funció per canviar l'imatge
+                this.CanviarImatge = function() {
+                    // Obtinc l'ultim contenidor que s'ha animat
+                    var ContenidorAnuncisActual = document.querySelector('[actual=true]');                   
+                    ContenidorAnuncisActual.removeAttribute("actual"); // Elimino l'atribut actual que comença l'animació de les files
+                    
+                    this.Imatge ++; 								// Sumo 1 al contador de la imatge actual
+                    var Imatges = document.getElementsByClassName("ContenidorAnunci");		// Llista d'imatges                     
+                    if (this.Imatge === Imatges.length) { this.Imatge = 0; }			// Si ha arribat al final, tornem a la primera imatge
+                    Imatges[this.Imatge].setAttribute("actual", "true"); // Asigno l'atribut actual al contenidor actual per començar l'animació de les files
+                    document.getElementById("MarcoSlider").style.left = "-" + this.Imatge * this.AmpleImatge + "px";
+//                    console.log(this.Imatge, document.getElementById("MarcoSlider").style.left);
+                };				
+                
+                // Funció per iniciar l'animació
+                this.Iniciar = function() {
+//                    console.log("Iniciar");
+                    Anuncis.CanviarImatge();
+                    // Temporitzador per canviar l'imatge
+                    setInterval(function() { Anuncis.CanviarImatge(); }, Anuncis.Temps);
+                };
+            };
+            
+            var Anuncis = new ClaseAnuncis();
+
+            // MAIN
+//            window.addEventListener ? window.addEventListener("load", Anuncis.Iniciar, false) : window.attachEvent && window.attachEvent("onload", Anuncis.Iniciar);
+            
+        </script>
+    </head>
+<!--    <body> -->
+    <body debug='false'>
+        <div id='BannerSlider'>
+            <div id='MarcoSlider'>                
+                <a class='ContenidorAnunci' href='http://servidor.dom/enllaç.html' actual=true>
+                    <div class='CentratVertical'> 
+                        <div>Lorem ipsum</div>                	
+                        <div>Lorem ipsum</div>                	
+                        <div class='Logo'></div>
+                    </div>
+                </a>
+                <a class='ContenidorAnunci' href='http://servidor.dom/enllaç.html'>
+                    <div class='CentratVertical'> 
+                        <div>Lorem ipsum</div>                	
+                        <div>Lorem ipsum</div>                	
+                    </div>
+                </a>
+                <a class='ContenidorAnunci' href='http://servidor.dom/enllaç.html'>
+                    <div class='CentratVertical'> 
+                        <div>Lorem ipsum</div>                	
+                        <div>Lorem ipsum</div>                	
+                    <div>
+                </a>
+            </div>
+            
+        </div>
+    </body>
+</html>

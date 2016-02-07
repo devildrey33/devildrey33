@@ -1,9 +1,4 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
+/* Barra de navegación (barra lateral derecha)    
     Created on : 17-jul-2015, 20:59:17
     Author     : devildrey33
 */
@@ -38,32 +33,6 @@ body[tipo=Lab] #BarraNavegacion_LabVer, body[tipo=Lab] #BarraNavegacion_LabExplo
     display:table;
 }
 
-/*#BarraNavegacion > a, #BarraNavegacion_Encuesta {
-    width:60px;
-    height:60px;
-    display:block;
-    color:#FFFFFF;
-    background:rgba(37,35,40, 0.95);
-    text-decoration:none;
-    position:relative;
-    transition:0.4s;
-    margin-bottom: 2px;
-    cursor:pointer;
-}
-
-#BarraNavegacion_Encuesta {
-    right:-100px;
-    transition:0.4s cubic-bezier(.17,-0.42,0,1.35);
-}
-
-#BarraNavegacion_Encuesta[Visible=true] {
-    right:0px;
-}
-
-#BarraNavegacion > a:hover, #BarraNavegacion_Indice:hover, #BarraNavegacion_LabExplorar:hover, #BarraNavegacion_Encuesta {
-    background:#EA504E;                
-}     */
-
 
 input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {
     width:100%;
@@ -83,6 +52,7 @@ input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > svg {
     transition:0.4s;
     opacity:1;
 }
+
 /* Botones de los menus con imagenes */
 input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {
     width:58px;
@@ -131,21 +101,8 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
 /* Si soy administrador, estoy en el lab, y se ha modificado algun checkbox del explorador de archivos */
 body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuardarCache { visibility:visible; opacity:1; }
 
-/*#BarraNavegacion_Cerrar::before {
-    content:'';
-    position:absolute;*/
-/*    background-image:url('/Web/Graficos/BotonHome.png');*/
-/*    background-image:url('/Web/Graficos/EstrellaDeLaMortTotal.png'); */
-/*    background-image:url('/Web/Graficos/Home20px.png');*/
-/*    display:table;
-    width:100%;
-    height:100%;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-*/
 /* Tamaños de los submenus según las columnas que se necesiten */
-.SubIndice_Columas_1                                                {    width:300px !important;        }
+.SubIndice_Columas_1                                                {    width:300px !important;       }
 .SubIndice_Columas_2                                                {    width:500px; /* 250 * 2 */    }
 .SubIndice_Columas_3, .SubIndice_Columas_4, .SubIndice_Columas_5    {    width:540px; /* 180 * 3 */    }
 .SubIndice_Columas_1 > div                                                          { flex:1 1 280px; }
@@ -159,20 +116,12 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
     justify-content: flex-start;
     align-content: stretch;
     justify-content: center;
-/*    display:table;
-    max-height:600px;*/
-    
     position:absolute;
     top:-3px;
     right:64px;
-/*    height:600px;*/
-/*    min-width:400px;*/
-/*    width:300px;*/
     background: rgba(37,35,40, 0.95);
     padding:5px;
     color:#FFF;
-    
-/*    transition-delay:0.2s; /* un segundo de delay para des-animar */
 }
 
 #BarraNavegacion_Indice > #BarraNavegacion_SubIndice > div {
@@ -608,7 +557,7 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     position:relative;
 }
 
-
+/* Barra de navegación inferior por defecto oculta (actualmente solo contiene la animación para cargar) */
 #BarraNavegacion_Inferior {
     width:60px;
     height:60px;
@@ -618,7 +567,7 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     right:0px;    
     z-index:100;
 }
-
+/* Para mostrar la barra de navegacion inferior */
 #BarraNavegacion_Inferior[mostrar=true] {
     display:block;
 }
@@ -628,10 +577,9 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     border-radius:50px;
     width:40px;
     height:40px;
-    border:10px solid transparent;
-    border-color:transparent #EA504E;
-    -webkit-animation:Rotacion 1s infinite ease-in-out;
-    animation:Rotacion 1s infinite ease-in-out;
+    border:10px solid #353338;
+    border-color:#353338 #EA504E;
+    animation:Rotacion 10s infinite ease-in-out alternate;
 }
 
 #BarraNavegacion_Inferior > div:nth-child(2) {
@@ -641,19 +589,40 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     border-radius:20px;
     width:20px;
     height:20px;
-    border:5px solid transparent;
-    border-color:#EA504E transparent;
-    -webkit-animation:RotacionInv 1s infinite linear;
-    animation:RotacionInv 1s infinite linear;
+    border:5px solid #353338;
+    border-color:#EA504E #353338;
+    animation:RotacionInv 10s infinite alternate;
 }
 
+/* Animación para el icono de carga (menú lateral derecho inferior, semi circulo externo)*/
+@keyframes Rotacion 		{ 
+    0%   { transform:rotateZ(0deg)      rotateX(0deg);      border-color:#FFF #353338; }
+    10%  { transform:rotateZ(360deg)    rotateX(0deg);      border-color:#FFF #353338; }
+    20%  { transform:rotateZ(720deg)    rotateX(0deg);      border-color:#FFF #353338; }
+    30%  { transform:rotateZ(1080deg)   rotateX(0deg);      border-color:#FFF #353338; }
+    40%  { transform:rotateZ(1440deg)   rotateX(0deg);      border-color:#EEE #353338; }
+    50%  { transform:rotateZ(1800deg)   rotateX(180deg);    border-color:#EA504E #353338; }
+    60%  { transform:rotateZ(1440deg)   rotateX(180deg);    border-color:#EA504E #353338; }
+    70%  { transform:rotateZ(1080deg)   rotateX(180deg);    border-color:#EA504E #353338; }
+    80%  { transform:rotateZ(720deg)    rotateX(0deg);      border-color:#FFF #353338; }
+    90%  { transform:rotateZ(360deg)    rotateX(0deg);      border-color:#FFF #353338; }
+    100% { transform:rotateZ(0deg)      rotateX(0deg);      border-color:#FFF #353338;  }           
+}
 
-@-webkit-keyframes Rotacion 	{ 0% { -webkit-transform:rotate(0deg); } 	100% { -webkit-transform:rotate(360deg); }  }
-@-webkit-keyframes RotacionInv 	{ 0% { -webkit-transform:rotate(0deg); } 	100% { -webkit-transform:rotate(-360deg); } }
-
-@keyframes Rotacion 		{ 0% { transform:rotate(0deg); } 		100% { transform:rotate(360deg); }          }
-@keyframes RotacionInv 		{ 0% { transform:rotate(0deg); } 		100% { transform:rotate(-360deg); }         }
-
+/* Animación para el icono de carga (menú lateral derecho inferior, semi circulo interno)*/
+@keyframes RotacionInv 		{ 
+    0%   { transform:rotateZ(0deg)       rotateX(0deg);     border-color:#FFF #353338;}
+    10%  { transform:rotateZ(-360deg)    rotateX(0deg);     border-color:#FFF #353338;}
+    20%  { transform:rotateZ(-720deg)    rotateX(0deg);     border-color:#FFF #353338;}
+    30%  { transform:rotateZ(-1080deg)   rotateX(0deg);     border-color:#FFF #353338;}
+    40%  { transform:rotateZ(-1440deg)   rotateX(0deg);     border-color:#FFF #353338;}
+    50%  { transform:rotateZ(-1800deg)   rotateX(0deg);     border-color:#FFF #353338;}
+    60%  { transform:rotateZ(-1440deg)   rotateX(180deg);   border-color:#EA504E #353338;  }
+    70%  { transform:rotateZ(-1080deg)   rotateX(180deg);   border-color:#EA504E #353338;  }
+    80%  { transform:rotateZ(-720deg)    rotateX(0deg);     border-color:#FFF #353338;}
+    90%  { transform:rotateZ(-360deg)    rotateX(0deg);     border-color:#FFF #353338;}
+    100% { transform:rotateZ(0deg)       rotateX(0deg);     border-color:#FFF #353338;}           
+}
 
 
 /* Tooltips multiidioma */
