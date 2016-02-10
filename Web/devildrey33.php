@@ -308,7 +308,7 @@ class devildrey33 {
         "<nav id='BarraNavegacion'>".Intro().
             /* Home */
             "<a href='/' id='BarraNavegacion_Cerrar' tooltip-es='Volver al indice principal' tooltip-en='Return to main index' tooltip-pos='R' class='BarraPrincipal_BotonMenu'>".Intro().
-                "<svg viewBox='-15 -14 70 70'>".Intro().
+                "<svg viewBox='-16 -14 70 70'>".Intro().
                     "<use xlink:href='#svg-home'></use>".Intro().
                 "</svg>".Intro().                    
             "</a>".Intro().
@@ -400,7 +400,7 @@ class devildrey33 {
                 "<label class='BarraPrincipal_Boton_Label' for='BarraNavegacion_RedesSociales_Estado' tooltip-es='Redes sociales' tooltip-en='Social networks' tooltip-pos='R'></label>".Intro().
                 "<div class='BarraPrincipal_BotonMenu'>".Intro().
                     "<span class='IcoTexto'>".Intro().
-                        "<svg viewBox='-5 16 60 60'>".Intro().
+                        "<svg viewBox='-6 17 60 60'>".Intro().
                             "<use xlink:href='#svg-redes-sociales'></use>".Intro().
                         "</svg>".Intro().
                     "</span>".Intro().

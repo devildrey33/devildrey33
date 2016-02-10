@@ -641,14 +641,9 @@ $Base = new function() {
             console.log("Base.CargarURL Error, se ha intentado abrir una URL mientras se estaba cargando otra.");
             return false;
         }*/
-/*        
-        if (typeof $Admin !== "undefined") {
-            if ($("body").attr("tipo") === "Lab" && $("body").attr("modificado") === "true" && $("body").attr("administrador33") === "true") {
-                return "Atención no has guardado el documento!!";
-            }
-        }*/
 
-        
+        /* Comprobación para determinar si hay un archivo modificado en el lab y mostrar un mensaje de advertencia */
+        $Lab.Modificado();
         
         
         /* Escondo los menús de la barra de navegación */
@@ -828,6 +823,9 @@ $Base = new function() {
 
     /* CALLBACK para el historial de navegación */
     this.CALLBACK_Histroial = function(event) {
+        /* Comprobación para determinar si hay un archivo modificado en el lab y mostrar un mensaje de advertencia */
+        $Lab.Modificado();
+
         this.LogoCargando("TRUE");   
         console.log("Base.CALLBACK_Histroial", event.state);
         if (event.state)  {
@@ -909,7 +907,7 @@ $Base = new function() {
         console.log($("#Comentarios_Datos"), $("#Comentarios_Datos").offset())
         if (typeof($("#Comentarios_Datos").offset()) !== "undefined") { FinalPagina = $("#Comentarios_Datos").offset().top;  }
         else                                                          { FinalPagina = $(document).height();                 }
-        console.log($(window).scrollTop(), FinalPagina - ($(window).height() * 2))
+//        console.log($(window).scrollTop(), FinalPagina - ($(window).height() * 2))
         if ($(window).scrollTop() > FinalPagina - ($(window).height() * 2)) {
 //        if ($(window).scrollTop() > ($(document).height() - ($(window).height() * 2))) {
             console.log("Base.ComprobarScrollVotacion");

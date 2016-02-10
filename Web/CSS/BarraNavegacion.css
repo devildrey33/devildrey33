@@ -521,14 +521,16 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
 
 /* Transición de resaltado para los iconos en SVG con rotaciones y escalas */
 .Menu_BotonCheck > .BarraPrincipal_BotonMenu > .IcoTexto > svg > use, 
-#BarraNavegacion > a > svg > use {
-    transform-origin:center center;
+#BarraNavegacion > a > svg  {
+    margin:1px 0px 0px 1px;
+    transform-origin:center center 0px;
     transform:perspective(600px) rotateX(0deg) rotateY(0deg) scale(1, 1);
     transition: 0.75s cubic-bezier(.33,.05,.69,1.59);
 }
 .Menu_BotonCheck:hover > .BarraPrincipal_BotonMenu > .IcoTexto > svg > use, 
-#BarraNavegacion > a:hover > svg > use {
-    transform:perspective(600px) rotateX(7deg) rotateY(6deg) scale(1.2, 1.2);    
+#BarraNavegacion > a:hover > svg  {
+    transform-origin:center center 0px;
+    transform:perspective(600px) rotateX(0deg) rotateY(9deg) scale(1.2, 1.2);    
 }
 
 /* Animación para resaltar algo mas la votación */

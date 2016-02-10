@@ -326,6 +326,11 @@ $Lab = new function() {
     };
     
 
+    /* Función para determinar si el ejemplo ha sido modificado 
+        NOTA siempre devuelve false si no es administrador */
+    this.Modificado = function() {
+        return false;
+    };
 
 
 

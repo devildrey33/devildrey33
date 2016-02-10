@@ -67,6 +67,14 @@ $Admin = new function() {
         $("#BarraNavegacion_LabGuardarCache").off("click").on("click", function() { $Admin.LabExplorar_GenerarCache(); });
         /* Actualizo la lista del lab para mostrar todos los elementos */
         $("#BarraNavegacion .Lab_Explorador_Check").off("click").on("click", function() { $Admin.LabExplorar_ClickCheck($(this)); });                
+
+        /* Re-emplazo la función $Lab.Modificado por una versión para administradores */
+        $Lab.Modificado = function() {
+            if ($("body").attr("tipo") === "Lab" && $("body").attr("modificado") === "true" && $("body").attr("administrador33") === "true") { 
+                if (confirm("No has guardado el archivo, deseas guardarlo antes de continuar?") === true) { $Admin.Lab_Guardar(); }
+                $("body").attr({ "modificado" : "false" });
+            }
+        };
     };
     
     /* Función para desloguear, vuelve a dejar toda la web a nivel usuario eliminando el código de administración */
