@@ -11,13 +11,15 @@ $Indice = new function() {
     this.Iniciar = function() {
         console.log("Indice.Iniciar");
         // Combo categorias
-        $("#Categorias").off("click").on("click", function(e) { $Indice.ClickCategorias(); });
+//        $("#Categorias").off("click").on("click", function(e) { $Indice.ClickCategorias(); });
         // Items del combo de las categorias
-        $("#Categorias > div > div").off("click").on("click", function(e) { $Base.CargarURL($(this).attr("path")); });
+        $("#Categorias > div > div").off("click").on("click", function(e) { 
+            $Base.CargarURL($(this).attr("path"));  
+        });
     };
     
     /* Click en la combo de categorias del indice */
-    this.ClickCategorias = function() {
+/*    this.ClickCategorias = function() {
         Cat = $("#Categorias");
         console.log("Indice.ClickCategorias", $("#Categorias > div").height(), Cat.height());
         if (Cat.height() == 19) {
@@ -26,7 +28,7 @@ $Indice = new function() {
         else {
            Cat.height(19);
         }
-    };
+    };*/
     
     this.ComprobarScroll = function() {
         console.log("Indice.ComprobarScroll", $("#MarcoIndice > div[finscrollinfinito]").length);

@@ -293,7 +293,7 @@
             $this->AgregarCSS("animation-name", 		CSSTipo::Propiedad, 	CSSGrupo::Animacion, 			3, 	array(1002, 16, 10, 1015, 1004),	"Especifica el nombre de la animación.");
             $this->AgregarCSS("animation-play-state", 		CSSTipo::Propiedad, 	CSSGrupo::Animacion, 			3, 	array(1002, 16, 10, 1015, 1004), 	"Especifica si la animación está activa o no.");
             $this->AgregarCSS("animation-timing-function",	CSSTipo::Propiedad, 	CSSGrupo::Animacion, 			3, 	array(1002, 16, 10, 1015, 1004),	"Especifica la curva de velocidad que se usara para la animación.");
-            $this->AgregarCSS("attr()",				CSSTipo::Funcion, 	CSSGrupo::ContenidoGen,			2, 	array(1002, 16, 10, 12.10, 4), 		"");
+            $this->AgregarCSS("attr()",				CSSTipo::Funcion, 	CSSGrupo::ContenidoGen,			2, 	array(2, 16, 10, 12.10, 4), 		"Función para obtener el valor del atributo especificado en el elemento actual.");
             $this->AgregarCSS("backface-visibility",		CSSTipo::Propiedad, 	CSSGrupo::Transformaciones,		3, 	array(1012, 16, 10, 1015, 1004),	"Establece si la parte trasera de un objeto 3D debe ser visible.");
             $this->AgregarCSS("background",			CSSTipo::Propiedad, 	CSSGrupo::Fondo,			1, 	array(1, 1, 4, 3.5, 1),			"Propiedad corta que permite asignar todas las propiedades del fondo en una declaración.");
             $this->AgregarCSS("background-attachment",		CSSTipo::Propiedad, 	CSSGrupo::Fondo,			1, 	array(1, 1, 4, 3.5, 1),			"Especifica como tratar el fondo al hacer scroll.");
@@ -561,6 +561,7 @@
             $this->AgregarCSS("url()",				CSSTipo::Funcion, 	CSSGrupo::Valores,			1, 	array(1, 1, 3, 3.5, 1),			"");
             $this->AgregarCSS("user-select",			CSSTipo::Propiedad, 	CSSGrupo::Interfaz,			3, 	array(1001, 1001, 1010, 1015, 1005),    "Propiedad que permite evitar la selección con el mouse.");
             $this->AgregarCSS(":valid",				CSSTipo::Selector, 	CSSGrupo::PseudoClase,			3, 	array(10, 4, 10, 10, 5),		"", ":valid"); 
+            $this->AgregarCSS("var()",				CSSTipo::Funcion, 	CSSGrupo::Valores,			3, 	array(49, 31, 0, 0, 0),                 "", ""); 
 //			$this->AgregarCSS("::value",					CSSTipo::Selector, 		CSSGrupo::PseudoClase,			3, 	array(1, 1.3, 9, 9.5, 1.3),			"", "::value"); 
             $this->AgregarCSS("vertical-align",			CSSTipo::Propiedad, 	CSSGrupo::Texto,			1, 	array(1, 1, 4, 4, 1),			"Especifica como debe alinearse verticalmente el objeto.");
 //			$this->AgregarCSS("@viewport",					CSSTipo::Regla, 		CSSGrupo::Responsive,				3, 	array(28, 22, 0, 12.1, 0),			"");
@@ -710,12 +711,5 @@
             }
         }
     };
-/* historial de modificacions 
 
-	30/12/2013 totes les transforms
-	06/12/2013 varies propietats del grup texte : text-align-last, text-justify, unicode-bidi, word-wrap, white-space, etc...
-	10/01/2014 totes les border-image
-	11/01/2014 actualitzat :nth-child, :nth-last-child. nous : text-decoration-style, text-decoration-color, text-decoration-line, tab-size, rgb(), rgba()
-	12/01/2014 bottom, top
-*/
 ?>

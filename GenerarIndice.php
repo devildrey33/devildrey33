@@ -4,8 +4,10 @@
     class Indice {    
         static function GenerarIndice($BD, $Categoria = "Todo", $Inicio = 0) {
             $ArrayTags = (require dirname(__FILE__).'/Web/Config/EntradasTags.php');
-
-            $Codigo  = "<div id='Categorias' class='Categorias_Cerrado' categoria='".$Categoria."'>".Intro();
+                    
+            $Codigo  = '<input id="Categorias_Estado" class="BarraPrincipal_Boton_Input" type="checkbox">'.Intro();
+            $Codigo .= '<label id="Categorias_Label" for="Categorias_Estado"></label>'.Intro();
+            $Codigo .= "<div id='Categorias' categoria='".$Categoria."'>".Intro();
             $Codigo .=      "<span>Categoria : ".$Categoria."</span>".Intro();
             $Codigo .=      "<div>".Intro();
             $Codigo .=         "<div path='/'>Todo</div>".Intro();
@@ -39,7 +41,7 @@
             for ($i = $Inicio; $i < count($EntradasPC); $i++) {
 //                if (Indice::BuscarCategoria($Entradas[$i]["Tags"], $Categoria) === TRUE) {
                     switch ($EntradasPC[$i]["Tipo"]) {
-                        case "Blog" :   default :       $URL = "/Blog/".$EntradasPC[$i]["URL"];   $EntradasPC[$i]["URL"].= ".php";     break;
+                        case "Blog" :   default :       $URL = "/Blog/".$EntradasPC[$i]["URL"];   $EntradasPC[$i]["URL"].= ".php";   break;
                         case "Lab"  :                   $URL = "/Lab/".$EntradasPC[$i]["URL"];                                       break;
                     }
 
@@ -63,8 +65,8 @@
                         $Codigo .= "<div finscrollinfinito='true'></div>".Intro();   
                     }
 //                }
-                // Cuando se leen 15 articulos paramos
-                if (14 === $Contador) { 
+                // Cuando se leen 16 articulos paramos
+                if (16 === $Contador) { 
                     return $Codigo;
                 }
             }

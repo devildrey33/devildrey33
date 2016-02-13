@@ -74,7 +74,7 @@ class devildrey33 {
     "<head>".Intro().
         "<title>".$Titulo."</title>".Intro().
         "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />".Intro();
-        "<meta name='viewport' content='width=device-width'>".Intro();
+        "<meta name='viewport' content='width=device-width, initial scale=1'>".Intro();
         if ($Entrada !== false) {
             echo "<meta name='author' content='".$Entrada["Autor"]."' />".Intro().
             

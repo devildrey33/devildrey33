@@ -70,9 +70,12 @@ $Lab = new function() {
             
         }
 //        this.AjustarVista(this.ForzarVista, false);
-        
         this.ActualizarResultado();
-        
+
+        /* Chapuça per que s'actualitzi be l'altura de les lineas dintre del codemirror */
+        setTimeout(function() {
+            $Lab.Editor.setSize(parseInt($(".Codemirror").attr("width")), parseInt($(".Codemirror").attr("height")));            
+        }, 5000);
 //        this.CargarArchivo();  
     };
     
@@ -311,7 +314,7 @@ $Lab = new function() {
     /* Función que actualiza el marco del resultado */
     this.ActualizarResultado = function() {
         if (this.Lab_Temporizador !== 0) clearTimeout(this.Lab_Temporizador);
-        // Para eliminar todos los temporizadores que pueda haber cargados en el ejemplo elimino la etiqueta iframe y la vuelvo a crear.
+        // Para eliminar todos los temporizadores que pueda haber cargados en el ejemplo elimino la etiqueta iframe y la vuelvo a crear.                
         var Estilos = $("#Lab_Preview").attr( "style" );
         $("#Lab_Preview").remove();
         $("<iframe id='Lab_Preview' style='" + Estilos +"'></iframe>").insertBefore($( "#Lab_Barra1" ));

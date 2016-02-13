@@ -298,11 +298,11 @@
     'Nombre' => 'attr()',
     'Tipo' => 2,
     'Grupo' => 7,
-    'Descripcion' => '',
+    'Descripcion' => 'Función para obtener el valor del atributo especificado en el elemento actual.',
     'Version' => 2,
     'Soportada' => 
     array (
-      0 => 1002,
+      0 => 2,
       1 => 16,
       2 => 10,
       3 => 12.0999999999999996447286321199499070644378662109375,
@@ -5694,6 +5694,27 @@
   ),
   271 => 
   array (
+    'Nombre' => 'var()',
+    'Tipo' => 2,
+    'Grupo' => 37,
+    'Descripcion' => '',
+    'Version' => 3,
+    'Soportada' => 
+    array (
+      0 => 49,
+      1 => 31,
+      2 => 0,
+      3 => 0,
+      4 => 0,
+    ),
+    'Ejemplo' => '',
+    'Path' => '',
+    'EjemplosExtra' => 
+    array (
+    ),
+  ),
+  272 => 
+  array (
     'Nombre' => 'vertical-align',
     'Tipo' => 0,
     'Grupo' => 32,
@@ -5713,7 +5734,7 @@
     array (
     ),
   ),
-  272 => 
+  273 => 
   array (
     'Nombre' => 'visibility',
     'Tipo' => 0,
@@ -5734,7 +5755,7 @@
     array (
     ),
   ),
-  273 => 
+  274 => 
   array (
     'Nombre' => ':visited',
     'Tipo' => 1,
@@ -5755,7 +5776,7 @@
     array (
     ),
   ),
-  274 => 
+  275 => 
   array (
     'Nombre' => 'white-space',
     'Tipo' => 0,
@@ -5776,7 +5797,7 @@
     array (
     ),
   ),
-  275 => 
+  276 => 
   array (
     'Nombre' => 'widows',
     'Tipo' => 0,
@@ -5797,7 +5818,7 @@
     array (
     ),
   ),
-  276 => 
+  277 => 
   array (
     'Nombre' => 'width',
     'Tipo' => 0,
@@ -5818,7 +5839,7 @@
     array (
     ),
   ),
-  277 => 
+  278 => 
   array (
     'Nombre' => 'word-break',
     'Tipo' => 0,
@@ -5839,7 +5860,7 @@
     array (
     ),
   ),
-  278 => 
+  279 => 
   array (
     'Nombre' => 'word-spacing',
     'Tipo' => 0,
@@ -5860,7 +5881,7 @@
     array (
     ),
   ),
-  279 => 
+  280 => 
   array (
     'Nombre' => 'word-wrap',
     'Tipo' => 0,
@@ -5881,7 +5902,7 @@
     array (
     ),
   ),
-  280 => 
+  281 => 
   array (
     'Nombre' => 'z-index',
     'Tipo' => 0,
@@ -5902,7 +5923,7 @@
     array (
     ),
   ),
-  281 => 
+  282 => 
   array (
     'Nombre' => 'Selector de etiqueta',
     'Tipo' => 1,
@@ -5923,7 +5944,7 @@
     array (
     ),
   ),
-  282 => 
+  283 => 
   array (
     'Nombre' => 'Selector de clase',
     'Tipo' => 1,
@@ -5944,7 +5965,7 @@
     array (
     ),
   ),
-  283 => 
+  284 => 
   array (
     'Nombre' => 'Selector de ID',
     'Tipo' => 1,
@@ -5965,7 +5986,7 @@
     array (
     ),
   ),
-  284 => 
+  285 => 
   array (
     'Nombre' => 'Selector múltiple',
     'Tipo' => 1,
@@ -5986,7 +6007,7 @@
     array (
     ),
   ),
-  285 => 
+  286 => 
   array (
     'Nombre' => 'Selector descendencia',
     'Tipo' => 1,
@@ -6007,7 +6028,7 @@
     array (
     ),
   ),
-  286 => 
+  287 => 
   array (
     'Nombre' => 'Selector hijos',
     'Tipo' => 1,
@@ -6028,7 +6049,7 @@
     array (
     ),
   ),
-  287 => 
+  288 => 
   array (
     'Nombre' => 'Selector adyacente',
     'Tipo' => 1,
@@ -6049,7 +6070,7 @@
     array (
     ),
   ),
-  288 => 
+  289 => 
   array (
     'Nombre' => 'Selector precendencia',
     'Tipo' => 1,
@@ -6070,7 +6091,7 @@
     array (
     ),
   ),
-  289 => 
+  290 => 
   array (
     'Nombre' => 'Selector universal',
     'Tipo' => 1,
@@ -6091,7 +6112,7 @@
     array (
     ),
   ),
-  290 => 
+  291 => 
   array (
     'Nombre' => 'Selector [atributo]',
     'Tipo' => 1,
@@ -6112,7 +6133,7 @@
     array (
     ),
   ),
-  291 => 
+  292 => 
   array (
     'Nombre' => 'Selector [atributo=valor]',
     'Tipo' => 1,
@@ -6133,7 +6154,7 @@
     array (
     ),
   ),
-  292 => 
+  293 => 
   array (
     'Nombre' => 'Selector [atributo~=valor]',
     'Tipo' => 1,
@@ -6154,7 +6175,7 @@
     array (
     ),
   ),
-  293 => 
+  294 => 
   array (
     'Nombre' => 'Selector [atributo*=valor]',
     'Tipo' => 1,
@@ -6175,7 +6196,7 @@
     array (
     ),
   ),
-  294 => 
+  295 => 
   array (
     'Nombre' => 'Selector [atributo|=valor]',
     'Tipo' => 1,
@@ -6196,7 +6217,7 @@
     array (
     ),
   ),
-  295 => 
+  296 => 
   array (
     'Nombre' => 'Selector [atributo^=valor]',
     'Tipo' => 1,
@@ -6217,7 +6238,7 @@
     array (
     ),
   ),
-  296 => 
+  297 => 
   array (
     'Nombre' => 'Selector [atributo$=valor]',
     'Tipo' => 1,

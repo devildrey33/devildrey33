@@ -12,6 +12,7 @@
     transition:0.4s cubic-bezier(.32,-0.16,.68,1.13);
     opacity:0.0;
     display:flex-box;
+    background-color:#353338; /* Para solucionar las separaciónes aleatorias entre iconos en ciertos moviles vista vertical */
 }
 
 #BarraNavegacion[Visible=true] {

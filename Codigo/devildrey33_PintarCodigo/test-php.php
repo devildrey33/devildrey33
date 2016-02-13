@@ -38,7 +38,7 @@ function MiFuncion($Parametro = "NADA", $Valor = 0) {
 class Objeto {
     public function e($Var){ echo $Var."e"; }
 }
-// También se puede resaltar una op varias líneas utilizando un enlace
+// También se puede resaltar una o varias líneas utilizando un enlace
  -[FIN devildrey33.PHP]- -->
             <?php $PintarCodigo->PintarArchivoPHP("PHP", "Test PHP", basename(__FILE__), "PHP"); ?>
             <p>eitqueta <code>&lt;linea&gt;</code> : Resaltado en el hover y posicionamiento al hacer click</p>

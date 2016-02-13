@@ -13,17 +13,25 @@
 
 .Articulo_Portada:hover > h1 > a {
      text-decoration:none;
-/*    color:rgb(255,255,255);*/
+}
+
+
+#Categorias_Estado + #Categorias_Label {
+    width:100%;
+    height:60px;
+    position:absolute;
+    cursor:pointer;
+    z-index:1;
 }
 
 /* Combo de categorias */
-#Categorias {
+#Categorias_Estado + #Categorias_Label + #Categorias {
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
     font-family: 'Karla', sans-serif;
-    font-size:21px;
+    font-size:2.1rem;
     border-bottom: 1px solid #353338;
     margin-bottom: -1px;
     background:#1D1A21;
@@ -31,37 +39,51 @@
     padding:20px 40px;
     cursor:pointer;
     display:block;
-    transition:.5s cubic-bezier(0,-0.42,.63,1.24);
+    transition:.5s ease-out;
     overflow:hidden;
     opacity:0;
-    height:19px;
+    max-height:19px;
+    height:auto;
 }
 
-#Categorias[visible=true] {
+#Categorias_Estado:checked + #Categorias_Label + #Categorias { 
+    max-height:600px;
+    transition:.5s ease-in;
+}
+
+#Categorias_Estado + #Categorias_Label + #Categorias[visible=true] {
     opacity:1;
 }
 
-/*#Categorias.Categorias_Cerrado, #Categorias.Categorias_Desplegado { transition:0.4s; }*/
 
-/*#Categorias.Categorias_Cerrado     { max-height:20px; }
-#Categorias.Categorias_Desplegado  { max-height:256px; } */
-
+/* Marco que contiene las categorias */
 #Categorias > div {
-    list-style:none;
+/*    list-style:none; */
+    display:flex;
+    flex-flow:row wrap;
     padding:0px;                
     margin-top:10px;    
+    z-index:5;
 }
+
+
+
 #Categorias > div > div {
-    font-family: 'Karla', sans-serif;
-    font-size:21px;
     padding:5px 0px;
     transition:0.4s;
     display:inline-block;
-    min-width:30%;
     position:relative;
     background:#1D1A21;
     margin-right:20px;
+    flex:0 0 200px;
+    z-index:10;
+
 }
+/* Categoria Todo al 100% de ancho */
+/*#Categorias > div > div:nth-child(1) {
+    flex:1 1 100%; text-align: center;
+}*/
+
 #Categorias > div > div:hover {
     color:#EA504E;
     padding-left:10px;
@@ -86,7 +108,6 @@
     margin-bottom:-1px;
     transform:perspective(600px) rotateX(180deg);
     backface-visibility:hidden;
-/*                min-height:101px;*/
 }
 
 .Articulo_Portada:hover {
@@ -98,7 +119,7 @@
 }
 
 .Articulo_Portada > span {
-    font-size:12px;
+    font-size:1.2rem;
     color:#999;
 }
 .Articulo_Portada > a > .Articulo_Portada_Imagen {

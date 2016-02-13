@@ -53,9 +53,9 @@ a:hover { text-decoration:underline; }
 
 img { max-width:100%; }
 
-pre, code, kbd, samp, tt, .Codigo_Numeracion {
+pre, code, kbd, samp, tt {
 /*  font-family:'Nova Mono',monospace !important;*/
-  font-family:Inconsolata,monospace !important;
+  font-family:Inconsolata, monospace;
   font-size:1.4rem !important;
 }
 /*pre, code {

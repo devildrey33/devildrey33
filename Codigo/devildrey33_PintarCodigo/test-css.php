@@ -39,7 +39,7 @@ div {
     .AnimacionLogo  {    display:block;   }
     a               {    display:block;   }
 }
-/* También se puede resaltar una op varias líneas utilizando un enlace */
+/* También se puede resaltar una o varias líneas utilizando un enlace */
  -[FIN devildrey33.CSS]- -->    
             <?php $PintarCodigo->PintarArchivoCSS("CSS", "Test CSS", basename(__FILE__), "CSS"); ?>
             <p>eitqueta <code>&lt;linea&gt;</code> : Resaltado en el hover y posicionamiento al hacer click</p>

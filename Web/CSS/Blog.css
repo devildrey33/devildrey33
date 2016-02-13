@@ -205,11 +205,13 @@ hr {
 
 /* Enlaces relacionados de la documentación CSS */
 .EnlacesRelacionados {
-    -webkit-columns:3 auto;
-    -moz-columns:3 auto;
-    columns:3 auto;
+    display:flex;
+    flex-flow:row wrap;
+    margin:20px 0px 0px 0px;
 }
-
+.EnlacesRelacionados > li {
+    flex:0 0 250px;
+}
 /* Sintaxis de la documentación CSS  */
 /*.Pre_Sintaxis {
     display:table;

@@ -1,0 +1,18 @@
+<!-- Ejemplo creado por Josep Antoni Bover Comas el [11/02/2016] para devildrey33.es 
+		Ultima modificación el [--/--/--] -->
+<!DOCTYPE>
+<html>
+    <head>
+        <style>
+            /* Según la MDN deberia funcionar con cualquier propiedad, pero solo funciona con la propiedad content de un selector before/after */
+            div {
+                color:attr(color-texto, red);
+                background-color:attr(color-fondo, red);
+            }
+    	</style>
+    </head>
+    <body>
+        <div color-texto="red" color-fondo="grey">Primer div con los atributos <code>color-texto="red"</code> y <code>color-fondo="grey"</code></div>
+        <div color-texto="yellow" color-fondo="black">Primer div con los atributos <code>color-texto="yellow"</code> y <code>color-fondo="black"</code></div>
+    </body>
+</html>

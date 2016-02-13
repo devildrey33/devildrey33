@@ -33,7 +33,7 @@ function NombreFuncion(Parametro) {
     }
     if (MiCadena == parseInt(MiNumero)) alert("Imposible!");
 }
-// También se puede resaltar una op varias líneas utilizando un enlace
+// También se puede resaltar una o varias líneas utilizando un enlace
 -[FIN devildrey33.JS]- -->    
             <?php $PintarCodigo->PintarArchivoJavaScript("JS", "Test JS", basename(__FILE__), "JS"); ?>
             <p>eitqueta <code>&lt;linea&gt;</code> : Resaltado en el hover y posicionamiento al hacer click</p>

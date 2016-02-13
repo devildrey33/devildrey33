@@ -40,10 +40,9 @@ Millores de la web :
 
 
 Estils movils :
-    - Probar l'index en Google Nexus 10, no es pot accedir a les seguents entrades amb l'escroll. 
-        - Amb el kindle del principi es pitjor... habia ampliat a 15 pero no es suficient, d'alguna forma s'ha de contar els items que hi caben a la pantalla desde php...
-    - Revisar estils de tablets i de movils (mirar que tots els que deixa probar el chrome es vegin be)
-    - Estic per refer els media especialment per cada dispositiu que mostra el chrome.
+ V  - Probar l'index en Google Nexus 10, no es pot accedir a les seguents entrades amb l'escroll. 
+ V      - Amb el kindle del principi es pitjor... habia ampliat a 15 pero no es suficient, d'alguna forma s'ha de contar els items que hi caben a la pantalla desde php...
+ V  - Revisar estils de tablets i de movils (mirar que tots els que deixa probar el chrome es vegin be)
     
 Index : 
     - Conservar el número d'entrades carregades en l'index per carregarles de cop despres si es torna a carregar l'index.
@@ -58,13 +57,16 @@ Lab :
  V  - Al recarregar la web amb F5 que miri si l'exemple esta guardat i mostri un missatge per guardar o no (teclat FULL)
  V      - Falta tambè fer un parche a Base.CargarURL i a Lab.CargarArchivo per avisar que no s'ha guardat l'arxiu.
     - Afegir barra per modificar l'amplada de la vista mixta en el minilab.
+ V  - El codemirror fa algo raro amb la mida de les lineas que te calculades internament, i al cap d'un rato de remenar s¡acaba calculant bè... s'ha de buscar que o com actualitzar aquestes mides...
+ V      - Obligo al codemirror a recalcular la mida del editor 200 milisegons despres d'haber iniciat i carregat el contingut.
 
 Blog :
- V  - devildrey33_PintarCodigo 2.02
+ V  - devildrey33_PintarCodigo 2.02 (+ exemples corretgits)
  X  - Revisar document "CSS3_Transition_Transform.php", te estils inline i s'han de posar amb un CSS a part. (el mateix css es l'exemple i inclueix l'etiqueta script, per lo que no el puc moure a un css...)
  V  - el "DegradadosCSS.php" te estils inline colocats al HEAD.... revisar tambè (estils dels degradats fets inline, a la merda xd)
  V  - l'arxiu /Blog/Tutorial_WINAPI_4.php no te h2's apart del de comentaris! (afegits h2 i a mes l'he omplert de <linea> xd)
     - Mirar de començar a fer coses amb SVG's (Ejemplos/SVG/Iconos.html)
+    - Fer documentació preliminar i exemples per les VARIABLES CSS!!!!     (https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables)
     
 Doc/CSS :
     - cubic-bezier chulo al estil de http://cubic-bezier.com/

@@ -48,7 +48,7 @@
         ?>
     </body>
 </html>
- <!-- También se puede resaltar una op varias líneas utilizando un enlace -->
+ <!-- También se puede resaltar una o varias líneas utilizando un enlace -->
 -[FIN devildrey33.HTML]- */    
                 $PintarCodigo->PintarArchivoHTML("HTML", "Test HTML", basename(__FILE__), "HTML"); 
             ?>
