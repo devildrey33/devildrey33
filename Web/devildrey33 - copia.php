@@ -213,10 +213,7 @@ class devildrey33 {
                     "<input id='BarraPrincipal_BotonCSS_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
                     "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonCSS_Estado'></label>".Intro().
                     "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                        "<span class='IcoTexto'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-css' />".Intro().
-                        "</span>".Intro().
-//                        "<span class='IcoTexto'>CSS</span>".Intro().
+                        "<span class='IcoTexto'>CSS</span>".Intro().
                     "</div>".Intro().
                     "<div id ='BarraPrincipal_MarcoCSS'>".Intro().
                         "<a href='/Doc/CSS/Colores'>Colores</a>".Intro().
@@ -234,10 +231,7 @@ class devildrey33 {
                     "<input id='BarraPrincipal_BotonCPP_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
                     "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonCPP_Estado'></label>".Intro().
                     "<div class='BarraPrincipal_BotonMenu'>".Intro().
-//                        "<span class='IcoTexto'>C++</span>".Intro().
-                        "<span class='IcoTexto'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-cpp' />".Intro().
-                        "</span>".Intro().
+                        "<span class='IcoTexto'>C++</span>".Intro().
                     "</div>".Intro().
                     "<div id ='BarraPrincipal_MarcoCPP'>".Intro().
                         "<a href='/Blog/Tutorial_WINAPI_1_0'>Calculadora</a>".Intro().
@@ -254,10 +248,7 @@ class devildrey33 {
                     "<input id='BarraPrincipal_BotonJS_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
                     "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonJS_Estado'></label>".Intro().
                     "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                        "<span class='IcoTexto'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-js' />".Intro().
-                        "</span>".Intro().
-//                        "<span class='IcoTexto'>JS</span>".Intro().
+                        "<span class='IcoTexto'>JS</span>".Intro().
                     "</div>".Intro().
                     "<div id ='BarraPrincipal_MarcoJS'>".Intro().
                         "<a href='/Blog/Canvas2D_1'>Canvas 2D 1</a>".Intro().
@@ -274,10 +265,7 @@ class devildrey33 {
                     "<input id='BarraPrincipal_BotonPHP_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
                     "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonPHP_Estado'></label>".Intro().
                     "<div class='BarraPrincipal_BotonMenu'>".Intro().
-//                        "<span class='IcoTexto'>PHP</span>".Intro().
-                        "<span class='IcoTexto'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-php' />".Intro().
-                        "</span>".Intro().                
+                        "<span class='IcoTexto'>PHP</span>".Intro().
                     "</div>".Intro().
                     "<div id ='BarraPrincipal_MarcoPHP'>".Intro().
                         "<a href='/Blog/Captcha1'>Captchas 1</a>".Intro().
@@ -292,16 +280,12 @@ class devildrey33 {
                     "<input id='BarraPrincipal_BotonBuscar_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
                     "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonBuscar_Estado'></label>".Intro().
                     "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                        "<span class='IcoTexto'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-buscar' />".Intro().
-                        "</span>".Intro().
-//                        "<span class='IcoLupa20x20'></span>". // <!-- lupa a morphejar -->
+                        "<span class='IcoLupa20x20'></span>". // <!-- lupa a morphejar -->
                     "</div>".Intro().
                     "<div id ='BarraPrincipal_MarcoBuscar'>".Intro().
                         "<input type='text' name='Search' id='BarraPrincipal_MarcoBuscar_Edit' placeholder='Texto a buscar..' required>".Intro().
                         "<div id='BarraPrincipal_MarcoBuscar_BotonBuscar'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-buscar' />".Intro().
-//                           "<span class='IcoLupa20x20'></span>".Intro().
+                           "<span class='IcoLupa20x20'></span>".Intro().
                         "</div>".Intro().
                     "</div>".Intro().
                 "</div>".Intro().

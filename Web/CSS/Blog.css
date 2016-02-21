@@ -30,7 +30,6 @@ and open the template in the editor.
 */
 
 
-
 /* Marge superior pels articles */
 article h2 {
     margin:50px 0px 0px 0px;
@@ -126,10 +125,6 @@ h2:before {
 
 
 
-hr {
-    border:none;
-    border-bottom:1px solid rgb(200,200,200);
-}
 
 
 @keyframes AnimacionCabecera {

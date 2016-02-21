@@ -360,7 +360,7 @@ body[administrador33] #Marco33 {
 .BarraPrincipal_BotonMenu:hover, 
 .BarraPrincipal_Boton_Label:hover + .BarraPrincipal_BotonMenu {
 /*.BarraPrincipal_Boton_Label:hover + #BarraPrincipal_Submenus + .BarraPrincipal_BotonMenu {*/
-    background-color:#EA504E;                
+    background-color:#EA504E !important; /* La animación de resaltado de fondo de la votación se para en el hover, y es importante tener el color del hover siempre y no el de la animación */
     border:1px solid red;
 }            
 
@@ -466,7 +466,7 @@ body[administrador33] #Marco33 {
 .BarraPrincipal_BotonMenu > span, .BarraPrincipal_BotonSubMenu > span {
     position:absolute;
     /* vertical-align: middle; */
-    top: -4px;
+    top:0px;
     left:0;
     right:0;
     bottom:0;

@@ -22,12 +22,13 @@ and open the template in the editor.
         only screen and (orientation:portrait) and (-moz-min-device-pixel-ratio: 1.2), 
         only screen and (orientation:portrait) and (-o-min-device-pixel-ratio: 13/10),
         only screen and (orientation:portrait) and (min-resolution: 120dpi) {            
-    h2, .Blog > h3, 
-    .nota, .postit, nota, postit, 
-    .BarraNavegacion_SubIndice, .Sintaxis,
-    #Logo, #BarraPrincipal, #BarraNavegacion, 
-    #Categorias, .Cabecera, #Comentarios_MarcoDatos, 
-    #Comentarios_Comentario, .devildrey33_Marco, .Codigo_Marco  
+    h2, .Blog > h3,                                                 /* Tituls */
+    .nota, .postit, nota, postit,                                   /* Marcs nota/postit */
+    .BarraNavegacion_SubIndice, .Sintaxis,                          /* Marc del sub-index, i marc de la sintaxis  */
+    #Logo, #BarraPrincipal, #BarraNavegacion,                       /* Barres laterals  */
+    #Categorias, #Categorias_Estado + #Categorias_Label,            /* Marco categorias y label para expandir / contraer las categorias */
+    .Cabecera, #Comentarios_MarcoDatos,                             /* Cabecera del blog, marco unicamente con los comentarios posteados */
+    #Comentarios_Comentario, .devildrey33_Marco, .Codigo_Marco      /* Marco con los controles de los comentarios, marco estandar (se mantiene por compatibilidad), marco para código */
                         { zoom:1.5 !important; }
     body                { margin-left:90px; }  
     #MarcoNavegacion    { left:-10px;}

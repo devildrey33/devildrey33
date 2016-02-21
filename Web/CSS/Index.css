@@ -3,18 +3,16 @@
 .Articulo_Portada > h1 > a {
     color:rgb(200,200,200);
     transition:0.4s;
-/*    text-decoration: underline;*/
+/*   text-decoration:underline; */
 }
 
 .Articulo_Portada > h1 > a:hover {
     color:#EA504E;
 }
 
-
 .Articulo_Portada:hover > h1 > a {
      text-decoration:none;
 }
-
 
 #Categorias_Estado + #Categorias_Label {
     width:100%;
@@ -55,7 +53,6 @@
     opacity:1;
 }
 
-
 /* Marco que contiene las categorias */
 #Categorias > div {
 /*    list-style:none; */
@@ -66,18 +63,15 @@
     z-index:5;
 }
 
-
-
 #Categorias > div > div {
     padding:5px 0px;
     transition:0.4s;
     display:inline-block;
     position:relative;
-    background:#1D1A21;
+    background:transparent;
     margin-right:20px;
     flex:0 0 200px;
     z-index:10;
-
 }
 /* Categoria Todo al 100% de ancho */
 /*#Categorias > div > div:nth-child(1) {

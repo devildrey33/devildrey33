@@ -34,10 +34,10 @@ $Base = new function() {
     this.Iniciar = function() {
         /* Botones de las vistas del lab */
 //        $("#BarraNavegacion_LabVer > .BarraPrincipal_BotonMenu").on("click"), function() { $("#BarraNavegacion_BotonVer_Estado").trigger("click") }
-        $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(2)").click(function(e){ $Lab.AjustarVista("0"); });
-        $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(4)").click(function(e){ $Lab.AjustarVista("1"); });
-        $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(6)").click(function(e){ $Lab.AjustarVista("2"); });
-        $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(8)").click(function(e){ $Lab.AjustarVista("3"); });
+        $(".Lab_BotonVerFilas").click(function(e){ $Lab.AjustarVista("0"); });
+        $(".Lab_BotonVerColumnas").click(function(e){ $Lab.AjustarVista("1"); });
+        $(".Lab_BotonVerCodigo").click(function(e){ $Lab.AjustarVista("2"); });
+        $(".Lab_BotonVerPreview").click(function(e){ $Lab.AjustarVista("3"); });
         /* Explorador del laboratorio */
 //        $("#BarraNavegacion_LabExplorar > .BarraPrincipal_BotonMenu > .IcoTexto > svg").on("click"), function() { $("#BarraNavegacion_BotonExplorar_Estado").trigger("click"); }
 //        $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(8)").click(function(e){ $Lab.AjustarVista("3"); });

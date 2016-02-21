@@ -62,14 +62,13 @@ $Lab = new function() {
             this.ForzarVista = "0"; 
         }
         switch (this.ForzarVista) {
-//            case "-1" :    $(".Lab_BotonVerFilas").trigger("click");      break; // Auto
             case "0" :     $(".Lab_BotonVerFilas").trigger("click");        break; 
             case "1" :     $(".Lab_BotonVerColumnas").trigger("click");     break; 
             case "2" :     $(".Lab_BotonVerCodigo").trigger("click");       break; 
-            case "3" :     $(".Lab_BotonVerPreview").trigger("click");      break; 
-            
+            case "3" :     $(".Lab_BotonVerPreview").trigger("click");      break;             
         }
 //        this.AjustarVista(this.ForzarVista, false);
+        
         this.ActualizarResultado();
 
         /* Chapuça per que s'actualitzi be l'altura de les lineas dintre del codemirror */
@@ -214,9 +213,9 @@ $Lab = new function() {
         }
 
 
-        for (i = 1; i < 5; i++) {
+/*        for (i = 1; i < 5; i++) {
             $("#BarraNavegacion_LabMarcoVer > div:nth-child(" + i + ")").css({ display : (i - 1 === parseInt(NuevaVista))? "none" : "block" });
-        }
+        }*/
 
         switch (NuevaVista) {
             case "0" : // Mixto Filas

@@ -3,7 +3,7 @@
     Author     : devildrey33
 */
 
-
+    
 #BarraNavegacion {
     position:fixed;
     top:0px;
@@ -34,7 +34,7 @@ body[tipo=Lab] #BarraNavegacion_LabVer, body[tipo=Lab] #BarraNavegacion_LabExplo
     display:table;
 }
 
-
+/*
 input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {
     width:100%;
     background-position:center center;
@@ -43,39 +43,61 @@ input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {
     position:relative;
     display:table;
     opacity:1;    
-}
+}*/
 
-input:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span, input:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > svg {
-    opacity:0;    
-}
-
-input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > svg {
+/*
+input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > .ImgSvg {
     transition:0.4s;
     opacity:1;
-}
+}*/
 
-/* Botones de los menus con imagenes */
-input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {
+.BarraPrincipal_BotonMenu > span > span > .ImgSvg,
+.BarraPrincipal_BotonMenu > span > .ImgSvg {
     width:58px;
     height:58px;
     top:-22px;
     /*left:12px;*/
     transition:0.4s;
     position:relative;
-    display:table;
+    display:table;    
+}
+
+/* Botones check de los menus con imagenes */
+input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span,
+input + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > .ImgSvg {
     opacity:1;    
 }
 
+input:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span, 
+input:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > .ImgSvg:not([sinopacidad]) {
+    opacity:0;    
+}
+
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=filas] > .ImgSvg:nth-child(1) { display:block; }
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=filas] > .ImgSvg:nth-child(2),
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=filas] > .ImgSvg:nth-child(3),
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=filas] > .ImgSvg:nth-child(4) { display:none; }
+
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=columnas] > .ImgSvg:nth-child(2) { display:block; }
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=columnas] > .ImgSvg:nth-child(1),
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=columnas] > .ImgSvg:nth-child(3),
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=columnas] > .ImgSvg:nth-child(4) { display:none; }
+
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=codigo] > .ImgSvg:nth-child(3) { display:block; }
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=codigo] > .ImgSvg:nth-child(1),
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=codigo] > .ImgSvg:nth-child(2),
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=codigo] > .ImgSvg:nth-child(4) { display:none; }
+
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=preview] > .ImgSvg:nth-child(4) { display:block; }
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=preview] > .ImgSvg:nth-child(1),
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=preview] > .ImgSvg:nth-child(2),
+#BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=preview] > .ImgSvg:nth-child(3) { display:none; }
+/*
 #BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=columnas] > span { background-image: url('/Web/Graficos/BotonMixto.png');   }
 #BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=filas]    > span { background-image: url('/Web/Graficos/BotonFilas.png');   }
 #BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=codigo]   > span { background-image: url('/Web/Graficos/BotonCodigo.png');  }
 #BarraNavegacion_BotonVer_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span[ver=preview]  > span { background-image: url('/Web/Graficos/BotonPreview.png'); }
-
-
-/*#BarraNavegacion_Indice_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {          background-image: url('/Web/Graficos/BotonAncla.png');  }
-#BarraNavegacion_PrevNext_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {        background-image: url('/Web/Graficos/Botonprevnext.png');    }
-#BarraNavegacion_RedesSociales_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {   background-image: url('/Web/Graficos/BotonRedesSociales.png');   }
-#BarraNavegacion_BotonExplorar_Estado + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > span > span {   background-image: url('/Web/Graficos/BotonExplorar.png');   }*/
+*/
 
 
 /* Por defecto oculto*/ 
@@ -148,10 +170,6 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
     opacity:0.95;    
 }
 
-/*#BarraNavegacion_Indice:hover > #BarraNavegacion_SubIndice, #BarraNavegacion_LabVer:hover > #BarraNavegacion_LabMarcoVer , #BarraNavegacion_LabExplorar:hover > #BarraNavegacion_LabMarcoExplorador {
-    transform:perspective(600px) rotateY(0deg);
-    opacity:0.95;
-}*/
 
 #BarraNavegacion_SubIndice > div {
     display:inline-block;
@@ -161,7 +179,7 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
 #BarraNavegacion_Cerrar
 
 
-#BarraNavegacion_SubIndice > div, #BarraNavegacion_LabMarcoVer > div {
+#BarraNavegacion_SubIndice > div {
     color:#FFF;
     padding:10px;
     overflow:hidden;
@@ -187,7 +205,12 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
     color:#FFF;
 }
 
-#BarraNavegacion_LabVer > #BarraNavegacion_LabMarcoVer > .BarraPrincipal_BotonMenu {
+#BarraNavegacion_LabVer > #BarraNavegacion_LabMarcoVer > .BarraPrincipal_BotonMenu,
+#BarraNavegacion_RedesSociales > #BarraNavegacion_MarcoRedesSociales > .BarraPrincipal_BotonMenu {
+    display:inline-block;
+}
+/* Solo para los labels del MarcoVer */
+#BarraNavegacion_LabMarcoVer > .BarraPrincipal_Boton_Label {
     display:inline-block;
 }
 
@@ -475,9 +498,9 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     zoom:1 !important;
 }
 
-#BarraNavegacion_MarcoRedesSociales_Facebook   { background-image: url('/Web/Graficos/BotonFacebook.png');   }
+/*#BarraNavegacion_MarcoRedesSociales_Facebook   { background-image: url('/Web/Graficos/BotonFacebook.png');   }
 #BarraNavegacion_MarcoRedesSociales_Twitter    { background-image: url('/Web/Graficos/BotonTwitter.png');    }
-#BarraNavegacion_MarcoRedesSociales_GooglePlus { background-image: url('/Web/Graficos/BotonGooglePlus.png'); }
+#BarraNavegacion_MarcoRedesSociales_GooglePlus { background-image: url('/Web/Graficos/BotonGooglePlus.png'); }*/
 /*#BarraNavegacion_MarcoRedesSociales_Linkedin   { background-image: url('/Web/Graficos/BotonLinkedin.png'); }*/
 
 #BarraNavegacion_MarcoRedesSociales_Facebook:hover   { background-color: rgb(58, 88, 155) !important;  border-color: rgb(0,0,150) !important; }
@@ -512,37 +535,44 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
 /*    animation:Ani-ResaltarBordeBoton 0.5s ease 0s 6 alternate;
 }*/
 
-#BarraNavegacion_Votacion[mostrar='true']:hover > #BarraNavegacion_Votacion_Estado + .BarraPrincipal_Boton_Label {
+/*#BarraNavegacion_Votacion[mostrar='true']:hover > #BarraNavegacion_Votacion_Estado + .BarraPrincipal_Boton_Label {
     animation-play-state: paused;
-}
+}*/
 
 #BarraNavegacion_Votacion[mostrar='true']:hover  > .BarraPrincipal_BotonMenu {
     animation-play-state: paused;
 }
 
 /* Transición de resaltado para los iconos en SVG con rotaciones y escalas */
-.Menu_BotonCheck > .BarraPrincipal_BotonMenu > .IcoTexto > svg > use, 
-#BarraNavegacion > a > svg  {
-    margin:1px 0px 0px 1px;
-    transform-origin:center center 0px;
-    transform:perspective(600px) rotateX(0deg) rotateY(0deg) scale(1, 1);
+.Menu_BotonCheck > .BarraPrincipal_BotonMenu > .IcoTexto > .ImgSvg,                                                 /* Botones check */
+.Menu_BotonCheck > .BarraPrincipal_BotonMenu > .IcoTexto > span > .ImgSvg,                                          /* Boton de la votación (requiere un span extra para la animación de rotación) */
+#BarraNavegacion_LabMarcoVer > .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > .IcoTexto > .ImgSvg,       /* Marco con los botones para las vistas del lab */
+#BarraNavegacion_MarcoRedesSociales > .BarraPrincipal_BotonMenu > .IcoTexto > .ImgSvg,       /* Marco con los botones para las redes sociales */
+#BarraNavegacion_LabGuardarCache > .ImgSvg,                                                                         /* Lab guardar cache */
+#BarraNavegacion_LabGuardar > .ImgSvg,                                                                              /* Lab guardar archivo */
+#BarraNavegacion > a > .ImgSvg  {                                                                                   /* Botones a href (Indice) */
+    transform:scale(1, 1);
     transition: 0.75s cubic-bezier(.33,.05,.69,1.59);
 }
-.Menu_BotonCheck:hover > .BarraPrincipal_BotonMenu > .IcoTexto > svg > use, 
-#BarraNavegacion > a:hover > svg  {
-    transform-origin:center center 0px;
-    transform:perspective(600px) rotateX(0deg) rotateY(9deg) scale(1.2, 1.2);    
+.Menu_BotonCheck:hover > .BarraPrincipal_BotonMenu > .IcoTexto > .ImgSvg,                                           /* Botones check */
+.Menu_BotonCheck:hover > .BarraPrincipal_BotonMenu > .IcoTexto > span > .ImgSvg,                                    /* Boton de la votación (requiere un span extra para la animación de rotación) */
+#BarraNavegacion_LabMarcoVer > .BarraPrincipal_Boton_Label:hover + .BarraPrincipal_BotonMenu > .IcoTexto > .ImgSvg, /* Marco con los botones para las vistas del lab */
+#BarraNavegacion_MarcoRedesSociales > .BarraPrincipal_BotonMenu:hover > .IcoTexto > .ImgSvg,       /* Marco con los botones para las redes sociales */
+#BarraNavegacion_LabGuardarCache:hover > .ImgSvg,                                                                   /* Lab guardar cache */
+#BarraNavegacion_LabGuardar:hover > .ImgSvg,                                                                        /* Lab guardar archivo */
+#BarraNavegacion > a:hover > .ImgSvg  {                                                                             /* Botones a href (Indice) */
+    transform:scale(1.25, 1.25);    
 }
 
 /* Animación para resaltar algo mas la votación */
-#BarraNavegacion_Votacion[mostrar='true'] > .BarraPrincipal_BotonMenu > .IcoTexto > svg {
+#BarraNavegacion_Votacion[mostrar='true'] > .BarraPrincipal_BotonMenu > .IcoTexto > span > .ImgSvg {
     animation:Ani-RotarVotacion 13s cubic-bezier(.3,-0.5,.23,.78) 0s infinite alternate;
 }
 @keyframes Ani-RotarVotacion {
-    0%   { transform:perspective(600px) rotateY(0deg) rotateX(0deg);     }
-    45%  { transform:perspective(600px) rotateY(0deg) rotateX(0deg);     }
-    65%  { transform:perspective(600px) rotateY(385deg) rotateX(7deg);  }
-    70%  { transform:perspective(600px) rotateY(360deg) rotateX(7deg);  }
+    0%   { transform:perspective(600px) rotateY(0deg) rotateX(0deg);   }
+    45%  { transform:perspective(600px) rotateY(0deg) rotateX(0deg);   }
+    65%  { transform:perspective(600px) rotateY(385deg) rotateX(7deg); }
+    70%  { transform:perspective(600px) rotateY(360deg) rotateX(7deg); }
     100% { transform:perspective(600px) rotateY(360deg) rotateX(0deg); }
 }
 
@@ -550,15 +580,15 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     0%   { background:#29272c; border:1px solid #353338; }
     100% { background:#ea504e; border:1px solid #FF0000; }
 }
-@keyframes Ani-ResaltarBordeBoton {
+/*@keyframes Ani-ResaltarBordeBoton {
     0%   { border:1px solid #353338; }
     100% { border:1px solid #FF0000; }
-}
-
+}*/
+/*
 .IcoTexto > svg {
     top:-22px;
     position:relative;
-}
+}*/
 
 /* Barra de navegación inferior por defecto oculta (actualmente solo contiene la animación para cargar) */
 #BarraNavegacion_Inferior {

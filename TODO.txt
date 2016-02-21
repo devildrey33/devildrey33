@@ -24,7 +24,7 @@ Millores de la web :
  V  - No van alguns comentaris en la documentació... (El problema ve de la funció Base.IdentificarEntrada, que no reconeix la URL si no te les mateixes majuscules i minuscules)
     - Probar els butons de la barra lateral dreta amb fondo gris clar translucid, i les imatges en gris fosc.
         
-+o- - Pasar a svg tots els icones dels menús laterals, excepte el burguer i la creu de tancar. (em falten els 4 de la vista del lab, que s'han de refer...)
+ V  - Pasar a svg tots els icones dels menús laterals, excepte el burguer i la creu de tancar. (em falten els 4 de la vista del lab, que s'han de refer...)
  V      - Afegir efectes 3d en el hover dels svgs
  V  - La valoració del document (nota) en articles que tenen comentaris, no surt fins que no has vist varis comentaris, s'hauria de fer com a la del 2014, quan arribi a l'altura del h2 "Comentarios"
  V  - Retocar animació de la nota, per que resalti mes (animació amb una rotació del eix X del svg cada 10 segons +o-)
@@ -36,6 +36,10 @@ Millores de la web :
     - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
     - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
  V  - Crear enllaços del tipo <linea> amb etiquetes <a>, i ja de pas treure el verd, i posar unaltre color mes semblant als enllaços normals.
+    - El taliba m'ha insinuat que podria fer uns agraiments.
+
+!!!!!IMPORTANT!!!!!
+    - M'he carregat el hover del icona de la votació
 
 
 
@@ -58,7 +62,10 @@ Lab :
  V      - Falta tambè fer un parche a Base.CargarURL i a Lab.CargarArchivo per avisar que no s'ha guardat l'arxiu.
     - Afegir barra per modificar l'amplada de la vista mixta en el minilab.
  V  - El codemirror fa algo raro amb la mida de les lineas que te calculades internament, i al cap d'un rato de remenar s¡acaba calculant bè... s'ha de buscar que o com actualitzar aquestes mides...
- V      - Obligo al codemirror a recalcular la mida del editor 200 milisegons despres d'haber iniciat i carregat el contingut.
+ V      - Obligo al codemirror a recalcular la mida del editor 200 milisegons despres d'haber iniciat i carregat el contingut. (chapucilla pero es lo que hi ha...)
+    - Al guardar en el Nuevo.html que pregunti un nom d'arxiu (i que pugui crear directoris tambè)   
+    - Al guardar sense privilegis dona error raro...
+    - Especificar vista desde el mateix esemple amb un comentrari rotllo /* Lab-vista=filas */ i eliminar tota la pachanga que vaig posar amb el solitario-html?preview
 
 Blog :
  V  - devildrey33_PintarCodigo 2.02 (+ exemples corretgits)
@@ -66,6 +73,7 @@ Blog :
  V  - el "DegradadosCSS.php" te estils inline colocats al HEAD.... revisar tambè (estils dels degradats fets inline, a la merda xd)
  V  - l'arxiu /Blog/Tutorial_WINAPI_4.php no te h2's apart del de comentaris! (afegits h2 i a mes l'he omplert de <linea> xd)
     - Mirar de començar a fer coses amb SVG's (Ejemplos/SVG/Iconos.html)
+ V      - Despres d'un dia de svgs corel i adobepollas sembla que ja començo a tenir nocions básiques.
     - Fer documentació preliminar i exemples per les VARIABLES CSS!!!!     (https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables)
     
 Doc/CSS :
@@ -84,7 +92,15 @@ Solitario :
 ESPECIFIC NAVEGADORS :    
  V  - Les fonts de les etiquetes <pre> i <code> monospace no tenen la mida iguals en chrome i firefox. He pillat una monospace del google i ara sembla que tenen la mateixa mida en tots.
     Firefox :         
-        - Els icones svg no fan bè l'animació en el hover (no la fan centrada).
+ V      - Els icones svg no fan bè l'animació en el hover (no la fan centrada).
     Explorer 11 :
-        - Els svgs es veuen minis.
+ V      - Els svgs es veuen minis.
 
+ESPECIFIC PUTU I-TRASTO DEL TALIBA DELS PEBROTS
+    - Per alguna extranya rao, no s'inicia la transició d'inici en l'index, es veu el combo box de categories en blanc (opacity 0.0), i els articles es veuen al reves perque no es fa la transició.    
+
+CSS per eliminar :
+.IcoLupa20x20
+imatges dels butons dels menús laterals
+
+!IMPORTANT pasar els svgs al arxiu corel, i guardar en cdr

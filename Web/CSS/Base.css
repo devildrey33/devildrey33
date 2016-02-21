@@ -42,9 +42,9 @@ body {
 
 /* Todas las capas svg se pintan en blanco por defecto */
 /* El primer selector apunta al objeto svg primario, el segundo selector es para firefox, que no acepta el primero... */
-body > svg > g > *, use > * {
+/*body > svg > g > *, use > * {
     fill:white;
-}
+}*/
 
 i { background-color: rgba(255,255,255,0.8); }
 a { color:rgb(234,80,78); text-decoration:none; text-shadow: 0px 0px 1px rgba(234,80,78, 0.6); }
@@ -58,6 +58,13 @@ pre, code, kbd, samp, tt {
   font-family:Inconsolata, monospace;
   font-size:1.4rem !important;
 }
+
+hr {
+    border:1px solid #666;
+    margin-left:-10px;
+    margin-right:-5px;
+}
+
 /*pre, code {
     font-size: 1.1em;
 }*/
