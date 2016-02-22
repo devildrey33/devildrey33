@@ -39,8 +39,8 @@ Millores de la web :
     - El taliba m'ha insinuat que podria fer uns agraiments.
 
 !!!!!IMPORTANT!!!!!
-    - M'he carregat el hover del icona de la votació
-
+ V  - M'he carregat el hover del icona de la votació
+	- Fer tooltips pel menú lateral dret.
 
 
 Estils movils :
@@ -64,7 +64,7 @@ Lab :
  V  - El codemirror fa algo raro amb la mida de les lineas que te calculades internament, i al cap d'un rato de remenar s¡acaba calculant bè... s'ha de buscar que o com actualitzar aquestes mides...
  V      - Obligo al codemirror a recalcular la mida del editor 200 milisegons despres d'haber iniciat i carregat el contingut. (chapucilla pero es lo que hi ha...)
     - Al guardar en el Nuevo.html que pregunti un nom d'arxiu (i que pugui crear directoris tambè)   
-    - Al guardar sense privilegis dona error raro...
+    - Al guardar sense privilegis dona error raro... (un cop ha pasat el temps del admin en el $_SERVER)
     - Especificar vista desde el mateix esemple amb un comentrari rotllo /* Lab-vista=filas */ i eliminar tota la pachanga que vaig posar amb el solitario-html?preview
 
 Blog :
@@ -103,4 +103,4 @@ CSS per eliminar :
 .IcoLupa20x20
 imatges dels butons dels menús laterals
 
-!IMPORTANT pasar els svgs al arxiu corel, i guardar en cdr
+V   - !IMPORTANT pasar els svgs al arxiu corel, i guardar en cdr
