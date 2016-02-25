@@ -151,7 +151,7 @@ body[administrador33] #Logo {
 #BarraPrincipal .Menu_BotonCheck > .BarraPrincipal_Boton_Input:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu + div {
     transform:perspective(600px) rotateY(0deg);
     z-index:10;
-    opacity:2;
+    opacity:1;
 }
 
 /*#BarraPrincipal_MarcoCPP, #BarraPrincipal_MarcoCSS, #BarraPrincipal_MarcoJS, #BarraPrincipal_MarcoPHP {
@@ -472,14 +472,14 @@ body[administrador33] #Marco33 {
     bottom:0;
     margin: auto;
     height: 14px;
-    transform: rotateZ(0deg);
+    transform: rotateZ(0deg) scale(1, 1);
     transition:0.4s;
 }
 
 .Menu_BotonCheck > input:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > .IcoTexto {
     color:#EA504E;
     transition:0.4s;
-    transform:rotateZ(180deg);
+    transform:rotateZ(180deg); /*  scale(0.5, 0.5) */
 }
 
 .Menu_BotonCheck > input:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > .IcoTexto::before {
@@ -521,62 +521,3 @@ body[administrador33] #Marco33 {
 }
 
 
-
-
-#BarraPrincipal_BotonBuscar_Estado:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > .IcoLupa20x20 {
-    width:0px;
-    height:0px;
-    border:1px solid rgba(0,0,0,0.0);
-    transform:rotateZ(180deg);
-    transition:0.4s;
-}
-
-#BarraPrincipal_BotonBuscar_Estado:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > .IcoLupa20x20:before,
-#BarraPrincipal_BotonBuscar_Estado:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > .IcoLupa20x20::before {
-    width:20px;
-    height:2px;
-    top:5px;
-    left:-10px;
-    transform:rotateZ(45deg);
-    transition:0.4s;
-}
-#BarraPrincipal_BotonBuscar_Estado:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > .IcoLupa20x20:after,
-#BarraPrincipal_BotonBuscar_Estado:checked + .BarraPrincipal_Boton_Label + .BarraPrincipal_BotonMenu > .IcoLupa20x20::after {
-    width:20px;
-    height:2px;
-    top:5px;
-    left:-10px;
-    transform:rotateZ(-45deg);
-    transition:0.4s;
-}
-
-
-.IcoLupa20x20 { 
-    width:12px;
-    height:12px !important;
-    border-radius:12px;
-    border:3px solid #FFFFFF;
-    position:absolute;
-    top:20px;
-    left:19px;
-    transition:0.4s;
-/*                transform: rotateZ(0deg) !important;*/
-}
-
-.IcoLupa20x20:before, .IcoLupa20x20:after,
-.IcoLupa20x20::before, .IcoLupa20x20::after {    
-    content:'';
-    display:block;
-    background:#FFFFFF;
-    width:8px;
-    height:2px;
-    position:absolute;
-    top:13px;
-    left:11px;
-    transform:rotateZ(45deg);
-    transition:0.4s;
-}
-
-.BarraPrincipal_Boton_Label + #BarraPrincipal_Submenus + .BarraPrincipal_BotonMenu {
-    z-index:1009;
-}

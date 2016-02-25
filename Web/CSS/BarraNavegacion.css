@@ -568,6 +568,7 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
 #BarraNavegacion_Votacion[mostrar='true'] > .BarraPrincipal_BotonMenu > .IcoTexto > span {
     display:inline-block;
     animation:Ani-RotarVotacion 13s cubic-bezier(.3,-0.5,.23,.78) 0s infinite alternate;
+    transition:0.4s;
 }
 @keyframes Ani-RotarVotacion {
     0%   { transform:perspective(600px) rotateY(0deg) rotateX(0deg);   }

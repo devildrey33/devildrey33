@@ -21,21 +21,19 @@ Millores de la web :
  V  - Retocats butons dels submenus del menu principal (menu esquerra), ara es mostren en un flex box.
  V  - El codi estatic i el codi del lab no tenen la mateixa configuracio de color (NO POT SER)
  V  - Afegides noves URL a la llista de bans, que ultimament veig molta cosa rara de gent que proba aviam si tinc word-press en el log.
- V  - No van alguns comentaris en la documentació... (El problema ve de la funció Base.IdentificarEntrada, que no reconeix la URL si no te les mateixes majuscules i minuscules)
-    - Probar els butons de la barra lateral dreta amb fondo gris clar translucid, i les imatges en gris fosc.
-        
+ V  - No van alguns comentaris en la documentació... (El problema ve de la funció Base.IdentificarEntrada, que no reconeix la URL si no te les mateixes majuscules i minuscules)        
  V  - Pasar a svg tots els icones dels menús laterals, excepte el burguer i la creu de tancar. (em falten els 4 de la vista del lab, que s'han de refer...)
  V      - Afegir efectes 3d en el hover dels svgs
  V  - La valoració del document (nota) en articles que tenen comentaris, no surt fins que no has vist varis comentaris, s'hauria de fer com a la del 2014, quan arribi a l'altura del h2 "Comentarios"
  V  - Retocar animació de la nota, per que resalti mes (animació amb una rotació del eix X del svg cada 10 segons +o-)
+ V  - Retocar l'animació de carrega de sota a la dreta i afegirli una rotacio de la X a cada cercle. Ara com a minim si es queda trabat dona pilotaço xd
+ V  - Crear enllaços del tipo <linea> amb etiquetes <a>, i ja de pas treure el verd, i posar unaltre color mes semblant als enllaços normals.
     - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
         - Un exemple clar seria la web de elmundo
     - Re-estudiar el menú de l'esquerra, com fer poques categories que a l'hora que englobin la majoria de la web. 
- V  - Retocar l'animació de carrega de sota a la dreta i afegirli una rotacio de la X a cada cercle. Ara com a minim si es queda trabat dona pilotaço xd
     - El buscador del menú principal (amb google)... aviam si al 2016 el faig.. xd
     - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
     - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
- V  - Crear enllaços del tipo <linea> amb etiquetes <a>, i ja de pas treure el verd, i posar unaltre color mes semblant als enllaços normals.
     - El taliba m'ha insinuat que podria fer uns agraiments.
 
 !!!!!IMPORTANT!!!!!
@@ -60,9 +58,9 @@ Lab :
  V      - S'han de poguer especificar les opcions que queden apart del ?Preview
  V  - Al recarregar la web amb F5 que miri si l'exemple esta guardat i mostri un missatge per guardar o no (teclat FULL)
  V      - Falta tambè fer un parche a Base.CargarURL i a Lab.CargarArchivo per avisar que no s'ha guardat l'arxiu.
-    - Afegir barra per modificar l'amplada de la vista mixta en el minilab.
  V  - El codemirror fa algo raro amb la mida de les lineas que te calculades internament, i al cap d'un rato de remenar s¡acaba calculant bè... s'ha de buscar que o com actualitzar aquestes mides...
  V      - Obligo al codemirror a recalcular la mida del editor 200 milisegons despres d'haber iniciat i carregat el contingut. (chapucilla pero es lo que hi ha...)
+    - Afegir barra per modificar l'amplada de la vista mixta en el minilab.
     - Al guardar en el Nuevo.html que pregunti un nom d'arxiu (i que pugui crear directoris tambè)   
     - Al guardar sense privilegis dona error raro... (un cop ha pasat el temps del admin en el $_SERVER)
     - Especificar vista desde el mateix esemple amb un comentrari rotllo /* Lab-vista=filas */ i eliminar tota la pachanga que vaig posar amb el solitario-html?preview
@@ -73,7 +71,7 @@ Blog :
  V  - el "DegradadosCSS.php" te estils inline colocats al HEAD.... revisar tambè (estils dels degradats fets inline, a la merda xd)
  V  - l'arxiu /Blog/Tutorial_WINAPI_4.php no te h2's apart del de comentaris! (afegits h2 i a mes l'he omplert de <linea> xd)
     - Mirar de començar a fer coses amb SVG's (Ejemplos/SVG/Iconos.html)
- V      - Despres d'un dia de svgs corel i adobepollas sembla que ja començo a tenir nocions básiques.
+ V      - Despres d'un dia de svgs corel i adobe sembla que ja començo a tenir nocions básiques.
     - Fer documentació preliminar i exemples per les VARIABLES CSS!!!!     (https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables)
     
 Doc/CSS :
@@ -100,7 +98,6 @@ ESPECIFIC PUTU I-TRASTO DEL TALIBA DELS PEBROTS
     - Per alguna extranya rao, no s'inicia la transició d'inici en l'index, es veu el combo box de categories en blanc (opacity 0.0), i els articles es veuen al reves perque no es fa la transició.    
 
 CSS per eliminar :
-.IcoLupa20x20
-imatges dels butons dels menús laterals
-
-V   - !IMPORTANT pasar els svgs al arxiu corel, i guardar en cdr
+ V  - .IcoLupa20x20
+ V  - imatges dels butons dels menús laterals
+ V  - !IMPORTANT pasar els svgs al arxiu corel, i guardar en cdr

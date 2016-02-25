@@ -30,7 +30,7 @@
         Al final dichas entradas del blog acabaron fusionadas para formar el objeto devildrey33_PintarCodigo.
     </p>
     
-    <p>Hace cosa de un par de meses se me metió en la cabeza que necesitaba poder resaltar ciertas líneas de código con enlaces parecidos a un link. Y esto me llevo a re-escribir prácticamente por completo el objeto devildrey33_PintarCodigo. El resultado, es que ahora se pueden resaltar <linea cid='HTML' l='4'>una</linea> o <linea cid='HTML' l='6,7,8,9,14,15,22,23,24'>varias</linea> líneas de código pasando por encima de los enlaces verdes. Si la línea no está visible en la pantalla, al hacer click en el enlace verde <linea cid='HTML' l='38'>nos lleva hasta ella</linea>.</p>
+    <p>Hace cosa de un par de meses se me metió en la cabeza que necesitaba poder resaltar ciertas líneas de código con enlaces parecidos a un link. Y esto me llevo a re-escribir prácticamente por completo el objeto devildrey33_PintarCodigo. El resultado, es que ahora se pueden resaltar <linea cid='HTML' l='4'>una</linea> o <linea cid='HTML' l='6,7,8,9,14,15,22,23,24'>varias</linea> líneas de código pasando por encima de los enlaces. Si la línea no está visible en la pantalla, al hacer click en el enlace <linea cid='HTML' l='38'>nos lleva hasta ella</linea>.</p>
 
 <?php 
 /* -[INICIO devildrey33.HTML]-
@@ -152,7 +152,7 @@
     <head>
         <!-- Cabecera CSS OBLIGATORIA -->
         <link rel='stylesheet' href='PintarCodigo.css' />
-        <!-- Archivos JavaScript (Solo son necesarios si se quieren utilizar los enlaces verdes) -->
+        <!-- Archivos JavaScript (Solo son necesarios si se quieren utilizar los enlaces para resaltar código) -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="PintarCodigo.js"></script> 
     </head>
@@ -163,13 +163,13 @@
     // -[FIN devildrey33.FuncionEjemplo]- 
     $PintarCodigo->PintarArchivoPHP("IDHTML", "Titulo", basename(__FILE__), 'FuncionEjemplo'); 
 ?>
-        <linea cid='IDHTML' l='1'>Enlace verde que apunta a la primera linea</linea>
+        <linea cid='IDHTML' l='1'>Enlace que apunta a la primera linea</linea>
     </body>
 </html> 
 -[FIN devildrey33.IDC4]- */
     $Base->PintarCodigo->PintarArchivoHTML("ID4", "", basename(__FILE__), 'IDC4'); 
 ?> 
-    <p>Si queremos utilizar los enlaces verdes, basta con añadir las <linea cid='ID4' l='13,14'>cabeceras JavaScript (JQuery y PintarCodigo)</linea>, y utilizar la <linea cid='ID4' l='23'>etiqueta <code>&lt;linea&gt;</code></linea>.</p>
+    <p>Si queremos utilizar los enlaces para resaltar código, basta con añadir las <linea cid='ID4' l='13,14'>cabeceras JavaScript (JQuery y PintarCodigo)</linea>, y utilizar la <linea cid='ID4' l='23'>etiqueta <code>&lt;linea&gt;</code></linea>.</p>
     <p>El atributo <b>cid</b> es la ID del marco de código, y el atributo <b>l</b> es el número de la <b>l</b>ínea / <b>l</b>íneas de código. Para añadir múltiples líneas de código basta con delimitarlas con una coma, por ejemplo <code>l='1,2,3,4'</code> marcará las 4 primeras líneas.</p>
         
     <h2>Contenido del ejemplo</h2> 
@@ -192,7 +192,7 @@
         </tr>
         <tr>
             <td>/PintarCodigo.js</td>
-            <td>Archivo que contiene el script que hace funcionar los enlaces verdes.</td><td><b>(OPCIONAL)</b></td>            
+            <td>Archivo que contiene el script que hace funcionar los enlaces para resaltar código.</td><td><b>(OPCIONAL)</b></td>            
         </tr>
         <tr>
             <td>/<a href='/Codigo/devildrey33_PintarCodigo/test-c.php' target='_blank'>test-c.php</a></td>
