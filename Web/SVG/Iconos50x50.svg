@@ -24,11 +24,11 @@
     </g>
   
     <g id="svg-redes-sociales">
-        <rect class="fil0" transform="matrix(0.357751 0.161565 -0.161565 0.357751 125.345 251.216)" width="540.03" height="44.45"/>
-        <rect class="fil0" transform="matrix(0.290959 -0.263499 0.263499 0.290959 116.762 249.621)" width="540.03" height="44.45"/>
-        <circle class="fil0" cx="110" cy="264" r="52"/>
-        <circle class="fil0" cx="286" cy="108" r="52"/>
-        <circle class="fil0" cx="317" cy="357" r="52"/>
+        <rect class="fil0" transform="matrix(0.357751 0.161565 -0.161565 0.357751 116.885 242.756)" width="540.03" height="44.45"/>
+        <rect class="fil0" transform="matrix(0.290959 -0.263499 0.263499 0.290959 108.302 241.161)" width="540.03" height="44.45"/>
+        <circle class="fil0" cx="101" cy="255" r="52"/>
+        <circle class="fil0" cx="278" cy="99" r="52"/>
+        <circle class="fil0" cx="309" cy="349" r="52"/>
     </g>
 
     <g id="svg-marco33">

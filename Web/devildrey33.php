@@ -123,22 +123,23 @@ class devildrey33 {
                 
         // Menú lateral izquierdo 
         "<nav id='BarraPrincipal'>".Intro().
-            "<input id='BarraPrincipal_Boton_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-            "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_Boton_Estado'></label>".Intro().
-            "<div class='BarraPrincipal_BotonMenu'><div id='BarraPrincipal_Boton_Icono'></div></div>".Intro().
+            "<input id='BarraPrincipal_Boton_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
+            "<label class='Menu_Boton_Label' for='BarraPrincipal_Boton_Estado' tooltip-es='Menú principal' tooltip-en='Main menu' tooltip-pos='L'></label>".Intro().
+            "<div class='Menu_Boton'>".Intro().
+                "<div id='BarraPrincipal_Boton_Icono'></div>".Intro().
+            "</div>".Intro().
             "<div id='BarraPrincipal_Submenus'>".Intro().
                 "<div id='BarraPrincipal_Fondo'></div>".Intro().
                 // <!-- CSS -->
-                "<div class='Menu_BotonCheck' mostrar='true'>".Intro().
-                    "<input id='BarraPrincipal_BotonCSS_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                    "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonCSS_Estado'></label>".Intro().
-                    "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                        "<span class='IcoTexto'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-css' />".Intro().
+                "<div class='Menu' mostrar='true'>".Intro().
+                    "<input id='BarraPrincipal_BotonCSS_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
+                    "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonCSS_Estado' tooltip-es='CSS' tooltip-en='CSS' tooltip-pos='L'></label>".Intro().
+                    "<div class='Menu_Boton'>".Intro().
+                        "<span class='Menu_Boton_Cruz'>".Intro().
+                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-css' />".Intro().
                         "</span>".Intro().
-//                        "<span class='IcoTexto'>CSS</span>".Intro().
                     "</div>".Intro().
-                    "<div id ='BarraPrincipal_MarcoCSS'>".Intro().
+                    "<div class='Menu_Marco' id='BarraPrincipal_MarcoCSS'>".Intro().
                         "<a href='/Doc/CSS/Colores'>Colores</a>".Intro().
                         "<a href='/Doc/CSS/Degradados'>Degradados</a>".Intro().
                         "<a href='/Doc/CSS/Unidades'>Unidades</a>".Intro().
@@ -150,16 +151,15 @@ class devildrey33 {
                 "</div>".Intro().
                 
                 // <!-- C / C++ -->
-                "<div class='Menu_BotonCheck' mostrar='true'>".Intro().
-                    "<input id='BarraPrincipal_BotonCPP_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                    "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonCPP_Estado'></label>".Intro().
-                    "<div class='BarraPrincipal_BotonMenu'>".Intro().
-//                        "<span class='IcoTexto'>C++</span>".Intro().
-                        "<span class='IcoTexto'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-cpp' />".Intro().
+                "<div class='Menu' mostrar='true'>".Intro().
+                    "<input id='BarraPrincipal_BotonCPP_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
+                    "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonCPP_Estado' tooltip-es='C/C++ en Windows' tooltip-en='C/C++ on Windows' tooltip-pos='L'></label>".Intro().
+                    "<div class='Menu_Boton'>".Intro().
+                        "<span class='Menu_Boton_Cruz'>".Intro().
+                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-cpp' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
-                    "<div id ='BarraPrincipal_MarcoCPP'>".Intro().
+                    "<div class='Menu_Marco' id ='BarraPrincipal_MarcoCPP'>".Intro().
                         "<a href='/Blog/Tutorial_WINAPI_1_0'>Calculadora</a>".Intro().
                         "<a href='/Blog/Tutorial_WINAPI_2_0'>Snake</a>".Intro().
                         "<a href='/Blog/Tutorial_WINAPI_3_0'>Instalador</a>".Intro().
@@ -168,18 +168,17 @@ class devildrey33 {
                     "</div>".Intro().
                 "</div>".Intro().
                 // <!-- HTML -->
-//                "<a href='/Categorias/HTML' class='BarraPrincipal_BotonMenu'><span>HTML</span></a>".
+//                "<a href='/Categorias/HTML' class='Menu_Boton'><span>HTML</span></a>".
                 // <!-- JS -->
-                "<div class='Menu_BotonCheck' mostrar='true'>".Intro().
-                    "<input id='BarraPrincipal_BotonJS_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                    "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonJS_Estado'></label>".Intro().
-                    "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                        "<span class='IcoTexto'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-js' />".Intro().
+                "<div class='Menu' mostrar='true'>".Intro().
+                    "<input id='BarraPrincipal_BotonJS_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
+                    "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonJS_Estado' tooltip-es='JavaScript y jQuery' tooltip-en='JavaScript and jQuery' tooltip-pos='L'></label>".Intro().
+                    "<div class='Menu_Boton'>".Intro().
+                        "<span class='Menu_Boton_Cruz'>".Intro().
+                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-js' />".Intro().
                         "</span>".Intro().
-//                        "<span class='IcoTexto'>JS</span>".Intro().
                     "</div>".Intro().
-                    "<div id ='BarraPrincipal_MarcoJS'>".Intro().
+                    "<div class='Menu_Marco' id='BarraPrincipal_MarcoJS'>".Intro().
                         "<a href='/Blog/Canvas2D_1'>Canvas 2D 1</a>".Intro().
                         "<a href='/Blog/Canvas2D_2'>Canvas 2D 2</a>".Intro().
                         "<a href='/Blog/Canvas2D_3'>Canvas 2D 3</a>".Intro().
@@ -190,16 +189,15 @@ class devildrey33 {
                 "</div>".Intro().
 
                 // <!-- PHP -->
-                "<div class='Menu_BotonCheck' mostrar='true'>".Intro().
-                    "<input id='BarraPrincipal_BotonPHP_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                    "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonPHP_Estado'></label>".Intro().
-                    "<div class='BarraPrincipal_BotonMenu'>".Intro().
-//                        "<span class='IcoTexto'>PHP</span>".Intro().
-                        "<span class='IcoTexto'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-php' />".Intro().
+                "<div class='Menu' mostrar='true'>".Intro().
+                    "<input id='BarraPrincipal_BotonPHP_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
+                    "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonPHP_Estado' tooltip-es='PHP' tooltip-en='PHP' tooltip-pos='L'></label>".Intro().
+                    "<div class='Menu_Boton'>".Intro().
+                        "<span class='Menu_Boton_Cruz'>".Intro().
+                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-php' />".Intro().
                         "</span>".Intro().                
                     "</div>".Intro().
-                    "<div id ='BarraPrincipal_MarcoPHP'>".Intro().
+                    "<div class='Menu_Marco' id='BarraPrincipal_MarcoPHP'>".Intro().
                         "<a href='/Blog/Captcha1'>Captchas 1</a>".Intro().
                         "<a href='/Blog/Captcha2'>Captchas 2</a>".Intro().
                         "<a href='/Blog/Captcha3'>Captchas 3</a>".Intro().
@@ -208,19 +206,19 @@ class devildrey33 {
                 "</div>".Intro().
                 
                 // <!-- Buscar -->
-                "<div class='Menu_BotonCheck' mostrar='true'>".Intro().
-                    "<input id='BarraPrincipal_BotonBuscar_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                    "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_BotonBuscar_Estado'></label>".Intro().
-                    "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                        "<span class='IcoTexto'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-buscar' />".Intro().
+                "<div class='Menu' mostrar='true'>".Intro().
+                    "<input id='BarraPrincipal_BotonBuscar_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
+                    "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonBuscar_Estado' tooltip-es='Buscar' tooltip-en='Search' tooltip-pos='L'></label>".Intro().
+                    "<div class='Menu_Boton'>".Intro().
+                        "<span class='Menu_Boton_Cruz'>".Intro().
+                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-buscar' />".Intro().
                         "</span>".Intro().
 //                        "<span class='IcoLupa20x20'></span>". // <!-- lupa a morphejar -->
                     "</div>".Intro().
-                    "<div id ='BarraPrincipal_MarcoBuscar'>".Intro().
+                    "<div class='Menu_Marco' id='BarraPrincipal_MarcoBuscar'>".Intro().
                         "<input type='text' name='Search' id='BarraPrincipal_MarcoBuscar_Edit' placeholder='Texto a buscar..' required>".Intro().
                         "<div id='BarraPrincipal_MarcoBuscar_BotonBuscar'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-buscar' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-buscar' />".Intro().
 //                           "<span class='IcoLupa20x20'></span>".Intro().
                         "</div>".Intro().
                     "</div>".Intro().
@@ -228,7 +226,7 @@ class devildrey33 {
                 
 
             "</div>".Intro().
-            "<div id='Marco33' class='Menu_BotonCheck' mostrar='true'>".Intro(); // Marco que contiene las herramientas de administrador
+            "<div id='Marco33' class='Menu' mostrar='true'>".Intro(); // Marco que contiene las herramientas de administrador
             $HA = $this->HerramientasAdmin("", "", FALSE);
             echo $HA["HTMLAdmin"];
             echo "</div>".Intro().            
@@ -243,52 +241,52 @@ class devildrey33 {
                     
         "<nav id='BarraNavegacion'>".Intro().
             /* Indice */
-            "<a href='/' id='BarraNavegacion_Cerrar' tooltip-es='Volver al indice principal' tooltip-en='Return to main index' tooltip-pos='R' class='BarraPrincipal_BotonMenu'>".Intro().
-                "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-indice' />".Intro().
+            "<a href='/' id='BarraNavegacion_Cerrar' tooltip-es='Volver al indice principal' tooltip-en='Return to main index' tooltip-pos='R' class='Menu_Boton'>".Intro().
+                "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-indice' />".Intro().
             "</a>".Intro().
             /* Lab Ver */
-            "<div id ='BarraNavegacion_LabVer' class='Menu_BotonCheck'  mostrar='true'>".Intro().
-                "<input id='BarraNavegacion_BotonVer_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                "<label class='BarraPrincipal_Boton_Label' for='BarraNavegacion_BotonVer_Estado' tooltip-es='Vista del editor' tooltip-en='Editor's view' tooltip-pos='R'></label>".Intro().
-                "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                    "<span class='IcoTexto' id='BarraNavegacion_Lab_IconoVer'>".Intro().
+            "<div id ='BarraNavegacion_LabVer' class='Menu'  mostrar='true'>".Intro().
+                "<input id='BarraNavegacion_BotonVer_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
+                "<label class='Menu_Boton_Label' for='BarraNavegacion_BotonVer_Estado' tooltip-es='Vista del editor' tooltip-en='Editor's view' tooltip-pos='R'></label>".Intro().
+                "<div class='Menu_Boton'>".Intro().
+                    "<span class='Menu_Boton_Cruz' id='BarraNavegacion_Lab_IconoVer'>".Intro().
 /*                        "<span></span>".Intro().  */
-                        "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-vista-filas' />".Intro().
-                        "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-vista-columnas' />".Intro().
-                        "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-vista-codigo' />".Intro().
-                        "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-vista-preview' />".Intro().
+                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-filas' />".Intro().
+                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-columnas' />".Intro().
+                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-codigo' />".Intro().
+                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-preview' />".Intro().
                     "</span>".Intro().
                 "</div>".Intro().
-                "<div id ='BarraNavegacion_LabMarcoVer'>".Intro().                                       
-                    "<input id='Lab_VerFilas_Estado' class='BarraPrincipal_Boton_Input' type='radio' name='Lab_Ver' />".Intro().
-                    "<label tooltip-es='Ver Filas' tooltip-en='Rows' tooltip-pos='T' class='BarraPrincipal_Boton_Label Lab_BotonVerFilas' for='Lab_VerFilas_Estado'></label>".Intro().                    
-                    "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                        "<span class='IcoTexto' id='BarraNavegacion_Lab_IconoVer'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-vista-filas' sinopacidad='true' />".Intro().
+                "<div class='Menu_Marco' id ='BarraNavegacion_LabMarcoVer'>".Intro().                                       
+                    "<input id='Lab_VerFilas_Estado' class='Menu_Boton_Input' type='radio' name='Lab_Ver' />".Intro().
+                    "<label tooltip-es='Ver Filas' tooltip-en='Rows' tooltip-pos='B' class='Menu_Boton_Label Lab_BotonVerFilas' for='Lab_VerFilas_Estado'></label>".Intro().                    
+                    "<div class='Menu_Boton'>".Intro().
+                        "<span class='Menu_Boton_Cruz' id='BarraNavegacion_Lab_IconoVer'>".Intro().
+                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-filas' sinopacidad='true' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
 
-                    "<input id='Lab_VerColumnas_Estado' class='BarraPrincipal_Boton_Input' type='radio' name='Lab_Ver' />".Intro().
-                    "<label tooltip-es='Ver Columnas' tooltip-en='Columns' tooltip-pos='T' class='BarraPrincipal_Boton_Label Lab_BotonVerColumnas' for='Lab_VerColumnas_Estado'></label>".Intro().
-                    "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                        "<span class='IcoTexto' id='BarraNavegacion_Lab_IconoVer'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-vista-columnas' sinopacidad='true' />".Intro().
+                    "<input id='Lab_VerColumnas_Estado' class='Menu_Boton_Input' type='radio' name='Lab_Ver' />".Intro().
+                    "<label tooltip-es='Ver Columnas' tooltip-en='Columns' tooltip-pos='B' class='Menu_Boton_Label Lab_BotonVerColumnas' for='Lab_VerColumnas_Estado'></label>".Intro().
+                    "<div class='Menu_Boton'>".Intro().
+                        "<span class='Menu_Boton_Cruz' id='BarraNavegacion_Lab_IconoVer'>".Intro().
+                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-columnas' sinopacidad='true' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
                     
-                    "<input id='Lab_VerCodigo_Estado' class='BarraPrincipal_Boton_Input' type='radio' name='Lab_Ver' />".Intro().
-                    "<label tooltip-es='Ver Código' tooltip-en='Code' tooltip-pos='T' class='BarraPrincipal_Boton_Label Lab_BotonVerCodigo' for='Lab_VerCodigo_Estado'></label>".Intro().
-                    "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                        "<span class='IcoTexto' id='BarraNavegacion_Lab_IconoVer'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-vista-codigo' sinopacidad='true' />".Intro().
+                    "<input id='Lab_VerCodigo_Estado' class='Menu_Boton_Input' type='radio' name='Lab_Ver' />".Intro().
+                    "<label tooltip-es='Ver Código' tooltip-en='Code' tooltip-pos='B' class='Menu_Boton_Label Lab_BotonVerCodigo' for='Lab_VerCodigo_Estado'></label>".Intro().
+                    "<div class='Menu_Boton'>".Intro().
+                        "<span class='Menu_Boton_Cruz' id='BarraNavegacion_Lab_IconoVer'>".Intro().
+                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-codigo' sinopacidad='true' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
                     
-                    "<input id='Lab_VerPreview_Estado' class='BarraPrincipal_Boton_Input' type='radio' name='Lab_Ver' />".Intro().
-                    "<label tooltip-es='Ver Pre-visualización' tooltip-en='Preview' tooltip-pos='T' class='BarraPrincipal_Boton_Label Lab_BotonVerPreview' for='Lab_VerPreview_Estado'></label>".Intro().
-                    "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                        "<span class='IcoTexto' id='BarraNavegacion_Lab_IconoVer'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-vista-preview' sinopacidad='true' />".Intro().
+                    "<input id='Lab_VerPreview_Estado' class='Menu_Boton_Input' type='radio' name='Lab_Ver' />".Intro().
+                    "<label tooltip-es='Ver Pre-visualización' tooltip-en='Preview' tooltip-pos='B' class='Menu_Boton_Label Lab_BotonVerPreview' for='Lab_VerPreview_Estado'></label>".Intro().
+                    "<div class='Menu_Boton'>".Intro().
+                        "<span class='Menu_Boton_Cruz' id='BarraNavegacion_Lab_IconoVer'>".Intro().
+                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-preview' sinopacidad='true' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
                     
@@ -300,18 +298,18 @@ class devildrey33 {
             "</div>".Intro().
                     
             /* Lab explorar */
-            "<div id='BarraNavegacion_LabExplorar' class='Menu_BotonCheck' mostrar='true'>".Intro().                    
-                "<input id='BarraNavegacion_BotonExplorar_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                "<label class='BarraPrincipal_Boton_Label' for='BarraNavegacion_BotonExplorar_Estado' tooltip-es='Explorar ejemplos' tooltip-en='Examples explorer' tooltip-pos='R'></label>".Intro().
-                "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                    "<span class='IcoTexto'>".Intro(). 
-                        "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-explorar-lab' />".Intro().
+            "<div id='BarraNavegacion_LabExplorar' class='Menu' mostrar='true'>".Intro().                    
+                "<input id='BarraNavegacion_BotonExplorar_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
+                "<label class='Menu_Boton_Label' for='BarraNavegacion_BotonExplorar_Estado' tooltip-es='Explorar ejemplos' tooltip-en='Examples explorer' tooltip-pos='R'></label>".Intro().
+                "<div class='Menu_Boton'>".Intro().
+                    "<span class='Menu_Boton_Cruz'>".Intro(). 
+                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-explorar-lab' />".Intro().
                     "</span>".Intro().
                 "</div>".Intro().
                     
                     
-//                "<span class='IcoTexto'>Ejem</span>".Intro().
-                "<div id ='BarraNavegacion_LabMarcoExplorador'>".Intro().
+//                "<span class='Menu_Boton_Cruz'>Ejem</span>".Intro().
+                "<div class='Menu_Marco' id ='BarraNavegacion_LabMarcoExplorador'>".Intro().
                      "<div class='Lab_Explorador' id='BarraNavegacion_Explorador'>".Intro();
             if (devildrey33_Opciones::Administrador() > 0) { echo devildrey33_Lab::MostrarCarpetaEjemplos(); }
             else                                           { echo devildrey33_Lab::LeerCache(); }
@@ -321,27 +319,27 @@ class devildrey33 {
                     
             /* Blog Subindice */
             /* NOTA!! va el primero porque puede tener un tamaño muy grande, y asi aprovecha el máximo de altura*/
-            "<div id='BarraNavegacion_Indice' class='Menu_BotonCheck' mostrar='true'>".Intro().
-                "<input id='BarraNavegacion_Indice_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                "<label class='BarraPrincipal_Boton_Label' for='BarraNavegacion_Indice_Estado' tooltip-es='Secciones del documento' tooltip-en='Document sections' tooltip-pos='R'></label>".Intro().
-                "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                    "<span class='IcoTexto'>".Intro().
-                        "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-sub-indice' />".Intro().
+            "<div id='BarraNavegacion_Indice' class='Menu' mostrar='true'>".Intro().
+                "<input id='BarraNavegacion_Indice_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
+                "<label class='Menu_Boton_Label' for='BarraNavegacion_Indice_Estado' tooltip-es='Secciones del documento' tooltip-en='Document sections' tooltip-pos='R'></label>".Intro().
+                "<div class='Menu_Boton'>".Intro().
+                    "<span class='Menu_Boton_Cruz'>".Intro().
+                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-sub-indice' />".Intro().
                     "</span>".Intro().
                 "</div>".Intro().
-                "<div id='BarraNavegacion_SubIndice'></div>".Intro().
+                "<div class='Menu_Marco' id='BarraNavegacion_SubIndice'></div>".Intro().
             "</div>".Intro().
                     
             /* Prev / Next (navegación) */
-            "<div id='BarraNavegacion_NextPrev' class='Menu_BotonCheck' mostrar='true'>".Intro().
-                "<input id='BarraNavegacion_PrevNext_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                "<label class='BarraPrincipal_Boton_Label' for='BarraNavegacion_PrevNext_Estado' tooltip-es='Navegación por el Blog' tooltip-en='Navigate' tooltip-pos='R'></label>".Intro().
-                "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                    "<span class='IcoTexto'>".Intro().
-                        "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-lista' />".Intro().
+            "<div id='BarraNavegacion_NextPrev' class='Menu' mostrar='true'>".Intro().
+                "<input id='BarraNavegacion_PrevNext_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
+                "<label class='Menu_Boton_Label' for='BarraNavegacion_PrevNext_Estado' tooltip-es='Navegación por el Blog' tooltip-en='Navigate' tooltip-pos='R'></label>".Intro().
+                "<div class='Menu_Boton'>".Intro().
+                    "<span class='Menu_Boton_Cruz'>".Intro().
+                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-lista' />".Intro().
                     "</span>".Intro().
                 "</div>".Intro().
-                "<div id='BarraNavegacion_MarcoNextPrev'>".
+                "<div class='Menu_Marco' id='BarraNavegacion_MarcoNextPrev'>".
                     "<button id='BarraNavegacion_MarcoNextPrev_Prev'></button>".Intro().
                     "<div id='BarraNavegacion_MarcoNextPrev_Desc'>"."</div>".Intro().
                     "<button id='BarraNavegacion_MarcoNextPrev_Next'></button>".Intro().
@@ -351,45 +349,45 @@ class devildrey33 {
                     
                     
             /* Redes sociales */
-            "<div id='BarraNavegacion_RedesSociales' class='Menu_BotonCheck' mostrar='true'>".Intro().
-                "<input id='BarraNavegacion_RedesSociales_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                "<label class='BarraPrincipal_Boton_Label' for='BarraNavegacion_RedesSociales_Estado' tooltip-es='Redes sociales' tooltip-en='Social networks' tooltip-pos='R'></label>".Intro().
-                "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                    "<span class='IcoTexto'>".Intro().
-                        "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-redes-sociales' />".Intro().
+            "<div id='BarraNavegacion_RedesSociales' class='Menu' mostrar='true'>".Intro().
+                "<input id='BarraNavegacion_RedesSociales_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
+                "<label class='Menu_Boton_Label' for='BarraNavegacion_RedesSociales_Estado' tooltip-es='Redes sociales' tooltip-en='Social networks' tooltip-pos='R'></label>".Intro().
+                "<div class='Menu_Boton'>".Intro().
+                    "<span class='Menu_Boton_Cruz'>".Intro().
+                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-redes-sociales' />".Intro().
                     "</span>".Intro().
                 "</div>".Intro().
-                "<div id='BarraNavegacion_MarcoRedesSociales'>".
-                    "<div class='BarraPrincipal_BotonMenu' id='BarraNavegacion_MarcoRedesSociales_Facebook'>".Intro().
-                        "<span class='IcoTexto'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-facebook' />".Intro().
+                "<div class='Menu_Marco' id='BarraNavegacion_MarcoRedesSociales'>".
+                    "<div class='Menu_Boton' id='BarraNavegacion_MarcoRedesSociales_Facebook' tooltip-es='Facebook' tooltip-en='Facebook' tooltip-pos='T'>".Intro().
+                        "<span class='Menu_Boton_Cruz'>".Intro().
+                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-facebook' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
-                    "<div class='BarraPrincipal_BotonMenu' id='BarraNavegacion_MarcoRedesSociales_Twitter'>".Intro().
-                        "<span class='IcoTexto'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-twitter' />".Intro().
+                    "<div class='Menu_Boton' id='BarraNavegacion_MarcoRedesSociales_Twitter' tooltip-es='Twitter' tooltip-en='Twitter' tooltip-pos='T'>".Intro().
+                        "<span class='Menu_Boton_Cruz'>".Intro().
+                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-twitter' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
-                    "<div class='BarraPrincipal_BotonMenu' id='BarraNavegacion_MarcoRedesSociales_GooglePlus'>".Intro().
-                        "<span class='IcoTexto'>".Intro().
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-gplus' />".Intro().
+                    "<div class='Menu_Boton' id='BarraNavegacion_MarcoRedesSociales_GooglePlus' tooltip-es='Google plus' tooltip-en='Google plus' tooltip-pos='T'>".Intro().
+                        "<span class='Menu_Boton_Cruz'>".Intro().
+                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-gplus' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().                                        
                 "</div>".Intro().
             "</div>".Intro().
                     
             /* Votación para el documento */
-            "<div id='BarraNavegacion_Votacion' class='Menu_BotonCheck'>".Intro().
-                "<input id='BarraNavegacion_Votacion_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                "<label class='BarraPrincipal_Boton_Label' for='BarraNavegacion_Votacion_Estado' tooltip-es='Valoración del documento' tooltip-en='Document valoration' tooltip-pos='R'></label>".Intro().
-                "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                    "<span class='IcoTexto'>".Intro().
+            "<div id='BarraNavegacion_Votacion' class='Menu'>".Intro().
+                "<input id='BarraNavegacion_Votacion_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
+                "<label class='Menu_Boton_Label' for='BarraNavegacion_Votacion_Estado' tooltip-es='Valoración del documento' tooltip-en='Document valoration' tooltip-pos='R'></label>".Intro().
+                "<div class='Menu_Boton'>".Intro().
+                    "<span class='Menu_Boton_Cruz'>".Intro().
                         "<span>".Intro(). // Span para la animación de la rotación
-                            "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-votacion' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-votacion' />".Intro().
                         "</span>".Intro().                    
                     "</span>".Intro().
                 "</div>".Intro().
-                "<div id='BarraNavegacion_MarcoVotacion'>".
+                "<div class='Menu_Marco' id='BarraNavegacion_MarcoVotacion'>".
                     "<span></span>".Intro(). // Por favor puntúa este documento del 1 al 5
                     "<span></span>".Intro(). // De esta forma me ayudas a mejorar la web
                     "<div class='VotarDocumento_Estrellas'>".Intro().
@@ -403,14 +401,14 @@ class devildrey33 {
             "</div>".Intro().                    
                     
             /* Lab Guardar */
-            "<div id='BarraNavegacion_LabGuardar' tooltip-es='Guardar archivo' tooltip-en='Save file' tooltip-pos='R' class='BarraPrincipal_BotonMenu'>".Intro().
-                "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-guardar' />".Intro().
+            "<div id='BarraNavegacion_LabGuardar' tooltip-es='Guardar archivo' tooltip-en='Save file' tooltip-pos='R' class='Menu_Boton'>".Intro().
+                "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-guardar' />".Intro().
             "</div>".Intro().
-            "<div id='BarraNavegacion_LabGuardarCache' tooltip-es='Guardar cache explorador' tooltip-en='Save explorer cache' tooltip-pos='R' class='BarraPrincipal_BotonMenu'>".Intro().
-                "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-guardar-cache' />".Intro().
+            "<div id='BarraNavegacion_LabGuardarCache' tooltip-es='Guardar cache explorador' tooltip-en='Save explorer cache' tooltip-pos='R' class='Menu_Boton'>".Intro().
+                "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-guardar-cache' />".Intro().
             "</div>".Intro().
                     
-/*            "<div id='BarraNavegacion_Encuesta' class='BarraPrincipal_BotonMenu'></div>".Intro().
+/*            "<div id='BarraNavegacion_Encuesta' class='Menu_Boton'></div>".Intro().
             "<div id='BarraNavegacion_VentanaEncuesta' class='MarcoVentana-500'>".Intro().
                 "<p>Te importaria tomarte 30 segundos para votar este contenido del 1 al 5??</p>".Intro().
                 "<p>Si lo deseas tambien puedes mandarme por privado tus criticas y o sugerencias.</p>".Intro().
@@ -455,14 +453,14 @@ class devildrey33 {
             $Cache      = (devildrey33_Opciones::ActualizarCache()  === 1) ? "true" : "false";
             $HTAccess = new devildrey33_htaccess;
             $ValHT = $HTAccess->ObtenerValores();
-            $HTMLAdmin = "<input id='BarraPrincipal_Boton33_Estado' class='BarraPrincipal_Boton_Input' type='checkbox' />".Intro().
-                "<label class='BarraPrincipal_Boton_Label' for='BarraPrincipal_Boton33_Estado'></label>".Intro().
-                "<div class='BarraPrincipal_BotonMenu'>".Intro().
-                    "<span class='IcoTexto'>".Intro().
-                        "<img class='ImgSvg' src='/Web/SVG/Iconos50x50.svg#svg-marco33' />".Intro().
+            $HTMLAdmin = "<input id='BarraPrincipal_Boton33_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
+                "<label class='Menu_Boton_Label' for='BarraPrincipal_Boton33_Estado' tooltip-es='Administración' tooltip-en='Administration' tooltip-pos='L'></label>".Intro().
+                "<div class='Menu_Boton'>".Intro().
+                    "<span class='Menu_Boton_Cruz'>".Intro().
+                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-marco33' />".Intro().
                     "</span>".Intro().
                 "</div>".Intro().
-                "<div id ='BarraPrincipal_Marco33'>".Intro().
+                "<div class='Menu_Marco' id='BarraPrincipal_Marco33'>".Intro().
                     "<ul class='TablaMarco33 TablaSesion33'>".Intro().
                         "<li>Administrador</li>".Intro().
                         "<li>"."<div id='CH_Admin' class='CheckBox' marcado='true' title='Desactiva el modo administrador'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().

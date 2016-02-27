@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4">
         <file>
-            <url>Web/JS/ObjetoBase.js</url>
-            <bookmark id="4">
-                <name/>
-                <line>240</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
             <url>Web/JS/ObjetoAdmin.js</url>
             <bookmark id="1">
                 <name/>
@@ -30,42 +22,26 @@
                 <key/>
             </bookmark>
         </file>
+        <file>
+            <url>Web/JS/ObjetoBase.js</url>
+            <bookmark id="4">
+                <name/>
+                <line>240</line>
+                <key/>
+            </bookmark>
+        </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Media.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Codigo/devildrey33_PintarCodigo/test-css.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS_BD.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Base.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoLab.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Lab.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Codigo/devildrey33_PintarCodigo/test-c.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoIndice.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/SVG/Iconos50x50.svg</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Codigo/devildrey33_PintarCodigo/PintarCodigo.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/BarraPrincipal.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/devildrey33_Buscador.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/FuncionesCSS/attr.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Codigo/devildrey33_PintarCodigo/test-js.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Codemirror.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/resaltar-sintaxis-codigo-fuente.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/CuboCabecera.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/TODO.txt</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoBase.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Codigo/devildrey33_PintarCodigo/test-html.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/PintarCodigo.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Index.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Blog.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/ArchivosMinify.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Tooltips.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Menu.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/BarraNavegacion.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/GenerarIndice.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/index.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Mantenimiento.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BanersDT/BanerDT4.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Codigo/devildrey33_PintarCodigo/test-php.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoPintarCodigo.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoAdmin.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Captcha/Captcha1_Ejemplo.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/SVG/Iconos50x50.svg</file>
         </group>
     </open-files>
 </project-private>

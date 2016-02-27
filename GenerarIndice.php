@@ -5,7 +5,7 @@
         static function GenerarIndice($BD, $Categoria = "Todo", $Inicio = 0) {
             $ArrayTags = (require dirname(__FILE__).'/Web/Config/EntradasTags.php');
                     
-            $Codigo  = '<input id="Categorias_Estado" class="BarraPrincipal_Boton_Input" type="checkbox">'.Intro();
+            $Codigo  = '<input id="Categorias_Estado" class="Menu_Boton_Input" type="checkbox">'.Intro();
             $Codigo .= '<label id="Categorias_Label" for="Categorias_Estado"></label>'.Intro();
             $Codigo .= "<div id='Categorias' categoria='".$Categoria."'>".Intro();
             $Codigo .=      "<span>Categoria : ".$Categoria."</span>".Intro();

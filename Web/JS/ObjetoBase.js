@@ -33,14 +33,14 @@ $Base = new function() {
     
     this.Iniciar = function() {
         /* Botones de las vistas del lab */
-//        $("#BarraNavegacion_LabVer > .BarraPrincipal_BotonMenu").on("click"), function() { $("#BarraNavegacion_BotonVer_Estado").trigger("click") }
+//        $("#BarraNavegacion_LabVer > .Menu_Boton").on("click"), function() { $("#BarraNavegacion_BotonVer_Estado").trigger("click") }
         $(".Lab_BotonVerFilas").click(function(e){ $Lab.AjustarVista("0"); });
         $(".Lab_BotonVerColumnas").click(function(e){ $Lab.AjustarVista("1"); });
         $(".Lab_BotonVerCodigo").click(function(e){ $Lab.AjustarVista("2"); });
         $(".Lab_BotonVerPreview").click(function(e){ $Lab.AjustarVista("3"); });
         /* Explorador del laboratorio */
-//        $("#BarraNavegacion_LabExplorar > .BarraPrincipal_BotonMenu > .IcoTexto > svg").on("click"), function() { $("#BarraNavegacion_BotonExplorar_Estado").trigger("click"); }
-//        $("#BarraNavegacion_LabMarcoVer > label.BarraPrincipal_BotonMenu:nth-child(8)").click(function(e){ $Lab.AjustarVista("3"); });
+//        $("#BarraNavegacion_LabExplorar > .Menu_Boton > .Menu_Boton_Cruz > svg").on("click"), function() { $("#BarraNavegacion_BotonExplorar_Estado").trigger("click"); }
+//        $("#BarraNavegacion_LabMarcoVer > label.Menu_Boton:nth-child(8)").click(function(e){ $Lab.AjustarVista("3"); });
 
         $Lab.EnlazarEventosExplorador();
 
@@ -562,7 +562,7 @@ $Base = new function() {
         });
         var Columnas = 0;
         while (ContadorAnclas > 0) { ContadorAnclas -= 12; Columnas ++; }
-        $("#BarraNavegacion_SubIndice").attr({ "class" : "SubIndice_Columas_" + Columnas });
+        $("#BarraNavegacion_SubIndice").attr({ "class" : "Menu_Marco SubIndice_Columas_" + Columnas });
         if (Codigo !== "") {
             $("#BarraNavegacion_Indice").show();
             $("#BarraNavegacion_SubIndice").html(Codigo);
@@ -647,7 +647,7 @@ $Base = new function() {
         
         
         /* Escondo los menús de la barra de navegación */
-        $("#BarraNavegacion > .Menu_BotonCheck > input[type=checkbox]").removeAttr("checked");
+        $("#BarraNavegacion > .Menu > input[type=checkbox]").removeAttr("checked");
         this.LogoCargando("TRUE");
         
         if (URL.indexOf("/") === -1) {

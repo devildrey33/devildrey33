@@ -236,7 +236,7 @@ and open the template in the editor.
     position:relative;
 }
 
-.MiniLab_Contenedor > .MiniLab_ContenedorBotones > .BarraPrincipal_BotonMenu {
+.MiniLab_Contenedor > .MiniLab_ContenedorBotones > .Menu_Boton {
     margin:2px;
     min-width:42px;
     display:table-cell;
@@ -319,7 +319,8 @@ and open the template in the editor.
 .MiniLab[ver=codigo] > .MiniLab_Preview                                          { display:none;  }
 .MiniLab[ver=preview] > .MiniLab_Preview, .MiniLab[ver=mixto] > .MiniLab_Preview { display:block; }
 
-.BarraPrincipal_Boton_Input + .MiniLab_VerPreview, .BarraPrincipal_Boton_Input + .MiniLab_VerCodigo, .BarraPrincipal_Boton_Input + .MiniLab_VerMixto {
+/* Botones de las vistas en el minilab */
+.Menu_Boton_Input + .MiniLab_VerPreview, .Menu_Boton_Input + .MiniLab_VerCodigo, .Menu_Boton_Input + .MiniLab_VerMixto {
     width:58px;
     height:58px;
     bottom:-65px;
@@ -333,11 +334,11 @@ and open the template in the editor.
     background-position:center, center;
 }
 
-#BarraNavegacion_LabMarcoVer > .BarraPrincipal_Boton_Input:checked + .BarraPrincipal_BotonMenu,
-.MiniLab_ContenedorBotones > .BarraPrincipal_Boton_Input:checked + .BarraPrincipal_BotonMenu,
-.BarraPrincipal_Boton_Input:checked + .MiniLab_VerPreview, 
-.BarraPrincipal_Boton_Input:checked + .MiniLab_VerCodigo, 
-.BarraPrincipal_Boton_Input:checked + .MiniLab_VerMixto,
+#BarraNavegacion_LabMarcoVer > .Menu_Boton_Input:checked + .Menu_Boton,
+.MiniLab_ContenedorBotones > .Menu_Boton_Input:checked + .Menu_Boton,
+.Menu_Boton_Input:checked + .MiniLab_VerPreview, 
+.Menu_Boton_Input:checked + .MiniLab_VerCodigo, 
+.Menu_Boton_Input:checked + .MiniLab_VerMixto,
 .MiniLab_VerPreview:hover, .MiniLab_VerCodigo:hover, .MiniLab_VerMixto:hover {
     background-color:#EA504E;
     border:1px solid red;

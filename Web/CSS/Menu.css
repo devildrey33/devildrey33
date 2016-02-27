@@ -1,0 +1,155 @@
+/* Botones de los menús 
+
+    Creado el : 27-feb-2016, 0:02:27
+    Autor     : devildrey33
+*/
+
+/* Estructuración de un menú que muestra un marco
+<div class='Menu'>
+    <input class='Menu_Boton_Input' />
+    <label class='Menu_Boton_Label'></label>        // hover   - ColorBorde 
+    <div class='Menu_Boton'>                        // hover   - ColorBorde     checked - Colorfondo
+        <span class='Menu_Boton_Cruz'>              //                          checked - Rotación, y ancho de before & after
+            <img class='Menu_Boton_SVG' />          // hover   - Escala         checked - Opacidad y (escala !important)
+        </span>
+    </div>
+    <div class='Menu_Marco'>
+        ....
+    </div>
+</div>
+
+NOTA : se puede añadir un span entre Menu_Boton_Cruz y Menu_Boton_SVG para agregar otros efectos. Por ejemplo la animación que hace rotar el icono de la votación cada X segundos.
+*/
+
+
+
+/* Etiqueta que contiene un boton ademas de posibles marcos con controles adicionales */
+.Menu {
+    position:relative;
+}
+
+/* Input box que guarda el estado marcado para un boton del menu */
+.Menu_Boton_Input {
+    display:none;
+}
+
+/* Fondo del boton rojo al estar marcado */
+.Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton {
+    background-color:#EA504E;
+    border:1px solid red !important;
+}
+
+
+
+
+/* Label que pasa los eventos del mouse al input */
+.Menu_Boton_Label {
+    width:60px;
+    height:60px;
+    display:table;
+    position:absolute;
+    z-index:1010;
+    cursor:pointer;
+}
+
+/* Botones check de los menus con imagenes */
+.Menu_Boton_Input + .Menu_Boton_Label + .Menu_Boton > span > span,
+.Menu_Boton_Input + .Menu_Boton_Label + .Menu_Boton > span > .Menu_Boton_SVG {
+    opacity:1;    
+}
+
+/* Botones check MARCADOS de los menus con imagenes */
+.Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > span > span, 
+.Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > span > .Menu_Boton_SVG:not([sinopacidad]) {
+    opacity:0;    
+}
+
+
+/* Boton del menu */
+.Menu_Boton {
+    position:relative;
+    z-index:1009;
+    width:58px;
+    height:58px;
+    display:block;
+    color:#FFFFFF;
+    background-color:#252328;
+    text-decoration:none;
+    transition:0.4s;
+    margin-bottom: 0px;
+    border:1px solid #353338;
+    cursor:pointer;
+    text-align:center;
+/*    overflow:hidden; */
+}
+
+.Menu_Boton:hover,                          /* Algunos botones no tienen label */
+.Menu_Boton_Label:hover + .Menu_Boton {     /* Los botones que tienen label necesitan procesar el hover desde él */
+    background-color:#EA504E;
+    border:1px solid red;
+}         
+
+
+
+.Menu_Boton_Cruz {
+    z-index:1;
+    transition:0.4s;
+    color:#FFFFFF;
+}
+
+.Menu_Boton_Cruz::before, .Menu_Boton_Cruz::after { 
+    left:20px;
+    content:'';
+    display:block;
+    position:absolute;
+    width:0px;
+    height:2px;
+    transition:0.4s;
+    background: #FFFFFF;
+    z-index:10;
+    top:0px;
+}
+
+/* Transición de SVG a cruz */
+.Menu > .Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > .Menu_Boton_Cruz {
+    color:#EA504E;
+    transition:0.4s;
+    transform:rotateZ(180deg); /*  scale(0.5, 0.5) */
+}
+
+.Menu > .Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > .Menu_Boton_Cruz::before {
+    width:20px;
+    height:2px;
+    top:5px;
+    left:20px;
+    transform:rotateZ(45deg);
+    transition:0.4s;
+}
+
+.Menu > .Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > .Menu_Boton_Cruz::after {
+    width:20px;
+    height:2px;
+    top:5px;
+    transform:rotateZ(-45deg);
+    transition:0.4s;
+}
+
+.Menu > .Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > .Menu_Boton_Cruz > .Menu_Boton_SVG,
+.Menu > .Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > .Menu_Boton_Cruz > span > .Menu_Boton_SVG {
+    transform:scale(0.05, 0.05) !important;
+}
+
+
+
+
+/* Imagen SVG */
+.Menu_Boton > .Menu_Boton_Cruz > span > .Menu_Boton_SVG,
+.Menu_Boton > .Menu_Boton_Cruz > .Menu_Boton_SVG {
+    width:58px;
+    height:58px;
+    top:-22px;
+    /*left:12px;*/
+    transition:0.4s;
+    position:relative;
+    display:table;    
+}

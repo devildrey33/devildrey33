@@ -55,7 +55,7 @@
                     "</div>".Intro().
                 "</div>".Intro().
                 "<div id='Editor_BarraNavegacionInferior'>".Intro().
-                    "<div id='Editor_BotonAgregar' class='BarraPrincipal_BotonMenu'></div>".Intro().
+                    "<div id='Editor_BotonAgregar' class='Menu_Boton'></div>".Intro().
                 "</div>".Intro();
             
         $Edit->ImprimirEntradas();

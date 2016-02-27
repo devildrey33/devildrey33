@@ -211,11 +211,11 @@
                         "<iframe class='MiniLab_Preview'></iframe>".Intro().
                         "<div class='MiniLab_VerPreview'></div>".Intro().
 
-                        "<input id='MiniLab_Codigo_Estado_$ID' class='BarraPrincipal_Boton_Input' type='radio' name='MiniLab_input_$ID'  />".Intro().
+                        "<input id='MiniLab_Codigo_Estado_$ID' class='Menu_Boton_Input' type='radio' name='MiniLab_input_$ID'  />".Intro().
                         "<label title='Ver el código' class='BarraPrincipal_Boton MiniLab_VerCodigo' for='MiniLab_Codigo_Estado_$ID'></label>".Intro().
-                        "<input id='MiniLab_Preview_Estado_$ID' class='BarraPrincipal_Boton_Input' type='radio' name='MiniLab_input_$ID' />".Intro().
+                        "<input id='MiniLab_Preview_Estado_$ID' class='Menu_Boton_Input' type='radio' name='MiniLab_input_$ID' />".Intro().
                         "<label title='Ver la previsualización' class='BarraPrincipal_Boton MiniLab_VerPreview' for='MiniLab_Preview_Estado_$ID'></label>".Intro().
-                        "<input id='MiniLab_Mixto_Estado_$ID' class='BarraPrincipal_Boton_Input' type='radio' name='MiniLab_input_$ID' checked='checked' />".Intro().
+                        "<input id='MiniLab_Mixto_Estado_$ID' class='Menu_Boton_Input' type='radio' name='MiniLab_input_$ID' checked='checked' />".Intro().
                         "<label title='Vista partida (codigo / preview)' class='BarraPrincipal_Boton MiniLab_VerMixto' for='MiniLab_Mixto_Estado_$ID'></label>".Intro().
                         "<a href='/Lab/$Archivo'><button>Abrir en el laboratorio</button></a>".Intro().
 
@@ -227,10 +227,10 @@
                 $Contador = 0;
                 foreach ($ArrayArchivos as $Archivo) {
                     $Contador ++;
-                    echo "<input id='MiniLab_Contenedor_Estado_$Contador' class='BarraPrincipal_Boton_Input' type='radio' name='MiniLab_Contenedor_$IDC'";
+                    echo "<input id='MiniLab_Contenedor_Estado_$Contador' class='Menu_Boton_Input' type='radio' name='MiniLab_Contenedor_$IDC'";
                     if ($Contador === 1) echo " checked=checked";
                     echo " />".Intro().
-                        "<label class='BarraPrincipal_BotonMenu' for='MiniLab_Contenedor_Estado_$Contador'>$Contador</label>".Intro();
+                        "<label class='Menu_Boton' for='MiniLab_Contenedor_Estado_$Contador'>$Contador</label>".Intro();
                     
                     //echo "<button>".++$Contador."</button>";
                 }

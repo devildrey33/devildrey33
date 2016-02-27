@@ -15,8 +15,11 @@ return array(
     /* Archivos CSS */
     'css' => array(
                                     "/CSS/Base.css",
+                                    "/CSS/Menu.css",
+                                    "/CSS/Logo.css",
                                     "/CSS/BarraPrincipal.css",
                                     "/CSS/BarraNavegacion.css",
+                                    "/CSS/Tooltips.css",
                                     "/CSS/Blog.css",
                                     "/CSS/PintarCodigo.css",
                                     "/CSS/Lab.css",
