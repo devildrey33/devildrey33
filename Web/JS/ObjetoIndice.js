@@ -6,7 +6,8 @@
 
 
 $Indice = new function() {
-    this.Cargando = false;
+    this.Cargando               = false;
+    this.TotalArticulosCargados = 0;
     
     this.Iniciar = function() {
         console.log("Indice.Iniciar");
@@ -32,13 +33,15 @@ $Indice = new function() {
     
     this.ComprobarScroll = function() {
         console.log("Indice.ComprobarScroll", $("#MarcoIndice > div[finscrollinfinito]").length);
+        /* SI EXISTE UN DIV CON EL ATRIBUTO SCROLL INFINITO, Y EL ESTADO CARGANDO ES FALSE, Y EL TOTAL DE ENTRADAS/ARTICULOS NO ES 0 */
         if ($("#MarcoIndice > div[finscrollinfinito]").length === 0 && this.Cargando === false && $("#MarcoIndice").length !== 0) {
+            /* SI LA POSICIÓN DEL SCROLL ES IGUAL O SUPERIOR AL 75% DEL CONTENIDO */
             if ($(window).scrollTop() > ($(document).height() - ($(window).height() * 2))) {        
                 this.Cargando = true;
                 $Base.Cargando("TRUE");
-                Inicio = $("#MarcoIndice > .Articulo_Portada").length;
+                this.TotalArticulosCargados = $("#MarcoIndice > .Articulo_Portada").length; /* Total de entradas cargadas */
 
-                nAjax = $.post("/cmd/IndiceObtener15Mas.cmd", { "Categoria" : $("#Categorias").attr("categoria"),  "Inicio" : Inicio } );
+                nAjax = $.post("/cmd/IndiceObtener15Mas.cmd", { "Categoria" : $("#Categorias").attr("categoria"),  "Inicio" : this.TotalArticulosCargados } );
                 nAjax.done(function(data) { 
                     $("div[puntoscroll=true]").removeAttr("puntoscroll");
                     $("#MarcoIndice").html($("#MarcoIndice").html() + data);

@@ -83,11 +83,10 @@ $Admin = new function() {
 
         nAjax = $.post("/cmd/Desloguear.cmd");
         nAjax.done(function(data) {
-            console.log("Admin.Desloguear", data);
+            console.log("Admin.Desloguear");
             $("#BarraNavegacion_Explorador").html(data);
             
-            $Lab.EnlazarEventosExplorador();
-            
+            $Lab.EnlazarEventosExplorador();            
             $Base.Cargando("FALSE");
         });
         nAjax.fail(function( jqXHR, textStatus, tError ) { 
@@ -109,7 +108,7 @@ $Admin = new function() {
     this.Lab_Guardar = function() {        
         Archivo = $("#MarcoNavegacionLab").attr("pagina");
         Codigo = $Lab.Editor.getValue();
-        console.log("Admin.Lab_Guardar", Archivo, Codigo, $("body").attr("modificado"));
+//        console.log("Admin.Lab_Guardar", Archivo, Codigo, $("body").attr("modificado"));
         if ($("body").attr("modificado") === "false") {
             $Base.MostrarMensaje("No se ha modificado el archivo");
             return;
@@ -117,6 +116,11 @@ $Admin = new function() {
         $Base.Cargando("TRUE");
         $Lab.Original = Codigo;
         $.post("/cmd/LabGuardarEjemplo.cmd", { "Archivo" : Archivo, "Codigo" : Codigo }).done(function(data) {
+            if (data == "") {
+                $Base.MostrarMensaje("No tienes permiso para guardar archivos.", "true");
+                $Base.Cargando("FALSE");
+                return;
+            }
             Datos = JSON.parse(data);
             $Base.MostrarMensaje(Datos["Mensaje"]);
             $("body").attr({"modificado" : "false"});

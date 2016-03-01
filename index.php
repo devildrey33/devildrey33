@@ -18,15 +18,15 @@
     
     include("GenerarIndice.php");
         
+    $Base = new devildrey33;
     
     /* Regenerar el indice sin cargar nada mas */
     if (isset($_GET["Regenerar"])) {
-        echo GenerarIndice($Categoria);
+        echo Indice::GenerarIndice($Base->BD, $Categoria);
         exit;
     }
     
     
-    $Base = new devildrey33;
     if (!isset($_POST["SinPlantilla"])) {
         $Base->InicioPlantilla(basename(__FILE__), "devildrey33", "");    
     }

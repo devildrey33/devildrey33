@@ -4,9 +4,10 @@
         public function __construct() { }
 
         static public function GuardarEjemplo($Archivo, $Codigo) {
+            /* Aixo no pasa mai (GuardarEjemplos nomes s'executa en el cmd si ets admin...), pero ho deixarem per si de cas... */
             if (devildrey33_Opciones::Administrador() === 0) {
                 $Ret = -1;
-                $Mensaje = "No tienes permisos para esto.";
+                $Mensaje = "No tienes permisos para guardar el archivo.";
                 return json_encode(array("Ret" => $Ret, "Mensaje" => $Mensaje, "Archivo" => $Archivo));
             }
             

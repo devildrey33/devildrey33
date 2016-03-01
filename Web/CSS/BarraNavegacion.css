@@ -158,12 +158,13 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
 }
 
 #BarraNavegacion_LabVer > #BarraNavegacion_LabMarcoVer {
-    display:inline-block;
+    display:flex;
+    flex-grow:row wrap;
     position:absolute;
     top:0px;
     right:64px;
     padding:1px;
-    width:254px;
+    width:240px;
     height:60px;
     background:rgba(37,35,40, 0.95);
     color:#FFF;
@@ -441,14 +442,15 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
 /* REDES SOCIALES */
 #BarraNavegacion_MarcoRedesSociales {
     position:absolute;
-    display:block;
+    display:flex;
+    flex-grow: row wrap;
     right:64px;
     top:-3px;
     background: rgba(37,35,40, 0.95);
     color:#FFF;
     border:1px solid #353338;
-    width:195px;
-    height:62px;
+    width:180px;
+    height:60px;
 }
 
 /* Boton LinkEdin de momento oculto */
@@ -504,9 +506,12 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     animation-play-state: paused;
 }*/
 
-#BarraNavegacion_Votacion[mostrar='true']:hover  > .Menu_Boton {
+/* Parar animación blink del boton de la votación */
+/*#BarraNavegacion_Votacion[mostrar='true']:hover  > .Menu_Boton {
     animation-play-state: paused;
-}
+    background:#ea504e !important; 
+    border:1px solid #FF0000 !important;
+}*/
 
 /* Transición de resaltado para los iconos en SVG con rotaciones y escalas */
 .Menu > .Menu_Boton > .Menu_Boton_Cruz > .Menu_Boton_SVG,                                                   /* Botones check */
@@ -570,6 +575,7 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
 /* Para mostrar la barra de navegacion inferior */
 #BarraNavegacion_Inferior[mostrar=true] {
     display:block;
+    transform:scale(0.5, 0.5);
 }
 
 #BarraNavegacion_Inferior > div:nth-child(1) {
@@ -606,7 +612,7 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     70%  { transform:rotateZ(1080deg)   rotateX(180deg);    border-color:#EA504E #353338; }
     80%  { transform:rotateZ(720deg)    rotateX(0deg);      border-color:#FFF #353338; }
     90%  { transform:rotateZ(360deg)    rotateX(0deg);      border-color:#FFF #353338; }
-    100% { transform:rotateZ(0deg)      rotateX(0deg);      border-color:#FFF #353338;  }           
+    100% { transform:rotateZ(0deg)      rotateX(0deg);      border-color:#FFF #353338; }           
 }
 
 /* Animación para el icono de carga (menú lateral derecho inferior, semi circulo interno)*/

@@ -1,4 +1,5 @@
 <?php
+/* Objeto para trabajar con las cookies de la sesión actual (la configuración por defecto varia de localhost al servidor REAL) */
 if (!isset($_SESSION)) session_start();
 
 include("Base.php");
@@ -56,6 +57,7 @@ class devildrey33_Opciones {
     static public function ActualizarCache($Valor = -1)     {	return devildrey33_Opciones::_ObtenerAsignarValor("ActualizarCache", 		(devildrey33_Opciones::$ServidorDebug === FALSE) ? 0 : 1, 		$Valor);	}
     static public function PaginasVistas($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("PaginasVistas",                                                                     0, 		$Valor);	}
     static public function UltimaActividadMS($Valor = -1)   {	return devildrey33_Opciones::_ObtenerAsignarValor("UltimaActividadMS",                                                                 0, 		$Valor);	}
+    static public function EntradasIndice($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("Indice_EntradasCargadas",                                                           16, 		$Valor);	}
 
 /*    static public function MostrarConsola($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("MostrarConsola", 		(strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false) ? 0 : 1, 		$Valor);	}
     static public function Administrador($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("Administrador",                                                                              0, 		$Valor);	}

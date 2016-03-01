@@ -288,14 +288,15 @@ $Base = new function() {
         
 
     /* Función para mostrar mensajes estandar */
-    this.MostrarMensaje = function(Mensaje) { 
+    /* Si especificamos true en "Alerta" el mensaje se resaltara en rojo */
+    this.MostrarMensaje = function(Mensaje, Alerta) { 
         console.log("Base.MostrarMensaje(" + Mensaje + ")");
         $("#VentanaMensaje > p").html(Mensaje);
         $("#VentanaMensaje > button").off("click.button").on("click.button", function() { 
             $("#VentanaMensaje").attr({"visible" : "false" }); 
         });
-
-        $("#VentanaMensaje").attr({"visible" : "true" });
+        if (typeof(Alerta) === "undefined") Alerta = "false";
+        $("#VentanaMensaje").attr({"visible" : "true", "Alerta" : Alerta});
         setTimeout(function() { $("#VentanaMensaje > button").focus(); }, 100);
     };
     

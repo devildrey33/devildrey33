@@ -37,12 +37,12 @@ html[lang='es'] *[tooltip-es]::before, html[lang='en'] *[tooltip-en]::before {
 /* Los tooltips que salen desde arriba o desde abajo necesitan ser reposicionados manualmente por el eje X para que queden alineados a la barra lateral */
 [tooltip-pos='T']::before { top:-52px; right:0px;  } /* Desde arriba */
 [tooltip-pos='B']::before { top:70px; right:0px;  } /* Desde abajo */
-#Lab_VerCodigo_Estado   + [tooltip-pos='B']::before     { right:-65px;  }
-#Lab_VerColumnas_Estado + [tooltip-pos='B']::before     { right:-130px; }
-#Lab_VerFilas_Estado    + [tooltip-pos='B']::before     { right:-195px; }
-#BarraNavegacion_MarcoRedesSociales_GooglePlus::before  { right:-8px;  }
-#BarraNavegacion_MarcoRedesSociales_Twitter::before     { right:-73px;  }
-#BarraNavegacion_MarcoRedesSociales_Facebook::before    { right:-137px; }
+#Lab_VerCodigo_Estado   + [tooltip-pos='B']::before     { right:-60px;  }
+#Lab_VerColumnas_Estado + [tooltip-pos='B']::before     { right:-120px; }
+#Lab_VerFilas_Estado    + [tooltip-pos='B']::before     { right:-180px; }
+/*#BarraNavegacion_MarcoRedesSociales_GooglePlus::before  { right:-8px;  }*/
+#BarraNavegacion_MarcoRedesSociales_Twitter::before     { right:-60px;  }
+#BarraNavegacion_MarcoRedesSociales_Facebook::before    { right:-120px; }
 /* Asigno el contenido del idioma segun el atributo lang del HTML */
 html[lang='es'] *[tooltip-es]::before { content:attr(tooltip-es); }
 html[lang='en'] *[tooltip-en]::before { content:attr(tooltip-en); }

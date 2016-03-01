@@ -18,12 +18,21 @@
             $Codigo .= "</div>".Intro();
 
             $Codigo .= "<div id='MarcoIndice'>".Intro();
-            $Codigo .= Indice::GenerarArticulos($BD, $Categoria, $Inicio);
+            
+            $Fin = devildrey33_Opciones::EntradasIndice();
+            if ($Fin === 0) $Fin = 16;
+            
+            $Codigo .= Indice::GenerarArticulos($BD, $Categoria, $Inicio, $Fin);
             $Codigo .= "</div>".Intro();
             return $Codigo;
         }
 
-        static function GenerarArticulos($BD, $Categoria = "Todo", $Inicio = 0) {
+        static function GenerarArticulos($BD, $Categoria = "Todo", $Inicio = 0, $Fin = 16) {
+            /* Si inicio es 0 hay que comprobar que no se hubieran cargado elementos anteriormente mediante el scroll */
+/*            if ($Inicio === 0) {
+                $Inicio = devildrey33_Opciones::EntradasIndice();
+            }*/
+            
             $Entradas = (require dirname(__FILE__).'/Web/Config/EntradasBlog.php');
             if ($Categoria === "Todo") {
                 $EntradasPC = $Entradas;
@@ -66,8 +75,9 @@
                     }
 //                }
                 // Cuando se leen 16 articulos paramos
-                if (16 === $Contador) { 
-                    return $Codigo;
+                if ($Fin === $Contador) { 
+                    devildrey33_Opciones::EntradasIndice($Inicio + $Contador);  /* Guardo en la sesión el número de entradas guardadas con el scroll en el indice */
+                    return $Codigo;                                             /* - De esta forma si se vuelve al indice por el historial volverá a la posición de la entrada a la que se accedió */
                 }
             }
             return $Codigo;

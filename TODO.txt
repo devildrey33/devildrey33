@@ -33,10 +33,9 @@ Millores de la web :
  V      - Afegir efecte d'escalat del svg al marcar el buto (apart de la rotació)
  V      - Retocat icona de les reds socials que no estava centrat. 
  V  - Fer tooltips pel menú lateral dret. (també he fet tooltips per les reds socials que no en tenien...)
-    - Hi ha algo raro amb els butons de les reds socials, el marc ja es mes gran del compte, i lo xungo es que en localhost es veuen centrats, i a devildrey33.es es veuen alineats a la esquerra... :O
+ V  - Hi ha algo raro amb els butons de les reds socials, el marc ja es mes gran del compte, i lo xungo es que en localhost es veuen centrats, i a devildrey33.es es veuen alineats a la esquerra... :O (HE PASAT TOTS ELS MARCS A FLEX)
     - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
         - Un exemple clar seria la web de elmundo
-    - Re-estudiar el menú de l'esquerra, com fer poques categories que a l'hora que englobin la majoria de la web. 
     - El buscador del menú principal (amb google)... aviam si al 2016 el faig.. xd
     - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
     - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
@@ -49,7 +48,7 @@ Estils movils :
  V  - Revisar estils de tablets i de movils (mirar que tots els que deixa probar el chrome es vegin be)
     
 Index : 
-    - Conservar el número d'entrades carregades en l'index per carregarles de cop despres si es torna a carregar l'index.
+ V  - Conservar el número d'entrades carregades en l'index per carregarles de cop despres si es torna a carregar l'index. (devildrey33_Opciones::EntradasIndice)
 
 Lab :
  V  - Al actualitzxar un codi, (ja sigui perque s'ha modificat, o perque s'ha carregat un nou codi) s'han de eliminar tots els timers del codi anterior.
@@ -62,9 +61,10 @@ Lab :
  V      - Falta tambè fer un parche a Base.CargarURL i a Lab.CargarArchivo per avisar que no s'ha guardat l'arxiu.
  V  - El codemirror fa algo raro amb la mida de les lineas que te calculades internament, i al cap d'un rato de remenar s¡acaba calculant bè... s'ha de buscar que o com actualitzar aquestes mides...
  V      - Obligo al codemirror a recalcular la mida del editor 200 milisegons despres d'haber iniciat i carregat el contingut. (chapucilla pero es lo que hi ha...)
+ V  - Al guardar sense privilegis dona error raro... (un cop ha pasat el temps del admin en el $_SERVER)
+ V      - Era el putu json... (ara he afegit una animació d'alerta en el $Base.MostrarMensaje perque si no es pot guardar mostra un missatge que s'asembla molt al normal)
     - Afegir barra per modificar l'amplada de la vista mixta en el minilab.
     - Al guardar en el Nuevo.html que pregunti un nom d'arxiu (i que pugui crear directoris tambè)   
-    - Al guardar sense privilegis dona error raro... (un cop ha pasat el temps del admin en el $_SERVER)
     - Especificar vista desde el mateix esemple amb un comentrari rotllo /* Lab-vista=filas */ i eliminar tota la pachanga que vaig posar amb el solitario-html?preview que te la seva tela... xd
 
 Blog :
