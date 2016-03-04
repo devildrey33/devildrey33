@@ -13,8 +13,10 @@ $Lab = new function() {
     this.Archivo = "";
     /* Determina si se ha modificado el código */
     this.Original = "";
-    /* Forzar vista */
+    /* Forzar vista                                                              SOLO SE UTILIZA AL INICIALIZAR POR PRIMERA VEZ */
     this.ForzarVista = "-1";
+    /* Modo de resaltar el código (text/css, application/javascript, text/html)  SOLO SE UTILIZA AL INICIALIZAR POR PRIMERA VEZ */
+    this.Modo = "text/html"; 
     
     /* Función que inicializa el laboratorio */
     this.Iniciar = function() {
@@ -23,7 +25,7 @@ $Lab = new function() {
         this.EnlazarEventosExplorador();        
         
         this.Editor = CodeMirror.fromTextArea(document.getElementById('Lab_Codigo'), {
-            mode                : 'text/html',
+            mode                : this.Modo, // 'text/html',  // 'text/css', //application/javascript
             indentUnit          : 4,
             fixedGutter         : false,
             lineNumbers         : true,
@@ -57,18 +59,13 @@ $Lab = new function() {
         });
         
         this.Original = $("#Lab_Codigo").val();
-        if (this.ForzarVista === '-1') {
-//            this.ForzarVista = (typeof(localStorage["Lab_Vista"]) === "undefined")? "0" : localStorage["Lab_Vista"]; 
-            this.ForzarVista = "0"; 
-        }
         switch (this.ForzarVista) {
             case "0" :     $(".Lab_BotonVerFilas").trigger("click");        break; 
             case "1" :     $(".Lab_BotonVerColumnas").trigger("click");     break; 
             case "2" :     $(".Lab_BotonVerCodigo").trigger("click");       break; 
             case "3" :     $(".Lab_BotonVerPreview").trigger("click");      break;             
         }
-//        this.AjustarVista(this.ForzarVista, false);
-        
+        this.ResaltarArchivoActual(this.Archivo);
         this.ActualizarResultado();
 
         /* Chapuça per que s'actualitzi be l'altura de les lineas dintre del codemirror */
@@ -93,15 +90,22 @@ $Lab = new function() {
     
     
     /* Función para expandir / contraer directorios en el explorador del laboratorio */
-    this.ClickDirectorio = function(Objeto) {
+    /* NOTA NO especificar nada en SoloAbrir si se desea hacer un togle */
+    this.ClickDirectorio = function(Objeto, SoloAbrir) {
         console.log("Lab.ClickDirectorio", Objeto);
         Animacion = Objeto.next();
         Directorio = Animacion.find(".Lab_Lista");
         // Asigno la altura en pixeles del directorio por abrir
         var Altura = Animacion.css("height");
         var AltoPadre = 0;
-        if (parseInt(Altura) === 0)   { Animacion.css({ "height" : Directorio.height()});   AltoPadre = Directorio.height();  }
-        else                          { Animacion.css({ "height" : 0 });                    AltoPadre = -Directorio.height();  }
+        if (typeof(SoloAbrir) === "undefined") {
+            if (parseInt(Altura) === 0)   { Animacion.css({ "height" : Directorio.height()});   AltoPadre = Directorio.height();  }
+            else                          { Animacion.css({ "height" : 0 });                    AltoPadre = -Directorio.height();  }
+        }
+        else {
+            if (parseInt(Altura) === 0)   { Animacion.css({ "height" : Directorio.height()});   AltoPadre = Directorio.height(); }
+            else { return; }
+        }
 
         Padre = Objeto.parent().parent().parent();
         while (Padre !== null) {
@@ -128,6 +132,31 @@ $Lab = new function() {
         else      { this.CargarArchivo(Ret); }
     };
     
+    
+    /* Función que resalta y muestra el archivo actual */
+    this.ResaltarArchivoActual = function(Archivo) {
+        var UActual = $(".Lab_Explorador .Lab_Archivo[actual]");
+        // Elimino la marca 'actual' del ultimo archivo del lab
+        if (UActual.length > 0) {
+            UActual.removeAttr("actual");
+        }
+        // Obtengo el archivo actual de la lista 
+        ItemActual = $(".Lab_Explorador .Lab_Archivo[path='/Lab/" + Archivo + "']");
+        ItemActual.attr("actual" , "true");
+        Padre = ItemActual.parent().parent().parent().prev();
+//        ArrayPadres = [];
+        while (Padre.length !== 0) {
+            if (Padre[0].className === "Lab_Directorio") {
+//               ArrayPadres.unshift(Padre);
+               $Lab.ClickDirectorio(Padre, true);            
+            }
+            Padre = Padre.parent().parent().parent().prev();
+        }
+/*        for (var i = 0; i < ArrayPadres.length; i++) {
+            $Lab.ClickDirectorio(ArrayPadres[i], true);
+        }*/
+    };
+    
     /* Función para cargar un archivo */
     this.CargarArchivo = function(Archivo, ID) {
         $Base.Cargando("TRUE");
@@ -142,9 +171,14 @@ $Lab = new function() {
             else                           { 
                 // Laboratorio principal
                 if (Datos["ID"] === -1) {
+                    $Lab.ResaltarArchivoActual(Datos["Archivo"]);
+                    
+                    $Lab.Editor.setOption("mode", Datos["Modo"]);
                     $Lab.Editor.setValue(Datos["Datos"]);  
+                    
                     $Lab.Original = $Lab.Editor.getValue();
                     $Lab.AjustarVista(Datos["Vista"]);  
+                    
                     URL = "/Lab/" + Datos["Archivo"];
                     $("#MarcoNavegacionLab").attr({"pagina" : Datos["Archivo"]});
                     if (nopush === false) {
@@ -374,16 +408,16 @@ $Lab = new function() {
         
         // Enlazo los botones de las vistas
         $(".MiniLab_VerCodigo").off("click").on("click", function(event) { 
-            this.parentNode.setAttribute("ver", "codigo");
-            ID = this.parentNode.getAttribute("id").replace("MiniLab_", "");
+            this.parentNode.parentNode.setAttribute("ver", "codigo");
+            ID = this.parentNode.parentNode.getAttribute("id").replace("MiniLab_", "");
             $Lab.MiniLab_Editores[ID].refresh();
         });
         $(".MiniLab_VerPreview").off("click").on("click", function(event) { 
-            this.parentNode.setAttribute("ver", "preview");
+            this.parentNode.parentNode.setAttribute("ver", "preview");
         });
         $(".MiniLab_VerMixto").off("click").on("click", function(event) { 
-            this.parentNode.setAttribute("ver", "mixto");
-            ID = this.parentNode.getAttribute("id").replace("MiniLab_", "");
+            this.parentNode.parentNode.setAttribute("ver", "mixto");
+            ID = this.parentNode.parentNode.getAttribute("id").replace("MiniLab_", "");
             $Lab.MiniLab_Editores[ID].refresh();
         });
         

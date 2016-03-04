@@ -780,11 +780,14 @@ class devildrey33 {
     public function Head_JS() {
         $this->GenerarListaEntradasJS();                
         
-        echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>'.Intro();
-        echo '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>'.Intro();
-        echo "<script type='text/javascript' src='https://www.google.es/jsapi'></script>".Intro();
+        echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>'.Intro();
+        echo '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>'.Intro(); // Para la barra separadora del lab
+        echo "<script type='text/javascript' src='https://www.google.es/jsapi'></script>".Intro(); // json api?
         /* addons del codemirror */
         echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/JS/codemirror.min.js'></script>".Intro();
+        /* Three js */
+        echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/JS/three.min.js'></script>".Intro();
+        
         echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/Cache/EntradasBlog.js'></script>".Intro();
 
         if (devildrey33_Opciones::Minificar_JS() == 0) {

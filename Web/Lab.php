@@ -45,34 +45,26 @@
     echo "</pre>";*/
 
     
-    echo "<article id='MarcoNavegacionLab' pagina='".$Archivo."'>";
-    echo '<textarea id="Lab_Codigo" name="code" style="display:none">'.$CArchivo["Datos"].'</textarea>'.
-         '<iframe id="Lab_Preview"></iframe>'.
-/*         "<div id='Lab_Explorador_Buscar'>".
-         '<input type="text" placeholder="Texto a buscar.." />'.
-         "</div>".*/
-         "<div id='Lab_Barra1'>".
-            "<div id='Lab_BotonExplorador' title='Mostrar / Ocultar el explorador'></div>".
-         "</div>".
-         "<div id='Lab_Barra2'></div>".
-         "<div id='Lab_ParcheIframe'></div>";
-    echo "</article>";
-//    echo substr($_SERVER["REQUEST_URI"], 5);
-$Vista = -1;
-if (isset($sArchivo[1])) {
-    switch ($sArchivo[1]) {
-        case "Columnas" : $Vista = 0; break;
-        case "Filas"    : $Vista = 1; break;
-        case "Codigo"   : $Vista = 2; break;
-        case "Preview"  : $Vista = 3; break;
-    }
-}
+    echo "<article id='MarcoNavegacionLab' pagina='".$Archivo."'>".Intro();
+    echo '<textarea id="Lab_Codigo" name="code" style="display:none">'.$CArchivo["Datos"].'</textarea>'.Intro().
+         '<iframe id="Lab_Preview"></iframe>'.Intro().
+/*         "<div id='Lab_Explorador_Buscar'>".Intro().
+         '<input type="text" placeholder="Texto a buscar.." />'.Intro().
+         "</div>".Intro().*/
+         "<div id='Lab_Barra1'>".Intro().
+            "<div id='Lab_BotonExplorador' title='Mostrar / Ocultar el explorador'></div>".Intro().
+         "</div>".Intro().
+         "<div id='Lab_Barra2'></div>".Intro().
+         "<div id='Lab_ParcheIframe'></div>".Intro().
+    "</article>".Intro();
+
     
-    echo "<script>".
-            "\$Lab.Archivo = '".$Archivo."';".
-            "\$Lab.ForzarVista = '".$Vista."';";
-    if ($MostrarError == TRUE) echo "\$Base.MostrarErrorAjax(404, false);";
-    echo "</script>";
+    echo "<script>".Intro().
+            "\$Lab.Archivo = '".$Archivo."';".Intro().
+            "\$Lab.ForzarVista = '".$CArchivo["Vista"]."';".Intro().
+            "\$Lab.Modo = '".$CArchivo["Modo"]."';".Intro();
+    if ($MostrarError == TRUE) echo "\$Base.MostrarErrorAjax(404, false);".Intro();
+    echo "</script>".Intro();
 
 
 //    $Base->FinBlog();

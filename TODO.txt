@@ -34,12 +34,14 @@ Millores de la web :
  V      - Retocat icona de les reds socials que no estava centrat. 
  V  - Fer tooltips pel menú lateral dret. (també he fet tooltips per les reds socials que no en tenien...)
  V  - Hi ha algo raro amb els butons de les reds socials, el marc ja es mes gran del compte, i lo xungo es que en localhost es veuen centrats, i a devildrey33.es es veuen alineats a la esquerra... :O (HE PASAT TOTS ELS MARCS A FLEX)
+ V  - Els butons del minilab no tenen svg... (solucionat i ara tambè tenen tooltips)
     - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
         - Un exemple clar seria la web de elmundo
     - El buscador del menú principal (amb google)... aviam si al 2016 el faig.. xd
     - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
     - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
     - El taliba m'ha insinuat que podria fer uns agraiments. (però o faig algo chulo equiparable a una obra d'art binaria o no ho faig...)
+    - Fer el error 404 chulo amb three.js
 
 
 Estils movils :
@@ -65,7 +67,10 @@ Lab :
  V      - Era el putu json... (ara he afegit una animació d'alerta en el $Base.MostrarMensaje perque si no es pot guardar mostra un missatge que s'asembla molt al normal)
     - Afegir barra per modificar l'amplada de la vista mixta en el minilab.
     - Al guardar en el Nuevo.html que pregunti un nom d'arxiu (i que pugui crear directoris tambè)   
-    - Especificar vista desde el mateix esemple amb un comentrari rotllo /* Lab-vista=filas */ i eliminar tota la pachanga que vaig posar amb el solitario-html?preview que te la seva tela... xd
+ V  - Especificar vista desde el mateix esemple amb un comentrari rotllo /* devildrey33_Lab->Opciones->Vista=Preview */ ara es porta la vista desde devildrey33_Lab.php
+ V  - Els arxius CSS i JS es carreguen en vista mixta, i ha de ser vista de códi. Ames necesiten el seu modo de vista en el codemirror (text/css, application/javascript)
+    - Resaltar i obrir carpeta de l'exemple actual (de moment funciona nomes per un nivell
+
 
 Blog :
  V  - devildrey33_PintarCodigo 2.02 (+ exemples corretgits)

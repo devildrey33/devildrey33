@@ -78,6 +78,7 @@ body #BarraNavegacion_LabGuardar, body #BarraNavegacion_LabGuardarCache {
     transform:perspective(600px) rotateY(-90deg);    
     transform-origin:right center;      
     transition:0.4s cubic-bezier(.17,-0.42,0,1.35);  
+    overflow:visible;
 }
 /* Si soy administrador, y estoy en el lab */
 body[administrador33][tipo=Lab] #BarraNavegacion_LabGuardar, body[administrador33][tipo=Lab] #BarraNavegacion_LabGuardarCache { display:block; }
@@ -456,19 +457,18 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
 /* Boton LinkEdin de momento oculto */
 #BarraNavegacion_MarcoRedesSociales > #BarraNavegacion_MarcoRedesSociales_Linkedin { display:none; }
 
-#BarraNavegacion_MarcoRedesSociales > button {
+/*#BarraNavegacion_MarcoRedesSociales > button {
     display:inline-block;
     width:58px;
     height:58px;
     margin:2px !important;
     overflow:hidden;
     zoom:1 !important;
-}
+}*/
 
-/*#BarraNavegacion_MarcoRedesSociales_Facebook   { background-image: url('/Web/Graficos/BotonFacebook.png');   }
-#BarraNavegacion_MarcoRedesSociales_Twitter    { background-image: url('/Web/Graficos/BotonTwitter.png');    }
-#BarraNavegacion_MarcoRedesSociales_GooglePlus { background-image: url('/Web/Graficos/BotonGooglePlus.png'); }*/
-/*#BarraNavegacion_MarcoRedesSociales_Linkedin   { background-image: url('/Web/Graficos/BotonLinkedin.png'); }*/
+/* Los botones del marco de las redes sociales NECESITAN el overflow visible para poder mostrar sus tooltips */
+#BarraNavegacion_MarcoRedesSociales_Facebook, #BarraNavegacion_MarcoRedesSociales_Twitter, #BarraNavegacion_MarcoRedesSociales_GooglePlus { overflow:visible; }
+
 
 #BarraNavegacion_MarcoRedesSociales_Facebook:hover   { background-color: rgb(58, 88, 155) !important;  border-color: rgb(0,0,150) !important; }
 #BarraNavegacion_MarcoRedesSociales_Twitter:hover    { background-color: rgb(40, 168, 224) !important; border-color: rgb(0,0,250) !important; }
@@ -514,6 +514,7 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
 }*/
 
 /* Transición de resaltado para los iconos en SVG con rotaciones y escalas */
+.MiniLab > .Menu > .Menu_Boton > .Menu_Boton_SVG,                                                           /* Botones Minilab */
 .Menu > .Menu_Boton > .Menu_Boton_Cruz > .Menu_Boton_SVG,                                                   /* Botones check */
 .Menu > .Menu_Boton > .Menu_Boton_Cruz > span > .Menu_Boton_SVG,                                            /* Boton de la votación (requiere un span extra para la animación de rotación) */
 #BarraNavegacion_LabMarcoVer > .Menu_Boton_Label + .Menu_Boton > .Menu_Boton_Cruz > .Menu_Boton_SVG,        /* Marco con los botones para las vistas del lab */
@@ -524,6 +525,8 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     transform:scale(1, 1);
     transition:0.5s cubic-bezier(.33,.05,.69,1.59);
 }
+
+.MiniLab > .Menu:hover > .Menu_Boton > .Menu_Boton_SVG,                                                     /* Botones Minilab */
 .Menu:hover > .Menu_Boton > .Menu_Boton_Cruz > .Menu_Boton_SVG,                                             /* Botones check */
 .Menu:hover > .Menu_Boton > .Menu_Boton_Cruz > span > .Menu_Boton_SVG,                                      /* Boton de la votación (requiere un span extra para la animación de rotación) */
 #BarraNavegacion_LabMarcoVer > .Menu_Boton_Label:hover + .Menu_Boton > .Menu_Boton_Cruz > .Menu_Boton_SVG,  /* Marco con los botones para las vistas del lab */

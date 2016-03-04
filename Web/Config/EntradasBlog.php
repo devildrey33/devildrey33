@@ -23,7 +23,7 @@ array(	"Titulo" 	=> "Working with google APIs",
         
 array(	"Titulo" 	=> "Solitario HTML5", 
         "Fecha" 	=> "16/12/2015",
-        "URL" 		=> "Ejemplos/Solitario/Solitario.html?Preview", 
+        "URL" 		=> "Ejemplos/Solitario/Solitario.html", 
         "Tags" 		=> array("JavaScript", "CSS", "HTML", "Programación"),
         "Idioma"        => "es",
         "Autor"         => "Josep Antoni Bover",

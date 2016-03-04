@@ -80,7 +80,7 @@ NOTA : se puede añadir un span entre Menu_Boton_Cruz y Menu_Boton_SVG para agre
     border:1px solid #353338;
     cursor:pointer;
     text-align:center;
-/*    overflow:hidden; */
+    overflow:hidden;            /* NO TOCAR, al escalar los svg se salen del botón */
 }
 
 .Menu_Boton:hover,                          /* Algunos botones no tienen label */

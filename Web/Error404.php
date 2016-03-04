@@ -10,9 +10,12 @@
         
 //        $Base->InicioBlog(basename(__FILE__), "Empezando con SQLite en C++");
 ?>	
-    <script>$Base.MostrarErrorAjax(404, true);</script>
     
-    
+    <div id="Error404"></div>
+
+    <script>
+        $Base.CargarJS("Error404.js");
+    </script>
     
 <?php
 //    $Base->FinBlog();

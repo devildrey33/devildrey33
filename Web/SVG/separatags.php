@@ -3,13 +3,13 @@
     if (isset($_GET["a"]))  $Arxiu = $_GET["a"];
     else                    $Arxiu = "prova.svg";
 
-$domxml = new DOMDocument('1.0');
-$domxml->preserveWhiteSpace = false;
-$domxml->formatOutput = true;
-/* @var $xml SimpleXMLElement */
-$domxml->load($Arxiu);
-$domxml->save($Arxiu.".separat.svg");    
-header('Location: '.$Arxiu.".separat.svg");
+    $domxml = new DOMDocument('1.0');
+    $domxml->preserveWhiteSpace = false;
+    $domxml->formatOutput = true;
+    /* @var $xml SimpleXMLElement */
+    $domxml->load($Arxiu);
+    $domxml->save($Arxiu.".separat.svg");    
+    header('Location: '.$Arxiu.".separat.svg");
     
 /*    $Codi = file_get_contents($Arxiu);
     $Res = str_replace("><", ">

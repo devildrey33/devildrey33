@@ -274,10 +274,8 @@ $Base = new function() {
                 }
                 /*RedireccionarLinks();*/
             }).fail(function( jqXHR, textStatus, tError ) {
-                /*if (textStatus === "error") { MostrarErrorAjax(500, false); }
-                else                        { MostrarErrorAjax(404, false); }*/
                 console.log("Base.VotarWeb Error ajax", jqXHR, textStatus, tError);
-                $Base.MostrarErrorAjax(jqXHR.status, false);
+                $Base.MostrarErrorAjax(jqXHR.status, false, tError);
             });                    
         }
         else {
@@ -302,15 +300,15 @@ $Base = new function() {
     
     
     /* Función que muestra una ventana de error si hay algun problema al cargar una URL */
-    this.MostrarErrorAjax = function(Error, VolverIndice) { 
+    this.MostrarErrorAjax = function(Error, VolverIndice, Excepcion) { 
         console.log("Base.MostrarErrorAjax(" + Error + ", " + VolverIndice + ")");
         this.LogoCargando("FALSE");    
         this.Cargando("FALSE");
 
         switch (Error) {
-            case 403 : $("#VentanaError > p").html("Error 403! no se permite el acceso al archivo solicitado.");                    break;
-            case 404 : $("#VentanaError > p").html("Error 404! el archivo solicitado no existe.");                                  break;
-            default : $("#VentanaError > p").html("Error 500! Es posible que el servidor no esté disponible en estos momentos.");   break;
+            case 403 : $("#VentanaError > p").html("Error 403! no se permite el acceso al archivo solicitado.");                                        break;
+            case 404 : $("#VentanaError > p").html("Error 404! el archivo solicitado no existe.");                                                      break;
+            default  : $("#VentanaError > p").html("Error 500! Es posible que el servidor no esté disponible en estos momentos. (" + Excepcion + ")");  break;
         }
 
         if (VolverIndice === true) {  
@@ -322,9 +320,9 @@ $Base = new function() {
             });
         }
         else {  
-            if (this.Entrada["TipoPagina"] === "Lab" || this.Entrada["TipoPagina"] === "LabError")  { this.Entrada["TipoPagina"] = "LabError"; }
-            else                                                                                    { this.Entrada["TipoPagina"] = "Error404SinPlantilla"; }
-            $("#VentanaError > button").off("click.VentanaError").on("click.VentanaError", function() { $("#VentanaError").attr({"visible" : "false" }); });
+            if (this.Entrada["TipoPagina"] === "Lab" || this.Entrada["TipoPagina"] === "LabError")      { this.Entrada["TipoPagina"] = "LabError"; }
+            else                                                                                        { this.Entrada["TipoPagina"] = "Error404SinPlantilla"; }
+            $("#VentanaError > button").off("click.VentanaError").on("click.VentanaError", function()   { $("#VentanaError").attr({"visible" : "false" }); });
         }
 
         $("#VentanaError").attr({"visible" : "true" });        
@@ -620,7 +618,7 @@ $Base = new function() {
             /*if (textStatus === "error") { MostrarErrorAjax(500, false); }
             else                        { MostrarErrorAjax(404, false); }*/
             console.log("Base.Buscar Error ajax", jqXHR, textStatus, tError);
-            $Base.MostrarErrorAjax(jqXHR.status, false);
+            $Base.MostrarErrorAjax(jqXHR.status, false, tError);
         });
 
         URL = "/Buscar/" + $("#BarraPrincipal_MarcoBuscar_Edit").val();
@@ -667,7 +665,7 @@ $Base = new function() {
         this.nURL = nURL;
         this.PeticionAjax = $.post(nURL, { "Regenerar" : "todo", "Categoria" : "Todo", "SinPlantilla" : "true" }).done(function(data) {
             if (data.indexOf("<script>$Base.MostrarErrorAjax(404, false);</script>") === 0) {
-                $Base.MostrarErrorAjax(404, false);
+                $Base.MostrarErrorAjax(404, false, 'No se ha encontrado');
             }
             else {
                 $("#MarcoNavegacion").html(data);
@@ -681,7 +679,7 @@ $Base = new function() {
             }
         }).fail(function( jqXHR, textStatus, tError ) { 
             console.log("Base.CargarURL Error ajax", jqXHR, textStatus, tError);
-            $Base.MostrarErrorAjax(jqXHR.status, false);
+            $Base.MostrarErrorAjax(jqXHR.status, false, tError);
         });
 
         // Oculto la ventana de error
@@ -732,7 +730,7 @@ $Base = new function() {
             }
         }).fail(function( jqXHR, textStatus, tError ) { 
             console.log("Base.Loguear Error ajax", jqXHR, textStatus, tError);
-            $Base.MostrarErrorAjax(jqXHR.status, false);
+            $Base.MostrarErrorAjax(jqXHR.status, false, tError);
         });
     };   
     
@@ -745,7 +743,7 @@ $Base = new function() {
             console.log("Base.cmd(" + Comando + ")", data);
         }).fail(function( jqXHR, textStatus, tError ) { 
             console.log("Base.cmd Error ajax", jqXHR, textStatus, tError);
-            $Base.MostrarErrorAjax(jqXHR.status, false);
+            $Base.MostrarErrorAjax(jqXHR.status, false, tError);
         });                    
     };
     
@@ -796,7 +794,7 @@ $Base = new function() {
             $Base.FuncionCargarJS();            
         }).fail(function(jqxhr, settings, exception) { 
             console.log("Base.CargarJS Error Ajax", jqxhr, settings, exception);    
-            $Base.MostrarErrorAjax(jqXHR.status, false);
+            $Base.MostrarErrorAjax(jqxhr.status, false, exception);
         });
         
     };
@@ -862,7 +860,7 @@ $Base = new function() {
             }
         }).fail(function( jqXHR, textStatus, tError ) {
             console.log("Base.CALLBACK_Histroial Error ajax", jqXHR, textStatus, tError);
-            $Base.MostrarErrorAjax(jqXHR.status, false);
+            $Base.MostrarErrorAjax(jqXHR.status, false, tError);
         });
 
         // Oculto la ventana de error

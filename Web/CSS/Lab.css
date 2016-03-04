@@ -98,10 +98,13 @@ and open the template in the editor.
 }
 
 .Lab_Explorador .Lab_Directorio:hover, .Lab_Explorador .Lab_Archivo:hover {
-    background:#EA504E;
+    background:#EA504E !important;
     color:#FFFFFF;
 }
 
+.Lab_Explorador .Lab_Archivo[actual] {
+    background:red;
+}
 
 .Lab_Explorador > .Lab_Lista {
     padding:5px 0px 0px 10px !important;
@@ -275,6 +278,12 @@ and open the template in the editor.
     display:none;
 }
 
+.MiniLab img {
+    border:none !important;
+    padding:0px; 
+    margin:0px;
+}
+
 .MiniLab > .CodeMirror {
     height:320px !important;
 }
@@ -321,19 +330,20 @@ and open the template in the editor.
 
 /* Botones de las vistas en el minilab */
 .Menu_Boton_Input + .MiniLab_VerPreview, .Menu_Boton_Input + .MiniLab_VerCodigo, .Menu_Boton_Input + .MiniLab_VerMixto {
-    width:58px;
-    height:58px;
+    width:60px;
+    height:60px;
     bottom:-65px;
     position:absolute;
-    background-color:#252328;
-    border: 1px solid #353338;
-    cursor:pointer;
-    color:#FFF;
-    transition:background-color 0.4s;
-    background-repeat:no-repeat;
-    background-position:center, center;
+    z-index:20;
 }
 
+.Menu_Boton_Input + .MiniLab_VerPreview + .Menu_Boton, .Menu_Boton_Input + .MiniLab_VerCodigo + .Menu_Boton, .Menu_Boton_Input + .MiniLab_VerMixto + .Menu_Boton {
+    position:absolute;
+    bottom:-65px;
+    z-index:1;
+}
+
+/*
 #BarraNavegacion_LabMarcoVer > .Menu_Boton_Input:checked + .Menu_Boton,
 .MiniLab_ContenedorBotones > .Menu_Boton_Input:checked + .Menu_Boton,
 .Menu_Boton_Input:checked + .MiniLab_VerPreview, 
@@ -342,12 +352,12 @@ and open the template in the editor.
 .MiniLab_VerPreview:hover, .MiniLab_VerCodigo:hover, .MiniLab_VerMixto:hover {
     background-color:#EA504E;
     border:1px solid red;
+}*/
 
-}
+.MiniLab_VerCodigo, .MiniLab_VerCodigo + .Menu_Boton   { right:0px;   }
+.MiniLab_VerPreview, .MiniLab_VerPreview + .Menu_Boton { right:60px;  }
+.MiniLab_VerMixto, .MiniLab_VerMixto + .Menu_Boton     { right:120px; }
 
-.MiniLab_VerCodigo  { right:0px;   background-image:url('/Web/Graficos/BotonCodigo.png');  }
-.MiniLab_VerPreview { right:64px;  background-image:url('/Web/Graficos/BotonPreview.png'); }
-.MiniLab_VerMixto   { right:128px; background-image:url('/Web/Graficos/BotonMixto.png');   }
 .MiniLab > a > button {
     width: auto !important;
     position: absolute;

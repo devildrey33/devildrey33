@@ -511,7 +511,7 @@ $Solitario = new function() {
         /* Para depurar la IA he decidido que lo mejor es mostrar los movimientos de cada turno de forma eficiente 
          * además de contar con un experto anónimo local para mejorar la IA del juego hasta donde mis habilidades lo permitan */ 
         
-        var DebugIA =$("DebutIA");
+        var DebugIA =$("DebugIA");
         
         var DebugHTML = "<ul>";
         var ValoresCartas = Array("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" )
