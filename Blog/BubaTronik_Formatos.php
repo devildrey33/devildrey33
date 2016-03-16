@@ -410,7 +410,9 @@
                     <td><div class='Soportado'>soportado</div></td>
                   </tr>
                 </table>
-                <a class="Boton Centrado" href="BubaTronik">Volver a la pagina principal de BubaTronik</a>
+                <div class='Centrado'>
+                    <a class="Boton-Normal" href="BubaTronik">Volver a la pagina principal de BubaTronik</a>
+                </div>
 
 <?php
     $Base->FinBlog(true);

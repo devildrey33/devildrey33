@@ -64,8 +64,8 @@
                 
                 
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Ejemplos/devildrey33_Menu/Ejemplo.php" target="_blank">Ver Ejemplo</a></td>
-                	<td><a class='Boton' href="/Descargas/devildrey33_Menu.zip" target="_blank">Descargar Ejemplo</a></td>
+                        <td><a class='Boton-Normal' href="/Ejemplos/devildrey33_Menu/Ejemplo.php" target="_blank">Ver Ejemplo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/devildrey33_Menu.zip" target="_blank">Descargar Ejemplo</a></td>
                 </tr></table>
                 
 

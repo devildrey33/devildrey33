@@ -38,8 +38,8 @@
                 <p>Aquí termina el tutorial para hacer la calculadora, ahora viene el tutorial para hacer un juego como el nibbles / snake. Es el típico juego de la serpiente que crece y que no puede chocar con su cola : <a href="/Blog/Tutorial_WINAPI_2_0">2.0 - Introducción para empezar con el Snake</a>. </p>
     
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
-                	<td><a class='Boton' href="/Descargas/Calculadora.zip" target="_blank">Calculadora compilada</a></td>
+                        <td><a class='Boton-Normal' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/Calculadora.zip" target="_blank">Calculadora compilada</a></td>
                 </tr></table>
                 
 

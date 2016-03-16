@@ -1,7 +1,7 @@
 <p>Propiedad que permite definir una o mas transformaciones en 2d o en 3d.</p>
-<br />
+<hr />
 <h2>Sintaxis</h2>
-<pre class='devildrey33_Marco Pre_Sintaxis'>transform: <i>valor/es</i>;</pre>
+<pre class='Sintaxis'>transform: <b>valor/es</b>;</pre>
 <table class='Tabla'>
     <tr>
         <th>Transformación</th>
@@ -13,11 +13,11 @@
     </tr>
     <tr>
         <td><b>matrix</b>(v,v,v,v,v,v)</td>
-        <td>Define una transformación 2D utilizando una matriz de 6 valores.</td>
+        <td>Define una transformación 2D utilizando una matríz de 6 valores.</td>
     </tr>
     <tr>
         <td><b>matrix3d</b>(v,v,v,v,v,v,v,v,v,v,v,v,v,v,v,v)</td>
-        <td>Define una trandformación 3D utilizando una matriz de [4x4] valores.</td>
+        <td>Define una trandformación 3D utilizando una matríz de [4x4] valores.</td>
     </tr>
     <tr>
         <td><b>perspective</b>(v)</td>

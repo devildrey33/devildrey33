@@ -120,8 +120,10 @@
                 <?php $Base->PintarCodigo->PintarArchivoCSS("IDBolaExpandible3", "CSS Bola_Expandible_Texto", "CSS3_BolaExpandible.php", "BolaExpandible_Texto"); ?>
                 <p>No hay gran cosa que destacar, simplemente le asignamos un tamaño de fuente, ponemos un padding adecuado para el top y el bottom, y 40 pixeles de padding en el left, para que el texto inicialmente salga fuera de la bola.</p>
                 <p>Y con esto terminamos por hoy, como siempre podéis ver el ejemplo online simplificado, o descargarlo. Buen fin de semana.</p>
-                <a href='/Lab/Ejemplos/BolaExpandible/CSS3_BolaExpandible_Ejemplo.html' target="_blank" class='Boton Centrado'>Ver ejemplo</a>
-                <a href='/Descargas/CSS3_BolaExpandible.zip' target="_blank" class='Boton Centrado'>Descargar ejemplo</a>
+                <div class='Centrado'>
+                    <a href='/Lab/Ejemplos/BolaExpandible/CSS3_BolaExpandible_Ejemplo.html' target="_blank" class='Boton-Normal'>Ver ejemplo</a>
+                    <a href='/Descargas/CSS3_BolaExpandible.zip' target="_blank" class='Boton-Normal'>Descargar ejemplo</a>
+                </div>
 
 
 <?php

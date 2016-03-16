@@ -42,7 +42,18 @@ Millores de la web :
     - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
     - El taliba m'ha insinuat que podria fer uns agraiments. (però o faig algo chulo equiparable a una obra d'art binaria o no ho faig...)
     - Fer el error 404 chulo amb three.js
-
+    - Nous efectes hover per els butons estandar (i mirar d'implementar en els butons svg tambè)
+        - Refer #BarraNavegacion_MarcoNextPrev amb display flex
+            - S'ha de fer algo per els butons desactivats.
+ V      - mirar que es pot fer amb el buto dels comentaris... te el before ocupat per texte...
+ V      - Mirar butons de les Ventana(Error/Mensaje)
+    - Pasa algo raro amb les ancles mirar : "/Blog/flex-box-y-media-queries" i probar 3 - 2 - 1 (el 2 no va)
+    - El devildrey33_Pintar_Codigo pinta valors que no ha de pintar.... (Blog/algunos-efectos-para-botones-en-css)
+        border           : 2px solid !!#000!!;
+        transition       : !!transform!! 0!!.15s!! ease-in-out, !!color!! !!.15s!! ease-in-out, !!box-shadow!! !!.15s!! ease-in-out;   
+        transform        : !!perspective!!(600px) translateZ(0px) rotateZ(0deg) rotateX(0deg);
+        font-size        : 1!!.4rem!!;
+    - fa un blink extrany cada PRIMER cop que paso per sobre d'una etiqueta linea o a[href][cid][l]. I m'esta tocan molt els pebrots...
 
 Estils movils :
  V  - Probar l'index en Google Nexus 10, no es pot accedir a les seguents entrades amb l'escroll. 
@@ -71,7 +82,6 @@ Lab :
  V  - Els arxius CSS i JS es carreguen en vista mixta, i ha de ser vista de códi. Ames necesiten el seu modo de vista en el codemirror (text/css, application/javascript)
     - Resaltar i obrir carpeta de l'exemple actual (de moment funciona nomes per un nivell
 
-
 Blog :
  V  - devildrey33_PintarCodigo 2.02 (+ exemples corretgits)
  X  - Revisar document "CSS3_Transition_Transform.php", te estils inline i s'han de posar amb un CSS a part. (el mateix css es l'exemple i inclueix l'etiqueta script, per lo que no el puc moure a un css...)
@@ -80,6 +90,7 @@ Blog :
     - Mirar de començar a fer coses amb SVG's (Ejemplos/SVG/Iconos.html)
  V      - Despres d'un dia de svgs corel i adobe sembla que ja començo a tenir nocions básiques.
     - Fer documentació preliminar i exemples per les VARIABLES CSS!!!!     (https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables)
+ V  - Efectes hover per butons (aprofitant el concepte de butons :hover que he fet per la web /Ejemplos/Transition/Botones.html)
     
 Doc/CSS :
     - cubic-bezier chulo al estil de http://cubic-bezier.com/

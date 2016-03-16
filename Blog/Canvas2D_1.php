@@ -134,8 +134,8 @@ function PintarEspacio() {
                 <p>Por último asigna el color para la estrella utilizando el atributo <i>fillStyle</i>, y pinta la estrella utilizando <i>fillRect</i>.</p>
                 <canvas class='Centrado' style='display:table; background:#000' id="CanvasEspacio" width="990" height="100" style="background-color:#000"></canvas>
                 <table class='Centrado'><tr>
-                        <td><div class='Boton' onclick="IniciarAnimacion()">Iniciar la animación</div></td>
-                        <td><div class='Boton' onclick="PararTemporizador()">Detener la animación</div></td>
+                        <td><div class='Boton-Normal' onclick="IniciarAnimacion()">Iniciar la animación</div></td>
+                        <td><div class='Boton-Normal' onclick="PararTemporizador()">Detener la animación</div></td>
                 </tr></table>
 <!--                <div class='Centrado'> 
 	                <br />
@@ -154,8 +154,8 @@ function PintarEspacio() {
                 <p>Y esto es todo por hoy!, como siempre si queréis podéis ver o descargar una versión simplificada con el ejemplo de la animación.</p>
                 
                 <table class='Centrado'><tr>
-                        <td><a href='/Lab/Ejemplos/Canvas2D/Canvas2D_1_Ejemplo.html' class='Boton'>Ver ejemplo</a></td>
-                        <td><a href='/Descargas/Canvas2D_1.zip' class='Boton' target="_blank">Descargar ejemplo</a></td>
+                        <td><a href='/Lab/Ejemplos/Canvas2D/Canvas2D_1_Ejemplo.html' class='Boton-Normal'>Ver ejemplo</a></td>
+                        <td><a href='/Descargas/Canvas2D_1.zip' class='Boton-Normal' target="_blank">Descargar ejemplo</a></td>
                 </tr></table>
 
 

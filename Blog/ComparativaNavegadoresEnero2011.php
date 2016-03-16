@@ -135,8 +135,8 @@
                 Además hay muchos otros factores que pueden hacer que un código JavaScript se ejecute más rápido o más lento, como por ejemplo la velocidad en la que el navegador muestra los datos por pantalla, el sistema operativo, aplicaciones encendidas, etc....<br /><br />
 
                 <table class='Centrado'><tr>
-                        <td><div class='Boton' onclick="TestVelocidad()">Test de velocidad</a></td>
-                	<td><a class='Boton' href="/Ejemplos/TestVelocidad/TestVelocidad.js" target="_blank">Ver archivo TestVelocidad.js</a></td>
+                    <td><div class='Boton-Normal' onclick="TestVelocidad()">Test de velocidad</a></td>
+                    <td><a class='Boton-Normal' href="/Ejemplos/TestVelocidad/TestVelocidad.js" target="_blank">Ver archivo TestVelocidad.js</a></td>
                 </tr></table>
 
                 Viendo los resultados he confirmado lo que ya sabía a simple vista, pero no me esperaba que la diferencia de velocidad fuera tan abismal... observad vosotros mismos :<br /><br />

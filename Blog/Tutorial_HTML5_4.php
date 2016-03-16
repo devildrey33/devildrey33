@@ -99,8 +99,8 @@
                 <p>Y con esto terminamos la cuarta parte del tutorial, si lo deseáis podéis ver el ejemplo online o descargar el ejemplo para poder editarlo en vuestro ordenador.</p>
                 
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Lab/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_4_Ejemplo.html" target="_blank">Ver Ejemplo</a></td>
-                	<td><a class='Boton' href="/Descargas/Tutorial_HTML5_4.zip" target="_blank">Descargar Ejemplo</a></td>
+                        <td><a class='Boton-Normal' href="/Lab/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_4_Ejemplo.html" target="_blank">Ver Ejemplo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/Tutorial_HTML5_4.zip" target="_blank">Descargar Ejemplo</a></td>
                 </tr></table>
                                 
                 <p>Podéis seguir con el siguiente tutorial HTML5 : <a href="/Blog/Tutorial_HTML5_5" alt='Creación de paginas web desde cero (5 Más sobre los estilos)'>Creación de páginas web desde cero (5 Más sobre los estilos)</a>.</p>

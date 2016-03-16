@@ -126,8 +126,8 @@
                 <p><b>NOTA</b> : Para seguir estos tutoriales correctamente necesitáis un navegador actual, no vale internet explorer 8 o inferior. Personalmente os recomiendo Google Chrome, Firefox, Opera o Safari, y en última instancia Internet Explorer 9, pero siempre tiene que ser la última versión del navegador.</p>
                 <p>Y con esto terminamos la segunda parte del tutorial, si lo deseáis podéis ver el ejemplo online o descargar el ejemplo para poder editarlo en vuestro ordenador.</p>
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Lab/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_2_Ejemplo.html" target="_blank">Ver Ejemplo</a></td>
-                	<td><a class='Boton' href="/Descargas/Tutorial_HTML5_2.zip" target="_blank">Descargar Ejemplo</a></td>
+                        <td><a class='Boton-Normal' href="/Lab/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_2_Ejemplo.html" target="_blank">Ver Ejemplo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/Tutorial_HTML5_2.zip" target="_blank">Descargar Ejemplo</a></td>
                 </tr></table>
 
                 <p>Podéis seguir con el siguiente tutorial HTML5 : <a href="/Blog/Tutorial_HTML5_3" alt='Creación de paginas web desde cero (3 más etiquetas)'>Creación de páginas web desde cero (3 varias etiquetas)</a>.</p>

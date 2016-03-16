@@ -40,8 +40,8 @@
                 <p>Y por fin llegamos al último tutorial de la segunda parte donde veremos todo el juego ensamblado y funcionando : <a href="/Blog/Tutorial_WINAPI_2_6">2.6 - Terminando el Snake (ObjetoSnake)</a>.</p>            
     
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
-                	<td><a class='Boton' href="/Descargas/Snake.zip" target="_blank">Snake compilada</a></td>
+                        <td><a class='Boton-Normal' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/Snake.zip" target="_blank">Snake compilada</a></td>
                 </tr></table>
                 
 

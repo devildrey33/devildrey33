@@ -58,9 +58,9 @@
                 <p>En la inicialización rellenamos la estructura <a href="http://msdn.microsoft.com/en-us/library/bb773205(VS.85).aspx" target="_blank">BROWSEINFO</a>, y  luego mostramos el dialogo directorios con la API <a href="http://msdn.microsoft.com/en-us/library/bb762115(VS.85).aspx" target="_blank">SHBrowseForFolder</a>. La API  <a href="http://msdn.microsoft.com/en-us/library/bb762115(VS.85).aspx" target="_blank">SHBrowseForFolder</a> nos devuelve un PIDLIST_ABSOLUTE que apunta a la ruta  devuelta, para traducir la ruta a un string con un path se utiliza la API  <a href="http://msdn.microsoft.com/en-us/library/bb762194(VS.85).aspx" target="_blank">SHGetPathFromIDList</a>.</p>
                 <p>Con esto ya tenemos todo  lo que necesitara tanto el instalador como el ensamblador . Para mas  información acerca de los dialogos comunes consultad este enlace de la MSDN :  <a href="http://msdn.microsoft.com/en-us/library/ms645524(v=VS.85).aspx" target="_blank">Common Dialog Box Library</a></p>
                 <p>Siguiente tutorial : <a href="/Blog/Tutorial_WINAPI_3_3">3.3 Creación del ObjetoEditBox</a>.</p>     
-                
-                <a class="Boton Centrado" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
-
+                <div class='Centrado'>
+                <a class="Boton-Normal" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+                </div>
 <?php
     $Base->FinBlog();
     if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 

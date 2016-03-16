@@ -58,7 +58,7 @@ html[lang='en'] *[tooltip-en]::before { content:attr(tooltip-en); }
 /* Muestro el tooltip para los botones de la vista del lab */
 html[lang='es'] #BarraNavegacion_LabMarcoVer > .Menu_Boton_Label[tooltip-es]:hover::before, html[lang='en'] #BarraNavegacion_LabMarcoVer > .Menu_Boton_Label[tooltip-en]:hover::before, 
 /* Muestro el tooltip para los botones de la vista del mini lab */
-html[lang='es'] .MiniLab .Menu_Boton_Label[tooltip-es]:hover::before,  html[lang='es'] .MiniLab .Menu_Boton_Label[tooltip-en]:hover::before
+html[lang='es'] .MiniLab .Menu_Boton_Label[tooltip-es]:hover::before,  html[lang='es'] .MiniLab .Menu_Boton_Label[tooltip-en]:hover::before,
 /* Muestro el tooltip para los botones que contienen un sub-menu, y no están marcados */
 html[lang='es'] .Menu_Boton_Input:not(:checked) + .Menu_Boton_Label[tooltip-es]:hover::before, html[lang='en'] .Menu_Boton_Input:not(:checked) + .Menu_Boton_Label[tooltip-en]:hover::before,
 /* Muestro el tooltip para las clases Menu_Boton sin marcos desplegables */

@@ -3,6 +3,15 @@
 
     return array(
         
+array(	"Titulo" 	=> "Algunos efectos para botones en CSS",
+        "Fecha" 	=> "16/03/2016",
+        "URL" 		=> "algunos-efectos-para-botones-en-css",
+        "Tags" 		=> array("CSS", "HTML", "Programación"),
+        "Tipo"		=> "Blog",
+        "Autor"         => "Josep Antoni Bover",
+        "Idioma"        => "es",
+        "Imagen"	=> "CSS3.png"),
+        
 array(	"Titulo" 	=> "Resaltar sintaxis de un código fuente",
         "Fecha" 	=> "29/01/2016",
         "URL" 		=> "resaltar-sintaxis-codigo-fuente",

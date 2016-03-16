@@ -45,8 +45,9 @@
                 <?php $Base->PintarCodigo->PintarArchivoHTML("ComboBox_Ejemplo_php", "Archivo PHP final", "../Ejemplos/ComboBoxWeb/ComboBoxWeb_Ejemplo.php"); ?>
                 <br />
                 <div class='nota'>Este control ha quedado completamente desfasado, echa un vistazo a <a href="devildrey33_ListaDesplegable_2.0.php">devildrey33_ListaDesplegable 2.0 FINAL</a>.</div>
-                
-                <a class='Boton Centrado' href="devildrey33_ListaDesplegable_2.0.php">Ir a devildrey33_ListaDesplegable</a>
+                <div class='Centrado'>
+                    <a class='Boton-Normal' href="devildrey33_ListaDesplegable_2.0.php">Ir a devildrey33_ListaDesplegable</a>
+                </div>
                 
 <?php
     $Base->FinBlog();

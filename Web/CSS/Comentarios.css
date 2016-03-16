@@ -5,13 +5,6 @@ html[lang=es] #Comentarios > h2:nth-child(1)::after {
 html[lang=en] #Comentarios > h2:nth-child(1)::after {
     content:'Comments';
 }
-/* Enviar comentario */
-html[lang=es] #Comentarios > #Comentarios_Comentario + button::after {
-    content:'Enviar comentario';
-}
-html[lang=en] #Comentarios > #Comentarios_Comentario + button::after {
-    content:'Send comment';
-}
 
 
 #Comentarios {
@@ -321,7 +314,7 @@ body[administrador33=true] #Comentarios_Datos > div[comentario] > .Comentarios_C
 }
 
 
-#Comentarios_BarraControles > .Boton {
+#Comentarios_BarraControles > .BotonEdicion {
     display:inline-block;
     position:relative;
     width:36px;
@@ -337,7 +330,7 @@ body[administrador33=true] #Comentarios_Datos > div[comentario] > .Comentarios_C
     background-color:#DDD;
 }
 
-#Comentarios_BarraControles > .Boton::before {
+#Comentarios_BarraControles > .BotonEdicion::before {
     content:'';
     border:1px solid transparent;
     background-color:transparent;
@@ -350,25 +343,25 @@ body[administrador33=true] #Comentarios_Datos > div[comentario] > .Comentarios_C
     transition:0.3s;
 }
 
-#Comentarios_BarraControles > .Boton[marcado=true]::before, #Comentarios_BarraControles > .Boton:hover::before {
+#Comentarios_BarraControles > .BotonEdicion[marcado=true]::before, #Comentarios_BarraControles > .BotonEdicion:hover::before {
     content:'';
     background-color:rgba(255, 0, 0, 0.4);
     border-color:rgb(255, 0, 0);
 }
 
 
-#Comentarios_BarraControles > .Boton:nth-child(2)  {    background-position:-36px;   }
-#Comentarios_BarraControles > .Boton:nth-child(3)  {    background-position:-72px;   }
-#Comentarios_BarraControles > .Boton:nth-child(4)  {    background-position:-108px;   }
-#Comentarios_BarraControles > .Boton:nth-child(5)  {    background-position:-144px;   }
-#Comentarios_BarraControles > .Boton:nth-child(6)  {    background-position:-180px;   }
-#Comentarios_BarraControles > .Boton:nth-child(7)  {    background-position:-216px;   }
-#Comentarios_BarraControles > .Boton:nth-child(8)  {    background-position:-252px;   }
+#Comentarios_BarraControles > .BotonEdicion:nth-child(2)  {    background-position:-36px;   }
+#Comentarios_BarraControles > .BotonEdicion:nth-child(3)  {    background-position:-72px;   }
+#Comentarios_BarraControles > .BotonEdicion:nth-child(4)  {    background-position:-108px;   }
+#Comentarios_BarraControles > .BotonEdicion:nth-child(5)  {    background-position:-144px;   }
+#Comentarios_BarraControles > .BotonEdicion:nth-child(6)  {    background-position:-180px;   }
+#Comentarios_BarraControles > .BotonEdicion:nth-child(7)  {    background-position:-216px;   }
+#Comentarios_BarraControles > .BotonEdicion:nth-child(8)  {    background-position:-252px;   }
 /*#Comentarios_BarraControles > button:nth-child(9)  {    background-position:-288px;   }*/
-#Comentarios_BarraControles > .Boton:nth-child(9) {    background-position:-324px;   }
-#Comentarios_BarraControles > .Boton:nth-child(10) {    background-position:-360px;   }
-#Comentarios_BarraControles > .Boton:nth-child(11) {    background-position:-396px;   }
-#Comentarios_BarraControles > .Boton:nth-child(12) {    background-position:-432px;   }
+#Comentarios_BarraControles > .BotonEdicion:nth-child(9) {    background-position:-324px;   }
+#Comentarios_BarraControles > .BotonEdicion:nth-child(10) {    background-position:-360px;   }
+#Comentarios_BarraControles > .BotonEdicion:nth-child(11) {    background-position:-396px;   }
+#Comentarios_BarraControles > .BotonEdicion:nth-child(12) {    background-position:-432px;   }
 
 #Comentarios_Comentario {
     width:calc(100% - 26px);

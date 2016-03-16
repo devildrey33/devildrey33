@@ -10,31 +10,31 @@ and open the template in the editor.
 
 /* Log.php */
 #Log_Contenedor {
-    width:100%;
+    width : 100%;
 }
 
 .Log {
-    border:1px solid transparent;
+    border : 1px solid transparent;
 }
 
 .Log:hover {
-    border:1px dashed #EEE;
-    background-color:#DDD;
+    border           : 1px dashed #EEE;
+    background-color : #DDD;
 }
 
 .Log_Tabla {
-    display:table;
-    width:100%;
-    table-layout:fixed;
+    display      : table;
+    width        : 100%;
+    table-layout : fixed;
 }
 
 .Log_TdIP {
-    display:table-cell;
-    width:135px;
-    color:rgb(70, 70, 70);
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;		
+    display       : table-cell;
+    width         : 135px;
+    color         : rgb(70, 70, 70);
+    overflow      : hidden;
+    text-overflow : ellipsis;
+    white-space   : nowrap;		
 }
 
 .Log_TdTotalEntradas {

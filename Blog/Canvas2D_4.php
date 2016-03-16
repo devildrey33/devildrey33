@@ -112,8 +112,8 @@ function PintarCanal(ConservarRGB, nX, nY) {
                 <p>Y por ultimo en la línea 26 utilizamos la función <i>putImageData</i> para pintar la imagen <i>Destino</i> en el canvas.</p>
                 <p>Y esto es todo por hoy, como siempre podéis ver un ejemplo online, o descargar-lo.</p>
                 <table class='Centrado'><tr>
-                        <td><a href='/Lab/Ejemplos/Canvas2D/Canvas2D_4_Ejemplo.html' class='Boton'>Ver ejemplo</a></td>
-                        <td><a href='/Descargas/Canvas2D_4.zip' target="_blank" class='Boton'>Descargar ejemplo</a></td>
+                        <td><a href='/Lab/Ejemplos/Canvas2D/Canvas2D_4_Ejemplo.html' class='Boton-Normal'>Ver ejemplo</a></td>
+                        <td><a href='/Descargas/Canvas2D_4.zip' target="_blank" class='Boton-Normal'>Descargar ejemplo</a></td>
                 </tr></table>
 
 

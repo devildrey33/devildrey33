@@ -58,10 +58,10 @@
                 <p>De esta forma este captcha no se puede hackear con JavaScript como en el ejemplo anterior, y su seguridad gana varios puntos, pero ojo que sigue sin ser perfecto ya que se podría descifrar la imagen utilizando algún algoritmo de OCR.</p>
                 <p>Y por hoy terminamos aquí, en la siguiente entrega empezaremos a crear un captcha mas original que no requerirá introducir un valor, si no que arrastraremos una imagen a una posición especifica para validar el captcha. Como siempre podéis ver el ejemplo simplificado online, o descargar el ejemplo para vuestro ordenador.</p>
                 <p>Siguiente tutorial : <a href='Captcha3.php'>Captchas (3 Captcha arrastrar y soltar PHP + JQuery)</a>.</p>
-                <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Ejemplos/Captcha/Captcha2_Ejemplo.html" target="_blank">Ver Ejemplo</a></td>
-                	<td><a class='Boton' href="/Descargas/Captcha2.zip" target="_blank">Descargar Ejemplo</a></td>
-                </tr></table>
+                <div class='Centrado'>
+                    <a class='Boton-Normal' href="/Ejemplos/Captcha/Captcha2_Ejemplo.html" target="_blank">Ver Ejemplo</a>
+                    <a class='Boton-Normal' href="/Descargas/Captcha2.zip" target="_blank">Descargar Ejemplo</a>
+                </div>
                 
 <?php
     $Base->FinBlog();

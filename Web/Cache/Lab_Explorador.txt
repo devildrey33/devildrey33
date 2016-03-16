@@ -11,21 +11,9 @@
 </div>
 </div>
 <div class='Lab_Item'>
-<div class='Lab_Archivo' path='/Lab/Ejemplos/Animation/AnimacionEnConstruccion.html'>
-<div class='Lab_IcoArchivo'></div>
-<a href='/Lab/Ejemplos/Animation/AnimacionEnConstruccion.html'>AnimacionEnConstruccion.html</a>
-</div>
-</div>
-<div class='Lab_Item'>
 <div class='Lab_Archivo' path='/Lab/Ejemplos/Animation/Atomo.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/Animation/Atomo.html'>Atomo.html</a>
-</div>
-</div>
-<div class='Lab_Item'>
-<div class='Lab_Archivo' path='/Lab/Ejemplos/Animation/Caja3D.html'>
-<div class='Lab_IcoArchivo'></div>
-<a href='/Lab/Ejemplos/Animation/Caja3D.html'>Caja3D.html</a>
 </div>
 </div>
 <div class='Lab_Item'>
@@ -44,12 +32,6 @@
 <div class='Lab_Archivo' path='/Lab/Ejemplos/Animation/CajaCayendoScale.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/Animation/CajaCayendoScale.html'>CajaCayendoScale.html</a>
-</div>
-</div>
-<div class='Lab_Item'>
-<div class='Lab_Archivo' path='/Lab/Ejemplos/Animation/Ceyur.html'>
-<div class='Lab_IcoArchivo'></div>
-<a href='/Lab/Ejemplos/Animation/Ceyur.html'>Ceyur.html</a>
 </div>
 </div>
 <div class='Lab_Item'>
@@ -1535,6 +1517,27 @@
 <div class='Lab_Archivo' path='/Lab/Ejemplos/TablaFija/TablaFija.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/TablaFija/TablaFija.html'>TablaFija.html</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Directorio' path='/Lab/Ejemplos/Transition/'>
+<div class='Lab_IcoDirectorioC'></div>
+<span>Transition</span>
+</div>
+<div class='Lab_Directorio_Animacion'>
+<div class='Lab_Lista'><div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/Transition/banner.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/Transition/banner.html'>banner.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/Transition/Botones.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/Transition/Botones.html'>Botones.html</a>
 </div>
 </div>
 </div>

@@ -78,8 +78,8 @@
                 <p>Ahora si que ya podemos crear la ultima ventana translucida que nos falta para el juego : <a href="/Blog/Tutorial_WINAPI_2_4">2.4 - Tutorial Creación del ObjetoEscena_Records</a>. </p>
                 
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
-                	<td><a class='Boton' href="/Descargas/Snake.zip" target="_blank">Snake compilada</a></td>
+                        <td><a class='Boton-Normal' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/Snake.zip" target="_blank">Snake compilada</a></td>
                 </tr></table>
                 
 

@@ -76,8 +76,9 @@
                 <p>Aparte de estos tres controles tiene varios mas como una barra de progreso / desplazamiento, un boton, una combo que se puede convertir en una lista de unidades de disco para buscar un directorio, un checkbox, y un cuadro de edicion (que no funciona muy bien).</p>
                 <p style="text-decoration:line-through">Puedes ver mas sobre la DWL en el siguiente enlace : <b>Documentación de la DWL (doxygen)</b>.</p>
                 <div class='nota'>El estado de dessarrollo actual de esta libreria ha quedado totalmente detenido debido a que esta basada en controles clon que en la actualidad ya no son necesarios. Quizas te interese hechar un vistazo a la <a href="DWL2012-08-02-2012.php">DWL 2012</a>.</div>
-                
-                <a class="Boton Centrado" href="/Descargas/DWL.zip" target="_blank">Descargar código fuente de la DWL 0.961</a>   
+                <div class='Centrado'>
+                    <a class="Boton-Normal" href="/Descargas/DWL.zip" target="_blank">Descargar código fuente de la DWL 0.961</a>   
+                </div>
 
 <?php
     $Base->FinBlog();

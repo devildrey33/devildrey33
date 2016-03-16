@@ -40,9 +40,9 @@
                 <p>Como podeis ver, comparamos la ID con ID_BUTTON_CERRAR, y en caso de que la comparación sea positiva llamamos al Evento_Cerrar, que en esta ventana terminara la aplicación de ejemplo.</p>
                 <p>Para mas información referente al control Button consulta el siguiente enlace de la MSDN : <a href="http://msdn.microsoft.com/en-us/library/bb775943(v=VS.85).aspx" target="_blank">Button Control</a>.</p>
                 <p>Siguiente tutorial : <a href="/Blog/Tutorial_WINAPI_3_5"> 3.5 Creación del ObjetoComboBox</a>.</p>
-    
-                <a class="Boton Centrado" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
-
+    <div class='Centrado'>
+                <a class="Boton-Normal" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+    </div>
 
 <?php
     $Base->FinBlog();

@@ -97,9 +97,9 @@
                 <?php $Base->PintarCodigo->PintarArchivoC("ID_MostrarUltimoError", "Archivo : VentanaInstalador.cpp", "../Codigo/Tutoriales_WinAPI/3.10 Tutorial terminando Instalador/VentanaInstalador.cpp", "VentanaInstalador::_MostrarUltimoError"); ?>
                 <p> Esta función tiene por objetivo mostrar un mensaje de error  con la información que nos da la API <a href="http://msdn.microsoft.com/en-us/library/ms679360(VS.85).aspx" target="_blank">GetLastError</a>. Con el número del error  podemos utilizar <a href="http://msdn.microsoft.com/en-us/library/ms679351(VS.85).aspx" target="_blank">FormatMessage</a> para obtener un mensaje de error en formato de  texto, que es bastante mas descriptivo que un numero. Por último mostramos el  error con la API <a href="http://msdn.microsoft.com/en-us/library/ms645505(VS.85).aspx" target="_blank">MessageBox</a>.</p>
                 <p>Y con esto hemos terminado con el instalador. Ya solo  nos queda el último paso :  <a href="/Blog/Tutorial_WINAPI_3_11">3.11 Tutorial terminando el Ensamblador</a>.</p>
-                
-                <a class="Boton Centrado" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
-
+                <div class='Centrado'>
+                    <a class="Boton-Normal" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+                </div>
 
 <?php
     $Base->FinBlog();

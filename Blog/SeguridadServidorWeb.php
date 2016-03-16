@@ -143,7 +143,9 @@ Redirect 301 /wp/wp-login.php                   http://www.MIURL.es/BanearIP.php
             <div class='nota'>En donde especificamos la redirección debe tener la URL completa o en el caso contrario podría no funcionar bien, ya que si re-direccionamos desde un directorio el script se perdería del todo. Por ejemplo si vamos a "<i>/admin/</i>" intentaria acceder a "<i>/admin/BanearIP.php</i>" y no lo encontraria.</div>
             <p>Por último debo comentar que desde mi servidor de pruebas (xampp) el comando "<i>Redirect 301</i>" no funciona, esto es porque me falta activar el modulo "<i>rewrite_module</i>" dentro del archivo "<i>httpd.conf</i>". De todas formas la gran mayoría de servidores web lo tienen activado por defecto.</p>
             <p>Y esto es todo, espero que por lo menos con estos apuntes se lo dejemos mas difícil a esta gentuza que se dedica a cargarse el trabajo de los demás.</p>
-            <a class='Boton Centrado' href="/Descargas/SeguridadServidorWeb.zip" target="_blank">Descargar Ejemplo</a>
+<div class='Centrado'>
+    <a class='Boton-Normal' href="/Descargas/SeguridadServidorWeb.zip" target="_blank">Descargar Ejemplo</a>
+</div>
 
 
 

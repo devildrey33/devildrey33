@@ -48,8 +48,8 @@
 
 
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Ejemplos/PHPyXML/PHPyXML_Ejemplo.php" target="_blank">Ver Ejemplo</a></td>
-                	<td><a class='Boton' href="/Descargas/PHPyXML.zip" target="_blank">Descargar Ejemplo</a></td>
+                        <td><a class='Boton-Normal' href="/Ejemplos/PHPyXML/PHPyXML_Ejemplo.php" target="_blank">Ver Ejemplo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/PHPyXML.zip" target="_blank">Descargar Ejemplo</a></td>
                 </tr></table>
                 
 

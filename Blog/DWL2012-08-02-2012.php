@@ -36,7 +36,9 @@
                 <p style="text-decoration:line-through">Por último he documentado todo el ListView en formato doxygen, podéis ver dicha documentación en el siguiente enlace : Documentación <b>D</b>evildrey33 <b>W</b>indows <b>L</b>ibrary.</p>
                 <p><b>Requisitos mínimos :</b> VisualStudio 2008, Windows Vista.</p>
                 <div class='nota'>en un futuro se implementara compatibilidad para Windows XP.</div>
-                <a class="Boton Centrado" href="/Descargas/DWL_2012.zip" target="_blank">Descargar código fuente de la DWL 2012</a>            
+                <div class='Centrado'>
+                    <a class="Boton-Normal" href="/Descargas/DWL_2012.zip" target="_blank">Descargar código fuente de la DWL 2012</a>            
+                </div>
 
 
 <?php

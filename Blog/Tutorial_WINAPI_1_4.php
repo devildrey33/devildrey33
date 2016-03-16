@@ -39,8 +39,8 @@
                 <p>Ahora que ya sabemos crear ventanas y utilizar básicamente el  GDI de Windows es el momento ideal para empezar a crear nuestro primer control y asi poder aprender mas sobre el GDI haciendo algo util. Este control consistirá en un botón con los bordes redondeados el cual estará pintado  con un degradado de fondo : <a href="/Blog/Tutorial_WINAPI_1_5">1.5 Creación de nuestro objeto Botón</a>.</p>
     
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
-                	<td><a class='Boton' href="/Descargas/Calculadora.zip" target="_blank">Calculadora compilada</a></td>
+                        <td><a class='Boton-Normal' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/Calculadora.zip" target="_blank">Calculadora compilada</a></td>
                 </tr></table>
                 
 

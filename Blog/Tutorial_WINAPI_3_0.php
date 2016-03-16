@@ -350,8 +350,9 @@
                 <li>Ganas de hacer trabajar el coco.</li>
                 </ul>            
                 </div>
-    
-                <a class="Boton Centrado" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+    <div class='Centrado'>
+                <a class="Boton-Normal" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+    </div>
                                 
 
 

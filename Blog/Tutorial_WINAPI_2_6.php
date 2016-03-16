@@ -312,8 +312,8 @@
                 <p>Con esto terminamos la segunda fase del tutorial, podéis continuar con el tutorial <a href="/Blog/Tutorial_WINAPI_3_0">3.0 Introducción al Instalador y el Ensamblador</a>.</p>
     
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
-                	<td><a class='Boton' href="/Descargas/Snake.zip" target="_blank">Snake compilada</a></td>
+                        <td><a class='Boton-Normal' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/Snake.zip" target="_blank">Snake compilada</a></td>
                 </tr></table>
                 
 

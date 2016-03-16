@@ -53,8 +53,8 @@
                 <p>Ya casi estamos al final del segundo tutorial, ahora nos las veremos con el objeto que cargara los niveles para el Snake: <a href="/Blog/Tutorial_WINAPI_2_5">2.5 - Tutorial Creación del ObjetoSnake_Nivel</a>.</p>
                 
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
-                	<td><a class='Boton' href="/Descargas/Snake.zip" target="_blank">Snake compilada</a></td>
+                        <td><a class='Boton-Normal' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/Snake.zip" target="_blank">Snake compilada</a></td>
                 </tr></table>
                 
 

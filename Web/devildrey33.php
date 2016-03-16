@@ -112,8 +112,8 @@ class devildrey33 {
         if (devildrey33_Opciones::Administrador() > 0)     echo "<body administrador33=true>".Intro();
         else                                               echo "<body>".Intro();
 
-        echo "<div id='VentanaMensaje' class='MarcoVentana-350'><p></p><button class='Centrado'>Aceptar</button></div>".Intro().
-        "<div id='VentanaError' class='MarcoVentana-350'><p></p><button class='Centrado'>Aceptar</button></div>".Intro().
+        echo "<div id='VentanaMensaje' class='MarcoVentana-350'><p></p><div class='Centrado'><button class='Boton-Normal'>Aceptar</button></div></div>".Intro().
+        "<div id='VentanaError' class='MarcoVentana-350'><p></p><div class='Centrado'><button class='Boton-Normal'>Aceptar</button></div></div>".Intro().
         "<div id='VentanaLogin' class='MarcoVentana-250'>".Intro().
             "<table>".Intro().
               "<tr>"."<td>Usuario</td>"."<td>"."<input name='Usuario' type='text' id='devildrey33_Usuario' spellcheck='false' />"."</td>"."</tr>".Intro().
@@ -340,9 +340,9 @@ class devildrey33 {
                     "</span>".Intro().
                 "</div>".Intro().
                 "<div class='Menu_Marco' id='BarraNavegacion_MarcoNextPrev'>".
-                    "<button id='BarraNavegacion_MarcoNextPrev_Prev'></button>".Intro().
+                    "<button class='Boton-Normal' id='BarraNavegacion_MarcoNextPrev_Prev'>&lt;</button>".Intro().
                     "<div id='BarraNavegacion_MarcoNextPrev_Desc'>"."</div>".Intro().
-                    "<button id='BarraNavegacion_MarcoNextPrev_Next'></button>".Intro().
+                    "<button class='Boton-Normal' id='BarraNavegacion_MarcoNextPrev_Next'>&gt;</button>".Intro().
                    
                 "</div>".Intro().
             "</div>".Intro().
@@ -391,11 +391,11 @@ class devildrey33 {
                     "<span></span>".Intro(). // Por favor puntúa este documento del 1 al 5
                     "<span></span>".Intro(). // De esta forma me ayudas a mejorar la web
                     "<div class='VotarDocumento_Estrellas'>".Intro().
-                        "<button>1</button>".Intro().
-                        "<button>2</button>".Intro().
-                        "<button>3</button>".Intro().
-                        "<button>4</button>".Intro().
-                        "<button>5</button>".Intro().
+                        "<button class='Boton-Normal'>1</button>".Intro().
+                        "<button class='Boton-Normal'>2</button>".Intro().
+                        "<button class='Boton-Normal'>3</button>".Intro().
+                        "<button class='Boton-Normal'>4</button>".Intro().
+                        "<button class='Boton-Normal'>5</button>".Intro().
                     "</div>".Intro().
                 "</div>".Intro().
             "</div>".Intro().                    
@@ -487,15 +487,15 @@ class devildrey33 {
                             "<li>CheckSpelling</li>".Intro().
                             "<li>"."<div id='CH_CheckSpelling' class='CheckBox' marcado='".$ValHT["CheckSpelling"]."' title='Redirige una petición no encontrada a una url similar. \nPor ejemplo si vamos a /index2.php se redirige a /index.php automáticamente.'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
                         "</ul>".Intro().
-                        "<button class='Boton' id='CH_IPSBan' title='Elimina todas las ips baneadas de la lista'>Limpiar ips baneadas</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_IPSBan' title='Elimina todas las ips baneadas de la lista'>Limpiar ips baneadas</button>".Intro().
                     "</div>".Intro();
             }
                     
             $HTMLAdmin .= "<div class='TablaMarco33 TablaGeneral'>".Intro().
 //                        "<button class='Boton' id='CH_Entradas'>Editar Entradas</button>".Intro().
 //                        "<button class='Boton' id='CH_Lab'>Explorar Lab</button>".Intro().
-                        "<button class='Boton' id='CH_Logs'>Log</button>".Intro().
-                        "<button class='Boton' id='CH_Stats'>Stats</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_Logs'>Log</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_Stats'>Stats</button>".Intro().
                     "</div>".Intro().
                 "</div>".Intro();
             
@@ -786,7 +786,8 @@ class devildrey33 {
         /* addons del codemirror */
         echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/JS/codemirror.min.js'></script>".Intro();
         /* Three js */
-        echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/JS/three.min.js'></script>".Intro();
+        echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/JS/three-0.74.min.js'></script>".Intro();
+        echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/JS/tweenjs-0.6.2.min.js'></script>".Intro();
         
         echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/Cache/EntradasBlog.js'></script>".Intro();
 

@@ -13,9 +13,11 @@
     
     <div id="Error404"></div>
 
-    <script>
+    <!-- para depuración es mejor cargar-lo estaticamente -->
+    <script src='/Web/JS/Error404.js'></script>
+<!--    <script>
         $Base.CargarJS("Error404.js");
-    </script>
+    </script> -->
     
 <?php
 //    $Base->FinBlog();

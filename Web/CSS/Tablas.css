@@ -195,3 +195,26 @@ html[lang='en'] nota::before, html[lang='en'] .nota::before  {
     white-space:nowrap;
     padding-right:5px;
 }
+
+/* Nota pequeña en fondo blanco con una fuente de tamaño inferior, color de texto gris, y entre parentesis */
+.notamental, notamental {
+    display:table;
+    font-size:1.2rem; 
+    color:#444;
+    background:#FFF;
+}
+html[lang='es'] notamental::before, html[lang='es'] .notamental::before {
+    content:"(Nota mental :";
+}
+html[lang='en'] notamental::before, html[lang='en'] .notamental::before  {
+    content:"(Mental note :";
+}
+
+notamental::after, .notamental::after { content:")";}
+.notamental::before, notamental::before, .notamental::after, notamental::after {
+    display:table-cell;
+    position:relative;
+    font-weight:bold;
+    white-space:nowrap;
+    padding-right:5px;
+}

@@ -61,9 +61,9 @@
                 <p>En nuestro caso como tenemos el ListView encapsulado  utilizamos la función virtual Evento_Notificacion, en la que básicamente  estamos comprobando que la ID del control sea la del ListView, y que el código  de la notificación sea <a href="http://msdn.microsoft.com/en-us/library/bb774867(VS.85).aspx" target="_blank">NM_DBLCLK</a>. En caso de que la comprobación sea positiva,  obtenemos el item marcado y lo mostramos con la API <a href="http://msdn.microsoft.com/en-us/library/ms645505(VS.85).aspx" target="_blank">MessageBox</a>.</p>
                 <p>Para mas información referente al control ListView consulta el siguiente enlace de la MSDN : <a href="http://msdn.microsoft.com/en-us/library/bb774737(v=VS.85).aspx" target="_blank">ListView Control</a>.</p>
                 <p>Siguiente tutorial : <a href="/Blog/Tutorial_WINAPI_3_8"> 3.8 Creación del ObjetoTreeView</a>.</p>
-                
-                <a class="Boton Centrado" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
-                
+                <div class='Centrado'>
+                    <a class="Boton-Normal" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+                </div>
                 
 
 <?php

@@ -117,8 +117,8 @@
                 $Base->PintarCodigo->PintarArchivoHTML("", "Boton3 en HTML", basename(__FILE__), "ID1"); ?>
                 <p>Y con esto terminamos la séptima entrega del tutorial, si lo deseáis podéis ver el ejemplo online o descargar el ejemplo para poder editarlo en vuestro ordenador.</p>
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Lab/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_7_Ejemplo.html" target="_blank">Ver Ejemplo</a></td>
-                	<td><a class='Boton' href="/Descargas/Tutorial_HTML5_7.zip" target="_blank">Descargar Ejemplo</a></td>
+                        <td><a class='Boton-Normal' href="/Lab/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_7_Ejemplo.html" target="_blank">Ver Ejemplo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/Tutorial_HTML5_7.zip" target="_blank">Descargar Ejemplo</a></td>
                 </tr></table>
                 
                 <p>Podéis seguir con el siguiente tutorial HTML5 : <a href="/Blog/Tutorial_HTML5_8" alt='Creación de paginas web desde cero (8 Menus)'>Creación de páginas web desde cero (8 Menus)</a>.</p>

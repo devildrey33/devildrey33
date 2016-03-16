@@ -82,6 +82,7 @@ NOTA : se puede añadir un span entre Menu_Boton_Cruz y Menu_Boton_SVG para agre
     text-align:center;
     overflow:hidden;            /* NO TOCAR, al escalar los svg se salen del botón */
 }
+a.Menu_Boton { overflow:visible; } /* Lo necesito para los menús que son solo un enlace y tienen tool-tip (por ejemplo el home) */
 
 .Menu_Boton:hover,                          /* Algunos botones no tienen label */
 .Menu_Boton_Label:hover + .Menu_Boton {     /* Los botones que tienen label necesitan procesar el hover desde él */

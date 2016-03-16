@@ -111,11 +111,13 @@ function PintarCaracter() {
                 <p>En la línea 26 obtenemos el ancho del carácter actual utilizando la función <i>measureText</i>. Ojo porque esta función solo devuelve el ancho, no he visto ninguna función que devuelva la altura.</p>
                 <p>Y por ultimo en la línea 27 sumamos el ancho del carácter que obtuvimos previamente a la variable <i>PosX</i>.</p>
                 <canvas id="canvas" class='Centrado' style='background:#000; display:table;' width="990" height="110" style="background-color:#000"></canvas>
-                <div class='Boton Centrado' onClick="AnimarTexto('Texto animado carácter a carácter\nCada carácter tiene un color distinto\nY puede tener varias líneas.')">Iniciar la animación</div>
+                <div class='Centrado'>
+                    <div class='Boton-Normal' onClick="AnimarTexto('Texto animado carácter a carácter\nCada carácter tiene un color distinto\nY puede tener varias líneas.')">Iniciar la animación</div>
+                </div>
                 <p>Y esto es todo por hoy, espero que este tutorial os sirva de ayuda. Como siempre podéis ver un ejemplo simplificado online o descargar el ejemplo.</p>
                 <table class='Centrado'><tr>
-                        <td><a href='/Lab/Ejemplos/Canvas2D/Canvas2D_2_Ejemplo.html' class='Boton'>Ver ejemplo</a></td>
-                        <td><a href='/Descargas/Canvas2D_2.zip' target="_blank" class='Boton'>Descargar ejemplo</a></td>
+                        <td><a href='/Lab/Ejemplos/Canvas2D/Canvas2D_2_Ejemplo.html' class='Boton-Normal'>Ver ejemplo</a></td>
+                        <td><a href='/Descargas/Canvas2D_2.zip' target="_blank" class='Boton-Normal'>Descargar ejemplo</a></td>
                 </tr></table>
 
 <?php

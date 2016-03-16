@@ -113,8 +113,8 @@
 
 
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Lab/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_8_Ejemplo.html" target="_blank">Ver Ejemplo</a></td>
-                	<td><a class='Boton' href="/Descargas/Tutorial_HTML5_8.zip" target="_blank">Descargar Ejemplo</a></td>
+                        <td><a class='Boton-Normal' href="/Lab/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_8_Ejemplo.html" target="_blank">Ver Ejemplo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/Tutorial_HTML5_8.zip" target="_blank">Descargar Ejemplo</a></td>
                 </tr></table>
                 
                 <p>Podéis seguir con el siguiente tutorial HTML5 : <a href="/Blog/Tutorial_HTML5_9" alt='Creación de paginas web desde cero (9 Tipografías)'>Creación de páginas web desde cero (9 Tipografías)</a>.</p>

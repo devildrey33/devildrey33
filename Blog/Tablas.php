@@ -84,7 +84,9 @@
                 <?php $Base->PintarCodigo->PintarArchivoHTML("ID_TablaCSS", "Código HTML para la tabla fija", "Tablas.php", "TablaHTML"); ?>
                 <p>Como veis la maquetación es de lo mas simple, y esto es todo por hoy, si quereis podeis echar un vistazo al ejemplo desde el laboratorio de pruebas.</p>
 
-                <a href="/Lab/Ejemplos/TablaFija/TablaFija.html" class="Boton Centrado">Ver Ejemplo</a>
+<div class='Centrado'>
+    <a href="/Lab/Ejemplos/TablaFija/TablaFija.html" class="Boton-Normal">Ver Ejemplo</a>
+</div>
                 
                 
 <?php

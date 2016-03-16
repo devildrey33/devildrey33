@@ -42,7 +42,9 @@
                 
                 <p>Al principio puede que os suene todo a chino, pero la verdad es que es muy fácil hacer animaciones con este sistema.</p>
 
-                <a href='/Lab/Ejemplos/Animation/Rotacion3D.html' class='Boton Centrado'>Ver Ejemplo</a>
+                <div class='Centrado'>
+                    <a href='/Lab/Ejemplos/Animation/Rotacion3D.html' class='Boton-Normal'>Ver Ejemplo</a>
+                </div>
                 
                 
                 <h2>Objetos que caen desde arriba del navegador</h2>
@@ -57,7 +59,9 @@
                 <?php $Base->PintarCodigo->PintarArchivoCSS("ID_CajaCayendoScale3", "Duraciones para los 6 objetos", "../Ejemplos/Animation/CajaCayendoScale.html", "Duracion"); ?>
 				<p>Fijaros que cada clase <code>Duracion</code> tiene un tiempo distinto para la animación, de esta forma conseguimos un efecto un poco mas alborotado. Además si creamos los objetos con php podemos mezclar las duraciones de forma que la animación nunca parece exactamente igual.</p>
 
-                <a href='/Lab/Ejemplos/Animation/CajaCayendoScale.html' class='Boton Centrado'>Ver Ejemplo</a>
+                <div class='Centrado'>
+                    <a href='/Lab/Ejemplos/Animation/CajaCayendoScale.html' class='Boton-Normal'>Ver Ejemplo</a>
+                </div>
                 
                 <p>Y con esto terminamos por hoy, espero que os sirva de ayuda!.</p>
                 

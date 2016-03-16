@@ -132,8 +132,8 @@ document.execCommand(Comando, Interface, Valor);
                 <p>Y esto es todo por hoy, como siempre podeis ver el ejemplo online o descargar el ejemplo.</p>
   
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Lab/Ejemplos/ContentEditable/ContentEditable.html" target="_blank">Ver Ejemplo</a></td>
-                	<td><a class='Boton' href="/Descargas/ContentEditable.zip" target="_blank">Descargar Ejemplo</a></td>
+                        <td><a class='Boton-Normal' href="/Lab/Ejemplos/ContentEditable/ContentEditable.html" target="_blank">Ver Ejemplo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/ContentEditable.zip" target="_blank">Descargar Ejemplo</a></td>
                 </tr></table>
                                 
 

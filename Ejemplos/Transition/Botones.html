@@ -1,0 +1,182 @@
+<!-- 
+    Concepto para las transiciónes de los botones cuando están en hover
+
+        La etiqueta es la capa principal que muestra el texto, luego tenemos las capas before y after que usaremos para la animación del hover y para mostrar el fondo del botón.
+            <button>        - Parte que contiene el texto y el borde del botón, y se utiliza una transformación en el :active para alejar el botón       (z-index: 0)    
+                ::before    - Parte que contiene la 'animación' de esta forma tambien podemos utilizar una transformación en esta capa para el :hover    (z-index:-1) 
+                ::after     - Parte que contiene el fondo (se puede utilizar para añadir otra transición)                                                (z-index:-2)
+
+
+	Creado por Josep Antoni Bover Comas el 10/03/2016 para devildrey33.es
+		Ultima modificación 11/03/2016
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+/* Fuente para los botones */
+@import url('http://fonts.googleapis.com/css?family=Karla');
+ 
+/* -[INICIO devildrey33.button]- */            
+/* Clases que empiezan por 'Boton-' */
+[class^='Boton-'] {
+    border              : 2px solid #000;                      /* 2 pixeles de borde negro                                                */
+    text-align          : center;                              /* Texto centrado                                                          */
+    text-decoration     : none;                                /* Sin decoraciones para el texto (por defecto viene con underline)        */
+    padding             : 10px;                                /* Un poco de padding para que se vea bien el botón                        */
+    /* La transición en el click (:active) tiene que ser rápida 150ms (transform y color), la transición para cambiar de foco en 150ms    */
+    transition          : transform 0.15s ease-in-out, color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;   
+    font-family         : Karla, sans-serif;                   /* Fuente de google                                                        */
+    font-size           : 1.7rem;                              /* Tamaño de la fuente                                                     */
+    color               : #FFF;                                /* Color del texto en blanco                                               */
+    margin              : 10px;                                /* 10 pixeles de margen para separar los botones entre si.                 */
+    position            : relative;                            /* Posición relativa para que sus hijos partan desde él                    */
+    overflow            : hidden;                              /* Todo lo que sobresalga del botón no se verá                             */
+    cursor              : pointer;                             /* Puntero del mouse que muestre una mano                                  */
+    transform           : perspective(600px) translateZ(0px) rotateZ(0deg) rotateX(0deg); /* Perspectiva, rotación y posición por defecto */
+    text-shadow         : 1px 1px 1px #666;                    /* Una ligera sombra gris para el texto                                    */
+}
+/* Elimino el outline del botón por una transición con la sombra */
+[class^='Boton-']:focus { 
+    outline    : 0px solid transparent; 		       /* Elimino el outline que viene por defecto en los button */
+    box-shadow : 0px 0px 4px 2px #800,  0px 0px 2px 1px #300;  /* Creo uan sombra en gris oscuro con 2 tonalidades       */  
+}            
+/* Alejo el objeto en la perspectiva cuando el usuario presiona sobre él */
+[class^='Boton-']:active {
+    transform : perspective(600px) translateZ(-75px) rotateZ(-0.5deg) rotateX(-10deg); /* Creo el efecto de hundimiento para el botón */
+    color     : #BBB;								       /* Cambio el color del texto a gris            */
+}
+/* Color del borde rojo al pasar el mouse por encima del botón */
+[class^='Boton-']:hover, [class^='Boton-']:active { border : 2px solid darkred; } 	           
+/* -[FIN devildrey33.button]- */            
+            
+/* -[INICIO devildrey33.button2]- */
+/* Preparación para los pseudo elementos before y after */
+[class^='Boton-']::before, [class^='Boton-']::after {
+    content    : '';                   /* Contenido (requerida para inicializar el pseudo-selector)               */
+    position   : absolute;             /* Posición absoluta (relativa al button)                                  */
+    top        : 0px;                  /* Empezamos desde arriba del <button>                                     */
+    left       : 0px;                  /* Empezamos desde la izquierda del <button>                               */
+    width      : 100%;                 /* Ancho 100% del <button>                                                 */
+    height     : 100%;                 /* Alto 100% del <button>                                                  */
+    transition : 0.4s ease-in-out;     /* Transición para el hover de 500ms para que se vea bien (capa animación) */
+}
+/* Para las transiciones del fondo a color rojo en el hover, se utilizara el pseudo elemento ::before (capa animación) */
+[class^='Boton-']::before {
+    z-index    : -1;                   /* MUY IMPORTANTE esta capa va por debajo de la capa principal */
+}
+/* Para mostrar el fondo negro del botón se utilizara el pseudo elemento ::after (capa fondo) */
+[class^='Boton-']::after {
+    z-index          : -2;             /* MUY IMPORTANTE esta capa va por debajo de la capa animación */
+    background-color : rgb(60,60,60);  /* Color del fondo gris oscuro                                 */
+}
+/* -[FIN devildrey33.button2]- */
+
+/*******************/
+/* BoxShadow 1 y 2 */
+/*******************/            
+/* -[INICIO devildrey33.boxshadow]- */
+/* Sombra interior que crece desde las puntas hacia el centro */
+.Boton-BoxShadow1::before         { box-shadow : 0px 0px 0px 0px transparent inset;     }
+.Boton-BoxShadow1:hover::before, 
+.Boton-BoxShadow1:active::before  { box-shadow : 0px 0px 30px 25px #ea504e inset;       }
+/* Efecto invertido (crece desde el centro hacia las puntas) 
+    en este caso lo más fácil es hacer el fondo rojo, mientras que el box-shadow empezara cubriendo el fondo de color gris oscuro */
+.Boton-BoxShadow2::before         { box-shadow : 0px 0px 30px 25px rgb(60,60,60) inset; }
+.Boton-BoxShadow2:hover::before, 
+.Boton-BoxShadow2:active::before  { box-shadow : 0px 0px 0px 0px transparent inset;     }
+.Boton-BoxShadow2::after          { background-color : #ea504e !important;              }
+/* -[FIN devildrey33.boxshadow]- */
+
+/***********************/
+/* LinearGradient 1, 2 */
+/***********************/
+/* -[INICIO devildrey33.lineargradient]- */
+/* Desplazamiento lateral del fondo que contiene un degradado lineal. */
+.Boton-LinearGradient1::before, .Boton-LinearGradient2::before                { width : 400%; }            
+.Boton-LinearGradient1::before { 
+    background-image : linear-gradient(45deg, #ea504e 40%, transparent 60%); /* Degradado rojo-transparente */  
+    left             : -300%; 
+}
+.Boton-LinearGradient2::before { 
+    background-image : linear-gradient(45deg, transparent 40%, #ea504e 60%); /* Degradado transparente-rojo */ 
+    left             : 0%;                                                      
+}
+.Boton-LinearGradient1:hover::before, .Boton-LinearGradient1:active::before   { left : 0%;    }
+.Boton-LinearGradient2:hover::before, .Boton-LinearGradient2:active::before   { left : -300%; }
+/* -[FIN devildrey33.lineargradient]- */
+/* -[INICIO devildrey33.lineargradient3]- */ 
+/* Desplazamiento desde el centro a los laterales con un degradado lineal utilizando el pseudo-elemento ::before (para el degradado) */
+.Boton-LinearGradient3::before, .Boton-LinearGradient3::after                { width : 300%; }            
+.Boton-LinearGradient3::before {
+    background-image : linear-gradient(45deg, #ea504e 40%, transparent 60%);   /* Degradado de rojo a transparente */
+    left             : -200%;                                                  /* Posición X al -200% */
+} 
+.Boton-LinearGradient3::after {
+    background-image : linear-gradient(45deg, rgb(60,60,60) 40%, #ea504e 60%); /* Degradado de gris a rojo */
+    left             : 0%;                                                     /* Posición X al 0% */
+}
+.Boton-LinearGradient3:hover::before, .Boton-LinearGradient3:active::before { left:0%; }            
+.Boton-LinearGradient3:hover::after, .Boton-LinearGradient3:active::after   { left:-200%; }            
+/* -[FIN devildrey33.lineargradient3]- */
+
+/*************/
+/* Efecto 3D */
+/*************/
+/* -[INICIO devildrey33.efecto3d]- */
+.Boton-3DSuperior::before, .Boton-3DInferior::before,
+.Boton-3DLateralD::before, .Boton-3DLateralI::before {
+    background-color : #ea504e;
+    transition       : 0.4s cubic-bezier(.7,.24,0.26,1.52);
+}
+/* Inicialmente el eje X rotado 90 grados */
+.Boton-3DSuperior::before { transform-origin : top center;           transform : perspective(600px) rotateX(-90deg); }
+.Boton-3DInferior::before { transform-origin : bottom center;        transform : perspective(600px) rotateX(90deg);  }
+/* En el hover devolvemos la rotación del eje X a 0 grados */
+.Boton-3DSuperior:hover::before,  .Boton-3DInferior:hover::before,
+.Boton-3DSuperior:active::before, .Boton-3DInferior:active::before { transform : perspective(600px) rotateX(0deg);   }
+/* Inicialmente el eje Y rotado 90 grados */
+.Boton-3DLateralD::before { transform-origin : center right;         transform : perspective(600px) rotateY(-90deg); }
+.Boton-3DLateralI::before { transform-origin : center left;          transform : perspective(600px) rotateY(90deg);  }
+/* En el hover devolvemos la rotación del eje Y a 0 grados */
+.Boton-3DLateralD:hover::before,  .Boton-3DLateralI:hover::before,
+.Boton-3DLateralD:active::before, .Boton-3DLateralI:active::before { transform : perspective(600px) rotateY(0deg);   }
+/* -[FIN devildrey33.efecto3d]- */
+
+/************/
+/* Circular */
+/************/
+/* -[INICIO devildrey33.circular]- */
+/* Circulo creciendo desde el centro */
+.Boton-Circular::before {
+    border-radius    : 100%;                                /* Borde redondeado                */
+    width            : 0px;                                 /* Ancho a 0                       */
+    height           : 0px;                                 /* Altura a 0                      */
+    background-color : #ea504e;                             /* Color del fondo rojo            */
+    top              : 50%;                                 /* top al 50%                      */
+    left             : 50%;                                 /* left al 50%                     */
+    transform        : translateX(-50%) translateY(-50%);   /* Transformación para el centrado */
+}
+.Boton-Circular:hover::before, .Boton-Circular:active::before { width:300px; height:300px; }
+/* -[FIN devildrey33.circular]- */
+        </style>
+
+    </head>
+    <body>
+        <p>Transiciones para <b>:hover</b>, <b>:active</b>, y <b>:focus</b>.</p>
+        <div style="display:flex; flex-flow:row wrap; justify-content:center;">
+            <button class='Boton-BoxShadow1'>BoxShadow 1</button>
+            <button class='Boton-BoxShadow2'>BoxShadow 2</button>
+            <button class='Boton-LinearGradient1'>LinearGradient 1</button>
+            <button class='Boton-LinearGradient2'>LinearGradient 2</button>
+            <button class='Boton-LinearGradient3'>LinearGradient 3</button>
+            <button class='Boton-3DLateralI'>3D Lateral-Izq</button>
+            <button class='Boton-3DLateralD'>3D Lateral-Der</button>
+            <button class='Boton-3DSuperior'>3D Superior</button>
+            <button class='Boton-3DInferior'>3D Inferior</button>
+            <button class='Boton-Circular'>Circular</button>
+        </div>
+
+    </body>
+</html>

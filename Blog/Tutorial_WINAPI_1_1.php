@@ -54,8 +54,8 @@
                 <p>Visto todo esto ya podéis pasar al siguiente punto del tutorial, <a href="/Blog/Tutorial_WINAPI_1_2">1.2 - Creación de una ventana y obtención de sus eventos</a>. </p>
                 
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
-                	<td><a class='Boton' href="/Descargas/Calculadora.zip" target="_blank">Calculadora compilada</a></td>
+                        <td><a class='Boton-Normal' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/Calculadora.zip" target="_blank">Calculadora compilada</a></td>
                 </tr></table>
                 
 

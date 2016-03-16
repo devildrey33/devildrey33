@@ -52,8 +52,8 @@
                 </ul>
                 <p><strong>Notas sobre el desarrollo</strong> : El estado de desarrollo de BubaTronik actualmente está <strong>totalmente detenido</strong>, y sin fecha para su reanudación.</p>
                 <div class="Centrado">    
-                    <a class="Boton" href="/Descargas/BubaTronik_0.61.zip" target="_blank">Descargar BubaTronik 0.61</a>
-                    <a class="Boton" href="/Descargas/Codigo_BubaTronik_0.61.zip" target="_blank">Descargar código fuente</a>
+                    <a class="Boton-Normal" href="/Descargas/BubaTronik_0.61.zip" target="_blank">Descargar BubaTronik 0.61</a>
+                    <a class="Boton-Normal" href="/Descargas/Codigo_BubaTronik_0.61.zip" target="_blank">Descargar código fuente</a>
                 </div>
 <?php
     $Base->FinBlog();

@@ -52,8 +52,8 @@
                 <li>El codigo fuente se distribuye por separado, ya que la mayoria de usuarios no lo van a querer para nada.</li>
                 </ul>
                 <div class='Centrado'>
-                    <a class="Boton" href="/Descargas/Antivirus_fotos.zip" target="_blank">Descargar Antivirus</a>
-                    <a class="Boton" href="/Descargas/Codigo_Antivirus.zip" target="_blank">Descargar código fuente</a>
+                    <a class="Boton-Normal" href="/Descargas/Antivirus_fotos.zip" target="_blank">Descargar Antivirus</a>
+                    <a class="Boton-Normal" href="/Descargas/Codigo_Antivirus.zip" target="_blank">Descargar código fuente</a>
                 </div>
 
 <?php

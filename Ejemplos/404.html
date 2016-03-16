@@ -1,3 +1,30 @@
+<!-- 
+    Nuevo documento del laboratorio de pruebas para devildrey33
+    Se permite : HTML, JavaScript, CSS.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            body {
+                margin:0px;
+                width:50%;
+                height:50%;
+            }  
+        </style>
+         
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+
+        <!-- Si deseas utilizar Three descomenta la siguiente línea -->
+        <script src="/Web/JS/three-0.74.min.js"></script>
+
+        <!-- Si deseas utilizar Tween (animaciones para Three) descomenta la siguiente línea -->
+        <script src="/Web/JS/tweenjs-0.6.2.min.js"></script>
+        
+        <!-- Código javascript --> 
+        <script type="text/javascript">
 var $Error404 = new function() {
     this.Three          = new THREE.WebGLRenderer();
     this.Camara         = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000);
@@ -159,4 +186,11 @@ var $Error404 = new function() {
     };        
 };        
 
-$Error404.Iniciar();
+window.onload = function() { $Error404.Iniciar(); } 
+
+        </script>
+    </head>
+    <body>
+        <div id="Error404"></div>
+    </body>
+</html>

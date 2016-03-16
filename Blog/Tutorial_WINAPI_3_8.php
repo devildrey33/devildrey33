@@ -70,9 +70,9 @@
                 <p>En el <b>CDDS_ITEMPREPAINT</b> miraremos si el nodo esta marcado o no para asignar un color de fondo o otro, y por ultimo retornaremos <b>CDRF_NEWFONT</b> para decirle al treeview que actualice los datos.</p>
                 <p>Para mas información referente al control TreeView consulta el siguiente enlace de la MSDN : <a href="http://msdn.microsoft.com/en-us/library/bb759988(v=VS.85).aspx" target="_blank">TreeView Control</a>.</p>
                 <p>Siguiente tutorial : <a href="/Blog/Tutorial_WINAPI_3_9"> 3.9 Creación del ObjetoZLIB</a>.</p>   
-                
-                <a class="Boton Centrado" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
-
+                <div class='Centrado'>
+                    <a class="Boton-Normal" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+                </div>
 
 <?php
     $Base->FinBlog();

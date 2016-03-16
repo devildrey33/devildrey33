@@ -64,8 +64,8 @@
                 <p>Ya solo nos queda una ventana translucida mas por crear, que será la que llevara el tema de los records, pero antes necesitamos saber mas sobre archivos y directorios en Windows, asi que os invito a ver el siguiente tutorial : <a href="/Blog/Tutorial_WINAPI_2_3">2.3 - Archivos y Directorios</a>.</p>
     
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
-                	<td><a class='Boton' href="/Descargas/Snake.zip" target="_blank">Snake compilada</a></td>
+                        <td><a class='Boton-Normal' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/Snake.zip" target="_blank">Snake compilada</a></td>
                 </tr></table>
                 
 

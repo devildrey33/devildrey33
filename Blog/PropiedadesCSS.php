@@ -49,7 +49,7 @@
 	
 /*	if ($MostrarGrupos == true) {
 		echo '<div class="Centrado">
-			<a class="devildrey33_BotonDesactivado" style="margin-right:10px">Mostrar propiedades por grupo</a>
+			<a class="devildrey33_Boton-NormalDesactivado" style="margin-right:10px">Mostrar propiedades por grupo</a>
 			<a class="devildrey33_Boton" href="'.$Base->Raiz.'/PropiedadesCSS.php?Mostrar=Alf">Mostrar propiedades por orden alfabético</a>		
 		</div>';
 	}

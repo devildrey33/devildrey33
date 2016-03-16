@@ -30,21 +30,23 @@ class devildrey33_Comentarios {
                         "</div>".Intro().*/
 
                     "<div id='Comentarios_BarraControles'>".Intro().
-                        "<button class='Boton' title='Negrita (Control + B)'></button>".Intro().
-                        "<button class='Boton' title='Subrayado (Control + U)'></button>".Intro().
-                        "<button class='Boton' title='Cursiva (Control + I)'></button>".Intro().
-                        "<button class='Boton' title='Tachado'></button>".Intro().
-                        "<button class='Boton' title='Des-hacer (Control + Z)'></button>".Intro().
-                        "<button class='Boton' title='Re-hacer (Control + Y)'></button>".Intro().
-                        "<button class='Boton' title='Lista'></button>".Intro().
-                        "<button class='Boton' title='Lista numerada'></button>".Intro().
-                        "<button class='Boton' title='Borrar / limpiar comentario'></button>".Intro().
-                        "<button class='Boton' title='Justificar a la izquierda' marcado='true'></button>".Intro().
-                        "<button class='Boton' title='Justificar centrado'></button>".Intro().
-                        "<button class='Boton' title='Justificar a la derecha'></button>".Intro().
+                        "<button class='BotonEdicion' title='Negrita (Control + B)'></button>".Intro().
+                        "<button class='BotonEdicion' title='Subrayado (Control + U)'></button>".Intro().
+                        "<button class='BotonEdicion' title='Cursiva (Control + I)'></button>".Intro().
+                        "<button class='BotonEdicion' title='Tachado'></button>".Intro().
+                        "<button class='BotonEdicion' title='Des-hacer (Control + Z)'></button>".Intro().
+                        "<button class='BotonEdicion' title='Re-hacer (Control + Y)'></button>".Intro().
+                        "<button class='BotonEdicion' title='Lista'></button>".Intro().
+                        "<button class='BotonEdicion' title='Lista numerada'></button>".Intro().
+                        "<button class='BotonEdicion' title='Borrar / limpiar comentario'></button>".Intro().
+                        "<button class='BotonEdicion' title='Justificar a la izquierda' marcado='true'></button>".Intro().
+                        "<button class='BotonEdicion' title='Justificar centrado'></button>".Intro().
+                        "<button class='BotonEdicion' title='Justificar a la derecha'></button>".Intro().
                     "</div>".Intro().
                     "<div contenteditable='true' id='Comentarios_Comentario'></div>".Intro().
-                    "<button class='Centrado'></button>".Intro().  // Enviar comentario
+                    "<div class='Centrado'>".Intro().
+                        "<button class='Boton-Normal Centrado'>Enviar comentario</button>".Intro().  // Enviar comentario
+                    "</div>".Intro().
                 "</section>".Intro();
         }            
 
@@ -114,12 +116,12 @@ class devildrey33_Comentarios {
         if ($Punto === TRUE)  echo "<div PuntoScroll='true' comentario='".$Datos["NumMsg"]."'>".Intro();
         else                  echo "<div comentario='".$Datos["NumMsg"]."'>".Intro();
         echo    "<div class='Comentarios_ControlesMensaje'>".
-                    "<button class='TransitionDelay0".$Delays[0]."'>Responder</button>".
-                    "<button class='TransitionDelay0".$Delays[1]."'>+1</button>".
-                    "<button class='TransitionDelay0".$Delays[2]."'>-1</button>".
-                    "<button class='TransitionDelay0".$Delays[3]."'>Editar</button>".
-                    "<button class='TransitionDelay0".$Delays[4]."'>Eliminar</button>".
-                    "<button class='TransitionDelay0".$Delays[5]."'>Ver email</button>".
+                    "<button class='Boton-Normal TransitionDelay0".$Delays[0]."'>Responder</button>".
+                    "<button class='Boton-Normal TransitionDelay0".$Delays[1]."'>+1</button>".
+                    "<button class='Boton-Normal TransitionDelay0".$Delays[2]."'>-1</button>".
+                    "<button class='Boton-Normal TransitionDelay0".$Delays[3]."'>Editar</button>".
+                    "<button class='Boton-Normal TransitionDelay0".$Delays[4]."'>Eliminar</button>".
+                    "<button class='Boton-Normal TransitionDelay0".$Delays[5]."'>Ver email</button>".
                 "</div>";
         if ($Datos["PaginaWeb"] !== "") $Nombre = "<a href='".$Datos["PaginaWeb"]."' target='_blank'>".$Datos["Nombre"]."</a>".Intro();
         else                            $Nombre = $Datos["Nombre"];

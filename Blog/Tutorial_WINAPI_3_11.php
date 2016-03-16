@@ -96,9 +96,9 @@
                 <p>En esencia escaneamos todos los nodos partiendo del nodo  ROOT utilizando la función ObjetoTreeView::<b>NodoSiguiente</b>, si vemos que algún  nodo tiene uno o mas hijos con la función ObjetoTreeView::<b>NodoHijo</b>, volvemos a  llamar a la función _ArbolRecursivo para añadir sus hijos. Por último agregamos  las cadenas concatenadas al Instalar.exe</p>
                 <p>Y aqui termina la tercera serie de tutoriales, espero que sean de ayuda para aquellos que os iniciais en la programación con el API de windows.</p>
                 <p>Actualmente creo que los tutoriales en cuanto a ventanas y graficos tienen un nivel bastante aceptable (quizas se revise o extienda algúno pero por lo general abarcan la mayoria de cosas básicas a mi entender), por lo que los proximos tutoriales intentare enfocarlos a otros temas de interes como pueden ser : Creación de archivos dmp (para depurar aplicaciones), Creación y manejo de componentes COM, Interacción con redes/internet (por ejemplo mandar un e-mail mediante Winsock, SMTP y MIME, o hacer un chat cliente/servidor simple), etc...</p>
-    
-                <a class="Boton Centrado" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
-                
+    <div class='Centrado'>
+        <a class="Boton-Normal" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+    </div>
                 
 
 <?php

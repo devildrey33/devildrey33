@@ -38,9 +38,9 @@
                 <p>Esta función abre el  archivo a descomprimir, lee el ContenedorBinario por partes, descomprime cada  parte, y va guardando las partes descomprimidas en el path destino.</p>
                 <p>Con esto ya tenemos  todos los requisitos para crear el instalador.</p>
                 <p>Siguiente tutorial : <a href="/Blog/Tutorial_WINAPI_3_10">3.10  Terminando el Instalador</a></p>            
-    
-                <a class="Boton Centrado" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
-
+    <div class='Centrado'>
+                <a class="Boton-Normal" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+    </div>
 
 
 <?php

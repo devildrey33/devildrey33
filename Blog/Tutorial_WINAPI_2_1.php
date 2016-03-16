@@ -58,8 +58,8 @@
                 <p>En la siguiente parte del tutorial veremos como crear un tablero y un marcador para el juego : <a href="/Blog/Tutorial_WINAPI_2_2"> 2.2 - Creación del tablero, el marcador, y el mensaje</a>.</p>            
     
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
-                	<td><a class='Boton' href="/Descargas/Snake.zip" target="_blank">Snake compilada</a></td>
+                        <td><a class='Boton-Normal' href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/Snake.zip" target="_blank">Snake compilada</a></td>
                 </tr></table>
                 
 

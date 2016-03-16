@@ -290,12 +290,12 @@ $Base = new function() {
     this.MostrarMensaje = function(Mensaje, Alerta) { 
         console.log("Base.MostrarMensaje(" + Mensaje + ")");
         $("#VentanaMensaje > p").html(Mensaje);
-        $("#VentanaMensaje > button").off("click.button").on("click.button", function() { 
+        $("#VentanaMensaje > div > button").off("click.button").on("click.button", function() { 
             $("#VentanaMensaje").attr({"visible" : "false" }); 
         });
         if (typeof(Alerta) === "undefined") Alerta = "false";
         $("#VentanaMensaje").attr({"visible" : "true", "Alerta" : Alerta});
-        setTimeout(function() { $("#VentanaMensaje > button").focus(); }, 100);
+        setTimeout(function() { $("#VentanaMensaje > div > button").focus(); }, 100);
     };
     
     
@@ -314,7 +314,7 @@ $Base = new function() {
         if (VolverIndice === true) {  
             this.Entrada["TipoPagina"] = "Error404";               
             $("#VentanaError > p").html($("#VentanaError > p").html() + " Pulsa aceptar para ser re-dirigido al indice.");
-            $("#VentanaError > button").off("click.VentanaError").on("click.VentanaError", function() { 
+            $("#VentanaError > div > button").off("click.VentanaError").on("click.VentanaError", function() { 
                 $("#VentanaError").attr({"visible" : "false" }); 
                 $Base.CargarURL("/"); 
             });
@@ -322,11 +322,11 @@ $Base = new function() {
         else {  
             if (this.Entrada["TipoPagina"] === "Lab" || this.Entrada["TipoPagina"] === "LabError")      { this.Entrada["TipoPagina"] = "LabError"; }
             else                                                                                        { this.Entrada["TipoPagina"] = "Error404SinPlantilla"; }
-            $("#VentanaError > button").off("click.VentanaError").on("click.VentanaError", function()   { $("#VentanaError").attr({"visible" : "false" }); });
+            $("#VentanaError > div > button").off("click.VentanaError").on("click.VentanaError", function()   { $("#VentanaError").attr({"visible" : "false" }); });
         }
 
         $("#VentanaError").attr({"visible" : "true" });        
-        setTimeout(function() { $("#VentanaError > button").focus(); }, 100);
+        setTimeout(function() { $("#VentanaError > div > button").focus(); }, 100);
 
         this.ActualizarBarraNavegacion();        
     };

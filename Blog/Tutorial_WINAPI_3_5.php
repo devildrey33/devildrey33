@@ -54,9 +54,9 @@
                 <p>Como podeis ver, comparamos la ID con ID_COMBO y la Notificación con <a href="http://msdn.microsoft.com/en-us/library/bb775821(v=VS.85).aspx" target="_blank">CBN_SELCHANGE</a>, para determinar si ha cambiado la selección dentro del listbox interno de la ComboBox. Si la comparación es positiva mostramos un mensaje con el texto de la selección.</p>
                 <p>Para mas información referente al control ComboBox consulta el siguiente enlace de la MSDN : <a href="http://msdn.microsoft.com/en-us/library/bb775792(v=VS.85).aspx" target="_blank">ComboBox Control</a>.</p>
                 <p>Siguiente tutorial : <a href="/Blog/Tutorial_WINAPI_3_6"> 3.6 Creación del ObjetoProgressBar</a>.</p>
-                
-                <a class="Boton Centrado" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
-
+                <div class='Centrado'>
+                <a class="Boton-Normal" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+                </div>
 
 
 <?php

@@ -50,6 +50,8 @@ return array(   array("Palabra" => "!important"                 , "Color" => "Tx
                 array("Palabra" => "border-style"               , "Color" => "TxtAzul"),
                 array("Palabra" => "border"                     , "Color" => "TxtAzul"),
 
+                array("Palabra" => "outline"                    , "Color" => "TxtAzul"),
+
                 array("Palabra" => "box-shadow"                 , "Color" => "TxtAzul"),
                 array("Palabra" => "break-after"                , "Color" => "TxtAzul"),
                 array("Palabra" => "break-before"               , "Color" => "TxtAzul"),

@@ -189,7 +189,9 @@
                 <li>Los tooltips informativos muestran todos los datos del medio, incluyendo tags de todos los tipos.</li>
                 </ul>
                 <p><br /><br />
-                <a href="BubaTronik" class='Boton Centrado'>Volver a la pagina principal de BubaTronik</a>
+                <div class='Centrado'>
+                    <a href="BubaTronik" class='Boton-Normal'>Volver a la pagina principal de BubaTronik</a>
+                </div>
                 </p>
 
 <?php

@@ -655,12 +655,12 @@ function IrEstructuracion(Num) {
                 
 
                 <table class='Centrado'><tr>
-                    <td><a class="Boton" href="/Ejemplos/devildrey33_ListaDesplegable/Ejemplo.html" target="_blank" style="margin-right:10px">Ver ejemplo simple</a></td>
-                    <td><a class="Boton" href="/Ejemplos/devildrey33_ListaDesplegable/EjemploImagenes.html" target="_blank" style="margin-right:10px">Ver ejemplo con imágenes</a></td>
-                    <td><a class="Boton" href="/Ejemplos/devildrey33_ListaDesplegable/EjemploCrear.html" target="_blank" style="margin-right:10px">Ver ejemplo creación</a></td>
-<!--                    <a class="devildrey33_Boton" href="/Descargas/devildrey33_ListaDesplegable.zip" target="_blank">Descargar devildrey33_ListaDesplegable</a> -->
+                    <td><a class="Boton-Normal" href="/Ejemplos/devildrey33_ListaDesplegable/Ejemplo.html" target="_blank" style="margin-right:10px">Ver ejemplo simple</a></td>
+                    <td><a class="Boton-Normal" href="/Ejemplos/devildrey33_ListaDesplegable/EjemploImagenes.html" target="_blank" style="margin-right:10px">Ver ejemplo con imágenes</a></td>
+                    <td><a class="Boton-Normal" href="/Ejemplos/devildrey33_ListaDesplegable/EjemploCrear.html" target="_blank" style="margin-right:10px">Ver ejemplo creación</a></td>
+<!--                    <a class="devildrey33_Boton-Normal" href="/Descargas/devildrey33_ListaDesplegable.zip" target="_blank">Descargar devildrey33_ListaDesplegable</a> -->
                 </tr></table>
-                <a href="/Descargas/devildrey33_ListaDesplegable.zip"  target="_blank" class="Boton">Descargar devildrey33_ListaDesplegable</a>
+                <a href="/Descargas/devildrey33_ListaDesplegable.zip"  target="_blank" class="Boton-Normal">Descargar devildrey33_ListaDesplegable</a>
 
 				<!-- 1000ms para que no me gripe con Chrome la nueva animación del contenido y me saque una scrollbar horizontal -->
                 <script type="text/javascript">

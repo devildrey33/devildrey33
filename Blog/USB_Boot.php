@@ -56,9 +56,9 @@
                 <p>He estado probando muchos programas para hacer pendrives booteables pero no he encontrado ninguno que me permita instalar todo lo que he mencionado anteriormente, pero sí que hay uno que prácticamente nos hace todo el trabajo. Este es <a href="https://mega.co.nz/#!KF5wFDoJ!fHV1piPUekEqeYr4kcIAwF0pso0jTpj0XHASkrsHGF0" target="new">WinSetupFromUSB (versión del tutorial)</a> pero por desgracia no he encontrado ninguna página oficial por lo que he subido un archivo zip en mega.co.nz con todo lo necesario para hacer funcionar el programa.</p>
 				<p>Antes de nada necesitaremos tener una iso de cada sistema operativo que queramos agregar (este tutorial incluye WinXP, WinVista (32 y 64 bits), Win7 (32 y 64 bits), Win8 (32 y 64 bits) Ubuntu 12.04.2 (32 y 64 bits) y Ubuntu 13.04 (32 y 64 bits), para windows xp necesitamos tener acceso a la carpeta raíz del cd de instalación (ya sea montando su iso en una unidad virtual, copiando el cd en el disco duro o como sea).</p>
                 <div class='nota'>No es posible añadir mas de una instalación de Windows XP con este tutorial.</div>
-                
-                <a class='Boton Centrado' href="https://mega.co.nz/#!KF5wFDoJ!fHV1piPUekEqeYr4kcIAwF0pso0jTpj0XHASkrsHGF0" target="_blank">WinSetupFromUSB (versión del tutorial)</a>
-                
+                <div class='Centrado'>
+                    <a class='Boton-Normal' href="https://mega.co.nz/#!KF5wFDoJ!fHV1piPUekEqeYr4kcIAwF0pso0jTpj0XHASkrsHGF0" target="_blank">WinSetupFromUSB (versión del tutorial)</a>
+                </div>
                 <p>Una vez descargado y descomprimido el programa necesitamos encenderlo con privilegios de administración y veremos la siguiente ventana :</p>
                 <div class='nota'>
                 	Por lo que me ha informado <b>Pep</b> hay una nueva versión del programa, pero no he visto que traiga la iso con drivers extras para el windows xp, así que para evitar problemas, prefiero que utilicéis la versión que he colgado en <a href="https://mega.co.nz/#!KF5wFDoJ!fHV1piPUekEqeYr4kcIAwF0pso0jTpj0XHASkrsHGF0" target="new">mega.co.nz</a>, que es la que hay en el enlace de arriba. <br />
@@ -80,9 +80,9 @@
                 <h2>Añadiendo los demás sistemas operativos</h2>
                 <p>Antes de nada deberíais saber que el Grub es el gestor de arranque que se usa actualmente en la mayoría de distribuciones linux, que además tiene una versión compatible con dos/windows (Grub4dos). Este gestor es totalmente configurable aunque es algo complicado de configurar.</p>
                 <p>Para no liar mucho la cosa editando el menú del grub os he hecho un zip con varios archivos que <b>deberéis copiar dentro de la raíz del pendrive</b> que podéis descargar desde este enlace : </p>
-                
-                <a class='Boton Centrado' href="/Descargas/Tutorial_USBBoot.zip" target="_blank">Menu + Drivers</a>
-                
+                <div class='Centrado'>
+                <a class='Boton-Normal' href="/Descargas/Tutorial_USBBoot.zip" target="_blank">Menu + Drivers</a>
+                </div>
                 
                 <p>Una vez copiados los archivos del zip dentro del pendrive os debería quedar la siguiente estructura :</p>
                 <img src="/Graficos/EstructuraUSB.png" alt='Estructura pendrive' /><br />

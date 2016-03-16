@@ -1,1 +1,3 @@
-article li { margin-bottom: 10px; }
+/* Està posat al base.css per defecte, ja no fa falta el marge aquí 
+    Blog.css ->  ".Blog li { padding-bottom: 10px; }" */
+/* article li { margin-bottom: 10px; } */

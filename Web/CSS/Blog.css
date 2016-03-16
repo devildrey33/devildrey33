@@ -13,6 +13,8 @@ and open the template in the editor.
     padding : 0px 0px 25px 0px;
 }
 
+.Blog li { margin-bottom: 10px; }
+
 .Blog img {
     border:1px solid rgb(200, 200, 200);
 }

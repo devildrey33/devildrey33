@@ -329,7 +329,7 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
     width:60px;
     height:60px;
     position:relative;
-    top:-12px;
+    top:-26px;
     /* Si no en la vista de movil vertical se hacen enormes, ya que tienen un 200% por defecto */
     zoom:1 !important;
 }
@@ -357,7 +357,7 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
 
 
 /* Boton Next 60px */
-#BarraNavegacion_MarcoNextPrev_Next::before,
+/*#BarraNavegacion_MarcoNextPrev_Next::before,
 #BarraNavegacion_MarcoNextPrev_Next::after {
     content:'';
     top:27px;
@@ -378,7 +378,7 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
 #BarraNavegacion_MarcoNextPrev_Next::after {    transform: rotateZ(-45deg);  top:34px; }
 
 /* Boton Prev 60px */
-#BarraNavegacion_MarcoNextPrev_Prev::before,
+/*#BarraNavegacion_MarcoNextPrev_Prev::before,
 #BarraNavegacion_MarcoNextPrev_Prev::after {
     content:'';
     top:27px;

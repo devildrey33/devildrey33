@@ -89,11 +89,10 @@
                 <p>En definitiva, no hay nada 100% seguro. Como ya comente antes no debemos fiarnos solamente de los captchas, también estaría bien implementar un sistema que nos avise por correo si por ejemplo se reciben 10 veces más mensajes de lo normal, o algún sistema por el estilo.</p>
                 <p>Y con esto cierro los tutoriales sobre captchas, desgraciadamente no os voy a desvelar como he creado el captcha del puzzle por razones de seguridad. Como siempre podéis ver un ejemplo online sobre este tutorial, o descargar el ejemplo en vuestro ordenador.</p>
                 
-                <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Ejemplos/Captcha/Captcha3_Ejemplo.php" target="_blank">Ver Ejemplo</a></td>
-                	<td><a class='Boton' href="/Descargas/Captcha3.zip" target="_blank">Descargar Ejemplo</a></td>
-                </tr></table>
-                
+                <div class='Centrado'>
+                    <a class='Boton-Normal' href="/Ejemplos/Captcha/Captcha3_Ejemplo.php" target="_blank">Ver Ejemplo</a>
+                    <a class='Boton-Normal' href="/Descargas/Captcha3.zip" target="_blank">Descargar Ejemplo</a>
+                </div>                
 <?php
     $Base->FinBlog();
     if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 

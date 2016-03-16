@@ -60,9 +60,9 @@
                 <p>Para el caso del evento TeclaPresionada_Intro, con que incluyamos la ID del EditBox en el WPARAM, no hace falta mucho mas, por lo que podríamos dejar el LPARAM vacio. La función virtual EditBox_Evento_Teclado_Intro solo recibiria un UINT como parametro que seria la ID que mandamos antes en el WPARAM.</p>
                 <p>Para mas información referente al control EditBox consulta el siguiente enlace de la MSDN : <a href="http://msdn.microsoft.com/en-us/library/bb775458(v=VS.85).aspx" target="_blank">Edit Control</a>.</p>
                 <p>Siguiente tutorial : <a href="/Blog/Tutorial_WINAPI_3_4">3.4 Creación del ObjetoButton</a>.</p>
-                
-                <a class="Boton Centrado" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
-
+                <div class='Centrado'>
+                <a class="Boton-Normal" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+                </div>
 <?php
     $Base->FinBlog();
     if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 

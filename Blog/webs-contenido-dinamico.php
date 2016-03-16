@@ -89,7 +89,10 @@
 
     <hr />
     <p>Y esto es todo por hoy, como siempre podéis ver el ejemplo o descargarlo. Un saludo!</p>
-    <div class='Centrado'><a href='../Codigo/webs-dinamicas/Azul.php' target='_blank' class='Boton'>Ver ejemplo</a> <a href='../Descargas/webs-dinamicas.zip' target='_blank' class='Boton'>Descargar ejemplo</a></div>
+    <div class='Centrado'>
+        <a href='../Codigo/webs-dinamicas/Azul.php' target='_blank' class='Boton-Normal'>Ver ejemplo</a> 
+        <a href='../Descargas/webs-dinamicas.zip' target='_blank' class='Boton-Normal'>Descargar ejemplo</a>
+    </div>
     
     
 <?php

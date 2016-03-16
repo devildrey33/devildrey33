@@ -31,19 +31,19 @@ $Comentarios = new function() {
         });        
         
         /* Botones con comandos para la edición */
-        $("#Comentarios_BarraControles > .Boton:nth-child(1)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("bold");                   });
-        $("#Comentarios_BarraControles > .Boton:nth-child(2)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("underline");              });
-        $("#Comentarios_BarraControles > .Boton:nth-child(3)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("italic");                 });
-        $("#Comentarios_BarraControles > .Boton:nth-child(4)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("strikethrough");          });
-        $("#Comentarios_BarraControles > .Boton:nth-child(5)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("undo");                   });
-        $("#Comentarios_BarraControles > .Boton:nth-child(6)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("redo");                   });
-        $("#Comentarios_BarraControles > .Boton:nth-child(7)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("insertunorderedlist");    });
-        $("#Comentarios_BarraControles > .Boton:nth-child(8)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("insertorderedlist");      });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(1)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("bold");                   });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(2)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("underline");              });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(3)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("italic");                 });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(4)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("strikethrough");          });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(5)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("undo");                   });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(6)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("redo");                   });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(7)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("insertunorderedlist");    });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(8)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("insertorderedlist");      });
 //        $("#Comentarios_BarraControles > button:nth-child(9)").off("click").on("click",  function() { $Comentarios.InsertarHTML("<pre>Código</pre>", true);              });
-        $("#Comentarios_BarraControles > .Boton:nth-child(9)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("removeFormat");           });
-        $("#Comentarios_BarraControles > .Boton:nth-child(10)").off("mouseup").on("mouseup", function() { $Comentarios.ComandoEdicion("justifyLeft");            });
-        $("#Comentarios_BarraControles > .Boton:nth-child(11)").off("mouseup").on("mouseup", function() { $Comentarios.ComandoEdicion("justifyCenter");          });
-        $("#Comentarios_BarraControles > .Boton:nth-child(12)").off("mouseup").on("mouseup", function() { $Comentarios.ComandoEdicion("justifyRight");           });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(9)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("removeFormat");           });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(10)").off("mouseup").on("mouseup", function() { $Comentarios.ComandoEdicion("justifyLeft");            });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(11)").off("mouseup").on("mouseup", function() { $Comentarios.ComandoEdicion("justifyCenter");          });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(12)").off("mouseup").on("mouseup", function() { $Comentarios.ComandoEdicion("justifyRight");           });
         /* Boton enviar */
         $("#Comentarios > button").off("click").on("click", function() { $Comentarios.BotonEnviarComentario(); });
         
@@ -57,6 +57,12 @@ $Comentarios = new function() {
         
         $("#Comentarios_Comentario").html("");        
         this.Obteniendo = false;
+        
+        /* Traducció del buto dels comentaris... s'ha de fer per javascript perque m'he menjat el before i el after per la transició del :hover */
+        if ($("html").attr("lang") === "es") { $("#Comentarios > #Comentarios_Comentario + button").html("Enviar comentario"); }
+        else                                 { $("#Comentarios > #Comentarios_Comentario + button").html("Send comment"); }
+
+        
     };
     
     this.EnlazarBotonesMensajes = function() {
@@ -311,26 +317,26 @@ $Comentarios = new function() {
     this.ComandoEdicion = function(Comando, Param) {
         if (typeof Param === 'undefined') Param = null;
         console.log("Comentarios.ComandoEdicion", Comando);
+        $("#Comentarios_Comentario").focus();
 //        $("#Comentarios_Comentario").focus();
         document.execCommand(Comando, false, Param);
         
         this.AsignarEstadosBotones();
-        $("#Comentarios_Comentario").focus();
 //        setTimeout(function() { $("#Comentarios_Comentario").focus(); }, 1);
     };
     
     /* Comprueba los estados de los botones según la posición del cursor */
     this.AsignarEstadosBotones = function() {
         console.log("Comentarios.AsignarEstadosBotones");
-        $("#Comentarios_BarraControles > .Boton:nth-child(1)").attr({ "marcado" : (document.queryCommandState("bold"))                  ? true : false });
-        $("#Comentarios_BarraControles > .Boton:nth-child(2)").attr({ "marcado" : (document.queryCommandState("underline"))             ? true : false });
-        $("#Comentarios_BarraControles > .Boton:nth-child(3)").attr({ "marcado" : (document.queryCommandState("italic"))                ? true : false });
-        $("#Comentarios_BarraControles > .Boton:nth-child(4)").attr({ "marcado" : (document.queryCommandState("strikethrough"))         ? true : false });
-        $("#Comentarios_BarraControles > .Boton:nth-child(7)").attr({ "marcado" : (document.queryCommandState("insertunorderedlist"))   ? true : false });
-        $("#Comentarios_BarraControles > .Boton:nth-child(8)").attr({ "marcado" : (document.queryCommandState("insertorderedlist"))     ? true : false });        
-        $("#Comentarios_BarraControles > .Boton:nth-child(10)").attr({ "marcado" : (document.queryCommandState("justifyLeft"))          ? true : false });        
-        $("#Comentarios_BarraControles > .Boton:nth-child(11)").attr({ "marcado" : (document.queryCommandState("justifyCenter"))        ? true : false });        
-        $("#Comentarios_BarraControles > .Boton:nth-child(12)").attr({ "marcado" : (document.queryCommandState("justifyRight"))         ? true : false });        
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(1)").attr({ "marcado" : (document.queryCommandState("bold"))                  ? true : false });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(2)").attr({ "marcado" : (document.queryCommandState("underline"))             ? true : false });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(3)").attr({ "marcado" : (document.queryCommandState("italic"))                ? true : false });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(4)").attr({ "marcado" : (document.queryCommandState("strikethrough"))         ? true : false });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(7)").attr({ "marcado" : (document.queryCommandState("insertunorderedlist"))   ? true : false });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(8)").attr({ "marcado" : (document.queryCommandState("insertorderedlist"))     ? true : false });        
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(10)").attr({ "marcado" : (document.queryCommandState("justifyLeft"))          ? true : false });        
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(11)").attr({ "marcado" : (document.queryCommandState("justifyCenter"))        ? true : false });        
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(12)").attr({ "marcado" : (document.queryCommandState("justifyRight"))         ? true : false });        
     };
     
     this.InsertarHTML = function(HTML) {

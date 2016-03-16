@@ -529,9 +529,9 @@ function IrEstructuracion(Num) {
                 
                 <p>Versión actual : <b>2.0 BETA</b></p>
                 
-                
-                <a class="Boton Centrado" href="/Blog/devildrey33_ListaDesplegable_2-0">Ir a la pagina de devildrey33_ListaDesplegable 2.0 FINAL</a>
-
+                <div class='Centrado'>
+                <a class="Boton-Normal" href="/Blog/devildrey33_ListaDesplegable_2-0">Ir a la pagina de devildrey33_ListaDesplegable 2.0 FINAL</a>
+                </div>
                 
 
                     

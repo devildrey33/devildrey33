@@ -43,9 +43,9 @@
                 <p>Como podéis ver el funcionamiento es bastante fácil, se utiliza la API <a href="http://msdn.microsoft.com/en-us/library/ms644950(VS.85).aspx" target="_blank">SendMessage</a>, y se le pasa el parámetro <a href="http://msdn.microsoft.com/en-us/library/bb760830(v=VS.85).aspx" target="_blank">PBM_GETPOS</a> para obtener el valor, o el parámetro <a href="http://msdn.microsoft.com/en-us/library/bb760844(v=VS.85).aspx" target="_blank">PBM_SETPOS</a> para asignarlo.</p>
                 <p>Para mas información referente al control ProgressBar consulta el siguiente enlace de la MSDN : <a href="http://msdn.microsoft.com/en-us/library/bb760818(v=VS.85).aspx" target="_blank">ProgressBar Control</a>.</p>
                 <p>Siguiente tutorial : <a href="/Blog/Tutorial_WINAPI_3_7"> 3.7 Creación del ObjetoListView</a>.</p>
-    
-                <a class="Boton Centrado" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
-
+    <div class='Centrado'>
+                <a class="Boton-Normal" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+    </div>
 
 
 <?php

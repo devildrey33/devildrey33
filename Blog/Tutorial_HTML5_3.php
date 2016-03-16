@@ -174,8 +174,8 @@
 
                                 
                 <table class='Centrado'><tr>
-                    <td><a class='Boton' href="/Lab/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_3_Ejemplo.html" target="_blank">Ver Ejemplo</a></td>
-                    <td><a class='Boton' href="/Descargas/Tutorial_HTML5_3.zip" target="_blank">Descargar Ejemplo</a></td>
+                    <td><a class='Boton-Normal' href="/Lab/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_3_Ejemplo.html" target="_blank">Ver Ejemplo</a></td>
+                    <td><a class='Boton-Normal' href="/Descargas/Tutorial_HTML5_3.zip" target="_blank">Descargar Ejemplo</a></td>
                 </tr></table>
                                 
                 

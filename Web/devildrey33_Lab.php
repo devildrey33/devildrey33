@@ -53,7 +53,7 @@
                     
                     // Es un archivo permitido (html, js, css)
                     if ($Modo !== "Invalido") {
-                        // Los archivos HTML pueden tener un comentario que especifica la vista por defecto (si no se especifica una viusta por defecto se mostrara por filas)
+                        // Los archivos HTML y SVG pueden tener un comentario que especifica la vista por defecto (si no se especifica una vista por defecto se mostrara por filas)
                         if ($Modo === "text/html") {
                             if (strpos($DatosArchivo, "devildrey33_Lab->Opciones->Vista = Filas;"))               { $Vista = "0"; } 
                             elseif (strpos($DatosArchivo, "devildrey33_Lab->Opciones->Vista = Columnas;"))        { $Vista = "1"; }
@@ -72,7 +72,7 @@
                         // Retorno el código 200 (HTML)
                         $Ret = 200;
                     }
-                    else {// No se permite acceder a archivos que no sean .html, .js, y .css 
+                    else {// No se permite acceder a archivos que no sean .html, .js, .css, y .svg
                        $Archivo = "Ejemplos/ErrorExtension.html";
                        $DatosArchivo = file_get_contents($_SERVER['DOCUMENT_ROOT']."/".$Archivo, FILE_USE_INCLUDE_PATH);
                        $Ret = 200; 
@@ -256,7 +256,7 @@
                                 "<img src='/Web/SVG/Iconos50x50.svg#svg-vista-columnas' class='Menu_Boton_SVG' />".Intro().                            
                             "</div>".Intro().
                         "</div>".Intro().
-                        "<a href='/Lab/$Archivo'><button>Abrir en el laboratorio</button></a>".Intro().
+                        "<a href='/Lab/$Archivo'><button class='Boton-Normal'>Abrir en el laboratorio</button></a>".Intro().
 
                     "</div>".Intro();
                 $Oculto = "true";

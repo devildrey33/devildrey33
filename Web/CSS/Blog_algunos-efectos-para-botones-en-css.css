@@ -1,0 +1,201 @@
+#Capas, #Capas2, #Capas3, #Capas4, #Capas5, #Capas6 {
+    display       : block;
+    position      : relative;
+    list-style    : none;
+    padding       : 0px 200px 0px 40px;
+    margin        : 0px;
+}
+
+#Capas4 { top : -45px; }
+#Capas5, #Capas6 { height : 70px; }
+
+.Capas_Vista {
+    width     : 160px; 
+    height    : 80px;
+    position  : absolute;
+    right     : 0px;    
+    top       : 0px;
+    display   : inline-block;
+    transform : perspective(600px) rotateY(-30.5deg) rotateX(15.5deg);
+}
+
+/* La primera capa si se muestra en una pantalla muy ancha se pega con el hr, por lo que la subo 20 pixeles */
+#Capas > .Capas_Vista { 
+    top       : -20px !important; 
+    transform : perspective(600px) rotateY(-30.5deg) rotateX(10.5deg);
+}
+
+/* El preview para el linear-gradient debe tener una rotación del eje Y MUY inferior */
+#Capas5 > .Capas_Vista, #Capas6 > .Capas_Vista { 
+    transform : perspective(600px) rotateY(-7.5deg) rotateX(15.5deg) translateX(-50%);
+    right:auto;
+    left:50%;
+}
+
+
+/* Marco para una de las capas */
+.Capas_Vista > div { 
+    position    : absolute;
+    width       : 150px; 
+    height      : 35px;
+    padding-top : 15px;
+    text-align  : center; 
+    border      : 1px solid #222;
+    border-style: outset;
+    opacity     : 0.85;
+    color       : #FFF;
+    text-shadow : 1px 1px 2px #000;
+    transition  : 0.3s ease-in-out;
+}
+/* Orden de las capas */
+.Capas_Vista > div:nth-child(1) { z-index:2; }
+.Capas_Vista > div:nth-child(2) { z-index:1; }
+.Capas_Vista > div:nth-child(3) { z-index:0; }
+
+.Capas_Vista > div:nth-child(1) { background-color:rgba(255, 255, 255, 0.4); }
+.Capas_Vista > div:nth-child(2) { background-color:#ea504e; }
+.Capas_Vista > div:nth-child(3) { background-color:rgb(60, 60, 60); }
+
+#Capas > .Capas_Vista > div:nth-child(1) { transform : perspective(600px);                                                      }
+#Capas > .Capas_Vista > div:nth-child(2) { transform : perspective(600px) translateZ(-50px)  translateY(30px) translateX(20px); }
+#Capas > .Capas_Vista > div:nth-child(3) { transform : perspective(600px) translateZ(-100px) translateY(60px) translateX(40px); }
+/* box-shadow */
+#Capas2 > .Capas_Vista > div:nth-child(1) { transform : perspective(600px);                                                                                      }
+#Capas2 > .Capas_Vista > div:nth-child(2) { transform : perspective(600px) translateZ(-25px) translateY(10px) translateX(10px);  background-color:transparent;  animation:Ani-BoxShadow 2s ease-in-out 0s infinite alternate; }
+#Capas2 > .Capas_Vista > div:nth-child(3) { transform : perspective(600px) translateZ(-50px) translateY(20px) translateX(20px);   }
+/* efectos 3d */
+#Capas3 > .Capas_Vista > div:nth-child(1) { transform : perspective(600px);                                                      transform-origin:center left;                                }
+#Capas3 > .Capas_Vista > div:nth-child(2) { transform : perspective(600px) translateZ(-25px) translateY(10px) translateX(10px);  transform-origin:center left; background-color:#ea504e; animation:Ani-Efecto3D 2s ease-in-out 0s infinite alternate;                                }
+#Capas3 > .Capas_Vista > div:nth-child(3) { transform : perspective(600px) translateZ(-50px) translateY(20px) translateX(20px);  transform-origin:center left;background-color:rgb(60,60,60); }
+/* circular */
+#Capas4 > .Capas_Vista > div:nth-child(1) { transform : perspective(600px);                                                                                      }
+#Capas4 > .Capas_Vista > div:nth-child(2) { transform : perspective(600px) translateZ(-25px) translateY(10px) translateX(10px);  border:0; top:50%; left:50%; border-radius:300px; transform:perspective(600px) translateX(-50%) translateY(-50%); animation:Ani-Circular 2s ease-in-out 0s infinite alternate;                                }
+#Capas4 > .Capas_Vista > div:nth-child(3) { transform : perspective(600px) translateZ(-50px) translateY(20px) translateX(20px);  }
+/* linear-gradient */
+#Capas5 > .Capas_Vista > div:nth-child(1) { transform : perspective(600px);                                                                                      }
+#Capas5 > .Capas_Vista > div:nth-child(2) { 
+    transform        : perspective(600px) translateZ(-25px) translateY(10px) translateX(10px);  
+    width            : 300%;  
+    animation        : Ani-LinearGradient 2s ease-in-out 0s infinite alternate; 
+    background-image : linear-gradient(45deg, #ea504e 40%, transparent 60%); 
+    left             : -200%; 
+    background-color : transparent; 
+}
+#Capas5 > .Capas_Vista > div:nth-child(3) { transform : perspective(600px) translateZ(-50px) translateY(20px) translateX(20px);  }
+/* lineal-gradient3 */
+#Capas6 > .Capas_Vista > div:nth-child(1) { transform : perspective(600px);                                                                                      }
+#Capas6 > .Capas_Vista > div:nth-child(2) { 
+    transform        : perspective(600px) translateZ(-25px) translateY(10px) translateX(10px);  
+    width            : 300%;  
+    animation        : Ani-LinearGradient 2s ease-in-out 0s infinite alternate; 
+    background-image : linear-gradient(45deg, #ea504e 40%, transparent 60%); 
+    left             : -200%; 
+    background-color : transparent; 
+}
+#Capas6 > .Capas_Vista > div:nth-child(3) { 
+    transform : perspective(600px) translateZ(-50px) translateY(20px) translateX(20px);  
+    width            : 300%;  
+    animation        : Ani-LinearGradient2 2s ease-in-out 0s infinite alternate; 
+    background-image : linear-gradient(45deg, rgb(60,60,60) 40%, #ea504e 60%); 
+}
+
+.Capa1, .Capa2, .Capa3 { 
+    position:relative;
+}
+.Capa1::before, .Capa2::before, .Capa3::before { 
+    content          : "";
+    width            : 3px;
+    height           : 3px;
+    left             : -20px;
+    top              : 10px;
+    background-color : #000;
+    transition       : 0.3s ease-in-out;
+    margin-right     : 10px;
+    border-radius    : 10px;
+    border           : 1px solid #000;
+    position         : absolute;
+}
+.Capa1:hover::before, .Capa2:hover::before, .Capa3:hover::before {
+    width:4px;
+    height:100%;
+    top:0px;
+    border-radius: 0px;
+}
+
+#Capas .Capa1:hover::before { background-color:#eee;              border: 1px solid #000;  }
+#Capas .Capa2:hover::before { background-color:red;               border: 1px solid red; }
+#Capas .Capa3:hover::before { background-color:rgb(60, 60, 60);   border: 1px solid rgb(60, 60, 60);}
+
+#Capas2 .Capa1:hover::before, #Capas3 .Capa1:hover::before { background-color:white; border: 1px solid black;}
+#Capas2 .Capa2:hover::before, #Capas3 .Capa2:hover::before { background-color:red;   border: 1px solid red;}
+#Capas2 .Capa3:hover::before, #Capas3 .Capa3:hover::before { background-color:grey;  border: 1px solid grey;}
+
+/* Hovers para los textos de las capas 1 */
+#Capas > .Capa1:hover + .Capa2 + .Capa3 + .Capas_Vista > div:nth-child(1) { opacity : 0.9; transform:perspective(600px) scale(1.1, 1.1);  }
+#Capas > .Capa1:hover + .Capa2 + .Capa3 + .Capas_Vista > div:nth-child(2) { opacity : 0.1; }
+#Capas > .Capa1:hover + .Capa2 + .Capa3 + .Capas_Vista > div:nth-child(3) { opacity : 0.1; }
+#Capas > .Capa2:hover + .Capa3 + .Capas_Vista > div:nth-child(1) { opacity : 0.1; }
+#Capas > .Capa2:hover + .Capa3 + .Capas_Vista > div:nth-child(2) { opacity : 0.9; transform:perspective(600px) scale(1.1, 1.1) translateZ(-50px)  translateY(30px) translateX(20px);  }
+#Capas > .Capa2:hover + .Capa3 + .Capas_Vista > div:nth-child(3) { opacity : 0.1; }
+#Capas > .Capa3:hover + .Capas_Vista > div:nth-child(1) { opacity : 0.1; }
+#Capas > .Capa3:hover + .Capas_Vista > div:nth-child(2) { opacity : 0.1; }
+#Capas > .Capa3:hover + .Capas_Vista > div:nth-child(3) { opacity : 0.9; transform:perspective(600px) scale(1.1, 1.1) translateZ(-100px) translateY(60px) translateX(40px); }
+
+/* Hovers para los textos de las capas 2 */
+#Capas2 > .Capa1:hover + .Capa2 + .Capa3 + .Capas_Vista > div:nth-child(1) { opacity : 0.9; transform:perspective(600px) scale(1.1, 1.1);  }
+#Capas2 > .Capa1:hover + .Capa2 + .Capa3 + .Capas_Vista > div:nth-child(2) { opacity : 0.1; }
+#Capas2 > .Capa1:hover + .Capa2 + .Capa3 + .Capas_Vista > div:nth-child(3) { opacity : 0.1; }
+#Capas2 > .Capa2:hover + .Capa3 + .Capas_Vista > div:nth-child(1) { opacity : 0.1; }
+#Capas2 > .Capa2:hover + .Capa3 + .Capas_Vista > div:nth-child(2) { opacity : 0.9; transform:perspective(600px) scale(1.1, 1.1) translateZ(-25px)  translateY(10px) translateX(10px);  }
+#Capas2 > .Capa2:hover + .Capa3 + .Capas_Vista > div:nth-child(3) { opacity : 0.1; }
+#Capas2 > .Capa3:hover + .Capas_Vista > div:nth-child(1) { opacity : 0.1; }
+#Capas2 > .Capa3:hover + .Capas_Vista > div:nth-child(2) { opacity : 0.1; }
+#Capas2 > .Capa3:hover + .Capas_Vista > div:nth-child(3) { opacity : 0.9; transform:perspective(600px) scale(1.1, 1.1) translateZ(-50px) translateY(20px) translateX(20px); }
+
+/* Hovers para los textos de las capas 3 */
+#Capas3 > .Capa1:hover + .Capa2 + .Capa3 + .Capas_Vista > div:nth-child(1) { opacity : 0.9; }
+#Capas3 > .Capa1:hover + .Capa2 + .Capa3 + .Capas_Vista > div:nth-child(2) { opacity : 0.1; }
+#Capas3 > .Capa1:hover + .Capa2 + .Capa3 + .Capas_Vista > div:nth-child(3) { opacity : 0.1; }
+#Capas3 > .Capa2:hover + .Capa3 + .Capas_Vista > div:nth-child(1) { opacity : 0.1; }
+#Capas3 > .Capa2:hover + .Capa3 + .Capas_Vista > div:nth-child(2) { opacity : 0.9; }
+#Capas3 > .Capa2:hover + .Capa3 + .Capas_Vista > div:nth-child(3) { opacity : 0.1; }
+#Capas3 > .Capa3:hover + .Capas_Vista > div:nth-child(1) { opacity : 0.1; }
+#Capas3 > .Capa3:hover + .Capas_Vista > div:nth-child(2) { opacity : 0.1; }
+#Capas3 > .Capa3:hover + .Capas_Vista > div:nth-child(3) { opacity : 0.9; }
+
+/* TEST sin selector :active::before */
+.Boton-BoxShadow3::before        { box-shadow : 0px 0px 0px 0px transparent inset; }            
+.Boton-BoxShadow3:hover::before  { box-shadow : 0px 0px 30px 25px #ea504e inset;   }            
+
+@keyframes Ani-LinearGradient {
+    0%   { left : calc(-200% + -3px); }
+    33%  { left : calc(-200% + -3px); }
+    66%  { left : -7px;    }
+    100% { left : -7px;    }
+}
+@keyframes Ani-LinearGradient2 {
+    0%   { left : -10px; }
+    33%  { left : -10px; }
+    66%  { left : calc(-200% + 5px);    }
+    100% { left : calc(-200% + 5px);    }
+}
+
+@keyframes Ani-BoxShadow {
+    0%   { box-shadow : 0px 0px 0px 0px transparent inset; }
+    33%  { box-shadow : 0px 0px 0px 0px transparent inset; }
+    66%  { box-shadow : 0px 0px 30px 25px #ea504e inset;   }
+    100% { box-shadow : 0px 0px 30px 25px #ea504e inset;   }
+}
+
+@keyframes Ani-Efecto3D {
+    0%   { transform : perspective(600px) translateZ(-25px) translateY(10px) translateX(10px) rotateY(0deg); }
+    33%  { transform : perspective(600px) translateZ(-25px) translateY(10px) translateX(10px) rotateY(0deg); }
+    66%  { transform : perspective(600px) translateZ(-25px) translateY(10px) translateX(10px) rotateY(90deg); }
+    100% { transform : perspective(600px) translateZ(-25px) translateY(10px) translateX(10px) rotateY(90deg); }
+}
+@keyframes Ani-Circular {
+    0%   { width : 0px;     height : 0px;   }
+    33%  { width : 0px;     height : 0px;   }
+    66%  { width : 200px;   height : 200px; }
+    100% { width : 200px;   height : 200px; }
+}

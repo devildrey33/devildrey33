@@ -46,7 +46,9 @@
                 <div class='nota'>Aunque no viene a cuento para el instalador,  pensad que podríamos crear un ObjetoBarraDesplazamiento que herede de este control, y  incluya eventos del mouse para que el usuario pudiera posicionar la barra manualmente. </div>
                 <p> Llegados a este punto ya podemos pasar al siguiente tutorial  <a href="/Blog/Tutorial_WINAPI_3_2">3.2 Common Dialogs</a>.</p>         
                 
-                <a class="Boton Centrado" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+                <div class='Centrado'>
+                    <a class="Boton-Normal" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+                </div>
 
 
 

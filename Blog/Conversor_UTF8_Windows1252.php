@@ -60,8 +60,8 @@
                 
 
                 <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Descargas/Conversor_UTF8_Windows1252.zip" target="_blank">Descargar conversor UTF8 Windows1252</a></td>
-                	<td><a class='Boton' href="/Descargas/Conversor_UTF8_Windows1252.zip" target="_blank">Descargar código fuente</a></td>
+                        <td><a class='Boton-Normal' href="/Descargas/Conversor_UTF8_Windows1252.zip" target="_blank">Descargar conversor UTF8 Windows1252</a></td>
+                	<td><a class='Boton-Normal' href="/Descargas/Conversor_UTF8_Windows1252.zip" target="_blank">Descargar código fuente</a></td>
                 </tr></table>
                                 
 

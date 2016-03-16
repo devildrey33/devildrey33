@@ -259,14 +259,19 @@
                 <td><div class='nota'>Post-it amb el texte 'NOTA :' en negreta.</div></td>                
             </tr>
             <tr>
+                <td><b>.notamental</b></td>
+                <td>*</td>
+                <td><div class='notamental'>marc amb fondo blanc entre parentesis que te una font mes petita i de color gris, ideal per frases <b>CURTES</b> i memorables com 'el mechero no fa a l'home', o 'por la birra hermanos!!'. Lo de curtes es per que el parentesis nomes dona per una linea xD.</div></td>                
+            </tr>
+            <tr>
                 <td><b>.Sintaxis</b></td>
                 <td>pre</td>
                 <td><pre class='Sintaxis'>Per <b>remarcar</b> sintaxis <i>etiqueta &lt;i&gt;</i>, etiqueta <code>&lt;code&gt;</code>.</pre></td>                
             </tr>
             <tr>
-                <td><b>.Boton</b></td>
-                <td><b>button</b>, a</td>
-                <td>Buto, si es un buto de descarrega fes servir la etiqueta 'a' amb un <code>target='_blank'</code>. La etiqueta <code>button</code> no necesita que se li especifiqui la clase Boton, i aquesta etiqueta es la que recomano per utilitzar amb javascript.</td>                
+                <td><b>.Boton-Normal</b></td>
+                <td><b>button</b>, <b>a</b></td>
+                <td>Buto, si es un buto de descarrega fes servir la etiqueta 'a' amb un <code>target='_blank'</code>. <strike>La etiqueta <code>button</code> no necesita que se li especifiqui la clase Boton-Normal</strike>, i aquesta etiqueta es la que recomano per utilitzar amb javascript. <div class='nota'>Si vols un buto amb un efecte hover especial, mirat <a href='/Lab/Ejemplos/Transition/Botones.html'>Botones.html</a> i esculleix la clase que mes t'adradi (<code>.Boton-Normal</code> equival a <code>.Boton-LinealGradient2</code> de moment xD...).</div></td>                
             </tr>
             <tr>
                 <td><b>.Centrado</b></td>
@@ -287,7 +292,7 @@
                         <li><b>cid</b> es la ID del marc del códi.</li>
                         <li><b>l</b> es el número de línea a resaltar (pots especificar varies lineas separades per una coma <b>i sense espais</b>).</li>
                     </ul>
-                    <div class='nota'>Ara tambè pots fer servir una etiqueta &lt;a&gt; amb els atributs <code>cid</code> i <code>l</code>, per fer un enllaç que a mes resalti una o varies lineas de codi. <a href='/FaqBarba' cid='ID3' l='1'>Exemple</a>.</div>
+                    <div class='nota'>Ara tambè pots fer servir una etiqueta &lt;a&gt; amb els atributs <code>cid</code> i <code>l</code>, per fer un enllaç que a mes resalti una o varies lineas de codi. <a href='/FaqBarba' cid='ID3' l='1'>Exemple (no facis click, nomes inspecciona els atributs)</a>.</div>
                 </td>                
                 
             </tr>

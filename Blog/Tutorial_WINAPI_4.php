@@ -59,9 +59,9 @@
                 <p>Y esto es todo!, en un futuro si encuentro un servidor de correo publico que permita enviar emails mediante smtp veremos cómo podemos mandarnos archivos dump al correo en caso de que una de nuestras aplicaciones tenga un error critico.</p>
 
                 <p>De todas formas ya os aviso que si queréis hacer algo así, el tema de enviar el correo se tiene que hacer ejecutando una nueva instancia de la aplicación, y no desde el filtro de errores.</p>
-                
-                <a class="Boton Centrado" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
-
+                <div class='Centrado'>
+                <a class="Boton-Normal" href="/Descargas/EjemplosWinAPI.zip" target="_blank">Descargar tutorial WinAPI completo</a>
+                </div>
 
 
 <?php

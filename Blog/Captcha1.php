@@ -90,10 +90,10 @@ document.getElementById("ResultadoCaptcha").value = (Valor1 + Valor2); ValidarCa
                 <p>De hecho para hacer un captcha hay que utilizar lo menos posible JavaScript, y programar todas sus partes sensibles en un lenguaje de servidor como PHP.</p>
                 <p>Y con esto terminamos por hoy, en la siguiente entrega veremos cómo crear un captcha similar a este pero utilizando PHP de forma que será mas difícil de hackear. Como siempre podéis ver el ejemplo simplificado online, o descargar el ejemplo para vuestro ordenador.</p>
                 <p>Siguiente tutorial : <a href='Captcha2.php'>Captchas (2 Captcha básico con php)</a>.</p>
-                <table class='Centrado'><tr>
-                        <td><a class='Boton' href="/Ejemplos/Captcha/Captcha1_Ejemplo.html" target="_blank">Ver Ejemplo</a></td>
-                	<td><a class='Boton' href="/Descargas/Captcha1.zip" target="_blank">Descargar Ejemplo</a></td>
-                </tr></table>
+                <div class='Centrado'>
+                        <a class='Boton-Normal' href="/Ejemplos/Captcha/Captcha1_Ejemplo.html" target="_blank">Ver Ejemplo</a>
+                	<a class='Boton-Normal' href="/Descargas/Captcha1.zip" target="_blank">Descargar Ejemplo</a>
+                </div>
 
 <?php
     $Base->FinBlog();

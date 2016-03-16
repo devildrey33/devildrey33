@@ -46,7 +46,7 @@
             $this->TotalTipos["Otros"] = 0;
 
             /* Opciones para mostrar/ocultar */
-            $ArchivoLog = "../logs/access.log.current";
+            $ArchivoLog = "../../logs/access.log.current";
             if (file_exists($ArchivoLog)) {
                 $Archivo = fopen($ArchivoLog, "r");
                 $Datos = fread($Archivo, filesize($ArchivoLog));
