@@ -45,7 +45,7 @@ $Comentarios = new function() {
         $("#Comentarios_BarraControles > .BotonEdicion:nth-child(11)").off("mouseup").on("mouseup", function() { $Comentarios.ComandoEdicion("justifyCenter");          });
         $("#Comentarios_BarraControles > .BotonEdicion:nth-child(12)").off("mouseup").on("mouseup", function() { $Comentarios.ComandoEdicion("justifyRight");           });
         /* Boton enviar */
-        $("#Comentarios > button").off("click").on("click", function() { $Comentarios.BotonEnviarComentario(); });
+        $("#Comentarios > div > button").off("click").on("click", function() { $Comentarios.BotonEnviarComentario(); });
         
         $("#Comentarios_Datos > div[comentario]").off("click").on("click", function(evento) { $Comentarios.SeleccionarComentario($(this)); });
         

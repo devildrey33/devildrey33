@@ -340,9 +340,9 @@ class devildrey33 {
                     "</span>".Intro().
                 "</div>".Intro().
                 "<div class='Menu_Marco' id='BarraNavegacion_MarcoNextPrev'>".
-                    "<button class='Boton-Normal' id='BarraNavegacion_MarcoNextPrev_Prev'>&lt;</button>".Intro().
-                    "<div id='BarraNavegacion_MarcoNextPrev_Desc'>"."</div>".Intro().
-                    "<button class='Boton-Normal' id='BarraNavegacion_MarcoNextPrev_Next'>&gt;</button>".Intro().
+                    "<button class='BotonSvg-Normal' id='BarraNavegacion_MarcoNextPrev_Prev'><img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-prev'></button>".Intro().
+                    "<button class='BotonSvg-Normal' id='BarraNavegacion_MarcoNextPrev_Desc'>"."</button>".Intro().
+                    "<button class='BotonSvg-Normal' id='BarraNavegacion_MarcoNextPrev_Next'><img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-next'></button>".Intro().
                    
                 "</div>".Intro().
             "</div>".Intro().

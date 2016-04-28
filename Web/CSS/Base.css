@@ -51,6 +51,7 @@ pre, code, kbd, samp, tt {
 /*  font-family:'Nova Mono',monospace !important;*/
   font-family : Inconsolata, monospace;
   font-size   : 1.4rem !important;
+  margin      : 1rem 0px 1rem;
 }
 
 hr {

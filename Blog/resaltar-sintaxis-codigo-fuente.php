@@ -216,7 +216,7 @@
         </tr>        
     </table>
     
-    <div class='Centrado'><a href='../Descargas/devildrey33_PintarCodigo.2.02.zip' target='_blank' class='Boton'>Descargar ejemplo</a></div>
+    <div class='Centrado'><a href='../Descargas/devildrey33_PintarCodigo.2.02.zip' target='_blank' class='Boton-Normal'>Descargar ejemplo</a></div>
     
     
 <?php

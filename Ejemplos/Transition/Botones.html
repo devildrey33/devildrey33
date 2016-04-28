@@ -8,7 +8,7 @@
 
 
 	Creado por Josep Antoni Bover Comas el 10/03/2016 para devildrey33.es
-		Ultima modificación 11/03/2016
+		Ultima modificación 16/03/2016
 -->
 <!DOCTYPE html>
 <html>
@@ -39,13 +39,13 @@
 }
 /* Elimino el outline del botón por una transición con la sombra */
 [class^='Boton-']:focus { 
-    outline    : 0px solid transparent; 		       /* Elimino el outline que viene por defecto en los button */
+    outline    : 0px solid transparent;                        /* Elimino el outline que viene por defecto en los button */
     box-shadow : 0px 0px 4px 2px #800,  0px 0px 2px 1px #300;  /* Creo uan sombra en gris oscuro con 2 tonalidades       */  
 }            
 /* Alejo el objeto en la perspectiva cuando el usuario presiona sobre él */
 [class^='Boton-']:active {
     transform : perspective(600px) translateZ(-75px) rotateZ(-0.5deg) rotateX(-10deg); /* Creo el efecto de hundimiento para el botón */
-    color     : #BBB;								       /* Cambio el color del texto a gris            */
+    color     : #BBB;                                                                  /* Cambio el color del texto a gris            */
 }
 /* Color del borde rojo al pasar el mouse por encima del botón */
 [class^='Boton-']:hover, [class^='Boton-']:active { border : 2px solid darkred; } 	           

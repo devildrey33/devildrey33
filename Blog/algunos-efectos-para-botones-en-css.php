@@ -50,7 +50,7 @@
     <?php $Base->PintarCodigo->PintarArchivoCSS("button", "Cuerpo estándar para el botón (Capa principal)", "../Ejemplos/Transition/Botones.html", "button"); ?>
     <ul>
         <li><linea cid="button" l="2">Línea 2</linea> utilizo el selector <code>[class^='Boton-']</code> para buscar los elementos en el que el principio del nombre de la clase sea 'Boton-'.<div class='nota'>La verdad es que podría haber utilizado el selector <code>button</code> sin más pero por una parte quería optimizar al máximo el tamaño del código, y por otra así no entra en conflicto con los botones de mi web.</div></li>
-    <li><linea cid="button" l="8">Línea 8</linea> Esta transición se realiza en la capa principal para los eventos <code><a href='/Doc/CSS/Selectores/:active'>:active</a></code> y <code><a href='/Doc/CSS/Selectores/:focus'>:focus</a></code>. Hay que remarcar que el evento <code><a href='/Doc/CSS/Selectores/:active'>:active</a></code> hace una transición con una transformación, lo que nos inhabilita otras transiciones con una transformación <b>en esta capa</b>. </li>
+    <li><linea cid="button" l="8">Línea 8</linea> Esta transición se realiza en la capa principal para los eventos <code><a href='/Doc/CSS/Selectores/:active'>:active</a></code> y <code><a href='/Doc/CSS/Selectores/:focus'>:focus</a></code>. Hay que remarcar que el evento <code><a href='/Doc/CSS/Selectores/:active'>:active</a></code> hace una transición con una transformación, con lo cual no podremos realizar otras transiciones con una transformación <b>en esta capa</b>.</li>
         <li><linea cid="button" l="14">Línea 14</linea> El <code><a href='/Doc/CSS/Propiedades/overflow' cid='button' l='14'>overflow</a></code> es muy importante, ya que la capa <code><a href='/Doc/CSS/Selectores/::before'>::before</a></code> (capa animación) puede quedar fuera de los límites del botón. </li>
         <li><linea cid="button" l="20,21,22,23">Líneas 20, 21, 22, 23</linea> Cuando el botón tiene el foco creo una sombra para el botón utilizando la propiedad <code><a href='/Doc/CSS/Propiedades/box-shadow' cid='button' l='22'>box-shadow</a></code>. También elimino el <code><a href='/Doc/CSS/Propiedades/outline' cid='button' l='21'>outline</a></code> por defecto que tiene. </li>
         <li><linea cid="button" l="25,26,27,28">Líneas 25, 26, 27, 28</linea> Cuando se está pulsando el botón movemos la coordenada Z utilizando la propiedad <code><a href='/Doc/CSS/Propiedades/transform' cid='button' l='26'>transform</a></code> (para simular que el botón se aleja), y cambio el color del texto utilizando la propiedad <code><a href='/Doc/CSS/Propiedades/color' cid='button' l='27'>color</a></code>. </li>
@@ -58,7 +58,7 @@
     </ul>
     <p>Para terminar con las capas por defecto, vamos a crear las capas animación y fondo (::before, ::after)</p>
     <?php $Base->PintarCodigo->PintarArchivoCSS("button2", "Cuerpos estándar para los pseudo-elementos ::before (Capa animación) y ::after (Capa fondo)", "../Ejemplos/Transition/Botones.html", "button2"); ?>
-    <p>Lo más importante de este fragmento de código son los <code><a href='/Doc/CSS/Propiedades/z-index' cid='button2' l='13,17'>z-index</a></code> para colocar cada capa en su sitio, y la propiedad <code><a href='/Doc/CSS/Propiedades/transition' cid='button2' l='9'>transition</a></code> por defecto a 500ms para TODAS las propiedades.</p>    
+    <p>Lo más importante de este fragmento de código son los <code><a href='/Doc/CSS/Propiedades/z-index' cid='button2' l='13,17'>z-index</a></code> para colocar cada capa en su sitio, y la propiedad <code><a href='/Doc/CSS/Propiedades/transition' cid='button2' l='9'>transition</a></code> por defecto a 400ms para TODAS las propiedades.</p>    
     <p>A partir de aquí ya tenemos un botón básico con una transición en el <code><a href='/Doc/CSS/Selectores/:focus'>:focus</a></code>, y una transición en el <code><a href='/Doc/CSS/Selectores/:active'>:active</a></code>. Mantén pulsado el mouse sobre el botón, y luego haz click fuera de él para ver las transiciones de los eventos <code><a href='/Doc/CSS/Selectores/:active'>:active</a></code> y <code><a href='/Doc/CSS/Selectores/:focus'>:focus</a></code>.</p>
     <div class='Centrado'>
             <button class='Boton-prueba'>Púlsame!</button>
@@ -90,7 +90,7 @@
         <button class='Boton-BoxShadow3'>Test sin el selector <code>:active::before</code></button>
     </div>
     <div class='nota'>
-    <div>Esto es mas bien una manía por mi parte, pero no se si os habéis preguntado ¿por qué en el selector del <linea cid='boxshadow' l='3,9'><code>.Boton-BoxShadow:hover::before</code></linea> también incluyo el <linea cid='boxshadow' l='4,10'><code>.Boton-BoxShadow:active::before</code></linea>? y os voy a responder con otra pregunta, ¿que pasa si mantenemos pulsado un botón, y sin soltar el botón nos movemos fuera de él? Probad en un Box-Shadow, y luego en el Test sin el selector.</div>
+    <div>Esto es mas bien una manía por mi parte, pero no se si os habéis preguntado ¿por qué en el selector del <linea cid='boxshadow' l='3,8'><code>.Boton-BoxShadow:hover::before</code></linea> también incluyo el <linea cid='boxshadow' l='4,9'><code>.Boton-BoxShadow:active::before</code></linea>? y os voy a responder con otra pregunta, ¿que pasa si mantenemos pulsado un botón, y sin soltar el botón nos movemos fuera de él? Probad en un Box-Shadow, y luego en el Test sin el selector.</div>
     <br />
     <div>Ahora haced click una vez mas en el botón 'Test sin el selector ...', <b>una vez soltado el botón del mouse</b>, moved el mouse fuera del área del bóton, y presionad la tecla 'espacio' durante 3 segundos. Si lo habeis hecho bien, no habreis visto el efecto del hover al pulsar el espacio, <b>Y TANTO ESTA SITUACIÓN COMO LA ANTERIOR SON INACEPTABLES</b> desde mi punto de vista. </div>
 </div>
@@ -166,7 +166,7 @@
     
     
     <h2>Efecto circular</h2>
-    <p>Por ultimo el efecto circular consiste en centrar la capa animación con un tamaño inicial de 0 altura por 0 de ancho para agrandarla en el <code><a href='/Doc/CSS/Selectores/:hover'>:hover</a></code>.</p>
+    <p>Por ultimo el efecto circular consiste en centrar la capa animación con un tamaño inicial de 0 de altura por 0 de ancho para agrandarla en el <code><a href='/Doc/CSS/Selectores/:hover'>:hover</a></code>.</p>
     <table>
         <tr>
             <td>

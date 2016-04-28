@@ -44,13 +44,28 @@ and open the template in the editor.
 
 */
 
+/* Los botones Svg dejan libre el selector ::after (y requieren de etiquetas extra para decorar el botón) */
+[class^='BotonSvg-'] {
+    background-color : rgb(60, 60, 60);
+}
 
+[class^='BotonSvg-'] > * {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translateX(-50%) translateY(-50%) scale(1, 1);
+    transition:0.5s cubic-bezier(.33,.05,.69,1.59);
+}
+
+[class^='BotonSvg-']:enabled:hover > * {
+    transform:translateX(-50%) translateY(-50%) scale(1.25, 1.25);
+}    
 
 
 /* -[INICIO devildrey33.button]- */            
 /* Clases que empiezan por 'Boton-' */
-[class^='Boton-'] {
-    border              : 2px solid #000;                      /* 2 pixeles de borde negro                                                */
+[class^='Boton-'], [class^='BotonSvg-'] {
+    border              : 1px solid #000;                      /* 1 pixeles de borde negro                                                */
     text-align          : center;                              /* Texto centrado                                                          */
     text-decoration     : none;                                /* Sin decoraciones para el texto (por defecto viene con underline)        */
     padding             : 10px;                                /* Un poco de padding para que se vea bien el botón                        */
@@ -69,25 +84,27 @@ and open the template in the editor.
     -moz-user-select    : none;
     -ms-user-select     : none;
     user-select         : none;    
-    display:inline-block;
+    display             : inline-block;
 }
 /* Elimino el outline del botón por una transición con la sombra */
-[class^='Boton-']:focus { 
+[class^='Boton-']:enabled:focus, [class^='BotonSvg-']:enabled:focus { 
     outline    : 0px solid transparent;                         /* Elimino el outline que hay por defecto       */
     box-shadow : 0px 0px 4px 2px #800,  0px 0px 2px 1px #300;   /* Creo una sombra rojo oscuro de 2 tonalidades */ 
 }            
 /* Alejo el objeto en la perspectiva cuando el usuario presiona sobre él */
-[class^='Boton-']:active {
+[class^='Boton-']:enabled:active, [class^='BotonSvg-']:enabled:active {
     transform : perspective(600px) translateZ(-75px) rotateZ(-0.5deg) rotateX(-10deg);  /* Hago un efecto 3D de hundimiento para la capa principal */
     color     : #BBB;                                                                   /* Cambio el color del texto a gris claro                  */
 }
 /* Color del borde rojo al pasar el mouse por encima del botón */
-[class^='Boton-']:hover, [class^='Boton-']:active { border : 2px solid darkred; text-decoration : none; }            
+[class^='Boton-']:enabled:hover, [class^='Boton-']:enabled:active , [class^='BotonSvg-']:enabled:hover, [class^='BotonSvg-']:enabled:active { 
+    border : 1px solid darkred; text-decoration : none; 
+}            
 /* -[FIN devildrey33.button]- */            
             
 /* -[INICIO devildrey33.button2]- */
-/* Preparación para los pseudo elementos before y after */
-[class^='Boton-']::before, [class^='Boton-']::after {
+/* Preparación para los pseudo elementos before y after */ /* Elemento Before para botones svg */
+[class^='Boton-']::before, [class^='Boton-']::after, [class^='BotonSvg-']::before {
     content    : '';                   /* Contenido (requerida para inicializar el pseudo-selector)               */
     position   : absolute;             /* Posición absoluta (relativa al button)                                  */
     top        : 0px;                  /* Empezamos desde arriba del <button>                                     */
@@ -102,31 +119,46 @@ and open the template in the editor.
 }
 /* Para mostrar el fondo negro del botón se utilizara el pseudo elemento ::after (capa fondo) */
 [class^='Boton-']::after {
-    z-index          : -2;             /* MUY IMPORTANTE esta capa va por debajo de la capa animación */
-    background-color : rgb(60, 60, 60) /* Color del fondo gris oscuro                                 */
+    z-index          : -2;              /* MUY IMPORTANTE esta capa va por debajo de la capa animación */
+    background-color : rgb(60, 60, 60); /* Color del fondo gris oscuro                                 */
 }
 /* -[FIN devildrey33.button2]- */
+[class^='Boton-']:disabled, [class^='BotonSvg-']:disabled {
+    color      : #666 !important;
+    border     : 1px solid rgba(37, 35, 40, 0.95) !important;
+}
+[class^='Boton-']:disabled::after, [class^='BotonSvg-']:disabled {
+    background : rgba(37, 35, 40, 0.95) !important;
+}
+[class^='BotonSvg-']:disabled > * {
+    opacity:0.3;
+}
+
 
 /*******************/
 /* BoxShadow 1 y 2 */
 /*******************/            
 /* Sombra interior que crece desde las puntas hacia el centro */
-.Boton-BoxShadow1::before                                          { box-shadow : 0px 0px 0px 0px transparent inset; }            
-.Boton-BoxShadow1:hover::before, .Boton-BoxShadow1:active::before  { box-shadow : 0px 0px 30px 25px #ea504e inset;   }            
+.Boton-BoxShadow1::before                                           *               { box-shadow : 0px 0px 0px 0px transparent inset; }            
+.Boton-BoxShadow1:enabled:hover::before, .Boton-BoxShadow1:enabled:active::before   { box-shadow : 0px 0px 30px 25px #ea504e inset;   }            
 /* Efecto invertido (crece desde el centro hacia las puntas) en este caso lo más facil es hacer el fondo rojo, mientras que el box-shadow empezara cubriendo el fondo de color gris oscuro */
-.Boton-BoxShadow2::before                                          { box-shadow : 0px 0px 30px 25px rgb(60, 60, 60) inset;   }            
-.Boton-BoxShadow2:hover::before, .Boton-BoxShadow2:active::before  { box-shadow : 0px 0px 0px 0px transparent inset; }            
-.Boton-BoxShadow2::after                                           { background-color : #ea504e !important;          }
+.Boton-BoxShadow2::before                                                           { box-shadow : 0px 0px 30px 25px rgb(60, 60, 60) inset;   }            
+.Boton-BoxShadow2::enabledhover::before, .Boton-BoxShadow2:enabled:active::before   { box-shadow : 0px 0px 0px 0px transparent inset; }            
+.Boton-BoxShadow2::after                                                            { background-color : #ea504e !important;          }
 
 /************************/
 /* LinearGradient 1 y 2 */
 /************************/
 /* Desplazamiento lateral del fondo que contiene un degradado lineal. */
-.Boton-LinearGradient1::before, .Boton-LinearGradient2::before, .Boton-Normal::before { width : 400%; }            
-.Boton-LinearGradient1::before, .Boton-Normal::before                        { left : -300%;   background-image : linear-gradient(45deg, #ea504e 40%, transparent 60%); }
-.Boton-LinearGradient2::before { left : 0%;      background-image : linear-gradient(45deg, transparent 40%, #ea504e 60%); }
-.Boton-LinearGradient1:hover::before, .Boton-Normal:hover::before, .Boton-LinearGradient1:active::before, .Boton-Normal:active::before { left : 0%;    }
-.Boton-LinearGradient2:hover::before, .Boton-LinearGradient2:active::before { left : -300%; }
+.Boton-LinearGradient1::before, .Boton-LinearGradient2::before, .Boton-Normal::before, .BotonSvg-Normal::before   { width : 400%; }            
+.Boton-LinearGradient1::before, .Boton-Normal::before, .BotonSvg-Normal::before                                   { left : -300%;   background-image : linear-gradient(45deg, #ea504e 40%, transparent 60%); }
+.Boton-LinearGradient2::before                                                                                    { left : 0%;      background-image : linear-gradient(45deg, transparent 40%, #ea504e 60%); }
+.Boton-LinearGradient1:enabled:hover::before, .Boton-LinearGradient1:enabled:active::before, 
+.Boton-Normal:enabled:hover::before, .Boton-Normal:enabled:active::before,
+.BotonSvg-Normal:enabled:hover::before, .BotonSvg-Normal:enabled:active::before { 
+    left : 0%;    
+}
+.Boton-LinearGradient2:enabled:hover::before, .Boton-LinearGradient2:enabled:active::before { left : -300%; }
 
 /********************/
 /* LinearGradient 3 */
@@ -141,8 +173,8 @@ and open the template in the editor.
     background-image : linear-gradient(45deg, rgb(60,60,60) 40%, #ea504e 60%);
     left             : 0%;
 }
-.Boton-LinearGradient3:hover::before, .Boton-LinearGradient3:active::before { left:0%; }            
-.Boton-LinearGradient3:hover::after,  .Boton-LinearGradient3:active::after   { left:-200%; }            
+.Boton-LinearGradient3:enabled:hover::before, .Boton-LinearGradient3:enabled:active::before { left:0%; }            
+.Boton-LinearGradient3:enabled:hover::after,  .Boton-LinearGradient3:enabled:active::after   { left:-200%; }            
 
 /*************/
 /* Efecto 3D */
@@ -156,14 +188,14 @@ and open the template in the editor.
 .Boton-3DSuperior::before { transform-origin : top center;           transform : perspective(600px) rotateX(-90deg); }
 .Boton-3DInferior::before { transform-origin : bottom center;        transform : perspective(600px) rotateX(90deg);  }
 /* En el hover devolvemos la rotación del eje X a 0 grados */
-.Boton-3DSuperior:hover::before,  .Boton-3DInferior:hover::before,
-.Boton-3DSuperior:active::before, .Boton-3DInferior:active::before { transform : perspective(600px) rotateX(0deg);   }
+.Boton-3DSuperior:enabled:hover::before,  .Boton-3DInferior:enabled:hover::before,
+.Boton-3DSuperior:enabled:active::before, .Boton-3DInferior:enabled:active::before { transform : perspective(600px) rotateX(0deg);   }
 /* Inicialmente el eje Y rotado 90 grados */
 .Boton-3DLateralD::before { transform-origin : center right;         transform : perspective(600px) rotateY(-90deg); }
 .Boton-3DLateralI::before { transform-origin : center left;          transform : perspective(600px) rotateY(90deg);  }
 /* En el hover devolvemos la rotación del eje Y a 0 grados */
-.Boton-3DLateralD:hover::before,  .Boton-3DLateralI:hover::before,
-.Boton-3DLateralD:active::before, .Boton-3DLateralI:active::before { transform : perspective(600px) rotateY(0deg);   }
+.Boton-3DLateralD:enabled:hover::before,  .Boton-3DLateralI:enabled:hover::before,
+.Boton-3DLateralD:enabled:active::before, .Boton-3DLateralI:enabled:active::before { transform : perspective(600px) rotateY(0deg);   }
 
 /************/
 /* Circular */
@@ -178,4 +210,4 @@ and open the template in the editor.
     left             : 50%;
     transform        : translateX(-50%) translateY(-50%); 
 }
-.Boton-Circular:hover::before, .Boton-Circular:active::before { width:300px; height:300px; }    
+.Boton-Circular:enabled:hover::before, .Boton-Circular:active::before { width:300px; height:300px; }    

@@ -260,22 +260,30 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
     opacity:0.7;
     border-radius:3px;
     background:#FFF;    
-    display:inline-block;
-    position:relative;
+    left:5px;    
+}
+#BarraNavegacion_MarcoNextPrev_Desc:hover > img,
+#BarraNavegacion_MarcoNextPrev_Desc:hover > h3 {
+    transform:translateY(-50%) scale(1.1, 1.1);
+    border-radius:0px;
+}
+
+#BarraNavegacion_MarcoNextPrev_Desc > img,
+#BarraNavegacion_MarcoNextPrev_Desc > h3 {
     top:50%;
-    transform:translateY(-50%);
+    transform:translateY(-50%) scale(0.95,0.95);
+    display:inline-block;
 }
 
 #BarraNavegacion_MarcoNextPrev_Desc > h3 {
-    margin:0px 10px 0px 5px;
     display:inline-block;
     color:#FFFFFF;
     text-align:center;
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    display:inline-block;
-    width:calc(100% - 250px);
+/*    width:calc(100% - 250px);*/
+    text-shadow:1px 1px 1px #000;
+    left:25%;
+    font-size:1.8rem;
+    width:75%;
 }
 
 #BarraNavegacion_NextPrev {
@@ -313,42 +321,38 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
 
 #BarraNavegacion_MarcoNextPrev {
     position:absolute;
-    display:block;
+    display:flex;
     right:64px;
-    top:-8px;
+    top:-14px;
     background: rgba(37,35,40, 0.95);
     color:#FFF;
     border: 1px solid #353338;
-    width:470px;
-    height:78px;
+    width:482px;
+    height:90px;
 }
 
-#BarraNavegacion_MarcoNextPrev > button {
+#BarraNavegacion_MarcoNextPrev > button:not(#BarraNavegacion_MarcoNextPrev_Desc) {
     margin:10px !important;
     display:inline-block;
-    width:60px;
-    height:60px;
+    flex:1 1 70px;
     position:relative;
-    top:-26px;
     /* Si no en la vista de movil vertical se hacen enormes, ya que tienen un 200% por defecto */
     zoom:1 !important;
 }
 
 #BarraNavegacion_MarcoNextPrev_Desc {
     display:inline-block;
-    width:298px;
-    height:58px;
+    flex:1 1 300px;
     margin:10px 0px;
     padding:0px;
-    border:1px solid transparent;
     transition:0.4s;
 /*    margin:10px 0px;*/
 }
 
 #BarraNavegacion_MarcoNextPrev_Desc:hover {
     cursor:pointer;
-    background:#EA504E;
-    border:1px solid red;
+/*    background:#EA504E;
+    border:1px solid red;*/
 }
 
 

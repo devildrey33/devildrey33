@@ -1,0 +1,31 @@
+<!-- Test para variables CSS Creado el 24/04/2016 por Josep Antoni Bover para http://devildrey33.es -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            /* Definición de variables en el ámbito global */
+            :root { 
+                --Color-1:red;
+                --Color-2:blue;
+                --Color-3:green;
+                --Color-4:yellow;
+            }
+            
+            h1:nth-child(1) { background-color: var(--Color-1, #000); }
+            h1:nth-child(2) { background-color: var(--Color-2, #000); }
+            h1:nth-child(3) { background-color: var(--Color-3, #000); }
+            h1:nth-child(4) { background-color: var(--Color-4, #000); }
+        </style>
+                
+        <!-- Código javascript --> 
+        <script type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>--Color-1</h1>
+        <h1>--Color-2</h1>
+        <h1>--Color-3</h1>
+        <h1>--Color-4</h1>
+    </body>
+</html>

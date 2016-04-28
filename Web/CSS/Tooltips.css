@@ -10,7 +10,7 @@ and open the template in the editor.
 
 
 /* Tooltips multiidioma */
-html[lang='es'] *[tooltip-es]::before, html[lang='en'] *[tooltip-en]::before {
+html[lang='es'] *[tooltip-es]::after, html[lang='en'] *[tooltip-en]::after {
     position:absolute;    
     display:block;
     background:#EA504E;
@@ -31,38 +31,38 @@ html[lang='es'] *[tooltip-es]::before, html[lang='en'] *[tooltip-en]::before {
     overflow:hidden;
 }
 
-[tooltip-pos='R']::before { top:8px; right:66px; } /* Desde la derecha '*/
-[tooltip-pos='L']::before { top:10px; left:70px;  } /* Desde la izquierda */
+[tooltip-pos='R']::after { top:8px; right:66px; } /* Desde la derecha '*/
+[tooltip-pos='L']::after { top:10px; left:70px;  } /* Desde la izquierda */
 
 /* Los tooltips que salen desde arriba o desde abajo necesitan ser reposicionados manualmente por el eje X para que queden alineados a la barra lateral */
-[tooltip-pos='T']::before { top:-52px; right:0px;  } /* Desde arriba */
-[tooltip-pos='B']::before { top:70px; right:0px;  } /* Desde abajo */
+[tooltip-pos='T']::after { top:-52px; right:0px;  } /* Desde arriba */
+[tooltip-pos='B']::after { top:70px; right:0px;  } /* Desde abajo */
 /* Botones para las vistas del lab */
-#Lab_VerCodigo_Estado   + [tooltip-pos='B']::before     { right:-60px;  }
-#Lab_VerColumnas_Estado + [tooltip-pos='B']::before     { right:-120px; }
-#Lab_VerFilas_Estado    + [tooltip-pos='B']::before     { right:-180px; }
+#Lab_VerCodigo_Estado   + [tooltip-pos='B']::after     { right:-60px;  }
+#Lab_VerColumnas_Estado + [tooltip-pos='B']::after     { right:-120px; }
+#Lab_VerFilas_Estado    + [tooltip-pos='B']::after     { right:-180px; }
 /* Botones de las redes sociales */
-/*#BarraNavegacion_MarcoRedesSociales_GooglePlus::before  { right:-8px;  }*/
-#BarraNavegacion_MarcoRedesSociales_Twitter::before     { right:-60px;  }
-#BarraNavegacion_MarcoRedesSociales_Facebook::before    { right:-120px; }
+/*#BarraNavegacion_MarcoRedesSociales_GooglePlus::after  { right:-8px;  }*/
+#BarraNavegacion_MarcoRedesSociales_Twitter::after     { right:-60px;  }
+#BarraNavegacion_MarcoRedesSociales_Facebook::after    { right:-120px; }
 /* Botones para las vistas del mini lab */
-.MiniLab > .Menu:nth-child(6) > label[tooltip-pos='B']::before { right:-60px; }
-.MiniLab > .Menu:nth-child(7) > label[tooltip-pos='B']::before { right:-120px; }
+.MiniLab > .Menu:nth-child(6) > label[tooltip-pos='B']::after { right:-60px; }
+.MiniLab > .Menu:nth-child(7) > label[tooltip-pos='B']::after { right:-120px; }
 
 
 
 /* Asigno el contenido del idioma segun el atributo lang del HTML */
-html[lang='es'] *[tooltip-es]::before { content:attr(tooltip-es); }
-html[lang='en'] *[tooltip-en]::before { content:attr(tooltip-en); }
+html[lang='es'] *[tooltip-es]::after { content:attr(tooltip-es); }
+html[lang='en'] *[tooltip-en]::after { content:attr(tooltip-en); }
 
 /* Muestro el tooltip para los botones de la vista del lab */
-html[lang='es'] #BarraNavegacion_LabMarcoVer > .Menu_Boton_Label[tooltip-es]:hover::before, html[lang='en'] #BarraNavegacion_LabMarcoVer > .Menu_Boton_Label[tooltip-en]:hover::before, 
+html[lang='es'] #BarraNavegacion_LabMarcoVer > .Menu_Boton_Label[tooltip-es]:hover::after, html[lang='en'] #BarraNavegacion_LabMarcoVer > .Menu_Boton_Label[tooltip-en]:hover::after, 
 /* Muestro el tooltip para los botones de la vista del mini lab */
-html[lang='es'] .MiniLab .Menu_Boton_Label[tooltip-es]:hover::before,  html[lang='es'] .MiniLab .Menu_Boton_Label[tooltip-en]:hover::before,
+html[lang='es'] .MiniLab .Menu_Boton_Label[tooltip-es]:hover::after,  html[lang='es'] .MiniLab .Menu_Boton_Label[tooltip-en]:hover::after,
 /* Muestro el tooltip para los botones que contienen un sub-menu, y no están marcados */
-html[lang='es'] .Menu_Boton_Input:not(:checked) + .Menu_Boton_Label[tooltip-es]:hover::before, html[lang='en'] .Menu_Boton_Input:not(:checked) + .Menu_Boton_Label[tooltip-en]:hover::before,
+html[lang='es'] .Menu_Boton_Input:not(:checked) + .Menu_Boton_Label[tooltip-es]:hover::after, html[lang='en'] .Menu_Boton_Input:not(:checked) + .Menu_Boton_Label[tooltip-en]:hover::after,
 /* Muestro el tooltip para las clases Menu_Boton sin marcos desplegables */
-html[lang='es'] .Menu_Boton[tooltip-es]:hover::before, html[lang='en'] .Menu_Boton[tooltip-en]:hover::before {    
+html[lang='es'] .Menu_Boton[tooltip-es]:hover::after, html[lang='en'] .Menu_Boton[tooltip-en]:hover::after {    
     transform:perspective(600px) rotateX(0deg);
     opacity:1;
     width:224px;
