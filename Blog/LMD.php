@@ -9,9 +9,7 @@
 	$META = '<meta name="description" content="LMD windows linux">
         <meta name="keywords" content="LMD">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "LMD 0.02a (Libreria Multiplataforma Devildrey33)", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "LMD 0.02a (Libreria Multiplataforma Devildrey33)", $META);
         
         $Base->InicioBlog(basename(__FILE__), "LMD 0.02a (Libreria Multiplataforma Devildrey33)");
         
@@ -33,5 +31,5 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

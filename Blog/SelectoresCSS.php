@@ -8,9 +8,7 @@
 <meta name="keywords" content="CSS, Selectores CSS, :link, :visited, :active, :hover, :focus, :first-letter, :fisrt-child, :before, :after, :lang, :first-of-type, :last-of-type, :only-of-type, :only-child, :nth-child, :nth-last-child, :nth-pf-type, :nth-last-of-type, :last-child, :root, :empty, :target, :enabled, :disabled, :checked, :not, ::selection">
 <meta name="robots" content="index, follow">';
 
-    if (!isset($_POST["SinPlantilla"])) {
-        $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS : Selectores", $META);
-    }
+    $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS : Selectores", $META);
 
     $Base->InicioBlog(basename(__FILE__), "Referéncia CSS : Selectores");
 
@@ -53,5 +51,5 @@
 ?>
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

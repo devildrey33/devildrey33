@@ -11,9 +11,7 @@
 
     $HEAD = "";
 
-    if (!isset($_POST["SinPlantilla"])) {
-        $Base->InicioPlantilla(basename(__FILE__), "Editar Entradas", $HEAD);
-    }
+    $Base->InicioPlantilla(basename(__FILE__), "Editar Entradas", $HEAD);
 
     if (devildrey33_Opciones::Administrador() > 0) {
         $Edit = new devildrey33_EditarEntradas;
@@ -67,7 +65,7 @@
         echo "<script>\$Base.MostrarErrorAjax(404, true);</script>".Intro();
     }
     
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
      
     
 ?>

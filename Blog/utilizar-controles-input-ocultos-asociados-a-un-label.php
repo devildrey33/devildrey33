@@ -9,9 +9,7 @@
 	$META = "<meta name='description' content='Un repaso de como utilizar controles input[checkbox/radio] asociados a un label mediante el selector :checked'>
 	<meta name='keywords' content='html5 checkbox, html5 radio, html5 label, :checked, Selector :checked, CSS3 :checked, ocultar input, ocultar checkbox, ocultar radio'>";
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Utilizar controles input ocultos asociados a un label.", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Utilizar controles input ocultos asociados a un label.", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Utilizar controles input ocultos asociados a un label.");
 
@@ -127,6 +125,6 @@
 
 
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
      

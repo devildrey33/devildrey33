@@ -15,9 +15,7 @@
 	$META = "<meta name='description' content='Varios servidores web apache de pruebas'>
 	<meta name='keywords' content='Varios servidores apache, múltiples servidores apacle, Varios servidores web de prueba, Múltiples servidores web de prueba, Apache VirtualHost, Hosts'>";
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Varios servidores web apache de pruebas", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Varios servidores web apache de pruebas", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Varios servidores web apache de pruebas");
 
@@ -56,6 +54,6 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
      

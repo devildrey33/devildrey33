@@ -14,9 +14,7 @@
         <meta name="keywords" content="HTML5 Canvas2D, Canvas2D">';
 
 	
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Tutorial HTML5 Canvas2D parte 3 (degradado lineal)", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Tutorial HTML5 Canvas2D parte 3 (degradado lineal)", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Tutorial HTML5 Canvas2D parte 3 (degradado lineal)");
 
@@ -103,5 +101,5 @@ function PintarDegradados() {
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

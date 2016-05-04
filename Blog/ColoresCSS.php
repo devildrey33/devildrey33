@@ -55,9 +55,7 @@
     $META = '<meta name="description" content="CSS Colores">
     <meta name="keywords" content="CSS, CSS3, CSS3 Colores">';
 
-    if (!isset($_POST["SinPlantilla"])) {
-        $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS : Colores", $META);
-    }
+    $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS : Colores", $META);
 
     $Base->InicioBlog(basename(__FILE__), "Referéncia CSS : Colores");
         
@@ -432,5 +430,5 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

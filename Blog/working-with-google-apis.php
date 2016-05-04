@@ -1,11 +1,11 @@
 <?php
     include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
-	$Base = new devildrey33;
+    $Base = new devildrey33;
 
-	$META = '<meta name="description" content="Working with google APIs">
-             <meta name="keywords" content="google api, google apis">';
+    $META = '<meta name="description" content="Working with google APIs">'.Intro().
+            '<meta name="keywords" content="google api, google apis">';
 
-    if (!isset($_POST["SinPlantilla"])) $Base->InicioPlantilla(basename(__FILE__), "Working with google APIs", $META);
+    $Base->InicioPlantilla(basename(__FILE__), "Working with google APIs", $META);
 
     $Base->InicioBlog(basename(__FILE__), "Working with google APIs");
     $File_Source_1 = '../Codigo/GoogleAPI/simple_gAPI_example_empty.html';
@@ -194,5 +194,5 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla();
+    $Base->FinPlantilla();
 ?>

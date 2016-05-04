@@ -43,9 +43,7 @@
 
 
 	
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Buscar", $DHE);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Buscar", $DHE);
         
 /*echo "        
     <div id='cse' style='width: 100%;'>Cargando</div>
@@ -94,6 +92,6 @@ echo "}, true);
     -->
 <?php
     $Base->FinSinCabecera();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
      

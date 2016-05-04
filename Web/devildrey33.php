@@ -57,10 +57,15 @@ class devildrey33 {
     }
     
     
-
     // Inserta desde la etiqueta HTML hasta el inicio del body incluyendo el menu superior, publicidad y el banner    
     /* NombreDocumento ya no es necesaria, este parametro ahora se obtiene en las funciones InicioBlog, InicioDoc, InicioSinCabecera  */
+    /* SOLO SE USA SI no se recibe un POST o un GET SinPlantilla */
     public function InicioPlantilla($NombreDocumento, $Titulo, $Meta = "") {
+        
+        if (isset($_GET["SinPlantilla"]) || isset($_POST["SinPlantilla"])) {
+            return "";
+        }
+        
         $this->_NombreDocumento = $NombreDocumento;
         
         $Entradas = new devildrey33_EditarEntradas;
@@ -504,6 +509,7 @@ class devildrey33 {
     }
     
     public function FinPlantilla() {
+        if (isset($_POST["SinPlantilla"]) || isset($_GET["SinPlantilla"])) return "";
         echo "</div>".Intro();
        
         echo "</body></html>".Intro();
@@ -835,6 +841,52 @@ class devildrey33 {
     }
 
     
+    static public function CacheBuscador_Generar() {
+        $ArrayEntradas = (require dirname(__FILE__).'/Config/EntradasBlog.php');
+        $CacheBuscador = array();
+        foreach ($ArrayEntradas as $Entrada) {
+            $CacheBuscador[] = devildrey33::CacheBuscador_EscanearArchivo($Entrada);
+        }
+        print_r($CacheBuscador);
+    }
     
+    // Archivo '/Blog/Canvas2D_1'
+    static public function CacheBuscador_EscanearArchivo($Entrada) {
+        switch ($Entrada["Tipo"]) {
+            case "Blog" :   default :       $Archivo = "/Blog/".$Entrada["URL"];   break;
+            case "Lab"  :                   $Archivo = "/Lab/".$Entrada["URL"];    break;
+        }
+        
+        
+        // Fase 1, generar codigo html
+        $fb = iconv('UTF-8', 'ISO-8859-1//TRANSLIT', file_get_contents("http://devildrey33.st0rm/".$Archivo."?SinPlantilla"));            
+        // Fase 2, eliminar todas las etiquetas
+        $fb = strip_tags($fb);
+        // Fase 3, pasar un filtro que elimina acentos y ciertos caracteres 
+        $fb = devildrey33::CacheBuscador_Filtro($fb);
+        // Dividimos el contenido restante en un array de palabras
+        $ArrayPalabras = array_filter(explode(" ", $fb)); 
+        // Creo un array con el archivo, el titulo, y las palabras
+        
+        $Resultado = array("Archivo" => $Archivo, "Titulo" => $Entrada["Titulo"], "Palabras" => "");               
+        foreach ($ArrayPalabras as $Palabra) {
+            if (strlen($Palabra) > 1) {
+                if (strpos($Resultado["Palabras"], $Palabra) === false) {
+                    $Resultado["Palabras"] .= $Palabra." ";
+                }                
+            }
+        }
+        print_r($Resultado);        
+    }
+    
+    
+    static public function CacheBuscador_Filtro($Texto) {
+        return str_replace(
+            /* Redeu no pilla be els accents amb strings... els he posat amb chr i el caracter ASCII */
+            array(chr(225), chr(233), chr(237), chr(243), chr(250), "(", ")", "'", '"', ";", ":", "=", "_", "[", "]", "{", "}", "+", "*", "%", "/", "^", "`", "´", "&", ",", ".", ">", "<", "\n", "#", "\r", "\t"),
+            array("a"     ,"e"      , "i"     , "o"     , "u"     , " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " ," ", " ", " ", " " , " ", " " , " " ),  
+            mb_strtolower($Texto)
+        );
+    }
 };
 ?>

@@ -9,9 +9,7 @@
 	$META = '<meta name="description" content="ContentEditable">
         <meta name="keywords" content="ContentEditable HTML">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Atributo ContentEditable del HTML", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Atributo ContentEditable del HTML", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Atributo ContentEditable del HTML");
 
@@ -140,5 +138,5 @@ document.execCommand(Comando, Interface, Valor);
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

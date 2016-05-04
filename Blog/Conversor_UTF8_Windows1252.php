@@ -9,9 +9,7 @@
 	$META = '<meta name="description" content="UTF8 a Windows1252">
         <meta name="keywords" content="Conversor UTF8 a CP1252">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Conversor UTF8 - Windows1252", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Conversor UTF8 - Windows1252", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Conversor UTF8 - Windows1252");
         
@@ -68,5 +66,5 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

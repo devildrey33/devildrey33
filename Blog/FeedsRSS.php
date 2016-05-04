@@ -10,9 +10,7 @@
 	$META = '<meta name="description" content="Creación de feeds RSS">
         <meta name="keywords" content="Programar Feeds RSS">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Creación de feeds RSS", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Creación de feeds RSS", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Creación de feeds RSS");
         
@@ -130,5 +128,5 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

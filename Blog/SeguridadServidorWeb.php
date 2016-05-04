@@ -9,9 +9,7 @@
 	$META = '<meta name="description" content="Seguridad htaccess">
         <meta name="keywords" content="Seguridad, Apache, servidor web">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Añadir más seguridad a nuestro servidor Web", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Añadir más seguridad a nuestro servidor Web", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Añadir más seguridad a nuestro servidor Web");
         
@@ -152,6 +150,6 @@ Redirect 301 /wp/wp-login.php                   http://www.MIURL.es/BanearIP.php
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
                 

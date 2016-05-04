@@ -10,9 +10,7 @@
 	$META = '<meta name="description" content="Tutorial HTML">
         <meta name="keywords" content="Tutorial HTML">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Creación de páginas web desde cero (1 Introducción)", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Creación de páginas web desde cero (1 Introducción)", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Creación de páginas web desde cero (1 Introducción)");
         
@@ -77,6 +75,6 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
                 

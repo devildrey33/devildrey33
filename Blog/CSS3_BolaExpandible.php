@@ -1,6 +1,4 @@
 <?php 
-/*	include("devildrey33.php");
-	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	*/
 	
 	$DeclaracionesHeadExtras = "
 		<style>
@@ -89,9 +87,7 @@
         <meta name="keywords" content="CSS3, Bola expandible, CSS3 Bola expandible">';
 
 	
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "CSS3 : Efecto bola expandible", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "CSS3 : Efecto bola expandible", $META);
         
         $Base->InicioBlog(basename(__FILE__), "CSS3 : Efecto bola expandible");
         
@@ -128,5 +124,5 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

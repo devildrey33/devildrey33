@@ -26,9 +26,7 @@
 	$META = "<meta name='description' content='USB booteable con varios sistemas operativos'>
 	<meta name='keywords' content='USB Windows, USB Ubuntu, USB Linux, Pendrive Windows, Pendrive Ubuntu, Pendrive Linux, USB Windows Linux, USB Multiboot, Grub4Dos'>";
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "USB booteable con varios sistemas operativos (ACTUALIZADO)", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "USB booteable con varios sistemas operativos (ACTUALIZADO)", $META);
         
         $Base->InicioBlog(basename(__FILE__), "USB booteable con varios sistemas operativos (ACTUALIZADO)");
 
@@ -225,6 +223,6 @@
 
 <?php
     $Base->FinBlog(false, true);
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
      

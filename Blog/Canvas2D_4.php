@@ -13,9 +13,7 @@
 	$META = '<meta name="description" content="Tutorial HTML5 Canvas2D parte 3">
         <meta name="keywords" content="HTML5 Canvas2D, Canvas2D">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Tutorial HTML5 Canvas2D parte 4 (imagenes)", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Tutorial HTML5 Canvas2D parte 4 (imagenes)", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Tutorial HTML5 Canvas2D parte 4 (imagenes)");
 
@@ -119,5 +117,5 @@ function PintarCanal(ConservarRGB, nX, nY) {
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

@@ -9,9 +9,7 @@
 	$META = '<meta name="description" content="Colorear código">
         <meta name="keywords" content="Colorear código C++">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Colorear código con PHP (Parte 5 C++)", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Colorear código con PHP (Parte 5 C++)", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Colorear código con PHP (Parte 5 C++)");
         
@@ -53,7 +51,7 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
 
                 

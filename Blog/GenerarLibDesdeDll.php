@@ -9,9 +9,7 @@
 	$META = '<meta name="description" content="Generar Lib desde una DLL">
         <meta name="keywords" content="Generar lib de una DLL">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Generar un .lib a partir de una DLL con Visual Studio", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Generar un .lib a partir de una DLL con Visual Studio", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Generar un .lib a partir de una DLL con Visual Studio");
 
@@ -53,5 +51,5 @@ for /f "usebackq tokens=4,* delims=_ " %%i in (`dumpbin /exports libvlc.dll`) do
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

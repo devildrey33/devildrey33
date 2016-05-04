@@ -10,9 +10,7 @@
         <meta name="keywords" content="Animaciones CSS3">';
 
 	
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Animaciones CSS3", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Animaciones CSS3", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Animaciones CSS3");
         
@@ -67,5 +65,5 @@
                 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

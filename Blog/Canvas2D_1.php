@@ -13,9 +13,7 @@
         <meta name="keywords" content="HTML5 Canvas2D, Canvas2D">';
 
 	
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Tutorial HTML5 Canvas2D parte 1", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Tutorial HTML5 Canvas2D parte 1", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Tutorial HTML5 Canvas2D parte 1");
         
@@ -134,8 +132,8 @@ function PintarEspacio() {
                 <p>Por último asigna el color para la estrella utilizando el atributo <i>fillStyle</i>, y pinta la estrella utilizando <i>fillRect</i>.</p>
                 <canvas class='Centrado' style='display:table; background:#000' id="CanvasEspacio" width="990" height="100" style="background-color:#000"></canvas>
                 <table class='Centrado'><tr>
-                        <td><div class='Boton-Normal' onclick="IniciarAnimacion()">Iniciar la animación</div></td>
-                        <td><div class='Boton-Normal' onclick="PararTemporizador()">Detener la animación</div></td>
+                        <td><button class='Boton-Normal' onclick="IniciarAnimacion()">Iniciar la animación</button></td>
+                        <td><button class='Boton-Normal' onclick="PararTemporizador()">Detener la animación</button></td>
                 </tr></table>
 <!--                <div class='Centrado'> 
 	                <br />
@@ -161,5 +159,5 @@ function PintarEspacio() {
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

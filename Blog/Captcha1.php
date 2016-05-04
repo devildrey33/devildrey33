@@ -9,9 +9,7 @@
 	$META = '<meta name="description" content="Tutorial Captchas">
         <meta name="keywords" content="Captchas PHP, Programar captchas">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Captchas (1 Introducción)", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Captchas (1 Introducción)", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Captchas (1 Introducción)");
 
@@ -97,5 +95,5 @@ document.getElementById("ResultadoCaptcha").value = (Valor1 + Valor2); ValidarCa
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

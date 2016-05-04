@@ -5,9 +5,7 @@
     $META = '<meta name="description" content="Webs de contenido dinámico">
     <meta name="keywords" content="Web dinámica, Webs dinámicas, window.history.pushState, history.pushState, modificar url, modificar url javascript">';
 
-    if (!isset($_POST["SinPlantilla"])) {
-        $Base->InicioPlantilla(basename(__FILE__), "Webs de contenido dinámico", $META);
-    }
+    $Base->InicioPlantilla(basename(__FILE__), "Webs de contenido dinámico", $META);
 
     $Base->InicioBlog(basename(__FILE__), "Webs de contenido dinámico");
 ?>	
@@ -97,5 +95,5 @@
     
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

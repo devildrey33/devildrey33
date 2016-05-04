@@ -6,9 +6,7 @@
         <meta name="keywords" content="SQL, SQLLite, SQL C++, SQLLite C++, SQLLite Visual Studio, SQLLite VisualStudio">';
 
 	
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Empezando con SQLite en C++", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Empezando con SQLite en C++", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Empezando con SQLite en C++");
 
@@ -102,5 +100,5 @@
         
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

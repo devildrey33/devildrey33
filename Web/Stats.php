@@ -5,9 +5,7 @@
 
     $HEAD = "";
 
-    if (!isset($_POST["SinPlantilla"])) {
-        $Base->InicioPlantilla(basename(__FILE__), "Estadisticas", $HEAD);
-    }
+    $Base->InicioPlantilla(basename(__FILE__), "Estadisticas", $HEAD);
 
     if (devildrey33_Opciones::Administrador() > 0) {
         echo "<article class='Blog'>";
@@ -18,7 +16,7 @@
         echo "<script>\$Base.MostrarErrorAjax(404, true);</script>";
     }
     
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla();     
+    $Base->FinPlantilla();     
 ?>
 
 <?php 

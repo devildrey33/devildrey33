@@ -10,9 +10,7 @@
 	$META = "<meta name='description' content='Tabla responsive'>
 	<meta name='keywords' content='CSS tabla'>";
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Tablas automáticas y tablas fijas", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Tablas automáticas y tablas fijas", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Tablas automáticas y tablas fijas");
         echo "<script>\$Base.CargarCSS('Blog_tablas.css');</script>";
@@ -91,6 +89,6 @@
                 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
      

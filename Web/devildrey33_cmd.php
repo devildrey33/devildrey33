@@ -11,6 +11,9 @@
     
     /* Comandos para cualquier usuario */
     switch ($Comando) {
+        case "test" : 
+            devildrey33::CacheBuscador_Generar();
+            break;
         case "ClearSession"                     :   
             session_unset();
             echo "OK";

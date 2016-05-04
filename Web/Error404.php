@@ -4,9 +4,7 @@
 	
 	$HEAD = "";
 	
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Error 404!", $HEAD);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Error 404!", $HEAD);
         
 //        $Base->InicioBlog(basename(__FILE__), "Empezando con SQLite en C++");
 ?>	
@@ -21,5 +19,5 @@
     
 <?php
 //    $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

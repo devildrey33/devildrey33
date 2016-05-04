@@ -6,9 +6,7 @@
         <meta name="keywords" content="Virus fotos 05/06, Virus email fotos 05/05, Email fotos 05/06">';
 
 	
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Aplicación para eliminar el virus &quot;Fotos 05/06&quot;", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Aplicación para eliminar el virus &quot;Fotos 05/06&quot;", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Aplicación para eliminar el virus &quot;Fotos 05/06&quot;");
 /*
@@ -58,5 +56,5 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

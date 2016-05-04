@@ -94,9 +94,7 @@
         <meta name="keywords" content="CSS3, CSS Sombras, CSS Bordes, CSS3 Sombras. CSS3 Bordes">';
 
 	
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "CSS3 : Sombras y bordes redondeados", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "CSS3 : Sombras y bordes redondeados", $META);
         
         $Base->InicioBlog(basename(__FILE__), "CSS3 : Sombras y bordes redondeados");
         
@@ -167,5 +165,5 @@
 				<div class='postit'><i>Ultima modificación [21/08/2013]&nbsp;</i></div>
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

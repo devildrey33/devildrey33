@@ -27,9 +27,7 @@
     <meta name="keywords" content="CSS, CSS3, CSS3 Propiedades">
     <meta name="robots" content="index, follow">';
 
-    if (!isset($_POST["SinPlantilla"])) {
-        $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS : Propiedades", $META);
-    }
+    $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS : Propiedades", $META);
 
     $Base->InicioBlog(basename(__FILE__), "Referéncia CSS : Propiedades");
         
@@ -68,7 +66,7 @@
 	
 
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
 
 

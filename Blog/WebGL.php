@@ -9,9 +9,7 @@
 	$META = "<meta name='description' content='Ejemplos WebGL'>
 	<meta name='keywords' content='WebGL'>";
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "WebGL", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "WebGL", $META);
         
         $Base->InicioBlog(basename(__FILE__), "WebGL");
         
@@ -68,6 +66,6 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
      

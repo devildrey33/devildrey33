@@ -5,9 +5,7 @@
 	$META = '<meta name="description" content="How to use google app scripts">
         <meta name="keywords" content="google app scripts, google scripts how to, google app, google scripts">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "How to use google app scripts", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "How to use google app scripts", $META);
 
         $Base->InicioBlog(basename(__FILE__), "How to use google app scripts");
 ?>
@@ -321,5 +319,5 @@ $Base->PintarCodigo->PintarArchivoJavaScript("ID12", "", basename(__FILE__), "ID
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla();
+    $Base->FinPlantilla();
 ?>

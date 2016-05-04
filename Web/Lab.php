@@ -29,9 +29,7 @@
     
     $HEAD = "";
 
-    if (!isset($_POST["SinPlantilla"])) {
-        $Base->InicioPlantilla(basename(__FILE__), "Laboratorio de pruebas", $HEAD);
-    }
+    $Base->InicioPlantilla(basename(__FILE__), "Laboratorio de pruebas", $HEAD);
 /*    if ($CArchivo["Ret"] != 200) { // Error al abrir el archivo
         $Archivo = "Ejemplos/Error.html"; 
 //        $MostrarError = TRUE;
@@ -68,7 +66,7 @@
 
 
 //    $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
 
 

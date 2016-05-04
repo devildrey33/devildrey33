@@ -9,9 +9,7 @@
 	$META = "<meta name='description' content='FlexBox responsive'>
 	<meta name='keywords' content='CSS, FlexBox, responsive, media query, css order, css flex-flow, css flex, @media'>";
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "FlexBox para diseños responsive", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "FlexBox para diseños responsive", $META);
         
         $Base->InicioBlog(basename(__FILE__), "FlexBox para diseños responsive");
         
@@ -62,6 +60,6 @@
                 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
      

@@ -10,9 +10,7 @@
         <meta name="keywords" content="BubaTronik 0.61, Reproductor, Reproductor audio, Reproductor video, Reproductor audio/video">';
 
 	
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "BubaTronik 0.61", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "BubaTronik 0.61", $META);
         
         $Base->InicioBlog(basename(__FILE__), "BubaTronik 0.61");
         
@@ -57,5 +55,5 @@
                 </div>
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

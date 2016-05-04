@@ -9,9 +9,7 @@
 	$META = '<meta name="description" content="PHP + XML">
         <meta name="keywords" content="PHP, XML">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Utilizar archivos XML con PHP", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Utilizar archivos XML con PHP", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Utilizar archivos XML con PHP");
         
@@ -55,6 +53,6 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
                 

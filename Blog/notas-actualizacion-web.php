@@ -10,9 +10,7 @@
         '<meta name="keywords" content="Notas actualización devildrey33">';
 
 	
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Notas sobre la actualización de la web", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Notas sobre la actualización de la web", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Notas sobre la actualización de la web");
         
@@ -43,5 +41,5 @@
                 <p>Y con esto me despido por hoy, Saludos!</p>
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

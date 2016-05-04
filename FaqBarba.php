@@ -2,9 +2,7 @@
     include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
 
     $Base = new devildrey33;
-    if (!isset($_POST["SinPlantilla"])) {
-        $Base->InicioPlantilla(basename(__FILE__), "devildrey33.es", "");    
-    }
+    $Base->InicioPlantilla(basename(__FILE__), "devildrey33.es", "");    
     
     $ArrayDatos = (require dirname(__FILE__).'/Web/Passwords.php');
 ?>
@@ -135,12 +133,10 @@
     $Base = new devildrey33;	
     $Titul = "How to use google app scripts";
     // Meta, has de posar els tags pel SEO, els de facebook i twiter es fan automaticament
-    $META = "<meta name=\'description\' content=\'".$Titul."\'>
-    <meta name=\"keywords\" content=\"google app scripts, google scripts how to, google app, google scripts\">";
-    if (!isset($_POST["SinPlantilla"])) {
-        // Inici de la plantilla (primer cop que entra a devildrey33)
-        $Base->InicioPlantilla(basename(__FILE__), $Titul, $META);
-    }
+    $META = "<meta name=\'description\' content=\'".$Titul."\'>".
+    "<meta name=\"keywords\" content=\"google app scripts, google scripts how to, google app, google scripts\>";
+    // Inici de la plantilla (primer cop que entra a devildrey33)
+    $Base->InicioPlantilla(basename(__FILE__), $Titul, $META);
     // Inici de la capçalera del Blog
     $Base->InicioBlog(basename(__FILE__), $Titul);
 ?> 
@@ -169,7 +165,7 @@
 <?php
     $Base->FinBlog();
     // Final de la plantilla (primer cop que entra a devildrey33)
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
 -[FIN devildrey33.IDC3]- */
     $Base->PintarCodigo->PintarArchivoPHP("ID3", "Plantilla final", basename(__FILE__), 'IDC3');
@@ -404,7 +400,5 @@ $Base->PintarCodigo->PintarArchivoPHP("IDHTML", "Carregar javascript o css exter
 
 
 <?php
-    if (!isset($_POST["SinPlantilla"])) {
-        $Base->FinPlantilla(); 
-    }
+   $Base->FinPlantilla(); 
     

@@ -13,9 +13,7 @@
 	$META = "<meta name='description' content='Ejemplos menús'>
 	<meta name='keywords' content='Menu CSS, Menu JavaScript'>";
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Varios ejemplos de menús", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Varios ejemplos de menús", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Varios ejemplos de menús");
         echo "<script>\$Base.CargarCSS('Blog_varios-ejemplos-de-menus.css');</script>";        
@@ -77,6 +75,6 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
      

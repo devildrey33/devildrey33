@@ -7,9 +7,7 @@
 
     $Titulo = "Resaltar sintaxis de un código fuente";
     
-    if (!isset($_POST["SinPlantilla"])) {
-        $Base->InicioPlantilla(basename(__FILE__), $Titulo, $META);
-    }
+    $Base->InicioPlantilla(basename(__FILE__), $Titulo, $META);
 
     $Base->InicioBlog(basename(__FILE__), $Titulo);
 ?>	
@@ -221,5 +219,5 @@
     
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

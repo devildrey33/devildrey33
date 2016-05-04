@@ -8,9 +8,7 @@
 	$META = '<meta name="description" content="Tutorial WINAPI">
         <meta name="keywords" content="WINAPI C++, WINAPI, C++">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Tutorial WINAPI C++ 1.3 (Creación de un ObjetoVentana)", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Tutorial WINAPI C++ 1.3 (Creación de un ObjetoVentana)", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Tutorial WINAPI C++ 1.3 (Creación de un ObjetoVentana)");
         
@@ -61,5 +59,5 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

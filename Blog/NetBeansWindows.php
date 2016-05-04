@@ -9,9 +9,7 @@
 	$META = '<meta name="description" content="NetBeans y MinGW Windows">
         <meta name="keywords" content="NetBeans, MinGW, Windows">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Instalar NetBeans y MinGW en Windows", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Instalar NetBeans y MinGW en Windows", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Instalar NetBeans y MinGW en Windows");
 
@@ -89,5 +87,5 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

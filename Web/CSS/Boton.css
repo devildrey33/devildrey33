@@ -139,12 +139,12 @@ and open the template in the editor.
 /* BoxShadow 1 y 2 */
 /*******************/            
 /* Sombra interior que crece desde las puntas hacia el centro */
-.Boton-BoxShadow1::before                                           *               { box-shadow : 0px 0px 0px 0px transparent inset; }            
+.Boton-BoxShadow1::before                                                           { box-shadow : 0px 0px 0px 0px transparent inset; }            
 .Boton-BoxShadow1:enabled:hover::before, .Boton-BoxShadow1:enabled:active::before   { box-shadow : 0px 0px 30px 25px #ea504e inset;   }            
 /* Efecto invertido (crece desde el centro hacia las puntas) en este caso lo más facil es hacer el fondo rojo, mientras que el box-shadow empezara cubriendo el fondo de color gris oscuro */
-.Boton-BoxShadow2::before                                                           { box-shadow : 0px 0px 30px 25px rgb(60, 60, 60) inset;   }            
-.Boton-BoxShadow2::enabledhover::before, .Boton-BoxShadow2:enabled:active::before   { box-shadow : 0px 0px 0px 0px transparent inset; }            
-.Boton-BoxShadow2::after                                                            { background-color : #ea504e !important;          }
+.Boton-BoxShadow2::before                                                          { box-shadow : 0px 0px 30px 25px rgb(60, 60, 60) inset;   }            
+.Boton-BoxShadow2:enabled:hover::before, .Boton-BoxShadow2:enabled:active::before  { box-shadow : 0px 0px 0px 0px transparent inset; }            
+.Boton-BoxShadow2:enabled::after                                                   { background-color : #ea504e !important;          }
 
 /************************/
 /* LinearGradient 1 y 2 */

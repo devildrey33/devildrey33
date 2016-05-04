@@ -44,11 +44,13 @@ Millores de la web :
     - El taliba m'ha insinuat que podria fer uns agraiments. (però o faig algo chulo equiparable a una obra d'art binaria o no ho faig...)
     - Fer el error 404 chulo amb three.js
  V  - Nous efectes hover per els butons estandar (i mirar d'implementar en els butons svg tambè)
- V      - Refer #BarraNavegacion_MarcoNextPrev amb display flex, i butons svg animats.
- V          - S'ha de fer algo per els butons desactivats. (falta modificar el color del svg.. o mostrar unaltre...)
  V      - mirar que es pot fer amb el buto dels comentaris... te el before ocupat per texte...
  V      - Mirar butons de les Ventana(Error/Mensaje)
-    - Pasa algo raro amb les ancles mirar : "/Blog/flex-box-y-media-queries" i probar en aquest ordre : 3, 2, 1 (el 2 no va)
+ V  - Refer #BarraNavegacion_MarcoNextPrev amb display flex, i butons svg animats.
+ V      - S'ha de fer algo per els butons desactivats. (falta modificar el color del svg.. o mostrar unaltre...)
+        - Afegir forma de filtrar per categorias (Todo, CSS, PHP, etc...)
+-
+    - Pasa algo raro amb les ancles mirar : "/Blog/flex-box-y-media-queries" i probar en aquest ordre : 3, 2, 1 (el 2 no va, i no es veu a la pantalla)
     - El devildrey33_Pintar_Codigo pinta valors que no ha de pintar.... (Blog/algunos-efectos-para-botones-en-css)
         border           : 2px solid !!#000!!;
         transition       : !!transform!! 0!!.15s!! ease-in-out, !!color!! !!.15s!! ease-in-out, !!box-shadow!! !!.15s!! ease-in-out;   
@@ -56,6 +58,7 @@ Millores de la web :
         font-size        : 1!!.4rem!!;
     - fa un blink extrany cada PRIMER cop que paso per sobre d'una etiqueta linea o a[href][cid][l]. I m'esta tocan molt els pebrots...
     - s'ha de detectar quan passa el temps d'administració, i al fer algo en una sesio expirada, que torni a demanar el login.
+    - Tornar a afegir els iconos58x69.svg dintre del HTML bàsic, aquest cop el carregarem directament de l'arxiu, i aixi no cal posarlo dintre del devildrey33.php i serà tot mes còmode.
 
 Estils movils :
  V  - Probar l'index en Google Nexus 10, no es pot accedir a les seguents entrades amb l'escroll. 

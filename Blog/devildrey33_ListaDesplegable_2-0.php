@@ -12,9 +12,7 @@
 	$META = "<meta name='description' content='Lista Desplegable'>
 	<meta name='keywords' content='Control JavaScript'>";
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "devildrey33_ListaDesplegable 2.0 FINAL", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "devildrey33_ListaDesplegable 2.0 FINAL", $META);
         
         $Base->InicioBlog(basename(__FILE__), "devildrey33_ListaDesplegable 2.0 FINAL");
 
@@ -669,6 +667,6 @@ function IrEstructuracion(Num) {
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
      

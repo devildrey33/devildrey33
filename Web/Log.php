@@ -5,9 +5,7 @@
 
     $HEAD = "";
 
-    if (!isset($_POST["SinPlantilla"])) {
-        $Base->InicioPlantilla(basename(__FILE__), "Logs de acceso", $HEAD);
-    }
+    $Base->InicioPlantilla(basename(__FILE__), "Logs de acceso", $HEAD);
 
     if (devildrey33_Opciones::Administrador() > 0) {
         $Log = new LogAccesos;
@@ -19,7 +17,7 @@
         echo "<script>\$Base.MostrarErrorAjax(404, true);</script>";
     }
     
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+     $Base->FinPlantilla(); 
 
     
     

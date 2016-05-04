@@ -11,9 +11,7 @@
         <meta name="keywords" content="CSS3, css3 transition, css transition, css3 transform, css transform, css3 transform transition, css transform transition">';
 
 	
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "CSS3 Transition y Transform", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "CSS3 Transition y Transform", $META);
         
         $Base->InicioBlog(basename(__FILE__), "CSS3 Transition y Transform");
         
@@ -210,5 +208,5 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

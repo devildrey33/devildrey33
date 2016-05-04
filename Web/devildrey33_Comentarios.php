@@ -1,5 +1,5 @@
 <?php
-/* Versio 2015 */
+
 include_once("devildrey33_Opciones.php");
 include("devildrey33_BD.php");
 
@@ -61,8 +61,10 @@ class devildrey33_Comentarios {
 
 
     public function LeerComentarios($Pagina, $BD, $Num, $Desde) {
-        $PaginaPadre = str_replace(array(".", "-"), "_", $Pagina);            
-        $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".$BD->_mysqli->real_escape_string(strtolower($PaginaPadre))." ORDER BY NumMsg DESC");
+        // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
+        $PaginaPadre    = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($Pagina))), 0, 51);        
+//        $PaginaPadre = str_replace(array(".", "-"), "_", $Pagina);            
+        $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".$PaginaPadre." ORDER BY NumMsg DESC");
 //            echo "SELECT * FROM Comentarios__".$PaginaPadre." ORDER BY NumMsg DESC || ".$Resultado;
         if ($Resultado) {
             $Total = $Resultado->num_rows;
@@ -140,7 +142,9 @@ class devildrey33_Comentarios {
         if (intval($Valor) === 0 || intval($Valor) === 1) {
             // Conexión con la BD
             $BD = new devildrey33_BD;        
-            $PaginaPadre    = $BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", $PaginaPadre));        
+            // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
+            $PaginaPadre    = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($PaginaPadre))), 0, 51);        
+//            $PaginaPadre    = $BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", $PaginaPadre));        
             $Resultado      = $BD->_mysqli->query("SELECT * FROM comentarios__".strtolower($PaginaPadre)." WHERE NumMsg='".$NumComentario."'");
             if ($Resultado) {
                 $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
@@ -199,8 +203,9 @@ class devildrey33_Comentarios {
         }
         // Conexión con la BD
         $BD = new devildrey33_BD;        
-        $PaginaPadre = $BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", $PaginaPadre2));        
-        $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".strtolower($PaginaPadre));
+        // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
+        $PaginaPadre = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($PaginaPadre2))), 0, 51);        
+        $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".$PaginaPadre);
         
         $CrearTabla = true;
         if ($Resultado) {
@@ -210,7 +215,7 @@ class devildrey33_Comentarios {
         
         if ($CrearTabla == true) {
             // Creo la tabla SOLO si no existe
-            $BD->_mysqli->query("CREATE TABLE comentarios__".strtolower($PaginaPadre)." ".
+            $BD->_mysqli->query("CREATE TABLE comentarios__".$PaginaPadre." ".
                                 "(NumMsg INT NOT NULL AUTO_INCREMENT PRIMARY KEY, ".
                                  "Nombre VARCHAR(128), ".
                                  "Correo VARCHAR(256), ".
@@ -219,14 +224,23 @@ class devildrey33_Comentarios {
                                  "VotacionesTotal INT, ".
                                  "VotacionesValor INT, ".
                                  "Mensaje TEXT, ".
-                                 "PaginaWeb VARCHAR(256))");
+                                 "PaginaWeb VARCHAR(256)) ".
+                                 "COLLATE='utf8_general_ci'". 
+                                 "ENGINE=MyISAM;");
+            
         }
+//            echo "<pre>".$PaginaPadre."</pre>";
+//echo "<pre>".$BD->_mysqli->error." ".$Resultado."</pre>";
         // Creo una fecha legible
         $FechaActual = date("d")." ".Base::ObtenerMesStr(date("m"))." del ".date("Y")." a las ".date("G:i");
         // Inserto los datos del comentario
-        $Resultado = $BD->_mysqli->query("INSERT INTO comentarios__".strtolower($PaginaPadre)." ".
+        $Resultado = $BD->_mysqli->query("INSERT INTO comentarios__".$PaginaPadre." ".
                                          "(Nombre, Correo, IPV4, FechaCreacion, VotacionesTotal, VotacionesValor, Mensaje, PaginaWeb) ".
                                          "VALUES('".$this->StrSeguro($BD, $Nombre)."', '".$this->StrSeguro($BD, $Email)."', '".$_SERVER['REMOTE_ADDR']."', '$FechaActual', '0', '0', '".$BD->_mysqli->real_escape_string($Comentario)."', '".$this->StrSeguro($BD, $PaginaWeb)."')");
+//echo "<pre>".$BD->_mysqli->error."</pre>";
+  //      echo "<pre>INSERT INTO comentarios__".$PaginaPadre." ".
+                                     //    "(Nombre, Correo, IPV4, FechaCreacion, VotacionesTotal, VotacionesValor, Mensaje, PaginaWeb) ".
+                                       //  "VALUES('".$this->StrSeguro($BD, $Nombre)."', '".$this->StrSeguro($BD, $Email)."', '".$_SERVER['REMOTE_ADDR']."', '$FechaActual', '0', '0', '".$BD->_mysqli->real_escape_string($Comentario)."', '".$this->StrSeguro($BD, $PaginaWeb)."')</pre>";
         // Si no se ha escrito el comentario con mi nombre, me envio un correo informativo
         if ($Nombre != "devildrey33") {
             Base::EnviarEmail("Nuevo mensaje en $PaginaPadre2", 
@@ -242,7 +256,10 @@ class devildrey33_Comentarios {
                               "joel.barba.vidal@gmail.com");
         }
         
-        $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".$BD->_mysqli->real_escape_string(strtolower($PaginaPadre))." ORDER BY NumMsg DESC");
+//        echo "<pre>SELECT * FROM comentarios__".$BD->_mysqli->real_escape_string($PaginaPadre)." ORDER BY NumMsg DESC</pre>";
+        
+        $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".$BD->_mysqli->real_escape_string($PaginaPadre)." ORDER BY NumMsg DESC");
+//        echo "<pre>$Resultado</pre>";
         $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
         $this->_ImprimirComentario($Datos, FALSE);
     }
@@ -257,7 +274,8 @@ class devildrey33_Comentarios {
     public function VerEmailComentario($PaginaPadre, $NumComentario) {
         if (devildrey33_Opciones::Administrador() > 0) {
             $BD = new devildrey33_BD; 
-            $PaginaPadre = $BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", $PaginaPadre)); 
+            // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
+            $PaginaPadre = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($PaginaPadre))), 0, 51);        
             $Resultado   = $BD->_mysqli->query("SELECT * FROM comentarios__".strtolower($PaginaPadre)." WHERE NumMsg='".$NumComentario."'");
             
             $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
@@ -270,7 +288,8 @@ class devildrey33_Comentarios {
         $Mensaje = "";
         if (devildrey33_Opciones::Administrador() > 0) {
             $BD = new devildrey33_BD; 
-            $PaginaPadre = $BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", $PaginaPadre));        
+            // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
+            $PaginaPadre = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($PaginaPadre))), 0, 51);        
             $Resultado = $BD->_mysqli->query("DELETE FROM comentarios__".strtolower($PaginaPadre)." WHERE NumMsg='".$BD->_mysqli->real_escape_string($NumComentario)."'");
             if ($Resultado !== true) { $Mensaje = "Error : ".$BD->_mysqli->error; }
             else                     { $Mensaje = "Comentario Eliminado"; }
@@ -286,7 +305,8 @@ class devildrey33_Comentarios {
         $Mensaje = "";
         if (devildrey33_Opciones::Administrador() > 0) {
             $BD = new devildrey33_BD; 
-            $PaginaPadre = $BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", $PaginaPadre));        
+            // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
+            $PaginaPadre = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($PaginaPadre))), 0, 51);        
             $Resultado = $BD->_mysqli->query("UPDATE comentarios__".strtolower($PaginaPadre).
                                             " SET Mensaje='".$BD->_mysqli->real_escape_string($Comentario).
                                            "' WHERE NumMsg='".$BD->_mysqli->real_escape_string($NumComentario)."'");

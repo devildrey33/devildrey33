@@ -9,9 +9,7 @@
 	$META = '<meta name="description" content="Tutorial Captchas">
         <meta name="keywords" content="Captchas PHP, Programar captchas">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Captchas (2 Captcha básico con php)", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Captchas (2 Captcha básico con php)", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Captchas (2 Captcha básico con php)");
 
@@ -65,7 +63,7 @@
                 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
 
                 

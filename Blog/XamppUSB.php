@@ -9,9 +9,7 @@
 	$META = "<meta name='description' content='Xampp portable'>
 	<meta name='keywords' content='Xampp'>";
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Crear servidor web de pruebas portatil para windows", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Crear servidor web de pruebas portatil para windows", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Crear servidor web de pruebas portatil para windows");
 
@@ -50,6 +48,6 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
      

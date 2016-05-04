@@ -31,9 +31,7 @@
 	$META = '<meta name="description" content="Colorear código">
         <meta name="keywords" content="Colorear código HTML">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Colorear código con PHP (Parte 6 HTML)", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Colorear código con PHP (Parte 6 HTML)", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Colorear código con PHP (Parte 6 HTML)");
 
@@ -104,5 +102,5 @@
 <div class='nota'>Este código ha quedado obsoleto, por favor echa un vistazo a la versión 2 : <a href='/Blog/resaltar-sintaxis-codigo-fuente'>Resaltar sintaxis de un código fuente</a>.</div>                
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

@@ -6,9 +6,7 @@
     $META = '<meta name="description" content="CSS Degradados">
     <meta name="keywords" content="CSS, CSS3, CSS3 Degradados, CSS Gradient">';
 
-    if (!isset($_POST["SinPlantilla"])) {
-        $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS : Degradados", $META);
-    }
+    $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS : Degradados", $META);
 
     $Base->InicioBlog(basename(__FILE__), "Referéncia CSS : Degradados");
         
@@ -365,5 +363,5 @@
                 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

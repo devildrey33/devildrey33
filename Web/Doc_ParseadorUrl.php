@@ -62,9 +62,7 @@
        
         $Base = new devildrey33;        
         $META = "<meta name='keywords' content='".$NombrePropiedad.", CSS ".$NombrePropiedad.", ".$Tipo.$NombrePropiedad."'>";
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla($PathBD."CSS_".$NombreCSS.".php", $PathBD." CSS : ".$NombrePropiedad, $META);
-        }
+        $Base->InicioPlantilla($PathBD."CSS_".$NombreCSS.".php", $PathBD." CSS : ".$NombrePropiedad, $META);
         $PathDoc = "../Documentacion/CSS/".$Path."/".$CSS_BD->NormalizarNombre($NombrePropiedad).".php";
         
         // Si es de error no tiene que mostrar los comentarios.
@@ -156,7 +154,7 @@
         }
         
         
-        if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+        $Base->FinPlantilla(); 
     }
 
     /*************************************************************************************************************************************/
@@ -175,9 +173,7 @@
         $Base = new devildrey33;        
         $META = '<meta name="description" content="Referencia '.$Str.' css, Ejemplos '.$Str.' css">
                 <meta name="robots" content="index, follow">';
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS : ".$Str2, $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS : ".$Str2, $META);
         $Base->InicioDoc(basename(__FILE__), "Referéncia CSS : ".$Str2);
         
         
@@ -194,7 +190,7 @@
         echo "<br /><div class='devildrey33_Nota'>".CSSTipo::Plural($TipoSalida)." documentadas : <b>".$Documentadas["Documentadas"]."/".$Documentadas["Total"]."</b><br />Modificado por última vez : <i>".$Fecha."</i>.</div>";
 
         $Base->FinBlog();
-        if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+        $Base->FinPlantilla(); 
     }
 
     /*************************************************************************************************************************************/
@@ -209,9 +205,7 @@
         $META = '<meta name="description" content="Referencia css, Ejemplos css">'.
                 '<meta name="keywords" content="CSS">'.
                 '<meta name="robots" content="index, follow">';
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS", $META);
         $Base->InicioDoc(basename(__FILE__), "Referéncia CSS");
         
         echo '<br />'.
@@ -232,7 +226,7 @@
 
 
         $Base->FinBlog();
-        if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+        $Base->FinPlantilla(); 
 
     }
 
@@ -245,16 +239,14 @@
     elseif ($TipoSalida == eTipo::RaizDoc) {
         $Base = new devildrey33;        
         $META = '<meta name="robots" content="index, follow">';
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Documentación", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Documentación", $META);
         $Base->InicioDoc(basename(__FILE__), "Documentación");
 
         echo '<br />'.
         '<div><a href="/Doc/CSS/">CSS</a></div>'.
         '<div><a href="/Doc/DWL/">DWL</a></div>';
         $Base->FinBlog();
-        if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+        $Base->FinPlantilla(); 
     }
 
 ?>

@@ -9,9 +9,7 @@
 	$META = '<meta name="description" content="Ubuntu bajo VirtualBox">
         <meta name="keywords" content="Ubuntu virtualbox">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Instalar Ubuntu bajo VirtualBox en Windows", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Instalar Ubuntu bajo VirtualBox en Windows", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Instalar Ubuntu bajo VirtualBox en Windows");
         
@@ -154,5 +152,5 @@ gedit /etc/fstab"); ?>
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

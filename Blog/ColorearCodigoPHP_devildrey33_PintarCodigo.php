@@ -10,9 +10,7 @@
 	$META = '<meta name="description" content="Colorear código">
         <meta name="keywords" content="devildrey33_PintarCodigo">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "PHP : Objeto devildrey33_PintarCodigo", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "PHP : Objeto devildrey33_PintarCodigo", $META);
         
         $Base->InicioBlog(basename(__FILE__), "PHP : Objeto devildrey33_PintarCodigo");
 ?>	
@@ -89,5 +87,5 @@ int MiFuncionEjemplo(void) { return 0: };
                 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

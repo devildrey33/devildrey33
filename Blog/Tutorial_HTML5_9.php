@@ -14,9 +14,7 @@
 	$META = '<meta name="description" content="Tutorial HTML">
         <meta name="keywords" content="Tutorial HTML">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Creación de páginas web desde cero (9 Tipografías)", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Creación de páginas web desde cero (9 Tipografías)", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Creación de páginas web desde cero (9 Tipografías)");
 
@@ -187,6 +185,6 @@ font-family:"Lucida Console", Monaco, monospace;
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
                 

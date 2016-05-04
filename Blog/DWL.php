@@ -9,9 +9,7 @@
 	$META = '<meta name="description" content="Devildrey33 Windows Library">
         <meta name="keywords" content="DWL, Devildrey33 Windows Library">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Devildrey33 Windows Library", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Devildrey33 Windows Library", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Devildrey33 Windows Library");
 
@@ -82,5 +80,5 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

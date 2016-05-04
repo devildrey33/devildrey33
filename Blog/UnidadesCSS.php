@@ -34,9 +34,7 @@
     $META = '<meta name="description" content="CSS Unidades">
     <meta name="keywords" content="CSS, CSS3, CSS3 Unidades">';
 
-    if (!isset($_POST["SinPlantilla"])) {
-        $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS : Unidades", $META);
-    }
+    $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS : Unidades", $META);
 
     $Base->InicioBlog(basename(__FILE__), "Referéncia CSS : Unidades");
         
@@ -116,5 +114,5 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

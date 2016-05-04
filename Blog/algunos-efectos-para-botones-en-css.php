@@ -7,9 +7,7 @@
 
     $Titulo = "Algunos efectos para botones en CSS";
     
-    if (!isset($_POST["SinPlantilla"])) {
-        $Base->InicioPlantilla(basename(__FILE__), $Titulo, $META);
-    }
+    $Base->InicioPlantilla(basename(__FILE__), $Titulo, $META);
 
     $Base->InicioBlog(basename(__FILE__), $Titulo);
 ?>	
@@ -92,7 +90,9 @@
     <div class='nota'>
     <div>Esto es mas bien una manía por mi parte, pero no se si os habéis preguntado ¿por qué en el selector del <linea cid='boxshadow' l='3,8'><code>.Boton-BoxShadow:hover::before</code></linea> también incluyo el <linea cid='boxshadow' l='4,9'><code>.Boton-BoxShadow:active::before</code></linea>? y os voy a responder con otra pregunta, ¿que pasa si mantenemos pulsado un botón, y sin soltar el botón nos movemos fuera de él? Probad en un Box-Shadow, y luego en el Test sin el selector.</div>
     <br />
-    <div>Ahora haced click una vez mas en el botón 'Test sin el selector ...', <b>una vez soltado el botón del mouse</b>, moved el mouse fuera del área del bóton, y presionad la tecla 'espacio' durante 3 segundos. Si lo habeis hecho bien, no habreis visto el efecto del hover al pulsar el espacio, <b>Y TANTO ESTA SITUACIÓN COMO LA ANTERIOR SON INACEPTABLES</b> desde mi punto de vista. </div>
+    <div>Ahora haced click una vez mas en el botón 'Test sin el selector ...', <b>una vez soltado el botón del mouse</b>, moved el mouse fuera del área del bóton, y presionad la tecla 'espacio' durante 3 segundos, si lo habéis hecho correctamente, no habreis visto el efecto del hover al pulsar el espacio.</div>
+    <br />
+    <div>La solución a estas dos situcaciones, es tratar el selector <code>:active</code> del mismo modo que tratamos el selector <code>:hover</code>.</div>
 </div>
     <hr />
     
@@ -196,5 +196,5 @@
     
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

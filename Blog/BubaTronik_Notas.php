@@ -10,9 +10,7 @@
         <meta name="keywords" content="Notas BubaTronik, Notas versión BubaTronik">';
 
 	
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "BubaTronik : Formatos", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "BubaTronik : Formatos", $META);
         
         $Base->InicioSinCabecera(basename(__FILE__), "BubaTronik : Formatos");
 
@@ -196,5 +194,5 @@
 
 <?php
     $Base->FinBlog(true);
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

@@ -15,9 +15,7 @@
 	$META = '<meta name="description" content="Comparativa navegadores 2011">
         <meta name="keywords" content="Comparativa navegadores">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Comparativa navegadores 2011", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Comparativa navegadores 2011", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Comparativa navegadores 2011");
         
@@ -227,5 +225,5 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

@@ -9,9 +9,7 @@
 	$META = '<meta name="description" content="ComboBox en PHP">
         <meta name="keywords" content="ComboBox web, ComboBox php">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "ComboBox PHP + JQuery + JavaScript + Css", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "ComboBox PHP + JQuery + JavaScript + Css", $META);
         
         $Base->InicioBlog(basename(__FILE__), "ComboBox PHP + JQuery + JavaScript + Css");
 ?>	
@@ -51,5 +49,5 @@
                 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

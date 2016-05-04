@@ -10,9 +10,7 @@
 	$META = '<meta name="description" content="Inyección SQL">
         <meta name="keywords" content="SQL">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Inyección SQL", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Inyección SQL", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Inyección SQL");
         
@@ -76,5 +74,5 @@ $Consulta = "SELECT * FROM usuarios WHERE nombre=\'".mysql_real_escape_string($_
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>

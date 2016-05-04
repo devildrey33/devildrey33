@@ -168,8 +168,8 @@
 .Boton-BoxShadow3:hover::before  { box-shadow : 0px 0px 30px 25px #ea504e inset;   }            
 
 @keyframes Ani-LinearGradient {
-    0%   { left : calc(-200% + -3px); }
-    33%  { left : calc(-200% + -3px); }
+    0%   { left : calc(-(100% * 2) - 3px); }
+    33%  { left : calc(-(100% * 2) - 3px); }
     66%  { left : -7px;    }
     100% { left : -7px;    }
 }

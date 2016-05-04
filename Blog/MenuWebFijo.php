@@ -9,9 +9,7 @@
 	$META = '<meta name="description" content="Menu PHP">
         <meta name="keywords" content="Menu PHP, Menu XML, Menu JQuery, Menu JavaScript">';
 
-        if (!isset($_POST["SinPlantilla"])) {
-            $Base->InicioPlantilla(basename(__FILE__), "Menu PHP + XML + JQuery + JavaScript + Css", $META);
-        }
+        $Base->InicioPlantilla(basename(__FILE__), "Menu PHP + XML + JQuery + JavaScript + Css", $META);
         
         $Base->InicioBlog(basename(__FILE__), "Menu PHP + XML + JQuery + JavaScript + Css");
 
@@ -71,5 +69,5 @@
 
 <?php
     $Base->FinBlog();
-    if (!isset($_POST["SinPlantilla"])) $Base->FinPlantilla(); 
+    $Base->FinPlantilla(); 
 ?>
