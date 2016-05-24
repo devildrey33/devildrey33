@@ -192,6 +192,8 @@ $Lab = new function() {
                     $("body").attr({ "modificado" : "false" });
                     $Base.ComprobarScrollVotacion();
                     $Lab.ActualizarResultado(); 
+                    
+                    $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
                 }
                 // Instancia de un minilab
                 else {

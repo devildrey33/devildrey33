@@ -2,6 +2,11 @@
 
 include("Base.php");
 
+/* La idea es poder modificar el htacces libremente sin tener que retocar este código.
+    NO DEBES MODIFICAR los comentarios #INICIO y #FIN que encontraras dentro del archivo .htaccess, 
+    por lo demás eres libre de añadir / modificar / eliminar código fuera de las áreas comprendidas entre los comentarios INICIO y FIN.
+  */
+
 class devildrey33_htaccess {    
     /* Función para banear una IP */
     public function BanearIP($IP) {

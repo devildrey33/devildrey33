@@ -1,12 +1,23 @@
 <?php
 
 if (!defined('DEF_Base')) {
-    define('DEF_Base', true);
+    define('DEF_Base', true);    
+/*    function myErrorHandler($errno, $errstr, $errfile, $errline) {
+        Base::$ErrorPhp = true;
+        echo "<pre>ERROR-PHP</pre>";
+        return FALSE;
+    }
+
+    $old_error_handler = set_error_handler('myErrorHandler', E_ALL  & ~E_NOTICE & ~E_USER_NOTICE);*/
 
 
     /* Funciones base utilizadas por varios objetos independientes  *
      * Todas las funciones son estaticas.                           */
     class Base {
+        static $ErrorPhp = false;
+        
+        
+        
         /* Función que devuelve el nombre del mes especificado numericamente */
         static public function ObtenerMesStr($NumMes) {
             switch ($NumMes) {
@@ -132,8 +143,118 @@ if (!defined('DEF_Base')) {
                 'pattern'   		=> $pattern
             );
         }
+
+        static function var_export($Objeto, $Opciones = []) {
+            // Espacios al principio
+            if (!isset($Opciones["EspaciosInicio"]))        $Opciones["EspaciosInicio"] = 2;
+            if (!isset($Opciones["Ret"]))                   $Opciones["Ret"] = "";
+            $EspaciosNombre = 0;
+            $UltimoHijo = true;
+            $IndiceNumerico = true;
+            $Contador = 0;
+            // Fase 1   comprobar los espacios que ocupa el nombre para esta iteración
+            //          determinar si este objeto es el ultimo hijo
+            //          determinar si todos los indices del objeto son numericos y co-relativos (1,2,3,4,5,6,7,etc...)
+            foreach ($Objeto as $Nombre => $Valor) {                
+                $TamNombre = strlen($Nombre);
+                // Actualizo el $EspacioNombre si el tamaño actual es mayor.
+                if ($TamNombre > $EspaciosNombre) $EspaciosNombre = $TamNombre;
+                // Si el tipo de objeto actual es un objeto o un array determinamos que no es el ultimo hijo.
+                if (gettype($Valor) == "array" || gettype($Valor) == "object") $UltimoHijo = false;
+                // Si el Nombre del indice no es númerico o no es co-relativo
+                if ($Nombre !== $Contador++) $IndiceNumerico = false;
+//                echo $Nombre." ".($Contador - 1)." ".$IndiceNumerico."\n";
+            }
+//            echo $EspaciosNombre." ".$IndiceNumerico."\n";
+            // Los indices numericos no se muestran por lo que el espacio del nombre se asigna a 0
+            if ($IndiceNumerico === true) $EspaciosNombre = 0;
+            
+            // Fase 2 Crear el contenido de la variable tabulado a mi gusto
+            // Empieza por array
+            $Opciones["Ret"].= gettype($Objeto)." ( ";            
+            if ($UltimoHijo === false) $Opciones["Ret"].= "\n";
+            $Contador = 0;
+            foreach ($Objeto as $Nombre => $Valor) {
+                $Contador ++;
+                if ($UltimoHijo === false) $Opciones["Ret"].= str_repeat(" ", $Opciones["EspaciosInicio"]); // Añado los espacios iniciales
+                if ($IndiceNumerico === false) {
+                    $Opciones["Ret"].= "'".$Nombre."'";
+                    if ($UltimoHijo === false)  $Opciones["Ret"].= str_repeat(" ", $EspaciosNombre - strlen($Nombre)); // Añado los espacios después del nombre
+                    $Opciones["Ret"].= " => ";
+                }
+                switch (gettype($Valor)) {
+                    case "object" :
+                    case "array"  :
+                        $EI = $Opciones["EspaciosInicio"] + $EspaciosNombre + 2 + (($IndiceNumerico === false)? 6 : 0);
+                        $Ret = Base::var_export($Valor, ["EspaciosInicio" => $EI]);
+                        $Opciones["Ret"].= $Ret["Ret"];
+                        break;
+                    case "NULL" :
+                        $Opciones["Ret"].= "NULL";
+                        if (count($Objeto) !== $Contador)   $Opciones["Ret"].= ",";
+                        break;
+                    case "string" :
+                        $Opciones["Ret"].= "'".$Valor."'";
+                        if (count($Objeto) !== $Contador)   $Opciones["Ret"].= ",";
+                        break;
+                    default :
+                        $Opciones["Ret"].= $Valor;
+                        if (count($Objeto) !== $Contador)   $Opciones["Ret"].= ",";
+                        break;
+                }                
+                // Si este objeto no contiene mas objetos o arrays ($UltimoHijo), añadiremos sus valores en la misma linea
+                if ($UltimoHijo === true) $Opciones["Ret"].= " ";
+                else                      $Opciones["Ret"].= "\n";
+            }
+            if      ($Opciones["EspaciosInicio"] != 2 && $UltimoHijo === false)   $Opciones["Ret"].= str_repeat(" ", $Opciones["EspaciosInicio"] - 2)."),";
+            else if ($Opciones["EspaciosInicio"] != 2 && $UltimoHijo === true)    $Opciones["Ret"].= "),";
+            else                                                                  $Opciones["Ret"].= ")";
+//            if ($UltimoHijo === true) $Opciones["Ret"].= "";
+//            else                      $Opciones["Ret"].= "\n";
+//            echo $Opciones["Ret"];
+            if ($Opciones["EspaciosInicio"] != 2)   return $Opciones;
+            else                                    return $Opciones["Ret"];
+        }
+
+
+        static function ObtenerLogPHP() {
+            $LogStr = "";
+            /* Volcado del log php al final de la web */
+            if (file_exists(dirname(__FILE__)."/Cache/php-error.log")) {
+                $LogStr .= "<div style='text-decoration:underline; font-weight:boldest; font-size:1.6rem'>Log generado el ".date('d/m/Y [h:i:s]', time())."</div>";
+                $Log = file_get_contents(dirname(__FILE__)."/Cache/php-error.log");
+                $LogStr .= Base::ParsearLogPHP($Log);
+
+                Base::EnviarEmail("Advertencias o Errores PHP", 
+                  "Ip : ".$_SERVER['REMOTE_ADDR']."\n".$Log, 
+                  "ErroresPHP@".$_SERVER["SERVER_NAME"], 
+                  "devildrey33@hotmail.com");
+
+                
+                unlink(dirname(__FILE__)."/Cache/php-error.log");
+                $LogStr .= "<script>\$Base.MostrarErroresPHP();</script>";
+            }
+            return $LogStr;
+        }
+        
+        static function ParsearLogPHP($Log) {
+            $LogStr = "";
+            $Lineas = split("\n", $Log);
+            foreach ($Lineas as $Linea) {
+                $NumLinea = strpos($Linea, " on line ");
+                if ($NumLinea !== false) {
+                    $Linea = str_replace(" on line ", " on line <b style='color:blue'>", $Linea);
+                    $LogStr .= "<div>".substr($Linea, strpos($Linea, "]") + 2)."</b></div>".Intro();
+                }
+                else {
+                    $LogStr .= "<div>".substr($Linea, strpos($Linea, "]") + 2)."</div>".Intro();                        
+                }
+            }
+            return $LogStr;
+        }
     };
 
+    
     /* Clase que contiene todas las entradas de la web.
      *  Para acceder a las entradas puedes usar el miembro Datos, si añades o modificas cualquier valor, deberas usar la funcion guardar. */
     /*class EntradasWeb {
@@ -156,4 +277,29 @@ if (!defined('DEF_Base')) {
     };*/
 
 
+    // Elimino el archivo que contiene los warnings y errores php
+    if (file_exists(dirname(__FILE__)."/Cache/php-error.log")) {
+        unlink(dirname(__FILE__)."/Cache/php-error.log");
+    }
+    
+    // Establezco un archivo de log para guardar los errores/warnings 
+    ini_set("log_errors", 1);
+    ini_set("error_log", $_SERVER['DOCUMENT_ROOT']."/Web/Cache/php-error.log");
+    
+    // Los errores criticos nunca llegaran a mostrarse en el navegador, pero me los mando por correo.
+    function exception_handler($e) {
+        try {
+            // ... normal exception stuff goes here
+            error_log($e->getMessage()); // This is the underlying problem
+            print($e->getMessage());
+        }
+        catch (Exception $e) {
+            error_log(get_class($e)." thrown within the exception handler. Message: ".$e->getMessage()." on line ".$e->getLine());
+        }
+        Base::ObtenerLogPHP(); 
+    }    
+    set_exception_handler('exception_handler');
+        
+    
+    
 }

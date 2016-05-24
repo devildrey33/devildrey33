@@ -40,7 +40,7 @@
                 $NombreComp = $this->NormalizarNombre($CSS["Nombre"]);
                 $NombreComp2 = $this->NormalizarNombre($Nombre);
                 if ($CSS["Grupo"] == $Grupo && $NombreComp != $NombreComp2) {
-                    switch ($CSS["Tipo"]) {
+                    switch ($CSS["TipoCSS"]) {
                         case CSSTipo::Propiedad : $Path = "/Doc/CSS/Propiedades/".$CSS["Nombre"]; 	break;
                         case CSSTipo::Funcion 	: $Path = "/Doc/CSS/Funciones/".$CSS["Nombre"]; 	break;
                         case CSSTipo::Regla 	: $Path = "/Doc/CSS/Reglas/".$CSS["Nombre"]; 		break;
@@ -128,7 +128,7 @@
             echo "<div class='Grupo_Marco'>";
             $this->MostrarGrupo_Cabeceraes();
             foreach ($this->_Lista as $Propiedad) {
-                if ($Propiedad["Tipo"] == CSSTipo::Propiedad) {
+                if ($Propiedad["TipoCSS"] == CSSTipo::Propiedad) {
                     if ($Ret["Total"] != 0) echo "<div class='Div_Separador'></div>";
                     $Ret["Total"] ++;
                     $Ret["Documentadas"] +=	$this->MostrarDescripcionPropiedad($Propiedad);
@@ -185,7 +185,7 @@
                 // Recuento los valores del grupo, para determinar si hay propiedades dentro del grupo
                 foreach ($this->_Lista as $Entrada) {
                     if ($Entrada["Grupo"] == $Grupo) {
-                        if ($Entrada["Tipo"] == $Tipo) {
+                        if ($Entrada["TipoCSS"] == $Tipo) {
                             $HayEntradas = true;
                             break;
                         }
@@ -216,7 +216,7 @@
                     "<th>CSS</th>".
                  "</tr>";
             foreach ($this->_Lista as $Entrada) {
-                if ($Entrada["Tipo"] == $Tipo || $Tipo == CSSTipo::Todos) {
+                if ($Entrada["TipoCSS"] == $Tipo || $Tipo == CSSTipo::Todos) {
                     if ($Entrada["Grupo"] == $Grupo) {
                         echo "<tr>";
 //						if ($Ret["Total"] != 0) echo "<div class='Div_Separador'></div>";
@@ -225,14 +225,14 @@
                         else                        $Path = $Entrada["Path"];
 /*                        if ($Entrada["Path"] == "") $Path = $this->NormalizarNombre($Entrada["Nombre"]);
                         else                        $Path = $this->NormalizarNombre($Entrada["Path"]);*/
-                        if (file_exists("../Documentacion/CSS/".CSSTipo::Plural($Entrada["Tipo"])."/".$this->NormalizarNombre($Path).".php")) {
-                            echo "<td class='Espacio".CSSTipo::Singular($Entrada["Tipo"])."'><a href='/Doc/CSS/".CSSTipo::Plural($Entrada["Tipo"])."/".$Path."'>".$Entrada["Nombre"]."</a></td>";
+                        if (file_exists("../Documentacion/CSS/".CSSTipo::Plural($Entrada["TipoCSS"])."/".$this->NormalizarNombre($Path).".php")) {
+                            echo "<td class='Espacio".CSSTipo::Singular($Entrada["TipoCSS"])."'><a href='/Doc/CSS/".CSSTipo::Plural($Entrada["TipoCSS"])."/".$Path."'>".$Entrada["Nombre"]."</a></td>";
                             $Ret["Documentadas"]++;
                         }
                         else {
-                            echo "<td class='Espacio".CSSTipo::Singular($Entrada["Tipo"])."'>".$Entrada["Nombre"]."</td>";
+                            echo "<td class='Espacio".CSSTipo::Singular($Entrada["TipoCSS"])."'>".$Entrada["Nombre"]."</td>";
                         }
-//						if ($Entrada["Tipo"] == CSSTipo::Selector) echo "<td class='EspacioEjemplo'>".$Entrada["Ejemplo"]."</td>";
+//						if ($Entrada["TipoCSS"] == CSSTipo::Selector) echo "<td class='EspacioEjemplo'>".$Entrada["Ejemplo"]."</td>";
                         echo "<td  title='".$Entrada["Descripcion"]."'>".$Entrada["Descripcion"]."</td>";
                         echo "<td >".$this->MostrarCompatibilidadMini($Entrada["Nombre"])."</td>";
                         echo "<td >".$Entrada["Version"]."</td>";
@@ -264,7 +264,7 @@
         
 
         /* 	$Nombre 		: String con el nombre
-                $Tipo   		: Tipo de css (Enum_CSSTipo)
+                $TipoCSS   		: Tipo de css (Enum_CSSTipo)
                 $Grupo			: Sub tipo de css (Enum_CSSGrupo)
                 $Descripcion            : String con la descripción
                 $Version		: CSS1, CSS2, CSS3, CSS4, etc... (utilizar solo el número)
@@ -272,8 +272,19 @@
                 $Ejemplo		: Ejemplo corto (para selectores)
                 $Path			: Nombre del archivo (para selectores con nombres raros)
         */
-        function AgregarCSS($Nombre, $Tipo, $Grupo, $Version, $Soportada, $Descripcion, $Ejemplo = "", $Path = "", $EjemplosExtra = array()) {
-            $this->_Lista[$this->_ListaTotalItems ++] = array("Nombre" => $Nombre, "Tipo" => $Tipo, "Grupo" => $Grupo, "Descripcion" => $Descripcion, "Version" => $Version, "Soportada" => $Soportada, "Ejemplo" => $Ejemplo, "Path" => $Path, "EjemplosExtra" => $EjemplosExtra);
+        function AgregarCSS($Nombre, $TipoCSS, $Grupo, $Version, $Soportada, $Descripcion, $Ejemplo = "", $Path = "", $EjemplosExtra = array()) {
+            $this->_Lista[$this->_ListaTotalItems ++] = array(  
+                "Nombre"        => $Nombre, 
+                "TipoCSS"       => $TipoCSS, 
+                "Grupo"         => $Grupo, 
+                "Descripcion"   => $Descripcion, 
+                "Version"       => $Version, 
+                "Soportada"     => $Soportada, 
+                "Ejemplo"       => $Ejemplo, 
+                "Path"          => $Path, 
+                "EjemplosExtra" => $EjemplosExtra, 
+                "Tipo"          => "DocCSS"
+            );
         }
 
 
@@ -595,7 +606,7 @@
             
             /* Creo el archivo de intercambio para poder crear la lista de entradas en javascript */
             if (filemtime(dirname(__FILE__).'/CSS_BD.php') > filemtime(dirname(__FILE__)."/Config/EntradasDocCSS.php")) { 
-                file_put_contents($_SERVER['DOCUMENT_ROOT']."/Web/Config/EntradasDocCSS.php", "<?php return ".var_export($this->_Lista, TRUE).";");                
+                file_put_contents($_SERVER['DOCUMENT_ROOT']."/Web/Config/EntradasDocCSS.php", "<?php return ".Base::var_export($this->_Lista).";");                
             }
         }
     };
@@ -606,16 +617,16 @@
         const Selector 	= 1;
         const Funcion 	= 2;
         const Regla 	= 3;
-        static public function Singular($Tipo) {
-            switch ($Tipo) {
+        static public function Singular($TipoCSS) {
+            switch ($TipoCSS) {
                 case CSSTipo::Propiedad : return "Propiedad";
                 case CSSTipo::Selector 	: return "Selector";
                 case CSSTipo::Funcion 	: return "Función";
                 case CSSTipo::Regla 	: return "Regla";
             }
         }
-        static public function Plural($Tipo) {
-            switch ($Tipo) {
+        static public function Plural($TipoCSS) {
+            switch ($TipoCSS) {
                 case CSSTipo::Propiedad : return "Propiedades";
                 case CSSTipo::Selector 	: return "Selectores";
                 case CSSTipo::Funcion 	: return "Funciones";

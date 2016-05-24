@@ -285,3 +285,63 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
     width  : 100%;
     height : 100%;
 }
+
+
+
+
+#ErroresPHP {
+    position:fixed;
+    width:90%;
+    max-height:80%;
+/*    height:80%;*/
+    background:rgba(240,240,240, 0.95);
+    color:#000;
+    border:1px solid #222;
+    bottom:0;
+/*    margin-bottom:5%;*/
+    left:5%;
+    z-index:1000;
+    font-family:Inconsolata, monospace;
+    font-size:1.4rem !important;
+    transform-origin:50% 100%;
+    transform: perspective(600px) rotateX(90deg);
+    transition: 0.4s cubic-bezier(.17,-0.42,0,1.35);
+    opacity:0;
+}
+
+#ErroresPHP[mostrar=true] {
+    opacity:1;
+    transform: perspective(600px) rotateX(0deg);
+}
+
+#ErroresPHP_Titulo {
+    background:#000;
+    color:red;
+    font-size:1.6rem !important;
+    font-weight:bolder;
+    padding:10px;
+    height:15px;
+}
+#ErroresPHP_Cerrar {
+    position:absolute;
+    right:1px;
+    top:1px;
+    width:22px;
+    height:22px;
+    color:#FFF;
+    padding:5px;
+    font-size:2rem !important;
+    text-align:center;
+    transition:0.4s;
+    cursor:pointer;
+}
+#ErroresPHP_Cerrar:hover {
+    background:#EA504E;
+}
+
+#ErroresPHP_Info {
+    padding:10px;
+    overflow:scroll;
+    white-space:nowrap;
+    height:450px;
+}

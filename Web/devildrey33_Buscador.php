@@ -1,97 +1,84 @@
-<?php 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
-	$Base = new devildrey33;	
-	
-/*	$META = "<meta name='description' content='Buscar devildrey33'>
-	<meta name='keywords' content='Buscar, devildrey33'>";*/
-
-
-        $Buscar = "";
-        if (isset($_GET["Search"])) $Buscar = $_GET["Search"];
-        if (isset($_POST["Search"])) $Buscar = $_POST["Search"];
-        
-        $nBuscar = str_replace(".php", "", $Buscar);
-        
-/*	include("devildrey33.php");*/
-//	$Base = new devildrey33(devildrey33_TipoPlantilla::Buscador, basename(__FILE__));
-	
-	$DHE = "<meta name='description' content='Buscar devildrey33'>".Intro().
-"<meta name='keywords' content='Buscar, devildrey33'>".Intro();
-/*"<script type='text/javascript' src='https://www.google.es/jsapi'></script>".Intro().
-
-
-"<script type='text/javascript'>
-    google.load('search', '1');
-    google.setOnLoadCallback(function(){
-        new google.search.CustomSearchControl().draw('cse');
-    }, true);
-    google.load('search', '1');
-			
-    function OnLoad() {
-        // Create a custom search control that uses a CSE restricted to code.google.com
-        var customSearchControl = new google.search.CustomSearchControl('005953647264407381580:5hnum4vxqqo');
-
-        // Draw the control in content div
-        customSearchControl.draw('content');";
-        
-        if ($nBuscar !== "") $DHE .= "customSearchControl.execute('".$nBuscar."');";
-        $DHE .= " 
-    }
-</script>    
-";*/
-        
-
-
-	
-        $Base->InicioPlantilla(basename(__FILE__), "Buscar", $DHE);
-        
-/*echo "        
-    <div id='cse' style='width: 100%;'>Cargando</div>
-    <script src='//www.google.com/jsapi' type='text/javascript'></script>
-    <script type='text/javascript'>
-    google.load('search', '1', {language: 'es', style: google.loader.themes.V2_DEFAULT});
-    google.setOnLoadCallback(function() {
-      var customSearchOptions = {};
-      var imageSearchOptions = {};
-      imageSearchOptions['layout'] = 'google.search.ImageSearch.LAYOUT_POPUP';
-      customSearchOptions['enableImageSearch'] = true;
-      customSearchOptions['adoptions'] = {'layout' : 'noTop'};
-      var customSearchControl =   new google.search.CustomSearchControl('005953647264407381580:5hnum4vxqqo', customSearchOptions);
-      customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
-      var options = new google.search.DrawOptions();
-      customSearchControl.draw('cse', options);";      
-if ($nBuscar !== "") echo "customSearchControl.execute('".$nBuscar."');"; 
-echo "}, true);
-    </script>";*/
-      
-        
-        
-        $Base->InicioSinCabecera(basename(__FILE__), "Buscar");
-        
-//        if ($nBuscar !== "") echo "<script>customSearchControl.execute('".$nBuscar."');</script>"; 
-        
-        
-//	$Base->InicioPlantilla("Buscador", $DeclaracionesHeadExtras);
-?>	
-
-    <p>El buscador aún no funciona, perdona las molestias.</p>
-
-<!--    <script>
-      (function() {
-        var cx = '005953647264407381580:5hnum4vxqqo';
-        var gcse = document.createElement('script');
-        gcse.type = 'text/javascript';
-        gcse.async = true;
-        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-            '//cse.google.com/cse.js?cx=' + cx;
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(gcse, s);
-      })();
-    </script>
-    <gcse:search></gcse:search>        
-    -->
 <?php
-    $Base->FinSinCabecera();
-    $Base->FinPlantilla(); 
+
+class devildrey33_Buscador {
+    static public function GenerarCache() {
+        // Tiempo máximo de ejecución en segundos (1 hora)
+        set_time_limit(60 * 60);
+//        header('Content-Type: text/html; charset=8859-1');
+//        header('Content-Type: text/html; charset=UTF-8');
+        $ArrayEntradasB = (require dirname(__FILE__).'/Config/EntradasBlog.php');
+        $ArrayEntradasD = (require dirname(__FILE__).'/Config/EntradasDocCSS.php');
+        $CacheBuscador = array();
+        
+//        $CacheBuscador[] = devildrey33::CacheBuscador_EscanearArchivo($ArrayEntradasB[1]);
+        
+//        devildrey33::CacheBuscador_SeparaString($CacheBuscador[0]["Palabras"]);
+        foreach ($ArrayEntradasB as $Entrada) {  $CacheBuscador[] = devildrey33_Buscador::EscanearArchivo($Entrada);        }
+        foreach ($ArrayEntradasD as $Entrada) {  $CacheBuscador[] = devildrey33_Buscador::EscanearArchivo($Entrada);        }
+        
+        
+        file_put_contents($_SERVER['DOCUMENT_ROOT']."/Web/Cache/BuscadorPalabras.php", "<?php return ".var_export($CacheBuscador, TRUE).";");
+        
+        print_r($CacheBuscador);
+        // Tiempo máximo de ejecución en segundos (30 segundos)
+        set_time_limit(30);
+    }
+    
+    // Archivo '/Blog/Canvas2D_1'
+    static public function EscanearArchivo($Entrada) {
+        switch ($Entrada["Tipo"]) {
+            case "Blog"   :   default :       $URL = "/Blog/".$Entrada["URL"];   break;
+            case "Lab"    :                   $URL = "/Lab/".$Entrada["URL"];    break;
+            case "DocCSS" :                   
+                switch ($Entrada["TipoCSS"]) {
+                    case 0 : $URL  = "/Doc/CSS/Propiedades/".$Entrada["Nombre"];    $Entrada["Titulo"] = "Propiedad CSS ".$Entrada["Nombre"];    break;
+                    case 1 : $URL  = "/Doc/CSS/Selectores/".$Entrada["Nombre"];     $Entrada["Titulo"] = "Selector CSS ".$Entrada["Nombre"];     break;
+                    case 2 : $URL  = "/Doc/CSS/Funciones/".$Entrada["Nombre"];      $Entrada["Titulo"] = "Función CSS ".$Entrada["Nombre"];      break;
+                    case 3 : $URL  = "/Doc/CSS/Reglas/".$Entrada["Nombre"];         $Entrada["Titulo"] = "Regla CSS ".$Entrada["Nombre"];        break;
+                }
+                
+                break;
+        }
+        // Fase 1, generar codigo html
+        $fb = iconv('UTF-8', 'ISO-8859-1//IGNORE', file_get_contents("http://devildrey33.st0rm".$URL."?GenerarCacheBuscador"));            
+        // Fase 2, eliminar todas las etiquetas
+        $fb = strip_tags($fb);
+        // Fase 3, pasar un filtro que elimina acentos y ciertos caracteres 
+        $fb = devildrey33_Buscador::Filtro($fb);
+        // Dividimos el contenido restante en un array de palabras
+        $ArrayPalabras = array_filter(explode(" ", $fb)); 
+        // Creo un array con el archivo, el titulo, y las palabras
+        
+        $Resultado = array( "URL"       => $URL, 
+                            "Titulo"    => devildrey33_Buscador::Filtro(iconv('UTF-8', 'ISO-8859-1//IGNORE', $Entrada["Titulo"])), 
+                            "Palabras"  => "",
+                            "UMOD"      => "");               
+        foreach ($ArrayPalabras as $Palabra) {
+            if (strlen($Palabra) > 1) {
+                if (strpos($Resultado["Palabras"], $Palabra) === false) {
+                    $Resultado["Palabras"] .= $Palabra." ";
+                }                
+            }
+        }
+        print_r($Resultado["Titulo"]."\n");        
+        return $Resultado;
+    }
+    
+    // imprimeix cada lletra del string amb el seu valor ASCII (per depurar les putes codificacións i fer un parche dels caracters que no li agraden)
+    static public function SeparaString($Str) {
+        for ($i = 0; $i < strlen($Str); $i++) {
+            echo substr($Str, $i, 1)." -> ".ord(substr($Str, $i, 1))."\n";
+        }
+    }
+    
+    static public function Filtro($Texto) {
+        return str_replace(
+            /* Redeu no pilla be els accents amb strings... els he posat amb chr i el caracter ASCII... putes codificacións... */
+            array(chr(225), chr(233), chr(237), chr(243), chr(250), chr(241), "(", ")", "'", '"', ";", ":", "=", "_", "[", "]", "{", "}", "+", "*", "%", "/", "^", "`", "´", "&", ",", ".", ">", "<", "\n", "#", "\r", "\t", "?", "\\"),
+            array("a"     ,"e"      , "i"     , "o"     , "u"     , "n"     , " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " ," ", " ", " ", " " , " ", " " , " " , " ", " " ),  
+            mb_strtolower($Texto)
+        );
+    }
+};    
 ?>
      

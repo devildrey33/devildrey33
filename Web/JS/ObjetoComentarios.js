@@ -125,6 +125,7 @@ $Comentarios = new function() {
                 $Base.MostrarMensaje(data.Mensaje);                
             }
             $Base.Cargando("FALSE");
+            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
         // Fallo al realizar la petición ajax            
         }).fail(function(jqXHR, textStatus, tError) { 
             console.log("Comentarios.VotarComentario Error ajax", jqXHR, textStatus, tError);
@@ -176,19 +177,21 @@ $Comentarios = new function() {
                                                 } );
         console.log("Comentarios.BotonEnviarComentario");
         nAjax.done(function(data) { 
+            Datos = JSON.parse(data);
             // Se ha detectado un error, parseando en el PHP 
-            if (data.substr(0, 5) === "Error") { 
-                $Base.MostrarMensaje(data);
+            if (Datos["HTML"].substr(0, 5) === "Error") { 
+                $Base.MostrarMensaje(Datos["HTML"]);
             }
             // Mensaje enviado
             else {                                
-                $("#Comentarios_Datos").html(data + $("#Comentarios_Datos").html());
+                $("#Comentarios_Datos").html(Datos["HTML"] + $("#Comentarios_Datos").html());
                 $Base.Cargando("FALSE");
                 $Comentarios.Iniciar();
                 $("body, html").stop().animate({ scrollTop : $("#Comentarios_Datos").offset().top - 200 }, 200);
                 $Base.MostrarMensaje("Comentario enviado correctamente.");
             }
             $Comentarios.Enviando = false;
+            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
         });
         // Fallo al realizar la petición ajax
         nAjax.fail(function(jqXHR, textStatus, tError) { 
@@ -211,10 +214,12 @@ $Comentarios = new function() {
         this.Obteniendo = true;
         nAjax = $.post("/cmd/ObtenerComentarios", { "Pagina" : Pagina,  "Desde" : Desde - 1, "Hasta" : Desde - 21 } );
         nAjax.done(function(data) { 
+            Datos = JSON.parse(data);
             $("div[puntoscroll=true]").removeAttr("puntoscroll");
-            $("#Comentarios_Datos").html($("#Comentarios_Datos").html() + data);
+            $("#Comentarios_Datos").html($("#Comentarios_Datos").html() + Datos["HTML"]);
             $Base.Cargando("FALSE");
             $Comentarios.Iniciar();
+            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
         });
         // Fallo al realizar la petición ajax
         nAjax.fail(function(jqXHR, textStatus, tError) { 
@@ -240,12 +245,14 @@ $Comentarios = new function() {
         this.Obteniendo = true;
         nAjax = $.post("/cmd/ObtenerComentarios", { "Pagina" : Pagina,  "Desde" : Desde - 1, "Hasta" : Num } );
         nAjax.done(function(data) { 
+            Datos = JSON.parse(data);
             $("div[puntoscroll=true]").removeAttr("puntoscroll");
-            $("#Comentarios_Datos").html($("#Comentarios_Datos").html() + data);
+            $("#Comentarios_Datos").html($("#Comentarios_Datos").html() + Datos["HTML"]);
             $Comentarios.Obteniendo = false;
             $Comentarios.Iniciar();
             $Base.Cargando("FALSE");
             $Comentarios.MostrarComentario($Comentarios.NumComentario);
+            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
         });
         // Fallo al realizar la petición ajax
         nAjax.fail(function(jqXHR, textStatus, tError) { 

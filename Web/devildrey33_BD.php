@@ -13,10 +13,13 @@ class devildrey33_BD {
         else if (strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false)   $this->_mysqli = new mysqli($ArrayDatos["URL-BD"], $ArrayDatos["USER-BD"], $ArrayDatos["PASS-BD"], $ArrayDatos["NOM-BD"]);
         else                                                                    $this->_mysqli = new mysqli("localhost", "root", $ArrayDatos["PASS-BD-LOCAL"], $ArrayDatos["NOM-BD"]);
         
+        
         if ($this->_mysqli->connect_errno) {            
-            echo "<h1 style='color:red'>Error iniciando la BD : ".mysqli_connect_error()."</h1>";
-            echo $_SERVER["SERVER_NAME"];
+            error_log("<span style='color:red'>Error iniciando la BD en <b>".$_SERVER["SERVER_NAME"]."</b></span> : ".utf8_encode($this->_mysqli->connect_error));            
         }        
+//        $this->_mysqli->set_charset("utf8");
+//        $this->_mysqli->query('SET CHARACTER SET utf-8');
+
     }
     
     // Destructor
@@ -36,7 +39,7 @@ class devildrey33_BD {
         if (is_numeric($Valor)) {
             //$URL = str_replace("http://www.", "http://", $URL);
             if ($Valor > 5) $Valor = 5;
-            if ($Valor < 1) $Valor = 1;
+            if ($Valor < 1) $Valor = 1;            
             $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina = '".$this->_mysqli->real_escape_string($Archivo)."'");
             if ($Resultado) {
                 Base::EnviarEmail("Se ha votado en $URL ($Valor/5)", 
@@ -47,10 +50,10 @@ class devildrey33_BD {
                 $Valor = $Datos["VotosValor"] + $Valor;                
                 $this->_mysqli->query("UPDATE paginas SET VotosTotal='".$this->_mysqli->real_escape_string($Total)."', VotosValor='".$this->_mysqli->real_escape_string($Valor)."' WHERE Pagina='".$this->_mysqli->real_escape_string($Archivo)."'");
              
-                return $this->ObtenerValoresEntrada($Archivo);
+                return json_encode(array("HTML" => $this->ObtenerValoresEntrada($Archivo), "ErrorPHP" => Base::ObtenerLogPHP()));
             }
         }
-        return "false";
+        return json_encode(array("HTML" => "false", "ErrorPHP" => Base::ObtenerLogPHP()));
     }
     
     
@@ -110,7 +113,7 @@ class devildrey33_BD {
         $Resultado = $this->_mysqli->query("SELECT * FROM paginas");
         if (!$Resultado || $Resultado->num_rows == 0) { // La tabla no existe, la creamos
             if (!$this->_mysqli->query("CREATE TABLE paginas (NumPagina INT NOT NULL AUTO_INCREMENT PRIMARY KEY, Pagina VARCHAR(128), VotosTotal INT, VotosValor INT, Visitas INT)")) {
-                echo '<br />Error creando la tabla Paginas!! : '.$this->_mysqli->error.'<br />';
+                error_log('Error creando la tabla Paginas!! : '.$this->_mysqli->error);
             }
         }
         
@@ -118,7 +121,7 @@ class devildrey33_BD {
         $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina='".$Archivo."'");
         if (!$Resultado || $Resultado->num_rows == 0) { // La entrada no existe, la creamos
             if (!$Resultado = $this->_mysqli->query("INSERT INTO paginas (Pagina, Visitas, VotosTotal, VotosValor) VALUES('".$Archivo."', '1', '0', '0')")) {
-                echo '<br />Error creando entrada dentro de la tabla Paginas : '.$this->_mysqli->error.'<br />';
+                error_log('Error creando entrada dentro de la tabla Paginas : '.$this->_mysqli->error);
             }
         } 
 
@@ -126,7 +129,7 @@ class devildrey33_BD {
             // Actualizamos las visitas
             $Visitas ++;
             if (!$Resultado = $this->_mysqli->query("UPDATE paginas SET Visitas='".$Visitas."' WHERE Pagina='".$Archivo."'"))
-                echo '<br />Error sumando visitas a la pagina '.$Archivo.' : '.$this->_mysqli->error.'<br />';
+                error_log('Error sumando visitas a la pagina '.$Archivo.' : '.$this->_mysqli->error);
         }
         return $Visitas;
     }
@@ -137,8 +140,10 @@ class devildrey33_BD {
         $Votos       = 0;
         $Visitas     = 0;
         $Comentarios = 0;
+        // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
         // Re-emplazo los caracteres "." y "-" por el caracter "_" para crear un nombre compatible con los nombres de tabla de MYSQL
-        $NombreArchivo = $this->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", $Archivo));
+        $NombreArchivo = substr($this->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($Archivo))), 0, 51);        
+//        $NombreArchivo = $this->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", $Archivo));
         // Comprobamos el numero de comentarios
         $Resultado = $this->_mysqli->query("SELECT * FROM comentarios__".strtolower($NombreArchivo));
         if ($Resultado) { 

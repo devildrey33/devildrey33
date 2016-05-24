@@ -129,11 +129,19 @@ $Base = new function() {
             } 
         });
 
+        // Boton cerrar para el log de errores php
+        $("#ErroresPHP_Cerrar").click(function(e){ $("#ErroresPHP").attr({ "mostrar" : false }); });
+
         // Redirección de los links del indice
         this.RedireccionarLinks();
 
         /* Usuario para el login */
         if (typeof localStorage["Comentarios_Usuario"] !== 'undefined') { $("#devildrey33_Usuario").val(localStorage["Comentarios_Usuario"]); }
+    };
+    
+    /* Función para mostrar la ventana con los errores php */
+    this.MostrarErroresPHP = function() {
+        $("#ErroresPHP").attr({ "mostrar" : true });
     };
     
     /* Función que muestra una ventana para el twiter */
@@ -266,12 +274,14 @@ $Base = new function() {
         if (typeof localStorage["Voto_" + Pagina] === "undefined") {
             localStorage["Voto_" + Pagina] = Valor;
             $.post( "/cmd/VotarPagina.cmd", { "Pagina" : Pagina, "Valor" : Valor, "URL" : window.location.href }).done(function(data) {
-                if (data !== "false") {
-                    $(".Cabecera_Datos > .FechaEntrada > span").html(data);
+                Datos = JSON.parse(data);
+                if (Datos["HTML"] !== "false") {
+                    $(".Cabecera_Datos > .FechaEntrada > span").html(Datos["HTML"]);
                     $("#BarraNavegacion_Votacion").removeAttr("Mostrar");
                     if ($("html").attr("lang") === "es") { $Base.MostrarMensaje("La votación se ha relaizado correctamente, muchas gracias!"); }
                     else                                 { $Base.MostrarMensaje("Your vote is annotated, thank you!"); }
                 }
+                $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
                 /*RedireccionarLinks();*/
             }).fail(function( jqXHR, textStatus, tError ) {
                 console.log("Base.VotarWeb Error ajax", jqXHR, textStatus, tError);
@@ -611,8 +621,10 @@ $Base = new function() {
         console.log("Base.Buscar " + $("#BarraPrincipal_MarcoBuscar_Edit").val());   
 
         $.post( "/Buscar/", { "Regenerar" : "todo", "Categoria" : "Todo", "SinPlantilla" : "true", "Search" : $("#BarraPrincipal_MarcoBuscar_Edit").val() }).done(function(data) {
+            Datos = JSON.parse(data);
             $("body").attr({ "Tipo" : $Base.Entrada["Buscar"] });
-            $("#MarcoNavegacion").html(data);
+            $("#MarcoNavegacion").html(Datos["HTML"]);
+            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
             /*RedireccionarLinks();*/
         }).fail(function( jqXHR, textStatus, tError ) {
             /*if (textStatus === "error") { MostrarErrorAjax(500, false); }
@@ -664,11 +676,12 @@ $Base = new function() {
         this.URL = URL;
         this.nURL = nURL;
         this.PeticionAjax = $.post(nURL, { "Regenerar" : "todo", "Categoria" : "Todo", "SinPlantilla" : "true" }).done(function(data) {
-            if (data.indexOf("<script>$Base.MostrarErrorAjax(404, false);</script>") === 0) {
+            Datos = JSON.parse(data);
+            if (Datos["HTML"].indexOf("<script>$Base.MostrarErrorAjax(404, false);</script>") === 0) {
                 $Base.MostrarErrorAjax(404, false, 'No se ha encontrado');
             }
             else {
-                $("#MarcoNavegacion").html(data);
+                $("#MarcoNavegacion").html(Datos["HTML"]);
                 $Base.Entrada = $Base.IdentificarEntrada($Base.URL, $Base.nURL);    
                 window.history.pushState($Base.Entrada, document.title, $Base.URL);
                 /* Pongo el scroll arriba DESPUES de identificar la URL y haber guardado el scroll para el historial */
@@ -676,6 +689,7 @@ $Base = new function() {
                 document.title = $Base.Entrada["Titulo"];
 //                if (isset($Base.Entrada["Idioma"]))
                 $Base.RedireccionarLinks();
+                $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
             }
         }).fail(function( jqXHR, textStatus, tError ) { 
             console.log("Base.CargarURL Error ajax", jqXHR, textStatus, tError);
@@ -728,6 +742,7 @@ $Base = new function() {
                 setTimeout(function() { $("#VentanaLogin").addClass("VentanaError_AnimacionError"); }, 50);
                 $Base.Cargando("FALSE");
             }
+            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
         }).fail(function( jqXHR, textStatus, tError ) { 
             console.log("Base.Loguear Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarErrorAjax(jqXHR.status, false, tError);
@@ -740,7 +755,9 @@ $Base = new function() {
     /* TODOS los comandos requieren ser administrador */
     this.cmd = function(Comando) {
         $.post("/cmd/" + Comando + ".cmd").done(function(data) {
-            console.log("Base.cmd(" + Comando + ")", data);
+            Datos = JSON.parse(data);
+            console.log("Base.cmd(" + Comando + ")", Datos["HTML"]);
+            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
         }).fail(function( jqXHR, textStatus, tError ) { 
             console.log("Base.cmd Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarErrorAjax(jqXHR.status, false, tError);
@@ -848,16 +865,18 @@ $Base = new function() {
         if (URL === "/") nURL = "/index.php";
         else             nURL = URL;
         this.PeticionAjax = $.post(nURL, { "Regenerar" : "todo", "Categoria" : "Todo", "SinPlantilla" : "true" }).done(function(data) {
+            Datos = JSON.parse(data);
             /* Error 404 */
-            if (data.indexOf("<script>$Base.MostrarErrorAjax(404, false);</script>") === 0) {
+            if (Datos["HTML"].indexOf("<script>$Base.MostrarErrorAjax(404, false);</script>") === 0) {
                 $Base.MostrarErrorAjax();
             }        
             else { /* Carga del historial normal */
-                $("#MarcoNavegacion").html(data);
+                $("#MarcoNavegacion").html(Datos["HTML"]);
                 $Base.Entrada = $Base.IdentificarEntrada(URL, nURL);    
                 $Base.RedireccionarLinks();
                 document.title = $Base.Entrada["Titulo"];
             }
+            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
         }).fail(function( jqXHR, textStatus, tError ) {
             console.log("Base.CALLBACK_Histroial Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarErrorAjax(jqXHR.status, false, tError);

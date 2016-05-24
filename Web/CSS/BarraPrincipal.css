@@ -122,9 +122,11 @@ body[administrador33] #Marco33 {
 }
 /* Marco que contiene el men� de la administración */
 #BarraPrincipal_Marco33 {
-    width:432px;
-    height:302px; 
-    top:-248px !important;    
+    width:460px;
+    height:344px; 
+        
+    top:-288px !important;
+    
     transition:0.4s ease-in-out !important;    
 /*    background:#252328 !important;
     opacity:0.98;*/
@@ -135,7 +137,7 @@ body[administrador33] #Marco33 {
     margin:18px auto 0px auto !important;
 }
 
-/*#CH_Entradas, #CH_Lab,*/ #CH_Logs, #CH_Stats  {
+/*#CH_Entradas, #CH_Lab,*/ #CH_Logs, #CH_Stats, #CH_PhpInfo  {
     display:inline-block;
     margin:auto;
 }
@@ -152,7 +154,7 @@ body[administrador33] #Marco33 {
 }
 /* Tabla con los controles del tipo checkbox */
 .TablaMarco33 {
-    margin:10px 0px 0px 10px;
+    margin:20px 0px 0px 10px;
     border:1px solid #353338;
     border-radius:3px;    
     position:relative;
@@ -165,7 +167,7 @@ body[administrador33] #Marco33 {
 }
 .TablaSesion33, .TablaHtaccess33 {
     padding:10px 0px 2px 5px;  
-    max-width:195px;
+    max-width:205px;
     list-style:none;
 }
 
@@ -187,7 +189,7 @@ body[administrador33] #Marco33 {
 }
 
 .TablaMarco33 li:nth-child(odd) {
-    width:120px;
+    width:140px;
     /*padding:5px 0px 0px 5px;*/
 }
 

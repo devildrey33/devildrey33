@@ -43,10 +43,12 @@ $Indice = new function() {
 
                 nAjax = $.post("/cmd/IndiceObtener15Mas.cmd", { "Categoria" : $("#Categorias").attr("categoria"),  "Inicio" : this.TotalArticulosCargados } );
                 nAjax.done(function(data) { 
+                    Datos = JSON.parse(data);
                     $("div[puntoscroll=true]").removeAttr("puntoscroll");
-                    $("#MarcoIndice").html($("#MarcoIndice").html() + data);
+                    $("#MarcoIndice").html($("#MarcoIndice").html() + Datos["HTML"]);
                     $Base.Cargando("FALSE");
                     $Indice.Cargando = false;
+                    $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
 //                    $Comentarios.Iniciar();
                 });
                 // Fallo al realizar la petición ajax

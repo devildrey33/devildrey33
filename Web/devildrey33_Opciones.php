@@ -58,7 +58,9 @@ class devildrey33_Opciones {
     static public function PaginasVistas($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("PaginasVistas",                                                                     0, 		$Valor);	}
     static public function UltimaActividadMS($Valor = -1)   {	return devildrey33_Opciones::_ObtenerAsignarValor("UltimaActividadMS",                                                                 0, 		$Valor);	}
     static public function EntradasIndice($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("Indice_EntradasCargadas",                                                           16, 		$Valor);	}
-
+    static public function MostrarErroresPHP($Valor = -1)   {   return devildrey33_Opciones::_ObtenerAsignarValor("MostrarErroresPHP",                                                                  0, 		$Valor);	}
+    
+    
 /*    static public function MostrarConsola($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("MostrarConsola", 		(strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false) ? 0 : 1, 		$Valor);	}
     static public function Administrador($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("Administrador",                                                                              0, 		$Valor);	}
     static public function Minificar_CSS($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_CSS", 		(strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false) ? 1 : 0, 		$Valor);	}

@@ -77,14 +77,14 @@
         <p>El tema de insertar datos a decir verdad no tiene gran complicación tampoco, pero me gustaría remarcar que a la hora de insertar una gran cantidad de filas, el proceso se vuelve bastante lento, y hay una forma de acelerarlo bastante. Echad un vistazo a la función BaseDatos::InsertarDatosPorDefecto.</p>
         <?php $Base->PintarCodigo->PintarArchivoC("BaseDatos_InsertarDatosPorDefecto", "BaseDatos::InsertarDatosPorDefecto", "../Codigo/EmpezandoSQLite/BaseDatos.cpp", "BaseDatos::InsertarDatosPorDefecto"); ?>
         <p>Como podéis ver, he utilizado la sentencia <linea cid="BaseDatos_InsertarDatosPorDefecto" l="4">BEGIN TRANSACTION</linea> antes de empezar a insertar los datos, y luego he terminado con la sentencia <linea cid="BaseDatos_InsertarDatosPorDefecto" l="13">COMMIT TRANSACTION</linea>. Al hacer el <linea cid="BaseDatos_InsertarDatosPorDefecto" l="4">BEGIN TRANSACTION</linea> lo que sucede es que se hacen todas las operaciones en memoria, y hasta que no terminamos con la sentencia <linea cid="BaseDatos_InsertarDatosPorDefecto" l="13">COMMIT TRANSACTION</linea> no se guardan en el disco. Otra cosa a destacar es que si sucede un error durante la transacción, todos los datos introducidos durante la misma se perderán.</p> 
-        <div class='nota'>Durante una transacción la base de datos queda bloqueada para escritura, de forma que si intentamos hacer algo que no sea un SELECT desde otro hilo/thread al llamar a <ocde>sqlite3_step</code> nos devolvera SQLITE_BUSY.</div>
+        <div class='nota'>Durante una transacción la base de datos queda bloqueada para escritura, de forma que si intentamos hacer algo que no sea un SELECT desde otro hilo/thread al llamar a <code>sqlite3_step</code> nos devolvera SQLITE_BUSY.</div>
         <p>Para mas información os recomiendo el siguiente enlace : <a href="http://www.sqlite.org/lang_transaction.html" target="_blank">SQLite BEGIN TRANSACTION</a>.</p>
         <br />
         <h2>Obteniendo datos de la base de datos</h2>
         <p>En esencia obtener datos de la base de datos viene a ser muy similar a una consulta que no devuelva datos, pero hay que mirar en cada paso si nos devuelve <i>SQLITE_ROW</i>, y en tal caso significa que podemos obtener los datos de una fila. Echad un vistazo a la función <linea cid="BaseDatos_MostrarDatos" l="1">BaseDatos::MostrarDatos</linea>.</p>
         <?php $Base->PintarCodigo->PintarArchivoC("BaseDatos_MostrarDatos", "BaseDatos::MostrarDatos", "../Codigo/EmpezandoSQLite/BaseDatos.cpp", "BaseDatos::MostrarDatos"); ?>
         <p>Cuando la función <a href="http://www.sqlite.org/c3ref/step.html" target="_blank">sqlite3_step</a> devuelve <linea cid="BaseDatos_MostrarDatos" l="14">SQLITE_ROW</linea> significa que estamos en una fila y podemos obtener sus datos. Para obtener los datos de dicha fila hay que tener muy claro el orden en que se han creado las columnas. Para este caso en concreto la columna 0 es la Id, <linea cid="BaseDatos_MostrarDatos" l="15">la columna 1 es el Nombre</linea>, y <linea cid="BaseDatos_MostrarDatos" l="17">la columna 2 es la Edad</linea>.</p>
-<p>Para extraer los datos de una columna se pueden utilizar varias funciones dependiendo del tipo de datos a obtener, por ejemplo en la <linea cid="BaseDatos_MostrarDatos" l="15">línea 15</linea> utilizamos <a href="http://www.sqlite.org/c3ref/column_blob.html" target="_blank">sqlite3_column_text16</a> para obtener la columna Nombre en formato wchar_t, y en la <linea cid="BaseDatos_MostrarDatos" l="17">línea 17</linea> utilizamos la función <a href="http://www.sqlite.org/c3ref/column_blob.html" target="_blank">sqlite3_column_int</a> para obtener la Edad en formato int.</p>
+        <p>Para extraer los datos de una columna se pueden utilizar varias funciones dependiendo del tipo de datos a obtener, por ejemplo en la <linea cid="BaseDatos_MostrarDatos" l="15">línea 15</linea> utilizamos <a href="http://www.sqlite.org/c3ref/column_blob.html" target="_blank">sqlite3_column_text16</a> para obtener la columna Nombre en formato wchar_t, y en la <linea cid="BaseDatos_MostrarDatos" l="17">línea 17</linea> utilizamos la función <a href="http://www.sqlite.org/c3ref/column_blob.html" target="_blank">sqlite3_column_int</a> para obtener la Edad en formato int.</p>
         <p>También es posible obtener datos de un tipo formateados a otro tipo (siempre que la conversión sea posible), por ejemplo si deseamos obtener la columna de la Edad en formato wchar_t podemos utilizar perfectamente la función <a href="http://www.sqlite.org/c3ref/column_blob.html" target="_blank">sqlite3_column_text16</a>.</p>
         <p>Para mas información os recomiendo el siguiente enlace : <a href="http://www.sqlite.org/c3ref/column_blob.html" target="_blank">SQLite Result Values From A Query</a>.</p>
         <br />
@@ -95,7 +95,9 @@
         <p>Como siempre, podéis descargar el ejemplo de mi web y compilarlo vosotros mismos, el ejemplo incluye el código de SQLite.</p>
         <?php // $Base->CrearBotonDescarga("BotonDescarga1", "/Descargas/EmpezandoConSQLite.zip", "Descargar ejemplo", 1494358, TRUE); ?>               	
                         
-        <a href='/Descargas/EmpezandoConSQLite.zip' target="_blank" class='Boton Centrado'>Descargar ejemplo</a>
+        <div class='Centrado'>
+            <a href='/Descargas/EmpezandoConSQLite.zip' target="_blank" class='Boton-Normal Centrado'>Descargar ejemplo</a>
+        </div>
                 
         
 <?php

@@ -15,7 +15,7 @@
             if ($Ret) { $Mensaje = "El '$Archivo' se ha guardado correctamente."; }
             else      { $Mensaje = "Error al guardar el archivo : '$Archivo'";    }
             
-            return json_encode(array("Ret" => $Ret, "Mensaje" => $Mensaje, "Archivo" => $Archivo));
+            return json_encode(array("Ret" => $Ret, "Mensaje" => $Mensaje, "Archivo" => $Archivo, "ErrorPHP" => Base::ObtenerLogPHP()));
         }
         
         
@@ -86,7 +86,7 @@
             }
 //            if ($Ajax == FALSE) http_response_code($Ret);
             http_response_code($Ret);
-            return array("Ret" => $Ret, "Datos" => $DatosArchivo, "ID" => intval($ID), "Archivo" => $Archivo, "Vista" => $Vista, "Modo" => $Modo);
+            return array("Ret" => $Ret, "Datos" => $DatosArchivo, "ID" => intval($ID), "Archivo" => $Archivo, "Vista" => $Vista, "Modo" => $Modo, "ErrorPHP" => Base::ObtenerLogPHP());
             
         }
         

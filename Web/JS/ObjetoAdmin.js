@@ -15,8 +15,10 @@ $Admin = new function() {
         $('#BarraPrincipal_Boton33_Estado').click(function(e){ $Base.ClickMenu(8); });
         /* Boton ver logs */
         $('#CH_Logs').click(function(e){ $Base.CargarURL('/Web/Log'); $Base.ClickMenu(0); }); /* MOSTRAR LOGS */
-        /* Boton ver logs */
-        $('#CH_Stats').click(function(e){ $Base.CargarURL('/Web/Stats'); $Base.ClickMenu(0); }); /* MOSTRAR LOGS */
+        /* Boton ver stats */
+        $('#CH_Stats').click(function(e){ $Base.CargarURL('/Web/Stats'); $Base.ClickMenu(0); }); /* MOSTRAR stats */
+        /* Boton ver php info */
+        $('#CH_PhpInfo').click(function(e){ $Base.CargarURL('/Web/phpinfo'); $Base.ClickMenu(0); }); /* MOSTRAR info php */
         /* Boton explorar lab */
 //        $('#CH_Lab').click(function(e){ $Base.CargarURL('/Web/Lab-Explorar'); $Base.ClickMenu(0); });  /* EXPLORAR LAB */
         /* Boton editar entradas */
@@ -38,6 +40,9 @@ $Admin = new function() {
                     break;
                 case 'CH_JS' :
                     $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarMinificarJS' : 'ActivarMinificarJS' );
+                    break;
+                case 'CH_DebugPHP' :
+                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarDebugPHP' : 'ActivarDebugPHP' );
                     break;
                 case 'CH_Consola' :
                     $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarConsola' : 'ActivarConsola' );
@@ -83,11 +88,13 @@ $Admin = new function() {
 
         nAjax = $.post("/cmd/Desloguear.cmd");
         nAjax.done(function(data) {
+            Datos = JSON.parse(data);
             console.log("Admin.Desloguear");
-            $("#BarraNavegacion_Explorador").html(data);
+            $("#BarraNavegacion_Explorador").html(Datos["HTML"]);
             
             $Lab.EnlazarEventosExplorador();            
             $Base.Cargando("FALSE");
+            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
         });
         nAjax.fail(function( jqXHR, textStatus, tError ) { 
             console.log("Admin.Desloguear EscanearEjemplos Error ajax", jqXHR, textStatus, tError);
@@ -125,6 +132,7 @@ $Admin = new function() {
             $Base.MostrarMensaje(Datos["Mensaje"]);
             $("body").attr({"modificado" : "false"});
             $Base.Cargando("FALSE");
+            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);            
 //            $Lab.Modificado = false;
         }).fail(function( jqXHR, textStatus, tError ) {
             console.log("Admin.Lab_Guardar Error ajax", jqXHR, textStatus, tError);
@@ -180,9 +188,11 @@ $Admin = new function() {
 
         nAjax = $.post("/cmd/Lab_GenerarCache.cmd", { "Lista" : JLista });
         nAjax.done(function(data) {
-            console.log("Lab_GenerarCache Completo!", data);
+            Datos = JSON.parse(data);
+            console.log("Lab_GenerarCache Completo!");
             $Base.MostrarMensaje("Cache del laboratorio generada!");
             $Base.Cargando("FALSE");
+            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
         });
         nAjax.fail(function( jqXHR, textStatus, tError ) { 
             console.log("Admin.LabExplorar_GenerarCache Error ajax", jqXHR, textStatus, tError);
@@ -498,7 +508,9 @@ $Admin = new function() {
         NumC = $(Boton).parent().parent().attr("comentario"); 
         console.log("Admin.Comentarios_VerEmail", Pagina, NumC);
         nAjax = $.post("/cmd/VerEmailComentario.cmd", { "Pagina" : Pagina,  "NumComentario" : NumC }).done(function(data) {
-            $Base.MostrarMensaje(data);
+            Datos = JSON.parse(data);
+            $Base.MostrarMensaje(Datos["HTML"]);
+            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
         }).fail(function(jqXHR, textStatus, tError) { 
             console.log("Admin.Comentarios_VerEmail Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarMensaje("Error al ver el email.");
@@ -525,6 +537,7 @@ $Admin = new function() {
                 $Base.MostrarMensaje(data.Mensaje);                
             }
             $Base.Cargando("FALSE");
+            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
         }).fail(function(jqXHR, textStatus, tError) { 
             // Fallo al realizar la petición ajax            
             console.log("Admin.Comentarios_BotonEliminarComentario Error ajax", jqXHR, textStatus, tError);
@@ -559,17 +572,20 @@ $Admin = new function() {
         if (this.Comentarios_Edicion !== 0) {
             console.log("Admin.Comentarios_Edicion_Guardar", this.Comentarios_Edicion.attr("comentario"));
             $Base.Cargando("TRUE");
-            
+            var Msg = this.Comentarios_Edicion.find("div:nth-child(3)").html();
+            Msg.replace(' contenteditable="true"', ''); // Elimino posibles divs creados al hacer intro que se crean con el atributo contenteditable=true, y que no deberian estar dentro de un contenido editable...
             nAjax = $.post("/cmd/EditarComentario.cmd", {   "Pagina"        : $(".Blog").attr("pagina"),  
                                                             "NumComentario" : NumC,
-                                                            "Mensaje"       : this.Comentarios_Edicion.find("div:nth-child(3)").html()
+                                                            "Mensaje"       : Msg
             }).done(function(data) {
                 // Al terminar la petición ajax correctamente
                 Datos = JSON.parse(data);
                 if (Datos.Mensaje === "Comentario Editado") {
 //                    $("#Comentarios_Datos > div[comentario=" + Datos.NumComentario + "]").remove();
+                    
                     $("#Comentarios_Datos > div[comentario] > div[contenteditable=true]").removeAttr("contenteditable");
-                    // Elimino los botones guardar y cancelar
+                    // Elimino los botones guardar y cancelar (no se que fa el jquery pero avegades borra lineas de texte i posa contents editables de mes.....)
+                    //                                         Al re-carregar (F5) tot es veu bè... tot i que s'han d'eliminar els content editable extras que no se d'on surten (chrome/jquery)
                     $Admin.Comentarios_Edicion.find("div:nth-child(4)").remove();
                     // Limpio la memoria;
                     $Admin.Comentarios_ComentarioOriginal = "";
@@ -581,12 +597,14 @@ $Admin = new function() {
                     $Base.MostrarMensaje(data.Mensaje);                
                 }
                 $Base.Cargando("FALSE");
+                $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
             }).fail(function(jqXHR, textStatus, tError) { 
                 // Fallo al realizar la petición ajax            
                 console.log("Admin.Comentarios_Edicion_Guardar Error ajax", jqXHR, textStatus, tError);
                 $Base.MostrarMensaje("Error al guardar el mensaje.");
                 $Base.Cargando("FALSE");
-            });                                           
+            });   
+            this.Comentarios_Edicion.find("div:nth-child(3)").html(Msg);
         }
     };
     

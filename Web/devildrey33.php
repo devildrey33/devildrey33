@@ -10,6 +10,7 @@ include("devildrey33_PintarCodigo.php");
 include("devildrey33_Comentarios.php");
 include("devildrey33_htaccess.php");
 include("devildrey33_EditarEntradas.php");
+include("devildrey33_Buscador.php");
 
 
 /* Examinar un exemple de cada plantilla i fer un estudi detallat de les diferencies i similituds, lo cual requerira en primera instancia evaluar i enumerar totes les etiquetes que intervenen en cada cas. */
@@ -33,24 +34,18 @@ class devildrey33 {
 
     public 	$BD;				// Base de datos
     public 	$PintarCodigo;			// Objeto para pintar código
+    
+//    public      $ErroresPHP;                    // Objeto que contiene los mensajes de advertencia y de error procesados
 
     /* Constructor sin parametros, si hay que iniciar una plantilla ya se le suministraran el tipo y el nombre del documento en la misma función 
             Esto agilizara consultas ajax y de mensajeria que pasan por este constructor sin necesitar la mitad de cosas que se cargan.
     */
     public function __construct() {			
-//        devildrey33::Minificar_JS_CSS();
-        /* Clase que contiene las opciones que deben guardarse en la $_SESSION */
-/*        if (strpos($_SERVER["SERVER_NAME"], "devildrey33.es")) {    $this->Opciones = new devildrey33_Opciones;             }
-        else                                                   {    $this->Opciones = new devildrey33_Opciones(0, 0, 0, 1); }*/
-        // Obtengo nombre y versión del navegador
-/*        $Navegador = Base::ObtenerNavegador();
-        // Reviso si el navegador es compatible (IE 8 e inferiores no son compatibles)
-        if ($Navegador["Nombre"] == "Internet Explorer" && floatval($Navegador["Version"]) < 9.0)   {	$this->NavegadorNoCompatible($Navegador);	exit();	}
-        // Firefox 3.x e inferiores no son compatibles
-        if ($Navegador["Nombre"] == "Mozilla Firefox" && floatval($Navegador["Version"]) < 4.0)     {	$this->NavegadorNoCompatible($Navegador);	exit();	}		*/
-            
-        
+        // Actualizo la cache de los archivos JS y CSS si hay datos nuevos.
         if (devildrey33_Opciones::ActualizarCache() === 1) { $this->Minificar_JS_CSS (); }
+        
+        // Establezco si se mostraran o no los errores php en el mismo documento (por defecto se mostraran en un marco a parte de la web)
+        ini_set("display_errors", devildrey33_Opciones::MostrarErroresPHP());
 
         // Creo el objeto para pintar el código estático
         $this->PintarCodigo = new devildrey33_PintarCodigo;
@@ -62,7 +57,8 @@ class devildrey33 {
     /* SOLO SE USA SI no se recibe un POST o un GET SinPlantilla */
     public function InicioPlantilla($NombreDocumento, $Titulo, $Meta = "") {
         
-        if (isset($_GET["SinPlantilla"]) || isset($_POST["SinPlantilla"])) {
+        if (isset($_GET["GenerarCacheBuscador"]) || isset($_POST["SinPlantilla"])) {
+            ob_start();
             return "";
         }
         
@@ -451,11 +447,12 @@ class devildrey33 {
         if ($Loguear === TRUE) $EstadoLogin = devildrey33_Opciones::Login($Login, $Pass);
         
         if (devildrey33_Opciones::Administrador() > 0) {            
-            $MinHTML    = (devildrey33_Opciones::Minificar_HTML()   === 1) ? "true" : "false";
-            $MinCSS     = (devildrey33_Opciones::Minificar_CSS()    === 1) ? "true" : "false";
-            $MinJS      = (devildrey33_Opciones::Minificar_JS()     === 1) ? "true" : "false";
-            $Consola    = (devildrey33_Opciones::MostrarConsola()   === 1) ? "true" : "false";
-            $Cache      = (devildrey33_Opciones::ActualizarCache()  === 1) ? "true" : "false";
+            $MinHTML    = (devildrey33_Opciones::Minificar_HTML()    === 1) ? "true" : "false";
+            $MinCSS     = (devildrey33_Opciones::Minificar_CSS()     === 1) ? "true" : "false";
+            $MinJS      = (devildrey33_Opciones::Minificar_JS()      === 1) ? "true" : "false";
+            $Consola    = (devildrey33_Opciones::MostrarConsola()    === 1) ? "true" : "false";
+            $PHPDebug   = (devildrey33_Opciones::MostrarErroresPHP() === 1) ? "true" : "false";
+            $Cache      = (devildrey33_Opciones::ActualizarCache()   === 1) ? "true" : "false";
             $HTAccess = new devildrey33_htaccess;
             $ValHT = $HTAccess->ObtenerValores();
             $HTMLAdmin = "<input id='BarraPrincipal_Boton33_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
@@ -477,8 +474,10 @@ class devildrey33 {
                         "<li>"."<div id='CH_JS' class='CheckBox' marcado='".$MinJS."' title='Comprime el JS eliminando comentarios, espacios, tabulaciones, y saltos de línea.'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
                         "<li>Actualizar Cache</li>".Intro().
                         "<li>"."<div id='CH_Actualizar' class='CheckBox' marcado='".$Cache."' title='Comprime los archivos JS y CSS para crear su version minificada.'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
-                        "<li>MostrarDebug</li>".Intro().
+                        "<li>Mostrar Debug JS</li>".Intro().
                         "<li>"."<div id='CH_Consola' class='CheckBox' marcado='".$Consola."' title='Muestra datos de depuración por la consola'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
+                        "<li>Mostrar Debug PHP</li>".Intro().
+                        "<li>"."<div id='CH_DebugPHP' class='CheckBox' marcado='".$PHPDebug."' title='Muestra datos de depuración por la consola'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
                     "</ul>".Intro();
             if (devildrey33_Opciones::Administrador() === 1) {
                 $HTMLAdmin .= "<div class='ContenedorMarco33 TablaMarco33'>".Intro().
@@ -499,6 +498,7 @@ class devildrey33 {
             $HTMLAdmin .= "<div class='TablaMarco33 TablaGeneral'>".Intro().
 //                        "<button class='Boton' id='CH_Entradas'>Editar Entradas</button>".Intro().
 //                        "<button class='Boton' id='CH_Lab'>Explorar Lab</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_PhpInfo'>PHP Info</button>".Intro().
                         "<button class='Boton-Normal' id='CH_Logs'>Log</button>".Intro().
                         "<button class='Boton-Normal' id='CH_Stats'>Stats</button>".Intro().
                     "</div>".Intro().
@@ -509,22 +509,38 @@ class devildrey33 {
     }
     
     public function FinPlantilla() {
-        if (isset($_POST["SinPlantilla"]) || isset($_GET["SinPlantilla"])) return "";
+        if (isset($_POST["SinPlantilla"]) || isset($_GET["GenerarCacheBuscador"])) {
+            $HTML = ob_get_contents();
+            ob_end_clean();            
+            echo json_encode(array("HTML" => $HTML, "ErrorPHP" => Base::ObtenerLogPHP()));
+            return "";
+        }
+                        
         echo "</div>".Intro();
-       
-        echo "</body></html>".Intro();
+        echo "<div id='ErroresPHP' mostrar='false'>".Intro();
+        echo    "<div id='ErroresPHP_Titulo'>Errores PHP</div>".Intro();
+        echo    "<div id='ErroresPHP_Cerrar'>X</div>".Intro();
+        echo    "<div id='ErroresPHP_Info'>";
+/*        foreach ($this->ErroresPHP as $ErrorPHP) {
+            echo Base::ParsearLogPHP($ErrorPHP);
+        }*/
+        echo        Base::ObtenerLogPHP();
+        echo    "</div>".Intro()."</div>";
+        echo "</body>".Intro()."</html>".Intro();
     }
     
     public function InicioBlog($NombreDocumento, $Titulo) {
         $this->_NombreDocumento = $NombreDocumento;
         $this->BD = new devildrey33_BD();
         echo "<article class='Blog' pagina='$NombreDocumento'>".Intro();        
-        echo    "<header class='Cabecera' animar='true'>".Intro().
-                    "<div class='Cabecera_Fondo Cabecera_Img".rand(1, 4)."'></div>".Intro().
-                    "<div class='Cabecera_Datos'>".Intro();
-        $this->LeerDatos($this->_NombreDocumento, $Titulo);
-        echo        "</div>".Intro();
-        echo    "</header>".Intro();
+//        if (!isset($_GET["GenerarCacheBuscador"])) {
+            echo    "<header class='Cabecera' animar='true'>".Intro().
+                        "<div class='Cabecera_Fondo Cabecera_Img".rand(1, 4)."'></div>".Intro().
+                        "<div class='Cabecera_Datos'>".Intro();
+            $this->LeerDatos($this->_NombreDocumento, $Titulo);
+            echo        "</div>".Intro();
+            echo    "</header>".Intro();
+//        }
     }
     
     /* Los datos para la Documentación hay que leerlos de otra forma */
@@ -532,12 +548,14 @@ class devildrey33 {
         $this->_NombreDocumento = $NombreDocumento;
         $this->BD = new devildrey33_BD();
         echo "<article class='Blog' pagina='$NombreDocumento'>".Intro();        
-        echo    "<header class='Cabecera' animar='true'>".Intro().
-                    "<div class='Cabecera_Fondo Cabecera_Img".rand(1, 4)."'></div>".Intro().
-                    "<div class='Cabecera_Datos'>".Intro();
+//        if (!isset($_GET["GenerarCacheBuscador"])) {
+            echo    "<header class='Cabecera' animar='true'>".Intro().
+                        "<div class='Cabecera_Fondo Cabecera_Img".rand(1, 4)."'></div>".Intro().
+                        "<div class='Cabecera_Datos'>".Intro();
         $this->LeerDatosPathFalso($this->_NombreDocumento, $Titulo);
-        echo        "</div>".Intro();
-        echo    "</header>".Intro();
+            echo        "</div>".Intro();
+            echo    "</header>".Intro();
+//        }
     }
     
     /* Si no hay cabecera no se acecde a la base de datos */
@@ -571,7 +589,7 @@ class devildrey33 {
              "</div>".Intro();*/
         
         echo "</article>".Intro();
-        if ($EvitarComentarios === true) return;
+        if ($EvitarComentarios === true || isset($_GET["GenerarCacheBuscador"])) return;
         $Com = new devildrey33_Comentarios();
         $Com->AgregarComentarios($this->_NombreDocumento, $this->BD, $SoloLectura);
     }
@@ -710,12 +728,20 @@ class devildrey33 {
 
     
     public function GenerarListaEntradasJS() {
+        if (file_exists(dirname(__FILE__).'/Config/EntradasBlog.php') === false) {
+            error_log("<div style='color:red'>No existe el archivo '/Config/EntradasBlog.php' !!!</div>");
+            return;
+        }
         $EntradasBlog   = require dirname(__FILE__).'/Config/EntradasBlog.php';
+        if (file_exists(dirname(__FILE__).'/Config/EntradasDocCSS.php') === false) {
+            error_log("<div style='color:red'>No existe el archivo '/Config/EntradasDocCSS.php' !!!</div>");
+            return;
+        }
         $EntradasDocCSS = require dirname(__FILE__).'/Config/EntradasDocCSS.php';
         //   Creo el archivo con la variable EntradasBlog para JavaScript
         if (filemtime(dirname(__FILE__).'/Config/EntradasBlog.php') > filemtime(dirname(__FILE__)."/Cache/EntradasBlog.js") ||
             filemtime(dirname(__FILE__).'/Config/EntradasDocCSS.php') > filemtime(dirname(__FILE__)."/Cache/EntradasBlog.js")) {
-           // $Contador = 0;
+            // $Contador = 0;
             /* /Blog */
             foreach ($EntradasBlog as $Entrada) {
                 /* Excluyo los tags del array para javascript (unos 4kb menos para el js final, de 17kb a 13kb) */
@@ -729,7 +755,7 @@ class devildrey33 {
             /* /Doc/CSS */
             foreach ($EntradasDocCSS as $Entrada) {
                 $EntradaJS["Tipo"]     = "DocCSS-".$Entrada["Grupo"];
-                switch ($Entrada["Tipo"]) {
+                switch ($Entrada["TipoCSS"]) {
                     case 0 :    $IN = "Propiedad";  $IN2 = "/Doc/CSS/Propiedades/";  break;
                     case 1 : 	$IN = "Selector";   $IN2 = "/Doc/CSS/Selectores/";   break;
                     case 2 : 	$IN = "Función";    $IN2 = "/Doc/CSS/Funciones/";    break;
@@ -840,53 +866,6 @@ class devildrey33 {
         return "Cache actualizada!";
     }
 
-    
-    static public function CacheBuscador_Generar() {
-        $ArrayEntradas = (require dirname(__FILE__).'/Config/EntradasBlog.php');
-        $CacheBuscador = array();
-        foreach ($ArrayEntradas as $Entrada) {
-            $CacheBuscador[] = devildrey33::CacheBuscador_EscanearArchivo($Entrada);
-        }
-        print_r($CacheBuscador);
-    }
-    
-    // Archivo '/Blog/Canvas2D_1'
-    static public function CacheBuscador_EscanearArchivo($Entrada) {
-        switch ($Entrada["Tipo"]) {
-            case "Blog" :   default :       $Archivo = "/Blog/".$Entrada["URL"];   break;
-            case "Lab"  :                   $Archivo = "/Lab/".$Entrada["URL"];    break;
-        }
-        
-        
-        // Fase 1, generar codigo html
-        $fb = iconv('UTF-8', 'ISO-8859-1//TRANSLIT', file_get_contents("http://devildrey33.st0rm/".$Archivo."?SinPlantilla"));            
-        // Fase 2, eliminar todas las etiquetas
-        $fb = strip_tags($fb);
-        // Fase 3, pasar un filtro que elimina acentos y ciertos caracteres 
-        $fb = devildrey33::CacheBuscador_Filtro($fb);
-        // Dividimos el contenido restante en un array de palabras
-        $ArrayPalabras = array_filter(explode(" ", $fb)); 
-        // Creo un array con el archivo, el titulo, y las palabras
-        
-        $Resultado = array("Archivo" => $Archivo, "Titulo" => $Entrada["Titulo"], "Palabras" => "");               
-        foreach ($ArrayPalabras as $Palabra) {
-            if (strlen($Palabra) > 1) {
-                if (strpos($Resultado["Palabras"], $Palabra) === false) {
-                    $Resultado["Palabras"] .= $Palabra." ";
-                }                
-            }
-        }
-        print_r($Resultado);        
-    }
-    
-    
-    static public function CacheBuscador_Filtro($Texto) {
-        return str_replace(
-            /* Redeu no pilla be els accents amb strings... els he posat amb chr i el caracter ASCII */
-            array(chr(225), chr(233), chr(237), chr(243), chr(250), "(", ")", "'", '"', ";", ":", "=", "_", "[", "]", "{", "}", "+", "*", "%", "/", "^", "`", "´", "&", ",", ".", ">", "<", "\n", "#", "\r", "\t"),
-            array("a"     ,"e"      , "i"     , "o"     , "u"     , " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " ," ", " ", " ", " " , " ", " " , " " ),  
-            mb_strtolower($Texto)
-        );
-    }
 };
+
 ?>

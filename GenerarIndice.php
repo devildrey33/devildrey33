@@ -1,6 +1,6 @@
-<?php 
+<?php
     include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
-    
+
     class Indice {    
         static function GenerarIndice($BD, $Categoria = "Todo", $Inicio = 0) {
             $ArrayTags = (require dirname(__FILE__).'/Web/Config/EntradasTags.php');

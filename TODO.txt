@@ -36,20 +36,28 @@ Millores de la web :
  V  - Hi ha algo raro amb els butons de les reds socials, el marc ja es mes gran del compte, i lo xungo es que en localhost es veuen centrats, i a devildrey33.es es veuen alineats a la esquerra... :O (HE PASAT TOTS ELS MARCS A FLEX)
  V  - Els butons del minilab no tenen svg... (solucionat i ara tambè tenen tooltips)
  V  - Solucionat bug que no mostraba correctament el nùmero de comentaris de cada entrada.
-    - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
-        - Un exemple clar seria la web de elmundo
-    - El buscador del menú principal (amb google)... aviam si al 2016 el faig.. xd
-    - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
-    - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
-    - El taliba m'ha insinuat que podria fer uns agraiments. (però o faig algo chulo equiparable a una obra d'art binaria o no ho faig...)
-    - Fer el error 404 chulo amb three.js
  V  - Nous efectes hover per els butons estandar (i mirar d'implementar en els butons svg tambè)
  V      - mirar que es pot fer amb el buto dels comentaris... te el before ocupat per texte...
  V      - Mirar butons de les Ventana(Error/Mensaje)
  V  - Refer #BarraNavegacion_MarcoNextPrev amb display flex, i butons svg animats.
  V      - S'ha de fer algo per els butons desactivats. (falta modificar el color del svg.. o mostrar unaltre...)
         - Afegir forma de filtrar per categorias (Todo, CSS, PHP, etc...)
--
+ V  - SOLUCIONAT Fallo greu a l'hora d'enviar comentaris (els noms de les taules no poden superar els 64 caracters, i en algunes entrades pot pasar)
+ V  - Al editar comentaris avegades es creen etiquetes amb el atribut contenteditable="true" (SOLUCIONAT)
+ V  - Tots els warnings i errors de PHP es guarden en un log, i aquest es mostra en una finestra chula dintre de la web.
+ V      - Mirar totes les dades que paso per ajax i adaptar els JSONS amb el texte d'error php.
+ V          - ObjetoBase.js          - ObjetoAdmin.js          - ObjetoComentarios.js          - ObjetoLab.js          - ObjetoIndice.js
+ V      - Casi que s'ha de mirar que totes les peticions ajax treballin amb json.... i aixi poder retornar els errors php (excepte carregar JS i CSS tot es fa amb JSON)
+ V      - M'envia un correu quan pasa una advertencia o un error.
+    - El buscador del menú principal (sense google)... aviam si al 2016 el faig.. xd
+        - De moment probare a crear un array de paraules per cada document (eliminant paraules repetides de cada document, i paraules d'un caracter). Ames ho deixare tot alfanumeric en lowercase, i ignorare paraules d'un caracter.
+    - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
+        - Un exemple clar seria la web de elmundo
+    - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
+    - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
+    - El taliba m'ha insinuat que podria fer uns agraiments. (però o faig algo chulo equiparable a una obra d'art binaria o no ho faig...)
+    - Fer el error 404 chulo amb three.js
+
     - Pasa algo raro amb les ancles mirar : "/Blog/flex-box-y-media-queries" i probar en aquest ordre : 3, 2, 1 (el 2 no va, i no es veu a la pantalla)
     - El devildrey33_Pintar_Codigo pinta valors que no ha de pintar.... (Blog/algunos-efectos-para-botones-en-css)
         border           : 2px solid !!#000!!;
@@ -59,6 +67,7 @@ Millores de la web :
     - fa un blink extrany cada PRIMER cop que paso per sobre d'una etiqueta linea o a[href][cid][l]. I m'esta tocan molt els pebrots...
     - s'ha de detectar quan passa el temps d'administració, i al fer algo en una sesio expirada, que torni a demanar el login.
     - Tornar a afegir els iconos58x69.svg dintre del HTML bàsic, aquest cop el carregarem directament de l'arxiu, i aixi no cal posarlo dintre del devildrey33.php i serà tot mes còmode.
+
 
 Estils movils :
  V  - Probar l'index en Google Nexus 10, no es pot accedir a les seguents entrades amb l'escroll. 
@@ -111,7 +120,7 @@ Solitario :
  V  - En firefox mostra malament totes les cartes (el firefox no pilla background-position-x y background-position-y. S'ha de fer amb background-position lo que em fa escriure un selector per carta).
 
 ESPECIFIC NAVEGADORS :    
- V  - Les fonts de les etiquetes <pre> i <code> monospace no tenen la mida iguals en chrome i firefox. He pillat una monospace del google i ara sembla que tenen la mateixa mida en tots.
+ V  - Les fonts de les etiquetes <pre> i <code> monospace no tenen la mida iguals en chrome i firefox. He pillat una monospace del google i ara sembla que tenen la mateixa mida en tots. (pero tambè es provable que sigui la causant del BLINK que em fa el hover de remarcar una linea de codi nomes el primer cop que la remarco)
     Firefox :         
  V      - Els icones svg no fan bè l'animació en el hover (no la fan centrada).
     Explorer 11 :

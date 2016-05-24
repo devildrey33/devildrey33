@@ -72,7 +72,7 @@ class devildrey33_Comentarios {
                 for ($i = 0; $i < $Total; $i++) {
                     $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
                     if ($i >= $Desde) {
-                        $this->_ImprimirComentario($Datos, ($i - $Desde == ($Num / 2) - 1) ? TRUE : FALSE);
+                        echo $this->_ImprimirComentario($Datos, ($i - $Desde == ($Num / 2) - 1) ? TRUE : FALSE);
                         if ($i === $Total -1) echo "<div fincomentarios='true'></div>".Intro();
                     }
 
@@ -84,6 +84,7 @@ class devildrey33_Comentarios {
 
     public function InsertarComentarios($Pagina, $Desde, $Hasta) {
         $BD = new devildrey33_BD;
+        $Ret = "";
         $Punto = FALSE;
         $PaginaPadre = str_replace(array(".", "-"), "_", $Pagina);            
         $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".$BD->_mysqli->real_escape_string(strtolower($PaginaPadre))." ORDER BY NumMsg DESC");
@@ -92,32 +93,32 @@ class devildrey33_Comentarios {
             if ($Total !== 0) {
                 for ($i = 0; $i < $Total; $i++) {
                     $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
-//                        echo $Datos["NumMsg"].' <= '.$Desde;
                     if ($Datos["NumMsg"] <= $Desde) {
                         if ($Datos["NumMsg"] < ($Hasta +10) && $Punto === FALSE) {
-                            $this->_ImprimirComentario($Datos, TRUE);
+                            $Ret .= $this->_ImprimirComentario($Datos, TRUE);
                             $Punto = TRUE;
                         }
                         else {
-                            $this->_ImprimirComentario($Datos, FALSE);                                
+                            $Ret .= $this->_ImprimirComentario($Datos, FALSE);                                
                         }
 
-                        if ($i === $Total -1) echo "<div fincomentarios='true'></div>".Intro();
+                        if ($i === $Total -1) $Ret .= "<div fincomentarios='true'></div>".Intro();
                     }                        
                     if ($Datos["NumMsg"] <= $Hasta) break;
                 }
             }
         }
+        return json_encode(array("HTML" => $Ret, "ErrorPHP" => Base::ObtenerLogPHP()));
     }
 
     private function _ImprimirComentario($Datos, $Punto = FALSE) {
         $Delays = range(1,6);
         shuffle($Delays);
-        
-        echo "<a name='".$Datos["NumMsg"]."'></a>";       
-        if ($Punto === TRUE)  echo "<div PuntoScroll='true' comentario='".$Datos["NumMsg"]."'>".Intro();
-        else                  echo "<div comentario='".$Datos["NumMsg"]."'>".Intro();
-        echo    "<div class='Comentarios_ControlesMensaje'>".
+        $Ret = "";
+        $Ret .= "<a name='".$Datos["NumMsg"]."'></a>";       
+        if ($Punto === TRUE)  $Ret .= "<div PuntoScroll='true' comentario='".$Datos["NumMsg"]."'>".Intro();
+        else                  $Ret .= "<div comentario='".$Datos["NumMsg"]."'>".Intro();
+        $Ret .=    "<div class='Comentarios_ControlesMensaje'>".
                     "<button class='Boton-Normal TransitionDelay0".$Delays[0]."'>Responder</button>".
                     "<button class='Boton-Normal TransitionDelay0".$Delays[1]."'>+1</button>".
                     "<button class='Boton-Normal TransitionDelay0".$Delays[2]."'>-1</button>".
@@ -127,10 +128,11 @@ class devildrey33_Comentarios {
                 "</div>";
         if ($Datos["PaginaWeb"] !== "") $Nombre = "<a href='".$Datos["PaginaWeb"]."' target='_blank'>".$Datos["Nombre"]."</a>".Intro();
         else                            $Nombre = $Datos["Nombre"];
-        echo    "<div>[#".$Datos["NumMsg"]."] ".$Nombre." <span>".$Datos["FechaCreacion"].", votos <b>".$Datos["VotacionesValor"]."</b> de <b>".$Datos["VotacionesTotal"]."</b>.</span></div>".Intro();
+        $Ret .=    "<div>[#".$Datos["NumMsg"]."] ".$Nombre." <span>".$Datos["FechaCreacion"].", votos <b>".$Datos["VotacionesValor"]."</b> de <b>".$Datos["VotacionesTotal"]."</b>.</span></div>".Intro();
         $Mensaje = str_replace(array('\"', "\'"), array('"'  , "'"), $Datos["Mensaje"]);
-        echo    "<div>".$Mensaje."</div>".Intro();
-        echo "</div>".Intro();
+        $Ret .=    "<div>".$Mensaje."</div>".Intro();
+        $Ret .= "</div>".Intro();
+        return $Ret;
     }        
     
     
@@ -165,7 +167,7 @@ class devildrey33_Comentarios {
         else {
             $Mensaje = "El valor no es válido.";
         }
-        return json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Valor" => intval($Valor), "Mensaje" => $Mensaje));
+        return json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Valor" => intval($Valor), "Mensaje" => $Mensaje, "ErrorPHP" => Base::ObtenerLogPHP()));
     }
     
     /* Lista de errores :
@@ -198,8 +200,7 @@ class devildrey33_Comentarios {
         if ($Comentario == "") 	{ $Error .= " No hay comentario"; }
         // Si hay algun error, lo imprimo y salgo de la función
         if ($Error != "Error!") {
-            echo $Error;
-            return;
+            return json_encode(array("HTML" => $Error, "ErrorPHP" => Base::ObtenerLogPHP()));
         }
         // Conexión con la BD
         $BD = new devildrey33_BD;        
@@ -245,14 +246,14 @@ class devildrey33_Comentarios {
         if ($Nombre != "devildrey33") {
             Base::EnviarEmail("Nuevo mensaje en $PaginaPadre2", 
                               "Nuevo mensaje de $Nombre en : ".str_replace("www.", "", $URL)."\nIp : ".$_SERVER['REMOTE_ADDR'], 
-                              "contacto@".$_SERVER["SERVER_NAME"], 
+                              "Contacto@".$_SERVER["SERVER_NAME"], 
                               "devildrey33@hotmail.com");
         }
         // Si l'ha fet el barba pero no ha escrit el missatge
         if ($Autor == "Joel Barba" && $Nombre != "Joel Barba") {
             Base::EnviarEmail("Nuevo mensaje en $PaginaPadre2", 
                               "Nuevo mensaje de $Nombre en : ".str_replace("www.", "", $URL)."\nIp : ".$_SERVER['REMOTE_ADDR'], 
-                              "contacto@".$_SERVER["SERVER_NAME"], 
+                              "Contacto@".$_SERVER["SERVER_NAME"], 
                               "joel.barba.vidal@gmail.com");
         }
         
@@ -261,7 +262,9 @@ class devildrey33_Comentarios {
         $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".$BD->_mysqli->real_escape_string($PaginaPadre)." ORDER BY NumMsg DESC");
 //        echo "<pre>$Resultado</pre>";
         $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
-        $this->_ImprimirComentario($Datos, FALSE);
+        
+        
+        return json_encode(array("HTML" => $this->_ImprimirComentario($Datos, FALSE), "ErrorPHP" => Base::ObtenerLogPHP()));
     }
     
     
@@ -279,7 +282,7 @@ class devildrey33_Comentarios {
             $Resultado   = $BD->_mysqli->query("SELECT * FROM comentarios__".strtolower($PaginaPadre)." WHERE NumMsg='".$NumComentario."'");
             
             $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
-            return $Datos["Correo"];
+            return json_encode(array("HTML" => $Datos["Correo"], "ErrorPHP" => Base::ObtenerLogPHP()));
         }        
     }
     
@@ -297,7 +300,7 @@ class devildrey33_Comentarios {
         else {
             $Mensaje = "Error : Se requieren permisos de administración para borrar comentarios.";
         }
-        return json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Mensaje" => $Mensaje));        
+        return json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Mensaje" => $Mensaje, "ErrorPHP" => Base::ObtenerLogPHP()));        
     }
 
     
@@ -308,15 +311,15 @@ class devildrey33_Comentarios {
             // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
             $PaginaPadre = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($PaginaPadre))), 0, 51);        
             $Resultado = $BD->_mysqli->query("UPDATE comentarios__".strtolower($PaginaPadre).
-                                            " SET Mensaje='".$BD->_mysqli->real_escape_string($Comentario).
-                                           "' WHERE NumMsg='".$BD->_mysqli->real_escape_string($NumComentario)."'");
+                                            " SET Mensaje='".$BD->_mysqli->real_escape_string(str_replace(' contenteditable="true"', "" , $Comentario))."'".
+                                            " WHERE NumMsg='".$BD->_mysqli->real_escape_string($NumComentario)."'");
             if ($Resultado !== true) { $Mensaje = "Error : ".$BD->_mysqli->error; }
             else                     { $Mensaje = "Comentario Editado"; }
         }
         else {
             $Mensaje = "Error : Se requieren permisos de administración para editar comentarios.";
         }
-        return json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Mensaje" => $Mensaje));                
+        return json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Mensaje" => $Mensaje, "ErrorPHP" => Base::ObtenerLogPHP()));                
     }
     
 }
