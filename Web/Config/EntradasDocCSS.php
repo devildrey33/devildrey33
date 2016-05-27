@@ -3499,7 +3499,7 @@
     'Version'       => 3,
     'Soportada'     => array ( 1, 1, 9, 9, 3 ),
     'Ejemplo'       => 'span[title]',
-    'Path'          => '[Atributo]',
+    'Path'          => 'Atributo',
     'EjemplosExtra' => array ( ),
     'Tipo'          => 'DocCSS'
   ),
@@ -3511,7 +3511,7 @@
     'Version'       => 3,
     'Soportada'     => array ( 1, 1, 9, 9, 3 ),
     'Ejemplo'       => 'a[href=valor]',
-    'Path'          => '[Atributo=Valor]',
+    'Path'          => 'AtributoValor',
     'EjemplosExtra' => array ( ),
     'Tipo'          => 'DocCSS'
   ),
@@ -3523,7 +3523,7 @@
     'Version'       => 3,
     'Soportada'     => array ( 1, 1, 9, 9, 3 ),
     'Ejemplo'       => 'div[title~=palabra]',
-    'Path'          => '[Atributo~=Palabra]',
+    'Path'          => 'Atributo~Palabra',
     'EjemplosExtra' => array ( ),
     'Tipo'          => 'DocCSS'
   ),
@@ -3535,7 +3535,7 @@
     'Version'       => 3,
     'Soportada'     => array ( 1, 1, 9, 9, 3 ),
     'Ejemplo'       => 'div[title*=string]',
-    'Path'          => '[Atributo*=String]',
+    'Path'          => 'AtributoString',
     'EjemplosExtra' => array ( ),
     'Tipo'          => 'DocCSS'
   ),
@@ -3571,7 +3571,7 @@
     'Version'       => 3,
     'Soportada'     => array ( 1, 1, 9, 9, 3 ),
     'Ejemplo'       => 'div[title$=valor]',
-    'Path'          => '[Atributo$=Valor]',
+    'Path'          => 'AtributoValor',
     'EjemplosExtra' => array ( ),
     'Tipo'          => 'DocCSS'
   ),

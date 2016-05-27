@@ -2,6 +2,35 @@
 
 if (!defined('DEF_Base')) {
     define('DEF_Base', true);    
+    
+    
+    
+    /*class Errors {        
+        public function __construct() {
+            //Setting for the PHP Error Handler
+            set_error_handler(array($this, 'Error'));
+            //Setting for the PHP Exceptions Error Handler
+            set_exception_handler(array($this, 'Excepcion'));
+            //Setting for the PHP Fatal Error
+            register_shutdown_function(array($this, 'ErrorFatal'));
+        }        
+        
+        public function Error($errno, $errstr, $errfile, $errline) {
+//            error_log("devildrey33".$errstr."\n");
+            return false;
+        }
+        
+        public function Excepcion($exception) {
+//            error_log("devildrey33".$e->getMessage()."\n");
+            return false;
+        }
+        
+        public function ErrorFatal($errno, $errstr, $errfile, $errline) {
+            echo "Final\n";
+        }
+    };
+    
+    $_Err = new Errors();*/
 /*    function myErrorHandler($errno, $errstr, $errfile, $errline) {
         Base::$ErrorPhp = true;
         echo "<pre>ERROR-PHP</pre>";
@@ -14,10 +43,6 @@ if (!defined('DEF_Base')) {
     /* Funciones base utilizadas por varios objetos independientes  *
      * Todas las funciones son estaticas.                           */
     class Base {
-        static $ErrorPhp = false;
-        
-        
-        
         /* Función que devuelve el nombre del mes especificado numericamente */
         static public function ObtenerMesStr($NumMes) {
             switch ($NumMes) {
@@ -286,8 +311,20 @@ if (!defined('DEF_Base')) {
     ini_set("log_errors", 1);
     ini_set("error_log", $_SERVER['DOCUMENT_ROOT']."/Web/Cache/php-error.log");
     
+/*    function myErrorHandler($errno, $errstr, $errfile, $errline) {
+        switch ($errno) {
+            case E_USER_ERROR :
+                Base::ObtenerLogPHP(); 
+                break;
+        }
+        return false;
+    }
+    
+    set_error_handler("myErrorHandler");*/
+
+    
     // Los errores criticos nunca llegaran a mostrarse en el navegador, pero me los mando por correo.
-    function exception_handler($e) {
+/*    function exception_handler($e) {
         try {
             // ... normal exception stuff goes here
             error_log($e->getMessage()); // This is the underlying problem
@@ -300,6 +337,6 @@ if (!defined('DEF_Base')) {
     }    
     set_exception_handler('exception_handler');
         
-    
+    throw new Exception('Division by zero.');*/
     
 }

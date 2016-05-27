@@ -35,7 +35,6 @@ class devildrey33 {
     public 	$BD;				// Base de datos
     public 	$PintarCodigo;			// Objeto para pintar código
     
-//    public      $ErroresPHP;                    // Objeto que contiene los mensajes de advertencia y de error procesados
 
     /* Constructor sin parametros, si hay que iniciar una plantilla ya se le suministraran el tipo y el nombre del documento en la misma función 
             Esto agilizara consultas ajax y de mensajeria que pasan por este constructor sin necesitar la mitad de cosas que se cargan.
@@ -79,6 +78,9 @@ class devildrey33 {
         if ($Entrada !== false) {
             echo "<meta name='author' content='".$Entrada["Autor"]."' />".Intro().
             
+            /* Manifest per android (https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android) */
+            '<link rel="manifest" href="/manifest.json">'.Intro().
+                    
             /* Twitter Card data */
             "<meta name='twitter:card' content='summary' />".Intro().        
             "<meta name='twitter:site' content='@publisher_handle' />".Intro().        
@@ -513,7 +515,7 @@ class devildrey33 {
             $HTML = ob_get_contents();
             ob_end_clean();            
             echo json_encode(array("HTML" => $HTML, "ErrorPHP" => Base::ObtenerLogPHP()));
-            return "";
+            return;
         }
                         
         echo "</div>".Intro();
@@ -527,6 +529,7 @@ class devildrey33 {
         echo        Base::ObtenerLogPHP();
         echo    "</div>".Intro()."</div>";
         echo "</body>".Intro()."</html>".Intro();
+        
     }
     
     public function InicioBlog($NombreDocumento, $Titulo) {

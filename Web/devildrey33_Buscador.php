@@ -26,20 +26,21 @@ class devildrey33_Buscador {
     
     // Archivo '/Blog/Canvas2D_1'
     static public function EscanearArchivo($Entrada) {
-        switch ($Entrada["Tipo"]) {
-            case "Blog"   :   default :       $URL = "/Blog/".$Entrada["URL"];   break;
-            case "Lab"    :                   $URL = "/Lab/".$Entrada["URL"];    break;
+        switch ($Entrada["Tipo"]) { /* Blog y Doc sempre van sense extensio, el lab sempre va amb extensio (s'han de posar les extensions que falten) */
+            case "Blog"   :   default :       $URL = "/Blog/".$Entrada["URL"].".php";   break;
+            case "Lab"    :                   $URL = "/".$Entrada["URL"];               break; // (La URL sense el /Lab/ perque retorni nomes l'arxiu (OJU PERQUE DESPRES AL RESULTAT DEL BUSCADOR SI QUE HA D'APUNTAR A /Lab/)
             case "DocCSS" :                   
                 switch ($Entrada["TipoCSS"]) {
-                    case 0 : $URL  = "/Doc/CSS/Propiedades/".$Entrada["Nombre"];    $Entrada["Titulo"] = "Propiedad CSS ".$Entrada["Nombre"];    break;
-                    case 1 : $URL  = "/Doc/CSS/Selectores/".$Entrada["Nombre"];     $Entrada["Titulo"] = "Selector CSS ".$Entrada["Nombre"];     break;
-                    case 2 : $URL  = "/Doc/CSS/Funciones/".$Entrada["Nombre"];      $Entrada["Titulo"] = "Función CSS ".$Entrada["Nombre"];      break;
-                    case 3 : $URL  = "/Doc/CSS/Reglas/".$Entrada["Nombre"];         $Entrada["Titulo"] = "Regla CSS ".$Entrada["Nombre"];        break;
+                    case 0 : $URL  = "/Doc/CSS/Propiedades/".(  ($Entrada["Path"] === '') ? $Entrada["Nombre"].".php" : $Entrada["Path"].".php");    $Entrada["Titulo"] = "Propiedad CSS ".$Entrada["Nombre"];    break;
+                    case 1 : $URL  = "/Doc/CSS/Selectores/".(   ($Entrada["Path"] === '') ? $Entrada["Nombre"].".php" : $Entrada["Path"].".php");    $Entrada["Titulo"] = "Selector CSS ".$Entrada["Nombre"];     break;
+                    case 2 : $URL  = "/Doc/CSS/Funciones/".(    ($Entrada["Path"] === '') ? $Entrada["Nombre"].".php" : $Entrada["Path"].".php");    $Entrada["Titulo"] = "Función CSS ".$Entrada["Nombre"];      break;
+                    case 3 : $URL  = "/Doc/CSS/Reglas/".(       ($Entrada["Path"] === '') ? $Entrada["Nombre"].".php" : $Entrada["Path"].".php");    $Entrada["Titulo"] = "Regla CSS ".$Entrada["Nombre"];        break;
                 }
                 
                 break;
         }
-        // Fase 1, generar codigo html
+        
+        // Fase 1, generar código html
         $fb = iconv('UTF-8', 'ISO-8859-1//IGNORE', file_get_contents("http://devildrey33.st0rm".$URL."?GenerarCacheBuscador"));            
         // Fase 2, eliminar todas las etiquetas
         $fb = strip_tags($fb);
@@ -48,11 +49,11 @@ class devildrey33_Buscador {
         // Dividimos el contenido restante en un array de palabras
         $ArrayPalabras = array_filter(explode(" ", $fb)); 
         // Creo un array con el archivo, el titulo, y las palabras
-        
+//        if (filemtime(dirname(__FILE__).'/CSS_BD.php') > filemtime(dirname(__FILE__)."/Config/EntradasDocCSS.php")) { 
         $Resultado = array( "URL"       => $URL, 
                             "Titulo"    => devildrey33_Buscador::Filtro(iconv('UTF-8', 'ISO-8859-1//IGNORE', $Entrada["Titulo"])), 
                             "Palabras"  => "",
-                            "UMOD"      => "");               
+                            "UMOD"      => filemtime($_SERVER['DOCUMENT_ROOT'].$URL));               
         foreach ($ArrayPalabras as $Palabra) {
             if (strlen($Palabra) > 1) {
                 if (strpos($Resultado["Palabras"], $Palabra) === false) {
@@ -60,7 +61,7 @@ class devildrey33_Buscador {
                 }                
             }
         }
-        print_r($Resultado["Titulo"]."\n");        
+//        print_r($Resultado["Titulo"]."\n");        
         return $Resultado;
     }
     
