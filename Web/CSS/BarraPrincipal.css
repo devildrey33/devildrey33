@@ -123,10 +123,11 @@ body[administrador33] #Marco33 {
 /* Marco que contiene el men� de la administración */
 #BarraPrincipal_Marco33 {
     width:460px;
-    height:344px; 
+/*    height:366px; */
         
-    top:-288px !important;
-    
+/*    top:-308px !important;*/
+    top:auto !important;
+    bottom:0px;
     transition:0.4s ease-in-out !important;    
 /*    background:#252328 !important;
     opacity:0.98;*/
@@ -205,13 +206,15 @@ body[administrador33] #Marco33 {
 
 #BarraPrincipal_MarcoBuscar {
 /*    display:block !important;*/
-    background:#EA504E !important;
+/*    background:#EA504E !important;*/
+    width:500px;
+    text-align: left;
 }
 
 #BarraPrincipal_MarcoBuscar_Edit {
     position:relative;
     top:18px;
-    width:340px;
+    width:420px;
     height:20px;
     border:1px solid #353338;
     left:10px;
@@ -226,6 +229,17 @@ body[administrador33] #Marco33 {
     cursor:pointer;
 }
 
+#BarraPrincipal_MarcoBuscar_Resultado {
+    max-height:244px;
+    overflow:auto;
+    margin-bottom:10px;
+    padding:0px 20px;
+    width:100%;
+}
+
+#BarraPrincipal_MarcoBuscar_Resultado a {
+    color:#FFF;
+}
 
 
 

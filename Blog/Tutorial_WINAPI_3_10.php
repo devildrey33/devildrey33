@@ -42,9 +42,9 @@
                 <ul>
                 <li>Lo primero es parsear el path por si viene con comillas,  en ese caso las quitaremos.</li>
                 <li>Abrimos nuestro ejecutable de la instalación para  lectura, y en caso de fallar mostramos un error.</li>
-                <li>Leemos el final del archivo para determinar ver si hay  la cabecera de 32 TCHAR TEXT(&quot;Instalador 1.0 devildrey33     &quot;). Si la comparación de la cabecera  con el texto da positivo, es que el instalador contiene archivos. Si la  coprobacion sale negativa saldremos de la función ya que no hay datos por leer.</li>
+                <li>Leemos el final del archivo para determinar ver si hay  la cabecera de 32 TCHAR TEXT(&quot;Instalador 1.0 devildrey33 &nbsp; &nbsp; &quot;). Si la comparación de la cabecera  con el texto da positivo, es que el instalador contiene archivos. Si la  coprobacion sale negativa saldremos de la función ya que no hay datos por leer.</li>
                 <li>Movemos el puntero a la posición donde empiezan los datos.</li>
-                <li>Obtenemos el path por defecto de la instalación, para ello leemos un UINT del archivo, y luego un string. El UINT determina el  directorio por defecto : &ldquo;c:\&rdquo; &ldquo;c:\Archivos de programa (x86)&rdquo;  y &ldquo;c:\archivos de programa&rdquo;. El string  contiene el nombre de la aplicación a instalar &ldquo;Ejemplo 3.5&rdquo; (Todo esto se  decide en el ensamblador)</li>
+                <li>Obtenemos el path por defecto de la instalación, para ello leemos un UINT del archivo, y luego un string. El UINT determina el  directorio por defecto : &ldquo;c:\&rdquo; &ldquo;c:\Archivos de programa (x86)&rdquo;  y &ldquo;c:\archivos de programa&rdquo;. El string  contiene el nombre de la aplicación a instalar &ldquo;Ejemplo 3.5&rdquo; (Todo esto se  decide en el ensamblador)</li>
                 <li>Una vez tenemos el directorio lo asignamos al EditBox, y salimos de la función.</li>
                 </ul>
                 <p>Ahora veamos la función InstalarContenido que será la que se  ejecutara al pulsar el botón instalar :</p>
@@ -83,7 +83,7 @@
                           </tr>
                           <tr>
                             <td><font color="#999999"><b>Cabecera</b></font></td>
-                            <td>: <b>DWORD</b> con la posición de inicio del instalador, <b>TCHAR</b> * 32 con este texto &ldquo;Instalador 1.0  devildrey33    &ldquo;</td>
+                            <td>: <b>DWORD</b> con la posición de inicio del instalador, <b>TCHAR</b> * 32 con este texto &ldquo;Instalador 1.0  devildrey33 &nbsp; &nbsp; &ldquo;</td>
                           </tr>
                         </table>
                       <div class='nota'> un <b>String</b> se compone de : <b>UINT</b> con el tamaño en caracteres, <b>TCHAR</b> * tamaño en caracteres.</div></td>

@@ -1,4 +1,4 @@
-<p>Esta propìedad nos permite especificar el espacio entre cada palabra.</p>
+<p>Esta propiedad nos permite especificar el espacio entre cada palabra.</p>
 <hr />
 <h2>Sintaxis</h2>
 <pre class='Sintaxis'>word-spacing: <b>valor</b>;</pre>

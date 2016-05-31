@@ -602,7 +602,7 @@
             $this->AgregarCSS("Selector [atributo*=valor]",	CSSTipo::Selector, 	CSSGrupo::Atributo,			3, 	array(1, 1, 9, 9, 3),			"Selecciona los elementos que el valor del atributo contenga el string especificado.", "div[title*=string]", "[Atributo*=String]");
             $this->AgregarCSS("Selector [atributo|=valor]",	CSSTipo::Selector, 	CSSGrupo::Atributo,			3, 	array(1, 1, 9, 9, 3),			"Selecciona los elementos que el valor del atributo sea el valor especificado.", "div[title|=valor]", "AtributoEsValor");
             $this->AgregarCSS("Selector [atributo^=valor]",	CSSTipo::Selector, 	CSSGrupo::Atributo,			3, 	array(1, 1, 9, 9, 3),			"Selecciona los elementos que el valor del atributo empiece con el valor especificado (string).", "div[title^=valor]", "AtributoEmpiezaValor");
-            $this->AgregarCSS("Selector [atributo$=valor]",	CSSTipo::Selector, 	CSSGrupo::Atributo,			3, 	array(1, 1, 9, 9, 3),			"Selecciona los elementos que el valor del atributo termine con el valor especificado.", "div[title$=valor]", "Atributo=Valor");
+            $this->AgregarCSS("Selector [atributo$=valor]",	CSSTipo::Selector, 	CSSGrupo::Atributo,			3, 	array(1, 1, 9, 9, 3),			"Selecciona los elementos que el valor del atributo termine con el valor especificado.", "div[title$=valor]", "Atributo\$Valor");
             
             /* Creo el archivo de intercambio para poder crear la lista de entradas en javascript */
             if (filemtime(dirname(__FILE__).'/CSS_BD.php') > filemtime(dirname(__FILE__)."/Config/EntradasDocCSS.php")) { 

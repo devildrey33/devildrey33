@@ -1,4 +1,4 @@
-<p>Esta propìedad nos permite especificar la altura del objeto.</p>
+<p>Esta propiedad nos permite especificar la altura del objeto.</p>
 <div class='nota'>El valor asignado a esta propiedad no incluye ni el <a href="margin">margin</a> ni el <a href="padding">padding</a>, ni los <a href="border">border</a>, ni los <a href="outline">outline</a>.</div>
 <hr />
 <h2>Sintaxis</h2>

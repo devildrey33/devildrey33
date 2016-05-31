@@ -3571,7 +3571,7 @@
     'Version'       => 3,
     'Soportada'     => array ( 1, 1, 9, 9, 3 ),
     'Ejemplo'       => 'div[title$=valor]',
-    'Path'          => 'AtributoValor',
+    'Path'          => 'Atributo$Valor',
     'EjemplosExtra' => array ( ),
     'Tipo'          => 'DocCSS'
   ),

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            div::after { color:red; border:1px solid #AAA; } /* Resultado en rojo */
+            
+            .c-counter { counter-increment:Contador; }
+            .c-counter::after { content:counter(Contador); }
+            
+            .c-attr::after    { content:attr(data-valor); }
+            
+            .c-string::after   { content:'Cadena de caracteres'; }
+            
+            .c-open-quote::after  { content:open-quote; }
+            
+            .c-close-quote::after  { content:close-quote; }
+            
+            .c-no-open-quote::after  { content:no-open-quote; }
+            
+            .c-no-close-quote::after { content:no-close-quote; }
+            
+            .c-url::after            { content:url('/Web/Graficos/Logo.png'); }
+        </style>
+        <script type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class='c-counter'>                 <code>.c-counter::after        { content:counter(Contador); }</code> </div>
+        <div class='c-attr' data-valor='Valor'> <code>.c-attr::after           { content:attr(data-valor); }</code> </div>
+        <div class='c-string'>                  <code>.c-string::after         { content:'Cadena de caracteres'; }</code> </div>
+        <div class='c-open-quote'>              <code>.c-open-quote::after     { content:open-quote; }</code> </div>
+        <div class='c-close-quote'>             <code>.c-close-quote::after    { content:close-quote; }</code> </div>
+        <q class='c-no-open-quote'>           <code>.c-no-open-quote::after  { content:no-open-quote; }</code> </q>
+        <blockquote class='c-no-close-quote'>          <code>.c-no-close-quote::after { content:no-close-quote; }</code> </blockquote>
+        <div class='c-url'>                     <code>.c-url::after            { content:url('/Web/Graficos/Logo.png'); }</code> </div>
+    </body>
+</html>

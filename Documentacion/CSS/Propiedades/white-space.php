@@ -1,4 +1,4 @@
-<p>Esta propìedad nos permite especificar como debe tratar el navegador los espacios en blanco del texto dentro de un elemento.</p>
+<p>Esta propiedad nos permite especificar como debe tratar el navegador los espacios en blanco del texto dentro de un elemento.</p>
 <div class='nota'>Una sequencia multiple de espacios en blanco puede ser : dos o mas espacios en blanco, una tabulación, o cualquier combinación de espacios y tabulaciones.</div>
 <hr />
 <h2>Sintaxis</h2>

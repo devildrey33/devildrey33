@@ -1,4 +1,4 @@
-<p>Esta propìedad nos permite especificar si el objeto debe ser visible o por el contrario debe estar oculto.</p>
+<p>Esta propiedad nos permite especificar si el objeto debe ser visible o por el contrario debe estar oculto.</p>
 <div class='nota'>Aunque ocultemos el elemento. el navegador seguira reservando el espacio que ocupa el objeto.</div>
 <hr />
 <h2>Sintaxis</h2>

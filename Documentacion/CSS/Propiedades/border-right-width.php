@@ -1,4 +1,4 @@
-<p>Esta propìedad nos permite especificar el tamaño de la parte derecha del borde para el objeto.</p>
+<p>Esta propiedad nos permite especificar el tamaño de la parte derecha del borde para el objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
 <pre class='Sintaxis'>border-right-width: <b>Valor</b>;</pre>

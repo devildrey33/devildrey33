@@ -237,12 +237,15 @@ $Base = new function() {
     /* Enlaza los links a href sin target a la función CargarURL */
     this.RedireccionarLinks = function() {
         console.log("Base.RedireccionarLinks");
+        // Enlaces del marco de navegación
         $("#MarcoNavegacion a[href]:not([target])").off("click").on("click", function(e) {
             e.preventDefault();
             e.stopImmediatePropagation();
             $Base.CargarURL($(this).attr("href"));
             return false;
         });
+        
+        
         
         Pagina = $("#MarcoNavegacion > article").attr("pagina");
 /*        if (typeof localStorage["Voto_" + Pagina] === "undefined") {
@@ -615,16 +618,30 @@ $Base = new function() {
     this.Buscar = function() {    
         if ($("#BarraPrincipal_MarcoBuscar_Edit").val() === "")  {
             $("#BarraPrincipal_MarcoBuscar_Edit").focus();
+            this.MostrarMensaje("Debes especificar una o mas palabras a buscar.")
             return;
         }
 
         console.log("Base.Buscar " + $("#BarraPrincipal_MarcoBuscar_Edit").val());   
-
-        $.post( "/Buscar/", { "Regenerar" : "todo", "Categoria" : "Todo", "SinPlantilla" : "true", "Search" : $("#BarraPrincipal_MarcoBuscar_Edit").val() }).done(function(data) {
+        this.Cargando("TRUE");
+        $.post( "/cmd/Buscar", { "Palabras" : $("#BarraPrincipal_MarcoBuscar_Edit").val() }).done(function(data) {
             Datos = JSON.parse(data);
-            $("body").attr({ "Tipo" : $Base.Entrada["Buscar"] });
-            $("#MarcoNavegacion").html(Datos["HTML"]);
+//            $("body").attr({ "Tipo" : $Base.Entrada["Buscar"] });
+//            $("#MarcoNavegacion").html(Datos["HTML"]);
+            $("#BarraPrincipal_MarcoBuscar_Resultado").html(Datos["HTML"]);
             $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+//            $Base.RedireccionarLinks();
+            $Base.Cargando("FALSE");
+            // Enlaces del marco resultado de la busqueda
+            $("#BarraPrincipal_MarcoBuscar a[href]:not([target])").off("click").on("click", function(e) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                $Base.CargarURL($(this).attr("href"));
+                $Base.ClickMenu(0);
+                return false;
+            });
+            
+            
             /*RedireccionarLinks();*/
         }).fail(function( jqXHR, textStatus, tError ) {
             /*if (textStatus === "error") { MostrarErrorAjax(500, false); }
@@ -633,16 +650,6 @@ $Base = new function() {
             $Base.MostrarErrorAjax(jqXHR.status, false, tError);
         });
 
-        URL = "/Buscar/" + $("#BarraPrincipal_MarcoBuscar_Edit").val();
-        nURL = URL;
-        var vURL = this.IdentificarEntrada(URL, nURL);
-
-        window.history.pushState(vURL, document.title, URL);
-        /* Pongo el scroll arriba DESPUES de identificar la URL y haber guardado el scroll para el historial */
-    //    $(window).scrollTop(0);
-        document.title = vURL["Titulo"];
-        // Cierro el menu
-        this.ClickMenu(0);
     };
     
     

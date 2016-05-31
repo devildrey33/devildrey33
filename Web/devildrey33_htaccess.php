@@ -1,6 +1,6 @@
 <?php
 
-include("Base.php");
+include_once "devildrey33_Opciones.php";
 
 /* La idea es poder modificar el htacces libremente sin tener que retocar este código.
     NO DEBES MODIFICAR los comentarios #INICIO y #FIN que encontraras dentro del archivo .htaccess, 

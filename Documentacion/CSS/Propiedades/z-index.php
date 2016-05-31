@@ -1,4 +1,4 @@
-<p>Esta propìedad nos permite especificar el orden de la capa / objeto.</p>
+<p>Esta propiedad nos permite especificar el orden de la capa / objeto.</p>
 <div class='nota'>Solo funciona con objetos que tengan la propiedad <code>position</code> a : <code>absolute</code>, <code>relative</code>, y <code>fixed</code></div>
 <hr />
 <h2>Sintaxis</h2>

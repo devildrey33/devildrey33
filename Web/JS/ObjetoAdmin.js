@@ -19,6 +19,10 @@ $Admin = new function() {
         $('#CH_Stats').click(function(e){ $Base.CargarURL('/Web/Stats'); $Base.ClickMenu(0); }); /* MOSTRAR stats */
         /* Boton ver php info */
         $('#CH_PhpInfo').click(function(e){ $Base.CargarURL('/Web/phpinfo'); $Base.ClickMenu(0); }); /* MOSTRAR info php */
+        /* Botón generar cache del buscador */
+        $('#CH_GenCacheBuscador').click(function(e){ $Base.cmd('GenerarCacheBuscador'); $Base.MostrarMensaje("Cache del buscador generada (o no.. xd)"); }); 
+        
+        CH_GenCacheBuscador
         /* Boton explorar lab */
 //        $('#CH_Lab').click(function(e){ $Base.CargarURL('/Web/Lab-Explorar'); $Base.ClickMenu(0); });  /* EXPLORAR LAB */
         /* Boton editar entradas */
@@ -43,6 +47,9 @@ $Admin = new function() {
                     break;
                 case 'CH_DebugPHP' :
                     $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarDebugPHP' : 'ActivarDebugPHP' );
+                    break;
+                case 'CH_BorrarPHP' :
+                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarBorrarLogPHP' : 'ActivarBorrarLogPHP' );
                     break;
                 case 'CH_Consola' :
                     $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarConsola' : 'ActivarConsola' );

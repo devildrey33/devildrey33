@@ -46,7 +46,7 @@
                 <p>Ya solo nos queda ver una función mas, Agragar_Caracter :</p>
                 <?php $Base->PintarCodigo->PintarArchivoC("IDAgregar_Caracter", "Archivo : ObjetoEscena_Records.cpp", "../Codigo/Tutoriales_WinAPI/Objetos Tutorial/ObjetoEscena_Records.cpp", "ObjetoEscena_Records::Agregar_Caracter"); ?>
                 <p>Esta función tiene por objetivo almacenar los caracteres introducidos por el teclado para formar una cadena que será el nombre del nuevo record.</p>
-                <p>Basicamente miramos si se ha presionado Intro para terminar con la introducción del nuevo record,  si se ha pulsado la tecla borrar para borrar el ultimo carácter de la cadena, o si se ha pulsado cualquier otra tecla la cual añadiremos a la cadena.</p>
+                <p>Basicamente miramos si se ha presionado Intro para terminar con la introducción del nuevo record, si se ha pulsado la tecla borrar para borrar el ultimo carácter de la cadena, o si se ha pulsado cualquier otra tecla la cual añadiremos a la cadena.</p>
                 <p>En el ejemplo 2.4 podemos ver dentro de la escena una ventana que muestra los records, y que esta preparada para recibir pulsaciones de teclado y anotar el nombre del record.</p>
                 <p>Ya casi estamos al final del segundo tutorial, ahora nos las veremos con el objeto que cargara los niveles para el Snake: <a href="/Blog/Tutorial_WINAPI_2_5">2.5 - Tutorial Creación del ObjetoSnake_Nivel</a>.</p>
                 

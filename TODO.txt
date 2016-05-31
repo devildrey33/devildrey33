@@ -49,8 +49,13 @@ Millores de la web :
  V          - ObjetoBase.js          - ObjetoAdmin.js          - ObjetoComentarios.js          - ObjetoLab.js          - ObjetoIndice.js
  V      - Casi que s'ha de mirar que totes les peticions ajax treballin amb json.... i aixi poder retornar els errors php (excepte carregar JS i CSS tot es fa amb JSON)
  V      - M'envia un correu quan pasa una advertencia o un error.
-    - El buscador del menú principal (sense google)... aviam si al 2016 el faig.. xd
-        - De moment probare a crear un array de paraules per cada document (eliminant paraules repetides de cada document, i paraules d'un caracter). Ames ho deixare tot alfanumeric en lowercase, i ignorare paraules d'un caracter.
+ V  - El buscador del menú principal (sense google)... aviam si al 2016 el faig.. xd
+ V      - Generar un array amb les paraules de cada document (de moment Blog y Doc)
+ V          - Parsejar arxius per eliminar codi php i etiquetes html.
+ V      - Buscador básic integrat a la web
+ V      - Enllaçar enllaços href al $Base.CargarURL
+        - Retocar CSS
+        - Afegir els exemples del lab a la BD de paraules... (lo que repetira el solitario...)
     - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
         - Un exemple clar seria la web de elmundo
     - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.

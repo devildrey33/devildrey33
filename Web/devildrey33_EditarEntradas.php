@@ -11,7 +11,7 @@
  *
  * @author devildrey33
  */
-include("Base.php");
+include_once "devildrey33_Opciones.php";
 
 if (!defined('DEF_devildrey33_EditarEntradas')) {
     define('DEF_devildrey33_EditarEntradas', true);

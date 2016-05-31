@@ -1,4 +1,4 @@
-<p>Esta propìedad nos permite especificar la alineación vertical para un objeto.</p>
+<p>Esta propiedad nos permite especificar la alineación vertical para un objeto.</p>
 <div class='nota'>Dependiendo del valor de la propiedad <a href="display" target="_blank">display</a> la propiedad vertical-align puede ser ignorada.</div>
 <hr />
 <h2>Sintaxis</h2>

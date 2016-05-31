@@ -10,6 +10,7 @@
         <br />
         <h2>Instalació</h2>
 <?php echo "<p>Has de crear la BD <b>".$ArrayDatos["NOM-BD"]."</b> amb login '<b>root</b>', pass '<b>".$ArrayDatos["PASS-Barba"]."</b>'.</p>"; ?>
+        <p>Per que la web funcioni bè ha d'estar a l'arrel del servidor, es a dir <b>NO VAL</b> <code style="color:red">http://localhost/devildrey33</code>, hauras de fer-ne un tipus <code style="color:green">http://devildrey33.st0rm</code> en el teu arxiu de hosts.</p>
         <hr />
         <h2>Conta</h2>
         <table class="Tabla">
@@ -26,7 +27,7 @@
             <li>Per loguejar : dobleclick a la '<b>L</b>' del logo deviLdrey33, i dobleclick al <b>penultim</b> '<b>3</b>' del logo, en menys de 1500 ms, o http://localhost/?Loguear</li>
             <li>Ningu pot utilitzar el nom 'Joel Barba' per escriure missatges, has de loguejarte per poder utilitzar el nom.</li>
             <li>Tens permisos per editar i eliminar missatges, OJU.</li>
-            <li>Tens permisos per editar exemples del Laboratori de proves, tambe OJU.</li>
+            <li>Tens permisos per editar exemples del Laboratori de proves, tambè OJU.</li>
             <li>Tens permisos de depuració (des-minificar codi, veure misatges de la consola, actualitzar cache).</li>
         </ul>
         <p>La web es posa en modo depuració automaticament sempre que loguejis (codi descomprimit i misatges de consola, per veure el html separat per lineas has de recarregar la web), i recorda que nomes pots utilitzar el nom un cop has entrat amb la teva conta.</p>
@@ -109,7 +110,7 @@
             <tr>
                 <td>/Web/Graficos</td>
                 <td>/Web/Graficos</td>
-                <td>Directori on es guarden totes les imatges, també es pot accedir desde http://img.devildrey33.es</td>               
+                <td>Directori on es guarden totes les imatges, tambè es pot accedir desde http://img.devildrey33.es</td>               
             </tr>
             <tr>
                 <td>/Web/JS</td>
@@ -156,7 +157,7 @@
  -[FIN devildrey33.IDC2]-*/
     $Base->PintarCodigo->PintarArchivoPHP("ID2", "Carregar javascript o css extern", basename(__FILE__), 'IDC2'); 
 ?>
-        <p>Aquestes funcions miren directament als directoris <i>/Web/CSS</i>, i <i>/Web/JS</i>, no els hi posis cap path. Tambe s'hauria de respectar la nomenclatura afegint davan "Blog_" i despres el nom del php. D'aquesta forma en un futur ho podre automatitzar...</p>
+        <p>Aquestes funcions miren directament als directoris <i>/Web/CSS</i>, i <i>/Web/JS</i>, no els hi posis cap path. Tambè s'hauria de respectar la nomenclatura afegint davan "Blog_" i despres el nom del php. D'aquesta forma en un futur ho podre automatitzar...</p>
         <p>A la <linea cid='ID2' l='6'>línea 6</linea> carrego un script i ames executo una funció del script un cop s'ha carregat.</p>
         <div class='nota'>La web carrega tots els documents dinamicament, i la forma mes neta que he trobat per carregar CSS/JS dinamicament es aquesta.</div>
         <br />
@@ -371,7 +372,7 @@ $Base->PintarCodigo->PintarArchivoPHP("IDHTML", "Carregar javascript o css exter
         
         <br /><hr /><br />
         <h2>PHP - devildrey33_Lab::CrearMiniLab</h2>
-        <p>Tambe pots fer servir el editor dinamic per HTML5 / CSS3 / JS, amb la funció : <linea cid="ID5" l="1">devildrey33_Lab::CrearMiniLab(<code>array</code>)</linea>.</p>
+        <p>Tambè pots fer servir el editor dinamic per HTML5 / CSS3 / JS, amb la funció : <linea cid="ID5" l="1">devildrey33_Lab::CrearMiniLab(<code>array</code>)</linea>.</p>
 <?php 
 /* -[INICIO devildrey33.IDC5]-
 <?php devildrey33_Lab::CrearMiniLab(array("Ejemplos/Checked/CheckBox-personalizado.html")); ?>
@@ -379,7 +380,7 @@ $Base->PintarCodigo->PintarArchivoPHP("IDHTML", "Carregar javascript o css exter
     $Base->PintarCodigo->PintarArchivoPHP("ID5", "Carregar javascript o css extern", basename(__FILE__), 'IDC5'); 
 ?>
 
-        <p>Aquest editor requereix que el codi a mostrar estigui dintre de la carpeta <i>/Ejemplos</i>, i tambe ha d'estar a la llista d'arxius permesos.</p>
+        <p>Aquest editor requereix que el codi a mostrar estigui dintre de la carpeta <i>/Ejemplos</i>, i tambè ha d'estar a la llista d'arxius permesos.</p>
         <p>Per editar la llista d'arxius permesos en el laboratori, has d'entrar al laboratori, loguejarte, i obrir l'exporador d'exemples (tercer icona del menu de la dreta).</p>
         <p>El parametre array es un o mes strings amb paths d'exemple : <code>'Ejemplos/Checked/CheckBox-personalizado.html'</code></p>
         <div class='nota'>Sobretot el string ha de començar sempre amb <code>'Ejemplos/...'</code> i sense la primera barra. Si no et donara error.</div>
@@ -388,12 +389,12 @@ $Base->PintarCodigo->PintarArchivoPHP("IDHTML", "Carregar javascript o css exter
         <hr />
         <h2>Crear una nova entrada al Blog</h2>
         <p>Per crear /editar / eliminar una entrada al blog has d'editar l'arxiu : <code>/Web/Config/EntradasBlog.php</code>.</p>       
-        <p>En principi tambe tinc un editor online desde <i>Admin -> Editar Entradas</i>, pero encara <b>no funciona</b>.</p>
+        <p>En principi tambè tinc un editor online desde <i>Admin -> Editar Entradas</i>, pero encara <b>no funciona</b>.</p>
         <p>Si necesites afegir alguna Categoria de l'index has d'editar l'arxiu : <code>/Web/Config/EntradasTags.php</code></p>
         <br /><hr />
         <h2>NOTES Finals</h2>
         <p>Rebras un missatge al teu correu cada cop que algu escrigui un missatge a un article teu. <b>(S'HA DE PROBAR)</b></p>
-        <p>Ves amb oju a l'hora d'escriure PHP, perque hi ha un objecte PHP que es diu <code>$Base</code>, i un objecte jQuery que tambe es diu <code>$Base</code>.</p>
+        <p>Ves amb oju a l'hora d'escriure PHP, perque hi ha un objecte PHP que es diu <code>$Base</code>, i un objecte jQuery que tambè es diu <code>$Base</code>.</p>
         <p>I per ultim... si per un casual et dona per activar el Mantenimiento QUE NO HAURIES DE POGUER, i no saps com treurel proba aquesta URL <code>/cmd/DesactivarMantenimiento</code>, i si no funciona carrega el backup de l'arxiu <code>.htaccess</code> de l'arrel... </p>
     
     </article>

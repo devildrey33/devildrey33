@@ -40,9 +40,9 @@
                 <p>Ahora veamos la declaración del dialogo principal de la aplicación  DialogoEnsamblador :</p>
                 <?php $Base->PintarCodigo->PintarArchivoC("IDDialogoEnsamblador", "Archivo : DialogoEnsamblador.h", "../Codigo/Tutoriales_WinAPI/3.11 Tutorial terminando Ensamblador/DialogoEnsamblador.h", "DialogoEnsamblador"); ?>
                 <p>La mayoría de funciones de este objeto ya se han tratado en  los tutoriales anteriores, lo que mas nos interesa ver de este objeto son las  siguientes funciones : CrearInstalador, _AgregarArchivosRecursivo, y  _ArbolRecursivo.</p>
-                <p>Empezaremos por _AgregarArchivosRecursivo, esta función  tiene como objetivo agregar todos los archivos que se encuentren en el  directorio especificado al ObjetoListView   :</p>
+                <p>Empezaremos por _AgregarArchivosRecursivo, esta función  tiene como objetivo agregar todos los archivos que se encuentren en el  directorio especificado al ObjetoListView :</p>
                 <?php $Base->PintarCodigo->PintarArchivoC("ID_AgregarArchivosRecursivo", "Archivo : DialogoEnsamblador.cpp", "../Codigo/Tutoriales_WinAPI/3.11 Tutorial terminando Ensamblador/DialogoEnsamblador.cpp", "DialogoEnsamblador::_AgregarArchivosRecursivo"); ?>
-                <p>Lo primero que hace esta función es construir un path que al  final tenga &ldquo;*.*&rdquo; para pasárselo a la API <a href="http://msdn.microsoft.com/en-us/library/aa364418(VS.85).aspx" target="_blank">FindFirstFile</a>.  A partir de que le pasamos los parámetros de  búsqueda a la API <a href="http://msdn.microsoft.com/en-us/library/aa364418(VS.85).aspx" target="_blank">FindFirstFile</a>, debemos ir llamando a la API <a href="http://msdn.microsoft.com/en-us/library/aa364428(VS.85).aspx" target="_blank">FindNextFile</a> hasta que retorne 0.</p>
+                <p>Lo primero que hace esta función es construir un path que al  final tenga &ldquo;*.*&rdquo; para pasárselo a la API <a href="http://msdn.microsoft.com/en-us/library/aa364418(VS.85).aspx" target="_blank">FindFirstFile</a>. A partir de que le pasamos los parámetros de  búsqueda a la API <a href="http://msdn.microsoft.com/en-us/library/aa364418(VS.85).aspx" target="_blank">FindFirstFile</a>, debemos ir llamando a la API <a href="http://msdn.microsoft.com/en-us/library/aa364428(VS.85).aspx" target="_blank">FindNextFile</a> hasta que retorne 0.</p>
                 <p>Cada vez que llamamos a <a href="http://msdn.microsoft.com/en-us/library/aa364418(VS.85).aspx" target="_blank">FindFirstFile</a> o <a href="http://msdn.microsoft.com/en-us/library/aa364428(VS.85).aspx" target="_blank">FindNextFile</a> el  miembro de la estructura <a href="http://msdn.microsoft.com/en-us/library/aa365740(VS.85).aspx" target="_blank">WIN32_FIND_DATA</a> cFileName contendrá el nombre de un  archivo, lo que hacemos es mirar si es un archivo valido, ya que nos puede  devolver &ldquo;.&rdquo; Y &ldquo;..&rdquo;, y luego comprobamos si es un directorio o un archivo.<br />
                 En el caso de ser un directorio hacemos otra llamada a  _AgregarArchivosRecursivo para inspeccionarlo. Y en el caso de ser un archivo  lo agregamos al ObjetoListView.</p>
                 <p>Con esto conseguimos enumerar todos los archivos del  directorio especificado recursivamente. </p>
@@ -50,7 +50,7 @@
                 <?php $Base->PintarCodigo->PintarArchivoC("IDCrearInstalador", "Archivo : DialogoEnsamblador.cpp", "../Codigo/Tutoriales_WinAPI/3.11 Tutorial terminando Ensamblador/DialogoEnsamblador.cpp", "DialogoEnsamblador::CrearInstalador"); ?>
                 <ul>
                 <li>Lo primero es comprobar que tenemos datos suficientes  para crear el Instalador. Necesitamos archivos a aladir, una ruta destino  valida para instalar archivos, y el instalar.exe que usaremos.</li>
-                <li>Creamos un nuevo archivo.exe, y le volcamos el  instalar.exe, a continuación guardamos el numero de directorio predeterminado  en formato UINT, y luego el nombre del directorio de la aplicación. Leemos el  contenido del ObjetoTreeView (que son los subdirectorios por crear) y los  volcamos al archivo.exe. Comprimimos y volcamos los archivos dentro de  archivo.exe, y por ultimo añadimos al final un DWORD con el tamaño original del  instalar.exe, y una cabecera de 32 TCHAR&rsquo;s con el texto &ldquo;Instalador 1.0  devildrey33    &ldquo;</li>
+                <li>Creamos un nuevo archivo.exe, y le volcamos el  instalar.exe, a continuación guardamos el numero de directorio predeterminado  en formato UINT, y luego el nombre del directorio de la aplicación. Leemos el  contenido del ObjetoTreeView (que son los subdirectorios por crear) y los  volcamos al archivo.exe. Comprimimos y volcamos los archivos dentro de  archivo.exe, y por ultimo añadimos al final un DWORD con el tamaño original del  instalar.exe, y una cabecera de 32 TCHAR&rsquo;s con el texto &ldquo;Instalador 1.0  devildrey33 &nbsp; &nbsp;&ldquo;</li>
                 </ul>
                 <table class='Marco'>
                   <tr>
@@ -79,7 +79,7 @@
                           </tr>
                           <tr>
                             <td><font color="#999999"><b>Cabecera</b></font></td>
-                            <td>: <b>DWORD</b> con la posición de inicio del instalador, <b>TCHAR</b> * 32 con este texto &ldquo;Instalador 1.0  devildrey33    &ldquo;</td>
+                            <td>: <b>DWORD</b> con la posición de inicio del instalador, <b>TCHAR</b> * 32 con este texto &ldquo;Instalador 1.0  devildrey33 &nbsp; &nbsp;&ldquo;</td>
                           </tr>
                         </table>
                           <div class='nota'>Un <b>String</b> se compone de : <b>UINT</b> con el tamaño en caracteres, <b>TCHAR</b> * tamaño en caracteres.</div></td>

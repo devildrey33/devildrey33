@@ -222,8 +222,9 @@ class devildrey33 {
                         "<input type='text' name='Search' id='BarraPrincipal_MarcoBuscar_Edit' placeholder='Texto a buscar..' required>".Intro().
                         "<div id='BarraPrincipal_MarcoBuscar_BotonBuscar'>".Intro().
                             "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-buscar' />".Intro().
-//                           "<span class='IcoLupa20x20'></span>".Intro().
+//                               "<span class='IcoLupa20x20'></span>".Intro().
                         "</div>".Intro().
+                        "<div id='BarraPrincipal_MarcoBuscar_Resultado'></div>".Intro().
                     "</div>".Intro().
                 "</div>".Intro().
                 
@@ -454,6 +455,7 @@ class devildrey33 {
             $MinJS      = (devildrey33_Opciones::Minificar_JS()      === 1) ? "true" : "false";
             $Consola    = (devildrey33_Opciones::MostrarConsola()    === 1) ? "true" : "false";
             $PHPDebug   = (devildrey33_Opciones::MostrarErroresPHP() === 1) ? "true" : "false";
+            $BorrarPHP  = (devildrey33_Opciones::BorrarLogPHP()      === 1) ? "true" : "false";
             $Cache      = (devildrey33_Opciones::ActualizarCache()   === 1) ? "true" : "false";
             $HTAccess = new devildrey33_htaccess;
             $ValHT = $HTAccess->ObtenerValores();
@@ -479,7 +481,9 @@ class devildrey33 {
                         "<li>Mostrar Debug JS</li>".Intro().
                         "<li>"."<div id='CH_Consola' class='CheckBox' marcado='".$Consola."' title='Muestra datos de depuración por la consola'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
                         "<li>Mostrar Debug PHP</li>".Intro().
-                        "<li>"."<div id='CH_DebugPHP' class='CheckBox' marcado='".$PHPDebug."' title='Muestra datos de depuración por la consola'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
+                        "<li>"."<div id='CH_DebugPHP' class='CheckBox' marcado='".$PHPDebug."' title='Muestra las advertencias y errores php en el mismo output'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
+                        "<li>Borrar Debug PHP</li>".Intro().
+                        "<li>"."<div id='CH_BorrarPHP' class='CheckBox' marcado='".$BorrarPHP."' title='Elimina el archivo log con los errores PHP antes de ejecutar código'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
                     "</ul>".Intro();
             if (devildrey33_Opciones::Administrador() === 1) {
                 $HTMLAdmin .= "<div class='ContenedorMarco33 TablaMarco33'>".Intro().
@@ -500,9 +504,10 @@ class devildrey33 {
             $HTMLAdmin .= "<div class='TablaMarco33 TablaGeneral'>".Intro().
 //                        "<button class='Boton' id='CH_Entradas'>Editar Entradas</button>".Intro().
 //                        "<button class='Boton' id='CH_Lab'>Explorar Lab</button>".Intro().
-                        "<button class='Boton-Normal' id='CH_PhpInfo'>PHP Info</button>".Intro().
                         "<button class='Boton-Normal' id='CH_Logs'>Log</button>".Intro().
                         "<button class='Boton-Normal' id='CH_Stats'>Stats</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_PhpInfo'>PHP Info</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_GenCacheBuscador'>Gen Cache Buscador</button>".Intro().
                     "</div>".Intro().
                 "</div>".Intro();
             

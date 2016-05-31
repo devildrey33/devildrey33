@@ -66,7 +66,7 @@
                   </tr>
                   <tr>
                     <td>ASF</td>
-                    <td>Advanced Systems Format </td>
+                    <td>Advanced Systems Format</td>
                     <td>&nbsp;</td>
                     <td><div class='Soportado'>soportado</div></td>
                     <td><div class='Soportado'>soportado</div></td>
@@ -227,7 +227,7 @@
                   </tr>
                   <tr>
                     <td>MTS</td>
-                    <td> MPEG transport stream  </td>
+                    <td> MPEG transport stream</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td><div class='Soportado'>soportado</div></td>
@@ -360,7 +360,7 @@
                   </tr>
                   <tr>
                     <td>VRO</td>
-                    <td>VRO</em> DVD-VR </td>
+                    <td>VRO</em> DVD-VR </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td><div class='Soportado'>soportado</div></td>

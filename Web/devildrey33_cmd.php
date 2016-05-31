@@ -42,8 +42,8 @@
             ));
             echo "\n".$Str;
             break;
-        case "test" : 
-            devildrey33_Buscador::GenerarCache();
+        case "Buscar" :
+            echo devildrey33_Buscador::Buscar($_POST["Palabras"]);
             break;
         case "ClearSession"                     :   
             session_unset();
@@ -95,7 +95,11 @@
             case "phpinfo"                      :   echo phpinfo();                                                                        break;
             case "Minificar"                    :   echo devildrey33::Minificar_JS_CSS();                                                                                                                       break;
 
-            case "ActivarDebugPHP"              :   devildrey33_Opciones::MostrarErroresPHP(1);         echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP()));                                         break;
+            case "GenerarCacheBuscador"         :   devildrey33_Buscador::GenerarCache();               echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP()));                                         break;
+
+            case "ActivarBorrarLogPHP"          :   devildrey33_Opciones::BorrarLogPHP(1);              echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP()));                                         break;            
+            case "DesactivarBorrarLogPHP"       :   devildrey33_Opciones::BorrarLogPHP(0);              echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP()));                                         break;
+            case "ActivarDebugPHP"              :   devildrey33_Opciones::MostrarErroresPHP(1);         echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP()));                                         break;            
             case "DesactivarDebugPHP"           :   devildrey33_Opciones::MostrarErroresPHP(0);         echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP()));                                         break;
 //            case "CargarAdmin"                  :   devildrey33::HerramientasAdmin();                                                                                                                   break;
 //            case "EscanearEjemplos"             :   echo devildrey33_Lab::MostrarCarpetaEjemplos();                                                                                                     break;

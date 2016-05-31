@@ -1,4 +1,4 @@
-<p>Esta propìedad nos permite especificar el tamaño del borde para el objeto.</p>
+<p>Esta propiedad nos permite especificar el tamaño del borde para el objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
 <pre class='Sintaxis'><code style="display:table; float:left; padding-right:20px">border-color: <i>valor</i>;

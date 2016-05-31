@@ -1,4 +1,4 @@
-<p>Esta propìedad nos permite especificar la opacidad para el objeto.</p>
+<p>Esta propiedad nos permite especificar la opacidad para el objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
 <pre class='Sintaxis'>opacity: <b>valor</b>;</pre>

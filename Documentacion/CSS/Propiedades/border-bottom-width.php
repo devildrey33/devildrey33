@@ -1,4 +1,4 @@
-<p>Esta propìedad nos permite especificar el tamaño de la parte inferior del borde para el objeto.</p>
+<p>Esta propiedad nos permite especificar el tamaño de la parte inferior del borde para el objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
 <pre class='Sintaxis'>border-bottom-width: <b>Valor</b>;</pre>

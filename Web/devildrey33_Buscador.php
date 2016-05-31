@@ -1,9 +1,11 @@
 <?php
+include_once "devildrey33_Opciones.php";
 
 class devildrey33_Buscador {
     static public function GenerarCache() {
+        
         // Tiempo máximo de ejecución en segundos (1 hora)
-        set_time_limit(60 * 60);
+//        set_time_limit(60 * 60);
 //        header('Content-Type: text/html; charset=8859-1');
 //        header('Content-Type: text/html; charset=UTF-8');
         $ArrayEntradasB = (require dirname(__FILE__).'/Config/EntradasBlog.php');
@@ -13,52 +15,88 @@ class devildrey33_Buscador {
 //        $CacheBuscador[] = devildrey33::CacheBuscador_EscanearArchivo($ArrayEntradasB[1]);
         
 //        devildrey33::CacheBuscador_SeparaString($CacheBuscador[0]["Palabras"]);
-        foreach ($ArrayEntradasB as $Entrada) {  $CacheBuscador[] = devildrey33_Buscador::EscanearArchivo($Entrada);        }
-        foreach ($ArrayEntradasD as $Entrada) {  $CacheBuscador[] = devildrey33_Buscador::EscanearArchivo($Entrada);        }
+        foreach ($ArrayEntradasB as $Entrada) {   // Blog
+            $Ret = devildrey33_Buscador::EscanearArchivo($Entrada);   
+            if ($Ret["UMOD"] !== 0) $CacheBuscador[] = $Ret;
+        }
+        foreach ($ArrayEntradasD as $Entrada) {   // Doc/CSS
+            $Ret = devildrey33_Buscador::EscanearArchivo($Entrada);   
+            if ($Ret["UMOD"] !== 0) $CacheBuscador[] = $Ret;
+        }
         
         
-        file_put_contents($_SERVER['DOCUMENT_ROOT']."/Web/Cache/BuscadorPalabras.php", "<?php return ".var_export($CacheBuscador, TRUE).";");
+        file_put_contents($_SERVER['DOCUMENT_ROOT']."/Web/Cache/BDBuscador.php", "<?php return ".var_export($CacheBuscador, TRUE).";");
         
         print_r($CacheBuscador);
         // Tiempo máximo de ejecución en segundos (30 segundos)
-        set_time_limit(30);
+//        set_time_limit(30);
     }
     
     // Archivo '/Blog/Canvas2D_1'
     static public function EscanearArchivo($Entrada) {
-        switch ($Entrada["Tipo"]) { /* Blog y Doc sempre van sense extensio, el lab sempre va amb extensio (s'han de posar les extensions que falten) */
-            case "Blog"   :   default :       $URL = "/Blog/".$Entrada["URL"].".php";   break;
-            case "Lab"    :                   $URL = "/".$Entrada["URL"];               break; // (La URL sense el /Lab/ perque retorni nomes l'arxiu (OJU PERQUE DESPRES AL RESULTAT DEL BUSCADOR SI QUE HA D'APUNTAR A /Lab/)
+        switch ($Entrada["Tipo"]) { 
+            case "Blog"   :   default :       
+                $URL = "/Blog/".$Entrada["URL"];   
+                $Path = "/Blog/".$Entrada["URL"].".php";   
+                break;
+            case "Lab"    :
+                $URL = "/Lab/".$Entrada["URL"];
+                $Path = "/".$Entrada["URL"];
+                break; 
             case "DocCSS" :                   
                 switch ($Entrada["TipoCSS"]) {
-                    case 0 : $URL  = "/Doc/CSS/Propiedades/".(  ($Entrada["Path"] === '') ? $Entrada["Nombre"].".php" : $Entrada["Path"].".php");    $Entrada["Titulo"] = "Propiedad CSS ".$Entrada["Nombre"];    break;
-                    case 1 : $URL  = "/Doc/CSS/Selectores/".(   ($Entrada["Path"] === '') ? $Entrada["Nombre"].".php" : $Entrada["Path"].".php");    $Entrada["Titulo"] = "Selector CSS ".$Entrada["Nombre"];     break;
-                    case 2 : $URL  = "/Doc/CSS/Funciones/".(    ($Entrada["Path"] === '') ? $Entrada["Nombre"].".php" : $Entrada["Path"].".php");    $Entrada["Titulo"] = "Función CSS ".$Entrada["Nombre"];      break;
-                    case 3 : $URL  = "/Doc/CSS/Reglas/".(       ($Entrada["Path"] === '') ? $Entrada["Nombre"].".php" : $Entrada["Path"].".php");    $Entrada["Titulo"] = "Regla CSS ".$Entrada["Nombre"];        break;
+                    case 0 : 
+                        $URL  = "/Doc/CSS/Propiedades/".(  ($Entrada["Path"] === '') ? $Entrada["Nombre"] : $Entrada["Path"]);   
+                        $Path  = "/Documentacion/CSS/Propiedades/".(  ($Entrada["Path"] === '') ? $Entrada["Nombre"].".php" : $Entrada["Path"].".php");   
+                        $Entrada["Titulo"] = "Propiedad CSS ".$Entrada["Nombre"];    
+                        break;
+                    case 1 : 
+                        $URL  = "/Doc/CSS/Selectores/".(   ($Entrada["Path"] === '') ? $Entrada["Nombre"] : $Entrada["Path"]);    
+                        $Path  = "/Documentacion/CSS/Selectores/".(   ($Entrada["Path"] === '') ? $Entrada["Nombre"].".php" : $Entrada["Path"].".php");    
+                        $Entrada["Titulo"] = "Selector CSS ".$Entrada["Nombre"];     
+                        break;
+                    case 2 : 
+                        $URL  = "/Doc/CSS/Funciones/".(    ($Entrada["Path"] === '') ? $Entrada["Nombre"] : $Entrada["Path"]);    
+                        $Path  = "/Documentacion/CSS/Funciones/".(    ($Entrada["Path"] === '') ? $Entrada["Nombre"].".php" : $Entrada["Path"].".php");    
+                        $Entrada["Titulo"] = "Función CSS ".$Entrada["Nombre"];      
+                        break;
+                    case 3 : 
+                        $URL  = "/Doc/CSS/Reglas/".(       ($Entrada["Path"] === '') ? $Entrada["Nombre"] : $Entrada["Path"]);    
+                        $Path  = "/Documentacion/CSS/Reglas/".(       ($Entrada["Path"] === '') ? $Entrada["Nombre"].".php" : $Entrada["Path"].".php");    
+                        $Entrada["Titulo"] = "Regla CSS ".$Entrada["Nombre"];        
+                        break;
                 }
-                
+                $Path = str_replace(array('@', ':', '(', ')', '[', ']', '=', '*', '|'), array('', '', '', '', '', '', '', '', ''), $Path);
+                $Entrada["Imagen"] = "CSS3.png";
                 break;
         }
-        
-        // Fase 1, generar código html
-        $fb = iconv('UTF-8', 'ISO-8859-1//IGNORE', file_get_contents("http://devildrey33.st0rm".$URL."?GenerarCacheBuscador"));            
-        // Fase 2, eliminar todas las etiquetas
-        $fb = strip_tags($fb);
-        // Fase 3, pasar un filtro que elimina acentos y ciertos caracteres 
-        $fb = devildrey33_Buscador::Filtro($fb);
-        // Dividimos el contenido restante en un array de palabras
-        $ArrayPalabras = array_filter(explode(" ", $fb)); 
-        // Creo un array con el archivo, el titulo, y las palabras
-//        if (filemtime(dirname(__FILE__).'/CSS_BD.php') > filemtime(dirname(__FILE__)."/Config/EntradasDocCSS.php")) { 
-        $Resultado = array( "URL"       => $URL, 
-                            "Titulo"    => devildrey33_Buscador::Filtro(iconv('UTF-8', 'ISO-8859-1//IGNORE', $Entrada["Titulo"])), 
+        $Resultado = array( "URL"       => $URL,                
+                            "Titulo"    => $Entrada["Titulo"], 
+//                            "Imagen"    => $Entrada["Imagen"],
                             "Palabras"  => "",
-                            "UMOD"      => filemtime($_SERVER['DOCUMENT_ROOT'].$URL));               
-        foreach ($ArrayPalabras as $Palabra) {
-            if (strlen($Palabra) > 1) {
-                if (strpos($Resultado["Palabras"], $Palabra) === false) {
-                    $Resultado["Palabras"] .= $Palabra." ";
-                }                
+                            "UMOD"      => 0);               
+        
+        if (file_exists(dirname(__FILE__)."/..".$Path)) {        
+            // Fase 1, generar código html        
+            $fb = utf8_decode(preg_replace('/<\\?.*(\\?>|$)/Us', '', file_get_contents(dirname(__FILE__)."/..".$Path)));        
+            // Fase 2, eliminar todas las etiquetas
+            $fb = strip_tags($fb);
+            // Fase 3, pasar un filtro que elimina acentos y ciertos caracteres 
+            $fb = devildrey33_Buscador::Filtro($fb);
+            // Dividimos el contenido restante en un array de palabras
+            $ArrayPalabras = array_filter(explode(" ", $fb)); 
+            // Creo un array con el archivo, el titulo, y las palabras
+    //        if (filemtime(dirname(__FILE__).'/CSS_BD.php') > filemtime(dirname(__FILE__)."/Config/EntradasDocCSS.php")) { 
+
+    //        $URL = str_replace(array("/Doc/", '', '', '', '', '', '', '', '', ''), array("/Documentacion/", '@', ':', '(', ')', '[', ']', '=', '*', '|'), $URL);
+            $Resultado["UMOD"] = filemtime($_SERVER['DOCUMENT_ROOT'].$Path);               
+            
+            foreach ($ArrayPalabras as $Palabra) {
+                if (strlen($Palabra) > 1) {
+                    if (strpos($Resultado["Palabras"], $Palabra) === false) {
+                        $Resultado["Palabras"] .= $Palabra." ";
+                    }                
+                }
             }
         }
 //        print_r($Resultado["Titulo"]."\n");        
@@ -74,11 +112,58 @@ class devildrey33_Buscador {
     
     static public function Filtro($Texto) {
         return str_replace(
-            /* Redeu no pilla be els accents amb strings... els he posat amb chr i el caracter ASCII... putes codificacións... */
-            array(chr(225), chr(233), chr(237), chr(243), chr(250), chr(241), "(", ")", "'", '"', ";", ":", "=", "_", "[", "]", "{", "}", "+", "*", "%", "/", "^", "`", "´", "&", ",", ".", ">", "<", "\n", "#", "\r", "\t", "?", "\\"),
-            array("a"     ,"e"      , "i"     , "o"     , "u"     , "n"     , " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " ," ", " ", " ", " " , " ", " " , " " , " ", " " ),  
+            /* Redeu no pilla be els accents amb strings... els he posat amb chr i el caracter ASCII... putes codificacións...                                                                                                                ¿         «         »         º      */
+            array(chr(225), chr(233), chr(237), chr(243), chr(250), chr(241), "(", ")", "'", '"', ";", ":", "=", "_", "[", "]", "{", "}", "+", "*", "%", "/", "^", "`", "´", "&", ",", ".", ">", "<", "\n", "#", "\r", "\t", "?", "¿", "\\", chr(191), chr(171), chr(187), chr(186)),
+            array("a"     ,"e"      , "i"     , "o"     , "u"     , "n"     , " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " ," ", " ", " ", " " , " ", " " , " " , " ", " ", " " , " "     , " "     , " "     , " "),  
             mb_strtolower($Texto)
         );
+    }
+    
+    static public function Buscar($Palabras) {
+        if (strlen($Palabras) < 1) {
+            return json_encode(array("HTML" => "La busqueda no ha producido ningún resultado.", "ErrorPHP" => Base::ObtenerLogPHP()));
+        }
+        if (file_exists($_SERVER['DOCUMENT_ROOT']."/Web/Cache/BDBuscador.php") !== false) {
+            $Ret = array();
+            $Encontrado = 0;
+            $ArrayBuscador = (require dirname(__FILE__).'/Cache/BDBuscador.php');
+            $ArrayPalabras = explode(" ", devildrey33_Buscador::Filtro($Palabras));
+            foreach ($ArrayPalabras as $Palabra) {
+                foreach ($ArrayBuscador as $Entrada) {
+                    if ($Palabra !== '') {
+                        if (strpos($Entrada["Palabras"], $Palabra) !== false) {
+                            devildrey33_Buscador::_AgregarBusqueda($Ret, $Entrada);
+                        }
+                        $Encontrado ++;
+                    }
+                }
+            }
+            $HTML = "";
+            foreach ($Ret as $Entrada) {
+                $HTML .= "<div><a href='".$Entrada["URL"]."'>".$Entrada["Titulo"]."</a></div>";
+            }
+            if ($HTML === "" || $Encontrado === 0) $HTML = "La busqueda no ha producido ningún resultado.";
+        }
+        else {
+            error_log("Error!! no se encuentra el archivo '/Web/Cache/BDBuscador.php'");
+        }
+        
+        
+        
+        
+        return json_encode(array("HTML" => $HTML, "ErrorPHP" => Base::ObtenerLogPHP()));
+    }
+    
+    static protected function _AgregarBusqueda(&$Ret, $Entrada) {
+        foreach ($Ret as $Posicion) {
+            if ($Posicion["Titulo"] === $Entrada["Titulo"]) {
+                return;
+            }
+        }
+        $R["Titulo"]    = $Entrada["Titulo"];
+        $R["URL"]       = $Entrada["URL"];
+        $R["UMOD"]      = $Entrada["UMOD"];
+        $Ret[] = $R;
     }
 };    
 ?>

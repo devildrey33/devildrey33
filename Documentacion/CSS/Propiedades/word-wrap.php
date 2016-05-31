@@ -1,4 +1,4 @@
-<p>Esta propìedad nos permite especificar si se deben cortar forzosamente las palabras que excedan el ancho del objeto.</p>
+<p>Esta propiedad nos permite especificar si se deben cortar forzosamente las palabras que excedan el ancho del objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
 <pre class='Sintaxis'>word-wrap: <b>valor</b>;</pre>
