@@ -334,7 +334,6 @@ class devildrey33_PintarCodigo {
         $Spans = 0;
         // Estado inicial de la línea
         switch ($Estado) {
-            default :
             case "HTML" : case "CSS" : case "PHP" : case "JS" : case "C" :           // Sin estado
             default : // Comentario de una sola línea que se ha terminado
                 $Estado = $Tipo;

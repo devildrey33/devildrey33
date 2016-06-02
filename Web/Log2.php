@@ -1,4 +1,5 @@
 <?php
+    /* Concepte per no utilitzar tanta memoria en el servidor al fer el log... en principi queda descartat ja que el servidor puja de nivell/pack i ja no serà necesari */
     include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
     $Base = new devildrey33;	
 
