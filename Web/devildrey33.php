@@ -1,4 +1,7 @@
 <?php 
+
+//echo "devildrey33\n";
+
 if (!isset($_SESSION)) session_start();
 /*
     NOTES a l'hora de fer els css :
@@ -60,7 +63,6 @@ class devildrey33 {
             ob_start();
             return "";
         }
-        
         $this->_NombreDocumento = $NombreDocumento;
         
         $Entradas = new devildrey33_EditarEntradas;
@@ -512,6 +514,9 @@ class devildrey33 {
                 "</div>".Intro();
             
         }        
+        // La función para loguear se utiliza tanto via ajax como al iniciar, por lo que tengo que pasar los errores PHP SOLO desde ajax.
+        // Si añado los errores en la misma función de HerramientasAdmin se borraria una parte del log de errores al loguear desde devildrey33.php
+        // En definitiva no hay que utilizar Base::ObtenerLogPHP() desde esta función
         return array("Mensaje" => $EstadoLogin, "HTMLAdmin" => $HTMLAdmin, "ExplorarLab" => devildrey33_Lab::MostrarCarpetaEjemplos());        
     }
     
@@ -519,7 +524,7 @@ class devildrey33 {
         if (isset($_POST["SinPlantilla"]) || isset($_GET["GenerarCacheBuscador"])) {
             $HTML = ob_get_contents();
             ob_end_clean();            
-            echo json_encode(array("HTML" => $HTML, "ErrorPHP" => Base::ObtenerLogPHP()));
+            echo json_encode(array("HTML" => $HTML, "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
             return;
         }
                         

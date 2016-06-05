@@ -19,7 +19,8 @@
         protected $_ListaReglas 	= array();
 
         public function __construct() {
-            $this->CrearLista();
+            $this->_Lista = (require dirname(__FILE__).'/Config/EntradasDocCSS.php');
+            //$this->CrearLista();
         }
 
         public function MostrarEnlacesGrupo($Nombre) {
@@ -272,7 +273,7 @@
                 $Ejemplo		: Ejemplo corto (para selectores)
                 $Path			: Nombre del archivo (para selectores con nombres raros)
         */
-        function AgregarCSS($Nombre, $TipoCSS, $Grupo, $Version, $Soportada, $Descripcion, $Ejemplo = "", $Path = "", $EjemplosExtra = array()) {
+        /*function AgregarCSS($Nombre, $TipoCSS, $Grupo, $Version, $Soportada, $Descripcion, $Ejemplo = "", $Path = "", $EjemplosExtra = array()) {
             $this->_Lista[$this->_ListaTotalItems ++] = array(  
                 "Nombre"        => $Nombre, 
                 "TipoCSS"       => $TipoCSS, 
@@ -299,7 +300,7 @@
             $this->AgregarCSS("animation-delay", 		CSSTipo::Propiedad, 	CSSGrupo::Animacion, 			3, 	array(1002, 16, 10, 1015, 1004), 	"Especifica un retraso para empezar la animación.");
             $this->AgregarCSS("animation-direction", 		CSSTipo::Propiedad, 	CSSGrupo::Animacion, 			3, 	array(1002, 16, 10, 1015, 1004), 	"Especifica si la animación es unicamente lineal, o se debe invertir al terminar.");
             $this->AgregarCSS("animation-duration", 		CSSTipo::Propiedad, 	CSSGrupo::Animacion, 			3, 	array(1002, 16, 10, 1015, 1004), 	"Especifica el tiempo que se invertirá en la animación desde el 0% hasta el 100%.");
-            $this->AgregarCSS("animation-fill-mode", 		CSSTipo::Propiedad, 	CSSGrupo::Animacion, 			3, 	array(1002, 16, 10, 1015, 1004), 	"");
+            $this->AgregarCSS("animation-fill-mode", 		CSSTipo::Propiedad, 	CSSGrupo::Animacion, 			3, 	array(1002, 16, 10, 1015, 1004), 	"Especifica como se trataran los estilos al iniciar y terminar la animación.");
             $this->AgregarCSS("animation-iteration-count",	CSSTipo::Propiedad, 	CSSGrupo::Animacion, 			3, 	array(1002, 16, 10, 1015, 1004),	"Especifica el numero de veces que se repetirá la animación.");
             $this->AgregarCSS("animation-name", 		CSSTipo::Propiedad, 	CSSGrupo::Animacion, 			3, 	array(1002, 16, 10, 1015, 1004),	"Especifica el nombre de la animación.");
             $this->AgregarCSS("animation-play-state", 		CSSTipo::Propiedad, 	CSSGrupo::Animacion, 			3, 	array(1002, 16, 10, 1015, 1004), 	"Especifica si la animación está activa o no.");
@@ -605,10 +606,10 @@
             $this->AgregarCSS("Selector [atributo$=valor]",	CSSTipo::Selector, 	CSSGrupo::Atributo,			3, 	array(1, 1, 9, 9, 3),			"Selecciona los elementos que el valor del atributo termine con el valor especificado.", "div[title$=valor]", "Atributo\$Valor");
             
             /* Creo el archivo de intercambio para poder crear la lista de entradas en javascript */
-            if (filemtime(dirname(__FILE__).'/CSS_BD.php') > filemtime(dirname(__FILE__)."/Config/EntradasDocCSS.php")) { 
+            /*if (filemtime(dirname(__FILE__).'/CSS_BD.php') > filemtime(dirname(__FILE__)."/Config/EntradasDocCSS.php")) { 
                 file_put_contents($_SERVER['DOCUMENT_ROOT']."/Web/Config/EntradasDocCSS.php", "<?php return ".Base::var_export($this->_Lista).";");                
             }
-        }
+        }*/
     };
 
     abstract class CSSTipo { 

@@ -284,7 +284,7 @@ $Base = new function() {
                     if ($("html").attr("lang") === "es") { $Base.MostrarMensaje("La votación se ha relaizado correctamente, muchas gracias!"); }
                     else                                 { $Base.MostrarMensaje("Your vote is annotated, thank you!"); }
                 }
-                $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+                $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
                 /*RedireccionarLinks();*/
             }).fail(function( jqXHR, textStatus, tError ) {
                 console.log("Base.VotarWeb Error ajax", jqXHR, textStatus, tError);
@@ -629,7 +629,7 @@ $Base = new function() {
 //            $("body").attr({ "Tipo" : $Base.Entrada["Buscar"] });
 //            $("#MarcoNavegacion").html(Datos["HTML"]);
             $("#BarraPrincipal_MarcoBuscar_Resultado").html(Datos["HTML"]);
-            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+            $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
 //            $Base.RedireccionarLinks();
             $Base.Cargando("FALSE");
             // Enlaces del marco resultado de la busqueda
@@ -696,7 +696,7 @@ $Base = new function() {
                 document.title = $Base.Entrada["Titulo"];
 //                if (isset($Base.Entrada["Idioma"]))
                 $Base.RedireccionarLinks();
-                $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+                $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
             }
         }).fail(function( jqXHR, textStatus, tError ) { 
             console.log("Base.CargarURL Error ajax", jqXHR, textStatus, tError);
@@ -749,7 +749,7 @@ $Base = new function() {
                 setTimeout(function() { $("#VentanaLogin").addClass("VentanaError_AnimacionError"); }, 50);
                 $Base.Cargando("FALSE");
             }
-            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+            $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
         }).fail(function( jqXHR, textStatus, tError ) { 
             console.log("Base.Loguear Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarErrorAjax(jqXHR.status, false, tError);
@@ -759,12 +759,22 @@ $Base = new function() {
     
 
     /* Función para enviar comandos simples */
-    /* TODOS los comandos requieren ser administrador */
     this.cmd = function(Comando) {
         $.post("/cmd/" + Comando + ".cmd").done(function(data) {
             Datos = JSON.parse(data);
-            console.log("Base.cmd(" + Comando + ")", Datos["HTML"]);
-            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+            console.log("Base.cmd(" + Comando + ")", Datos);
+            $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+            if (Datos["Estado"] === 0 && "Mensaje" in Datos) {
+                if (Datos["Mensaje"] !== "") { $Base.MostrarMensaje(Datos["Mensaje"]); }
+            }
+            if (Datos["Estado"] === 1) { // Error no es admin
+                $("#BarraNavegacion_Explorador").html(Datos["HTML"]);
+                $Lab.EnlazarEventosExplorador();
+                $('body').removeAttr('administrador33');
+                $Base.ClickMenu(0);
+                setTimeout(function() { $('#Marco33').html(''); }, 500);                    
+                $Base.MostrarMensaje("Error!, no eres administrador.");
+            }
         }).fail(function( jqXHR, textStatus, tError ) { 
             console.log("Base.cmd Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarErrorAjax(jqXHR.status, false, tError);
@@ -883,7 +893,7 @@ $Base = new function() {
                 $Base.RedireccionarLinks();
                 document.title = $Base.Entrada["Titulo"];
             }
-            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+            $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
         }).fail(function( jqXHR, textStatus, tError ) {
             console.log("Base.CALLBACK_Histroial Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarErrorAjax(jqXHR.status, false, tError);

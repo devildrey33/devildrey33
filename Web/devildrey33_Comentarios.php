@@ -1,7 +1,9 @@
 <?php
+//echo "devildrey33_Comentarios\n";
 
 include_once("devildrey33_Opciones.php");
 include("devildrey33_BD.php");
+
 
 class devildrey33_Comentarios {
     public function AgregarComentarios($Pagina, $BD, $SoloLectura = FALSE) {
@@ -30,18 +32,18 @@ class devildrey33_Comentarios {
                         "</div>".Intro().*/
 
                     "<div id='Comentarios_BarraControles'>".Intro().
-                        "<button class='BotonEdicion' title='Negrita (Control + B)'></button>".Intro().
-                        "<button class='BotonEdicion' title='Subrayado (Control + U)'></button>".Intro().
-                        "<button class='BotonEdicion' title='Cursiva (Control + I)'></button>".Intro().
-                        "<button class='BotonEdicion' title='Tachado'></button>".Intro().
-                        "<button class='BotonEdicion' title='Des-hacer (Control + Z)'></button>".Intro().
-                        "<button class='BotonEdicion' title='Re-hacer (Control + Y)'></button>".Intro().
-                        "<button class='BotonEdicion' title='Lista'></button>".Intro().
-                        "<button class='BotonEdicion' title='Lista numerada'></button>".Intro().
-                        "<button class='BotonEdicion' title='Borrar / limpiar comentario'></button>".Intro().
-                        "<button class='BotonEdicion' title='Justificar a la izquierda' marcado='true'></button>".Intro().
-                        "<button class='BotonEdicion' title='Justificar centrado'></button>".Intro().
-                        "<button class='BotonEdicion' title='Justificar a la derecha'></button>".Intro().
+                        "<div class='BotonEdicion' title='Negrita (Control + B)'></div>".Intro().
+                        "<div class='BotonEdicion' title='Subrayado (Control + U)'></div>".Intro().
+                        "<div class='BotonEdicion' title='Cursiva (Control + I)'></div>".Intro().
+                        "<div class='BotonEdicion' title='Tachado'></div>".Intro().
+                        "<div class='BotonEdicion' title='Des-hacer (Control + Z)'></div>".Intro().
+                        "<div class='BotonEdicion' title='Re-hacer (Control + Y)'></div>".Intro().
+                        "<div class='BotonEdicion' title='Lista'></div>".Intro().
+                        "<div class='BotonEdicion' title='Lista numerada'></div>".Intro().
+                        "<div class='BotonEdicion' title='Borrar / limpiar comentario'></div>".Intro().
+                        "<div class='BotonEdicion' title='Justificar a la izquierda' marcado='true'></div>".Intro().
+                        "<div class='BotonEdicion' title='Justificar centrado'></div>".Intro().
+                        "<div class='BotonEdicion' title='Justificar a la derecha'></div>".Intro().
                     "</div>".Intro().
                     "<div contenteditable='true' id='Comentarios_Comentario'></div>".Intro().
                     "<div class='Centrado'>".Intro().
@@ -108,7 +110,7 @@ class devildrey33_Comentarios {
                 }
             }
         }
-        return json_encode(array("HTML" => $Ret, "ErrorPHP" => Base::ObtenerLogPHP()));
+        return json_encode(array("HTML" => $Ret, "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
     }
 
     private function _ImprimirComentario($Datos, $Punto = FALSE) {
@@ -167,7 +169,7 @@ class devildrey33_Comentarios {
         else {
             $Mensaje = "El valor no es válido.";
         }
-        return json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Valor" => intval($Valor), "Mensaje" => $Mensaje, "ErrorPHP" => Base::ObtenerLogPHP()));
+        return json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Valor" => intval($Valor), "Mensaje" => $Mensaje, "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
     }
     
     /* Lista de errores :
@@ -200,7 +202,7 @@ class devildrey33_Comentarios {
         if ($Comentario == "") 	{ $Error .= " No hay comentario"; }
         // Si hay algun error, lo imprimo y salgo de la función
         if ($Error != "Error!") {
-            return json_encode(array("HTML" => $Error, "ErrorPHP" => Base::ObtenerLogPHP()));
+            return json_encode(array("HTML" => $Error, "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
         }
         // Conexión con la BD
         $BD = new devildrey33_BD;        
@@ -264,7 +266,7 @@ class devildrey33_Comentarios {
         $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
         
         
-        return json_encode(array("HTML" => $this->_ImprimirComentario($Datos, FALSE), "ErrorPHP" => Base::ObtenerLogPHP()));
+        return json_encode(array("HTML" => $this->_ImprimirComentario($Datos, FALSE), "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
     }
     
     
@@ -282,7 +284,7 @@ class devildrey33_Comentarios {
             $Resultado   = $BD->_mysqli->query("SELECT * FROM comentarios__".strtolower($PaginaPadre)." WHERE NumMsg='".$NumComentario."'");
             
             $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
-            return json_encode(array("HTML" => $Datos["Correo"], "ErrorPHP" => Base::ObtenerLogPHP()));
+            return json_encode(array("HTML" => $Datos["Correo"], "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
         }        
     }
     
@@ -300,7 +302,7 @@ class devildrey33_Comentarios {
         else {
             $Mensaje = "Error : Se requieren permisos de administración para borrar comentarios.";
         }
-        return json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Mensaje" => $Mensaje, "ErrorPHP" => Base::ObtenerLogPHP()));        
+        return json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Mensaje" => $Mensaje, "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));        
     }
 
     
@@ -319,7 +321,7 @@ class devildrey33_Comentarios {
         else {
             $Mensaje = "Error : Se requieren permisos de administración para editar comentarios.";
         }
-        return json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Mensaje" => $Mensaje, "ErrorPHP" => Base::ObtenerLogPHP()));                
+        return json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Mensaje" => $Mensaje, "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));                
     }
     
 }

@@ -1,0 +1,96 @@
+<!-- Ejemplo creado por Josep Antoni Bover Comas para devildrey33.es el 03/06/2014 -->
+<!doctype html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            /* Contenedor de pruebas para el box-sizing */
+            #Contenedor {
+                display:table;
+                width:300px;
+                height:50px;
+                background:#AAA;
+                border:5px solid #000;
+                padding:25px;
+            }
+
+            /* Controles para modificar las propiedades del contenedor */
+            #Controles {
+                position:fixed;
+                display:table;
+                background:rgba(250, 250, 250, 0.9);
+                border:1px solid #333;
+                left:350px;
+                top:40px;
+            }
+
+            /* Código para las marcas a 300 y 360 pixeles */
+            [id^='Marca-'] { position:relative; display:table;  height:1px; }
+            #Marca-300 { margin:20px 0px 0px 0px;   width:300px;    border-bottom:1px dashed green; }
+            #Marca-360 { margin:10px 0px;           width:360px;    border-bottom:1px dashed blue; }
+            [id^='Marca-']::before { content:'';    width:1px;      position:absolute;  right:0px; }
+            #Marca-300::before { height:140px;  border-left:1px dashed green;  }
+            #Marca-360::before { height:128px;  border-left:1px dashed blue;   }
+            [id^='Marca-']::after { position:absolute;  right:0px;     bottom:0px; }
+            #Marca-300::after { content:'300px';    color:green; }
+            #Marca-360::after { content:'360px';    color:blue;  }            
+        </style>
+        <!-- Código javascript -->
+        <script type="text/javascript">
+            // Función para cambiar el estilo box-sizing
+            function CambiarBoxSizing() {
+                var Combo = document.getElementById("ChBoxSizing");
+                document.getElementById("Contenedor").style.boxSizing = Combo.options[Combo.selectedIndex].innerHTML;
+            }
+            // Función para cambiar el estilo border-width           
+            function CambiarBorde() {
+                var Combo = document.getElementById("ChBorde");
+                document.getElementById("Contenedor").style.borderWidth = Combo.options[Combo.selectedIndex].innerHTML;
+            }            
+            // Función para cambiar el estilo padding          
+            function CambiarPadding() {
+                var Combo = document.getElementById("ChPadding");
+                document.getElementById("Contenedor").style.padding = Combo.options[Combo.selectedIndex].innerHTML;
+            }            
+        </script>
+    </head>
+    <body>        
+        <div id='Marca-300'></div>
+        <div id='Marca-360'></div>
+        
+        <div id='Contenedor'>Pequeño texto de prueba</div>
+        <br />
+        <p>Con el valor <code>content-box</code> el <code>#Contenedor</code> ocupa realmente : <code>300px + (25px * 2) + (5px * 2) = 360px;</code> de ancho, ya que hay que sumarle el padding y el border de los dos lados.</p>
+        
+        <!-- Controles para modificar los estilos del contenedor --> 
+        <table id='Controles'>
+            <tr>
+                <td><code>box-sizing:</code></td>
+                <td><select id='ChBoxSizing' onChange="CambiarBoxSizing()">
+                    <option value ="0">content-box</option>
+                    <option value ="1">border-box</option>
+                </select><code>;</code></td>
+            </tr>
+            <tr>
+                <td><code>border:</code></td>
+                <td><select id='ChBorde' onChange="CambiarBorde()">
+                    <option value ="0">5px</option>
+                    <option value ="1">2px</option>
+                    <option value ="2">0px</option>
+                </select><code>;</code></td>
+            </tr>
+            <tr>
+                <td><code>padding:</code></td>
+                <td><select id='ChPadding' onChange="CambiarPadding()">
+                    <option value ="0">25px</option>
+                    <option value ="1">10px</option>
+                    <option value ="2">0px</option>
+                </select><code>;</code></td>
+            </tr>                        
+            <tr>
+                <td><code>width:</code></td>
+                <td><code>300px</code></td>
+            </tr>                        
+        </table>
+    </body>
+</html>

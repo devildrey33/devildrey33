@@ -15,6 +15,8 @@ deny from 213.5.64.19 		#spamer conocido
 allow from all
 </Limit> 
 
+
+
 #INICIO CacheImagenes desactivado
 #FIN CacheImagenes
 
@@ -99,7 +101,7 @@ RewriteRule ^Graficos/([^/]+) 			Web/Graficos/$1 [NC]
 RewriteRule ^Descargas/([^/]+) 			/Web/devildrey33_Descargar.php?Nombre=$1 [NC]
 RewriteRule ^Lab/([^/]+) 			/Web/Lab.php?Archivo=$1 [NC]
 
-RewriteRule ^cmd/([^/]+) 			/Web/devildrey33_cmd.php?cmd=$1 [NC]
+RewriteRule ^cmd/([^/]+) 			/Web/cmd.php?cmd=$1 [NC]
 
 #Redirigir TOT a un php (no puc fer-ho servir)
 #RewriteRule ^(.*)$ url.php?URL=$1 [L,QSA]
@@ -121,54 +123,56 @@ RewriteRule .* - [L]
 
 
 
-Redirect 301 /muieblackcat 		                        	/cmd/BanearIP.php
-Redirect 301 /admin 			                        	/cmd/BanearIP.php
-Redirect 301 /admin/pma 		                        	/cmd/BanearIP.php
-Redirect 301 /db 		                        		/cmd/BanearIP.php
-Redirect 301 /dbadmin 			                        	/cmd/BanearIP.php
-Redirect 301 /myadmin 		                        		/cmd/BanearIP.php
-Redirect 301 /mysql 			                        	/cmd/BanearIP.php
-Redirect 301 /mysqladmin 	                        		/cmd/BanearIP.php
-Redirect 301 /typo3/phpmyadmin 		                        	/cmd/BanearIP.php
-Redirect 301 /phpadmin 		                        		/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin 		                        	/cmd/BanearIP.php
-Redirect 301 /phpmyadmin 		                        	/cmd/BanearIP.php
-Redirect 301 /phpmyadmin1 		                        	/cmd/BanearIP.php
-Redirect 301 /phpmyadmin2 		                        	/cmd/BanearIP.php
-Redirect 301 /pma 			                        	/cmd/BanearIP.php
-Redirect 301 /web/phpMyAdmin 		                        	/cmd/BanearIP.php
-Redirect 301 /xampp/phpmyadmin 		                        	/cmd/BanearIP.php
-Redirect 301 /websql 			                        	/cmd/BanearIP.php
-Redirect 301 /phpmyadmin 		                        	/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin 		                        	/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin-2 		                        	/cmd/BanearIP.php
-Redirect 301 /php-my-admin 		                        	/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin-2.2.3 		                        	/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin-2.2.6 		                        	/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin-2.5.1 		                        	/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin-2.5.4 		                        	/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin-2.5.5-rc1 	                        	/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin-2.5.5-rc2 	                        	/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin-2.5.5-pl1 	                        	/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin-2.5.6-rc1 	                        	/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin-2.5.6-rc2 	                        	/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin-2.5.6 		                        	/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin-2.5.7 		                        	/cmd/BanearIP.php
-Redirect 301 /phpMyAdmin-2.5.7-pl1                         		/cmd/BanearIP.php
-Redirect 301 /wp-login.php 		                        	/cmd/BanearIP.php
-Redirect 301 /xmlrpc.php 		                        	/cmd/BanearIP.php
-Redirect 301 /blog/wp-login.php                                     	/cmd/BanearIP.php
-Redirect 301 /wordpress/wp-login.php                                    /cmd/BanearIP.php
-Redirect 301 /wp/wp-login.php 		                        	/cmd/BanearIP.php
-Redirect 301 /wpfoot1.php                                               /cmd/BanearIP.php
-Redirect 301 /uploadify/uploadify.php                                   /cmd/BanearIP.php
-Redirect 301 /wp-content                                                /cmd/BanearIP.php
-Redirect 301 /wp-admin                                                  /cmd/BanearIP.php
-Redirect 301 /sites/all/libraries/elfinder/php/connector.minimal.php    /cmd/BanearIP.php
-Redirect 301 /sites/all/libraries/elfinder/files/wpfoot6.php            /cmd/BanearIP.php
-Redirect 301 /scripts/fckeditor/editor/                                 /cmd/BanearIP.php
-
-
+Redirect 301 /muieblackcat                                                  /cmd/BanearIP.php
+Redirect 301 /admin                                                         /cmd/BanearIP.php
+Redirect 301 /admin/pma                                                     /cmd/BanearIP.php
+Redirect 301 /db                                                            /cmd/BanearIP.php
+Redirect 301 /dbadmin                                                       /cmd/BanearIP.php
+Redirect 301 /myadmin                                                       /cmd/BanearIP.php
+Redirect 301 /mysql                                                         /cmd/BanearIP.php
+Redirect 301 /mysqladmin                                                    /cmd/BanearIP.php
+Redirect 301 /typo3/phpmyadmin                                              /cmd/BanearIP.php
+Redirect 301 /phpadmin                                                      /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin                                                    /cmd/BanearIP.php
+Redirect 301 /phpmyadmin                                                    /cmd/BanearIP.php
+Redirect 301 /phpmyadmin1                                                   /cmd/BanearIP.php
+Redirect 301 /phpmyadmin2                                                   /cmd/BanearIP.php
+Redirect 301 /pma                                                           /cmd/BanearIP.php
+Redirect 301 /web/phpMyAdmin                                                /cmd/BanearIP.php
+Redirect 301 /xampp/phpmyadmin                                              /cmd/BanearIP.php
+Redirect 301 /websql                                                        /cmd/BanearIP.php
+Redirect 301 /phpmyadmin                                                    /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin                                                    /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin-2                                                  /cmd/BanearIP.php
+Redirect 301 /php-my-admin                                                  /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin-2.2.3                                              /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin-2.2.6                                              /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.1                                              /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.4                                              /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.5-rc1                                          /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.5-rc2                                          /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.5-pl1                                          /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.6-rc1                                          /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.6-rc2                                          /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.6                                              /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.7                                              /cmd/BanearIP.php
+Redirect 301 /phpMyAdmin-2.5.7-pl1                                          /cmd/BanearIP.php
+Redirect 301 /wp-login.php                                                  /cmd/BanearIP.php
+Redirect 301 /xmlrpc.php                                                    /cmd/BanearIP.php
+Redirect 301 /blog/wp-login.php                                             /cmd/BanearIP.php
+Redirect 301 /wordpress/wp-login.php                                        /cmd/BanearIP.php
+Redirect 301 /wp/wp-login.php                                               /cmd/BanearIP.php
+Redirect 301 /wpfoot1.php                                                   /cmd/BanearIP.php
+Redirect 301 /uploadify/uploadify.php                                       /cmd/BanearIP.php
+Redirect 301 /wp-content                                                    /cmd/BanearIP.php
+Redirect 301 /wp-admin                                                      /cmd/BanearIP.php
+Redirect 301 /sites/all/libraries/elfinder/php/connector.minimal.php        /cmd/BanearIP.php
+Redirect 301 /sites/all/libraries/elfinder/files/wpfoot6.php                /cmd/BanearIP.php
+Redirect 301 /scripts/fckeditor/editor/                                     /cmd/BanearIP.php
+Redirect 301 /images/stories/3xp.php                                        /cmd/BanearIP.php
+Redirect 301 /wp-admin/admin-ajax.php                                       /cmd/BanearIP.php
+Redirect 301 /wp-content/plugins/revslider/temp/update_extract/7951425.php  /cmd/BanearIP.php
+Redirect 301 /administrator/index.php                                       /cmd/BanearIP.php
 
 #INICIO redirecciones Blog
 Redirect 301 /AnimacionesCSS3.php									/Blog/AnimacionesCSS3

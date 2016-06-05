@@ -101,7 +101,7 @@ RewriteRule ^Graficos/([^/]+) 			Web/Graficos/$1 [NC]
 RewriteRule ^Descargas/([^/]+) 			/Web/devildrey33_Descargar.php?Nombre=$1 [NC]
 RewriteRule ^Lab/([^/]+) 			/Web/Lab.php?Archivo=$1 [NC]
 
-RewriteRule ^cmd/([^/]+) 			/Web/devildrey33_cmd.php?cmd=$1 [NC]
+RewriteRule ^cmd/([^/]+) 			/Web/cmd.php?cmd=$1 [NC]
 
 #Redirigir TOT a un php (no puc fer-ho servir)
 #RewriteRule ^(.*)$ url.php?URL=$1 [L,QSA]

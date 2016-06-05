@@ -193,7 +193,7 @@ $Lab = new function() {
                     $Base.ComprobarScrollVotacion();
                     $Lab.ActualizarResultado(); 
                     
-                    $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+                    $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
                 }
                 // Instancia de un minilab
                 else {

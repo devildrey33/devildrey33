@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4">
         <file>
-            <url>Web/JS/ObjetoBase.js</url>
-            <bookmark id="4">
-                <name/>
-                <line>251</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
             <url>Web/JS/ObjetoAdmin.js</url>
             <bookmark id="1">
                 <name/>
@@ -30,29 +22,21 @@
                 <key/>
             </bookmark>
         </file>
+        <file>
+            <url>Web/JS/ObjetoBase.js</url>
+            <bookmark id="4">
+                <name/>
+                <line>251</line>
+                <key/>
+            </bookmark>
+        </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/CSS3_Transition_Transform.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_cmd.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoBase.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/TODO.txt</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/content.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Log2.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoLab.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Buscador.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Cache/BDBuscador.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/EntradasBlog.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/SelectoresCSS/default.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/algunos-efectos-para-botones-en-css.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/how-to-use-google-app-scripts.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/BarraPrincipal.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Opciones.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoAdmin.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Comentarios.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/FaqBarba.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Selectores/lang.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/AnimacionesCSS3.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_PintarCodigo.php</file>
         </group>
     </open-files>
 </project-private>

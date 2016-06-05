@@ -26,6 +26,7 @@
                          Se puede especificar a la hora de pintar, que diccionario queremos utilizar.
                          La versión 2.01 pintaba ciertas palabras del diccionario HTML si se las encontraba sueltas por el código HTML sin los caracteres <>.
 */
+//    echo "devildrey33_PintarCodigo.php\n";
 
 
 // Objeto que realiza el parsing básico para normas complejas, y especificas para cada lenguaje
@@ -971,7 +972,5 @@ class devildrey33_PintarCodigo {
     private function _ObtenerTotalLineas($Texto) {
         return count(explode(chr(10), $Texto));
     }
-    
-
 }
 ?>

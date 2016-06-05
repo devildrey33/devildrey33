@@ -1,0 +1,61 @@
+<!-- Ejemplo creado por Josep Antoni Bover el 03/06/2016 para devildrey33.es -->
+<!doctype html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">		
+            /* Animación */
+            .ObjetoAnimado {
+                margin-left:16px;
+                width:48px;
+                height:48px;
+                background: red url('/Web/Graficos/Logo.png');
+                animation-name:MiAnimacion;
+                animation-duration:3s;          /* Si no especificamos la duración, por defecto es 0 */
+                animation-iteration-count:1;    /* 3 iteraciones para ver bien el ejemplo */
+                animation-delay:2s;             /* Retardo 2 segundos al inicio de la animación */
+                display:table;                
+                opacity:1;
+            }
+            
+            /* Animación */
+            @keyframes MiAnimacion {
+                0%   { transform:rotate(0deg);   opacity:0; }          /* Al principio de la animación */
+                100% { transform:rotate(360deg); opacity:0.5; }        /* Al final de la animación */
+            }                        
+            
+            .afm-none      { animation-fill-mode:none;  }
+            .afm-forwards  { animation-fill-mode:forwards;  }
+            .afm-backwards { animation-fill-mode:backwards;  }
+            .afm-both      { animation-fill-mode:both;  }
+            
+            td:nth-child(1) { text-align: center; }
+            td { border:1px solid #666; min-width:80px; padding:10px;  }
+            
+        </style>
+    	<!-- Código javascript -->
+        <script type="text/javascript">
+        </script>
+    </head>
+    <body>        
+        <table>
+            <tr>
+                <td><div class='ObjetoAnimado afm-none'></div>none</td>
+                <td>Empieza y termina con <b>opacity:1;</b> tal y como se indica en <b>.ObjetoAnimado</b></td>
+            </tr>
+            <tr>
+                <td><div class='ObjetoAnimado afm-forwards'></div>forwards</td>
+                <td>Empieza con <b>opacity:1;</b> tal y como se indica en <b>.ObjetoAnimado</b><br />Termina con <b>opacity:0.5;</b> tal y como se indica en el 100% del <b>@keyframes</b> </td>
+            </tr>
+            <tr>
+                <td><div class='ObjetoAnimado afm-backwards'></div>backwards</td>                
+                <td>Empieza con <b>opacity:0;</b> tal y como se indica en el 0% del <b>@keyframes</b><br />Termina con <b>opacity:1;</b> tal y como se indica en <b>.ObjetoAnimado</b> </td>
+            </tr>
+            <tr>
+                <td><div class='ObjetoAnimado afm-both'></div>both</td>                
+                <td>Empieza con <b>opacity:0;</b> tal y como se indica en el 0% del <b>@keyframes</b><br />Termina con <b>opacity:0.5;</b> tal y como se indica en el 100% del <b>@keyframes</b> </td>
+            </tr>            
+        </table>
+        <p><b>NOTA : </b> Este ejemplo no funciona en Internet Explorer 9 e inferiores!</p>
+    </body>
+</html>

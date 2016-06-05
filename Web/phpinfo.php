@@ -13,6 +13,7 @@
     }
     else {
         echo "<script>\$Base.MostrarErrorAjax(404, true);</script>";
+        echo "<script>\$Admin.Desloguear();</script>";
     }
     
     $Base->FinPlantilla(); 

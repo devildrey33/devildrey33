@@ -230,10 +230,10 @@ body[administrador33] #Marco33 {
 }
 
 #BarraPrincipal_MarcoBuscar_Resultado {
-    max-height:244px;
+    max-height:230px;
     overflow:auto;
     margin-bottom:10px;
-    padding:0px 20px;
+    padding:0px 10px;
     width:100%;
 }
 
@@ -241,6 +241,13 @@ body[administrador33] #Marco33 {
     color:#FFF;
 }
 
+#BarraPrincipal_MarcoBuscar_Resultado > a > div {
+    padding: 0px 10px;
+}
+
+#BarraPrincipal_MarcoBuscar_Resultado > a > div:hover {
+    background-color:#EA504E;
+}
 
 
 

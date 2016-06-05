@@ -1,5 +1,6 @@
 <?php
 
+//echo "devildrey33_BD\n";
 
 
 class devildrey33_BD {
@@ -50,10 +51,10 @@ class devildrey33_BD {
                 $Valor = $Datos["VotosValor"] + $Valor;                
                 $this->_mysqli->query("UPDATE paginas SET VotosTotal='".$this->_mysqli->real_escape_string($Total)."', VotosValor='".$this->_mysqli->real_escape_string($Valor)."' WHERE Pagina='".$this->_mysqli->real_escape_string($Archivo)."'");
              
-                return json_encode(array("HTML" => $this->ObtenerValoresEntrada($Archivo), "ErrorPHP" => Base::ObtenerLogPHP()));
+                return json_encode(array("HTML" => $this->ObtenerValoresEntrada($Archivo), "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
             }
         }
-        return json_encode(array("HTML" => "false", "ErrorPHP" => Base::ObtenerLogPHP()));
+        return json_encode(array("HTML" => "false", "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 2));
     }
     
     

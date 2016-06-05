@@ -48,7 +48,7 @@ $Indice = new function() {
                     $("#MarcoIndice").html($("#MarcoIndice").html() + Datos["HTML"]);
                     $Base.Cargando("FALSE");
                     $Indice.Cargando = false;
-                    $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+                    $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
 //                    $Comentarios.Iniciar();
                 });
                 // Fallo al realizar la petición ajax

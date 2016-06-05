@@ -311,6 +311,12 @@
 </div>
 </div>
 <div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/PropiedadesCSS/animation-fill-mode.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/PropiedadesCSS/animation-fill-mode.html'>animation-fill-mode.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
 <div class='Lab_Archivo' path='/Lab/Ejemplos/PropiedadesCSS/animation-iteration-count.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/PropiedadesCSS/animation-iteration-count.html'>animation-iteration-count.html</a>
@@ -620,6 +626,12 @@
 <div class='Lab_Archivo' path='/Lab/Ejemplos/PropiedadesCSS/box-shadow.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/PropiedadesCSS/box-shadow.html'>box-shadow.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/PropiedadesCSS/box-sizing.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/PropiedadesCSS/box-sizing.html'>box-sizing.html</a>
 </div>
 </div>
 <div class='Lab_Item'>

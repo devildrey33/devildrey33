@@ -1,4 +1,5 @@
 <?php
+//    echo "devildrey33_htaccess.php\n";
 
 include_once "devildrey33_Opciones.php";
 
@@ -9,7 +10,7 @@ include_once "devildrey33_Opciones.php";
 
 class devildrey33_htaccess {    
     /* Función para banear una IP */
-    public function BanearIP($IP) {
+    static public function BanearIP($IP) {
         $Archivo = fopen("../.htaccess", "r");
         $Txthta = fread($Archivo, filesize("../.htaccess"));
         fclose($Archivo);                
@@ -39,7 +40,8 @@ class devildrey33_htaccess {
     }
     
     /* Función para borrar la lista de baneados */
-    public function LimpiarBaneados() {
+    static public function LimpiarBaneados() {
+        if (devildrey33_Opciones::Administrador() === 0) return FALSE;
         $Datos       = file_get_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess");
         $PosInicio   = strpos($Datos, "#INICIO ips baneadas");
         $PosFin      = strpos($Datos, "#FIN ips baneadas");
@@ -52,7 +54,7 @@ class devildrey33_htaccess {
     }
     
     /* Función que obtiene las opciones disponibles y su estado */
-    public function ObtenerValores() {
+    static public function ObtenerValores() {
         $Datos = file_get_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess");
 /*        $Archivo = fopen("../.htaccess", "r");
         $Datos = fread($Archivo, filesize("../.htaccess"));
@@ -66,7 +68,8 @@ class devildrey33_htaccess {
     }
 
     /* Función para activar / desactivar el modulo checkspelling (redireccion a nombres similares) */
-    public function CheckSpelling($Valor) {
+    static public function CheckSpelling($Valor) {
+        if (devildrey33_Opciones::Administrador() === 0) return FALSE;
         $Datos       = file_get_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess");
         $PosInicio   = strpos($Datos, "#INICIO CheckSpelling");
         $PosFin      = strpos($Datos, "#FIN CheckSpelling");
@@ -88,7 +91,8 @@ class devildrey33_htaccess {
     }    
     
     /* Función para activar / desactivar la compresion GZIP */
-    public function CompresionGZip($Valor) {
+    static public function CompresionGZip($Valor) {
+        if (devildrey33_Opciones::Administrador() === 0) return FALSE;
         $Datos       = file_get_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess");
         $PosInicio   = strpos($Datos, "#INICIO CompresionGZip");
         $PosFin      = strpos($Datos, "#FIN CompresionGZip");
@@ -115,7 +119,8 @@ class devildrey33_htaccess {
     }    
     
     /* Función para activar / desactivar la pagina de mantenimiento */
-    public function Mantenimiento($Valor) {
+    static public function Mantenimiento($Valor) {
+        if (devildrey33_Opciones::Administrador() === 0) return FALSE;
         $Datos       = file_get_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess");
         $PosInicio   = strpos($Datos, "#INICIO Mantenimiento");
         $PosFin      = strpos($Datos, "#FIN Mantenimiento");
@@ -133,7 +138,8 @@ class devildrey33_htaccess {
     }    
     
     /* Función para activar / desactivar la cache de imagenes en el navegador (1 mes por defecto) */
-    public function CacheImagenes($Valor) {
+    static public function CacheImagenes($Valor) {
+        if (devildrey33_Opciones::Administrador() === 0) return FALSE;
         $Datos       = file_get_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess");
         $PosInicio   = strpos($Datos, "#INICIO CacheImagenes");
         $PosFin      = strpos($Datos, "#FIN CacheImagenes");

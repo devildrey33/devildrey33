@@ -11,6 +11,10 @@
  *
  * @author devildrey33
  */
+
+//    echo "devildrey33_EditarEntradas\n";
+
+
 include_once "devildrey33_Opciones.php";
 
 if (!defined('DEF_devildrey33_EditarEntradas')) {

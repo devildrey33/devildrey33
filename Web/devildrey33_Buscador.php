@@ -1,5 +1,9 @@
 <?php
+//echo "devildrey33_Buscador\n";
+
+
 include_once "devildrey33_Opciones.php";
+
 
 class devildrey33_Buscador {
     static public function GenerarCache() {
@@ -10,6 +14,7 @@ class devildrey33_Buscador {
 //        header('Content-Type: text/html; charset=UTF-8');
         $ArrayEntradasB = (require dirname(__FILE__).'/Config/EntradasBlog.php');
         $ArrayEntradasD = (require dirname(__FILE__).'/Config/EntradasDocCSS.php');
+        $ArrayEntradasL = (require dirname(__FILE__).'/Config/ListaLab.php');
         $CacheBuscador = array();
         
 //        $CacheBuscador[] = devildrey33::CacheBuscador_EscanearArchivo($ArrayEntradasB[1]);
@@ -23,11 +28,17 @@ class devildrey33_Buscador {
             $Ret = devildrey33_Buscador::EscanearArchivo($Entrada);   
             if ($Ret["UMOD"] !== 0) $CacheBuscador[] = $Ret;
         }
-        
+        foreach ($ArrayEntradasL as $Entrada) {   // Doc/CSS
+            $E = ["Tipo" => "Lab", "URL" => str_replace("/Lab", "", $Entrada), "Titulo" => str_replace(array("/Lab", "/"), array("", " "), $Entrada)];
+//            print_r($E);
+            $Ret = devildrey33_Buscador::EscanearArchivo($E);
+//            print_r($Ret);
+            if ($Ret["UMOD"] !== 0) $CacheBuscador[] = $Ret;
+        }        
         
         file_put_contents($_SERVER['DOCUMENT_ROOT']."/Web/Cache/BDBuscador.php", "<?php return ".var_export($CacheBuscador, TRUE).";");
         
-        print_r($CacheBuscador);
+//        print_r($CacheBuscador);
         // Tiempo máximo de ejecución en segundos (30 segundos)
 //        set_time_limit(30);
     }
@@ -70,13 +81,13 @@ class devildrey33_Buscador {
                 $Entrada["Imagen"] = "CSS3.png";
                 break;
         }
-        $Resultado = array( "URL"       => $URL,                
+        $Resultado = array( "URL"       => str_replace("//", "/", $URL),                
                             "Titulo"    => $Entrada["Titulo"], 
 //                            "Imagen"    => $Entrada["Imagen"],
                             "Palabras"  => "",
                             "UMOD"      => 0);               
         
-        if (file_exists(dirname(__FILE__)."/..".$Path)) {        
+        if (file_exists(dirname(__FILE__)."/..".$Path) && is_dir(dirname(__FILE__)."/..".$Path) === false) {        
             // Fase 1, generar código html        
             $fb = utf8_decode(preg_replace('/<\\?.*(\\?>|$)/Us', '', file_get_contents(dirname(__FILE__)."/..".$Path)));        
             // Fase 2, eliminar todas las etiquetas
@@ -121,7 +132,7 @@ class devildrey33_Buscador {
     
     static public function Buscar($Palabras) {
         if (strlen($Palabras) < 1) {
-            return json_encode(array("HTML" => "La busqueda no ha producido ningún resultado.", "ErrorPHP" => Base::ObtenerLogPHP()));
+            return json_encode(array("HTML" => "La busqueda no ha producido ningún resultado.", "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
         }
         if (file_exists($_SERVER['DOCUMENT_ROOT']."/Web/Cache/BDBuscador.php") !== false) {
             $Ret = array();
@@ -140,18 +151,15 @@ class devildrey33_Buscador {
             }
             $HTML = "";
             foreach ($Ret as $Entrada) {
-                $HTML .= "<div><a href='".$Entrada["URL"]."'>".$Entrada["Titulo"]."</a></div>";
+                $HTML .= "<a href='".$Entrada["URL"]."'><div>".$Entrada["Titulo"]."</div></a>";
             }
             if ($HTML === "" || $Encontrado === 0) $HTML = "La busqueda no ha producido ningún resultado.";
         }
         else {
             error_log("Error!! no se encuentra el archivo '/Web/Cache/BDBuscador.php'");
-        }
+        }               
         
-        
-        
-        
-        return json_encode(array("HTML" => $HTML, "ErrorPHP" => Base::ObtenerLogPHP()));
+        return json_encode(array("HTML" => $HTML, "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
     }
     
     static protected function _AgregarBusqueda(&$Ret, $Entrada) {

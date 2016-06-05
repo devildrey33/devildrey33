@@ -20,15 +20,13 @@ $Admin = new function() {
         /* Boton ver php info */
         $('#CH_PhpInfo').click(function(e){ $Base.CargarURL('/Web/phpinfo'); $Base.ClickMenu(0); }); /* MOSTRAR info php */
         /* Botón generar cache del buscador */
-        $('#CH_GenCacheBuscador').click(function(e){ $Base.cmd('GenerarCacheBuscador'); $Base.MostrarMensaje("Cache del buscador generada (o no.. xd)"); }); 
-        
-        CH_GenCacheBuscador
+        $('#CH_GenCacheBuscador').click(function(e){ $Base.cmd('GenerarCacheBuscador');  }); 
         /* Boton explorar lab */
 //        $('#CH_Lab').click(function(e){ $Base.CargarURL('/Web/Lab-Explorar'); $Base.ClickMenu(0); });  /* EXPLORAR LAB */
         /* Boton editar entradas */
 //        $('#CH_Entradas').click(function(e){ $Base.CargarURL('/Web/Editar-Entradas'); $Base.ClickMenu(0); });  /* EXPLORAR LAB */        
         /* Boton limpiar baneados */ 
-        $('#CH_IPSBan').click(function(e){ $Base.cmd("LimpiarBaneados"); $Base.MostrarMensaje('Se ha vaciado la lista de ips baneadas.'); });  
+        $('#CH_IPSBan').click(function(e){ $Base.cmd("LimpiarBaneados"); });  
         /* CheckBox del marco de administración */
         $('#BarraPrincipal_Marco33 .CheckBox').click(function(e){ 
             $(this).attr({ 'marcado' : ($(this).attr('marcado') === 'false') ? 'true' : 'false' });
@@ -57,7 +55,7 @@ $Admin = new function() {
                     break;
                 case 'CH_Actualizar' :
                     $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarActualizarCache' : 'ActivarActualizarCache' );
-                    if ($(this).attr('marcado') !== 'false') { $Base.MostrarMensaje('Cache actualizada.'); }
+//                    if ($(this).attr('marcado') !== 'false') { $Base.MostrarMensaje('Cache actualizada.'); }
                     break;
                 case 'CH_CheckSpelling' :
                     $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarCheckSpelling' : 'ActivarCheckSpelling' );
@@ -97,11 +95,10 @@ $Admin = new function() {
         nAjax.done(function(data) {
             Datos = JSON.parse(data);
             console.log("Admin.Desloguear");
-            $("#BarraNavegacion_Explorador").html(Datos["HTML"]);
-            
+            $("#BarraNavegacion_Explorador").html(Datos["HTML"]);            
             $Lab.EnlazarEventosExplorador();            
             $Base.Cargando("FALSE");
-            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+            $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
         });
         nAjax.fail(function( jqXHR, textStatus, tError ) { 
             console.log("Admin.Desloguear EscanearEjemplos Error ajax", jqXHR, textStatus, tError);
@@ -139,7 +136,7 @@ $Admin = new function() {
             $Base.MostrarMensaje(Datos["Mensaje"]);
             $("body").attr({"modificado" : "false"});
             $Base.Cargando("FALSE");
-            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);            
+            $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);            
 //            $Lab.Modificado = false;
         }).fail(function( jqXHR, textStatus, tError ) {
             console.log("Admin.Lab_Guardar Error ajax", jqXHR, textStatus, tError);
@@ -199,7 +196,7 @@ $Admin = new function() {
             console.log("Lab_GenerarCache Completo!");
             $Base.MostrarMensaje("Cache del laboratorio generada!");
             $Base.Cargando("FALSE");
-            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+            $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
         });
         nAjax.fail(function( jqXHR, textStatus, tError ) { 
             console.log("Admin.LabExplorar_GenerarCache Error ajax", jqXHR, textStatus, tError);
@@ -517,7 +514,7 @@ $Admin = new function() {
         nAjax = $.post("/cmd/VerEmailComentario.cmd", { "Pagina" : Pagina,  "NumComentario" : NumC }).done(function(data) {
             Datos = JSON.parse(data);
             $Base.MostrarMensaje(Datos["HTML"]);
-            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+            $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
         }).fail(function(jqXHR, textStatus, tError) { 
             console.log("Admin.Comentarios_VerEmail Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarMensaje("Error al ver el email.");
@@ -544,7 +541,7 @@ $Admin = new function() {
                 $Base.MostrarMensaje(data.Mensaje);                
             }
             $Base.Cargando("FALSE");
-            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+            $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
         }).fail(function(jqXHR, textStatus, tError) { 
             // Fallo al realizar la petición ajax            
             console.log("Admin.Comentarios_BotonEliminarComentario Error ajax", jqXHR, textStatus, tError);
@@ -604,7 +601,7 @@ $Admin = new function() {
                     $Base.MostrarMensaje(data.Mensaje);                
                 }
                 $Base.Cargando("FALSE");
-                $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+                $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
             }).fail(function(jqXHR, textStatus, tError) { 
                 // Fallo al realizar la petición ajax            
                 console.log("Admin.Comentarios_Edicion_Guardar Error ajax", jqXHR, textStatus, tError);

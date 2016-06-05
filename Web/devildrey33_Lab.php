@@ -1,4 +1,6 @@
 <?php 
+//    echo "devildrey33_Lab.php\n";
+    
     include_once("devildrey33_Opciones.php");
     class devildrey33_Lab {
         public function __construct() { }
@@ -15,7 +17,7 @@
             if ($Ret) { $Mensaje = "El '$Archivo' se ha guardado correctamente."; }
             else      { $Mensaje = "Error al guardar el archivo : '$Archivo'";    }
             
-            return json_encode(array("Ret" => $Ret, "Mensaje" => $Mensaje, "Archivo" => $Archivo, "ErrorPHP" => Base::ObtenerLogPHP()));
+            return json_encode(array("Ret" => $Ret, "Mensaje" => $Mensaje, "Archivo" => $Archivo, "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
         }
         
         
@@ -86,8 +88,7 @@
             }
 //            if ($Ajax == FALSE) http_response_code($Ret);
             http_response_code($Ret);
-            return array("Ret" => $Ret, "Datos" => $DatosArchivo, "ID" => intval($ID), "Archivo" => $Archivo, "Vista" => $Vista, "Modo" => $Modo, "ErrorPHP" => Base::ObtenerLogPHP());
-            
+            return array("Ret" => $Ret, "Datos" => $DatosArchivo, "ID" => intval($ID), "Archivo" => $Archivo, "Vista" => $Vista, "Modo" => $Modo);            
         }
         
         

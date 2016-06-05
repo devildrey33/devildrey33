@@ -53,9 +53,17 @@ Millores de la web :
  V      - Generar un array amb les paraules de cada document (de moment Blog y Doc)
  V          - Parsejar arxius per eliminar codi php i etiquetes html.
  V      - Buscador básic integrat a la web
- V      - Enllaçar enllaços href al $Base.CargarURL
-        - Retocar CSS
-        - Afegir els exemples del lab a la BD de paraules... (lo que repetira el solitario...)
+ V      - Enllaçar enllaços href al $Base.CargarURL     
+ V      - Retocar CSS
+        - S'ha d'ordenar el resultat ni que sigui per antiguetat, i fins i tot mirar de donar prioritat al blog abans que al Doc/CSS i al Lab
+ V      - Afegir els exemples del lab a la BD de paraules... (lo que repetira el solitario...)
+            - OJU perque llavors poden haber exemples que ja surten a l'index del blog ( fer el mateix sistema pel Doc/CSS )
+
+ V  - Refer devildrey33_cmd : ara es un objecte i es pot utilitzar desde altres documents (mantenimiento.php)
+ V  - Pasar la BD del CSS_BD a un arxiu extern i ben tabulat
+ V      - Creada funció Base::var_export que exporta un array tabulat com a mi m'agrada.
+ V  - Retocar el paste dels comentaris, ara es pot pastejar html, i es parseja internament per eliminar etiquetes script i buttons. Tambè retoca enllaços a href i els hi posa el target='_blank'.
+ V      - Els controls dels comentaris ara ja no son buttons, son divs, i aixi no bosen el outline pel focus.
     - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
         - Un exemple clar seria la web de elmundo
     - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
@@ -70,8 +78,13 @@ Millores de la web :
         transform        : !!perspective!!(600px) translateZ(0px) rotateZ(0deg) rotateX(0deg);
         font-size        : 1!!.4rem!!;
     - fa un blink extrany cada PRIMER cop que paso per sobre d'una etiqueta linea o a[href][cid][l]. I m'esta tocan molt els pebrots...
-    - s'ha de detectar quan passa el temps d'administració, i al fer algo en una sesio expirada, que torni a demanar el login.
-    - Tornar a afegir els iconos58x69.svg dintre del HTML bàsic, aquest cop el carregarem directament de l'arxiu, i aixi no cal posarlo dintre del devildrey33.php i serà tot mes còmode.
+ V  - Desloguejar el javascript si demana una accio de admin i ha expirat la sesió.
+    - Tornar a afegir els iconos58x58.svg dintre del HTML bàsic, aquest cop el carregarem directament de l'arxiu, i aixi no cal posarlo dintre del devildrey33.php i serà tot mes còmode.
+    - Els 5 putus primers caracters que imprimeix qualsevol document php... no se d'on cony surten... tinc echos de l'ordre de carrega dels objectes y echos de putes distribuits estrategicament de forma que no funcionara res de res, aviam si puc obtenir un callback complet d'execució sense fer guarrades amb els echos.
+        - Pasa just abans d'iniciar el constructor de devildrey33.php, pero no he pogut aillar l'origen....
+
+URGENT :
+    - Afegir entrades del Doc/CSS a l'index del blog, i posar el box-sizing i el animation-fill-mode
 
 
 Estils movils :
@@ -112,6 +125,7 @@ Blog :
  V  - Efectes hover per butons (aprofitant el concepte de butons :hover que he fet per la web /Ejemplos/Transition/Botones.html)
     
 Doc/CSS :
+ V  - animation-timing-function amb exemple i aixi acabo l'apartat animaciones.
     - cubic-bezier chulo al estil de http://cubic-bezier.com/
         - \devildrey33\Ejemplos\BezierJS.js (funció per pintar una curva bezier en js)
 
@@ -133,4 +147,3 @@ ESPECIFIC NAVEGADORS :
 
 ESPECIFIC PUTU I-TRASTO DEL TALIBA DELS PEBROTS
     - Per alguna extranya rao, no s'inicia la transició d'inici en l'index, es veu el combo box de categories en blanc (opacity 0.0), i els articles es veuen al reves perque no es fa la transició.    
-

@@ -2,9 +2,10 @@
 /*	include("devildrey33.php");
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Animaciones CSS3", "");*/
-
+        echo "puta2";
 	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
 	$Base = new devildrey33;	
+        echo "puta3";
 	
 	$META = '<meta name="description" content="Animaciones CSS3">
         <meta name="keywords" content="Animaciones CSS3">';

@@ -26,8 +26,20 @@ $Comentarios = new function() {
          * Esto evita que me hagan un Control + C de toda la pagina y me peguen todo el contenido en el mensaje (incluidos controles...) */
         $('#Comentarios_Comentario').on('paste', function(e) {
             e.preventDefault();
-            var Texto = (e.originalEvent || e).clipboardData.getData('text/plain');
-            $Comentarios.ComandoEdicion("insertText", Texto);
+            var Ret = $("<div></div>").append((e.originalEvent || e).clipboardData.getData('text/html'));
+            Ret.find('*').each(function() { 
+//                console.log($(this).get(0).tagName);
+                if ($(this).get(0).tagName === 'SCRIPT' || $(this).get(0).tagName === 'BUTTON') {
+                    $(this).remove();
+                }
+                if ($(this).get(0).tagName === 'A') {
+                    $(this).attr({ "target" : "_blank" })
+                }
+            });
+//            console.log(Ret.html());
+/*            var Texto = (e.originalEvent || e).clipboardData.getData('text/html');            
+            Texto.replace("script", "pre");*/
+            $Comentarios.ComandoEdicion("insertHTML", Ret.html());
         });        
         
         /* Botones con comandos para la edición */
@@ -45,7 +57,7 @@ $Comentarios = new function() {
         $("#Comentarios_BarraControles > .BotonEdicion:nth-child(11)").off("mouseup").on("mouseup", function() { $Comentarios.ComandoEdicion("justifyCenter");          });
         $("#Comentarios_BarraControles > .BotonEdicion:nth-child(12)").off("mouseup").on("mouseup", function() { $Comentarios.ComandoEdicion("justifyRight");           });
         /* Boton enviar */
-        $("#Comentarios > div > button").off("click").on("click", function() { $Comentarios.BotonEnviarComentario(); });
+        $("#Comentarios > .Centrado > button").off("click").on("click", function() { $Comentarios.BotonEnviarComentario(); });
         
         $("#Comentarios_Datos > div[comentario]").off("click").on("click", function(evento) { $Comentarios.SeleccionarComentario($(this)); });
         
@@ -125,7 +137,7 @@ $Comentarios = new function() {
                 $Base.MostrarMensaje(data.Mensaje);                
             }
             $Base.Cargando("FALSE");
-            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+            $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
         // Fallo al realizar la petición ajax            
         }).fail(function(jqXHR, textStatus, tError) { 
             console.log("Comentarios.VotarComentario Error ajax", jqXHR, textStatus, tError);
@@ -191,7 +203,7 @@ $Comentarios = new function() {
                 $Base.MostrarMensaje("Comentario enviado correctamente.");
             }
             $Comentarios.Enviando = false;
-            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+            $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
         });
         // Fallo al realizar la petición ajax
         nAjax.fail(function(jqXHR, textStatus, tError) { 
@@ -219,7 +231,7 @@ $Comentarios = new function() {
             $("#Comentarios_Datos").html($("#Comentarios_Datos").html() + Datos["HTML"]);
             $Base.Cargando("FALSE");
             $Comentarios.Iniciar();
-            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+            $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
         });
         // Fallo al realizar la petición ajax
         nAjax.fail(function(jqXHR, textStatus, tError) { 
@@ -252,7 +264,7 @@ $Comentarios = new function() {
             $Comentarios.Iniciar();
             $Base.Cargando("FALSE");
             $Comentarios.MostrarComentario($Comentarios.NumComentario);
-            $("#ErroresPHP_Info").html(Datos["ErrorPHP"]);
+            $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
         });
         // Fallo al realizar la petición ajax
         nAjax.fail(function(jqXHR, textStatus, tError) { 

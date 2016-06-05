@@ -80,7 +80,7 @@
     'Soportada'     => array ( 1002, 16, 10, 1015, 1004 ),
     'Ejemplo'       => '',
     'Path'          => '',
-    'EjemplosExtra' => array ( ),
+    'EjemplosExtra' => array ( '/Ejemplos/PropiedadesCSS/animation-fill-mode.html'),
     'Tipo'          => 'DocCSS'
   ),
   array ( 
@@ -111,7 +111,7 @@
     'Nombre'        => 'animation-fill-mode',
     'TipoCSS'       => 0,
     'Grupo'         => 0,
-    'Descripcion'   => '',
+    'Descripcion'   => 'Especifica como se trataran los estilos al iniciar y terminar la animación.',
     'Version'       => 3,
     'Soportada'     => array ( 1002, 16, 10, 1015, 1004 ),
     'Ejemplo'       => '',
@@ -759,7 +759,7 @@
     'Nombre'        => 'box-sizing',
     'TipoCSS'       => 0,
     'Grupo'         => 16,
-    'Descripcion'   => '',
+    'Descripcion'   => 'Especifica si el pading y el borde están incluidos en el calculo final de width y height',
     'Version'       => 3,
     'Soportada'     => array ( 9, 1, 8, 7, 5.1 ),
     'Ejemplo'       => '',

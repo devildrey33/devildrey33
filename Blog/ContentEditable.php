@@ -77,47 +77,47 @@ document.execCommand(Comando, Interface, Valor);
                 	<tr>
                     	<td><b>bold</b></td>
                         <td>Activar / desactivar negrita (Control + B).</td>
-                        <td class='Codigo_Negro'><span class='Codigo_Lila'>document</span>.execCommand(<span class='Codigo_Azul'>'bold'</span>, <span class='Codigo_AzulOscuro'>false</span>, <span class='Codigo_AzulOscuro'>null</span>);</td>
+                        <td class='TxtNegro'><span class='TxtLila'>document</span>.execCommand(<span class='TxtAzul'>'bold'</span>, <span class='TxtAzulOscuro'>false</span>, <span class='TxtAzulOscuro'>null</span>);</td>
                     </tr>
                 	<tr>
                     	<td><b>copy</b></td>
                         <td>Copiar la selección al portapapeles (Control + C).</td>
-                        <td class='Codigo_Negro'><span class='Codigo_Lila'>document</span>.execCommand(<span class='Codigo_Azul'>'copy'</span>, <span class='Codigo_AzulOscuro'>false</span>, <span class='Codigo_AzulOscuro'>null</span>);</td>
+                        <td class='TxtNegro'><span class='TxtLila'>document</span>.execCommand(<span class='TxtAzul'>'copy'</span>, <span class='TxtAzulOscuro'>false</span>, <span class='TxtAzulOscuro'>null</span>);</td>
                     </tr>
                 	<tr>
                     	<td><b>cut</b></td>
                         <td>Cortar la selección al portapapeles (Control + X).</td>
-                        <td class='Codigo_Negro'><span class='Codigo_Lila'>document</span>.execCommand(<span class='Codigo_Azul'>'cut'</span>, <span class='Codigo_AzulOscuro'>false</span>, <span class='Codigo_AzulOscuro'>null</span>);</td>
+                        <td class='TxtNegro'><span class='TxtLila'>document</span>.execCommand(<span class='TxtAzul'>'cut'</span>, <span class='TxtAzulOscuro'>false</span>, <span class='TxtAzulOscuro'>null</span>);</td>
                     </tr>
                 	<tr>
                     	<td><b>italic</b></td>
                         <td>Activar / desactivar cursiva (Control + I).</td>
-                        <td class='Codigo_Negro'><span class='Codigo_Lila'>document</span>.execCommand(<span class='Codigo_Azul'>'italic'</span>, <span class='Codigo_AzulOscuro'>false</span>, <span class='Codigo_AzulOscuro'>null</span>);</td>
+                        <td class='TxtNegro'><span class='TxtLila'>document</span>.execCommand(<span class='TxtAzul'>'italic'</span>, <span class='TxtAzulOscuro'>false</span>, <span class='TxtAzulOscuro'>null</span>);</td>
                     </tr>
                 	<tr>
                     	<td><b>paste</b></td>
                         <td>Pegar desde el portapapeles (Control + V).</td>
-                        <td class='Codigo_Negro'><span class='Codigo_Lila'>document</span>.execCommand(<span class='Codigo_Azul'>'paste'</span>, <span class='Codigo_AzulOscuro'>false</span>, <span class='Codigo_AzulOscuro'>null</span>);</td>
+                        <td class='TxtNegro'><span class='TxtLila'>document</span>.execCommand(<span class='TxtAzul'>'paste'</span>, <span class='TxtAzulOscuro'>false</span>, <span class='TxtAzulOscuro'>null</span>);</td>
                     </tr>
                 	<tr>
                     	<td><b>redo</b></td>
                         <td>Re-hacer (Control + Y).</td>
-                        <td class='Codigo_Negro'><span class='Codigo_Lila'>document</span>.execCommand(<span class='Codigo_Azul'>'redo'</span>, <span class='Codigo_AzulOscuro'>false</span>, <span class='Codigo_AzulOscuro'>null</span>);</td>
+                        <td class='TxtNegro'><span class='TxtLila'>document</span>.execCommand(<span class='TxtAzul'>'redo'</span>, <span class='TxtAzulOscuro'>false</span>, <span class='TxtAzulOscuro'>null</span>);</td>
                     </tr>
                 	<tr>
                     	<td><b>strikethrough</b></td>
                         <td>Activar / desactivar el tachado de texto.</td>
-                        <td class='Codigo_Negro'><span class='Codigo_Lila'>document</span>.execCommand(<span class='Codigo_Azul'>'strikethrough'</span>, <span class='Codigo_AzulOscuro'>false</span>, <span class='Codigo_AzulOscuro'>null</span>);</td>
+                        <td class='TxtNegro'><span class='TxtLila'>document</span>.execCommand(<span class='TxtAzul'>'strikethrough'</span>, <span class='TxtAzulOscuro'>false</span>, <span class='TxtAzulOscuro'>null</span>);</td>
                     </tr>
                 	<tr>
                     	<td><b>underline</b></td>
                         <td>Activar / desactivar el sub-rayado de texto (Control + U).</td>
-                        <td class='Codigo_Negro'><span class='Codigo_Lila'>document</span>.execCommand(<span class='Codigo_Azul'>'underline'</span>, <span class='Codigo_AzulOscuro'>false</span>, <span class='Codigo_AzulOscuro'>null</span>);</td>
+                        <td class='TxtNegro'><span class='TxtLila'>document</span>.execCommand(<span class='TxtAzul'>'underline'</span>, <span class='TxtAzulOscuro'>false</span>, <span class='TxtAzulOscuro'>null</span>);</td>
                     </tr>
                 	<tr>
                     	<td><b>undo</b></td>
                         <td>Des-hacer (Control + Z).</td>
-                        <td class='Codigo_Negro'><span class='Codigo_Lila'>document</span>.execCommand(<span class='Codigo_Azul'>'undo'</span>, <span class='Codigo_AzulOscuro'>false</span>, <span class='Codigo_AzulOscuro'>null</span>);</td>
+                        <td class='TxtNegro'><span class='TxtLila'>document</span>.execCommand(<span class='TxtAzul'>'undo'</span>, <span class='TxtAzulOscuro'>false</span>, <span class='TxtAzulOscuro'>null</span>);</td>
                     </tr>
                 </table>
                 <br />
