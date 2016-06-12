@@ -7,7 +7,7 @@
 	
 	$Base->InicioPlantilla("Creación de páginas web desde cero (5 Más sobre los estilos)", $DeclaracionesHeadExtras);*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial HTML">
@@ -43,7 +43,6 @@ body {
 }
 -[FIN devildrey33.ID1]- -->                                        
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_CSS3.png" alt="Tutorial creación de paginas web desde cero" />
                 <p>En el tutorial anterior se vio muy por encima los estilos CSS y cómo utilizarlos con el atributo "<i>style</i>" sobre cualquier etiqueta.</p>
                 <p>Hoy crearemos nuestro primer documento CSS, y dejaremos el atributo "<i>style</i>" de lado para empezar a probar los atributos "<i>id</i>" y "<i>class</i>" ya que con ellos podemos utilizar estilos definidos en un archivo CSS a parte.</p>
                 <p>Pero antes de nada necesitamos aprender un poco sobre selectores CSS, que son y cómo utilizarlos correctamente en nuestras hojas de estilos.</p>
@@ -164,7 +163,7 @@ body {
                         <div class='nota'>Las propiedades "<i>left</i>", "<i>right</i>", "<i>top</i>", y "<i>bottom</i>" solo funcionaran si asignamos la propiedad "<i>position</i>" a cualquier valor válido que no sea "static".</div>
                     </li>
                 </ul>
-                <img src='/Graficos/css_position.png' alt='position:absolute position:relative' style='float:right' />
+                <img src='../Web/Graficos/css_position.png' alt='position:absolute position:relative' style='float:right' />
                 <p>Además de explicar el funcionamiento de la propiedad "<i>left</i>" he añadido una explicación para las propiedades "<i>right</i>", "<i>top</i>" y "<i>bottom</i>". Es posible que no haya quedado muy claro, sobre todo para aquellos que no habéis tocado nunca un lenguaje de programación, así que echad un vistazo a la imagen de la derecha a ver si os aclara mejor el tema.</p>
                 <p>Imaginaros que la imagen de la derecha es un documento html completo, y que en un momento dado abrimos una etiqueta <i>&lt;p&gt;</i> (que es la porción blanca) y dentro le añadimos una etiqueta con la propiedad "<i>position:absolute</i>" (azul), y una etiqueta con la propiedad "<i>position:relative</i>" (rojo).</p> 
                 <p>Si quisiéramos modificar la posición "<i>left</i>" de la etiqueta azul (absolute) deberíamos tener en cuenta el margen que va desde la izquierda del documento a la etiqueta "<i>p</i>", y la posición dentro de la etiqueta "<i>p</i>". En cambio si quisiéramos modificar la posición "<i>left</i>" de la etiqueta roja (relative) solo deberíamos tener en cuenta la posición dentro de la etiqueta "<i>p</i>".</p>

@@ -7,7 +7,7 @@
 
 	$Base->InicioPlantilla("Tutorial HTML5 Canvas2D parte 4 (imagenes)", $DeclaracionesHeadExtras);	*/
 
-	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+	include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial HTML5 Canvas2D parte 3">
@@ -86,7 +86,6 @@ function PintarCanal(ConservarRGB, nX, nY) {
 
 </script>
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Canvas2D_4.png" alt="Canvas 2D" />
                 <p>Ha pasado algo más de una semana desde el ultimo tutorial del canvas 2d, pero tranquilos que no me he olvidado de él.</p>
                 <p>Esta vez vamos a trastear con imágenes, y veremos hasta que punto podemos toquetearlas.</p>
                 <p>Para ello voy a tomar una imagen del bender, y la voy a mostrar utilizando un único canal de color cada vez, de esta forma veréis como queda distribuida la imagen en memoria una vez cargada, y como poder modificar uno o más pixeles de ella.</p>

@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WINAPI C++ 2.2 Crear tablero, marcador y mensaje");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.2.2.png" alt="Tutorial 2.2" style="cursor:pointer;" />
                 <p>En el tutorial anterior se creo una base para poder hacer ventanas translucidas, ahora vamos a utilizar esa base para crear los objetos específicos que necesitaremos para el juego. Necesitamos varios objetos para el juego, pero por el momento empezaremos por estos tres : el Tablero, el Marcador y el Mensaje.</p>
                 <p>El tablero consistira en una parrilla de cuadrados que sera por donde se movera nuestra serpiente. El marcador se usara para contabilizar los puntos, el recorrido, la velocidad y los frames por segundo. El mensaje nos servira para advertir que el juego esta en pausa, que se ha pasado al siguiente nivel, o que el juego ha terminado</p>
                 

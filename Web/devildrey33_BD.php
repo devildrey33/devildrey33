@@ -5,7 +5,7 @@
 
 class devildrey33_BD {
     public    $_mysqli;
-
+    public    $_BDFuncional = true;
     // Constructor
     public function __construct() {
         $ArrayDatos = (require dirname(__FILE__).'/Passwords.php');
@@ -16,7 +16,8 @@ class devildrey33_BD {
         
         
         if ($this->_mysqli->connect_errno) {            
-            error_log("<span style='color:red'>Error iniciando la BD en <b>".$_SERVER["SERVER_NAME"]."</b></span> : ".utf8_encode($this->_mysqli->connect_error));            
+            error_log("<span style='color:red'>Error iniciando la BD en <b>".$_SERVER["SERVER_NAME"]."</b></span> : ".utf8_encode($this->_mysqli->connect_error));
+            $this->_BDFuncional = false;
         }        
 //        $this->_mysqli->set_charset("utf8");
 //        $this->_mysqli->query('SET CHARACTER SET utf-8');
@@ -25,10 +26,12 @@ class devildrey33_BD {
     
     // Destructor
     function __destruct() {
+        if ($this->_BDFuncional === false) return;
         $this->_mysqli->close();
     }
 
     function Query($Sentencia) {
+        if ($this->_BDFuncional === false) return FALSE;
         if ($this->_mysqli->query($Sentencia) !== TRUE) {
             return $this->_mysqli->error;
         }
@@ -37,7 +40,8 @@ class devildrey33_BD {
     
     
     public function VotarWeb($Archivo, $Valor, $URL) { 
-        if (is_numeric($Valor)) {
+
+        if (is_numeric($Valor) && $this->_mysqli !== false) {
             //$URL = str_replace("http://www.", "http://", $URL);
             if ($Valor > 5) $Valor = 5;
             if ($Valor < 1) $Valor = 1;            
@@ -60,6 +64,7 @@ class devildrey33_BD {
     
     
     public function ObtenetMediaVotacionesWeb($Archivo) {
+        if ($this->_BDFuncional === false) return array("TotalVotaciones" => 0, "TotalEstrellas" => 0);
         $Ret = new devildrey33_ObtenetMediaVotacionesWeb;
         // Comprobamos si exsite la pagina
         $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina = '".$this->_mysqli->real_escape_string($Archivo)."'");
@@ -76,6 +81,7 @@ class devildrey33_BD {
     // UNUSED ???
     // Suma 1 al contador de descargas
     public function SumarDescarga($Archivo) {
+        if ($this->_BDFuncional === false) return FALSE;
         $Resultado = $this->_mysqli->query("SELECT * FROM descargas");
         $Descargas = 0;
         if (!$Resultado || $Resultado->num_rows == 0) { // La tabla no existe, la creamos
@@ -100,6 +106,7 @@ class devildrey33_BD {
     // Al sumar una visita es posible que no exista la tabla para sumar visitas, o que no exista la entrada para la pagina especificada
     public function SumarVisita($Archivo, $bSumarVisita) {
         $Visitas = 0;
+        if ($this->_BDFuncional === false) return $Visitas;
 
         $Archivo = $this->_mysqli->real_escape_string(str_replace(array("?Preview", "?Filas", "?Columnas", "?Codigo"), "", $Archivo));
         
@@ -138,6 +145,8 @@ class devildrey33_BD {
 
     // Función que obtiene los valores de una entrada (numero de comentarios, visitas, votos, fecha, etc..)
     public function ObtenerValoresEntrada($Archivo, $SumarVisita = false) {        
+        if ($this->_BDFuncional === false) return ", 0 visitas, 0 comentarios, 0 votaciones.";
+
         $Votos       = 0;
         $Visitas     = 0;
         $Comentarios = 0;
@@ -175,6 +184,7 @@ class devildrey33_BD {
 
     // Suma 1 al valor especificado de la tabla General_Enteros
     public function SumarIntGeneral($Nombre) {
+        if ($this->_BDFuncional === false) return;
         $Resultado = $this->_mysqli->query("SELECT * FROM general_enteros");
         if (!$Resultado || $Resultado->num_rows == 0) { // La tabla no existe, la creamos
             $Resultado = $this->_mysqli->query("CREATE TABLE general_enteros (Nombre VARCHAR(128) PRIMARY KEY, Valor INT)");
@@ -195,7 +205,7 @@ class devildrey33_BD {
     
     /* Ejecutar : devildrey33.es/cmd/AdaptarComentarios        */
     /* Funciónes para adaptar los mensajes al formato del 2015 */
-    public function AdaptarComentarios() {
+  /*  public function AdaptarComentarios() {
         $Tablas = $this->_mysqli->query("SELECT table_name from information_schema.tables");    
         echo $Tablas->num_rows."<br />";
         if ($Tablas->num_rows) {
@@ -204,7 +214,7 @@ class devildrey33_BD {
                 echo strpos($DatosTabla["table_name"], "comentarios__");
                 if (strpos($DatosTabla["table_name"], "comentarios__") !== false) {
                     echo "<h1>".$DatosTabla["table_name"]."</h1>";
-                    /* Obtengo todos los mensajes de la tabla */
+                    //Obtengo todos los mensajes de la tabla 
                     $Mensajes = $this->_mysqli->query("SELECT * from ".$DatosTabla["table_name"]); 
                     if ($Mensajes->num_rows) {
                         for ($i = 0; $i < $Mensajes->num_rows; $i++) {
@@ -223,11 +233,6 @@ class devildrey33_BD {
                 }
                 
             }
-  /*          if ($DROPS !== "") {
-                $DROPS = substr($DROPS, 0, strlen($DROPS) - 2);
-                $ErrorDrop = $this->_mysqli->query("DROP TABLE ".$DROPS); 
-                echo "DROP TABLE ".$DROPS."<br />Resultado : ".$this->_mysqli->error;
-            }*/
         }           
     }
 
@@ -251,10 +256,7 @@ class devildrey33_BD {
 
             //echo "<br />";
                     
-    /*                "<pre>".$Parte1."</pre>".
-                    "<hr />".
-                    "<pre>".$Parte2."</pre><hr /><hr />";*/
-            /* Hay algun span suelto sin número ni nada, este se elimina */
+            // Hay algun span suelto sin número ni nada, este se elimina 
             if (is_numeric($NumMSG) === false)  
                 $Mensaje = $Parte1.$Parte2;
             else                                
@@ -268,7 +270,7 @@ class devildrey33_BD {
 
 //        return str_replace("<a href", "<a target='_blank' href", $Mensaje);
 //        return $Mensaje;
-    }
+    }*/
 
     
 };

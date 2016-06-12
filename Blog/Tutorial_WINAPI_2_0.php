@@ -10,7 +10,7 @@
 		
 	$Base->InicioPlantilla("Tutorial WINAPI C++ 1.7 (Terminando la calculadora)", $NEH);*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -24,7 +24,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Snake.png" alt="Tutorial 2 Snake" style="cursor:pointer" />
                 <p>La segunda parte de los tutoriales para el API de windows tiene por objetivo la creacion de el tipico juego de la serpiente.</p>
                 <p>Este juego consiste en una serpiente que va creciendo a medida que va comiendo bolas, y que contra mas crece la serpiente mas se acelera su movimiento. El juego termina una vez tocamos con la cabeza de la serpiente una pared o la misma serpiente.</p>
                 <p>Tambien tendrá un marcador de records que quedaran guardados en el disco duro.</p>

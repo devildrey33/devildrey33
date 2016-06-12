@@ -120,10 +120,10 @@ h2:before {
     overflow:hidden;
 }
 
-.Blog > .Cabecera > .Cabecera_Img1 {    background-image:url('/Web/Graficos/FondoBlog1.png');   }
-.Blog > .Cabecera > .Cabecera_Img2 {    background-image:url('/Web/Graficos/FondoBlog2.png');   }
-.Blog > .Cabecera > .Cabecera_Img3 {    background-image:url('/Web/Graficos/FondoBlog3.png');   }
-.Blog > .Cabecera > .Cabecera_Img4 {    background-image:url('/Web/Graficos/FondoBlog4.png');   }
+.Blog > .Cabecera > .Cabecera_Img1 {    background-image:url('../Graficos/FondoBlog1.png');   }
+.Blog > .Cabecera > .Cabecera_Img2 {    background-image:url('../Graficos/FondoBlog2.png');   }
+.Blog > .Cabecera > .Cabecera_Img3 {    background-image:url('../Graficos/FondoBlog3.png');   }
+.Blog > .Cabecera > .Cabecera_Img4 {    background-image:url('../Graficos/FondoBlog4.png');   }
 
 
 
@@ -204,10 +204,12 @@ h2:before {
 .EnlacesRelacionados {
     display:flex;
     flex-flow:row wrap;
-    margin:20px 0px 0px 0px;
+    /*margin:20px 0px 0px 0px;*/
+    padding:0px 0px 0px 20px;
 }
 .EnlacesRelacionados > li {
     flex:0 0 250px;
+    
 }
 /* Sintaxis de la documentación CSS  */
 /*.Pre_Sintaxis {

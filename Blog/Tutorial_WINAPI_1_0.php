@@ -4,7 +4,7 @@
 	$Base->InicioPlantilla("Tutorial WINAPI 1.0");-/*/
         
         
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -18,7 +18,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Calculadora.png" alt="Tutorial 1 calculadora" style="cursor:pointer" />
                 <p>La primera parte de los tutoriales C++ en windows consiste en construir una simple calculadora desde cero. Cuando digo desde cero, me refiero a que vamos a crearnos los controles necesarios en vez de usar los controles estandar de windows. Para este caso necesitaremos concretamente crearnos nuestro propio Boton, y un control que sirva como marcador.</p>
                 <p>Todo esto nos servira para tener una idea general de como crear ventanas y responder a sus eventos, ademas tambien veremos basicamente como pintar graficos dentro de una ventana.</p>
                 <!-- FIN_INTRODUCCION -->

@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Animaciones CSS3", "");*/
 
-	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+	include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Apuntes sobre la actualización del sitio web http://devildrey33.es">'.Intro().
@@ -17,7 +17,6 @@
         ?>
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Logo.png" alt="Notas del nuevo look" />
                 <p>Buenas! hacía ya algún tiempo que no he dado señales de vida por aquí. Hoy me complace enseñaros el nuevo look para mi web, pero no es solo un nuevo look si no que prácticamente el 100% de la web ha sido re-hecho desde cero.</p>
                 <p>Una de las razones por la que no he estado al pie del cañón, es porque me había aburrido del aspecto de la web, y solo en pensar en hacerle algún parche ya me desanimaba un poco. Mantener una web con las ultimas tecnologías, que lleva mas de 5 años resulta un poco complicado hoy en día, por lo que a principios del 2015 me decidí a empezar de nuevo toda la web.</p>
                 <p>Esta vez he puesto mucho interés en que la web se vea perfectamente en dispositivos móviles, eso si para verla hay que usar un navegador decente actualizado.</p>

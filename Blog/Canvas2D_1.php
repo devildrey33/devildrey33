@@ -6,7 +6,7 @@
 
 //	$Base->InicioPlantilla("Tutorial HTML5 Canvas2D parte 1", $DeclaracionesHeadExtras);
 
-	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+	include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial HTML5 Canvas2D parte 1">
@@ -104,7 +104,6 @@ function PintarEspacio() {
 </script>
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Canvas2D_1.png" alt="Canvas 2D" />
                 <p>El objeto canvas de HTML5 es un objeto que nos permite pintar gráficos dinámicamente en una porción de la pagina web utilizando JavaScript.</p>
                 <p>Este objeto puede ser utilizado tanto para pintar gráficos en dos dimensiones como en tres dimensiones.</p>
                 <p>En este primer tutorial empezaremos por ver cómo hay que crear este objeto y como utilizar un par de funciones básicas para pintar gráficos dentro del él.</p>

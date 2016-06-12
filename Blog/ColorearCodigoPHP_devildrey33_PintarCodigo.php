@@ -4,7 +4,7 @@
 	$Base->InicioPlantilla("PHP : Objeto devildrey33_PintarCodigo");*/
 
         
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Colorear código">
@@ -16,7 +16,6 @@
 ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_PHP.png" alt="devildrey33_PintarCodigo" />
                 <p>Este objeto es en el que he basado los 6 tutoriales anteriores sobre Colorear código con PHP.</p>
                 <p>Uno de los problemas de parsear el código y mostrarlo, es que requiere que el servidor PHP realice ciertos cálculos, y por ello puede resultar pesado para ciertos sitios web.</p>
                 <p>Si por ejemplo tenemos un sitio con 10000 visitas diarias y tenemos que hacer el parsing de un código 10000 veces al día, estoy seguro que en más de un momento si el servidor pudiera hablar nos diría muchas palabras mal sonantes.</p>

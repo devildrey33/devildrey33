@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Utilizar archivos XML con PHP");*/
         
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="PHP + XML">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_PHPyXML.png" alt="PHP y XML" />
                 <p>XML son las siglas de e<b>X</b>tensible <b>M</b>arkup <b>L</b>anguage, y en esencia es un lenguaje que permite a los desarrolladores crear sus propias etiquetas para definir un conjunto de información.</p>
                 <p>Pero que podemos hacer con XML? Por si solo no es más que un archivo de datos, que con PHP puede ser interpretado muy fácilmente.</p>
                 <p>Por poner un ejemplo, vamos a imaginarnos que queremos hacer una lista de datos, y que queremos mostrar esa lista de datos en varios documentos PHP. Esto podríamos hacerlo con un archivo de texto a base de fopen / fread, con una conexión mysql extrayendo dichos datos de una base de datos, o utilizando un archivo XML.</p>

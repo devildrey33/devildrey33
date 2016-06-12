@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WinAPI C++ 3.2 (Common Dialogs)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,14 +17,13 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.3.2.png" alt="Tutorial 3 Instalador y Ensamblador" />
                 <p>El siguiente tutorial tiene como objetivo mostrar  por encima algunos de los common dialogs de windows. Lo primero que debéis saber es que un common dialog se refiere a un dialogo común del sistema, como por ejemplo el dialogo  que nos sale cuando guardamos un archivo de texto en el Notepad.</p>
                 <p>Estos dialogos son usados por el 99% de aplicaciones que requieren trabajar con archivos / directorios, con impresoras, con colores, con fuentes, etc... Es importante conocerlos ya que nos pueden ahorrar un gran trabajo.</p>
                 <p>Aunque no vamos a verlos todos en este tutorial, veremos los dialogos para trabajar con el sistema de archivos, y que hacen referenca a las acciones : 'abrir', 'guardar' y 'seleccionar directorio'.</p>
                 <div style="clear:both"></div>
                 <!-- FIN_INTRODUCCION -->
-                <img src="/Graficos/DlgGuardarW7.png" style="width:45%"  />
-                <img src="/Graficos/DlgGuardarWXP.png" style="width:45%; padding-top:5px;" />
+                <img src="../Web/Graficos/DlgGuardarW7.png" style="width:45%"  />
+                <img src="../Web/Graficos/DlgGuardarWXP.png" style="width:45%; padding-top:5px;" />
                 <p>La imagen superior pertenece a un dialogo para guardar archivos de Windows7, y la imagen inferior a a un dialogo para guardar archivos de Windows XP. Como podéis observar el aspecto grafico es distinto de un sistema operativo a otro, pero el código para llamar a ese dialogo es exactamente el mismo incluso para Win95,98,ME.</p>
                 <div class='nota'>Aunque el código para mostrar un dialogo sea el mismo de un sistema operativo a otro, nos podemos encontrar que en sistemas operativos mas nuevos tengan mas opciones que no funcionen en sistemas anteriores.</div>
                 <p><h2><b>ObjetoDlgAbrir</b></h2></p>

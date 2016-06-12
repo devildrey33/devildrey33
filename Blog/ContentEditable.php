@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Atributo ContentEditable del HTML");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="ContentEditable">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_ContentEditable.png" alt="ContentEditable" />
                 <p>El atributo ContentEditable convierte cualquier etiqueta en una región editable con texto enriquecido, esto quiere decir que podemos convertir una etiqueta en un TEXTAREA, que además permite cosas como el texto en negrita, cursiva, etc.. sin mucho esfuerzo.</p>
                 <p>Este atributo existe desde hace varios años y es quizás una de las pocas innovaciones introducidas por la gente de microsoft en el mundo del HTML, pero hasta hace relativamente poco no se había visto gran cosa sobre ella.</p>
                 <p>En esencia una etiqueta con este atributo activado se convierte en un editor WYSIWYG (What-You-See-Is-What-You-Get), con una funcionabilidad básica, que mediante javascript puede ser extendida hasta el punto de llegar a convertirse en un editor para cualquier tipo de tarea, que no tenga nada que envidiar a un editor convencional compilado para windows / linux / mac, con la diferencia de que este será compatible con los navegadores actuales, y por lo tanto será multiplataforma.</p>

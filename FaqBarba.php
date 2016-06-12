@@ -1,5 +1,5 @@
 <?php
-    include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+    include("Web/devildrey33.php");
 
     $Base = new devildrey33;
     $Base->InicioPlantilla(basename(__FILE__), "devildrey33.es", "");    
@@ -8,9 +8,13 @@
 ?>
     <article class='Blog' pagina='FaqBarba.php'>
         <br />
-        <h2>Instalació</h2>
-<?php echo "<p>Has de crear la BD <b>".$ArrayDatos["NOM-BD"]."</b> amb login '<b>root</b>', pass '<b>".$ArrayDatos["PASS-Barba"]."</b>'.</p>"; ?>
-        <p>Per que la web funcioni bè ha d'estar a l'arrel del servidor, es a dir <b>NO VAL</b> <code style="color:red">http://localhost/devildrey33</code>, hauras de fer-ne un tipus <code style="color:green">http://devildrey33.st0rm</code> en el teu arxiu de hosts.</p>
+        <h2>Instal·lació</h2>
+        <ul>
+        <li><b>Pots accedir a la web desde localhost/directori web</b>, però mes d'un enllaç no funcionara. Per fer-ho has d'executar un cop l'arxiu <a href='AsignarRaiz.php'>AsignarRaiz.php</a>, (aquest arxiu modificara el arxiu .htaccess per establir l'arrel de la web, i d'aquesta forma funcionaran els directoris virtuals) </li>
+        
+<?php echo "<li><b>La web pot funcionar sense BD</b>, pero obviament no podras accedir a certes funcions. Si necesites les funcions de la BD (comentaris i stats varis) has de crear la BD <b>".$ArrayDatos["NOM-BD"]."</b> amb login '<b>root</b>', pass '<b>".$ArrayDatos["PASS-Barba"]."</b>'.</li>"; ?>
+        </ul>
+        <p class='nota'>Per que la web funcioni al 100% ha d'estar a l'arrel del servidor, es a dir <b>NO VAL</b> : <code style="color:red">http://localhost/devildrey33</code>, hauras d'enllaçarte un domini d'aquest estil : <code style="color:green">http://devildrey33.st0rm</code> amb els arixus hosts i httpd.conf.</p>
         <hr />
         <h2>Conta</h2>
         <table class="Tabla">
@@ -30,7 +34,7 @@
             <li>Tens permisos per editar exemples del Laboratori de proves, tambè OJU.</li>
             <li>Tens permisos de depuració (des-minificar codi, veure misatges de la consola, actualitzar cache).</li>
         </ul>
-        <p>La web es posa en modo depuració automaticament sempre que loguejis (codi descomprimit i misatges de consola, per veure el html separat per lineas has de recarregar la web), i recorda que nomes pots utilitzar el nom un cop has entrat amb la teva conta.</p>
+        <p>La web es posa en mode depuració automaticament sempre que loguejis (codi descomprimit i misatges de consola, per veure el html separat per lineas has de recarregar la web), i recorda que nomes pots utilitzar el nom un cop has entrat amb la teva conta.</p>
         <hr />
         <h2>Directoris</h2>
         <p>OJU! Els directoris locals no tenen sempre el mateix nom en el servidor. En principi si tenen una URL diferent es que funciona desde les dues, pero si te la URL diferent es per alguna rao, per exemple les descarregues les controlo amb un contador, per lo que el directori <i>/Descargas</i> es virtual i pasa per un PHP que suma la descarrega i despres redirecciona al directori <i>/App</i> </p>
@@ -40,90 +44,108 @@
                    <th>Directori</th>
                    <th>URL</th>
                    <th>Descripció</th>
+                   <th>URL Desde php</th>
                 </tr>
             </thead>            
             <tr>
                 <td>/Apps</td>
                 <td>/Descargas</td>
                 <td>Directori amb zips de descarrega</td>               
+                <td><code>$Base::URL_Descargas()</code></td>
             </tr>
             <tr>
                 <td>/Blog</td>
                 <td>/Blog</td>
                 <td>Directori on van les entrades del blog</td>               
+                <td><code>$Base::URL_Blog()</code></td>
             </tr>
             <tr>
                 <td>/Codigo</td>
                 <td>/Codigo</td>
                 <td>Directori on es guarden codis de qualsevol exemple / tuto</td>               
+                <td></td>
             </tr>
             <tr>
                 <td>/Documentacion</td>
                 <td>/Doc</td>
                 <td>Directori per documentacio, ara mateix nomes hi ha la de CSS i no esta acabada...</td>               
+                <td></td>
             </tr>
             <tr>
                 <td>/Ejemplos</td>
                 <td>/Ejemplos</td>
                 <td>Directori per tot tipus d'exemples de HTML, CSS, i JS</td>               
+                <td></td>
             </tr>
             <tr>
                 <td></td>
                 <td>/Lab/Ejemplos</td>
                 <td>Laboratori de proves (editor HTML5/CSS3/JS dinamic)</td>               
+                <td></td>
             </tr>
             <tr>
                 <td>/logs</td>
                 <td></td>
                 <td>Directori intern del servidor per guardar logs</td>               
+                <td></td>
             </tr>
             <tr>
                 <td>/nbproject</td>
                 <td></td>
                 <td>Directori del projecte de netbeans</td>               
+                <td></td>
             </tr>
             <tr>
                 <td>/Fuentes</td>
                 <td></td>
                 <td>Tipografies web</td>               
+                <td></td>
             </tr>
             <tr>
                 <td>/Web</td>
                 <td>/Web</td>
                 <td>Directori principal del codi PHP</td>               
+                <td><code>$Base::URL_Web()</code></td>
             </tr>
             <tr>
                 <td>/Web/Cache</td>
                 <td>/Web/Cache</td>
                 <td>Directori on es guarden arxius cache</td>               
+                <td><code>$Base::URL_Cache()</code></td>
             </tr>
             <tr>
                 <td>/Web/Config</td>
                 <td>/Web/Config</td>
-                <td>Directori on hi ha la configuració (Llista de entrades i de categories, i llista d'arxius js i css per comprimir)</td>               
+                <td>Directori on hi ha la configuració (Llistes de : entrades, categories, i llista d'arxius js/css a comprimir)</td>               
+                <td></td>
             </tr>
             <tr>
                 <td>/Web/CSS</td>
                 <td>/Web/CSS</td>
                 <td>Directori pels arxius CSS</td>               
+                <td><code>$Base::URL_CSS()</code></td>
             </tr>
             <tr>
                 <td>/Web/Graficos</td>
                 <td>/Web/Graficos</td>
                 <td>Directori on es guarden totes les imatges, tambè es pot accedir desde http://img.devildrey33.es</td>               
+                <td><code>$Base::URL_Graficos()</code></td>
             </tr>
             <tr>
                 <td>/Web/JS</td>
                 <td>/Web/JS</td>
                 <td>Directori pels arxius JS</td>               
+                <td><code>$Base::URL_JS()</code></td>
             </tr>            
             <tr>
                 <td>/Web/PintarCodigo</td>
                 <td>/Web/PintarCodigo</td>
                 <td>Diccionaris i tests per l'objecte PintarCodigo</td>               
+                <td></td>
             </tr>            
         </table>                
         <br />
+        <div class='nota'>Les funcions $Base::URL_... i $Base::Path_ retornen sempre la url i el path acabats amb '/'</div>
         <hr />        
         <h2>Plantilla</h2>
         <p>Abans de res el primer que has de fer al crear el nou arxiu es colocar el codi per la plantilla : </p>
@@ -138,8 +160,8 @@
     "<meta name=\"keywords\" content=\"google app scripts, google scripts how to, google app, google scripts\>";
     // Inici de la plantilla (primer cop que entra a devildrey33)
     $Base->InicioPlantilla(basename(__FILE__), $Titul, $META);
-    // Inici de la capçalera del Blog
-    $Base->InicioBlog(basename(__FILE__), $Titul);
+    // Inici de la capçalera del Blog (path del arxiu, titul, alinear imatge a la dreta)
+    $Base->InicioBlog(basename(__FILE__), $Titul, FALSE);
 ?> 
 -[FIN devildrey33.IDC1]- */
     $Base->PintarCodigo->PintarArchivoPHP("ID1", "Plantilla inici", basename(__FILE__), 'IDC1'); 
@@ -191,6 +213,9 @@
             <li>No sortir mai de la etiqueta <code>&lt;article class='Blog'&gt;</code>, que es on comença el teu codi.</li>
             <li>Prohibit cualsevol tipus de flash, java, silverlight, etc...</li>
             <li>Si necesites escriure algun arxiu temporal en PHP fes-ho a la carpeta <i>/Web/Cache</i>.</li>           
+            <li>
+                Les URL's per les imatges s'han d'especificar amb path relatiu, <code>&lt;img src='../Web/Graficos/img.png' /&gt;</code>. 
+            </li>
         </ul>
         <hr />
         <h2>CSS</h2>

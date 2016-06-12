@@ -2,7 +2,7 @@
 /*	include("devildrey33.php");
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Colorear código con PHP (Parte 2 CSS)");*/
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Colorear código">
@@ -16,7 +16,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_ColoresCSS.png" alt="Colorear código con PHP (Parte 2 CSS)" />
                 <p>Continuando con el tutorial de ayer, hoy nos toca ver como crear un codigo php que nos sirva para pintar codigo css utilizando el formato de Dreamweaver.</p>
                 <p>La verdad es que tampoco tiene demasiada complicacion, pero para un futuro me gustaria hacer una funcion que pinte documentos HTML, y para ello necesito tener todas sus posibles partes : CSS, JavaScript, y PHP.</p>
                 <p>Y a decir verdad, hoy es viernes y quiero sacar una entrada sin tener que forzar mucho la maquina... xD</p>

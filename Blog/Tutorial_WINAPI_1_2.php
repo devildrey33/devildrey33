@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WINAPI C++ 1.2 (Creación de una ventana)");*/
         
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -16,7 +16,6 @@
 ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.1.2.png" alt="Tutorial 1.2" style="cursor:pointer;" onclick="Imagen_Mostrar('/Graficos/Ejemplo.1.2.png');" />
                 <p>En este tutorial empezaremos a entrar en materia y crearemos nuestra primera ventana en C, de forma que podais ver basicamente que funciones intervienen en la creacion de una ventana</p>
                 <p>Para empezar una ventana no es más que un conjunto de datos que Windows utiliza internamente para definir una porción de la pantalla  para que el usuario pueda interactuar con ella. Cuando un usuario realiza  alguna acción encima de una ventana, dicha acción se envía en forma de mensaje  a la función WindowProcedure de la ventana en cuestión. En esencia el  WindowProcedure determina el comportamiento de una ventana cuando esta recibe  algún evento / acción.</p>
                 <!-- FIN_INTRODUCCION -->

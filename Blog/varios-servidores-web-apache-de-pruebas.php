@@ -9,7 +9,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Varios servidores web apache de pruebas", $HEAD);
  * */
-         include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+         include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = "<meta name='description' content='Varios servidores web apache de pruebas'>
@@ -22,7 +22,6 @@
 ?>
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_XAMPP.png" alt="Varios servidores web apache de pruebas" />
                 <p>Últimamente  a la hora de hacer proyectos web intento no tener ninguna ruta relativa, de esta forma siempre estoy seguro que archivo voy a consultar, y evito complicaciones con php.</p>
                 <p>Al utilizar rutas absolutas si quiero probar la web en con un servidor web local, por defecto solo hay configurado un directorio que estará enlazado a localhost:80. Yo hasta hace poco estaba cambiando el archivo http.conf cada vez que quería probar una web distinta para establecerla como raíz. </p>
                 <p>Pongamos que tengo <code>C:/Webs/Proyecto1</code>, y <code>C:/Webs/Proyecto2</code>. Si localhost enlaza a <code>C:\Webs</code> podré entrar a los dos proyectos pero la raíz será <code>C:/Webs</code>, por lo que cualquier contenido especificado con una '/' barra inicial no será encontrado.</p>

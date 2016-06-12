@@ -1,13 +1,12 @@
 <?php 
-	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+	include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
-	$META = '<meta name="description" content="Virus fotos 05/06">
-        <meta name="keywords" content="Virus fotos 05/06, Virus email fotos 05/05, Email fotos 05/06">';
+	$META = '<meta name="description" content="Virus fotos 05/06">'.Intro().
+        '<meta name="keywords" content="Virus fotos 05/06, Virus email fotos 05/05, Email fotos 05/06">'.Intro();
 
 	
-        $Base->InicioPlantilla(basename(__FILE__), "Aplicación para eliminar el virus &quot;Fotos 05/06&quot;", $META);
-        
+        $Base->InicioPlantilla(basename(__FILE__), "Aplicación para eliminar el virus &quot;Fotos 05/06&quot;", $META);        
         $Base->InicioBlog(basename(__FILE__), "Aplicación para eliminar el virus &quot;Fotos 05/06&quot;");
 /*
 	include("devildrey33.php");
@@ -19,7 +18,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_FotoVirus0506.png" alt="Email virus Fotos 05/06" />
                 <p>En el verano del 2010 aparecio un virus que se propagaba por el correo electronico con el asunto &quot;fotos 05/06&quot; el cual mostraba una fotografia a un tamaño muy reducido y que al clickar encima de ella nos descargaba un archivo que se llama &quot;foto28_.com&quot;. Si lllegabamos a ejecutar este archivo la máquina quedaba infectada por este virus, que entre otras cosas se dedica a enviar a todos nuestros contactos del messenger el mismo correo por tal de expandirse.</p>
                 <p>En principio este virus no tiene mucho de extraordinario a comparacion de otros, pero me toco la moral porque varios de mis contactos se infectaron, y me enviaban más copias del virus sin que ellos se dieran cuenta. Entre esos contactos que me enviaban el virus estaban mi padre y mi hermana, con lo que practicamente tenia asegurado el tener que desplazarme para eliminar el virus de sus maquinas.... pero como en el verano del 2010 hacia mucha calor, se me ocurrio que podria hacer una aplicacion que eliminara el virus y asi me ahorraria el desplazamiento y me quedaria tan fresco en casa.</p>
                 <!-- FIN_INTRODUCCION -->
@@ -42,7 +40,7 @@
                 <li>Si tenemos el virus, el boton 'Eliminar virus' se activara, y al presionarlo el antivirus intentara eliminar el virus de una sola tirada. En algunos casos (especialmente bajo Windows XP) el antivirus no sera capaz de eliminar los procesos del virus de la memoria ram, con lo que se nos mostrara un mensaje advirtiendo que <strong>debemos reiniciar el sistema y volver a ejecutar este antivirus</strong>.</li>
                 </ul>
                 
-                <img src="/Graficos/Antivirus0506.png" alt="Foto Antivirus 05/06" /><br />
+                <img src="../Web/Graficos/Antivirus0506.png" alt="Foto Antivirus 05/06" /><br />
                 <h3>Descarga</h3>
                 <ul>
                 <li>Este programa / antivirus es totalmente gratuito, y aunque no puedo asegurar al 100% que funcione en todos los sistemas, todas las pruebas realizadas en varias maquinas bajo mi supervisión hicieron correctamente el trabajo.</li>

@@ -1,5 +1,6 @@
 <?php
-    include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+    include("/Web/devildrey33.php");
+                    
 
     class Indice {    
         static function GenerarIndice($BD, $Categoria = "Todo", $Inicio = 0) {
@@ -10,9 +11,9 @@
             $Codigo .= "<div id='Categorias' categoria='".$Categoria."'>".Intro();
             $Codigo .=      "<span>Categoria : ".$Categoria."</span>".Intro();
             $Codigo .=      "<div>".Intro();
-            $Codigo .=         "<div path='/'>Todo</div>".Intro();
+            $Codigo .=         "<div path='".Base::URL_Raiz()."'>Todo</div>".Intro();
             foreach ($ArrayTags as $Tag) {
-                $Codigo .=         "<div path='/Categorias/".str_replace(" ", "-", $Tag)."'>".$Tag."</div>".Intro();            
+                $Codigo .=         "<div path='".Base::URL_Raiz()."Categorias/".str_replace(" ", "-", $Tag)."'>".$Tag."</div>".Intro();            
             }
             $Codigo .=      "</div>".Intro();
             $Codigo .= "</div>".Intro();
@@ -50,14 +51,16 @@
             for ($i = $Inicio; $i < count($EntradasPC); $i++) {
 //                if (Indice::BuscarCategoria($Entradas[$i]["Tags"], $Categoria) === TRUE) {
                     switch ($EntradasPC[$i]["Tipo"]) {
-                        case "Blog" :   default :       $URL = "/Blog/".$EntradasPC[$i]["URL"];   $EntradasPC[$i]["URL"].= ".php";   break;
-                        case "Lab"  :                   $URL = "/Lab/".$EntradasPC[$i]["URL"];                                       break;
+                        case "Blog" :   default :       $URL = Base::URL_Blog().$EntradasPC[$i]["URL"];   $EntradasPC[$i]["URL"].= ".php";   break;
+                        case "Lab"  :                   $URL = Base::URL_Lab().$EntradasPC[$i]["URL"];                                       break;
                     }
+                    // Parche parche para que como mínimo en un servidor local no dedicado (localhost/directorio-web) se pueda acceder a las entradas del indice
+                    if ($EntradasPC[$i]["Tipo"] === "Blog" && devildrey33_Opciones::$ServidorLocal === TRUE) { $URL .= ".php"; }
 
                     $Codigo .= "<article class='Articulo_Portada' style='transition-delay:".(rand(0, 50) / 100)."s'>".Intro();
                     $Codigo .=    "<a href='".$URL."'>".Intro().
                                     "<div class='Articulo_Portada_ImagenO'></div>".Intro().
-                                    "<img src='/Web/Graficos/155x125_".$EntradasPC[$i]["Imagen"]."' class='Articulo_Portada_Imagen' alt='".$EntradasPC[$i]["Titulo"]."' />".Intro().
+                                    "<img src='".Base::URL_Graficos()."155x125_".$EntradasPC[$i]["Imagen"]."' class='Articulo_Portada_Imagen' alt='".$EntradasPC[$i]["Titulo"]."' />".Intro().
                                   "</a>".Intro();
                     $Codigo .=    "<h1><a href='".$URL."'>".$EntradasPC[$i]["Titulo"]."</a></h1>".Intro();
                     $Codigo .=    "<span>".substr($EntradasPC[$i]["Fecha"], 0, 2)." de ".Indice::ObtenerMesStr(substr($EntradasPC[$i]["Fecha"], 3, 2))." del ".substr($EntradasPC[$i]["Fecha"], 6, 4)." por <b>".$EntradasPC[$i]["Autor"]."</b>".Intro();
@@ -111,7 +114,7 @@
             $Total = count($Tags);
             for ($i = 0; $i < $Total; $i++) {
                 $URL = str_replace(" ", "-", trim($Tags[$i]));
-                $Ret.= "<a href='http://".$_SERVER['SERVER_NAME']."/Categorias/".trim($URL)."'>".$Tags[$i]."</a>";
+                $Ret.= "<a href='".Base::URL_Raiz()."Categorias/".trim($URL)."'>".$Tags[$i]."</a>";
                 if ($i != $Total - 1)   {	$Ret.=", "; }
                 else                    {   $Ret.=".";  }
             }

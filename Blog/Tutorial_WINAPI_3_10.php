@@ -2,7 +2,7 @@
 /*	include("devildrey33.php");
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WinAPI C++ 3.10 (Terminando el Instalador)");*/
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -16,7 +16,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.3.0.png" alt="Tutorial 3 Instalador y Ensamblador" style='cursor:pointer;' />
                 <p>En este tutorial vamos a empezar a jutar las piezas para formar nuestro instalador. En primer lugar usaremos los controles que hemos creado desde cero para el interface grafico del instalador, y luego le añadiremos el ObjetoZLIB para poder descomprimir datos.</p>
                 <p>Tambien usaremos una parte de los common dialogs que tocamos antes, en concreto vamos a usar el ObjetoDlgDirectorios que nos servira para seleccionar el directorio destino de la instalacion.</p>
                 <!-- FIN_INTRODUCCION -->
@@ -63,7 +62,7 @@
                   <tr>
                     <td><table width="100%" border="0">
                       <tr>
-                        <td><img src="/Graficos/InstalarEXE_VI.png" alt="" /></td>
+                        <td><img src="../Web/Graficos/InstalarEXE_VI.png" alt="" /></td>
                         <td><table width="100%" border="0">
                           <tr>
                             <td style="width:180px"><font color="#FF0000"><b>Instalar.exe (BINARO)</b></font></td>

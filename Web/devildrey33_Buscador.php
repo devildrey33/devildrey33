@@ -36,7 +36,7 @@ class devildrey33_Buscador {
             if ($Ret["UMOD"] !== 0) $CacheBuscador[] = $Ret;
         }        
         
-        file_put_contents($_SERVER['DOCUMENT_ROOT']."/Web/Cache/BDBuscador.php", "<?php return ".var_export($CacheBuscador, TRUE).";");
+        file_put_contents(Base::Path_Raiz()."Web/Cache/BDBuscador.php", "<?php return ".var_export($CacheBuscador, TRUE).";");
         
 //        print_r($CacheBuscador);
         // Tiempo máximo de ejecución en segundos (30 segundos)
@@ -100,7 +100,7 @@ class devildrey33_Buscador {
     //        if (filemtime(dirname(__FILE__).'/CSS_BD.php') > filemtime(dirname(__FILE__)."/Config/EntradasDocCSS.php")) { 
 
     //        $URL = str_replace(array("/Doc/", '', '', '', '', '', '', '', '', ''), array("/Documentacion/", '@', ':', '(', ')', '[', ']', '=', '*', '|'), $URL);
-            $Resultado["UMOD"] = filemtime($_SERVER['DOCUMENT_ROOT'].$Path);               
+            $Resultado["UMOD"] = filemtime(Base::Path_Raiz().$Path);               
             
             foreach ($ArrayPalabras as $Palabra) {
                 if (strlen($Palabra) > 1) {
@@ -134,7 +134,7 @@ class devildrey33_Buscador {
         if (strlen($Palabras) < 1) {
             return json_encode(array("HTML" => "La busqueda no ha producido ningún resultado.", "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
         }
-        if (file_exists($_SERVER['DOCUMENT_ROOT']."/Web/Cache/BDBuscador.php") !== false) {
+        if (file_exists(dirname(__FILE__)."/Cache/BDBuscador.php") !== false) {
             $Ret = array();
             $Encontrado = 0;
             $ArrayBuscador = (require dirname(__FILE__).'/Cache/BDBuscador.php');
@@ -151,7 +151,7 @@ class devildrey33_Buscador {
             }
             $HTML = "";
             foreach ($Ret as $Entrada) {
-                $HTML .= "<a href='".$Entrada["URL"]."'><div>".$Entrada["Titulo"]."</div></a>";
+                $HTML .= "<a href='".Base::URL_Raiz().substr($Entrada["URL"], 1)."'><div>".$Entrada["Titulo"]."</div></a>";
             }
             if ($HTML === "" || $Encontrado === 0) $HTML = "La busqueda no ha producido ningún resultado.";
         }

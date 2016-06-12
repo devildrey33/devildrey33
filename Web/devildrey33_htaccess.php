@@ -42,7 +42,7 @@ class devildrey33_htaccess {
     /* Función para borrar la lista de baneados */
     static public function LimpiarBaneados() {
         if (devildrey33_Opciones::Administrador() === 0) return FALSE;
-        $Datos       = file_get_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess");
+        $Datos       = file_get_contents(Base::Path_Raiz().".htaccess");
         $PosInicio   = strpos($Datos, "#INICIO ips baneadas");
         $PosFin      = strpos($Datos, "#FIN ips baneadas");
         $DatosNuevos = substr($Datos, 0, $PosInicio);
@@ -50,12 +50,12 @@ class devildrey33_htaccess {
         $DatosNuevos .= "#INICIO ips baneadas\r\n".
                 "deny from 213.5.64.19 		#spamer conocido\r\n";
         $DatosNuevos .= substr($Datos, $PosFin, strlen($Datos) - $PosFin);
-        file_put_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess", $DatosNuevos);
+        file_put_contents(Base::Path_Raiz().".htaccess", $DatosNuevos);
     }
     
     /* Función que obtiene las opciones disponibles y su estado */
-    static public function ObtenerValores() {
-        $Datos = file_get_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess");
+    static public function ObtenerValoresCheck() {
+        $Datos = file_get_contents(Base::Path_Raiz().".htaccess");
 /*        $Archivo = fopen("../.htaccess", "r");
         $Datos = fread($Archivo, filesize("../.htaccess"));
         fclose($Archivo);                */
@@ -70,7 +70,7 @@ class devildrey33_htaccess {
     /* Función para activar / desactivar el modulo checkspelling (redireccion a nombres similares) */
     static public function CheckSpelling($Valor) {
         if (devildrey33_Opciones::Administrador() === 0) return FALSE;
-        $Datos       = file_get_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess");
+        $Datos       = file_get_contents(Base::Path_Raiz().".htaccess");
         $PosInicio   = strpos($Datos, "#INICIO CheckSpelling");
         $PosFin      = strpos($Datos, "#FIN CheckSpelling");
         $DatosNuevos = substr($Datos, 0, $PosInicio);
@@ -87,13 +87,13 @@ class devildrey33_htaccess {
                     "</IfModule>\r\n";
         }
         $DatosNuevos .= substr($Datos, $PosFin, strlen($Datos) - $PosFin);
-        file_put_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess", $DatosNuevos);
+        file_put_contents(Base::Path_Raiz().".htaccess", $DatosNuevos);
     }    
     
     /* Función para activar / desactivar la compresion GZIP */
     static public function CompresionGZip($Valor) {
         if (devildrey33_Opciones::Administrador() === 0) return FALSE;
-        $Datos       = file_get_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess");
+        $Datos       = file_get_contents(Base::Path_Raiz().".htaccess");
         $PosInicio   = strpos($Datos, "#INICIO CompresionGZip");
         $PosFin      = strpos($Datos, "#FIN CompresionGZip");
         $DatosNuevos = substr($Datos, 0, $PosInicio);
@@ -115,13 +115,13 @@ class devildrey33_htaccess {
             $DatosNuevos .= "#INICIO CompresionGZip desactivado\r\n";
         }
         $DatosNuevos .= substr($Datos, $PosFin, strlen($Datos) - $PosFin);
-        file_put_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess", $DatosNuevos);
+        file_put_contents(Base::Path_Raiz().".htaccess", $DatosNuevos);
     }    
     
     /* Función para activar / desactivar la pagina de mantenimiento */
     static public function Mantenimiento($Valor) {
         if (devildrey33_Opciones::Administrador() === 0) return FALSE;
-        $Datos       = file_get_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess");
+        $Datos       = file_get_contents(Base::Path_Raiz().".htaccess");
         $PosInicio   = strpos($Datos, "#INICIO Mantenimiento");
         $PosFin      = strpos($Datos, "#FIN Mantenimiento");
         $DatosNuevos = substr($Datos, 0, $PosInicio);
@@ -134,13 +134,13 @@ class devildrey33_htaccess {
             $DatosNuevos .= "#INICIO Mantenimiento desactivado\r\n";
         }
         $DatosNuevos .= substr($Datos, $PosFin, strlen($Datos) - $PosFin);
-        file_put_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess", $DatosNuevos);
+        file_put_contents(Base::Path_Raiz().".htaccess", $DatosNuevos);
     }    
     
     /* Función para activar / desactivar la cache de imagenes en el navegador (1 mes por defecto) */
     static public function CacheImagenes($Valor) {
         if (devildrey33_Opciones::Administrador() === 0) return FALSE;
-        $Datos       = file_get_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess");
+        $Datos       = file_get_contents(Base::Path_Raiz().".htaccess");
         $PosInicio   = strpos($Datos, "#INICIO CacheImagenes");
         $PosFin      = strpos($Datos, "#FIN CacheImagenes");
         $DatosNuevos = substr($Datos, 0, $PosInicio);
@@ -160,8 +160,31 @@ class devildrey33_htaccess {
             $DatosNuevos .= "#INICIO CacheImagenes desactivado\r\n";
         }
         $DatosNuevos .= substr($Datos, $PosFin, strlen($Datos) - $PosFin);
-        file_put_contents($_SERVER['DOCUMENT_ROOT']."/.htaccess", $DatosNuevos);
+        file_put_contents(Base::Path_Raiz().".htaccess", $DatosNuevos);
     }    
+    
+    /* Función para establecer el directorio raíz de la web (que no tiene por que ser la raíz del servidor) */
+    /* De esta forma en localhost/devildrey33.es/ funcionan las redirecciones hacia el Lab, Doc, cmd, etc... */
+    static public function ReasignarPaths() {
+        $Datos       = file_get_contents(Base::Path_Raiz().".htaccess");
+        $PosInicio   = strpos($Datos, "#INICIO Paths");
+        $PosFin      = strpos($Datos, "#FIN Paths");
+        $DatosNuevos = substr($Datos, 0, $PosInicio);
+        
+        
+        $DatosNuevos .= "#INICIO Paths /".Base::PathRelativo_Raiz()."\r\n".
+                        "# Document d'error (Comentar en localhost per veure els errors)\r\n".
+                        "ErrorDocument 404 /".Base::PathRelativo_Raiz()."Web/Error404.php\r\n".
+                        "\r\n".
+                        "# Modul RewriteEngine per simular directoris en les propietats css\r\n".
+                        "Options +FollowSymlinks\r\n".
+                        "RewriteEngine on\r\n".
+                        "# Base arrel del servidor\r\n".
+                        "RewriteBase /".Base::PathRelativo_Raiz()."\r\n";
+
+        $DatosNuevos .= substr($Datos, $PosFin, strlen($Datos) - $PosFin);
+        file_put_contents(Base::Path_Raiz().".htaccess", $DatosNuevos);
+    }
 };
 
 ?>

@@ -5,8 +5,7 @@
 
     /* Archivo para peticiones ajax, tambien se puede utilizar a modo de consola MUY básica. */
     //include("devildrey33.php");
-    include($_SERVER['DOCUMENT_ROOT']."/GenerarIndice.php");
-//    include_once($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33_Opciones.php");
+    include("../GenerarIndice.php");
 
     /* Asigno si se verán o no los errores php */
     ini_set("display_errors", devildrey33_Opciones::MostrarErroresPHP());     
@@ -23,7 +22,16 @@
 
             switch ($this->Comando) {
                 // Tests
-//                case "test" :                           echo Base::ImprimirAscii("     ");             break;
+                case "test" :                           
+                    echo Base::URL_Web().
+                        "\n".Base::URL_Graficos().
+                        "\n".Base::URL_JS().
+                        "\n".Base::URL_CSS().
+                        "\n".Base::URL_Blog().
+                        "\n".Base::URL_Descargas().
+                        "\n".Base::Path_Web().
+                        "\n".$_SERVER["SERVER_NAME"];
+                    break;
                 case "ClearSession" :                   $this->ClearSession();                      break;
                 case "PrintSession" :                   $this->PrintSession();                      break;
                 // Acciones usuario    
@@ -129,14 +137,14 @@
         }
         
         public function ClearSession() {
-            if (devildrey33_Opciones::Administrador() > 0) { 
+            if (devildrey33_Opciones::Administrador() > 0 || devildrey33_Opciones::$ServidorLocal === TRUE) { 
                 session_unset();
                 echo "OK";
             }
         }
         
         public function PrintSession() {
-            if (devildrey33_Opciones::Administrador() > 0) { 
+            if (devildrey33_Opciones::Administrador() > 0 || devildrey33_Opciones::$ServidorLocal === TRUE) { 
                 echo "<pre>";
                 print_r($_SESSION);
                 echo "</pre>";

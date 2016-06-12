@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("LMD 0.02a (Libreria Multiplataforma Devildrey33)");*/
         
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="LMD windows linux">
@@ -17,7 +17,6 @@
 ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_LMD.png" alt="Libreria Multiplataforma devildrey33" />
                 <p>Durante el 2010 tube un contacto bastante mayor con sistemas linux que de costumbre, por lo que en ciertos ratos libres me dedique a intentar convertir la <a href="DWL.php">Devildrey33 Windows Lib</a> a una librería multiplataforma que sirviera tanto para windows como para linux, por desgracia si ya no era capaz de mantener la DWL esta libreria estaba predeterminada a lo mismo, y se quedo en una version alpha.</p>
                 <p>Por otra parte creo que el código puede llegar a ser intenresante para algunos ya que empeze a implementar un sistema de creación de ventanas el cual respondia a ciertos eventos basicos, y que en teoria con el mismo código podria crear aplicaciones tanto para windows como para linux.</p>
                 <!-- FIN_INTRODUCCION -->

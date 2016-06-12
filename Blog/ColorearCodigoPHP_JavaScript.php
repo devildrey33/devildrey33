@@ -4,7 +4,7 @@
 	$Base->InicioPlantilla("Colorear código con PHP (Parte 3 JavaScript)");*/
 
         
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Colorear código">
@@ -16,7 +16,6 @@
 ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_ColoresJavaScript.png" alt="Colorear código con PHP (Parte 3 JavaScript)" />
                 <p>Siguiendo los tutoriales para pintar código utilizando PHP, hoy toca ver como pintaremos un archivo JavaScript.</p>
                 <p>A diferencia de los dos últimos tutoriales, este ya empieza a complicarse, ya que los códigos escritos en javascript tienen palabras clave que deben utilizar un tipo de color, y que debemos diferenciar del resto.</p>
                 <p>Por ello vamos a tener que hacer un diccionario de palabras clave para JavaScript de forma que nos sea fácil añadir palabras que vayamos descubriendo que van en otro color.</p>

@@ -4,7 +4,7 @@
 
 	$Base->InicioPlantilla("Tablas fijas y tablas automáticas", $HEAD);*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = "<meta name='description' content='Tabla responsive'>
@@ -19,7 +19,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_CSS3.png" alt="Propiedades CSS" />
                 <p>Cuando se necesita mostrar una gran cantidad de datos por la web se suele recurrir a tablas, pero las tablas por defecto calculan automáticamente el tamaño de las columnas, y no necesariamente tiene porque ser conveniente para nuestra tarea.</p>
                 <p>Desde el CSS 2.1 se puede modificar la forma en que la tabla calcula la disposición de columnas, para ello existe la propiedad <a href="/Doc/CSS/Propiedades/table-layout" target="_blank">table-layout</a>.</p>
                 <p>Esta propiedad nos permite especificar si la tabla debe ser calculada automáticamente, o por el contrario tiene una disposición fija (todas las columnas fijas, excepto una columna variable).</p>

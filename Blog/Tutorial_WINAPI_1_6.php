@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WINAPI C++ 1.6 (Creación del ObjetoMarcador)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.1.6.png" alt="Tutorial 1.6" style="cursor:pointer;" />
                 <p>A partir de todo lo que vimos en el capitulo anterior la cosa esta en echarle imaginación. Ahora nos toca hacer un marcador para la calculadora que nos mostrara las operaciones y el resultado. La idea es hacer una parte para ver las operaciones que se están evaluando, y otra parte para mostrar el resultado actual de la operación.</p>
                 <p>Ademas este objeto sera el encargado de apuntar y resolver las operaciones de la calculadora, por lo que tambien se mostrara como responder a pulsaciones del teclado.</p>
                 <!-- FIN_INTRODUCCION -->

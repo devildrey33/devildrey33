@@ -76,6 +76,10 @@
     cursor:default;
 }
 
+#Logo[desactivado=true] {
+    color:#BBB;
+}
+
 /* Si el usuario es administrador escondo el logo  hacia la izquierda */
 body[administrador33] #Logo {
     left:-100px;

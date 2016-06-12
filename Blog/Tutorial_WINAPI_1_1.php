@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WINAPI C++ 1.1 (POO y WinMain)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,13 +17,12 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_WinMain.png" alt="Tutorial 1 calculadora" style='cursor:pointer;' />
                 <p>Introducción básica a la <strong>P</strong>rogramación <strong>O</strong>rientada a <strong>O</strong>bjetos :</p>
                 <p>En la programación orientada a objetos, un objeto es un conjunto de métodos que se han diseñado para llevar a cabo una tarea. En este ámbito debemos pensar que el objeto contiene miembros públicos desde donde otros objetos accederán a el, y miembros privados que se utilizan internamente para realizar la tarea del objeto. Si aplicamos esto a la programación orientada a objetos bajo windows debemos tener claro que una ventana será un objeto, los botones de esa ventana también serán objetos que residirán dentro de esta, y dichos botones no serán accesibles entre ellos, es decir el botón 1 no sabe el texto que tiene el botón 2 y viceversa. En el caso de que necesitáramos pasarle el texto del botón 1 al botón 2 esto se llevaría a cabo desde el objeto ventana, ya que dicho objeto tiene acceso a los métodos y funciones públicos de los 2 botones. </p>
                 <!-- FIN_INTRODUCCION -->
                 
                 <p>
-                <img src= "/Graficos/ObjetosCalculadora.png" alt="Grafico objetos calculadora"  style="float:right" />Para ver este concepto más claro vamos a plantearnos que necesitamos hacer una calculadora. Esa calculadora requiere una ventana, diez botones con los números del 0 al 9, cinco botones para las operaciones básicas (suma, resta, multiplicación, división y resultado), un marcador para que podamos ver los resultados por pantalla que ademas realizara las operaciones de la calculadora. En la parte derecha podéis ver un esquema de como podríamos estructurar los objetos de la calculadora.
+                <img src= "../Web/Graficos/ObjetosCalculadora.png" alt="Grafico objetos calculadora"  style="float:right" />Para ver este concepto más claro vamos a plantearnos que necesitamos hacer una calculadora. Esa calculadora requiere una ventana, diez botones con los números del 0 al 9, cinco botones para las operaciones básicas (suma, resta, multiplicación, división y resultado), un marcador para que podamos ver los resultados por pantalla que ademas realizara las operaciones de la calculadora. En la parte derecha podéis ver un esquema de como podríamos estructurar los objetos de la calculadora.
                 </p><p>
                 Una vez tengamos esta estructuración en mente, ya podemos empezar a darle forma. Empezaremos por ver la función WinMain de Windows, que viene a ser un substituto del típico int main(void) . 
                 </p><p>

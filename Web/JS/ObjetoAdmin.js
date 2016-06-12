@@ -91,7 +91,7 @@ $Admin = new function() {
     this.Desloguear = function() {
         $Base.Cargando("TRUE");
 
-        nAjax = $.post("/cmd/Desloguear.cmd");
+        nAjax = $.post($Base.Raiz + "cmd/Desloguear.cmd");
         nAjax.done(function(data) {
             Datos = JSON.parse(data);
             console.log("Admin.Desloguear");
@@ -99,6 +99,7 @@ $Admin = new function() {
             $Lab.EnlazarEventosExplorador();            
             $Base.Cargando("FALSE");
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+            if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
         });
         nAjax.fail(function( jqXHR, textStatus, tError ) { 
             console.log("Admin.Desloguear EscanearEjemplos Error ajax", jqXHR, textStatus, tError);
@@ -126,7 +127,7 @@ $Admin = new function() {
         }
         $Base.Cargando("TRUE");
         $Lab.Original = Codigo;
-        $.post("/cmd/LabGuardarEjemplo.cmd", { "Archivo" : Archivo, "Codigo" : Codigo }).done(function(data) {
+        $.post($Base.Raiz + "cmd/LabGuardarEjemplo.cmd", { "Archivo" : Archivo, "Codigo" : Codigo }).done(function(data) {
             if (data == "") {
                 $Base.MostrarMensaje("No tienes permiso para guardar archivos.", "true");
                 $Base.Cargando("FALSE");
@@ -137,7 +138,7 @@ $Admin = new function() {
             $("body").attr({"modificado" : "false"});
             $Base.Cargando("FALSE");
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);            
-//            $Lab.Modificado = false;
+            if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
         }).fail(function( jqXHR, textStatus, tError ) {
             console.log("Admin.Lab_Guardar Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarErrorAjax(jqXHR.status, false);
@@ -190,13 +191,14 @@ $Admin = new function() {
         console.log("Admin.LabExplorar_GenerarCache", Lista);
         JLista = JSON.stringify(Lista);
 
-        nAjax = $.post("/cmd/Lab_GenerarCache.cmd", { "Lista" : JLista });
+        nAjax = $.post($Base.Raiz + "cmd/Lab_GenerarCache.cmd", { "Lista" : JLista });
         nAjax.done(function(data) {
             Datos = JSON.parse(data);
             console.log("Lab_GenerarCache Completo!");
             $Base.MostrarMensaje("Cache del laboratorio generada!");
             $Base.Cargando("FALSE");
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+            if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
         });
         nAjax.fail(function( jqXHR, textStatus, tError ) { 
             console.log("Admin.LabExplorar_GenerarCache Error ajax", jqXHR, textStatus, tError);
@@ -511,10 +513,11 @@ $Admin = new function() {
         Pagina = $(".Blog").attr("pagina");
         NumC = $(Boton).parent().parent().attr("comentario"); 
         console.log("Admin.Comentarios_VerEmail", Pagina, NumC);
-        nAjax = $.post("/cmd/VerEmailComentario.cmd", { "Pagina" : Pagina,  "NumComentario" : NumC }).done(function(data) {
+        nAjax = $.post($Base.Raiz + "cmd/VerEmailComentario.cmd", { "Pagina" : Pagina,  "NumComentario" : NumC }).done(function(data) {
             Datos = JSON.parse(data);
             $Base.MostrarMensaje(Datos["HTML"]);
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+            if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
         }).fail(function(jqXHR, textStatus, tError) { 
             console.log("Admin.Comentarios_VerEmail Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarMensaje("Error al ver el email.");
@@ -531,7 +534,7 @@ $Admin = new function() {
 
         $Base.Cargando("TRUE");
         // ajax para votar
-        nAjax = $.post("/cmd/EliminarComentario.cmd", { "Pagina" : Pagina,  "NumComentario" : NumC }).done(function(data) {
+        nAjax = $.post($Base.Raiz + "cmd/EliminarComentario.cmd", { "Pagina" : Pagina,  "NumComentario" : NumC }).done(function(data) {
             // Al terminar la petición ajax correctamente
             Datos = JSON.parse(data);
             if (Datos.Mensaje === "Comentario Eliminado") {
@@ -542,6 +545,7 @@ $Admin = new function() {
             }
             $Base.Cargando("FALSE");
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+            if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
         }).fail(function(jqXHR, textStatus, tError) { 
             // Fallo al realizar la petición ajax            
             console.log("Admin.Comentarios_BotonEliminarComentario Error ajax", jqXHR, textStatus, tError);
@@ -578,9 +582,9 @@ $Admin = new function() {
             $Base.Cargando("TRUE");
             var Msg = this.Comentarios_Edicion.find("div:nth-child(3)").html();
             Msg.replace(' contenteditable="true"', ''); // Elimino posibles divs creados al hacer intro que se crean con el atributo contenteditable=true, y que no deberian estar dentro de un contenido editable...
-            nAjax = $.post("/cmd/EditarComentario.cmd", {   "Pagina"        : $(".Blog").attr("pagina"),  
-                                                            "NumComentario" : NumC,
-                                                            "Mensaje"       : Msg
+            nAjax = $.post($Base.Raiz + "cmd/EditarComentario.cmd", {   "Pagina"        : $(".Blog").attr("pagina"),  
+                                                                        "NumComentario" : NumC,
+                                                                        "Mensaje"       : Msg
             }).done(function(data) {
                 // Al terminar la petición ajax correctamente
                 Datos = JSON.parse(data);
@@ -602,6 +606,7 @@ $Admin = new function() {
                 }
                 $Base.Cargando("FALSE");
                 $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+                if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
             }).fail(function(jqXHR, textStatus, tError) { 
                 // Fallo al realizar la petición ajax            
                 console.log("Admin.Comentarios_Edicion_Guardar Error ajax", jqXHR, textStatus, tError);

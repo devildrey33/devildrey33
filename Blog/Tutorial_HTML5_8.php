@@ -8,7 +8,7 @@
 	
 	$Base->InicioPlantilla("Creación de páginas web desde cero (8 Menus)", $DEH);*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial HTML">
@@ -23,7 +23,6 @@
 <link href='../Ejemplos/Tutorial_HTML5/Tutorial_HTML5_8_Ejemplo.css' rel='stylesheet' type='text/css' />	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_HTML5_8.png" alt="Tutorial creación de paginas web desde cero" />   
                 <p>En este tutorial podréis ver cómo crear un menú simple para vuestras páginas web que no requiere grandes conocimientos de programación.</p>
                 <p>Por otro lado este menú no será ni mucho menos tan flexible como el que se muestra en el articulo <a href="MenuWebFijo.php">Menu PHP + XML + JQuery + JavaScript + CSS</a>. Pero tampoco requeriréis conocimientos de PHP ni de JQuery ni de JavaScript para hacerlo, lo cual es una ventaja para aquellos que estáis empezando en esto.</p>
                 <p>En esencia se construirá todo el menú utilizando estilos CSS, y podréis ver entre otras cosas que podéis mostrar y ocultar etiquetas dependiendo de vuestras necesidades.</p>
@@ -32,7 +31,7 @@
                 <p>De todas formas estas propiedades no hacen exactamente lo mismo, si por ejemplo hacemos "<i>display:none</i>" en un elemento, este elemento al estar oculto no ocupara espacio, por el contrario si utilizamos "<i>visibility:hidden</i>" aunque no se vea el elemento el navegador reservara su espacio mostrándolo en blanco.</p>
                 <p>En esencia cada menú consistirá en tres etiquetas, la primera "<b>MenuPadre</b>" será la encargada de mostrar el titulo para el menú y de contener dentro una segunda etiqueta a la cual llamaremos "<i>SubMenu</i>". La etiqueta "<b>SubMenu</b>" representara un marco oculto donde ubicaremos todos los enlaces que queramos mostrar, estos enlaces irán en una tercera etiqueta llamada "<b>SubMenuItem</b>" de forma que queden resaltados al pasar el mouse por encima.</p>
                 <div>
-                    <img src="/Graficos/Tutorial_HTML5_8_1.png" alt='Esquema menu' style='float:left' />
+                    <img src="../Web/Graficos/Tutorial_HTML5_8_1.png" alt='Esquema menu' style='float:left' />
                     <table>
                     	<tr>
                         	<td><span style='color:rgb(63,72,204)'><b>MenuPadre</b></span></td>

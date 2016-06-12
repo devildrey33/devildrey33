@@ -59,12 +59,6 @@ body[tipo=LabError] #BarraNavegacion_LabExplorar {
 #BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=preview] > .Menu_Boton_SVG:nth-child(1),
 #BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=preview] > .Menu_Boton_SVG:nth-child(2),
 #BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=preview] > .Menu_Boton_SVG:nth-child(3) { display:none; }
-/*
-#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=columnas] > span { background-image: url('/Web/Graficos/BotonMixto.png');   }
-#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=filas]    > span { background-image: url('/Web/Graficos/BotonFilas.png');   }
-#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=codigo]   > span { background-image: url('/Web/Graficos/BotonCodigo.png');  }
-#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=preview]  > span { background-image: url('/Web/Graficos/BotonPreview.png'); }
-*/
 
 
 /* Por defecto oculto*/ 

@@ -1,5 +1,5 @@
 <?php 
-    include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+    include("../Web/devildrey33.php");
     $Base = new devildrey33;	
 
     $META = '<meta name="description" content="Resaltar sintaxis de un código fuente (C/C++, PHP, HTML, JavaScript, CSS) para PHP">'.Intro().
@@ -13,7 +13,6 @@
 ?>	
 
 
-    <img class="ImagenPortada" src="/Web/Graficos/250x200_ResaltarSintaxis.png" alt="Resaltar código para mostrar en una web" />
     
     <p>Uno de los primeros problemas que me encontré al empezar esta web en el 2009 fue la necesidad de mostrar código fuente de varios lenguajes resaltando su sintaxis.</p>
     <p>Al investigar sobre el tema, me di cuenta que la mayoría de soluciones (por lo menos las mas aceptables) estaban hechas con JavaScript. Lo que al final con el tiempo me llevo a crearme mi propia herramienta para remarcar la sintaxis en php, ya que yo consideraba mejor hacer el parsing en php y guardarlo en archivos "cache", de forma que solo se realizaba el parsing si la fecha de modificación del archivo cache era inferior a la fecha de modificación del archivo de código.</p>

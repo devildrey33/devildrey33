@@ -4,7 +4,7 @@
 	$Base->InicioPlantilla("Inyección SQL");*/
         
         
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Inyección SQL">
@@ -19,7 +19,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_InyeccionSQL.png" alt="Inyección SQL" onclick="Imagen_Mostrar('/Graficos/InyeccionSQL.jpg');" />
                 <p>A pesar de que esta vulnerabilidad es de sobras conocida por la comunidad de programadores, y de que hace bastantes años que existe, recientemente me he encontrado algunos sitios webs que tienen dicha vulnerabilidad en la actualidad, cosa que no me entra en la cabeza.</p>
                 <p>La inyección sql es una técnica que permite a un atacante insertar código sql en una consulta, el cual en la mayoría de veces puede resultar fatal para la integridad y privacidad de la base de datos atacada.</p>
                 <!-- FIN_INTRODUCCION -->

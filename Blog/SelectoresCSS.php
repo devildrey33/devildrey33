@@ -1,7 +1,7 @@
 <?php 
 
 
-    include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+    include("../Web/devildrey33.php");
     $Base = new devildrey33;	
 
     $META = '<meta name="description" content="Referencia selectores css, Ejemplos selectores css">
@@ -30,7 +30,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_CSS3.png" alt="Selectores CSS" />
                 <p>Los selectores CSS son una parte fundamental que todo el que se aventure a crear una hoja de estilos CSS debería conocer mínimamente. En esencia estos selectores nos permiten referirnos a una parte en concreto de la página web para poder estilizarla a nuestra conveniencia.</p>
 				<p>Dentro de un documento HTML podemos identificar cada etiqueta de una forma básica por el nombre de la etiqueta, por una clase, o por una ID. Pero además también podemos crear selectores para una gran variedad de situaciones, por ejemplo podemos crear un selector que se refiera a cuando el mouse está encima de una etiqueta, un selector que busque una etiqueta dentro de una etiqueta, un selector que busque una etiqueta antes o después de una determinada etiqueta, etc..</p> 
                 <!-- FIN_INTRODUCCION -->

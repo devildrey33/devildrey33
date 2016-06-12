@@ -21,10 +21,11 @@ $Base = new function() {
     /* Temporizador para la animación del resaltado del h2 */
     this.TemporizadorAncla  = 0;
     /* Variable para almacenar la función que se utilizara al finalizar la carga dinámica de un CSS */
-    this.FuncionCargarCSS  = function() { };
+    this.FuncionCargarCSS   = function() { };
     /* Variable para almacenar la función que se utilizara al finalizar la carga dinámica de un JS */
-    this.FuncionCargarJS  = function() { };
-    
+    this.FuncionCargarJS    = function() { };
+    this.Raiz               = "";   // Path relativo de la raíz (puede ser "")
+    this.RaizRelativa       = "";
     this.URL                = "";
     this.nURL               = "";
         
@@ -141,6 +142,9 @@ $Base = new function() {
     
     /* Función para mostrar la ventana con los errores php */
     this.MostrarErroresPHP = function() {
+        console.log("Base.MostrarErroresPHP");
+        $EFP = $("#ErroresFinPlantilla").html();
+        if ($EFP !== "") { $("#ErroresPHP_Info").html($EFP); }
         $("#ErroresPHP").attr({ "mostrar" : true });
     };
     
@@ -276,7 +280,7 @@ $Base = new function() {
         console.log("Base.VotarWeb", Valor, Pagina);
         if (typeof localStorage["Voto_" + Pagina] === "undefined") {
             localStorage["Voto_" + Pagina] = Valor;
-            $.post( "/cmd/VotarPagina.cmd", { "Pagina" : Pagina, "Valor" : Valor, "URL" : window.location.href }).done(function(data) {
+            $.post(this.Raiz + "cmd/VotarPagina.cmd", { "Pagina" : Pagina, "Valor" : Valor, "URL" : window.location.href }).done(function(data) {
                 Datos = JSON.parse(data);
                 if (Datos["HTML"] !== "false") {
                     $(".Cabecera_Datos > .FechaEntrada > span").html(Datos["HTML"]);
@@ -285,6 +289,7 @@ $Base = new function() {
                     else                                 { $Base.MostrarMensaje("Your vote is annotated, thank you!"); }
                 }
                 $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+                if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
                 /*RedireccionarLinks();*/
             }).fail(function( jqXHR, textStatus, tError ) {
                 console.log("Base.VotarWeb Error ajax", jqXHR, textStatus, tError);
@@ -319,9 +324,10 @@ $Base = new function() {
         this.Cargando("FALSE");
 
         switch (Error) {
-            case 403 : $("#VentanaError > p").html("Error 403! no se permite el acceso al archivo solicitado.");                                        break;
-            case 404 : $("#VentanaError > p").html("Error 404! el archivo solicitado no existe.");                                                      break;
-            default  : $("#VentanaError > p").html("Error 500! Es posible que el servidor no esté disponible en estos momentos. (" + Excepcion + ")");  break;
+            case 403  : $("#VentanaError > p").html("Error 403! no se permite el acceso al archivo solicitado.");                                        break;
+            case 404  : $("#VentanaError > p").html("Error 404! el archivo solicitado no existe.");                                                      break;
+            case 1404 : $("#VentanaError > p").html("Error 404! el ejemplo del laboratorio de pruebas solicitado solicitado no existe.");                break;
+            default   : $("#VentanaError > p").html("Error 500! Es posible que el servidor no esté disponible en estos momentos. (" + Excepcion + ")");  break;
         }
 
         if (VolverIndice === true) {  
@@ -347,24 +353,13 @@ $Base = new function() {
     
     /* Función que identifica una entrada según su URL */
     this.IdentificarEntrada = function(URL, URLReal) { 
-        /* Habilito el boton de la encuesta para que pueda volver a salir, ya que no es el mismo documento. */
-        $("#BarraNavegacion_Encuesta").removeAttr("Visible");
-
-        var Ret = { "Titulo" : "devildrey33", "URL" : URL, "URLReal" : URLReal, "Imagen" : "", "TipoPagina" : "No identificado", "Pos" : -2, "Idioma" : "es" };    
-
+        // Por defecto es el indice... de esta forma se detecta si está en un servidor local y dentro de un directorio, al estilo http://localhost/devildrey33.es/
+        var Ret = { "Titulo" : "devildrey33", "URL" : URL, "URLReal" : URLReal, "Imagen" : "", "TipoPagina" : "Desconocido", "Pos" : -2, "Idioma" : "es" };    
 
         /* Indice */
-        if (URLReal.indexOf("/Categorias/") > -1 || URL === "/") {
+        if (URLReal.indexOf("Categorias/") > -1 || URL === "/" + this.RaizRelativa || URL === this.Raiz) {
             Ret["TipoPagina"] = "Indice";
             $("body").attr({ "Tipo" : Ret["TipoPagina"] });
-            console.log("Base.IdentificarEntrada : " + Ret["TipoPagina"], Ret);
-            return Ret;
-        }
-        /* Buscar */
-        if (URL.indexOf("/Buscar/") > -1) {
-            Ret["TipoPagina"] = "Buscar";
-            $("body").attr({ "Tipo" : Ret["TipoPagina"] });
-            Ret["Titulo"] = "Buscar";
             console.log("Base.IdentificarEntrada : " + Ret["TipoPagina"], Ret);
             return Ret;
         }
@@ -372,19 +367,19 @@ $Base = new function() {
         nURL = "";
         cURL = URL.toLowerCase();
         /* Es una entrada del blog o Documentación */
-        if (cURL.indexOf("/blog/") > -1) {
+        if (cURL.indexOf("blog/") > -1) {
             Ret["TipoPagina"] = "Blog";
             nURL = URL.substr(6);
         }
-        if (cURL.indexOf("/doc/css") > -1) {
+        if (cURL.indexOf("doc/css") > -1) {
             Ret["TipoPagina"] = "DocCSS";
             nURL = URL.substr(8);
         }
-        if (cURL.indexOf("/lab/") > -1) {
+        if (cURL.indexOf("lab/") > -1) {
             Ret["TipoPagina"] = "Lab";
             nURL = "";
         }
-        if (cURL.indexOf("/web/") > -1 || cURL.indexOf("/faqbarba") > -1) {
+        if (cURL.indexOf("web/") > -1 || cURL.indexOf("faqbarba") > -1) {
             Ret["TipoPagina"] = "Web";
             nURL = "";
         }
@@ -421,6 +416,8 @@ $Base = new function() {
         this.EscanearAnclas();
         switch (this.Entrada["TipoPagina"]) {
             case "LabError" :
+            case "Error404" :
+            case "Error404SinPlantilla" :
                 this.MostrarBarraNavegacion();
                 break;
             case "Lab" :
@@ -442,7 +439,6 @@ $Base = new function() {
                 this.MostrarBarraNavegacion();
                 break;            
             case "Buscar" :
-            case "Error404" :
                 $("#BarraNavegacion_Prev").hide();
                 $("#BarraNavegacion_Next").hide();
                 break;
@@ -472,7 +468,7 @@ $Base = new function() {
         if (EntradasBlog[this.PosPrevNext]["Tipo"].indexOf("DocCSS") === -1) {
             Imagen = EntradasBlog[this.PosPrevNext]["Imagen"];
         }
-        $("#BarraNavegacion_MarcoNextPrev_Desc").html("<img src='/Web/Graficos/155x125_" + Imagen + "' alt=''/>" +
+        $("#BarraNavegacion_MarcoNextPrev_Desc").html("<img src='" + this.Raiz + "Web/Graficos/155x125_" + Imagen + "' alt=''/>" +
                                                       "<h3>" + EntradasBlog[this.PosPrevNext]["Titulo"] + "</h3>");
         $("#BarraNavegacion_MarcoNextPrev_Desc").attr({ "Path" : EntradasBlog[this.PosPrevNext]["URL"] });
         return true;
@@ -602,7 +598,8 @@ $Base = new function() {
         }
         else {  
             this.PeticionAjax = 0;
-            document.getElementById("Logo").className = "";
+             document.getElementById("Logo").className = "";
+//            $("#Logo").attr({ "desactivado" : true });
         }
     };
     
@@ -624,12 +621,13 @@ $Base = new function() {
 
         console.log("Base.Buscar " + $("#BarraPrincipal_MarcoBuscar_Edit").val());   
         this.Cargando("TRUE");
-        $.post( "/cmd/Buscar", { "Palabras" : $("#BarraPrincipal_MarcoBuscar_Edit").val() }).done(function(data) {
+        $.post(this.Raiz + "cmd/Buscar", { "Palabras" : $("#BarraPrincipal_MarcoBuscar_Edit").val() }).done(function(data) {
             Datos = JSON.parse(data);
 //            $("body").attr({ "Tipo" : $Base.Entrada["Buscar"] });
 //            $("#MarcoNavegacion").html(Datos["HTML"]);
             $("#BarraPrincipal_MarcoBuscar_Resultado").html(Datos["HTML"]);
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+            if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
 //            $Base.RedireccionarLinks();
             $Base.Cargando("FALSE");
             // Enlaces del marco resultado de la busqueda
@@ -674,11 +672,17 @@ $Base = new function() {
             Path = Path.join('/');
             URL = Path + "/" + URL;
             nURL = Path + "/" + URL;
-        }
-
+        }        
         
-        if (URL === "/") nURL = "/index.php";
-        else             nURL = URL;
+        if (URL === "/" + this.Raiz)    nURL = "/" + this.RaizRelativa + "index.php";
+        else                            nURL = URL;
+
+        // En servidores locales no dedicados hay que redirigir las urls absolutas al directorio que utiliza la web.
+        if (URL.charAt(0) === '/') { // URL absoluta que empieza por '/'
+            nURL = "/" + this.RaizRelativa + URL.substr(1);
+            URL = nURL;
+        }
+        
         console.log("Base.CargarURL " + nURL);
         this.URL = URL;
         this.nURL = nURL;
@@ -697,6 +701,7 @@ $Base = new function() {
 //                if (isset($Base.Entrada["Idioma"]))
                 $Base.RedireccionarLinks();
                 $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+                if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
             }
         }).fail(function( jqXHR, textStatus, tError ) { 
             console.log("Base.CargarURL Error ajax", jqXHR, textStatus, tError);
@@ -725,7 +730,7 @@ $Base = new function() {
         }
         console.log("Base.Loguear(" + pass + ")");
         this.Cargando("TRUE");
-        $.post("/cmd/Loguear.cmd", { "l" : l,  "p" : pass }).done(function(data) {
+        $.post($Base.Raiz + "cmd/Loguear.cmd", { "l" : l,  "p" : pass }).done(function(data) {
 //            console.log("Base.Loguear", data);
             Datos = JSON.parse(data);
             if (Datos.Mensaje === "Correcto!") { // Logueado
@@ -750,6 +755,7 @@ $Base = new function() {
                 $Base.Cargando("FALSE");
             }
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+            if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
         }).fail(function( jqXHR, textStatus, tError ) { 
             console.log("Base.Loguear Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarErrorAjax(jqXHR.status, false, tError);
@@ -760,10 +766,11 @@ $Base = new function() {
 
     /* Función para enviar comandos simples */
     this.cmd = function(Comando) {
-        $.post("/cmd/" + Comando + ".cmd").done(function(data) {
+        $.post(this.Raiz + "cmd/" + Comando + ".cmd").done(function(data) {
             Datos = JSON.parse(data);
             console.log("Base.cmd(" + Comando + ")", Datos);
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+            if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
             if (Datos["Estado"] === 0 && "Mensaje" in Datos) {
                 if (Datos["Mensaje"] !== "") { $Base.MostrarMensaje(Datos["Mensaje"]); }
             }
@@ -823,7 +830,7 @@ $Base = new function() {
         Script.setAttribute("src", "/Web/JS/" + Nombre);
         // No se puede hacer un try / catch con el append child :(, por lo que los errores 404 no se pueden detectar...
         if (typeof Script !== "undefined") document.getElementsByTagName("head")[0].appendChild(Script);*/
-        $.getScript("/Web/JS/" + Nombre, function(data, textStatus, jqxhr) {
+        $.getScript("/" + this.Raiz + "Web/JS/" + Nombre, function(data, textStatus, jqxhr) {
             console.log("Base.CargarJS(" + Nombre + ")");    
             $Base.FuncionCargarJS();            
         }).fail(function(jqxhr, settings, exception) { 
@@ -846,7 +853,8 @@ $Base = new function() {
         var Script = document.createElement("link");
         Script.setAttribute("rel", "stylesheet");
         Script.setAttribute("type", "text/css");
-        Script.setAttribute("href", "/Web/CSS/" + Nombre);
+        
+        Script.setAttribute("href", "/" + this.RaizRelativa + "Web/CSS/" + Nombre);
         // No se puede hacer un try / catch con el append child :(, por lo que los errores 404 no se pueden detectar...
         if (typeof Script !== "undefined") document.getElementsByTagName("head")[0].appendChild(Script);
         
@@ -894,6 +902,7 @@ $Base = new function() {
                 document.title = $Base.Entrada["Titulo"];
             }
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+            if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
         }).fail(function( jqXHR, textStatus, tError ) {
             console.log("Base.CALLBACK_Histroial Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarErrorAjax(jqXHR.status, false, tError);
@@ -939,7 +948,7 @@ $Base = new function() {
     };*/
                                             
     this.ComprobarScrollVotacion = function() {
-        console.log($("#Comentarios_Datos"), $("#Comentarios_Datos").offset())
+        console.log("Base.ComprobarScrollVotacion()", $("#Comentarios_Datos").offset())
         if (typeof($("#Comentarios_Datos").offset()) !== "undefined") { FinalPagina = $("#Comentarios_Datos").offset().top;  }
         else                                                          { FinalPagina = $(document).height();                 }
 //        console.log($(window).scrollTop(), FinalPagina - ($(window).height() * 2))

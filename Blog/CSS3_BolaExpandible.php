@@ -80,7 +80,7 @@
 	
 //	$Base->InicioPlantilla("CSS3 : Efecto bola expandible", $DeclaracionesHeadExtras);
 
-	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+	include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="CSS3 Bola expandible">
@@ -95,7 +95,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_BolaExpandible.png" alt="Bola expandible" />
                 <p>Hoy para no repetirme mucho con el tema del canvas os voy a mostrar cómo he creado el efecto de la bola expandible que podéis ver en la parte superior del menú de la derecha con los iconos del facebook, twitter, google plus y rss.</p>
                 <p>Este efecto se ha hecho únicamente utilizando CSS3 sin necesidad de JQuery ni JavaScript, pero por esa razón no funciona en explorer. Como ya he comentado en más de una ocasión me niego a torturarme haciendo código que funcione en explorer, cuando en otros navegadores funciona perfectamente sin necesidad de romperse mucho la cabeza.</p>
                 <!-- FIN_INTRODUCCION -->

@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Generar un .lib a partir de una DLL con Visual Studio");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Generar Lib desde una DLL">
@@ -16,7 +16,6 @@
 ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_GenerarLibDesdeDll.png" alt="Generar archivo lib desde una DLL" />
                 <p>Hoy vamos a ver cómo podemos generar un archivo lib utilizando de base una DLL.</p>
                 <p>Aunque no es un problema muy común, puede darse el caso de que necesitemos trabajar con cierta dll bajo VisualC, y que dicha dll no tenga un archivo lib desde el que poder linkear, pero si disponga de las cabeceras con las declaraciones para la dll.</p>
                 <p>Un ejemplo muy claro seria la LibVLC que es la librería base para el famoso reproductor de medios <a href="http://www.videolan.org/">VLC</a>.</p>

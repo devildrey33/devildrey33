@@ -4,7 +4,7 @@
 	$Base->InicioPlantilla("Creación de feeds RSS");*/
 
         
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Creación de feeds RSS">
@@ -18,7 +18,6 @@
 
 
                 <!-- INTRODUCCION --> 
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_RSS.png" alt="RSS" />
                 <p>Los feeds RSS son una forma de comunicar noticias diseñados para que el usuario pueda estar informado desde una sola pantalla de todas aquellas cosas que le interesan.</p>
                 <p>Si nunca habéis usado feeds es algo complicado de imaginar. La idea consiste en que los portales web con noticias como por ejemplo blogs dejen en un archivo un resumen de las nuevas noticias para que más tarde el usuario desde un visor de feeds pueda ver las novedades de todos los sitios a los que está subscrito sin necesidad de acceder por el navegador a cada página web.</p>
                 <p>Esto permite que si nos subscribimos a 4 páginas web, abriendo una sola web / programa podamos ver todas las novedades de estos cuatro sitios.</p>

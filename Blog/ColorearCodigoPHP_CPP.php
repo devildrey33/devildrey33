@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Colorear código con PHP (Parte 5 C++)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Colorear código">
@@ -16,7 +16,6 @@
         ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_ColoresCPP.png" alt="Colorear código con PHP parte 5 C++" />
                 <p>Esta es la quinta entrega de los tutoriales para colorear código con PHP, que en este caso está dedicada a códigos C/C++ con el estilo grafico del VisualC.</p>
                 <p>Para ello utilizaremos un sistema muy parecido al que se utilizo con <a href="ColorearCodigoPHP_JavaScript.php">Colorear código con PHP (Parte 3 JavaScript)</a> y <a href="ColorearCodigoPHP_PHP.php">Colorear código con PHP (Parte 4 PHP)</a> adaptado para este caso concreto. Por ello vamos a disponer de un array que utilizaremos como Diccionario y que podremos modificar fácilmente en caso de encontrar más palabras reservadas que se me puedan haber pasado.</p>
                 <!-- FIN_INTRODUCCION -->

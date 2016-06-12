@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Colorear código con PHP (Parte 4 PHP)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Colorear código">
@@ -16,7 +16,6 @@
 ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_ColoresPHP.png" alt="Colorear código con PHP (Parte 4 PHP)" />
                 <p>Hoy seguimos con los tutoriales para pintar código utilizando PHP, y el objetivo será colorear código PHP.</p>
                 <p>Con este tutorial prácticamente se cierra el círculo para poder hacer una función que pinte un archivo HTML/PHP entero incluyendo posibles partes de código JavaScript, CSS y PHP.</p>
                 <p>A decir verdad ya dispongo de un objeto para esta web el cual creo que ya está completo, y que me permite pintar un archivo HTML/PHP entero del tirón, pero voy a dejar unos días mas para probarlo y probablemente lo liberare en la séptima entrega de los tutoriales "Colorear código con PHP" que supongo sacare a principios de la semana que viene.</p>

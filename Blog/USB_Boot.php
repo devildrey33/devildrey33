@@ -20,7 +20,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("USB booteable con varios sistemas operativos (ACTUALIZADO)", $HEAD);*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = "<meta name='description' content='USB booteable con varios sistemas operativos'>
@@ -44,7 +44,6 @@
 </style>
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_USBBoot.png" alt="USB booteable con varios sistemas operativos" />
                 <p>Hace ya unos días estuve formateando varias maquinas e instalando varios sistemas operativos en ellas a través de un pen drive, y al final se me metió en la cabeza hacer un único USB que tuviera para instalar Windows XP, Windows 7 x86 y x64, y Ubuntu desktop en sus versiones de 32 y 64 bits.</p>
                 <p>Después de rebuscar mucho por internet vi que con el gestor de arranque grub4dos podía conseguir algo así, pero no fue nada fácil. Hacer un pendrive con un solo sistema operativo instalable es relativamente sencillo, pero cuando se quiere meter más de uno la cosa se complica bastante.</p>
                 <div class='nota'>He actualizado este tutorial para que se pueda incluir : Windows Vista, Windows 8, Ubuntu 13, y el Hirens Boot.</div>
@@ -66,7 +65,7 @@
 				</div>
                 <br />
 
-                <img src='/Graficos/WinSetupFromUSB_LR.png' alt='WinSetupFromUSB' /><br />
+                <img src='../Web/Graficos/WinSetupFromUSB_LR.png' alt='WinSetupFromUSB' /><br />
                 <h2>Formateando y preinstalando</h2>
                 <ul>
                     <li>Lo primero que debemos hacer es marcar la casilla "<b>Autoformat it with FBinst</b>" y luego seleccionaremos como tipo de partición : <b>NTFS</b>. (Si teneis problemas para arrancar algún linux, probad con FAT32)</li>
@@ -83,7 +82,7 @@
                 </div>
                 
                 <p>Una vez copiados los archivos del zip dentro del pendrive os debería quedar la siguiente estructura :</p>
-                <img src="/Graficos/EstructuraUSB.png" alt='Estructura pendrive' /><br />
+                <img src="../Web/Graficos/EstructuraUSB.png" alt='Estructura pendrive' /><br />
 				<p>He montado el menu.lst de forma que si no encuentra alguno de los sistemas operativos, no lo mostrará en el menú. Este menu.lst soporta los siguientes sistemas operativos y utilidades :</p>
 				<h2>Sistemas operativos en formato ISO</h2>
                 <table class="Tabla">
@@ -209,7 +208,7 @@
                     <b>Conclusión</b> : la mejor manera de grabar todos los datos correctamente, es crear la estructura en el disco duro, es decir se crea la carpeta <code>/Isos/</code> y luego se van metiendo todas las isos que queremos con sus respectivos nombres y directorios. Una vez se tienen todas las isos allí se copia el directorio desde el disco al pendrive.
                 </div>
                 <br />
-                <div class='nota'>Para los windows 8 debéis editar el menu.lst, buscar la parte del windows 8, y modificar la clave del producto con vuestra clave. La clave que he puesto es para versiones de prueba, y con ella no podréis activar el windows. <img src='/Graficos/USBBootW8Key.png' style="margin-left:5px"> </div>
+                <div class='nota'>Para los windows 8 debéis editar el menu.lst, buscar la parte del windows 8, y modificar la clave del producto con vuestra clave. La clave que he puesto es para versiones de prueba, y con ella no podréis activar el windows. <img src='../Web/Graficos/USBBootW8Key.png' style="margin-left:5px"> </div>
 
                 <p>Ahora solo os quedara probar que todo funcione correctamente utilizando el USB para arrancar en alguna maquina o con algun emulador (WinSetupFromUSB trae el QEmu, que para probar los arranques de todo no va mal, PERO OJO que funcione en QEmu no quiere decir que luego en una maquina real funcione).</p>
                 <h2>Notas finales</h2>

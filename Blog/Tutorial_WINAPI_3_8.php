@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WinAPI C++ 3.8 (Creación del ObjetoTreeView)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.3.8.png" alt="Tutorial 3 Instalador y Ensamblador" />
                 <p>En este tutorial veremos el funcionamiento del control  TREEVIEW de windows. El TreeView es un control que nos permite visualizar una serie de datos en forma de árbol. El TreeView suele utilizarse para mostrar listas de directorios o listas de bases de datos.</p>
                 <p>Vamos a seguir como en los últimos controles creando un nuevo objeto al que llamaremos ObjetoListTree que heredara de ObjetoControlEstandar (La clase ObjetoControlEstandar se describe en el tutorial <a href="/Blog/Tutorial_WINAPI_3_3">3.3 Creación del ObjetoEditBox</a>).</p>
                 <!-- FIN_INTRODUCCION -->

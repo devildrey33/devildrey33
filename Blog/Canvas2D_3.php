@@ -7,7 +7,7 @@
 	
 	$Base->InicioPlantilla("Tutorial HTML5 Canvas2D parte 3 (degradado lineal)", $DeclaracionesHeadExtras);	*/
 
-	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+	include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial HTML5 Canvas2D parte 3">
@@ -72,7 +72,6 @@ function PintarDegradados() {
 </script>
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Canvas2D_3.png" alt="Canvas 2D" />
                 <p>Siguiendo con los tutoriales del objeto HTML5 canvas en dos dimensiones, hoy vamos a ver cómo crear degradados.</p>
                 <p>Ya os aviso que la implementación de degradados que han creado no me ha gustado nada, y que es muy complicada además de ser poco intuitiva. Por otro lado gana bastante en versatibilidad.</p>
                 <p>Por una parte entiendo porque han implementado los degradados así, pero por otra me parece algo excesivo. De todas formas el objeto canvas aun está en fase experimental y probablemente sufrirá mas cambios antes de llegar a la primera versión final.</p>

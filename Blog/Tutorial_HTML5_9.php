@@ -8,7 +8,7 @@
 
 	$Base->InicioPlantilla("Creación de páginas web desde cero (9 Tipografías)", $DEH);*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial HTML">
@@ -22,7 +22,6 @@
 <link href='../Ejemplos/Tutorial_HTML5/Tutorial_HTML5_9_Ejemplo.css' rel='stylesheet' type='text/css' />
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_HTML5_9.png" alt="Tutorial creación de paginas web desde cero" />   
                 <p>Hoy vamos a hablar sobre las tipografías o fuentes para la web, que es un tema muy importante a la hora de definir un buen diseño en vuestras páginas.</p>
                 <p>Lo primero que debéis saber es que al existir todo tipo de dispositivos que pueden mostrar una página web bajo distintos sistemas operativos, no es algo que resulte fácil de implementar.</p>
                 <p>Hasta no hace mucho una página web estaba limitada a ciertos tipos de fuentes, e incluso podía darse el caso de que se eligiera una tipografía que no estuviera disponible por lo que al final se re-emplazaba por otra.</p>

@@ -2,10 +2,8 @@
 /*	include("devildrey33.php");
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Animaciones CSS3", "");*/
-        echo "puta2";
-	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+	include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
-        echo "puta3";
 	
 	$META = '<meta name="description" content="Animaciones CSS3">
         <meta name="keywords" content="Animaciones CSS3">';
@@ -18,7 +16,6 @@
         ?>
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_CSS3.png" alt="Animaciones CSS" />
                 <p>Desde hace algún tiempo que he empezado a añadirle poco a poco varias animaciones en CSS3 a mi web. Y al ver que últimamente recibo mensajes sobre ellas, he creído conveniente crear este articulo para enseñaros un poco por dentro dichas animaciones.</p>
                 <p>Supongo que los usuarios de Chrome, Firefox, y safari os habréis fijado en la animación de las fotos de las entradas aleatorias (que parten desde arriba del documento, y caen hasta su posición por defecto con un pequeño efecto muelle), o en la animación del contenido al cargar / salir de la pagina (que hace una rotación del contenido).</p>
                 <p>Pues ahora podréis ver con más detalle como funcionan estas animaciones.</p>

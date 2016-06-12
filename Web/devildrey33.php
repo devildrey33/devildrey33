@@ -37,7 +37,7 @@ class devildrey33 {
 
     public 	$BD;				// Base de datos
     public 	$PintarCodigo;			// Objeto para pintar código
-    
+    public      $EntradaBlog;                      // Contiene la lista de entradas del blog
 
     /* Constructor sin parametros, si hay que iniciar una plantilla ya se le suministraran el tipo y el nombre del documento en la misma función 
             Esto agilizara consultas ajax y de mensajeria que pasan por este constructor sin necesitar la mitad de cosas que se cargan.
@@ -49,15 +49,37 @@ class devildrey33 {
         // Establezco si se mostraran o no los errores php en el mismo documento (por defecto se mostraran en un marco a parte de la web)
         ini_set("display_errors", devildrey33_Opciones::MostrarErroresPHP());
 
+/*        if (devildrey33_Opciones::$ServidorLocal === TRUE && !isset($_SESSION["Opciones"]["ServidorLocal"])) {
+            // En el modo local, si es la primera visita re-asigno los paths del archivo .htaccess 
+            $_SESSION["Opciones"]["ServidorLocal"] = TRUE;
+            devildrey33_htaccess::ReasignarPaths();
+        }*/
+        
         // Creo el objeto para pintar el código estático
         $this->PintarCodigo = new devildrey33_PintarCodigo;
     }
     
-    
+    public function CALLBACK_Shutdown() {
+        $Log = Base::ObtenerLogPHP();
+        if ($Log !== "") {
+            echo "<div id='ErroresFinPlantilla'>".Intro().
+                $Log.
+            "</div>".Intro().
+            "<script>\$Base.MostrarErroresPHP();</script>";
+        }
+    }
     // Inserta desde la etiqueta HTML hasta el inicio del body incluyendo el menu superior, publicidad y el banner    
     /* NombreDocumento ya no es necesaria, este parametro ahora se obtiene en las funciones InicioBlog, InicioDoc, InicioSinCabecera  */
     /* SOLO SE USA SI no se recibe un POST o un GET SinPlantilla */
     public function InicioPlantilla($NombreDocumento, $Titulo, $Meta = "") {
+        register_shutdown_function(array($this, "CALLBACK_Shutdown"));
+
+        $Entradas = new devildrey33_EditarEntradas;
+        $this->EntradaBlog = $Entradas->BuscarEntrada($Titulo, substr($NombreDocumento, 0, -4));
+        
+/*        echo "<pre>";
+        print_r($this->EntradaBlog);
+        echo "</pre>";*/
         
         if (isset($_GET["GenerarCacheBuscador"]) || isset($_POST["SinPlantilla"])) {
             ob_start();
@@ -65,11 +87,8 @@ class devildrey33 {
         }
         $this->_NombreDocumento = $NombreDocumento;
         
-        $Entradas = new devildrey33_EditarEntradas;
-        $Entrada = $Entradas->BuscarEntrada($Titulo, substr($NombreDocumento, 0, -4));
-
         $Idioma = 'es';
-        if ($Entrada !== false) $Idioma = $Entrada["Idioma"];
+        if ($this->EntradaBlog !== false) $Idioma = $this->EntradaBlog["Idioma"];
         
         echo "<!DOCTYPE HTML>".Intro().
 "<html lang='".$Idioma."'>".Intro().
@@ -77,8 +96,8 @@ class devildrey33 {
         "<title>".$Titulo."</title>".Intro().
         "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />".Intro();
         "<meta name='viewport' content='width=device-width, initial scale=1'>".Intro();
-        if ($Entrada !== false) {
-            echo "<meta name='author' content='".$Entrada["Autor"]."' />".Intro().
+        if ($this->EntradaBlog !== false) {
+            echo "<meta name='author' content='".$this->EntradaBlog["Autor"]."' />".Intro().
             
             /* Manifest per android (https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android) */
             '<link rel="manifest" href="/manifest.json">'.Intro().
@@ -90,13 +109,13 @@ class devildrey33 {
     //        "<meta name='twitter:description' content='Page description less than 200 characters'>".Intro().        
             "<meta name='twitter:creator' content='@author_handle' />".Intro().        
             /* Twitter Summary card images must be at least 200x200px */
-            "<meta name='twitter:image' content='http://".$_SERVER["SERVER_NAME"]."/Web/Graficos/250x200_".$Entrada["Imagen"]."' />".Intro().        
+            "<meta name='twitter:image' content='http://".$_SERVER["SERVER_NAME"]."/Web/Graficos/250x200_".$this->EntradaBlog["Imagen"]."' />".Intro().        
 
             /* Open Graph data */
             "<meta property='og:title' content='".$Titulo."' />".Intro().        
             "<meta property='og:type' content='article' />".Intro().        
-            "<meta property='og:url' content=' http://".$_SERVER["SERVER_NAME"]."/Blog/".$Entrada["URL"]."' />".Intro().        
-            "<meta property='og:image' content='http://".$_SERVER["SERVER_NAME"]."/Web/Graficos/250x200_".$Entrada["Imagen"]."' />".Intro().        
+            "<meta property='og:url' content=' http://".$_SERVER["SERVER_NAME"]."/Blog/".$this->EntradaBlog["URL"]."' />".Intro().        
+            "<meta property='og:image' content='http://".$_SERVER["SERVER_NAME"]."/Web/Graficos/250x200_".$this->EntradaBlog["Imagen"]."' />".Intro().        
     //        "<meta property='og:description' content='Description Here' />".Intro().        
             "<meta property='og:site_name' content='devildrey33' />".Intro();
     //        "<meta property='fb:admins' content='Facebook numeric ID' />".Intro().        
@@ -109,6 +128,8 @@ class devildrey33 {
         $this->Head_CSS();      // Enlace/s de los estilos CSS
         $this->Head_JS();	// Enlace/s de los archivos JavaScript
         echo "<script>";
+        echo "\$Base.Raiz = '".Base::URL_Raiz()."'; ";
+        echo "\$Base.RaizRelativa = '".Base::PathRelativo_Raiz()."'; ";
         if (devildrey33_Opciones::MostrarConsola() == 0) {    echo "\$Base.Debug(false);"; }
         else                                             {    echo "\$Base.Debug(true);";  } 
         echo "</script>".Intro().
@@ -116,9 +137,14 @@ class devildrey33 {
         
         if (devildrey33_Opciones::Administrador() > 0)     echo "<body administrador33=true>".Intro();
         else                                               echo "<body>".Intro();
-
-        echo "<div id='VentanaMensaje' class='MarcoVentana-350'><p></p><div class='Centrado'><button class='Boton-Normal'>Aceptar</button></div></div>".Intro().
-        "<div id='VentanaError' class='MarcoVentana-350'><p></p><div class='Centrado'><button class='Boton-Normal'>Aceptar</button></div></div>".Intro().
+//        echo file_get_contents(Base::Path_Web()."SVG/Iconos50x50.svg");
+        echo "<div id='ErroresPHP' mostrar='false'>".Intro().
+            "<div id='ErroresPHP_Titulo'>Errores PHP</div>".Intro().
+            "<div id='ErroresPHP_Cerrar'>X</div>".Intro().
+            "<div id='ErroresPHP_Info'></div>".Intro().
+        "</div>".Intro().
+        "<div id='VentanaMensaje' class='MarcoVentana-350'><p></p><div class='Centrado'><button class='Boton-BoxShadow2'>Aceptar</button></div></div>".Intro().
+        "<div id='VentanaError' class='MarcoVentana-350'><p></p><div class='Centrado'><button class='Boton-BoxShadow2'>Aceptar</button></div></div>".Intro().
         "<div id='VentanaLogin' class='MarcoVentana-250'>".Intro().
             "<table>".Intro().
               "<tr>"."<td>Usuario</td>"."<td>"."<input name='Usuario' type='text' id='devildrey33_Usuario' spellcheck='false' />"."</td>"."</tr>".Intro().
@@ -141,7 +167,7 @@ class devildrey33 {
                     "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonCSS_Estado' tooltip-es='CSS' tooltip-en='CSS' tooltip-pos='L'></label>".Intro().
                     "<div class='Menu_Boton'>".Intro().
                         "<span class='Menu_Boton_Cruz'>".Intro().
-                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-css' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-css' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
                     "<div class='Menu_Marco' id='BarraPrincipal_MarcoCSS'>".Intro().
@@ -161,7 +187,7 @@ class devildrey33 {
                     "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonCPP_Estado' tooltip-es='C/C++ en Windows' tooltip-en='C/C++ on Windows' tooltip-pos='L'></label>".Intro().
                     "<div class='Menu_Boton'>".Intro().
                         "<span class='Menu_Boton_Cruz'>".Intro().
-                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-cpp' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-cpp' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
                     "<div class='Menu_Marco' id ='BarraPrincipal_MarcoCPP'>".Intro().
@@ -180,7 +206,7 @@ class devildrey33 {
                     "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonJS_Estado' tooltip-es='JavaScript y jQuery' tooltip-en='JavaScript and jQuery' tooltip-pos='L'></label>".Intro().
                     "<div class='Menu_Boton'>".Intro().
                         "<span class='Menu_Boton_Cruz'>".Intro().
-                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-js' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-js' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
                     "<div class='Menu_Marco' id='BarraPrincipal_MarcoJS'>".Intro().
@@ -199,7 +225,7 @@ class devildrey33 {
                     "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonPHP_Estado' tooltip-es='PHP' tooltip-en='PHP' tooltip-pos='L'></label>".Intro().
                     "<div class='Menu_Boton'>".Intro().
                         "<span class='Menu_Boton_Cruz'>".Intro().
-                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-php' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-php' />".Intro().
                         "</span>".Intro().                
                     "</div>".Intro().
                     "<div class='Menu_Marco' id='BarraPrincipal_MarcoPHP'>".Intro().
@@ -216,14 +242,14 @@ class devildrey33 {
                     "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonBuscar_Estado' tooltip-es='Buscar' tooltip-en='Search' tooltip-pos='L'></label>".Intro().
                     "<div class='Menu_Boton'>".Intro().
                         "<span class='Menu_Boton_Cruz'>".Intro().
-                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-buscar' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-buscar' />".Intro().
                         "</span>".Intro().
 //                        "<span class='IcoLupa20x20'></span>". // <!-- lupa a morphejar -->
                     "</div>".Intro().
                     "<div class='Menu_Marco' id='BarraPrincipal_MarcoBuscar'>".Intro().
                         "<input type='text' name='Search' id='BarraPrincipal_MarcoBuscar_Edit' placeholder='Texto a buscar..' required>".Intro().
                         "<div id='BarraPrincipal_MarcoBuscar_BotonBuscar'>".Intro().
-                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-buscar' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-buscar' />".Intro().
 //                               "<span class='IcoLupa20x20'></span>".Intro().
                         "</div>".Intro().
                         "<div id='BarraPrincipal_MarcoBuscar_Resultado'></div>".Intro().
@@ -248,7 +274,7 @@ class devildrey33 {
         "<nav id='BarraNavegacion'>".Intro().
             /* Indice */
             "<a href='/' id='BarraNavegacion_Cerrar' tooltip-es='Volver al indice principal' tooltip-en='Return to main index' tooltip-pos='R' class='Menu_Boton'>".Intro().
-                "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-indice' />".Intro().
+                "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-indice' />".Intro().
             "</a>".Intro().
             /* Lab Ver */
             "<div id ='BarraNavegacion_LabVer' class='Menu'  mostrar='true'>".Intro().
@@ -257,10 +283,10 @@ class devildrey33 {
                 "<div class='Menu_Boton'>".Intro().
                     "<span class='Menu_Boton_Cruz' id='BarraNavegacion_Lab_IconoVer'>".Intro().
 /*                        "<span></span>".Intro().  */
-                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-filas' />".Intro().
-                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-columnas' />".Intro().
-                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-codigo' />".Intro().
-                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-preview' />".Intro().
+                        "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-filas' />".Intro().
+                        "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-columnas' />".Intro().
+                        "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-codigo' />".Intro().
+                        "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-preview' />".Intro().
                     "</span>".Intro().
                 "</div>".Intro().
                 "<div class='Menu_Marco' id ='BarraNavegacion_LabMarcoVer'>".Intro().                                       
@@ -268,7 +294,7 @@ class devildrey33 {
                     "<label tooltip-es='Ver Filas' tooltip-en='Rows' tooltip-pos='B' class='Menu_Boton_Label Lab_BotonVerFilas' for='Lab_VerFilas_Estado'></label>".Intro().                    
                     "<div class='Menu_Boton'>".Intro().
                         "<span class='Menu_Boton_Cruz' id='BarraNavegacion_Lab_IconoVer'>".Intro().
-                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-filas' sinopacidad='true' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-filas' sinopacidad='true' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
 
@@ -276,7 +302,7 @@ class devildrey33 {
                     "<label tooltip-es='Ver Columnas' tooltip-en='Columns' tooltip-pos='B' class='Menu_Boton_Label Lab_BotonVerColumnas' for='Lab_VerColumnas_Estado'></label>".Intro().
                     "<div class='Menu_Boton'>".Intro().
                         "<span class='Menu_Boton_Cruz' id='BarraNavegacion_Lab_IconoVer'>".Intro().
-                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-columnas' sinopacidad='true' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-columnas' sinopacidad='true' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
                     
@@ -284,7 +310,7 @@ class devildrey33 {
                     "<label tooltip-es='Ver Código' tooltip-en='Code' tooltip-pos='B' class='Menu_Boton_Label Lab_BotonVerCodigo' for='Lab_VerCodigo_Estado'></label>".Intro().
                     "<div class='Menu_Boton'>".Intro().
                         "<span class='Menu_Boton_Cruz' id='BarraNavegacion_Lab_IconoVer'>".Intro().
-                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-codigo' sinopacidad='true' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-codigo' sinopacidad='true' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
                     
@@ -292,7 +318,7 @@ class devildrey33 {
                     "<label tooltip-es='Ver Pre-visualización' tooltip-en='Preview' tooltip-pos='B' class='Menu_Boton_Label Lab_BotonVerPreview' for='Lab_VerPreview_Estado'></label>".Intro().
                     "<div class='Menu_Boton'>".Intro().
                         "<span class='Menu_Boton_Cruz' id='BarraNavegacion_Lab_IconoVer'>".Intro().
-                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-vista-preview' sinopacidad='true' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-preview' sinopacidad='true' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
                     
@@ -309,7 +335,7 @@ class devildrey33 {
                 "<label class='Menu_Boton_Label' for='BarraNavegacion_BotonExplorar_Estado' tooltip-es='Explorar ejemplos' tooltip-en='Examples explorer' tooltip-pos='R'></label>".Intro().
                 "<div class='Menu_Boton'>".Intro().
                     "<span class='Menu_Boton_Cruz'>".Intro(). 
-                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-explorar-lab' />".Intro().
+                        "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-explorar-lab' />".Intro().
                     "</span>".Intro().
                 "</div>".Intro().
                     
@@ -330,7 +356,7 @@ class devildrey33 {
                 "<label class='Menu_Boton_Label' for='BarraNavegacion_Indice_Estado' tooltip-es='Secciones del documento' tooltip-en='Document sections' tooltip-pos='R'></label>".Intro().
                 "<div class='Menu_Boton'>".Intro().
                     "<span class='Menu_Boton_Cruz'>".Intro().
-                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-sub-indice' />".Intro().
+                        "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-sub-indice' />".Intro().
                     "</span>".Intro().
                 "</div>".Intro().
                 "<div class='Menu_Marco' id='BarraNavegacion_SubIndice'></div>".Intro().
@@ -342,13 +368,13 @@ class devildrey33 {
                 "<label class='Menu_Boton_Label' for='BarraNavegacion_PrevNext_Estado' tooltip-es='Navegación por el Blog' tooltip-en='Navigate' tooltip-pos='R'></label>".Intro().
                 "<div class='Menu_Boton'>".Intro().
                     "<span class='Menu_Boton_Cruz'>".Intro().
-                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-lista' />".Intro().
+                        "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-lista' />".Intro().
                     "</span>".Intro().
                 "</div>".Intro().
                 "<div class='Menu_Marco' id='BarraNavegacion_MarcoNextPrev'>".
-                    "<button class='BotonSvg-Normal' id='BarraNavegacion_MarcoNextPrev_Prev'><img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-prev'></button>".Intro().
+                    "<button class='BotonSvg-Normal' id='BarraNavegacion_MarcoNextPrev_Prev'><img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-prev'></button>".Intro().
                     "<button class='BotonSvg-Normal' id='BarraNavegacion_MarcoNextPrev_Desc'>"."</button>".Intro().
-                    "<button class='BotonSvg-Normal' id='BarraNavegacion_MarcoNextPrev_Next'><img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-next'></button>".Intro().
+                    "<button class='BotonSvg-Normal' id='BarraNavegacion_MarcoNextPrev_Next'><img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-next'></button>".Intro().
                    
                 "</div>".Intro().
             "</div>".Intro().
@@ -360,23 +386,23 @@ class devildrey33 {
                 "<label class='Menu_Boton_Label' for='BarraNavegacion_RedesSociales_Estado' tooltip-es='Redes sociales' tooltip-en='Social networks' tooltip-pos='R'></label>".Intro().
                 "<div class='Menu_Boton'>".Intro().
                     "<span class='Menu_Boton_Cruz'>".Intro().
-                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-redes-sociales' />".Intro().
+                        "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-redes-sociales' />".Intro().
                     "</span>".Intro().
                 "</div>".Intro().
                 "<div class='Menu_Marco' id='BarraNavegacion_MarcoRedesSociales'>".
                     "<div class='Menu_Boton' id='BarraNavegacion_MarcoRedesSociales_Facebook' tooltip-es='Facebook' tooltip-en='Facebook' tooltip-pos='T'>".Intro().
                         "<span class='Menu_Boton_Cruz'>".Intro().
-                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-facebook' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-facebook' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
                     "<div class='Menu_Boton' id='BarraNavegacion_MarcoRedesSociales_Twitter' tooltip-es='Twitter' tooltip-en='Twitter' tooltip-pos='T'>".Intro().
                         "<span class='Menu_Boton_Cruz'>".Intro().
-                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-twitter' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-twitter' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().
                     "<div class='Menu_Boton' id='BarraNavegacion_MarcoRedesSociales_GooglePlus' tooltip-es='Google plus' tooltip-en='Google plus' tooltip-pos='T'>".Intro().
                         "<span class='Menu_Boton_Cruz'>".Intro().
-                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-gplus' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-gplus' />".Intro().
                         "</span>".Intro().
                     "</div>".Intro().                                        
                 "</div>".Intro().
@@ -389,7 +415,7 @@ class devildrey33 {
                 "<div class='Menu_Boton'>".Intro().
                     "<span class='Menu_Boton_Cruz'>".Intro().
                         "<span>".Intro(). // Span para la animación de la rotación
-                            "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-votacion' />".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-votacion' />".Intro().
                         "</span>".Intro().                    
                     "</span>".Intro().
                 "</div>".Intro().
@@ -408,19 +434,12 @@ class devildrey33 {
                     
             /* Lab Guardar */
             "<div id='BarraNavegacion_LabGuardar' tooltip-es='Guardar archivo' tooltip-en='Save file' tooltip-pos='R' class='Menu_Boton'>".Intro().
-                "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-guardar' />".Intro().
+                "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-guardar' />".Intro().
             "</div>".Intro().
             "<div id='BarraNavegacion_LabGuardarCache' tooltip-es='Guardar cache explorador' tooltip-en='Save explorer cache' tooltip-pos='R' class='Menu_Boton'>".Intro().
-                "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-guardar-cache' />".Intro().
+                "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-guardar-cache' />".Intro().
             "</div>".Intro().
                     
-/*            "<div id='BarraNavegacion_Encuesta' class='Menu_Boton'></div>".Intro().
-            "<div id='BarraNavegacion_VentanaEncuesta' class='MarcoVentana-500'>".Intro().
-                "<p>Te importaria tomarte 30 segundos para votar este contenido del 1 al 5??</p>".Intro().
-                "<p>Si lo deseas tambien puedes mandarme por privado tus criticas y o sugerencias.</p>".Intro().
-                "<p>Por último, si te ha gustado este documento puedes compartir-lo con tus amigos a traves de :</p>".Intro().
-                "<p>Muchas gracias!</p>".Intro().
-            "</div>".Intro().    */                                
         "</nav>".Intro().
                    
 /*        "<nav id='BarraInferiorDerecha'>".Intro().
@@ -429,6 +448,7 @@ class devildrey33 {
         
         $EsAdmin = "";
         if (devildrey33_Opciones::Administrador() > 0) $EsAdmin = " NoMostrar=true";
+        
         echo "<div id='Logo'".$EsAdmin." class='AnimarLogo'>".
             "<div>D</div>".
             "<div>E</div>".
@@ -459,13 +479,12 @@ class devildrey33 {
             $PHPDebug   = (devildrey33_Opciones::MostrarErroresPHP() === 1) ? "true" : "false";
             $BorrarPHP  = (devildrey33_Opciones::BorrarLogPHP()      === 1) ? "true" : "false";
             $Cache      = (devildrey33_Opciones::ActualizarCache()   === 1) ? "true" : "false";
-            $HTAccess = new devildrey33_htaccess;
-            $ValHT = $HTAccess->ObtenerValores();
+            $ValHT = devildrey33_htaccess::ObtenerValoresCheck();
             $HTMLAdmin = "<input id='BarraPrincipal_Boton33_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
                 "<label class='Menu_Boton_Label' for='BarraPrincipal_Boton33_Estado' tooltip-es='Administración' tooltip-en='Administration' tooltip-pos='L'></label>".Intro().
                 "<div class='Menu_Boton'>".Intro().
                     "<span class='Menu_Boton_Cruz'>".Intro().
-                        "<img class='Menu_Boton_SVG' src='/Web/SVG/Iconos50x50.svg#svg-marco33' />".Intro().
+                        "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-marco33' />".Intro().
                     "</span>".Intro().
                 "</div>".Intro().
                 "<div class='Menu_Marco' id='BarraPrincipal_Marco33'>".Intro().
@@ -529,20 +548,10 @@ class devildrey33 {
         }
                         
         echo "</div>".Intro();
-        echo "<div id='ErroresPHP' mostrar='false'>".Intro();
-        echo    "<div id='ErroresPHP_Titulo'>Errores PHP</div>".Intro();
-        echo    "<div id='ErroresPHP_Cerrar'>X</div>".Intro();
-        echo    "<div id='ErroresPHP_Info'>";
-/*        foreach ($this->ErroresPHP as $ErrorPHP) {
-            echo Base::ParsearLogPHP($ErrorPHP);
-        }*/
-        echo        Base::ObtenerLogPHP();
-        echo    "</div>".Intro()."</div>";
-        echo "</body>".Intro()."</html>".Intro();
-        
+        echo "</body>".Intro()."</html>".Intro();        
     }
     
-    public function InicioBlog($NombreDocumento, $Titulo) {
+    public function InicioBlog($NombreDocumento, $Titulo, $AlinearImagenDerecha = FALSE) {
         $this->_NombreDocumento = $NombreDocumento;
         $this->BD = new devildrey33_BD();
         echo "<article class='Blog' pagina='$NombreDocumento'>".Intro();        
@@ -553,6 +562,10 @@ class devildrey33 {
             $this->LeerDatos($this->_NombreDocumento, $Titulo);
             echo        "</div>".Intro();
             echo    "</header>".Intro();
+            if ($AlinearImagenDerecha === FALSE) 
+                echo "<img class='ImagenPortada' src='".Base::URL_Graficos()."250x200_".$this->EntradaBlog["Imagen"]."' alt='$Titulo' />".Intro();
+            else 
+                echo "<img class='ImagenPortada2' src='".Base::URL_Graficos()."250x200_".$this->EntradaBlog["Imagen"]."' alt='$Titulo' />".Intro();
 //        }
     }
     
@@ -717,7 +730,7 @@ class devildrey33 {
         $Total = count($Tags);
         for ($i = 0; $i < $Total; $i++) {
             $URL = str_replace(" ", "-", trim($Tags[$i]));
-            $Ret.= "<a href='http://".$_SERVER['SERVER_NAME']."/Categorias/".trim($URL)."'>".$Tags[$i]."</a>";
+            $Ret.= "<a href='".Base::URL_Raiz()."Categorias/".trim($URL)."'>".$Tags[$i]."</a>";
             if ($i != $Total - 1)   {	$Ret.=", "; }
             else                    {   $Ret.=".";  }
         }
@@ -731,11 +744,15 @@ class devildrey33 {
     public function Head_CSS() {
         if (devildrey33_Opciones::Minificar_CSS() == 0) {
             $ArrayCSS = (require dirname(__FILE__).'/Config/ArchivosMinify.php');
-            foreach ($ArrayCSS["css"] as $Archivo) 
-                echo "<link rel='stylesheet' href='http://".$_SERVER["SERVER_NAME"]."/Web".$Archivo."' />".Intro();
+            $Raiz = "/".str_replace("\\", "/", substr(dirname(__FILE__), strlen($_SERVER["DOCUMENT_ROOT"])));
+            // dirname(__FILE__)         = "c:\devildrey33\webs\devildrey33\Web"
+            // $_SERVER["DOCUMENT_ROOT"] = "c:\devildrey33\webs" o "c:\devildrey33\webs\devildrey33"
+            foreach ($ArrayCSS["css"] as $Archivo) {
+                echo "<link rel='stylesheet' href='http://".$_SERVER["SERVER_NAME"].$Raiz.$Archivo."' />".Intro();
+            }
         }
         else {
-            echo "<link rel='stylesheet' href='http://".$_SERVER["SERVER_NAME"]."/Web/Cache/devildrey33.min.css' />".Intro();
+            echo "<link rel='stylesheet' href='http://".$_SERVER["SERVER_NAME"].$Raiz."Cache/devildrey33.min.css' />".Intro();
         }
     }
 
@@ -824,30 +841,31 @@ class devildrey33 {
     */
     public function Head_JS() {
         $this->GenerarListaEntradasJS();                
+//        $Raiz = "/".str_replace("\\", "/", substr(dirname(__FILE__), strlen($_SERVER["DOCUMENT_ROOT"])));
         
         echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>'.Intro();
         echo '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>'.Intro(); // Para la barra separadora del lab
         echo "<script type='text/javascript' src='https://www.google.es/jsapi'></script>".Intro(); // json api?
         /* addons del codemirror */
-        echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/JS/codemirror.min.js'></script>".Intro();
+        echo "<script src='".Base::URL_JS()."codemirror.min.js'></script>".Intro();
         /* Three js */
-        echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/JS/three-0.74.min.js'></script>".Intro();
-        echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/JS/tweenjs-0.6.2.min.js'></script>".Intro();
+        echo "<script src='".Base::URL_JS()."three-0.74.min.js'></script>".Intro();
+        echo "<script src='".Base::URL_JS()."tweenjs-0.6.2.min.js'></script>".Intro();
         
-        echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/Cache/EntradasBlog.js'></script>".Intro();
+        echo "<script src='".Base::URL_Cache()."EntradasBlog.js'></script>".Intro();
 
         if (devildrey33_Opciones::Minificar_JS() == 0) {
             $ArrayCSS = (require dirname(__FILE__).'/Config/ArchivosMinify.php');
             foreach ($ArrayCSS["js"] as $Archivo) {
-                echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web".$Archivo."'></script>".Intro();
+                echo "<script src='".rtrim(Base::URL_Web(), "/").$Archivo."'></script>".Intro();
             }
         }
         else {
-            echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/Cache/devildrey33.min.js'></script>".Intro();
+            echo "<script src='".Base::URL_Cache()."devildrey33.min.js'></script>".Intro();
         }
         
         if (devildrey33_Opciones::Administrador() > 0) {
-            echo "<script src='http://".$_SERVER["SERVER_NAME"]."/Web/JS/ObjetoAdmin.js'></script>".Intro().
+            echo "<script src='".Base::URL_JS()."ObjetoAdmin.js'></script>".Intro().
                  "<script>\$Base.JSDinamico.push('ObjetoAdmin.js');</script>".Intro(); // Para que no lo cargue dinamicamente
         }
             

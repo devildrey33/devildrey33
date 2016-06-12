@@ -1,7 +1,7 @@
 <?php
     /* Archivo para peticiones ajax, tambien se puede utilizar a modo de consola MUY básica. */
     //include("devildrey33.php");
-    include($_SERVER['DOCUMENT_ROOT']."/GenerarIndice.php");
+    include("../GenerarIndice.php");
 
     header('Content-Type: text/html; charset=utf-8');
     

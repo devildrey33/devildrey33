@@ -7,7 +7,7 @@
 	
 	$Base->InicioPlantilla("Varios ejemplos de menus", $HEAD);*/
         
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = "<meta name='description' content='Ejemplos menús'>
@@ -19,7 +19,6 @@
         echo "<script>\$Base.CargarCSS('Blog_varios-ejemplos-de-menus.css');</script>";        
 ?>	
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_VariosMenus.png" alt="Varios Menus" />
                 <p>He estado haciendo pruebas con menús y sobretodo con CSS para practicar con las transiciones, y me estoy dando cuenta de que en CSS resulta muy difícil por no decir imposible en algunas situaciones hacer código re-aprovechable para las animaciones/transiciones en el sentido de que si añades/modificas/eliminas un menú tendrás que volver a editar el CSS. En cambio en JavaScript si te lo montas bien puedes hacer las cosas más dinámicas de forma que si modificas el menú no tengas que tocar ni JavaScript ni CSS.</p>
                 <p>La intención en principio era trastear un rato con transiciones complejas, ya que exceptuando el primer ejemplo los demás al desplegarse utilizan una transición, y al resaltar sus items utilizan otra transición dentro de la primera.</p>
                 <p>También he querido poner énfasis en hacer los menús lo más cómodos posible, dejando retrasos (delay) al plegarse para que el usuario tenga tiempo de moverse por el menú.</p>

@@ -14,7 +14,7 @@
 .Tabla {
     outline:1px solid rgb(240,240,240);
     border-left:4px solid #666;
-    border-spacing:0px;
+    border-spacing:2px;
     border-collapse:separate;
     background:#FFFFFF;
     margin-top:10px;    
@@ -46,6 +46,16 @@
     outline:1px solid #999;
 }*/
 
+.Tabla tr td {
+    transition:0.4s;
+    background:rgb(240,240,240);
+}
+
+.Tabla tr:hover td {
+    background:rgb(230,230,230);
+/*    border-right:4px solid rgb(220,220,220);*/
+}
+
 .Tabla img {
     border:2px solid rgb(240,240,240);
 }
@@ -53,19 +63,18 @@
 .Tabla th {  padding:10px; }
 .Tabla td {  padding:5px; }
 
-.Tabla td, .Tabla th {    
-    border-bottom:4px solid rgb(240,240,240);
-    border-right:4px solid rgb(240,240,240);
+.Tabla td {    
+/*    border-bottom:4px solid rgb(240,240,240);
+    border-right:4px solid rgb(240,240,240);*/
+}
+.Tabla:hover, .Tabla:hover th {
+    background:#CCC;
 }
 /*
 .Tabla:hover td, .Tabla:hover th {
     border-bottom:4px solid #CCC;
     border-right:4px solid #CCC;    
 }*/
-/* Cabeceras tabla */
-.Tabla th {
-    background:#f7f7f7;
-}
 /* Las ultimas celdas de la izquierda, no tienen borde izquierdo */
 .Tabla td:last-child, .Tabla th:last-child {
     border-right:none !important;

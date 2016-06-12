@@ -13,7 +13,7 @@
                 return json_encode(array("Ret" => $Ret, "Mensaje" => $Mensaje, "Archivo" => $Archivo));
             }
             
-            $Ret = file_put_contents($_SERVER['DOCUMENT_ROOT']."/".$Archivo, $Codigo, FILE_USE_INCLUDE_PATH );
+            $Ret = file_put_contents(Base::Path_Raiz().$Archivo, $Codigo, FILE_USE_INCLUDE_PATH );
             if ($Ret) { $Mensaje = "El '$Archivo' se ha guardado correctamente."; }
             else      { $Mensaje = "Error al guardar el archivo : '$Archivo'";    }
             
@@ -37,11 +37,11 @@
             }*/
             $Ret     = 0;
             // Abro el archivo
-            $DatosArchivo = file_get_contents($_SERVER['DOCUMENT_ROOT']."/".$Archivo, FILE_USE_INCLUDE_PATH);
+            $DatosArchivo = file_get_contents(Base::Path_Raiz().$Archivo, FILE_USE_INCLUDE_PATH);
             if ($DatosArchivo === FALSE) { // El archivo no existe
                 $Ret = 404;
                 $Archivo = "Ejemplos/Error.html";
-                $DatosArchivo = file_get_contents($_SERVER['DOCUMENT_ROOT']."/".$Archivo, FILE_USE_INCLUDE_PATH);                
+                $DatosArchivo = file_get_contents(Base::Path_Raiz().$Archivo, FILE_USE_INCLUDE_PATH);                
             }
             else {
                 // Está dentro de ejemplos	            
@@ -76,13 +76,13 @@
                     }
                     else {// No se permite acceder a archivos que no sean .html, .js, .css, y .svg
                        $Archivo = "Ejemplos/ErrorExtension.html";
-                       $DatosArchivo = file_get_contents($_SERVER['DOCUMENT_ROOT']."/".$Archivo, FILE_USE_INCLUDE_PATH);
+                       $DatosArchivo = file_get_contents(Base::Path_Raiz().$Archivo, FILE_USE_INCLUDE_PATH);
                        $Ret = 200; 
                     }
                 }
                 else { // El archivo está fuera de la carpeta /Ejemplos/
                    $Archivo = "Ejemplos/ErrorLimites.html";
-                   $DatosArchivo = file_get_contents($_SERVER['DOCUMENT_ROOT']."/".$Archivo, FILE_USE_INCLUDE_PATH);
+                   $DatosArchivo = file_get_contents(Base::Path_Raiz().$Archivo, FILE_USE_INCLUDE_PATH);
                    $Ret = 200;  
                 }
             }
@@ -100,7 +100,7 @@
             if ($Dir === FALSE) { $Ret .= "<div>Error abriendo el directorio : ".$Directorio."</div>".Intro()."</div>";  return $Ret;}
             while (false !== ($Archivo = readdir($Dir))) {
                 if ($Archivo != "." && $Archivo != "..") {
-                    $HREF = str_replace($_SERVER['DOCUMENT_ROOT'], "/Lab", $Directorio."/".$Archivo);
+                    $HREF = str_replace(Base::Path_Raiz(), "/Lab", $Directorio."/".$Archivo);
                     // Directorio                
                     if (is_dir($Directorio."/".$Archivo) === TRUE) {
                         $Ret .= "<div class='Lab_Item'>".Intro();
@@ -151,7 +151,7 @@
         }
         
         static public function MostrarCarpetaEjemplos($CheckBox = TRUE) {
-            return devildrey33_Lab::_EscanearDirectorio($_SERVER['DOCUMENT_ROOT']."/Ejemplos", $CheckBox);
+            return devildrey33_Lab::_EscanearDirectorio(Base::Path_Raiz()."Ejemplos", $CheckBox);
             
 /*                    '$("#MarcoNavegacion .Lab_Archivo").off("click").on("click", function() { $Lab.ClickArchivo($(this), "Lab_Explorador"); });'.
                     '$("#MarcoNavegacion .Lab_Directorio").off("click").on("click", function() { $Lab.ClickDirectorio($(this)); });'.
@@ -160,15 +160,15 @@
         }
         
         public function LeerCache() {
-            return file_get_contents($_SERVER['DOCUMENT_ROOT']."/Web/Cache/Lab_Explorador.txt");
+            return file_get_contents(Base::Path_Raiz()."Web/Cache/Lab_Explorador.txt");
         }
         /* Genera la cache a partir de una lista en JSon generada con JavaScript */
         public function GenerarCache($JLista) {
             $Lista = json_decode(stripslashes($JLista));
-            file_put_contents($_SERVER['DOCUMENT_ROOT']."/Web/Config/ListaLab.php", "<?php return ".var_export($Lista, TRUE).";");
+            file_put_contents(Base::Path_Raiz()."Web/Config/ListaLab.php", "<?php return ".var_export($Lista, TRUE).";");
             
             $Codigo = devildrey33_Lab::_EscanearDirectorioGG("../Ejemplos");
-            file_put_contents($_SERVER['DOCUMENT_ROOT']."/Web/Cache/Lab_Explorador.txt", $Codigo);            
+            file_put_contents(Base::Path_Raiz()."Web/Cache/Lab_Explorador.txt", $Codigo);            
         }
         
         static public function _EscanearDirectorioGG($Directorio) {
@@ -240,21 +240,21 @@
                             "<input id='MiniLab_Codigo_Estado_$ID' class='Menu_Boton_Input' type='radio' name='MiniLab_input_$ID'  />".Intro().
                             "<label tooltip-es='Ver el código' tooltip-en='Code' tooltip-pos='B' class='Menu_Boton_Label MiniLab_VerCodigo' for='MiniLab_Codigo_Estado_$ID'></label>".Intro().
                             "<div class='Menu_Boton'>".Intro().
-                                "<img src='/Web/SVG/Iconos50x50.svg#svg-vista-codigo' class='Menu_Boton_SVG' />".Intro().
+                                "<img src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-codigo' class='Menu_Boton_SVG' />".Intro().
                             "</div>".Intro().
                         "</div>".Intro().
                         "<div class='Menu'>".Intro().
                             "<input id='MiniLab_Preview_Estado_$ID' class='Menu_Boton_Input' type='radio' name='MiniLab_input_$ID' />".Intro().
                             "<label tooltip-es='Ver la pre-visualización' tooltip-en='preview' tooltip-pos='B' class='Menu_Boton_Label MiniLab_VerPreview' for='MiniLab_Preview_Estado_$ID'></label>".Intro().
                             "<div class='Menu_Boton'>".Intro().
-                                "<img src='/Web/SVG/Iconos50x50.svg#svg-vista-preview' class='Menu_Boton_SVG' />".Intro().
+                                "<img src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-preview' class='Menu_Boton_SVG' />".Intro().
                             "</div>".Intro().
                         "</div>".Intro().                        
                         "<div class='Menu'>".Intro().
                             "<input id='MiniLab_Mixto_Estado_$ID' class='Menu_Boton_Input' type='radio' name='MiniLab_input_$ID' checked='checked' />".Intro().
                             "<label tooltip-es='Vista mixta (código/preview)' tooltip-en='Mixed view (code/preview)' tooltip-pos='B' class='Menu_Boton_Label MiniLab_VerMixto' for='MiniLab_Mixto_Estado_$ID'></label>".Intro().
                             "<div class='Menu_Boton'>".Intro().
-                                "<img src='/Web/SVG/Iconos50x50.svg#svg-vista-columnas' class='Menu_Boton_SVG' />".Intro().                            
+                                "<img src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-columnas' class='Menu_Boton_SVG' />".Intro().                            
                             "</div>".Intro().
                         "</div>".Intro().
                         "<a href='/Lab/$Archivo'><button class='Boton-Normal'>Abrir en el laboratorio</button></a>".Intro().

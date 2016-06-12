@@ -42,7 +42,7 @@
         </style>";
 	
 	$Base->InicioPlantilla("BubaTronik : Formatos", $DeclaracionesHeadExtras);*/
-	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+	include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Formatos BubaTronik">

@@ -121,7 +121,7 @@ $Comentarios = new function() {
         console.log("Comentarios.BotonMasUno");
 
         // ajax para votar
-        nAjax = $.post("/cmd/VotarComentario.cmd", { "Pagina"        : Pagina,
+        nAjax = $.post($Base.Raiz + "cmd/VotarComentario.cmd", { "Pagina"        : Pagina,
                                                      "NumComentario" : NumC,
                                                      "Valor"         : Valor
         // Al terminar la petición ajax correctamente
@@ -138,6 +138,7 @@ $Comentarios = new function() {
             }
             $Base.Cargando("FALSE");
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+            if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
         // Fallo al realizar la petición ajax            
         }).fail(function(jqXHR, textStatus, tError) { 
             console.log("Comentarios.VotarComentario Error ajax", jqXHR, textStatus, tError);
@@ -179,14 +180,14 @@ $Comentarios = new function() {
         localStorage["Comentarios_Correo"]  = $("#Comentarios_Correo").val();
               
         if ($("#Comentarios_Web").val() !== "") { localStorage["Comentarios_Web"] = $("#Comentarios_Web").val(); }
-        nAjax = $.post("/cmd/EnviarComentario", { "URL"         : window.location.href,
-                                                  "Nombre"      : $("#Comentarios_Nombre").val(),
-                                                  "Email"       : $("#Comentarios_Correo").val(),
-                                                  "Web"         : $("#Comentarios_Web").val(),
-                                                  "Comentario"  : $("#Comentarios_Comentario").html(),
-                                                  "Pagina"      : $("#MarcoNavegacion > article.Blog").attr("pagina"),
-                                                  "Autor"       : $(".Cabecera_Datos > .FechaEntrada > .Autor").html()
-                                                } );
+        nAjax = $.post($Base.Raiz + "cmd/EnviarComentario", { "URL"         : window.location.href,
+                                                              "Nombre"      : $("#Comentarios_Nombre").val(),
+                                                              "Email"       : $("#Comentarios_Correo").val(),
+                                                              "Web"         : $("#Comentarios_Web").val(),
+                                                              "Comentario"  : $("#Comentarios_Comentario").html(),
+                                                              "Pagina"      : $("#MarcoNavegacion > article.Blog").attr("pagina"),
+                                                              "Autor"       : $(".Cabecera_Datos > .FechaEntrada > .Autor").html()
+                                                            } );
         console.log("Comentarios.BotonEnviarComentario");
         nAjax.done(function(data) { 
             Datos = JSON.parse(data);
@@ -204,6 +205,7 @@ $Comentarios = new function() {
             }
             $Comentarios.Enviando = false;
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+            if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
         });
         // Fallo al realizar la petición ajax
         nAjax.fail(function(jqXHR, textStatus, tError) { 
@@ -224,7 +226,7 @@ $Comentarios = new function() {
         Desde = $("#Comentarios_Datos div[comentario]:last-child").attr("comentario");
         console.log("Comentarios.Obtener20", Pagina, Desde);
         this.Obteniendo = true;
-        nAjax = $.post("/cmd/ObtenerComentarios", { "Pagina" : Pagina,  "Desde" : Desde - 1, "Hasta" : Desde - 21 } );
+        nAjax = $.post($Base.Raiz + "cmd/ObtenerComentarios", { "Pagina" : Pagina,  "Desde" : Desde - 1, "Hasta" : Desde - 21 } );
         nAjax.done(function(data) { 
             Datos = JSON.parse(data);
             $("div[puntoscroll=true]").removeAttr("puntoscroll");
@@ -232,6 +234,7 @@ $Comentarios = new function() {
             $Base.Cargando("FALSE");
             $Comentarios.Iniciar();
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+            if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
         });
         // Fallo al realizar la petición ajax
         nAjax.fail(function(jqXHR, textStatus, tError) { 
@@ -255,7 +258,7 @@ $Comentarios = new function() {
         Desde = $("#Comentarios_Datos div[comentario]:last-child").attr("comentario");
         console.log("Comentarios.ObtenerHastaNum", Pagina, Desde);
         this.Obteniendo = true;
-        nAjax = $.post("/cmd/ObtenerComentarios", { "Pagina" : Pagina,  "Desde" : Desde - 1, "Hasta" : Num } );
+        nAjax = $.post($Base.Raiz + "cmd/ObtenerComentarios", { "Pagina" : Pagina,  "Desde" : Desde - 1, "Hasta" : Num } );
         nAjax.done(function(data) { 
             Datos = JSON.parse(data);
             $("div[puntoscroll=true]").removeAttr("puntoscroll");
@@ -265,6 +268,7 @@ $Comentarios = new function() {
             $Base.Cargando("FALSE");
             $Comentarios.MostrarComentario($Comentarios.NumComentario);
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+            if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
         });
         // Fallo al realizar la petición ajax
         nAjax.fail(function(jqXHR, textStatus, tError) { 

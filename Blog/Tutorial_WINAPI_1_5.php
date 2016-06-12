@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WINAPI C++ 1.5 (Creación de nuestro ObjetoBoton)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.1.5.png" alt="Tutorial 1.5" style='cursor:pointer;' />
                 <p>En este tutorial vamos a aplicar varios conceptos anteriores que son la creacion de ventanas y utilizar el GDI de windows para dar paso a la creacion de nuestro primer control desde cero.</p>
                 <p>Aunque windows ya nos ofrece toda una gama de controles listos para utilizar, siempre es interesante ver y comprender como podemos crear nosotros mismos nuestro propio control. Ademas hay muchos casos en los que podemos necesitar algo que no sea 'estandar' por lo que al final nos sera mas conveniente crear este tipo de cosas partiendo de cero.</p>
                 <!-- FIN_INTRODUCCION -->

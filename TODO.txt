@@ -44,6 +44,7 @@ Millores de la web :
         - Afegir forma de filtrar per categorias (Todo, CSS, PHP, etc...)
  V  - SOLUCIONAT Fallo greu a l'hora d'enviar comentaris (els noms de les taules no poden superar els 64 caracters, i en algunes entrades pot pasar)
  V  - Al editar comentaris avegades es creen etiquetes amb el atribut contenteditable="true" (SOLUCIONAT)
+        - Ara avegades desapareixen lineas al editar, pero al recarregar es veu bè :O
  V  - Tots els warnings i errors de PHP es guarden en un log, i aquest es mostra en una finestra chula dintre de la web.
  V      - Mirar totes les dades que paso per ajax i adaptar els JSONS amb el texte d'error php.
  V          - ObjetoBase.js          - ObjetoAdmin.js          - ObjetoComentarios.js          - ObjetoLab.js          - ObjetoIndice.js
@@ -55,15 +56,19 @@ Millores de la web :
  V      - Buscador básic integrat a la web
  V      - Enllaçar enllaços href al $Base.CargarURL     
  V      - Retocar CSS
+ V      - Probar de llegir els arxius directament amb include : $foo = include 'return.php';
+            http://php.net/manual/es/function.include.php
         - S'ha d'ordenar el resultat ni que sigui per antiguetat, i fins i tot mirar de donar prioritat al blog abans que al Doc/CSS i al Lab
  V      - Afegir els exemples del lab a la BD de paraules... (lo que repetira el solitario...)
             - OJU perque llavors poden haber exemples que ja surten a l'index del blog ( fer el mateix sistema pel Doc/CSS )
-
  V  - Refer devildrey33_cmd : ara es un objecte i es pot utilitzar desde altres documents (mantenimiento.php)
  V  - Pasar la BD del CSS_BD a un arxiu extern i ben tabulat
  V      - Creada funció Base::var_export que exporta un array tabulat com a mi m'agrada.
  V  - Retocar el paste dels comentaris, ara es pot pastejar html, i es parseja internament per eliminar etiquetes script i buttons. Tambè retoca enllaços a href i els hi posa el target='_blank'.
  V      - Els controls dels comentaris ara ja no son buttons, son divs, i aixi no bosen el outline pel focus.
+ V  - Aprofitant el sistema de paths nou, fer funcionar la web en localhost de forma bàsica
+ V      - Creat arxiu "/AsignarRaiz.php" per re-escriure el arixu ".htaccess" de tal forma que les re-direccions dels directoris virtuals funcionin bè.
+    - El sistema de misatges de javascript es mono-missatge, s'ha de fer que es puguin mostrar varis missatges del mateix tipus a l'hora.
     - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
         - Un exemple clar seria la web de elmundo
     - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
@@ -82,10 +87,15 @@ Millores de la web :
     - Tornar a afegir els iconos58x58.svg dintre del HTML bàsic, aquest cop el carregarem directament de l'arxiu, i aixi no cal posarlo dintre del devildrey33.php i serà tot mes còmode.
     - Els 5 putus primers caracters que imprimeix qualsevol document php... no se d'on cony surten... tinc echos de l'ordre de carrega dels objectes y echos de putes distribuits estrategicament de forma que no funcionara res de res, aviam si puc obtenir un callback complet d'execució sense fer guarrades amb els echos.
         - Pasa just abans d'iniciar el constructor de devildrey33.php, pero no he pogut aillar l'origen....
+    - Afegir al la funció devildrey33::Blog el parametre $AlinearImagenDerecha i encapsular la imatge d'introducció dels articles dintre de la mateixa funció.
+        - Obviament requereix retocar TOTS els arixus del blog, i puc aprofitar per buscar imatges i posarles amb Base::URL_Graficos().
+
 
 URGENT :
     - Afegir entrades del Doc/CSS a l'index del blog, i posar el box-sizing i el animation-fill-mode
-
+MOLT URGENT :
+ V  - Modificar totes les etiquetes img per utilitzar la funció $Base::URL_Graficos(), tambè he pasat el css (url) a paths relatius sense problemes.
+ V      - les imatges ara van amb path relatiu (desde el blog es '../Web/Graficos/img')
 
 Estils movils :
  V  - Probar l'index en Google Nexus 10, no es pot accedir a les seguents entrades amb l'escroll. 
@@ -123,6 +133,7 @@ Blog :
  V      - Despres d'un dia de svgs corel i adobe sembla que ja començo a tenir nocions básiques.
     - Fer documentació preliminar i exemples per les VARIABLES CSS!!!!     (https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables)
  V  - Efectes hover per butons (aprofitant el concepte de butons :hover que he fet per la web /Ejemplos/Transition/Botones.html)
+ V      - La majoria d'efectes avegades fan una linea blanca a la bora dreta del buto quan está dintre d'una finestra amb l'animacio de rotació. L'unic que sembla que no ho fa es el del box-shadow.
     
 Doc/CSS :
  V  - animation-timing-function amb exemple i aixi acabo l'apartat animaciones.

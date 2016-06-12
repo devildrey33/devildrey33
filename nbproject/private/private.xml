@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4">
         <file>
+            <url>Web/JS/ObjetoBase.js</url>
+            <bookmark id="4">
+                <name/>
+                <line>255</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
             <url>Web/JS/ObjetoAdmin.js</url>
             <bookmark id="1">
                 <name/>
@@ -22,21 +30,56 @@
                 <key/>
             </bookmark>
         </file>
-        <file>
-            <url>Web/JS/ObjetoBase.js</url>
-            <bookmark id="4">
-                <name/>
-                <line>251</line>
-                <key/>
-            </bookmark>
-        </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/devildrey33/Webs/devildrey33/TODO.txt</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Antivirus_Fotos0506.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_cmd.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS_BD.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Base.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Log2.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoLab.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Lab.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Buscador.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/phpinfo.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoIndice.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/EntradasBlog.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_cmd%20OLD.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Comentarios.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/ArchivosMinify.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoComentarios.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_BD.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Tablas.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Comentarios.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/FaqBarba.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/AnimacionesCSS3.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Lab.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_PintarCodigo.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_EditarEntradas.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/ListaLab.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Stats.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/TODO.txt</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoBase.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/.htaccess</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Blog.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/BarraNavegacion.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Log.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_htaccess.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/GenerarIndice.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/index.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/BubaTronik_Formatos.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Mantenimiento.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/algunos-efectos-para-botones-en-css.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Descargar.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/BubaTronik.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/copia.htaccess</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Opciones.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Editar-Entradas.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Boton.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoAdmin.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/AsignarRaiz.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Logo.css</file>
         </group>
     </open-files>
 </project-private>

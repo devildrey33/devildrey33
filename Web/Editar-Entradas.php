@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-    include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+    include("devildrey33.php");
     $Base = new devildrey33;	
 
     $HEAD = "";

@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WinAPI C++ 3.9 (Creación del ObjetoZLIB)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.3.9.png" alt="Tutorial 3 Instalador y Ensamblador" />
                 <p>En este tutorial vamos a encapsular las funciones de la ZLIB (libreria de compresion y descompresion escrita por <b>Jean-loup-Gailly</b> y <b>Mark Adler</b>) en un objeto que usaremos tanto en la aplicacion Instalador como en la aplicacion Ensamblador.</p>
                 <p>De esta forma nos crearemos un objeto que con una linea de codigo sera capaz de comprimir / descomprimir un archivo, y asi no tendremos que preocuparnos mas por este tema una vez creemos las aplicaciones finales de este tutorial.</p>
                 <!-- FIN_INTRODUCCION -->

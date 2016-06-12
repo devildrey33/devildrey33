@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WinAPI C++ 3.6 (Creación del ObjetoProgressBar)");-*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.3.6.png" alt="Tutorial 3 Instalador y Ensamblador" />
                 <p>Estareis pensando... pero bueno, si ya hemos hecho nuestro propia barra de progreso hace 5 tutoriales... pues si.. pero creo interesante que tambien veais el funcionamiento del ProgressBar de windows.</p>
                 <p>Pues nada, vamos a hacer lo mismo que en los anteriores controles estandar y encapsularemos en una clase que tendrá de nombre ObjetoProgressBar, y que heredara de ObjetoControlEstandar (La clase ObjetoControlEstandar se describe en el tutorial <a href="/Blog/Tutorial_WINAPI_3_3">3.3 Creación del ObjetoEditBox</a>).</p>
                 <!-- FIN_INTRODUCCION -->

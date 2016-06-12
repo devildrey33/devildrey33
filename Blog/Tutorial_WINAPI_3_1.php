@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WinAPI C++ 3.1 Creación del ObjetoBarraProgreso");*/
         
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.3.1.png" alt="Tutorial 3 Instalador y Ensamblador"  style='cursor:pointer;' />
                 <p>En este tutorial nos vamos a hacer nuestra barra de progreso desde cero, que se usara en el instalador final para mostrar el progreso de instalación.</p>
                 <p>Al ser un control 'visual' que no requiere interaccion por parte del usuario, sera bastante facil de programar. Lo unico que tenemos que tener claro es que la barra puede ser vertical o horizontal, y esto se decidira por su forma inicial al crearla. Por ejemplo si creamos una barra de 200 pixeles de ancho por 10 de alto, esta barra sera horizontal.</p>
                 <!-- FIN_INTRODUCCION -->

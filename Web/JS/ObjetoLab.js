@@ -164,7 +164,7 @@ $Lab = new function() {
         console.log("Lab.CargarArchivo", Archivo);
         if (Archivo === null) { Archivo = this.Archivo; nopush = true; }
         if (ID === undefined)      { ID = -1; }        
-        $Base.PeticionAjax = $.post("/cmd/LabAbrirEjemplo.cmd",  { "Archivo" : Archivo, "ID" : ID }, function(data) {
+        $Base.PeticionAjax = $.post($Base.Raiz + "cmd/LabAbrirEjemplo.cmd",  { "Archivo" : Archivo, "ID" : ID }, function(data) {
             Datos = JSON.parse(data);            
             if      (Datos["Ret"] === 404) { $Base.MostrarErrorAjax(404, false); }
             else if (Datos["Ret"] === 403) { $Base.MostrarErrorAjax(403, false); }
@@ -179,7 +179,7 @@ $Lab = new function() {
                     $Lab.Original = $Lab.Editor.getValue();
                     $Lab.AjustarVista(Datos["Vista"]);  
                     
-                    URL = "/Lab/" + Datos["Archivo"];
+                    URL = "/" + $Base.Raiz + "Lab/" + Datos["Archivo"];
                     $("#MarcoNavegacionLab").attr({"pagina" : Datos["Archivo"]});
                     if (nopush === false) {
                         $Base.Entrada = $Base.IdentificarEntrada(URL, URL);    
@@ -194,6 +194,7 @@ $Lab = new function() {
                     $Lab.ActualizarResultado(); 
                     
                     $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+                    if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
                 }
                 // Instancia de un minilab
                 else {
@@ -203,6 +204,9 @@ $Lab = new function() {
                 $Base.Cargando("FALSE");
 
             }        
+        }).fail(function( jqXHR, textStatus, tError ) { 
+            console.log("Lab.CargarArchivo Error ajax", jqXHR, textStatus, tError);
+            $Base.MostrarErrorAjax((jqXHR.status === 404)? 1404 : jqXHR.status, false, tError);
         });
     };
     

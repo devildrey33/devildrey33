@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("ComboBox PHP + JQuery + JavaScript + Css");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="ComboBox en PHP">
@@ -15,7 +15,6 @@
 ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_ComboBoxWeb.png" alt="ComboBox para la web" />
                 <p>Un ComboBox es un control que contiene un texto y un botón que despliega una lista con mas textos de los cuales podemos seleccionar uno.</p>
                 <p>En este tutorial vais a ver como podéis crearos vuestro propio ComboBox para la web sin muchas complicaciones. Para ello se utilizara PHP, JQuery, JavaScript y una hoja de estilos Css.</p>
                 <p>Este control se verá exactamente igual independientemente del sistema operativo y navegador que utilicemos, ya que no parte de ningún control estándar. Esto puede ser de gran ayuda para webs con un diseño grafico complejo, ya que los controles estándar romperían en la mayoría de casos ese diseño.</p>
@@ -25,7 +24,7 @@
                 <p>En esencia guardamos todas las entradas en el vector <b>_Lista</b> y luego al llamar a la función <b>CrearComboBox</b> recorremos todo el vector para incrustar las entradas dentro de la ComboBox.</p>
                 <p>Con este código tenemos un objeto que nos permite añadirle textos dentro, y luego crear el ComboBox con los textos añadidos.</p>
                 <p>Para entender mejor la distribución de los div podéis echar un vistazo al siguiente esquema :</p>
-                <img src="/Graficos/EsquemaComboBox.png" alt="Esquema del ComboBox" />
+                <img src="../Web/Graficos/EsquemaComboBox.png" alt="Esquema del ComboBox" />
                 <p>Ahora que ya tenemos un objeto que nos permite crear la ComboBox con relativa facilidad, vamos a ver sus estilos css :</p>
                 <?php $Base->PintarCodigo->PintarArchivoCSS("devildrey33ComboBox_css", "Estilos para la ComboBox", "../Ejemplos/ComboBoxWeb/css/devildrey33_ComboBox.css"); ?>
                 

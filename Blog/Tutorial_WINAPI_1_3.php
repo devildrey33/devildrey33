@@ -2,7 +2,7 @@
 	/*include("devildrey33.php");
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WINAPI C++ 1.3 (Creación de un ObjetoVentana)");*/
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -16,7 +16,6 @@
         ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.1.3.png" alt="Tutorial 1.3" style='cursor:pointer;' />
                 <p>Este es el primer punto interesante del tutorial, como encapsular una ventana en una clase que podamos heredar y modificar a nuestro antojo.</p>
                 <p>La idea es tener una clase que podamos heredar, y que a partir de ella podamos crear distintos modelos de ventana, sin tener que re-escribir mucho código.</p>
                 <p> En especial este tutorial nos demostrara como crear varias ventanas del mismo tipo re-utilizando el mismo objeto.</p>

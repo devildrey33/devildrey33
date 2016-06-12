@@ -1,5 +1,5 @@
 <?php
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;
 
 	$META = '<meta name="description" content="How to use google app scripts">
@@ -10,7 +10,6 @@
         $Base->InicioBlog(basename(__FILE__), "How to use google app scripts");
 ?>
 
-<img class="ImagenPortada" src="/Web/Graficos/250x200_how-to-use-google-app-scripts.png" alt="how to use google app scripts" />
 
 <p>Google has a huge collection of tools which allow developers interact with its services.</p>
 <p>One of my favourites is the <a href="https://developers.google.com/apps-script/" target="_blank">Google App Scripts</a>. This a great tool that allow us to develop software that can work together with the most Google common services, as Gmail, Calendar, Drive, Maps, Translator, etc. Actually, this is very similar to an API, but in my opinion, what Google people are offering here is something more powerful, and easier to use, than the Google APIs.</p>

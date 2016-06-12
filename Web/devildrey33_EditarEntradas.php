@@ -39,7 +39,7 @@ if (!defined('DEF_devildrey33_EditarEntradas')) {
         }
 
         public function Guardar() {
-            return file_put_contents($_SERVER['DOCUMENT_ROOT']."/Web/Config/EntradasBlog.php", "<?php return ".var_export($this->Datos, TRUE).";");
+            return file_put_contents(Base::Path_Raiz()."Web/Config/EntradasBlog.php", "<?php return ".var_export($this->Datos, TRUE).";");
         }
 
         public function Total() {

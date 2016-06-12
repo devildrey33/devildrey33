@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WinAPI C++ 3.4 (Creación del ObjetoButton)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,7 +17,6 @@
 
 
 				<!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.3.4.png" alt="Tutorial 3 Instalador y Ensamblador" />
                 <p>En este tutorial veremos el funcionamiento del control BUTTON de windows. Para ello lo encapsularemos en una clase que tendrá de nombre ObjetoButton, y que heredara de ObjetoControlEstandar (La clase ObjetoControlEstandar se describe en el tutorial <a href="Tutorial_WINAPI_3_3.php" target="_self">3.3 Creación del ObjetoEditBox</a>).</p>
                 <p>Tambien veremos como responder cuando el usuario presiona encima del boton mediante el mensaje WM_COMMAND, y como decirle que fuente debe utilizar (si no deseamos la fuente estandar de windows) mediante el mensaje WM_SETFONT.</p>
                 <!-- FIN_INTRODUCCION -->

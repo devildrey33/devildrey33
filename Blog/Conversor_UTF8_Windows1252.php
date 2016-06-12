@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Conversor UTF8 - Windows1252");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="UTF8 a Windows1252">
@@ -16,7 +16,6 @@
         ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_ConversorUTF8-Windows1252.png" alt="Conversor UFT8, Windows1252" />
                 <p>Este 'conversor' es una aplicación que me facilita la vida a la hora de convertir archivos de código <b>cpp</b> y <b>h</b> recursivamente de una codificación a otra.</p>
                 <p>Lo bueno que tiene esta aplicación es que convierte recursivamente todos los archivos de código que pueda contener un directorio (incluyendo sus subdirectorios).</p>
                 <p>Por otra parte no tiene interface grafico, y es una simple aplicación de consola. Además guarda los archivos originales con la extensión .OLD</p>

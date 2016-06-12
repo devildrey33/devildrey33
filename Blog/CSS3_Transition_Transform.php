@@ -4,7 +4,7 @@
 	$Base->InicioPlantilla("CSS3 Transition y Transform");*/
 
         
-	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+	include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="CSS3 : Sombras y bordes redondeados">
@@ -19,7 +19,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_CSS3.png" alt="CSS3 Transition Transform" />
                 <p>Para variar un poco con el tema de coloreados de código, hoy vamos a hacer un break y veremos algunos aspectos nuevos del CSS3 que desde mi punto de vista son de lo más interesantes.</p>
                 <p>En concreto vamos a tratar con Transiciones y Transformaciones todo vía CSS.</p>
                 <p>Hay que remarcar que estos efectos no funcionan en todos los navegadores actuales, por ejemplo Internet Explorer como no podía ser de otra forma aun no soporta una parte de estos efectos...</p>
@@ -186,7 +185,7 @@
 <div id="f1_container" class="hover">
 	<div id="f1_card" class="shadow">
 		<div class="front face">
-			<img src="/Graficos/CSS3.jpg" />
+			<img src="../Web/Graficos/CSS3.jpg" />
 		</div>
 		<div class="back face center">
 			<p>Este efecto es perfecto para mostrar información adicional sobre imágenes.</p>

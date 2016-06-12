@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WinAPI C++ 3.3 (Creación del ObjetoEditBox)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -16,7 +16,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.3.3.png" alt="Tutorial 3 Instalador y Ensamblador" />
                 <p>En este tutorial veremos cómo crear controles estándar de  windows un poco en general, y en especial nos centraremos en el control  EDITBOX.</p>
                 <p>Hasta ahora nos habíamos creado nuestros controles partiendo  del ObjetoControl, pero ahora queremos utilizar un control de windows que ya  tiene varios eventos programados, por lo que vamos a tener que enlazar a ellos.  La diferencia entre ObjetoControl y ObjetoControlEstandar residirá en que  ObjetoControl controla eventos que nosotros hemos programado completamente, y  ObjetoControlEstandar controla eventos programados por microsoft en los cuales  podemos añadir código al principio o al final según nos convenga.</p>
                 <!-- FIN_INTRODUCCION -->

@@ -1,6 +1,7 @@
 <?php
     /* Tipo puede ser : 'Blog', 'Lab', 'DocCSS' */
-
+    /* Las imagenes van sin su tamaño y debe haber una de imagen 155x125_, y una imagen de 250x200_ */ 
+    /*  ej: 155x125_CSS3.png, 250x200_CSS3.png */
     return array(
         
 array(	"Titulo" 	=> "Algunos efectos para botones en CSS",
@@ -10,7 +11,7 @@ array(	"Titulo" 	=> "Algunos efectos para botones en CSS",
         "Tipo"		=> "Blog",
         "Autor"         => "Josep Antoni Bover",
         "Idioma"        => "es",
-        "Imagen"	=> "CSS3.png"),
+        "Imagen"	=> "CSS3.png"), 
         
 array(	"Titulo" 	=> "Resaltar sintaxis de un código fuente",
         "Fecha" 	=> "29/01/2016",
@@ -768,7 +769,7 @@ array(	"Titulo" 	=> "LMD 0.02a (Libreria Multiplataforma Devildrey33)" 									
         "Idioma"        => "es",
         "Imagen"	=> "LMD.png"),
 
-array(	"Titulo" 	=> "Aplicación para eliminar el virus \"Fotos 05/06\"" 											,
+array(	"Titulo" 	=> 'Aplicación para eliminar el virus &quot;Fotos 05/06&quot;' 											,
         "Fecha" 	=> "16/06/2010" ,
         "URL" 		=> "Antivirus_Fotos0506" 								,
         "Tags" 		=> array("Windows", "Programación", "C y C++"),

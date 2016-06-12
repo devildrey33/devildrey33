@@ -1,5 +1,5 @@
 <?php 
-	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+	include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="SQLLite C++">
@@ -17,7 +17,6 @@
     
 
         <!-- INTRODUCCION -->
-        <img class="ImagenPortada" src="/Web/Graficos/250x200_Sqlite.png" alt="Varios Menus" />
         <p>Últimamente estoy inmerso en un proyecto C++ que requiere una base de datos y me decidí por probar SQLite, y a decir verdad la documentación que hay sobre el tema es algo escasa, por ello voy a aportar mi granito de arena creando una aplicación de prueba en la cual se creara una base de datos con una tabla, y luego se usara esta base de datos para leer y escribir datos en ella.</p>
         <p>La intención es ver como podemos añadir a un proyecto en C++ una base de datos SQL y como trabajar con ella.</p>
         <p>SQLite se puede usar tanto de forma dinamica como estática, es decir con una dll externa o compilando el código dentro de nuestra aplicación. En este documento solo mostraré como compilar SQLite dentro de nuestra aplicación de forma estática.</p>
@@ -31,7 +30,7 @@
         <p>Con el SQLite descargado ya podemos crear el proyecto, para este caso yo utilizare una aplicación de consola, y de esta forma me ahorrare bastante código para el interface gráfico.</p>
         <p>Una vez creado el proyecto descomprimimos el zip del SQLite en la carpeta donde tenemos el código de este proyecto, y añadimos al proyecto los archivos <i>"sqlite3.h"</i> y <i>"sqlite3.c"</i>.</p>
         <p>SQLite está hecho en C, por lo que si trabajamos en C++ podemos tener problemas con los encabezados precompilados de visual studio (stdafx.h).</p>
-                        <img src='/Graficos/SQLiteprop.png' style='float:right; max-width:25%; max-height:25%' alt='Propiedades del archivo de código'>
+                        <img src='../Web/Graficos/SQLiteprop.png' style='float:right; max-width:25%; max-height:25%' alt='Propiedades del archivo de código'>
         <p>Para evitar errores de compilación relacionados con el archivo stdafx tenemos 2 opciones :</p>
         <ul style="list-style:decimal">
                 <li>Crear el proyecto sin encabezado precompilado <b>(No es recomendable para aplicaciones medias o grandes)</b>.</li>
@@ -39,11 +38,11 @@
             Una vez dentro de las propiedades debemos ir a <i>Propiedades de configuración</i> -> <i>C/C++</i> -> <i>Encabezado precompilado</i>, y desde allí estableceremos la opción <i>Encabezado precompilado</i> a <b>No utilizar encabezados precompilados</b>.
             </li>
         </ul>
-        <img src='/Graficos/SQLitePropiedades2.png' alt='Propiedades de sqlite3.c'>
+        <img src='../Web/Graficos/SQLitePropiedades2.png' alt='Propiedades de sqlite3.c'>
 
         <p>Ahora que ya tenemos el proyecto configurado, podemos compilarlo para ver que no da error.</p>
         <p>Si os aparece el siguiente error es que no habéis seguido los pasos anteriores correctamente.</p>
-                        <img src='/Graficos/SQLiteErrorStdafx.png' alt='Error encabezado precompilado'><br /><br />
+                        <img src='../Web/Graficos/SQLiteErrorStdafx.png' alt='Error encabezado precompilado'><br /><br />
                         <br />
                         <h2>Empezando</h2>
         <p>Antes de nada debemos tener claro que en windows por defecto se utiliza el tipo <i>wchar_t</i> para las cadenas de caracteres, y la verdad es que es un follón tener que ir pasando de <i>char</i> a <i>wchar_t</i>, por lo que vamos a programar todo utilizando <i>wchar_t</i>.</p>

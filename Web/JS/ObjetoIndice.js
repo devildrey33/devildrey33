@@ -41,7 +41,7 @@ $Indice = new function() {
                 $Base.Cargando("TRUE");
                 this.TotalArticulosCargados = $("#MarcoIndice > .Articulo_Portada").length; /* Total de entradas cargadas */
 
-                nAjax = $.post("/cmd/IndiceObtener15Mas.cmd", { "Categoria" : $("#Categorias").attr("categoria"),  "Inicio" : this.TotalArticulosCargados } );
+                nAjax = $.post($Base.Raiz + "cmd/IndiceObtener15Mas.cmd", { "Categoria" : $("#Categorias").attr("categoria"),  "Inicio" : this.TotalArticulosCargados } );
                 nAjax.done(function(data) { 
                     Datos = JSON.parse(data);
                     $("div[puntoscroll=true]").removeAttr("puntoscroll");
@@ -49,6 +49,7 @@ $Indice = new function() {
                     $Base.Cargando("FALSE");
                     $Indice.Cargando = false;
                     $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
+                    if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
 //                    $Comentarios.Iniciar();
                 });
                 // Fallo al realizar la petición ajax

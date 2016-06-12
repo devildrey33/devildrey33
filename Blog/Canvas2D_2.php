@@ -6,7 +6,7 @@
    	';
 	
 	$Base->InicioPlantilla("Tutorial HTML5 Canvas2D parte 2 (texto)", $DeclaracionesHeadExtras);*/
-	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+	include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial HTML5 Canvas2D parte 2">
@@ -83,7 +83,6 @@ function PintarCaracter() {
 </script>
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Canvas2D_2.png" alt="Canvas 2D" />
                 <p>Hoy vamos a seguir con el objeto canvas en dos dimensiones, y esta vez vamos a ver cómo podemos pintar texto en él.</p>
                 <p>La idea es hacer una animación carácter a carácter de un texto.</p>
                 <p>Además veremos que pintar texto dentro del objeto canvas no es como meter cualquier etiqueta de texto, la cosa varia bastante ya que no se pueden utilizar etiquetas, y si por ejemplo quisiéramos centrar el texto deberíamos obtener el tamaño del canvas en pixeles, restarle el tamaño de todo el texto en pixeles, y dividir el resultado por dos. A la vieja usanza como a mí me gusta :).</p>

@@ -325,7 +325,7 @@ body[administrador33=true] #Comentarios_Datos > div[comentario] > .Comentarios_C
     margin:4px 2px 0px 2px;
     padding:0px;    
     font-family:"Times New Roman", Georgia, Serif;
-    background-image: url("/Web/Graficos/BotonesEditor2.png");
+    background-image: url("../Graficos/BotonesEditor2.png");
     background-repeat:no-repeat;
     background-color:#DDD;
 }

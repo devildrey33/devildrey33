@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Captchas (2 Captcha básico con php)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial Captchas">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Captcha2.png" alt="Captchas" />
                 <p>En el tutorial anterior se vio con qué facilidad se puede sortear un captcha creado únicamente con JavaScript, y más bien fue un tutorial de cómo NO se debe hacer un captcha.</p>
                 <p>Con todo esto en mente hoy vamos a ver como podríamos crear un captcha similar al del primer tutorial pero que sea más difícil de hackear.</p>
                 <p>La parte que generara los valores aleatorios estará en el código PHP, y la parte que validara el captcha también. Además crearemos una imagen utilizando PHP con los valores a sumar, de esta forma será mucho más seguro contra hacks de JavaScript.</p>

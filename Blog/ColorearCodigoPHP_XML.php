@@ -2,7 +2,7 @@
 	/*include("devildrey33.php");
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Colorear código con PHP (Parte 1 XML)");*/
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Colorear código">
@@ -15,7 +15,6 @@
 ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_ColoresXML.png" alt="Colorear código con PHP (Parte 1 XML)" />
                 <p>Últimamente ando bastante liado intentando automatizar varios aspectos de www.devildrey33.es, en especial estoy creándome unas funciones para colorear todo tipo de códigos.</p>
                 <p>La idea es tener un conjunto de funciones php que me faciliten la vida a la hora de mostrar archivos de código.</p>
                 <p>Para empezar vamos a hacer algo fácil, que será colorear un código XML con el formato que utiliza Dreamweaver.</p>

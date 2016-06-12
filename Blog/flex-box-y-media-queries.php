@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 
 	$Base->InicioPlantilla("FlexBox para diseños responsive", $HEAD);*/
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = "<meta name='description' content='FlexBox responsive'>
@@ -18,7 +18,6 @@
 ?>
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_CSS3.png" alt="Propiedades CSS" />
                 <p>El CSS sigue avanzando y el modelo FlexBox ya ha llegado a la fase de candidato final, por lo que ya funciona en todos los navegadores, prácticamente al 100%.</p>
                 <p>Hoy voy a explicar un poco como podemos crear un documento responsive, aprovechando las ventajas del modelo FlexBox. Si combinamos el FlexBox con la regla <a href="/Doc/CSS/Reglas/@media">@media</a> podemos conseguir documentos totalmente responsive con unas pocas declaraciones CSS, y un marcaje HTML muy claro.</p>
                 <p>El modelo FlexBox nos permite tener un contenedor al cual podemos establecer si queremos mostrar sus hijos por columnas o por filas. La idea es crear una cabecera, un marco principal (que será la FlexBox), y un footer. Dentro del marco principal crearíamos un menú de navegación, un artículo, y un menú lateral alternativo.</p>

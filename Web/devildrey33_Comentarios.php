@@ -63,6 +63,7 @@ class devildrey33_Comentarios {
 
 
     public function LeerComentarios($Pagina, $BD, $Num, $Desde) {
+        if ($BD->_BDFuncional === false) return;
         // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
         $PaginaPadre    = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($Pagina))), 0, 51);        
 //        $PaginaPadre = str_replace(array(".", "-"), "_", $Pagina);            
@@ -86,6 +87,7 @@ class devildrey33_Comentarios {
 
     public function InsertarComentarios($Pagina, $Desde, $Hasta) {
         $BD = new devildrey33_BD;
+        if ($BD->_BDFuncional === false) return json_encode(array("HTML" => "", "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 2));
         $Ret = "";
         $Punto = FALSE;
         $PaginaPadre = str_replace(array(".", "-"), "_", $Pagina);            
@@ -146,6 +148,7 @@ class devildrey33_Comentarios {
         if (intval($Valor) === 0 || intval($Valor) === 1) {
             // Conexión con la BD
             $BD = new devildrey33_BD;        
+            if ($BD->_BDFuncional === false) return json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Valor" => intval($Valor), "Mensaje" => "Error de la base de datos", "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 2));
             // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
             $PaginaPadre    = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($PaginaPadre))), 0, 51);        
 //            $PaginaPadre    = $BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", $PaginaPadre));        
@@ -178,6 +181,7 @@ class devildrey33_Comentarios {
      *  3 - No se ha escrito el correo
      *  4 - El formato del correo no es válido    */    
     public function EnviarComentario($PaginaPadre2, $Nombre, $Email, $PaginaWeb, $Comentario, $DatosCaptcha, $URL, $Autor) {
+
         /* Validación de todos los valores */
         $Error = "Error!";
         // No hay nombre
@@ -202,10 +206,12 @@ class devildrey33_Comentarios {
         if ($Comentario == "") 	{ $Error .= " No hay comentario"; }
         // Si hay algun error, lo imprimo y salgo de la función
         if ($Error != "Error!") {
-            return json_encode(array("HTML" => $Error, "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
+            return json_encode(array("HTML" => $Error, "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 2));
         }
         // Conexión con la BD
         $BD = new devildrey33_BD;        
+        
+        if ($BD->_BDFuncional === false) return json_encode(array("HTML" => "Error de la base de datos del servidor.", "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 2));
         // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
         $PaginaPadre = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($PaginaPadre2))), 0, 51);        
         $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".$PaginaPadre);
@@ -279,6 +285,7 @@ class devildrey33_Comentarios {
     public function VerEmailComentario($PaginaPadre, $NumComentario) {
         if (devildrey33_Opciones::Administrador() > 0) {
             $BD = new devildrey33_BD; 
+            if ($BD->_BDFuncional === false) return json_encode(array("HTML" => "Error de la base de datos del servidor", "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 2));
             // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
             $PaginaPadre = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($PaginaPadre))), 0, 51);        
             $Resultado   = $BD->_mysqli->query("SELECT * FROM comentarios__".strtolower($PaginaPadre)." WHERE NumMsg='".$NumComentario."'");
@@ -293,6 +300,7 @@ class devildrey33_Comentarios {
         $Mensaje = "";
         if (devildrey33_Opciones::Administrador() > 0) {
             $BD = new devildrey33_BD; 
+            if ($BD->_BDFuncional === false) return json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Mensaje" => "Error de la base de datos del servidor.", "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 2));  
             // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
             $PaginaPadre = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($PaginaPadre))), 0, 51);        
             $Resultado = $BD->_mysqli->query("DELETE FROM comentarios__".strtolower($PaginaPadre)." WHERE NumMsg='".$BD->_mysqli->real_escape_string($NumComentario)."'");
@@ -310,6 +318,7 @@ class devildrey33_Comentarios {
         $Mensaje = "";
         if (devildrey33_Opciones::Administrador() > 0) {
             $BD = new devildrey33_BD; 
+            if ($BD->_BDFuncional === false) json_encode(array("Pagina" => $PaginaPadre, "NumComentario" => $NumComentario, "Mensaje" => "Error de la base de datos", "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 2));
             // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
             $PaginaPadre = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($PaginaPadre))), 0, 51);        
             $Resultado = $BD->_mysqli->query("UPDATE comentarios__".strtolower($PaginaPadre).

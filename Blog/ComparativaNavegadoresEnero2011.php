@@ -9,7 +9,7 @@
 	
 	$Base->InicioPlantilla("Comparativa navegadores 2011", $DeclaracionesHeadExtras);*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Comparativa navegadores 2011">
@@ -24,7 +24,6 @@
 
 <script type="text/javascript" src="/Ejemplos/TestVelocidad/TestVelocidad.js"></script>
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Navegadores.png" alt="Navegadores actuales" />
                 <p>En este articulo se verán las diferencias principales entre los navegadores que se usan actualmente (Google chrome, Mozilla firefox, Safari, Opera y Internet explorer), sobretodo enfocaremos esta comparativa en términos de velocidad y de soporte de nuevas tecnologías.</p>
                 <p>Se van a tener en cuenta varios estilos css que a mi entender son muy básicos y necesarios, y la velocidad de ejecución con códigos javascript.</p>
                 <!-- FIN_INTRODUCCION -->
@@ -138,7 +137,7 @@
                 </tr></table>
 
                 Viendo los resultados he confirmado lo que ya sabía a simple vista, pero no me esperaba que la diferencia de velocidad fuera tan abismal... observad vosotros mismos :<br /><br />
-                <div class="DivCentrado"><img src="/Graficos/GraficaJavaScript.png" alt="Comparativa iteracions Java-Script" /></div><br />
+                <div class="DivCentrado"><img src="../Web/Graficos/GraficaJavaScript.png" alt="Comparativa iteracions Java-Script" /></div><br />
                 He probado 2 veces cada navegador en mi quad-core con 4gb de ram a 1333mhz bajo windows 7, y he obtenido los siguientes resultados :<br /><br /> 
                 <table class="Tabla">
                     <tr>

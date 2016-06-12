@@ -87,7 +87,7 @@
 	
 //	$Base->InicioPlantilla("CSS3 : Sombras y bordes redondeados", $DeclaracionesHeadExtras);
         
-	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+	include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="CSS3 : Sombras y bordes redondeados">
@@ -102,7 +102,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_CSS3.png" alt="CSS3 : Sombras y bordes redondeados" />
                 <p>Hoy para variar un poco y como estoy bastante puesto en el tema últimamente vamos a ver varios efectos CSS3 referentes al sombreado de texto/objetos y a redondear rectángulos/cuadrados.</p>
                 <p>Ya aviso que Internet explorer 9 no soporta el sombreado de textos, y a pesar de que este efecto no sea compatible con explorer ya he visto más de una web que lo utiliza sin ningún tipo de remordimientos, es mas yo en mi web tengo muy poco en cuenta a internet explorer, y si alguien se atreve a entrar con él, verá como el muñequito rojo de abajo a la derecha le mete bronca. Por no hablar de que internet explorer 6 y 7 directamente no son soportados por esta web y te manda a un enlace simple que explica el porqué.</p>
                 <!-- FIN_INTRODUCCION -->

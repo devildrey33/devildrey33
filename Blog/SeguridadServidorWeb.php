@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Añadir más seguridad a nuestro servidor Web");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Seguridad htaccess">
@@ -18,7 +18,6 @@
 
 
 				<!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Candado.png" alt="Añadir más seguridad a nuestro servidor Web" />
                 <p>Hoy mirando los logs de mi servidor web, me he encontrado con que algún iluminado ha intentado acceder a mi página web pensándose que esta funcionaba bajo word press.</p>
                 <p>No es la primera vez que comento que alguien intenta entrar a la zona de administración de mi página web, y probablemente no será la última. Por ello hoy me he propuesto ilustrar un poco por encima, como podemos disuadir a estos iluminados que por aburrimiento se dedican a cargarse el trabajo de otros.</p>
                 <p>En este mundo nada es 100% seguro, por ello nunca viene mal añadir algunos mecanismos que dificulten aun más la tarea de romper la seguridad de nuestros servidores.</p>

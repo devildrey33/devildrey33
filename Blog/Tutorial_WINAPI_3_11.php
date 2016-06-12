@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WinAPI C++ 3.11 (Terminando el Ensamblador)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.3.11.png" alt="Tutorial 3 Instalador y Ensamblador" style='cursor:pointer;' />
                 <p>Esta es la ultima parte del tercer tutorial, donde juntaremos todos los controles estandar que hemos visto anteriormente y formaremos una aplicacion encargada de hacer una lista de archivos.</p>
                 <p>Con esa lista de archivos la aplicacion podra comprimirlos todos para luego insertarlos en el ejecutable del Instalador.</p>
                 <p>Y tambien le indicaremos la ruta predeterminada de la instalación.</p>

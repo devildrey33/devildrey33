@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Creación de páginas web desde cero (2 Empezando)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial HTML">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_HTML5.png" alt="Tutorial creación de paginas web desde cero" />
                 <p>La intención de este tutorial es ir empezando a diseñar vuestra primera página, y ver la estructuración mínima necesaria además de algunas etiquetas obligatorias para todo documento HTML.</p>
                 <p>Antes de nada también necesitareis elegir una aplicación para empezar a editar los documentos HTML, por lo que os recomendare alguna para windows. Aunque os recomiende aplicaciones para windows esto no quiere decir que no se pueda seguir este tutorial desde linux, pero en linux tenéis la ventaja de que cualquier editor de texto os vale perfectamente para el caso.</p>
                 <!-- FIN_INTRODUCCION -->

@@ -1,5 +1,5 @@
 <?php 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -15,7 +15,6 @@
 ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.1.4.png" alt="Tutorial 1.4" style="cursor:pointer;" />
                 <p>Con este tutorial empezaremos a tocar la parte grafica de las ventanas, cosa que nos servira mas adelante para moldear y pintar todos los controles de creacion propia a nuestro antojo.</p>
                 <p>En esencia vamos a ver como responder al mensaje <b>WM_PAINT</b> de windows, que es el encargado de avisarnos cuando una ventana necesita repintarse. Luego utilizaremos este mensaje para escribir una cadena de caracteres en la ventana, y pintar el fondo de toda la ventana utilizando un color aleatorio.</p>
                 <p></p>

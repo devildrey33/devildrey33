@@ -8,7 +8,7 @@
 	
 	$Base->InicioPlantilla("Creación de páginas web desde cero (7 Botones)", $DeclaracionesHeadExtras);*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial HTML">
@@ -22,7 +22,6 @@
                 <link href='../Ejemplos/Tutorial_HTML5/Tutorial_HTML5_7_Ejemplo.css' rel='stylesheet' type='text/css' />
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_HTML5_7.png" alt="Tutorial creación de paginas web desde cero" />   
 				<p>En este tutorial veréis algunos trucos para añadirle botones gráficos a vuestra web.</p>
                 <p>Lo más normal es que este tipo de controles se utilicen para llegar a otro documento web o a una descarga, y siempre resulta interesante que se vean bien para que el usuario no se pierda fácilmente.</p>
                 <p>No es lo mismo poner un enlace de texto plano con la etiqueta "<i>&lt;a&gt;</i>" que tener ese enlace dentro de un marco con borde y un color de fondo bien resaltado.</p>
@@ -74,7 +73,7 @@
                 <p>Pues bien fijaros en la imagen de la derecha en la cual hay 6 partes que conformaran el botón, las tres primeras partes son para el botón en estado normal (degradado de amarillo a rojo), y las tres últimas partes son para el botón en estado resaltado (degradado de rojo a amarillo).</p>
                 <p>Cada parte mide 25 (23 + 2 pixeles en blanco) pixeles de alto por 6 de ancho, a partir de aquí podemos jugar con la propiedad "<i>background-position</i>" y "<i>background-repeat</i>" para ir ubicando cada parte correctamente. Otra cosa a remarcar es que el botón consistirá en cuatro divs, uno que contendrá todo el botón entero, y los otros tres que mostraran cada parte de él. Veamos la declaración de los estilos CSS :</p>
                 
-                <img src='/Graficos/Boton3Dividido.png' alt='Boton3 dividido por pixeles' style="float:right; margin-right:50px; margin-top:50px; border-color:rgb(34, 177, 76); border-width:1px; border-style:dashed" />
+                <img src='../Web/Graficos/Boton3Dividido.png' alt='Boton3 dividido por pixeles' style="float:right; margin-right:50px; margin-top:50px; border-color:rgb(34, 177, 76); border-width:1px; border-style:dashed" />
                 <?php $Base->PintarCodigo->PintarArchivoCSS("ID3", "Estilo CSS para un botón gráfico complejo", "../Ejemplos/Tutorial_HTML5/Tutorial_HTML5_7_Ejemplo.css", "Boton3"); ?>
                 <div style="margin-top:10px"> 
                     <div class='Boton3' style="float:left; margin-right:10px">

@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WINAPI C++ 2.4 Crear ObjetoEscena_Records");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.2.4.png" alt="Tutorial 2.4" style="cursor:pointer;" />
                 <p>En este tutorial vamos a tener que usar lo que hemos visto sobre archivos y directorios para crear un objeto que sea capaz de guardar nuestas puntuaciones maximas en el disco duro.</p>
                 <p>Vamos a tener que usar el objeto ObjetoEscena_VentanaTranslucida para hacer el ultimo modelo de ventana translucida que nos faltara para tener listo el juego, y ademas vamos a simular un cursor al estilo ms-dos para introducir el nombre de la puntuacion.</p>
                 <!-- FIN_INTRODUCCION -->

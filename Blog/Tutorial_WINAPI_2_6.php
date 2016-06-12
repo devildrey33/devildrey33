@@ -8,7 +8,7 @@
 	
 	$Base->InicioPlantilla("Tutorial WINAPI C++ 2.6 (Terminando el Snake)", $HED);*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -62,7 +62,6 @@
 </style> 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Snake.png" alt="Tutorial 2.6" style="cursor:pointer;" />
                 <p>Este tutorial nos mostrara como ensamblar todos los tutoriales anteriores con todos sus objetos.</p>
                 <p>Ademas en este tutorial vamos a tener que diseñar la funcion main del juego, es decir que vamos a tener que pensar como mover la serpiente, como saber si se ha comido una bola, como hacer crecer la serpiente, y como saber si ha chocado con una pared o con ella misma.</p>
                 <p>Tambien habra que tener en cuenta la velocidad de la serpiente, que va aumentando a medida que crece, y varios aspectos mas. En definitiva veremos corazon de la aplicacion que hace correr todos los objetos que creamos en los anteriores tutoriales.</p>

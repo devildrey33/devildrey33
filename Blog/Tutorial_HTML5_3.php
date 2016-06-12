@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Creación de páginas web desde cero (3 Varias etiquetas)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial HTML">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_HTML5.png" alt="Tutorial creación de paginas web desde cero" />
                 <p>En este tutorial vamos a ver varias etiquetas html de uso común para mostrar todo tipo de datos.</p>
                 <p>Entre otras cosas podéis ver como añadir imágenes y enlaces a vuestros documentos html, ya que cualquier documento html que se precie necesita tanto ilustraciones como enlaces para ser lo más rico posible en información.</p>
                 <p>También veremos algunas etiquetas descriptivas, que aunque no sirvan para un propósito especifico está muy bien utilizarlas para diferenciar ciertas partes del documento html.</p>

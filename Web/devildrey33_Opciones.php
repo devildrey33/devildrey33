@@ -19,9 +19,9 @@ if (!isset($_SESSION["Opciones"]['PaginasVistas'])) {    $_SESSION["Opciones"]['
 else                                                {    $_SESSION["Opciones"]['PaginasVistas'] ++;      }       
 
 // Disposición de las opciones según si el servidor es local o de internet
-if (strpos($_SERVER["SERVER_NAME"], "devildrey33.esy.es") !== false)  {  devildrey33_Opciones::$ServidorDebug = FALSE; }
-else if (strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false) {  devildrey33_Opciones::$ServidorDebug = FALSE; }
-else                                                                  {  devildrey33_Opciones::$ServidorDebug = TRUE;  }
+if (strpos($_SERVER["SERVER_NAME"], "devildrey33.esy.es") !== false)  {  devildrey33_Opciones::$ServidorLocal = FALSE; }
+else if (strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false) {  devildrey33_Opciones::$ServidorLocal = FALSE; }
+else                                                                  {  devildrey33_Opciones::$ServidorLocal = TRUE;  }
 
 
 /* Esta clase contiene todas las variables que pueda necesitar de la variable $_SESSION de forma que si no estan definidas devuelve su valor por defecto sin necesidad de crearla en la cookie.
@@ -29,7 +29,7 @@ else                                                                  {  devildr
         Por otra parte tambien controla los timeouts de ciertas variables que no deben ser guardadas durante mucho tiempo.           */
 class devildrey33_Opciones {
     // Variable que determina las opciones predeterminadas segun si es el servidor local o de internet
-    public static $ServidorDebug = FALSE;    
+    public static $ServidorLocal = FALSE;    
            
     /* Función interna utilizada por las funciones "pseudo variable por referencia" para asignar y obtener los valores */
     static protected function _ObtenerAsignarValor($Nombre, $ValorDefecto, $Valor) {
@@ -52,12 +52,12 @@ class devildrey33_Opciones {
     /* Funciones para obtener / asignar los valores 
             NOTA : Si $Valor es -1 devuelve el valor de la cookie, si valor es distinto a -1 asigna ese valor y lo devuelve.
                                                                                                                    Nombre de la variable        Si es el servidor de internet                         Valor por defecto         Parámetro	*/
-    static public function MostrarConsola($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("MostrarConsola", 		(devildrey33_Opciones::$ServidorDebug === FALSE) ? 0 : 1, 		$Valor);	}
+    static public function MostrarConsola($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("MostrarConsola", 		(devildrey33_Opciones::$ServidorLocal === FALSE) ? 0 : 1, 		$Valor);	}
     static public function Administrador($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("Administrador",                                                                     0, 		$Valor);	}
-    static public function Minificar_CSS($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_CSS", 		(devildrey33_Opciones::$ServidorDebug === FALSE) ? 1 : 0, 		$Valor);	}
-    static public function Minificar_JS($Valor = -1)        {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_JS", 		(devildrey33_Opciones::$ServidorDebug === FALSE) ? 1 : 0, 		$Valor);	}
-    static public function Minificar_HTML($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_HTML", 		(devildrey33_Opciones::$ServidorDebug === FALSE) ? 1 : 0, 		$Valor);	}
-    static public function ActualizarCache($Valor = -1)     {	return devildrey33_Opciones::_ObtenerAsignarValor("ActualizarCache", 		(devildrey33_Opciones::$ServidorDebug === FALSE) ? 0 : 1, 		$Valor);	}
+    static public function Minificar_CSS($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_CSS", 		(devildrey33_Opciones::$ServidorLocal === FALSE) ? 1 : 0, 		$Valor);	}
+    static public function Minificar_JS($Valor = -1)        {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_JS", 		(devildrey33_Opciones::$ServidorLocal === FALSE) ? 1 : 0, 		$Valor);	}
+    static public function Minificar_HTML($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_HTML", 		(devildrey33_Opciones::$ServidorLocal === FALSE) ? 1 : 0, 		$Valor);	}
+    static public function ActualizarCache($Valor = -1)     {	return devildrey33_Opciones::_ObtenerAsignarValor("ActualizarCache", 		(devildrey33_Opciones::$ServidorLocal === FALSE) ? 0 : 1, 		$Valor);	}
     static public function PaginasVistas($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("PaginasVistas",                                                                     0, 		$Valor);	}
     static public function UltimaActividadMS($Valor = -1)   {	return devildrey33_Opciones::_ObtenerAsignarValor("UltimaActividadMS",                                                                 0, 		$Valor);	}
     static public function EntradasIndice($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("Indice_EntradasCargadas",                                                           16, 		$Valor);	}
@@ -102,6 +102,47 @@ class devildrey33_Opciones {
 /* Funciones base utilizadas por varios objetos independientes  *
 * Todas las funciones son estaticas.                           */
 class Base {
+   static public function URL_Web() {           return Base::URL_Raiz()."Web/";          }
+   static public function URL_Graficos() {      return Base::URL_Raiz()."Web/Graficos/";   }
+   static public function URL_JS() {            return Base::URL_Raiz()."Web/JS/";         }
+   static public function URL_CSS() {           return Base::URL_Raiz()."Web/CSS/";        }
+   static public function URL_Cache() {         return Base::URL_Raiz()."Web/Cache/";        }
+   static public function URL_Blog() {          return Base::URL_Raiz()."Blog/";          }
+   static public function URL_Lab() {           return Base::URL_Raiz()."Lab/";          }
+   static public function URL_Descargas() {     return Base::URL_Raiz()."Descargas/";          }
+   static public function URL_Raiz() {
+       return "http://".$_SERVER["SERVER_NAME"]."/".Base::PathRelativo_Raiz();
+   }
+   // devuelve el Path completo del directorio web
+   static public function Path_Web() {          return Base::Path_Raiz()."Web/";   }
+   static public function Path_Graficos() {     return Base::Path_Raiz()."Web/Graficos/";   }
+   static public function Path_JS() {           return Base::Path_Raiz()."Web/JS/";   }
+   static public function Path_CSS() {          return Base::Path_Raiz()."Web/CSS/";   }
+   static public function Path_Cache() {        return Base::Path_Raiz()."Web/Cache/";   }
+   static public function Path_Blog() {         return Base::Path_Raiz()."Blog/";   }
+   static public function Path_Lab() {          return Base::Path_Raiz()."Lab/";   }
+   static public function Path_Descargas() {    return Base::Path_Raiz()."Descargas/";   }
+   static public function Path_Raiz() {         return str_replace("\\", "/", substr(dirname(__FILE__), 0, strlen(dirname(__FILE__)) - 3));  }
+   
+   static public function PathRelativo_Web() {          return Base::PathRelativo_Raiz()."Web/";   }
+   static public function PathRelativo_Graficos() {     return Base::PathRelativo_Raiz()."Web/Graficos/";   }
+   static public function PathRelativo_JS() {           return Base::PathRelativo_Raiz()."Web/JS/";   }
+   static public function PathRelativo_CSS() {          return Base::PathRelativo_Raiz()."Web/CSS/";   }
+   static public function PathRelativo_Cache() {        return Base::PathRelativo_Raiz()."Web/Cache/";   }
+   static public function PathRelativo_Blog() {         return Base::PathRelativo_Raiz()."Blog/";   }
+   static public function PathRelativo_Lab() {          return Base::PathRelativo_Raiz()."Lab/";   }
+   static public function PathRelativo_Descargas() {    return Base::PathRelativo_Raiz()."Descargas/";   }
+   // Función que devuelve el subdirectorio donde esta la raiz de esta web en el servidor. 
+   //  Por ejemplo si está en http://localhost/devildrey33.es/ devuelve "devildrey33.es/"
+   //  Devuelve "" si está en la raíz del servidor.
+   static public function PathRelativo_Raiz() {
+       $Raiz = $_SERVER["DOCUMENT_ROOT"];
+       if (substr($Raiz, -1) !== "/") $Raiz .= "/";    // a veces DOCUMENT_ROOT viene terminado con barra, a veces no...  
+       $TamServidor = strlen($Raiz);
+       $Tmp = str_replace("\\", "/", dirname(__FILE__));
+       return substr($Tmp, $TamServidor , (strlen($Tmp) - $TamServidor) - 3);
+   }
+   
    /* Función que devuelve el nombre del mes especificado numericamente */
    static public function ObtenerMesStr($NumMes) {
        switch ($NumMes) {
@@ -165,7 +206,7 @@ class Base {
        $version= "";
 
        // Plataforma
-       if 		(stripos($u_agent, "linux") !== FALSE)			{ $platformcorto = 'Linux';	$platform = 'Linux'; }
+       if 	(stripos($u_agent, "linux") !== FALSE)			{ $platformcorto = 'Linux';	$platform = 'Linux'; }
        elseif 	(stripos($u_agent, "android") !== FALSE)		{ $platformcorto = 'Android'; 	$platform = 'Android'; } 
        elseif 	(stripos($u_agent, "iPhone") !== FALSE)			{ $platformcorto = 'iPhone';	$platform = 'iPhone'; }
        elseif 	(stripos($u_agent, "iPad") !== FALSE)			{ $platformcorto = 'iPad';	$platform = 'iPad'; }
@@ -328,7 +369,7 @@ class Base {
            if (devildrey33_Opciones::BorrarLogPHP() === 1) {
                 unlink(dirname(__FILE__)."/Cache/php-error.log");
            }
-           $LogStr .= "<script>\$Base.MostrarErroresPHP();</script>";
+//           $LogStr .= "<script>\$Base.MostrarErroresPHP();</script>";
        }
        return $LogStr;
    }
@@ -367,7 +408,11 @@ if (file_exists(dirname(__FILE__)."/Cache/php-error.log") && devildrey33_Opcione
 
 // Establezco un archivo de log para guardar los errores/warnings 
 ini_set("log_errors", 1);
-ini_set("error_log", $_SERVER['DOCUMENT_ROOT']."/Web/Cache/php-error.log");
+ini_set("error_log", Base::Path_Raiz()."Web/Cache/php-error.log");
 
-
+/*
+register_shutdown_function("fatal_handler");
+function fatal_handler() {
+    echo "<script>\$Base.MostrarErroresPHP();</script>";
+}*/
 ?>

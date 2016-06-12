@@ -1,6 +1,6 @@
 <?php 
 //    include_once($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33_htaccess.php");
-    include_once($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33_cmd.php");
+    include_once("Web/devildrey33_cmd.php");
     $Comando = basename($_GET["CMD"], ".php");
     if (strpos($_GET["CMD"], "cmd.php") !== false) {
         $cmd = new devildrey33_cmd($Comando);

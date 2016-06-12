@@ -25,7 +25,7 @@
 </style>";
 	$Base->InicioPlantilla("Colorear código con PHP (Parte 6 HTML)", $DeclaracionesHeadExtras);*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Colorear código">
@@ -38,7 +38,6 @@
 ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_ColoresHTML.png" alt="Colorear código con PHP parte 6 HTML" />
                 <p>Finalmente llegamos a la sexta parte de los tutoriales de colorear código, donde el objetivo será el lenguaje HTML. A decir verdad es el más complicado de pensar, ya que puede disponer de partes CSS, JavaScript y PHP que debemos pintar con su correspondiente esquema de colores.</p>
                 <p>No es casualidad que haya dejado el HTML para el final, ya que para poder hacerlo necesitábamos tener las partes anteriores (JavaScript, CSS y PHP) programadas.</p>
                 <p>Al igual que con los otros tutoriales vamos a utilizar un Diccionario de palabras para HTML, pero el algoritmo para parsear HTML será algo distinto.</p>

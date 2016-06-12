@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WINAPI C++ 2.1 (Creación del ObjetoEscena)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -16,7 +16,6 @@
 ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.2.1.png" alt="Tutorial 2.1" style='cursor:pointer;' />
                 <p>Esta parte del tutorial consistira en crear un objeto que se encargara de gestionar la escena. La escena seran todos aquellos graficos que se tengan que pintar en la venana, y en este caso consistira en un fondo y varias 'ventanas' translucidas. </p>
                 <p>Necesitaremos crear cuatro modelos de ventanas translucidas por lo que sera una buena idea hacer un modelo base del cual poder derivar nuestras futuras tres ventanas translucidas, que seran : Marcador, Tablero, Mensaje y Records.</p>
                 <!-- FIN_INTRODUCCION -->

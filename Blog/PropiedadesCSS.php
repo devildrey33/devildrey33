@@ -20,7 +20,7 @@
 	
 
         
-    include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+    include("../Web/devildrey33.php");
     $Base = new devildrey33;	
 
     $META = '<meta name="description" content="CSS Propiedades">
@@ -37,7 +37,6 @@
 
 	echo '
 			<!-- INTRODUCCION -->
-			<img class="ImagenPortada" src="/Web/Graficos/250x200_CSS3.png" alt="Propiedades CSS" />
 			<p>El corazón que hace funcionar el CSS son sin duda sus propiedades, las cuales nos permiten modificar tanto el comportamiento como el aspecto gráfico de cualquier etiqueta.</p>
 			<p>A partir de CSS3 la lista de propiedades ha crecido de forma significativa, y aunque no hay ningún navegador que las soporte todas, la mayoría de navegadores actuales empiezan a soportar una gran cantidad de ellas.</p>
 			<p>Es posible que esta lista no abarque todas las propiedades existentes, ya que a día de hoy aun se siguen añadiendo nuevas propiedades, por lo que voy a intentar mantener la lista actualizada, y tener cada propiedad que funcione en algún navegador documentada y con algún ejemplo.</p>

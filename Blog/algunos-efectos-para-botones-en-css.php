@@ -1,5 +1,5 @@
 <?php 
-    include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+    include("../Web/devildrey33.php");
     $Base = new devildrey33;	
 
     $META = '<meta name="description" content="Efectos de resaltado para botones en CSS">'.Intro().
@@ -9,11 +9,10 @@
     
     $Base->InicioPlantilla(basename(__FILE__), $Titulo, $META);
 
-    $Base->InicioBlog(basename(__FILE__), $Titulo);
+    $Base->InicioBlog(basename(__FILE__), $Titulo, TRUE);
 ?>	
     <script>$Base.CargarCSS("Blog_algunos-efectos-para-botones-en-css.css");</script>
 
-    <img class="ImagenPortada2" src="/Web/Graficos/250x200_CSS3.png" alt="Varios efectos CSS3 para botones" />
     
     <p>La intención de este documento es mostrar la forma de exprimir al máximo una simple etiqueta <code>&lt;button&gt;</code> añadiendo transiciones y transformaciones para cada uno de sus estados.</p>
     <p>Lo que mas claro nos debe quedar a la hora de trabajar con botones son sus estados. En esencia una etiqueta <code>&lt;button&gt;</code> puede tener los siguientes estados :</p>

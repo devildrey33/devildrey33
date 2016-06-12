@@ -1,6 +1,6 @@
 <?php 
         
-    include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+    include("../Web/devildrey33.php");
     $Base = new devildrey33;	
 
     $META = '<meta name="description" content="CSS Degradados">
@@ -13,7 +13,6 @@
         
 ?>
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_CSS3.png" alt="Colores CSS" />
                 <p>Ahora en CSS3 se pueden utilizar degradados como si fueran una imagen de fondo. Con esta mejora tenemos la oportunidad de innovar mucho en los diseños de nuestras páginas, ya que podemos calcular estos degradados tanto en porcentajes como en pixeles, y esto nos da mucha flexibilidad para adaptar nuestras páginas a distintos dispositivos sin tener que rompernos la cabeza creando varias imágenes para ello.</p>
                 <p>Además disponemos de degradados lineales o radiales, en los que podemos usar 2 o más colores, y que pueden tener patrones repetitivos.</p>
                 <p>Lo único malo de estos degradados es que varios navegadores antiguos (y no tan antiguos como Internet Explorer 9) no los soportan, pero con el tiempo estoy seguro de que serán una herramienta básica para la mayoría de webs.</p>
@@ -183,7 +182,7 @@
 <!--                            <table>
                             	<tr> 
                                     <td style="vertical-align:top"> -->
-                                        <img src='/Graficos/radial-gradient.png' style="float:right; margin:4px 4px 4px 8px; padding:4px" alt='La parte azul representa la caja donde pintamos el degradado, y los circulos de puntos rojos son partes del degradado que estan tanto dentro como fuera de la caja.' />
+                                        <img src='../Web/Graficos/radial-gradient.png' style="float:right; margin:4px 4px 4px 8px; padding:4px" alt='La parte azul representa la caja donde pintamos el degradado, y los circulos de puntos rojos son partes del degradado que estan tanto dentro como fuera de la caja.' />
                                         <table class='Tabla'>
                                             <tr>
                                                 <td style="white-space:nowrap">1 <b>closest-side</b></td>

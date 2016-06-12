@@ -6,7 +6,7 @@
 
 	$Base->InicioPlantilla("devildrey33_ListaDesplegable 2.0 FINAL", $HEAD);*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = "<meta name='description' content='Lista Desplegable'>
@@ -221,7 +221,6 @@ function IrEstructuracion(Num) {
 </script>
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_ComboBoxWeb2.png" alt="devildrey33_ListaDesplegable 2.0 BETA" />
                 <p>Hace más de un año cree un control desplegable para esta web el cual me tenía que servir para cambiar las categorías del índice. Dicho sea de paso ese control era muy precario pero cumplía perfectamente su función para esta web.</p>
                 <p>Pero hace unos días, tuve que lidiar con ciertos problemas que quise solucionar con ese control, y al ver lo nefasto que era, me decidí por crear uno nuevo desde cero y utilizando únicamente JavaScript con un poco de CSS.</p>
                 <p>El resultado visualmente no varía mucho, pero a la hora de programar con él la cosa cambia enormemente a mejor. Para empezar se puede manipular todo el control dinámicamente una vez creado mediante JavaScript, esto quiere decir que podemos añadir / modificar / eliminar items después de haber creado el control, además también lo he creado de forma que se pueda desplegar hacia abajo o hacia arriba, de esta forma también puedo añadirlo al footer sin cargarme el diseño de la web.</p>

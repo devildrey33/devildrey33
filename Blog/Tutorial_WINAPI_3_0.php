@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WinAPI C++ 3.0 (Introducción al Instalador)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,14 +17,13 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.3.0.png" alt="Tutorial 3 Instalador y Ensamblador" style='cursor:pointer;' onclick="Imagen_Mostrar('/Graficos/Ejemplo.3.0.png');" />
                 <p>La tercera entrega de tutoriales WINAPI tiene por objetivo lograr hacer un instalador desde cero. Para ello se trataran temas como la compresion de archivos y el uso de varios controles basicos.</p>
                 <p>En esencia necesitaremos construir dos aplicaciones que seran el instalador y el ensamblador.</p>
                 <p>El instalador sera una aplicacion que dentro del mismo ejecutable llevara todos los archivos a instalar comprimidos.</p>
                 <p>Para crear el instalador necesitaremos hacer una segunda aplicacion que comprima y ensamble todos los archivos a instalar dentro del instalador. Dicha aplicacion se llamara ensamblador.</p>
                 <!-- FIN_INTRODUCCION -->
                 
-                <img src="/Graficos/Instalador.png" alt="Instalador" width="454" height="230" style="float:right" />
+                <img src="../Web/Graficos/Instalador.png" alt="Instalador" width="454" height="230" style="float:right" />
                 <h2>Instalador:</h2>
                 <p>El instalador será un binario ejecutable preparado para leer  el final de el mismo donde debería encontrar todos los archivos que deseamos des-empaquetar. </p>
                 <p>Los archivos de dentro del instalador estarán comprimidos  para ocupar menos espacio. Por ello el instalador deberá ser capaz de descomprimir los archivos en memoria y guardar los datos descomprimidos en el disco.</p>
@@ -36,7 +35,7 @@
                 <h2>Ensamblador:</h2>
                 <p>El ensamblador será una aplicación que nos permitirá unir la  aplicación del instalador con todos los archivos que se deseemos incluir. Para ello nos pedirá el directorio por defecto de la instalación, el nombre del  proyecto, y la ruta del binario que se usara para hacer la instalación. A  partir de esos datos mas los archivos que le añadamos deberá ser capaz de  juntarlos en un solo binario de forma ordenada para que luego el binario  instalador pueda extraerlos.</p>
                 <p>Además también tendrá la posibilidad de cargar y guardar  proyectos de instalación, de forma que nos haga un poco mas cómodo el proceso.</p>
-                <img src="/Graficos/Ensamblador.png" alt="Ensamblador" />
+                <img src="../Web/Graficos/Ensamblador.png" alt="Ensamblador" />
                 <p>Ahora que sabemos por encima lo que necesitaremos hacer,  dividiremos por partes todos los objetos nuevos que vamos a necesitar en los  siguientes tutoriales:</p>
                 <table class="Tabla">
                   <tr>

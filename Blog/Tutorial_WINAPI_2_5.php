@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WINAPI C++ 2.5 (Creación del ObjetoSnake_Nivel)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.2.5.png" alt="Tutorial 2.5" style='cursor:pointer;'/>
                 <p>En este tutorial no vamos a tocar la API prácticamente pero veremos cómo hacer un parsing de un fichero de texto para obtener datos que usaremos para definir un nivel/pantalla del juego.</p>
                 <p>Este objeto tiene por objetivo leer un archivo de texto e identificar y almacenar los valores que contiene dentro de forma que pueda crear paredes en la pantalla del juego donde nos encontremos. Para ello usaremos el ObjetoArchivo que creamos anteriormente en el tutorial 2.3</p>
                 <!-- FIN_INTRODUCCION -->

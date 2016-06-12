@@ -4,7 +4,7 @@
 	$Base->InicioPlantilla("Creación de páginas web desde cero (1 Introducción)");*/
         
         
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial HTML">
@@ -17,7 +17,6 @@
 ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_HTML5.png" alt="Tutorial creación de paginas web desde cero" />
                 <p>Hoy empezaremos con un nuevo tutorial para aquellos interesados en aprender a crear páginas web y que prácticamente no tienen conocimientos sobre el tema.</p>
                 <p>La idea es mostrar en la medida de lo posible todos los conceptos básicos para realizar una página web utilizando HTML5, CSS3 y en última instancia también veremos lo más básico de JavaScript para ir abriendo boca.</p>
                 <p>Como algunos sabréis HTML5 es la última versión del lenguaje destinado a maquetar páginas web.</p>

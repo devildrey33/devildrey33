@@ -2,7 +2,7 @@
 /*	include("devildrey33.php");
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WinAPI C++ 3.5 (Creación del ObjetoComboBox)");*/
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Ejemplo.3.5.png" alt="Tutorial 3 Instalador y Ensamblador" />
                 <p>En windows un combobox es un control que consiste en un EDITBOX que tiene un BUTTON al lado, y que al presionar ese button despliega un LISTBOX con varias opciones.</p>
                 <p>En este tutorial veremos el funcionamiento básico del COMBOBOX, y lo encapsularemos dentro de la clase ObjetoComboBox. Esta clase heredara de ObjetoControlEstandar (La clase ObjetoControlEstandar se describe en el tutorial <a href="Tutorial_WINAPI_3_3.php" target="_self">3.3 Creación del ObjetoEditBox</a>)</p>
                 <p>Tenemos que tener bien claro para que vamos a querer usar este control, ya que podemos usarlo como una forma de seleccionar opciones fijas, o tambien podria servirnos para otros fines que no requieran opciones fijas, como por ejemplo insertar un texto a buscar que nos muestre otras posibilidades, etc...</p>

@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("BubaTronik 0.61");*/
 
-	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+	include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Reproductor audio/video">
@@ -17,7 +17,6 @@
         ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_BubaTronik061.png" alt="BubaTronik" onclick="Imagen_Mostrar('/Graficos/BubaTronik061.png');" />
                 <p>BubaTronik es un reproductor mixto de audio y video que fue hecho ante la necesidad de tener un programa competente que pudiera manejar mi colección de música y videos (más de 5000 mp3s, y más de 500 videos). Para ello BubaTronik tiene una base de datos la cual contiene información relevante sobre esos medios, y permite la creación de listas en segundos y con una gran facilidad.</p>
                 <p>Además el reproductor se ha diseñado de forma que se le puedan añadir idiomas y configuraciones de colores externas al proyecto inicial sin demasiado esfuerzo.</p>
                 <p>Este reproductor funciona bajo Windows XP, Windows 2k3 server, Windows Vista y Windows 7.</p>

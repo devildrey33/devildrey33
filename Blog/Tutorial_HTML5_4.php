@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Creación de páginas web desde cero (4 Estilos)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial HTML">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_CSS3.png" alt="Tutorial creación de paginas web desde cero" />
                 <p>Llegamos a un punto interesante donde veremos que podemos cambiar la apariencia de prácticamente cualquier etiqueta.</p>
                 <p>Pero que podemos hacer realmente con los estilos CSS? Pues si os digo la verdad en la actualidad se pueden hacer maravillas con ellos, ya que nos permiten adaptar cualquier etiqueta a nuestras necesidades, y además podemos hacerlo de una forma en la que reutilizamos código, por lo que podemos por ejemplo aplicar el mismo estilo a varias etiquetas distintas.</p>
                 <p>Esto es muy interesante a la larga ya que nos ahorrara muchas líneas de código además de ofrecernos una versatilidad enorme en cuanto a la apariencia de nuestros documentos html.</p>

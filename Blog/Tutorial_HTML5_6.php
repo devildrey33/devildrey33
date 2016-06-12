@@ -2,7 +2,7 @@
 /*	include("devildrey33.php");
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Creación de páginas web desde cero (6 Diseño)");*/
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial HTML">
@@ -16,7 +16,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_CSS3.png" alt="Tutorial creación de paginas web desde cero" />   
                 <p>En los tutoriales anteriores se han tratado varios temas de una índole muy básica respecto a etiquetas HTML y estilos CSS, pero en cuestiones de diseño no se ha hecho gran cosa. Por ello hoy vamos a ver algunas técnicas para crear marcos y posicionarlos a vuestro gusto.</p>
 				<p>Esto os llevara a crear una serie de marcos y alinearlos de a la derecha, a la izquierda y al centro.</p>
                 <p>También veréis por encima como añadir una imagen de fondo y como crear efectos de transparencia en los marcos.</p>

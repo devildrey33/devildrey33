@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Crear servidor web de pruebas portatil para windows");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = "<meta name='description' content='Un repaso de como utilizar controles input[checkbox/radio] asociados a un label mediante el selector :checked'>
@@ -16,7 +16,6 @@
 ?>	
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_InputOculto.png" alt="Utilizar controles input[checkbox/radio] ocultos asociados a un label." />
                 <p>Desde hace un tiempo me he aficionado a utilizar todo tipo de atributos para marcar estados de una transición, pero últimamente he dado un paso más y he empezado a utilizar controles input[checkbox/radio] para construir menús de opciones que requieren cierta interacción del usuario.</p>
                 <p>Utilizar este tipo de controles para interacciones simples de usuario tiene sus ventajas, pero como todo también sus desventajas.</p>
                 <p>Yo destacaría por el lado bueno, que si se hace bien no requiere prácticamente nada de JavaScript, y queda todo el tema de transiciones y cambios de estado en objetos hecho en CSS3. Por la parte mala, no suele funcionar en navegadores antiguos, y son mínimo 2 o 3 etiquetas para un solo control, por lo que si queremos hacer una lista con 1000 entradas, la cosa se va a sobrecargar un poco.</p>

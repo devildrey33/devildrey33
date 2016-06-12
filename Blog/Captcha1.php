@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Captchas (1 Introducción)");*/
 
-	include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+	include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial Captchas">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Captcha.png" alt="Captchas" />
                 <p>Hoy en día quien no ha tenido que lidiar con un captcha, y quien no ha fallado más de una vez en su validación?</p>
                 <p>Los captchas más utilizados en la actualidad se basan en una imagen que contiene texto distorsionado de alguna forma, que a veces resulta imposible incluso para un ser humano de identificar.</p>
                 <p>En la mayoría de casos el captcha se utiliza para proteger páginas web que tienen una sección de mensajes para que a nadie se le ocurra hacer una aplicación que mande mensajes de spam, o en servidores de descarga directa tipo fileserver y demás para evitar ataques que puedan colapsar sus servidores a base de descargar miles de ficheros a la vez.</p>

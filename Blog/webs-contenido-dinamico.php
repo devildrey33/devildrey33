@@ -1,5 +1,5 @@
 <?php 
-    include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+    include("../Web/devildrey33.php");
     $Base = new devildrey33;	
 
     $META = '<meta name="description" content="Webs de contenido dinámico">
@@ -11,7 +11,6 @@
 ?>	
 
 
-    <img class="ImagenPortada" src="/Web/Graficos/250x200_webs-dinamicas.png" alt="Webs dinámicas" />
     
     <p>Desde que se empezó a usar Ajax se podría decir que empezaron a existir webs con contenido dinámico, al principio se utilizaba para cosas simples, y estaba pensado mas bien como una herramienta para consultar pequeñas cantidades de datos. Con el paso de los años Ajax se ha vuelto prácticamente imprescindible en cualquier proyecto web medio/grande.</p>
     <p>Por poner un ejemplo claro, Facebook carga prácticamente todo su contenido mediante Ajax, seguro que todos conocéis su scroll infinito.</p>

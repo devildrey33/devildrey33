@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Captchas (3 Captcha arrastrar y soltar PHP + JQuery)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial Captchas">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Captcha3.png" alt="Captchas" />
                 <p>En los anteriores tutoriales vimos un tipo de captcha muy básico que requería introducir el resultado de una suma en una caja de texto, pero esta vez vamos a enfocar el tema de otra forma. Se mostraran nueve resultados en recuadros independientes, y debajo una suma, y lo que habrá que hacer es arrastrar el resultado correcto para validar el captcha.</p>
                 <p>Para hacer esto vamos a utilizar PHP y JQuery. También necesitaremos la librería JQuery UI que es la que nos permite hacer el efecto arrastrar y soltar compatible para todos los navegadores.</p>
                 <!-- FIN_INTRODUCCION -->

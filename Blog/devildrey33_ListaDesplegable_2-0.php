@@ -6,7 +6,7 @@
 
 	$Base->InicioPlantilla("devildrey33_ListaDesplegable 2.0 FINAL", $HEAD);*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = "<meta name='description' content='Lista Desplegable'>
@@ -221,7 +221,6 @@ function IrEstructuracion(Num) {
 </script>
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_devildrey33_ListaDesplegable_2.0.png" alt="devildrey33_ListaDesplegable 2.0 BETA" />
                 <p>Hace unos días os presentaba un control llamado 'devildrey33_ComboBox2' en fase beta, pues bien ahora os dejo la versión final, que por cierto he renombrado a 'devildrey33_ListaDesplegable' porque me parece más adecuado y describe mejor al control.</p>
                 <p>Entre las mejoras hay que destacar que ahora es compatible incluso con IE6 (y me ha costado bastante conseguir-lo) aunque hay una opción que solo está disponible para IE9 además de para todos los navegadores actuales.</p>
                 <p>También he añadido algunas opciones nuevas, ahora se puede especificar un ancho mínimo para el control, se puede especificar si deseamos ocultar la lista una vez seleccionado un nuevo item, y he modificado la creación del control de forma que la lista de items y la función que recibía cuando se cambiaba la selección son ahora opcionales.</p>
@@ -289,7 +288,7 @@ function IrEstructuracion(Num) {
                 	<div class='Explicacion' id='Explicacion4'></div>
                 	<div class='Explicacion' id='Explicacion5'></div>
                 	<div class='Explicacion' id='Explicacion6'></div>
-                    <img src="/Graficos/DiagramaListaDesplegable.png" style='border:none' alt="ListaDesplegable de ejemplo">                
+                    <img src="../Web/Graficos/DiagramaListaDesplegable.png" style='border:none' alt="ListaDesplegable de ejemplo">                
                 </div>
                 
                 <div style='clear:both; display:block; height:222px;'>

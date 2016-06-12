@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Menu PHP + XML + JQuery + JavaScript + Css");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Menu PHP">
@@ -16,7 +16,6 @@
 ?>	
  
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_MenuWebFijo.png" alt="Menu PHP + XML + JQuery + JavaScript + Css" />
                 <p>Hoy para salir un poco de la rutina de la creación de páginas web desde cero y del objeto canvas 2d, os voy a mostrar cómo crear un menú para vuestra pagina web igual al que tengo en la mía.</p>
                 <p>Este menú obtiene sus datos a partir de un archivo XML, y puede tener tantos submenús como quepan en pantalla, además es absolutamente recursivo por lo que podemos crear tantos submenús dentro de un submenú como nos hagan falta (siempre que el tamaño de la pantalla nos lo permita).</p>
                 <p>Por desgracia está pensado para trabajar en una posición fija de la ventana del navegador, por lo que habría que retocarlo para trabajar con posiciones relativas / absolutas (en términos de la propiedad css <i>position</i>).</p>

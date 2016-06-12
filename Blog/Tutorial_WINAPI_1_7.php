@@ -3,7 +3,7 @@
 	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
 	$Base->InicioPlantilla("Tutorial WINAPI C++ 1.7 (Terminando la calculadora)");*/
 
-        include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+        include("../Web/devildrey33.php");
 	$Base = new devildrey33;	
 	
 	$META = '<meta name="description" content="Tutorial WINAPI">
@@ -17,7 +17,6 @@
 
 
                 <!-- INTRODUCCION -->
-                <img class="ImagenPortada" src="/Web/Graficos/250x200_Calculadora.png" alt="Tutorial 1.7" style='cursor:pointer;' />
                 <p>Ya hemos llegado al punto en que ensamblaremos todo lo hecho anteriormente para formar nuestra calculadora. Si os digo la verdad nunca pensé que me curraría tanto el código para una calculadora, pero espero que eso os haya servido para familiarizaros con el API de Windows. Además no solo se ha hecho una calculadora, si no que también tenéis una base para hacer ventanas y controles para futuras aplicaciones.</p>
                 <p>Se podía haber hecho la calculadora utilizando controles de Windows y sin hacer objetos ni nada, a saco. Aunque probablemente no hubiera dado para enseñaros gran cosa, en cambio haciendo los botones, el marcador, nuestro objeto ventana y tal, espero que os hayan quedado claras cuatro cosas sobre las ventanas de Windows y el GDI.</p>
                 <!-- FIN_INTRODUCCION -->

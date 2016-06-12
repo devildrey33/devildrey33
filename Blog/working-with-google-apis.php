@@ -1,5 +1,5 @@
 <?php
-    include($_SERVER['DOCUMENT_ROOT']."/Web/devildrey33.php");
+    include("../Web/devildrey33.php");
     $Base = new devildrey33;
 
     $META = '<meta name="description" content="Working with google APIs">'.Intro().
@@ -7,7 +7,7 @@
 
     $Base->InicioPlantilla(basename(__FILE__), "Working with google APIs", $META);
 
-    $Base->InicioBlog(basename(__FILE__), "Working with google APIs");
+    $Base->InicioBlog(basename(__FILE__), "Working with google APIs", TRUE); /* TRUE = imatge a la dreta */
     $File_Source_1 = '../Codigo/GoogleAPI/simple_gAPI_example_empty.html';
     $File_Source_2 = '../Codigo/GoogleAPI/simple_gAPI_example.html';
 
@@ -19,7 +19,6 @@
 </script> 
 
 <!-- <div style="display: inline-block; margin-bottom: 30px;"> -->
-    <img class="ImagenPortada2" src="/Web/Graficos/250x200_google_apis.jpg" alt="working with google apis" />
 
     <p>We’ve already seen <a href="how-to-use-google-app-scripts" target="_blank">how to develop a whole web app using the "Web App Scripts"</a>.</p>
     <p>However, many times we would like to keep our web app into another place/server, or just connect an existing web app with the google services, so in this case we must use the google APIs to interact with the google services.</p>
@@ -38,19 +37,19 @@
 <p>Before coding anything, we must grant the access to the APIs we’re going to use into our google account.</p>
 
 <p>So go to your <a href="https://console.developers.google.com/" target="_blank">https://console.developers.google.com/</a> and create a new project (for instance, project2):</p>
-<img src="/Web/Graficos/working_with_google_apis_1.png" />
+<img src="../Web/Graficos/working_with_google_apis_1.png" />
 
 <p>Then, go to <b>APIs & auth</b> &rarr; <b>APIs</b> option of the new Project, and there select the API you want to enable for the project. In our example it will be the <b>Drive API</b> :</p>
-<img src="/Web/Graficos/working_with_google_apis_2.png" />
+<img src="../Web/Graficos/working_with_google_apis_2.png" />
 
 <p>And set <b>enable</b> the API for the project :</p>
-<img src="/Web/Graficos/working_with_google_apis_3.png" />
+<img src="../Web/Graficos/working_with_google_apis_3.png" />
 
 <p>You may add more information about why your app needs to be connected into the Google Drive Service :</p>
-<img src="/Web/Graficos/working_with_google_apis_4.png" />
+<img src="../Web/Graficos/working_with_google_apis_4.png" />
 
 <p>Now go to the <b>APIs & auth</b> &rarr; <b>Credentials</b> option, and add a new credential of <b>OAuth 2.0 client ID</b>:</p>
-<img src="/Web/Graficos/working_with_google_apis_5.png" />
+<img src="../Web/Graficos/working_with_google_apis_5.png" />
 
 <p>There are 2 authentication methods depending on which sort of use it will be needed:</p>
 <ul style='list-style:decimal'>
@@ -60,23 +59,23 @@
 <p>In the example, we’ll use the OAuth 2.0 method, so we’ll work with private data.</p>
 
 <p>However, before creating it, you must setup the <b>Consent Screen</b>. This is the screen that will be shown to get the authorization when the app tries to access google API for first time. So go to set it up :</p>
-<img src="/Web/Graficos/working_with_google_apis_6.png" />
+<img src="../Web/Graficos/working_with_google_apis_6.png" />
 
 <p>type a <b>Product Name</b> and save it.</p>
-<img src="/Web/Graficos/working_with_google_apis_7.png" />
+<img src="../Web/Graficos/working_with_google_apis_7.png" />
 
 <p>Afterwards, choose the <b>Web application</b> type and – for more safety – I advise to filter the origin domains where the app will access (in the example, we’ll use a local server, so we’ll access from local http://localhost) :</p>
-<img src="/Web/Graficos/working_with_google_apis_8.png" />
+<img src="../Web/Graficos/working_with_google_apis_8.png" />
 
 <p>Then, you will get the <b>Client ID</b> and <b>Client Secret</b> keys. Keep your "Client ID" because we’ll need it later.</p>
-<img src="/Web/Graficos/working_with_google_apis_9.png" />
+<img src="../Web/Graficos/working_with_google_apis_9.png" />
 
 <p>So we’ve already got it. Now we can access the services using the API.</p>
 <p>The first time you try to access to the API, if the request parameter "<b>immediate</b>" is false (we’ll see it later), a window screen pop up will ask you for login into google account (if you’re not yet):</p>
-<img src="/Web/Graficos/working_with_google_apis_10.png" />
+<img src="../Web/Graficos/working_with_google_apis_10.png" />
 
 <p>and also to allow the access to the google service:</p>
-<img src="/Web/Graficos/working_with_google_apis_11.png" />
+<img src="../Web/Graficos/working_with_google_apis_11.png" />
 
 
 
@@ -97,8 +96,8 @@
 
 <p>And the second parameter, is a handler function (<b>handleAuthResult</b>), to be called after the request finishes, in order to handle the answer. The most common we should do here is to test the result of the request with the parameter (<b>authRestful</b>), and then proceed as the app needs.</p>
 <p>If you try to execute the example, you’ll see that there’s an authorization request to the API:</p>
-<img src="/Web/Graficos/working_with_google_apis_12.png" />
-<img src="/Web/Graficos/working_with_google_apis_13.png" />
+<img src="../Web/Graficos/working_with_google_apis_12.png" />
+<img src="../Web/Graficos/working_with_google_apis_13.png" />
 
 <p>As you may know, the google API works as a <b>RESTful</b> method. It means that the client (javascript, or any else we’re using) and the server (google) uses a http URL structured interface to compose the messages for sending requests and responses.</p>
 <p class="nota">You can learn more about this process <a href="http://www.restapitutorial.com/lessons/whatisrest.html" target="_blank">there</a>.</p>
@@ -123,10 +122,10 @@
 
 
 <p>And get the following result:</p>
-<img src="/Web/Graficos/working_with_google_apis_14.png" />
+<img src="../Web/Graficos/working_with_google_apis_14.png" />
 
 <p>As you’ve seen, after pushing the button, the page launched a XHR request to talk with the API, with the URL and defined parameters:</p>
-<img src="/Web/Graficos/working_with_google_apis_15.png" />
+<img src="../Web/Graficos/working_with_google_apis_15.png" />
 
 
 
@@ -140,7 +139,7 @@
 
 
 <p>As you can see, the result is the same, and the XHR request has the same structure and parameters :</p>
-<img src="/Web/Graficos/working_with_google_apis_16.png" />
+<img src="../Web/Graficos/working_with_google_apis_16.png" />
 
 
 
