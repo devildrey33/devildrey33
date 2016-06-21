@@ -16,7 +16,7 @@
     border-left:4px solid #666;
     border-spacing:2px;
     border-collapse:separate;
-    background:#FFFFFF;
+/*    background:#FFFFFF;*/
     margin-top:10px;    
     display:table;
     transition:0.4s;
@@ -25,6 +25,7 @@
 
 .Tabla:hover {
     outline:1px solid #999;
+    background:#f7f7f7;
 }
 
 /* Tablas dentro de tablas tienen el borde mas pequeño y claro */
@@ -60,16 +61,16 @@
     border:2px solid rgb(240,240,240);
 }
 
-.Tabla th {  padding:10px; }
+.Tabla th {  padding:10px; background : #f7f7f7}
 .Tabla td {  padding:5px; }
 
-.Tabla td {    
-/*    border-bottom:4px solid rgb(240,240,240);
-    border-right:4px solid rgb(240,240,240);*/
-}
-.Tabla:hover, .Tabla:hover th {
-    background:#CCC;
-}
+/*.Tabla td {    
+    border-bottom:4px solid rgb(240,240,240);
+    border-right:4px solid rgb(240,240,240);
+}*/
+/*.Tabla:hover, .Tabla:hover th {
+    background:#f7f7f7;
+}*/
 /*
 .Tabla:hover td, .Tabla:hover th {
     border-bottom:4px solid #CCC;

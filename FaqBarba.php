@@ -1,20 +1,35 @@
 <?php
     include("Web/devildrey33.php");
 
-    $Base = new devildrey33;
-    $Base->InicioPlantilla(basename(__FILE__), "devildrey33.es", "");    
+    $Web = new devildrey33;
+    $Web->InicioPlantilla(basename(__FILE__), "devildrey33.es", "");    
     
     $ArrayDatos = (require dirname(__FILE__).'/Web/Passwords.php');
+    
+    // Valores de las configuraciones del htaccess
+    $htaccess = devildrey33_htaccess::ObtenerValores();
 ?>
     <article class='Blog' pagina='FaqBarba.php'>
         <br />
         <h2>Instal·lació</h2>
+        <p>Et vaig dir que la web no funcionaba si no la posaves a l'arrel del servidor, però ara ja es pot fer anar desde un sub-directori.</p>
+        <?php             
+            if ("/".Base::PathRelativo_Raiz() !== $htaccess["RewriteBase"]) {
+                echo "<p>Desde aquesta arrel ".Base::URL_Raiz()." es necesita un '<code>RewriteBase /".Base::PathRelativo_Raiz()."</code>' i tens ho configurat com a '<code style='color:red; font-weight:bold'>RewriteBase ".$htaccess["RewriteBase"]."</code>'. ". 
+                        "Obre aquest enllaç per solucionar-ho : <a href='AsignarRaiz.php' target='_blank'>AsignarRaiz.php</a>, i despres recarrega el Faq.";                
+            }            
+            else {
+                echo "<p>Desde aquesta arrel ".Base::URL_Raiz()." es necesita un '<code>RewriteBase /".Base::PathRelativo_Raiz()."</code>' i tens ho configurat com a '<code style='color:green; font-weight:bold'>RewriteBase ".$htaccess["RewriteBase"]."</code>'. ";                
+            }
+        ?>
+            <div class='nota'>Si el <code>RewriteBase</code> no està configurat correctament, no funcionara cap enllaç que no estigui acabat amb <code>.php</code> ni tampoc funcionaran les peticions Ajax (el 99% de les peticions son al directori virtual <code>/cmd/</code>). </div>
         <ul>
-        <li><b>Pots accedir a la web desde localhost/directori web</b>, però mes d'un enllaç no funcionara. Per fer-ho has d'executar un cop l'arxiu <a href='AsignarRaiz.php'>AsignarRaiz.php</a>, (aquest arxiu modificara el arxiu .htaccess per establir l'arrel de la web, i d'aquesta forma funcionaran els directoris virtuals) </li>
+            <li><b>Si vols accedir a la web desde http://localhost/directori web/</b> però pot ser que alguna imatge o alguna url no funcionin correctament.
+            </li>
+        <li><b>Si vols que la web funcioni al 100%</b> exactament com en el servidor de 1and1, hauras de configurar-te el servidor de forma que la web quedi a l'arrel, es a dir <b>NO VAL</b> : <code style="color:red">http://localhost/devildrey33</code>, hauras d'enllaçarte un domini d'aquest estil : <code style="color:green">http://devildrey33.st0rm</code> amb el VirtualHost dintre del httpd.conf (recorda que tambè hauras de modificar l'arxiu de hosts), o posar-la a <code style="color:green">http://localhost/</code> directament.</li>
         
 <?php echo "<li><b>La web pot funcionar sense BD</b>, pero obviament no podras accedir a certes funcions. Si necesites les funcions de la BD (comentaris i stats varis) has de crear la BD <b>".$ArrayDatos["NOM-BD"]."</b> amb login '<b>root</b>', pass '<b>".$ArrayDatos["PASS-Barba"]."</b>'.</li>"; ?>
         </ul>
-        <p class='nota'>Per que la web funcioni al 100% ha d'estar a l'arrel del servidor, es a dir <b>NO VAL</b> : <code style="color:red">http://localhost/devildrey33</code>, hauras d'enllaçarte un domini d'aquest estil : <code style="color:green">http://devildrey33.st0rm</code> amb els arixus hosts i httpd.conf.</p>
         <hr />
         <h2>Conta</h2>
         <table class="Tabla">
@@ -51,13 +66,13 @@
                 <td>/Apps</td>
                 <td>/Descargas</td>
                 <td>Directori amb zips de descarrega</td>               
-                <td><code>$Base::URL_Descargas()</code></td>
+                <td><code>Base::URL_Descargas()</code></td>
             </tr>
             <tr>
                 <td>/Blog</td>
                 <td>/Blog</td>
                 <td>Directori on van les entrades del blog</td>               
-                <td><code>$Base::URL_Blog()</code></td>
+                <td><code>Base::URL_Blog()</code></td>
             </tr>
             <tr>
                 <td>/Codigo</td>
@@ -105,13 +120,13 @@
                 <td>/Web</td>
                 <td>/Web</td>
                 <td>Directori principal del codi PHP</td>               
-                <td><code>$Base::URL_Web()</code></td>
+                <td><code>Base::URL_Web()</code></td>
             </tr>
             <tr>
                 <td>/Web/Cache</td>
                 <td>/Web/Cache</td>
                 <td>Directori on es guarden arxius cache</td>               
-                <td><code>$Base::URL_Cache()</code></td>
+                <td><code>Base::URL_Cache()</code></td>
             </tr>
             <tr>
                 <td>/Web/Config</td>
@@ -123,19 +138,19 @@
                 <td>/Web/CSS</td>
                 <td>/Web/CSS</td>
                 <td>Directori pels arxius CSS</td>               
-                <td><code>$Base::URL_CSS()</code></td>
+                <td><code>Base::URL_CSS()</code></td>
             </tr>
             <tr>
                 <td>/Web/Graficos</td>
                 <td>/Web/Graficos</td>
                 <td>Directori on es guarden totes les imatges, tambè es pot accedir desde http://img.devildrey33.es</td>               
-                <td><code>$Base::URL_Graficos()</code></td>
+                <td><code>Base::URL_Graficos()</code></td>
             </tr>
             <tr>
                 <td>/Web/JS</td>
                 <td>/Web/JS</td>
                 <td>Directori pels arxius JS</td>               
-                <td><code>$Base::URL_JS()</code></td>
+                <td><code>Base::URL_JS()</code></td>
             </tr>            
             <tr>
                 <td>/Web/PintarCodigo</td>
@@ -145,7 +160,7 @@
             </tr>            
         </table>                
         <br />
-        <div class='nota'>Les funcions $Base::URL_... i $Base::Path_ retornen sempre la url i el path acabats amb '/'</div>
+        <div class='nota'>Les funcions estatiques Base::URL_... i Base::Path_ retornen sempre la url i el path acabats amb '/'</div>
         <hr />        
         <h2>Plantilla</h2>
         <p>Abans de res el primer que has de fer al crear el nou arxiu es colocar el codi per la plantilla : </p>
@@ -153,18 +168,18 @@
 /* -[INICIO devildrey33.IDC1]-
 <?php 
     include($_SERVER["DOCUMENT_ROOT"]."/Web/devildrey33.php");
-    $Base = new devildrey33;	
+    $Web = new devildrey33;	
     $Titul = "How to use google app scripts";
     // Meta, has de posar els tags pel SEO, els de facebook i twiter es fan automaticament
     $META = "<meta name=\'description\' content=\'".$Titul."\'>".
     "<meta name=\"keywords\" content=\"google app scripts, google scripts how to, google app, google scripts\>";
     // Inici de la plantilla (primer cop que entra a devildrey33)
-    $Base->InicioPlantilla(basename(__FILE__), $Titul, $META);
+    $Web->InicioPlantilla(basename(__FILE__), $Titul, $META);
     // Inici de la capçalera del Blog (path del arxiu, titul, alinear imatge a la dreta)
-    $Base->InicioBlog(basename(__FILE__), $Titul, FALSE);
+    $Web->InicioBlog(basename(__FILE__), $Titul, FALSE);
 ?> 
 -[FIN devildrey33.IDC1]- */
-    $Base->PintarCodigo->PintarArchivoPHP("ID1", "Plantilla inici", basename(__FILE__), 'IDC1'); 
+    $Web->PintarCodigo->PintarArchivoPHP("ID1", "Plantilla inici", basename(__FILE__), 'IDC1'); 
 ?>
         <p>Aquest codi s'ha de posar just al començament de l'arxiu php. Has de modificar el <linea cid='ID1' l='4'>$Titul</linea> i el <linea cid='ID1' l='6'>$META</linea> apropiadament.</p>
         <p>Si necesites afegir un CSS o JS extra s'hauran de carregar via JavaScript just a sota de la <linea cid='ID1' l='14'>linea 14</linea>.</p>
@@ -177,7 +192,7 @@
 // Carregar script i executar funció d'aquest script un cop s'ha carregat
 <script>$Base.CargarJS("Blog_how-to-use-google-app-scripts.js", function() { FuncioInici(); });</script>
  -[FIN devildrey33.IDC2]-*/
-    $Base->PintarCodigo->PintarArchivoPHP("ID2", "Carregar javascript o css extern", basename(__FILE__), 'IDC2'); 
+    $Web->PintarCodigo->PintarArchivoPHP("ID2", "Carregar javascript o css extern", basename(__FILE__), 'IDC2'); 
 ?>
         <p>Aquestes funcions miren directament als directoris <i>/Web/CSS</i>, i <i>/Web/JS</i>, no els hi posis cap path. Tambè s'hauria de respectar la nomenclatura afegint davan "Blog_" i despres el nom del php. D'aquesta forma en un futur ho podre automatitzar...</p>
         <p>A la <linea cid='ID2' l='6'>línea 6</linea> carrego un script i ames executo una funció del script un cop s'ha carregat.</p>
@@ -186,12 +201,12 @@
 <?php 
 /* -[INICIO devildrey33.IDC3]-
 <?php
-    $Base->FinBlog();
+    $Web->FinBlog();
     // Final de la plantilla (primer cop que entra a devildrey33)
-    $Base->FinPlantilla(); 
+    $Web->FinPlantilla(); 
 ?>
 -[FIN devildrey33.IDC3]- */
-    $Base->PintarCodigo->PintarArchivoPHP("ID3", "Plantilla final", basename(__FILE__), 'IDC3');
+    $Web->PintarCodigo->PintarArchivoPHP("ID3", "Plantilla final", basename(__FILE__), 'IDC3');
 ?>        
         <p>Aquest codi s'ha de posar just al final de l'arxiu.</p>
         <p>La funció FinBlog te 2 parametres : <code>$EvitarComentarios = FALSE</code>, <code>$SoloLectura = FALSE</code>.</p>
@@ -230,7 +245,7 @@
             </thead>            
             <tr>
                 <td><b>.ImagenPortada</b></td>
-                <td>img</td>
+                <td>img</td>                
                 <td>Imatge que es mostra sempre al principi del article, ha de ser de 250x200 sense transparencies. (alineada a l'esquerra)</td>                
             </tr>
             <tr>
@@ -241,7 +256,7 @@
             <tr>
                 <td><b>.Tabla</b></td>
                 <td>table</td>
-                <td>Aquesta taula, pot contenir taules filla i neta.
+                <td>Aquesta taula, pot contenir taules filla i néta.
                     <table class='Tabla'>
                         <thead>
                             <tr>
@@ -255,8 +270,8 @@
                                 <table class='Tabla'>
                                     <thead>
                                         <tr>
-                                            <th>Head taula neta</th>
-                                            <th>Head taula neta</th>
+                                            <th>Head taula néta</th>
+                                            <th>Head taula néta</th>
                                         </tr>
                                     </thead>
                                     <tr>
@@ -331,7 +346,7 @@
             <li>Si has d'utilitzar javascript dintre del mateix php, sobretot no has de crear timers directament amb <code>setInterval</code> i <code>setTimeout</code>. El tema es que si carregues unaltre document dinamicament, els timers si no els has apagat segueixen en memoria provocan errors, perque el codi del teu php ja no existeix. Si has de fer un timer, tant el timer com la funció posala en un JS extern, que aquests si que es queden carregats i no es borren mai.</li>
         </ul>
         <hr />
-        <h2>PHP - $Base->PintarCodigo</h2>
+        <h2>PHP - $Web->PintarCodigo</h2>
         <p>Objecte per pintar codi estatic, soporta C/C++, HTML, JavaScript, CSS, JS.</p>
         <p>Les funcions <i>PintarArchivo</i> permeten o be mostrar un arxiu complet o mostrar nomes una porció. Per mostrar nomes una porció s'ha de marcar l'arxiu de codi amb un comentari especial, per exemple en un arxiu C s'ha de marcar el principi de la porció amb el comentari <code>/* -[INICIO devildrey33.<b>%ID%</b>]- */</code>, i el final amb <code>/* -[FIN devildrey33.<b>%ID%</b>]- */</code></p>
         <p>Per posar les IDS en un arxiu pots utilitzar cualsevol tipus de comentari que soporti el llenguatge.</p>
@@ -388,10 +403,10 @@
 // -[INICIO devildrey33.ID?]-
 function LaMevaFuncioDelExemple () { };
 // -[FIN devildrey33.ID?]-
-$Base->PintarCodigo->PintarArchivoPHP("IDHTML", "Carregar javascript o css extern", basename(__FILE__), 'ID?'); 
+$Web->PintarCodigo->PintarArchivoPHP("IDHTML", "Carregar javascript o css extern", basename(__FILE__), 'ID?'); 
 ?>
 -[FIN devildrey33.IDC4]- */
-    $Base->PintarCodigo->PintarArchivoPHP("ID4", "Carregar javascript o css extern", basename(__FILE__), 'IDC4'); 
+    $Web->PintarCodigo->PintarArchivoPHP("ID4", "Carregar javascript o css extern", basename(__FILE__), 'IDC4'); 
 ?>
         
         
@@ -402,7 +417,7 @@ $Base->PintarCodigo->PintarArchivoPHP("IDHTML", "Carregar javascript o css exter
 /* -[INICIO devildrey33.IDC5]-
 <?php devildrey33_Lab::CrearMiniLab(array("Ejemplos/Checked/CheckBox-personalizado.html")); ?>
 -[FIN devildrey33.IDC5]- */
-    $Base->PintarCodigo->PintarArchivoPHP("ID5", "Carregar javascript o css extern", basename(__FILE__), 'IDC5'); 
+    $Web->PintarCodigo->PintarArchivoPHP("ID5", "Carregar javascript o css extern", basename(__FILE__), 'IDC5'); 
 ?>
 
         <p>Aquest editor requereix que el codi a mostrar estigui dintre de la carpeta <i>/Ejemplos</i>, i tambè ha d'estar a la llista d'arxius permesos.</p>
@@ -414,17 +429,17 @@ $Base->PintarCodigo->PintarArchivoPHP("IDHTML", "Carregar javascript o css exter
         <hr />
         <h2>Crear una nova entrada al Blog</h2>
         <p>Per crear /editar / eliminar una entrada al blog has d'editar l'arxiu : <code>/Web/Config/EntradasBlog.php</code>.</p>       
-        <p>En principi tambè tinc un editor online desde <i>Admin -> Editar Entradas</i>, pero encara <b>no funciona</b>.</p>
+        <p><strike>En principi tambè tinc un editor online desde <i>Admin -> Editar Entradas</i>, pero encara <b>no funciona</b>.</strike></p>
         <p>Si necesites afegir alguna Categoria de l'index has d'editar l'arxiu : <code>/Web/Config/EntradasTags.php</code></p>
         <br /><hr />
         <h2>NOTES Finals</h2>
         <p>Rebras un missatge al teu correu cada cop que algu escrigui un missatge a un article teu. <b>(S'HA DE PROBAR)</b></p>
-        <p>Ves amb oju a l'hora d'escriure PHP, perque hi ha un objecte PHP que es diu <code>$Base</code>, i un objecte jQuery que tambè es diu <code>$Base</code>.</p>
+        <p>Ves amb oju a l'hora d'escriure PHP, perque hi ha un objecte estatic PHP que es diu <code>Base</code>, i un objecte jQuery que tambè es diu <code>$Base</code>.</p>
         <p>I per ultim... si per un casual et dona per activar el Mantenimiento QUE NO HAURIES DE POGUER, i no saps com treurel proba aquesta URL <code>/cmd/DesactivarMantenimiento</code>, i si no funciona carrega el backup de l'arxiu <code>.htaccess</code> de l'arrel... </p>
     
     </article>
 
 
 <?php
-   $Base->FinPlantilla(); 
+   $Web->FinPlantilla(); 
     

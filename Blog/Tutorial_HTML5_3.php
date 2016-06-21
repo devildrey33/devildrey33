@@ -130,7 +130,7 @@
                     </li>                
                 </ul>
                 <p>Veamos un ejemplo de la etiqueta "img" :</p>
-                <img src='/Graficos/bender.jpg' alt='Bender bebiendo' style='float:right' />
+                <img src='../Web/Graficos/bender.jpg' alt='Bender bebiendo' style='float:right' />
                 <?php 
 /* -[INICIO devildrey33.ID7]-
 <img src='bender.jpg' alt='Bender bebiendo' />

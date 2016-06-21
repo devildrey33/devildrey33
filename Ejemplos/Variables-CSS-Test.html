@@ -1,31 +1,69 @@
-<!-- Test para variables CSS Creado el 24/04/2016 por Josep Antoni Bover para http://devildrey33.es -->
+<!-- Test para variables CSS Creado el 24/04/2016 por Josep Antoni Bover para http://devildrey33.es 
+		Ultima modificación el 21/06/2016 -->
 <!DOCTYPE html>
 <html>
     <head>
         <!-- Estilos CSS -->
-        <style type="text/css">
+        <style type="text/css">  
             /* Definición de variables en el ámbito global */
-            :root { 
-                --Color-1:red;
-                --Color-2:blue;
-                --Color-3:green;
-                --Color-4:yellow;
+            :root { /* las variables empiezan siempre por -- */
+                --Color-1:red;    
+                --Color-2:blue; 
+                --Color-3:green;    
+                /*--Color-4:yellow; */
             }
-            
-            h1:nth-child(1) { background-color: var(--Color-1, #000); }
-            h1:nth-child(2) { background-color: var(--Color-2, #000); }
-            h1:nth-child(3) { background-color: var(--Color-3, #000); }
-            h1:nth-child(4) { background-color: var(--Color-4, #000); }
-        </style>
-                
+            /* Clases que empiezan por Col */  
+            [class^='Col'] { transition:0.4s; color:#FFF; text-shadow:1px 1px 1px #000; padding:10px; flex:1 1 200px; text-align:center; margin:4px; border:1px solid #333; } 
+            /* Asigno los fondos a sus variables correspondientes, 
+            	El segundo parámetro de var() corresponde al color por defecto si la variable no está creada.
+            	Si no se especifica el segundo parámetro y la variable no existe, la propiedad que acceda a la variable permanecera intacta con su valor por defecto.   */
+            .Col1 { background-color: var(--Color-1, #000); }
+            .Col2 { background-color: var(--Color-2, #000); }  
+            .Col3 { background-color: var(--Color-3, #000); }
+            .Col4 { background-color: var(--Color-4, #000); }  /* Al estar la variable '--Color-4' comentada, tomará el segundo parámetro '#000' y el fondo inicialmente será negro */
+            .Ejemplo { display:flex; flex-flow:row wrap; width:100%; } 
+            button { outline:none; margin:10px 0px 0px; background:rgba(200,200,200,0.7); padding:6px; }
+        </style> 
+                 
         <!-- Código javascript --> 
         <script type="text/javascript">
+            // Genera un valor aleatório entero
+            function Rand(ValorMaximo) { return Math.floor(Math.random() * ValorMaximo); }
+            // Modifica el color de una variable CSS
+            function ModificarVariableCSS(Variable) {
+                var Color = "rgb(" + Rand(255) + "," + Rand(255) + "," + Rand(255) + ")";
+                document.body.style.setProperty(Variable, Color);
+                document.querySelector("." + Variable.replace("--Color-", "Col") + " > span").innerHTML = Variable + " : " + Color;
+            }
+            // Obtiene el valor de una variable CSS
+            function ObtenerVariableCSS(Variable) {
+				return window.getComputedStyle(document.body).getPropertyValue(Variable);
+            }
         </script>
     </head>
-    <body>
-        <h1>--Color-1</h1>
-        <h1>--Color-2</h1>
-        <h1>--Color-3</h1>
-        <h1>--Color-4</h1>
-    </body>
+    <body> 
+        <p>Este ejemplo <b>no funciona en ninguna versión de Internet Explorer</b>.</p>
+        <div class='Ejemplo'>
+        	<div class='Col1'>
+                <span>--Color-1 : red</span>
+                <br />
+            	<button OnClick='ModificarVariableCSS("--Color-1")'>Generar color aleatorio</button>
+            </div>
+        	<div class='Col2'>
+                <span>--Color-1 : blue</span>
+                <br />
+            	<button OnClick='ModificarVariableCSS("--Color-2")'>Generar color aleatorio</button>
+            </div>
+        	<div class='Col3'>
+                <span>--Color-1 : green</span>
+                <br />
+            	<button OnClick='ModificarVariableCSS("--Color-3")'>Generar color aleatorio</button>
+            </div>
+        	<div class='Col4'>
+                <span>--Color-1 : </span>
+                <br />
+            	<button OnClick='ModificarVariableCSS("--Color-4")'>Generar color aleatorio</button>
+            </div>
+        </div>
+    </body> 
 </html>

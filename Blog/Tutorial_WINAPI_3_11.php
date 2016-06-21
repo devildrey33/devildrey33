@@ -58,7 +58,7 @@
                   <tr>
                     <td><table width="100%" border="0">
                       <tr>
-                        <td><img src="/Graficos/InstalarEXE_VI.png" alt="" /></td>
+                        <td><img src="../Web/Graficos/InstalarEXE_VI.png" alt="" /></td>
                         <td><table width="100%" border="0">
                           <tr>
                             <td style="width:180px"><font color="#FF0000"><b>Instalar.exe (BINARO)</b></font></td>

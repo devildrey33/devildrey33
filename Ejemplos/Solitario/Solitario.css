@@ -181,7 +181,7 @@ Baraja, Solucion, Columna, Carta /*, Carta:after */{
 
 Baraja, Solucion, Opciones {	top:20px;	}
 /* Columna oculta para la imagen del drag & drop */
-Columna[num='0'] { left:-12000px; bottom:0px; }
+Columna[num='0'] { left:0px; top:600px; }
 
 Baraja[num='1']                         {	left:90px;	}
 Columna[num='1']                        {	left:0px;	}
@@ -342,7 +342,7 @@ body[debug] debugia {
 }
 
 debugia {
-    border:1px solid 
+    border:1px solid;
 }
 
 palo[num='1'] {

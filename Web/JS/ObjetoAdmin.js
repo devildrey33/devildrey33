@@ -80,15 +80,27 @@ $Admin = new function() {
 
         /* Re-emplazo la función $Lab.Modificado por una versión para administradores */
         $Lab.Modificado = function() {
-            if ($("body").attr("tipo") === "Lab" && $("body").attr("modificado") === "true" && $("body").attr("administrador33") === "true") { 
-                if (confirm("No has guardado el archivo, deseas guardarlo antes de continuar?") === true) { $Admin.Lab_Guardar(); }
-                $("body").attr({ "modificado" : "false" });
+            console.log("Lab.Modificado (ver Admin)", $("body").attr("tipo"), $("body").attr("modificado"), $("body").attr("administrador33"));
+            if ($("body").attr("tipo") === "Lab" && $("body").attr("modificado") === "true" && $("body").attr("administrador33") !== "undefined") { 
+                if ($Lab.Guardando === false) {
+                    if (confirm("No has guardado el archivo, deseas guardarlo antes de continuar?") === true) { 
+                        $Admin.Lab_Guardar(); 
+                        return true; 
+                    }
+                    else { // cancelar guardar lab
+                        return false;
+                    }
+                }
+                else {
+                    return true;
+                }
             }
         };
     };
     
     /* Función para desloguear, vuelve a dejar toda la web a nivel usuario eliminando el código de administración */
     this.Desloguear = function() {
+        console.log("Admin.Desloguear");
         $Base.Cargando("TRUE");
 
         nAjax = $.post($Base.Raiz + "cmd/Desloguear.cmd");
@@ -104,9 +116,8 @@ $Admin = new function() {
         nAjax.fail(function( jqXHR, textStatus, tError ) { 
             console.log("Admin.Desloguear EscanearEjemplos Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarErrorAjax(jqXHR.status, false);
-            $Base.Cargando("FALSE");
         });                
-        $('body').removeAttr('administrador33');
+        $('body').attr({ 'administrador33' : false });
         $Base.ClickMenu(0);
         setTimeout(function() { $('#Marco33').html(''); }, 500);    
     };
@@ -118,6 +129,7 @@ $Admin = new function() {
     /***************/    
     
     this.Lab_Guardar = function() {        
+        $Lab.Guardando = true;
         Archivo = $("#MarcoNavegacionLab").attr("pagina");
         Codigo = $Lab.Editor.getValue();
 //        console.log("Admin.Lab_Guardar", Archivo, Codigo, $("body").attr("modificado"));
@@ -128,21 +140,37 @@ $Admin = new function() {
         $Base.Cargando("TRUE");
         $Lab.Original = Codigo;
         $.post($Base.Raiz + "cmd/LabGuardarEjemplo.cmd", { "Archivo" : Archivo, "Codigo" : Codigo }).done(function(data) {
-            if (data == "") {
-                $Base.MostrarMensaje("No tienes permiso para guardar archivos.", "true");
-                $Base.Cargando("FALSE");
-                return;
+            Datos = JSON.parse(data);           
+            if (Datos["Estado"] === 1) { // Error no es admin
+                console.log("Admin.Lab_Guardar Ajax Error! no es admin");
+                $("#BarraNavegacion_Explorador").html(Datos["HTML"]);
+                $Lab.EnlazarEventosExplorador();
+                $('body').attr({ 'administrador33' : false });
+                $Base.ClickMenu(0);
+                setTimeout(function() { $('#Marco33').html(''); }, 500);                    
+//                $Base.MostrarMensaje("Error!, no eres administrador.");
+//                $Base.Loguear($Admin.Lab_Guardar);
+                $Base.MostrarLogin($Admin.Lab_Guardar);
+/*                $("#VentanaLogin").attr({ "Visible" : "true" }); 
+                setTimeout(function() { 
+                    if (typeof localStorage["Comentarios_Usuario"] === 'undefined') { $("#devildrey33_Usuario").focus(); }
+                    else                                                            { $("#devildrey33_Password").focus(); }
+                }, 200);
+                $Base.FPL = $Admin.Lab_Guardar;*/
             }
-            Datos = JSON.parse(data);
-            $Base.MostrarMensaje(Datos["Mensaje"]);
-            $("body").attr({"modificado" : "false"});
+            else {            
+                console.log("Admin.Lab_Guardar Ajax " + Datos["Mensaje"] );
+                $Base.MostrarMensaje(Datos["Mensaje"]);
+                $("body").attr({"modificado" : "false"});
+                $Lab.Guardando = false;
+            }
             $Base.Cargando("FALSE");
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);            
             if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
         }).fail(function( jqXHR, textStatus, tError ) {
             console.log("Admin.Lab_Guardar Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarErrorAjax(jqXHR.status, false);
-            $Base.Cargando("FALSE");
+            $Lab.Guardando = false;
         });        
     };
     
@@ -520,7 +548,7 @@ $Admin = new function() {
             if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
         }).fail(function(jqXHR, textStatus, tError) { 
             console.log("Admin.Comentarios_VerEmail Error ajax", jqXHR, textStatus, tError);
-            $Base.MostrarMensaje("Error al ver el email.");
+            $Base.MostrarMensaje("Error de la petición Ajax al ver el email.");
             $Base.Cargando("FALSE");
         });
     }
@@ -549,7 +577,7 @@ $Admin = new function() {
         }).fail(function(jqXHR, textStatus, tError) { 
             // Fallo al realizar la petición ajax            
             console.log("Admin.Comentarios_BotonEliminarComentario Error ajax", jqXHR, textStatus, tError);
-            $Base.MostrarMensaje("Error al eliminar el mensaje.");
+            $Base.MostrarMensaje("Error de la petición Ajax al eliminar el mensaje.");
             $Base.Cargando("FALSE");
         });        
     };
@@ -610,7 +638,7 @@ $Admin = new function() {
             }).fail(function(jqXHR, textStatus, tError) { 
                 // Fallo al realizar la petición ajax            
                 console.log("Admin.Comentarios_Edicion_Guardar Error ajax", jqXHR, textStatus, tError);
-                $Base.MostrarMensaje("Error al guardar el mensaje.");
+                $Base.MostrarMensaje("Error de la petición Ajax al guardar el mensaje.");
                 $Base.Cargando("FALSE");
             });   
             this.Comentarios_Edicion.find("div:nth-child(3)").html(Msg);
@@ -746,8 +774,9 @@ $(window).load(function() { $Admin.Iniciar(); });
 
 /* Avisa cuando recargas la pagina sin guardar el codumento del Lab */
 window.onbeforeunload = function() { 
+    console.log("window.onbeforeunload", $("body").attr("tipo"), $("body").attr("modificado"), $("body").attr("administrador33"));
     if (typeof $Admin !== "undefined") {
-        if ($("body").attr("tipo") === "Lab" && $("body").attr("modificado") === "true" && $("body").attr("administrador33") === "true") {
+        if ($("body").attr("tipo") === "Lab" && $("body").attr("modificado") === "true" && $("body").attr("administrador33") === "undefined") {
             return "Atención no has guardado el documento!!";
         }
     }

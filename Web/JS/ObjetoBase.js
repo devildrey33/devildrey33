@@ -24,6 +24,9 @@ $Base = new function() {
     this.FuncionCargarCSS   = function() { };
     /* Variable para almacenar la función que se utilizara al finalizar la carga dinámica de un JS */
     this.FuncionCargarJS    = function() { };
+    /* Función post logueado */
+    this.FPL                = function() { };
+    this.Timeout            = 0;
     this.Raiz               = "";   // Path relativo de la raíz (puede ser "")
     this.RaizRelativa       = "";
     this.URL                = "";
@@ -109,12 +112,8 @@ $Base = new function() {
         $("#Logo > div:nth-child(11)").dblclick(function(e) {
             if ($Base.Estado_Log === 1) { 
                 console.log("Tiempo de los clicks : " + parseInt($Base.GetTickCount() - $Base.Ticks_Log) + " milisegundos.");
-                $("#VentanaLogin").attr({ "Visible" : "true" }); 
+                $Base.MostrarLogin();
             }  
-            setTimeout(function() { 
-                if (typeof localStorage["Comentarios_Usuario"] === 'undefined') { $("#devildrey33_Usuario").focus(); }
-                else                                                            { $("#devildrey33_Password").focus(); }
-            }, 200);  
         });
         // Teclado del login
         $("#devildrey33_Usuario").keyup(function(e) { 
@@ -138,6 +137,18 @@ $Base = new function() {
 
         /* Usuario para el login */
         if (typeof localStorage["Comentarios_Usuario"] !== 'undefined') { $("#devildrey33_Usuario").val(localStorage["Comentarios_Usuario"]); }
+    };
+    
+    this.MostrarLogin = function(FuncionPostLogin) {
+        // Asigno el callback post login
+        if (typeof(FuncionPostLogin) !== "undefined") this.FPL = FuncionPostLogin;
+        // Muestro la ventana de login
+        $("#VentanaLogin").attr({ "Visible" : "true" }); 
+        // Paso el foco al primer textbox vacio
+        setTimeout(function() { 
+            if (typeof localStorage["Comentarios_Usuario"] === 'undefined') { $("#devildrey33_Usuario").focus(); }
+            else                                                            { $("#devildrey33_Password").focus(); }
+        }, 200);  
     };
     
     /* Función para mostrar la ventana con los errores php */
@@ -304,21 +315,49 @@ $Base = new function() {
         
 
     /* Función para mostrar mensajes estandar */
-    /* Si especificamos true en "Alerta" el mensaje se resaltara en rojo */
-    this.MostrarMensaje = function(Mensaje, Alerta) { 
+    /* - Inserta un div con el mensaje, de esta forma se pueden mostrar varios mensajes a al vez */
+    this.MostrarMensaje = function(Mensaje, Titulo, Alerta, Funcion) { 
         console.log("Base.MostrarMensaje(" + Mensaje + ")");
-        $("#VentanaMensaje > p").html(Mensaje);
-        $("#VentanaMensaje > div > button").off("click.button").on("click.button", function() { 
-            $("#VentanaMensaje").attr({"visible" : "false" }); 
+        if (typeof(Alerta) === "undefined")  { Alerta = "false"; }                                                              
+        else                                 { if (typeof(Titulo) === "undefined") { Titulo = "Mensaje de alerta"; } }  // Si no se ha especificado titulo lo establezco como 'Titulo de alerta'
+        if (typeof(Titulo) === "undefined")  { Titulo = "Mensaje"; } // Titulo normal
+        if (typeof(Funcion) === "undefined") { Funcion = function () { }; }
+        
+        Ventana = $("<div class='VentanaMensaje MarcoVentana-350' visible='false' alerta='" + Alerta + "' titulo='" + Titulo + "'>" + 
+                        "<p>" + Mensaje + "</p>" + 
+                        "<div class='Centrado'>" + "<button class='BotonVentana'>Aceptar</button>" + "</div>" + 
+                    "</div>");
+        Ventana.find(".Centrado > button").on("click", { "Funcion" : Funcion }, function(event) { 
+            $(this).parent().parent().attr({"visible" : "false" });
+            event.data.Funcion();
+            setTimeout(function(Ventana) { Ventana.remove(); }, 500, $(this).parent().parent());
         });
-        if (typeof(Alerta) === "undefined") Alerta = "false";
-        $("#VentanaMensaje").attr({"visible" : "true", "Alerta" : Alerta});
-        setTimeout(function() { $("#VentanaMensaje > div > button").focus(); }, 100);
+        Ventana.appendTo('body').attr({"visible" : "false"});
+//        Ventana.attr({"visible" : "true"}).find("button").focus();
+        setTimeout(function(Ventana) { Ventana.attr({"visible" : "true"}).find("button").focus(); }, 100, Ventana);
     };
     
+    this.MostrarErrorAjax = function(Error, VolverIndice, Excepcion) { 
+        console.log("Base.MostrarErrorAjax(" + Error + ", " + VolverIndice + ")");
+        this.LogoCargando("FALSE");    
+        this.Cargando("FALSE");
+        switch (Error) {
+            case 403  : Mensaje = "Error 403 en la petición ajax.<br />No se permite el acceso al archivo solicitado.";                                         break;
+            case 404  : Mensaje = "Error 404 en la petición ajax.<br />El archivo solicitado no existe.";                                                       break;
+            case 1404 : Mensaje = "Error 404 en la petición ajax.<br />No se puede cargar el ejemplo del lab.";                                                 break;
+            default   : Mensaje = "Error 500 en la petición ajax.<br />Es posible que el servidor no esté disponible en estos momentos. (" + Excepcion + ")";   break;
+        }
+        Funcion = function() { };
+        if (VolverIndice === true) {  
+            this.Entrada["TipoPagina"] = "Error404";               
+            Mensaje = Mensaje + " Pulsa aceptar para ser re-dirigido al indice.";
+            Funcion = function() { $Base.CargarURL("/"); };
+        }
+        this.MostrarMensaje(Mensaje, "true", Funcion);
+    };    
     
     /* Función que muestra una ventana de error si hay algun problema al cargar una URL */
-    this.MostrarErrorAjax = function(Error, VolverIndice, Excepcion) { 
+    /*this.MostrarErrorAjax = function(Error, VolverIndice, Excepcion) { 
         console.log("Base.MostrarErrorAjax(" + Error + ", " + VolverIndice + ")");
         this.LogoCargando("FALSE");    
         this.Cargando("FALSE");
@@ -326,7 +365,7 @@ $Base = new function() {
         switch (Error) {
             case 403  : $("#VentanaError > p").html("Error 403! no se permite el acceso al archivo solicitado.");                                        break;
             case 404  : $("#VentanaError > p").html("Error 404! el archivo solicitado no existe.");                                                      break;
-            case 1404 : $("#VentanaError > p").html("Error 404! el ejemplo del laboratorio de pruebas solicitado solicitado no existe.");                break;
+            case 1404 : $("#VentanaError > p").html("Error 404! al enviar la petición ajax para cargar un archivo del lab.");                            break;
             default   : $("#VentanaError > p").html("Error 500! Es posible que el servidor no esté disponible en estos momentos. (" + Excepcion + ")");  break;
         }
 
@@ -348,7 +387,7 @@ $Base = new function() {
         setTimeout(function() { $("#VentanaError > div > button").focus(); }, 100);
 
         this.ActualizarBarraNavegacion();        
-    };
+    };*/
     
     
     /* Función que identifica una entrada según su URL */
@@ -582,15 +621,17 @@ $Base = new function() {
     
    
     /* Función que muestra / oculta la animación del logo en modo cargando */
+    /* Esta función se ha ejecutado porque se ha utilizado $Base.CargarURL para cargar un documento */
     this.LogoCargando = function (Valor) {
         this.Cargando(Valor);
         if (Valor === "TRUE") {
             // Si hay una petición ajax pendiente, la cancelo.
             if (this.PeticionAjax != 0) { this.PeticionAjax.abort(); }
-            /* Escondo todas las ventanas y el boton de la encuesta */
-            $("#VentanaMensaje").attr("Visible", false);
-            $("#VentanaError").attr("Visible", false);
-            $("#BarraNavegacion_VentanaEncuesta").attr("Visible", false);
+            /* Escondo y elimino todas las ventanas de mensaje */
+            $(".VentanaMensaje").attr("Visible", false).each( function() { 
+                setTimeout(function(Ventana) { Ventana.remove(); }, 500, $(this));
+            });
+            /* Escondo los marcos del indice */
             $("#MarcoIndice").attr({ "Visible" : false });
             $("#Categorias").attr({ "Visible" : false });
             document.getElementById("Logo").className = "AnimarLogo";
@@ -598,7 +639,11 @@ $Base = new function() {
         }
         else {  
             this.PeticionAjax = 0;
-             document.getElementById("Logo").className = "";
+            document.getElementById("Logo").className = "";
+            /* Vuelvo al estado normal los marcos del indice */
+            $("#MarcoIndice").attr({ "Visible" : true });
+            $("#Categorias").attr({ "Visible" : true });
+            
 //            $("#Logo").attr({ "desactivado" : true });
         }
     };
@@ -653,14 +698,11 @@ $Base = new function() {
     
     /* Función que carga una URL interna dentro del #MarcoNavegacion */
     this.CargarURL = function(URL) {    
-/*        if (document.getElementById("Logo").className === "AnimarLogo") {
-            console.log("Base.CargarURL Error, se ha intentado abrir una URL mientras se estaba cargando otra.");
-            return false;
-        }*/
-
         /* Comprobación para determinar si hay un archivo modificado en el lab y mostrar un mensaje de advertencia */
-        $Lab.Modificado();
-        
+        if ($Lab.Modificado() === true) { 
+            setTimeout(function(nURL) { $Base.CargarURL(nURL); }, 200, URL);
+            return;
+        }
         
         /* Escondo los menús de la barra de navegación */
         $("#BarraNavegacion > .Menu > input[type=checkbox]").removeAttr("checked");
@@ -730,24 +772,24 @@ $Base = new function() {
         }
         console.log("Base.Loguear(" + pass + ")");
         this.Cargando("TRUE");
-        $.post($Base.Raiz + "cmd/Loguear.cmd", { "l" : l,  "p" : pass }).done(function(data) {
+        $.post($Base.Raiz + "cmd/Loguear.cmd", { "l" : l,  "p" : pass }).done(function(data, textStatus, jqXHR) {
 //            console.log("Base.Loguear", data);
             Datos = JSON.parse(data);
             if (Datos.Mensaje === "Correcto!") { // Logueado
                 $Base.CargarJS("ObjetoAdmin.js", function() { $Admin.Iniciar(); });
                 localStorage["Comentarios_Usuario"] = $("#devildrey33_Usuario").val();
-                $("#devildrey33_Password").val("");
+                //$("#devildrey33_Password").val("");
                 $("#VentanaLogin").attr({ visible : false });
                 // Añado el html para administrador
                 $("#Marco33").html(Datos.HTMLAdmin);
                 // Carpeta ejemplos completa con checkboxes para añadir / eliminar de la versión de usuario.
                 $("#BarraNavegacion_Explorador").html(Datos.ExplorarLab);
                 $Lab.EnlazarEventosExplorador();
-/*                $("#BarraNavegacion_Explorador .Lab_Archivo").off("click").on("click", function() { $Lab.ClickArchivo($(this)); });
-                $("#BarraNavegacion_Explorador .Lab_Directorio").off("click").on("click", function() { $Lab.ClickDirectorio($(this)); });*/
-                
-                // Espero medio segundo a que se cargue el javascript para iniciarlo
-//                setTimeout(function() { $Admin.Iniciar(); }, 500);
+                // Función post logueado (si la sesión expira y se ejecuta un comando de administrador pasa lo siguiente) :
+                // - la web se desloguea
+                // - pide otra vez el login
+                // - Al loguear correctamente vuelve a ejecutar el comando de administración
+                $Base.FPL();
             }
             else {  // Error login o password incorrectos
                 $("#VentanaLogin").removeClass("VentanaError_AnimacionError");
@@ -756,9 +798,11 @@ $Base = new function() {
             }
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
             if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
+            $Base.FPL = function() { }; // Reseteo la función de logueado
         }).fail(function( jqXHR, textStatus, tError ) { 
             console.log("Base.Loguear Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarErrorAjax(jqXHR.status, false, tError);
+            $Base.FPL = function() { }; // Reseteo la función de logueado
         });
     };   
     
@@ -777,7 +821,7 @@ $Base = new function() {
             if (Datos["Estado"] === 1) { // Error no es admin
                 $("#BarraNavegacion_Explorador").html(Datos["HTML"]);
                 $Lab.EnlazarEventosExplorador();
-                $('body').removeAttr('administrador33');
+                $('body').attr({ 'administrador33' : false });
                 $Base.ClickMenu(0);
                 setTimeout(function() { $('#Marco33').html(''); }, 500);                    
                 $Base.MostrarMensaje("Error!, no eres administrador.");
@@ -830,7 +874,7 @@ $Base = new function() {
         Script.setAttribute("src", "/Web/JS/" + Nombre);
         // No se puede hacer un try / catch con el append child :(, por lo que los errores 404 no se pueden detectar...
         if (typeof Script !== "undefined") document.getElementsByTagName("head")[0].appendChild(Script);*/
-        $.getScript("/" + this.Raiz + "Web/JS/" + Nombre, function(data, textStatus, jqxhr) {
+        $.getScript("/" + this.RaizRelativa + "Web/JS/" + Nombre, function(data, textStatus, jqxhr) {
             console.log("Base.CargarJS(" + Nombre + ")");    
             $Base.FuncionCargarJS();            
         }).fail(function(jqxhr, settings, exception) { 
@@ -864,8 +908,14 @@ $Base = new function() {
 
     /* CALLBACK para el historial de navegación */
     this.CALLBACK_Histroial = function(event) {
-        /* Comprobación para determinar si hay un archivo modificado en el lab y mostrar un mensaje de advertencia */
-        $Lab.Modificado();
+        /* Comprobación para determinar si hay un archivo modificado en el lab y mostrar un mensaje de advertencia */        
+        if ($Lab.Modificado() === true) { 
+            setTimeout(function(nURL) { $Base.CALLBACK_Histroial(event); }, 200, event);
+            return;
+        }
+
+        
+//        $Lab.Modificado();
 
         this.LogoCargando("TRUE");   
         console.log("Base.CALLBACK_Histroial", event.state);
@@ -893,7 +943,7 @@ $Base = new function() {
             Datos = JSON.parse(data);
             /* Error 404 */
             if (Datos["HTML"].indexOf("<script>$Base.MostrarErrorAjax(404, false);</script>") === 0) {
-                $Base.MostrarErrorAjax();
+                $Base.MostrarErrorAjax(404, "false");
             }        
             else { /* Carga del historial normal */
                 $("#MarcoNavegacion").html(Datos["HTML"]);
@@ -948,23 +998,22 @@ $Base = new function() {
     };*/
                                             
     this.ComprobarScrollVotacion = function() {
-        console.log("Base.ComprobarScrollVotacion()", $("#Comentarios_Datos").offset())
-        if (typeof($("#Comentarios_Datos").offset()) !== "undefined") { FinalPagina = $("#Comentarios_Datos").offset().top;  }
-        else                                                          { FinalPagina = $(document).height();                 }
-//        console.log($(window).scrollTop(), FinalPagina - ($(window).height() * 2))
-        if ($(window).scrollTop() > FinalPagina - ($(window).height() * 2)) {
-//        if ($(window).scrollTop() > ($(document).height() - ($(window).height() * 2))) {
-            console.log("Base.ComprobarScrollVotacion");
-            Pagina = $("#MarcoNavegacion > article").attr("pagina");
-//        if ($(window).scrollTop() > 190 && Header.attr("animar")) {
-            if (typeof localStorage["Voto_" + Pagina] === "undefined") {
-                $("#BarraNavegacion_Votacion").attr({ "Mostrar" : true });
-                $("#BarraNavegacion_Votacion .VotarDocumento_Estrellas > button").off("click").on("click", function(e)  {
-                    $Base.VotarWeb($(this).html());
-                });
+//        console.log("Base.ComprobarScrollVotacion()", $("#Comentarios_Datos").offset())
+        if (typeof localStorage["Voto_" + $("#MarcoNavegacion > article").attr("pagina")] === "undefined") { // Si no se ha votado la página
+            if (typeof($("#Comentarios_Datos").offset()) !== "undefined") { FinalPagina = $("#Comentarios_Datos").offset().top;  }
+            else                                                          { FinalPagina = $(document).height();                 }
+            if ($(window).scrollTop() > FinalPagina - ($(window).height() * 2)) {
+    //        if ($(window).scrollTop() > ($(document).height() - ($(window).height() * 2))) {
+                console.log("Base.ComprobarScrollVotacion");
+                Pagina = $("#MarcoNavegacion > article").attr("pagina");
+                if (typeof localStorage["Voto_" + Pagina] === "undefined") {
+                    $("#BarraNavegacion_Votacion").attr({ "Mostrar" : true });
+                    $("#BarraNavegacion_Votacion .VotarDocumento_Estrellas > button").off("click").on("click", function(e)  {
+                        $Base.VotarWeb($(this).html());
+                    });
+                }
             }
-        }
-        
+        }        
 /*        else {
             $("#BarraNavegacion_Votacion").removeAttr("Mostrar");
         }        */

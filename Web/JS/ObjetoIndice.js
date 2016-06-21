@@ -32,11 +32,11 @@ $Indice = new function() {
     };*/
     
     this.ComprobarScroll = function() {
-        console.log("Indice.ComprobarScroll", $("#MarcoIndice > div[finscrollinfinito]").length);
         /* SI EXISTE UN DIV CON EL ATRIBUTO SCROLL INFINITO, Y EL ESTADO CARGANDO ES FALSE, Y EL TOTAL DE ENTRADAS/ARTICULOS NO ES 0 */
         if ($("#MarcoIndice > div[finscrollinfinito]").length === 0 && this.Cargando === false && $("#MarcoIndice").length !== 0) {
             /* SI LA POSICIÓN DEL SCROLL ES IGUAL O SUPERIOR AL 75% DEL CONTENIDO */
             if ($(window).scrollTop() > ($(document).height() - ($(window).height() * 2))) {        
+                console.log("Indice.ComprobarScroll", $("#MarcoIndice > div[finscrollinfinito]").length);
                 this.Cargando = true;
                 $Base.Cargando("TRUE");
                 this.TotalArticulosCargados = $("#MarcoIndice > .Articulo_Portada").length; /* Total de entradas cargadas */

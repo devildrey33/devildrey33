@@ -26,12 +26,12 @@
                 <p>Una vez abierto no es más que una consola de comandos normal y corriente, pero que tiene cargadas las variables de entorno necesarias para ejecutar cualquier herramienta de Visual Studio desde ella.</p>
                 <p>En primer lugar nos movemos a la carpeta donde se encuentra la <b>libvlc.dll</b>, en mi caso "<b>C:\Program Files (x86)\VideoLAN\VLC</b>"</p>
                 <p>Para sistemas operativos Vista o superiores vamos a necesitar una carpeta donde no se requieran permisos de administrador para escribir, que en mi caso será "<b>D:\Programacio</b>".</p>
-                <img src="/Graficos/GenerarLibDesdeDll1.png" alt="Simbolo del sistema de Visual Studio" />
+                <img src="../Web/Graficos/GenerarLibDesdeDll1.png" alt="Simbolo del sistema de Visual Studio" />
                 <p>Una vez en el directorio ejecutamos el siguiente comando : </p>
                 <?php $Base->PintarCodigo->PintarTexto("IDDumpBin", "Comando", "dumpbin /exports libvlc.dll > D:\Programacio\libvlc.def"); ?>
                 <p>Si el comando se ha ejecutado correctamente no saldrá nada, y nos devolverá al símbolo del sistema. En caso de que no se pueda escribir el archivo en la ruta especificada nos saldrá el mensaje "<b>Acceso denegado</b>", esto es porque muy probablemente el directorio donde queremos escribir el archivo libvlc.def requiere privilegios de administración para poder escribir datos en el.</p>
                 <p>Una vez creado el archivo libvlc.def vamos a editarlo utilizando el notepad mismo. Al editarlo deberíamos ver algo como la siguiente foto :</p>
-                <img src="/Graficos/GenerarLibDesdeDll2.png" alt="Notepad libvlc.def" />
+                <img src="../Web/Graficos/GenerarLibDesdeDll2.png" alt="Notepad libvlc.def" />
                 <p>Para que sea un archivo .def válido, en la primera línea debería poner EXPORTS, y luego debería haber un nombre de función por línea.</p>
                 <p>De todo lo que vemos solo nos sirve la parte marcada en rojo, que son los nombres de las funciones que exporta la libvlc.dll, por lo que tenemos que eliminar el resto de información.</p>
                 <p>Para eliminar la información o bien lo hacemos a mano (ojo que son 230 funciones) o podemos utilizar los siguientes comandos :</p>
@@ -41,7 +41,7 @@ for /f "usebackq tokens=4,* delims=_ " %%i in (`dumpbin /exports libvlc.dll`) do
                 <p>Una vez tengamos el archivo de definiciones preparado nos queda crear el .lib con el siguiente comando :</p>
                 <?php $Base->PintarCodigo->PintarTexto("IDDumpBin", "Comando", 'lib /def:"D:\Programacio\libvlc.def" /out:"D:\Programacio\libvlc.lib" /machine:x86'); ?>
                 <br />
-                <img src="/Graficos/GenerarLibDesdeDll3.png" alt="Generando libvlc.lib" />
+                <img src="../Web/Graficos/GenerarLibDesdeDll3.png" alt="Generando libvlc.lib" />
                 <p>En este caso la dll es de 32 bits (de momento solo hay versiones de 32bits del VLC para windows) por lo que ponemos "/machine:x86" en caso de ser una dll de 64 bits deberíamos poner "/machine:x64".</p>
                 <p>Y esto es todo, ya tenemos nuestro .lib creado y ya podemos utilizarlo para linkear nuestro código con la dll. Espero que os sirva de ayuda.</p>            
 

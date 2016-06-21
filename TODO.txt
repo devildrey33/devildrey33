@@ -68,7 +68,11 @@ Millores de la web :
  V      - Els controls dels comentaris ara ja no son buttons, son divs, i aixi no bosen el outline pel focus.
  V  - Aprofitant el sistema de paths nou, fer funcionar la web en localhost de forma bàsica
  V      - Creat arxiu "/AsignarRaiz.php" per re-escriure el arixu ".htaccess" de tal forma que les re-direccions dels directoris virtuals funcionin bè.
-    - El sistema de misatges de javascript es mono-missatge, s'ha de fer que es puguin mostrar varis missatges del mateix tipus a l'hora.
+ V  - El sistema de misatges de javascript es mono-missatge, s'ha de fer que es puguin mostrar varis missatges del mateix tipus a l'hora.
+ V  - Desloguejar el javascript si demana una accio de admin i ha expirat la sesió.
+ V  - Afegir al la funció devildrey33::Blog el parametre $AlinearImagenDerecha i encapsular la imatge d'introducció dels articles dintre de la mateixa funció.
+ V      - Obviament requereix retocar TOTS els arixus del blog, i puc aprofitar per buscar imatges i posarles amb Base::URL_Graficos().
+ V          - les imatges ara van amb path relatiu (desde el blog es '../Web/Graficos/imatge.img')
     - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
         - Un exemple clar seria la web de elmundo
     - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
@@ -82,20 +86,14 @@ Millores de la web :
         transition       : !!transform!! 0!!.15s!! ease-in-out, !!color!! !!.15s!! ease-in-out, !!box-shadow!! !!.15s!! ease-in-out;   
         transform        : !!perspective!!(600px) translateZ(0px) rotateZ(0deg) rotateX(0deg);
         font-size        : 1!!.4rem!!;
-    - fa un blink extrany cada PRIMER cop que paso per sobre d'una etiqueta linea o a[href][cid][l]. I m'esta tocan molt els pebrots...
- V  - Desloguejar el javascript si demana una accio de admin i ha expirat la sesió.
     - Tornar a afegir els iconos58x58.svg dintre del HTML bàsic, aquest cop el carregarem directament de l'arxiu, i aixi no cal posarlo dintre del devildrey33.php i serà tot mes còmode.
+        - El problema es que no es pot utilitzar el <img> amb la id del svg en tots els navegadors...
     - Els 5 putus primers caracters que imprimeix qualsevol document php... no se d'on cony surten... tinc echos de l'ordre de carrega dels objectes y echos de putes distribuits estrategicament de forma que no funcionara res de res, aviam si puc obtenir un callback complet d'execució sense fer guarrades amb els echos.
-        - Pasa just abans d'iniciar el constructor de devildrey33.php, pero no he pogut aillar l'origen....
-    - Afegir al la funció devildrey33::Blog el parametre $AlinearImagenDerecha i encapsular la imatge d'introducció dels articles dintre de la mateixa funció.
-        - Obviament requereix retocar TOTS els arixus del blog, i puc aprofitar per buscar imatges i posarles amb Base::URL_Graficos().
+        - S'imprimeixen just abans d'iniciar el constructor de devildrey33.php, pero no he pogut aillar l'origen....
 
 
 URGENT :
     - Afegir entrades del Doc/CSS a l'index del blog, i posar el box-sizing i el animation-fill-mode
-MOLT URGENT :
- V  - Modificar totes les etiquetes img per utilitzar la funció $Base::URL_Graficos(), tambè he pasat el css (url) a paths relatius sense problemes.
- V      - les imatges ara van amb path relatiu (desde el blog es '../Web/Graficos/img')
 
 Estils movils :
  V  - Probar l'index en Google Nexus 10, no es pot accedir a les seguents entrades amb l'escroll. 
@@ -122,7 +120,9 @@ Lab :
     - Al guardar en el Nuevo.html que pregunti un nom d'arxiu (i que pugui crear directoris tambè)   
  V  - Especificar vista desde el mateix esemple amb un comentrari rotllo /* devildrey33_Lab->Opciones->Vista=Preview */ ara es porta la vista desde devildrey33_Lab.php
  V  - Els arxius CSS i JS es carreguen en vista mixta, i ha de ser vista de códi. Ames necesiten el seu modo de vista en el codemirror (text/css, application/javascript)
-    - Resaltar i obrir carpeta de l'exemple actual (de moment funciona nomes per un nivell
+    - Resaltar i obrir carpeta de l'exemple actual (de moment funciona nomes per un nivell)
+ V  - Guardat de documents al canviar de url si ha expirat la sesió ara demanara password, i si l'accepta guardara el document. 
+        - si canceles el login no se que deu fer encara amb el timer del Cargar_URL.... 
 
 Blog :
  V  - devildrey33_PintarCodigo 2.02 (+ exemples corretgits)
@@ -148,6 +148,7 @@ Solitario :
 
     - En el explorer va chungo chungo xd
  V  - En firefox mostra malament totes les cartes (el firefox no pilla background-position-x y background-position-y. S'ha de fer amb background-position lo que em fa escriure un selector per carta).
+    - ARA el chrome (abans no ho feia i no he tocat res...) al arroçegar una carta no es veu les cartes filles. (en firefox continua funcionant bè)
 
 ESPECIFIC NAVEGADORS :    
  V  - Les fonts de les etiquetes <pre> i <code> monospace no tenen la mida iguals en chrome i firefox. He pillat una monospace del google i ara sembla que tenen la mateixa mida en tots. (pero tambè es provable que sigui la causant del BLINK que em fa el hover de remarcar una linea de codi nomes el primer cop que la remarco)

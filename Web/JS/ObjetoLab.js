@@ -17,6 +17,9 @@ $Lab = new function() {
     this.ForzarVista = "-1";
     /* Modo de resaltar el código (text/css, application/javascript, text/html)  SOLO SE UTILIZA AL INICIALIZAR POR PRIMERA VEZ */
     this.Modo = "text/html"; 
+    /* Variable para determinar si se está intentando guardar un archivo del laboratorio */
+    this.Guardando = false;
+    
     
     /* Función que inicializa el laboratorio */
     this.Iniciar = function() {
@@ -179,7 +182,7 @@ $Lab = new function() {
                     $Lab.Original = $Lab.Editor.getValue();
                     $Lab.AjustarVista(Datos["Vista"]);  
                     
-                    URL = "/" + $Base.Raiz + "Lab/" + Datos["Archivo"];
+                    URL = "/" + $Base.RaizRelativa + "Lab/" + Datos["Archivo"];
                     $("#MarcoNavegacionLab").attr({"pagina" : Datos["Archivo"]});
                     if (nopush === false) {
                         $Base.Entrada = $Base.IdentificarEntrada(URL, URL);    
@@ -371,6 +374,21 @@ $Lab = new function() {
     /* Función para determinar si el ejemplo ha sido modificado 
         NOTA siempre devuelve false si no es administrador */
     this.Modificado = function() {
+/*        console.log("Lab.Modificado", $("body").attr("tipo"), $("body").attr("modificado"), $("body").attr("administrador33"));
+        if ($("body").attr("tipo") === "Lab" && $("body").attr("modificado") === "true" && $("body").attr("administrador33") !== "undefined") { 
+            if ($Lab.Guardando === false) {
+                if (confirm("No has guardado el archivo, deseas guardarlo antes de continuar?") === true) { 
+                    $Admin.Lab_Guardar(); 
+                    return true; 
+                }
+                else { // cancelar guardar lab
+                    return false;
+                }
+            }
+            else {
+                return true;
+            }
+        }*/
         return false;
     };
 

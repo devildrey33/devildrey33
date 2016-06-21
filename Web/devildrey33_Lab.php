@@ -8,7 +8,7 @@
         static public function GuardarEjemplo($Archivo, $Codigo) {
             /* Aixo no pasa mai (GuardarEjemplos nomes s'executa en el cmd si ets admin...), pero ho deixarem per si de cas... */
             if (devildrey33_Opciones::Administrador() === 0) {
-                $Ret = -1;
+                $Ret = 1;
                 $Mensaje = "No tienes permisos para guardar el archivo.";
                 return json_encode(array("Ret" => $Ret, "Mensaje" => $Mensaje, "Archivo" => $Archivo));
             }
@@ -100,7 +100,7 @@
             if ($Dir === FALSE) { $Ret .= "<div>Error abriendo el directorio : ".$Directorio."</div>".Intro()."</div>";  return $Ret;}
             while (false !== ($Archivo = readdir($Dir))) {
                 if ($Archivo != "." && $Archivo != "..") {
-                    $HREF = str_replace(Base::Path_Raiz(), "/Lab", $Directorio."/".$Archivo);
+                    $HREF = str_replace(Base::Path_Raiz(), "/Lab/", $Directorio."/".$Archivo);
                     // Directorio                
                     if (is_dir($Directorio."/".$Archivo) === TRUE) {
                         $Ret .= "<div class='Lab_Item'>".Intro();

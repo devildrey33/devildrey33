@@ -55,7 +55,7 @@
                         case "Lab"  :                   $URL = Base::URL_Lab().$EntradasPC[$i]["URL"];                                       break;
                     }
                     // Parche parche para que como mínimo en un servidor local no dedicado (localhost/directorio-web) se pueda acceder a las entradas del indice
-                    if ($EntradasPC[$i]["Tipo"] === "Blog" && devildrey33_Opciones::$ServidorLocal === TRUE) { $URL .= ".php"; }
+//                    if ($EntradasPC[$i]["Tipo"] === "Blog" && devildrey33_Opciones::$ServidorLocal === TRUE) { $URL .= ".php"; }
 
                     $Codigo .= "<article class='Articulo_Portada' style='transition-delay:".(rand(0, 50) / 100)."s'>".Intro();
                     $Codigo .=    "<a href='".$URL."'>".Intro().

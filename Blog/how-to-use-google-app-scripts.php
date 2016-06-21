@@ -26,13 +26,13 @@
 <p>We’re going to start with the first case.</p>
 <h2 style="margin-top: 60px;">Create a Web App Script</h2>
 <p>We can write and host a whole html dynamic page with google services. The only thing we need, is a google account with a Google Drive service. The project will be stored as a file into your Google Drive unit. So you can create one directly with the Drive New File button:</p>
-<img src="/Web/Graficos/how-to-use-google-app-scripts-2.png" />
+<img src="../Web/Graficos/how-to-use-google-app-scripts-2.png" />
 
 <p>or going directly to this URL: <a href='https://script.google.com' target='_blank'>https://script.google.com</a></p>
 <p>Both cases, we’ll get the start wizard, where there are many options, but what we are looking for is the last of the left column «Web App»</p>
-<img src="/Web/Graficos/how-to-use-google-app-scripts-3.png" />
+<img src="../Web/Graficos/how-to-use-google-app-scripts-3.png" />
 <p>After choosing, we’ll get that framework with an implemented example :</p>
-<img src="/Web/Graficos/how-to-use-google-app-scripts-4.png" />
+<img src="../Web/Graficos/how-to-use-google-app-scripts-4.png" />
 <p>As you can see, the project has 4 files :</p>
 <ul style='list-style:decimal'>
     <li><b>Code.gs</b> : Here we must write our Google App Scripts. With this functions we can bind our javascript code with Google Services.</li>
@@ -44,18 +44,18 @@
 <ul style='list-style:decimal'>
 
     <li><p>Go to the menu &rarr; Publish &rarr; Deploy as a web app</p>
-        <img src="/Web/Graficos/how-to-use-google-app-scripts-5.png" />
+        <img src="../Web/Graficos/how-to-use-google-app-scripts-5.png" />
     </li>
     <li><p>Choose a name for the project (f.e. <b>project_1</b>).</p>
-        <img src="/Web/Graficos/how-to-use-google-app-scripts-6.png" />
+        <img src="../Web/Graficos/how-to-use-google-app-scripts-6.png" />
     </li>
     <li><p>Select the Project options and access permissions.</p>
-        <img src="/Web/Graficos/how-to-use-google-app-scripts-7.png" />
+        <img src="../Web/Graficos/how-to-use-google-app-scripts-7.png" />
     </li>
 
     <li>
         <p>And then we’ll get an URL, ended with “/exec“, like this «https://script.google.com/macros/s/[…ID…]/exec».</p>
-        <img src="/Web/Graficos/how-to-use-google-app-scripts-8.png" />
+        <img src="../Web/Graficos/how-to-use-google-app-scripts-8.png" />
     </li>
 </ul>
 <p>This URL contains de ID of the Web App. You can change the last part of it in order to work with it. The possible endings are:</p>
@@ -65,9 +65,9 @@
     <li><b>/edit</b> : With this one, you will be redirected to the “web framework” where Google allows to develop the Web App..</li>
 </ul>
 <p>If we try to go to the /exec url (in a new browser window), the first time we try to launch the app, Google will ask us to grant it. So give it permission.</p>
-<img src="/Web/Graficos/how-to-use-google-app-scripts-9.png" />
+<img src="../Web/Graficos/how-to-use-google-app-scripts-9.png" />
 <p>And finally we will get the result page. The example Web App shows a list with the name of our 20 first files in our Google Drive main folder.</p>
-<img src="/Web/Graficos/how-to-use-google-app-scripts-10.png" />
+<img src="../Web/Graficos/how-to-use-google-app-scripts-10.png" />
 
 <p>Let’s going to see how does it work.</p>
 <h2 style="margin-top: 60px;">Initial funcion doGet()</h2>
@@ -155,7 +155,7 @@ function doGet(e) {
 -[FIN devildrey33.ID4]- */
         $Base->PintarCodigo->PintarArchivoHTML("ID4", "", basename(__FILE__), "ID4"); ?>
     <p>If you wish, you can add more files, to make your application more modular. For instance, if you have to add a jQuery-UI custom library, you can add the file to the project :</p>
-    <img src="/Web/Graficos/how-to-use-google-app-scripts-11.png" />
+    <img src="../Web/Graficos/how-to-use-google-app-scripts-11.png" />
     <p>and then, insert this code into the header of the main page :</p>
 <?php
 /* -[INICIO devildrey33.ID5]-
@@ -313,7 +313,7 @@ $Base->PintarCodigo->PintarArchivoJavaScript("ID12", "", basename(__FILE__), "ID
     <p>We can create a new folder as easily as with calling the <a href='https://developers.google.com/apps-script/reference/drive/folder#createFolder(String)' target="_blank">createFolder()</a> function.</p>
     <p>Now, we can try our new version with launching the /dev URL. However, this must be a provisional URL, to try the App while we’re developing. If we try to use the /exec URL, we will not see the changes, because before that, we must publish the new version of the Web App.</p>
     <p>To get it, we must go to “Publish” – “Deploy as web app…”, and then choose a “New” Project version. It is advised to write a comment about the changes.</p>
-    <img src="/Web/Graficos/how-to-use-google-app-scripts-12.png" />
+    <img src="../Web/Graficos/how-to-use-google-app-scripts-12.png" />
     <p>And finally, updating the project version we can use the /exec URL as well.</p>
 
 <?php

@@ -54,7 +54,7 @@ class devildrey33_htaccess {
     }
     
     /* Función que obtiene las opciones disponibles y su estado */
-    static public function ObtenerValoresCheck() {
+    static public function ObtenerValores() {
         $Datos = file_get_contents(Base::Path_Raiz().".htaccess");
 /*        $Archivo = fopen("../.htaccess", "r");
         $Datos = fread($Archivo, filesize("../.htaccess"));
@@ -64,6 +64,10 @@ class devildrey33_htaccess {
         if (strpos($Datos, "#INICIO CompresionGZip activado") !== false) {     $Ret["CompresionGZip"] = "true";      }
         if (strpos($Datos, "#INICIO Mantenimiento activado") !== false)  {     $Ret["Mantenimiento"]  = "true";      }
         if (strpos($Datos, "#INICIO CacheImagenes activado") !== false)  {     $Ret["CacheImagenes"]  = "true";      }       
+        
+        $InicioRewrite = strpos($Datos, "#INICIO Paths ") + strlen("#INICIO Paths ");
+        $FinRewrite = strpos($Datos, "\r\n", $InicioRewrite);
+        $Ret["RewriteBase"] = substr($Datos, $InicioRewrite, $FinRewrite - $InicioRewrite);
         return $Ret;
     }
 

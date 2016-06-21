@@ -143,8 +143,8 @@ class devildrey33 {
             "<div id='ErroresPHP_Cerrar'>X</div>".Intro().
             "<div id='ErroresPHP_Info'></div>".Intro().
         "</div>".Intro().
-        "<div id='VentanaMensaje' class='MarcoVentana-350'><p></p><div class='Centrado'><button class='Boton-BoxShadow2'>Aceptar</button></div></div>".Intro().
-        "<div id='VentanaError' class='MarcoVentana-350'><p></p><div class='Centrado'><button class='Boton-BoxShadow2'>Aceptar</button></div></div>".Intro().
+/*        "<div id='VentanaMensaje' class='MarcoVentana-350'><p></p><div class='Centrado'><button class='Boton-BoxShadow2'>Aceptar</button></div></div>".Intro().
+        "<div id='VentanaError' class='MarcoVentana-350'><p></p><div class='Centrado'><button class='Boton-BoxShadow2'>Aceptar</button></div></div>".Intro().*/
         "<div id='VentanaLogin' class='MarcoVentana-250'>".Intro().
             "<table>".Intro().
               "<tr>"."<td>Usuario</td>"."<td>"."<input name='Usuario' type='text' id='devildrey33_Usuario' spellcheck='false' />"."</td>"."</tr>".Intro().
@@ -479,7 +479,7 @@ class devildrey33 {
             $PHPDebug   = (devildrey33_Opciones::MostrarErroresPHP() === 1) ? "true" : "false";
             $BorrarPHP  = (devildrey33_Opciones::BorrarLogPHP()      === 1) ? "true" : "false";
             $Cache      = (devildrey33_Opciones::ActualizarCache()   === 1) ? "true" : "false";
-            $ValHT = devildrey33_htaccess::ObtenerValoresCheck();
+            $ValHT = devildrey33_htaccess::ObtenerValores();
             $HTMLAdmin = "<input id='BarraPrincipal_Boton33_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
                 "<label class='Menu_Boton_Label' for='BarraPrincipal_Boton33_Estado' tooltip-es='Administración' tooltip-en='Administration' tooltip-pos='L'></label>".Intro().
                 "<div class='Menu_Boton'>".Intro().

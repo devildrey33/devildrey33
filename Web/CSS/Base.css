@@ -106,7 +106,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
 
 .MarcoVentana-350, .MarcoVentana-250 {           /* Marco del mensaje */
     position            : fixed; 
-    bottom              : -500px;            
+    bottom              : -500px;                /* Inicialmente 500 pixeles por debajo de la pantalla*/
     right               : 0px;
     display             : table;      
     background          : #1D1A21;
@@ -136,42 +136,47 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
 }
 /* Mensaje con fondo rojo (en plan alerta) */
 .MarcoVentana-350[alerta=true], .MarcoVentana-250[alerta=true]  {
-    animation : Ani_VentanaMensaje_Alerta 3s ease-in-out 0s;
+    animation  : Ani_VentanaMensaje_Alerta 3s ease-in-out 0s;
+    background : rgb(75,0,0);
 }
 
 /* Animación para la alerta de la ventana mensaje */
 @keyframes Ani_VentanaMensaje_Alerta {
-    0%   { background : #1D1A21; }
-    25%  { background : #EA504E; }
-    50%  { background : #1D1A21; }
-    75%  { background : #EA504E; }
-    100% { background : #1D1A21; }
+    0%   { background : rgb(75,0,0); }
+    25%  { background : rgb(175,0,0); }
+    50%  { background : rgb(75,0,0); }
+    75%  { background : rgb(175,0,0); }
+    100% { background : rgb(75,0,0); }
 }
 
 
 .MarcoVentana-350::before, .MarcoVentana-250::before {   /* Titulo rojo */
     position      : relative;  
     display       : inline-block;   
-    content       : '';
+    content       : attr(titulo);
     height        : 25px;        
-    padding       : 5px 0px 0px 5px;
+    padding       : 5px 0px 0px 10px;
     left          : -30px;         
     background    : #EA504E;     
-    width         : calc(100% + 55px);                
+    width         : calc(100% + 50px);                
     box-shadow    : 0 5px 5px -5px rgba(255,255,255, .9) inset;
     border-radius : 6px 6px 0px 0px;                
     font-weight   : bold;
+    text-shadow   : 1px 1px 1px #222;
 }    
+.MarcoVentana-350[alerta=true]::before, .MarcoVentana-250[alerta=true]::before {   /* Titulo rojo */
+    background : rgb(35,0,0);
+}
 
 #VentanaLogin {
     height  : 125px;
     z-index : 101;
 }
 
-#VentanaMensaje { z-index : 102; }
-#VentanaError   { z-index : 103; }
+.VentanaMensaje { z-index : 102; }
+/*.VentanaError   { z-index : 103; background-color : rgb(75,0,0); }*/
 
-#VentanaError[visible=true] { background-color : rgb(75,0,0);  }
+/*#VentanaError[visible=true] { background-color : rgb(75,0,0);  }*/
 
 #VentanaLogin > table {
     margin-top : 15px;
@@ -192,7 +197,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
 }
 
 #VentanaLogin::before {    content : 'Login';   backface-visibility : hidden; }
-#VentanaError::before {    content : 'Error'; }
+/*.VentanaError::before {    content : 'Error'; }*/
 
 
 #VentanaLogin input {
@@ -203,7 +208,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
     border     : 1px solid #353338;
 }
 
-#VentanaMensaje, #VentanaError, #VentanaLogin, #BarraPrincipal, #BarraNavegacion_Inferior, #BarraNavegacion {
+.VentanaMensaje, .VentanaError, #VentanaLogin, #BarraPrincipal, #BarraNavegacion_Inferior, #BarraNavegacion {
     -webkit-user-select : none;
     -moz-user-select    : none;
     -ms-user-select     : none;
@@ -211,7 +216,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
 }
 
 
-#VentanaMensaje > p, #VentanaError > p {
+.VentanaMensaje > p, .VentanaError > p {
     -webkit-user-select : text;
     -moz-user-select    : text;
     -ms-user-select     : text;

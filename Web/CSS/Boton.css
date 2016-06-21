@@ -88,7 +88,7 @@ and open the template in the editor.
 }
 /* Elimino el outline del botón por una transición con la sombra */
 [class^='Boton-']:enabled:focus, [class^='BotonSvg-']:enabled:focus { 
-    outline    : 0px solid transparent;                         /* Elimino el outline que hay por defecto       */
+    outline    : 1px solid transparent;                         /* Elimino el outline que hay por defecto       */
     box-shadow : 0px 0px 4px 2px #800,  0px 0px 2px 1px #300;   /* Creo una sombra rojo oscuro de 2 tonalidades */ 
 }            
 /* Alejo el objeto en la perspectiva cuando el usuario presiona sobre él */
@@ -98,7 +98,8 @@ and open the template in the editor.
 }
 /* Color del borde rojo al pasar el mouse por encima del botón */
 [class^='Boton-']:enabled:hover, [class^='Boton-']:enabled:active , [class^='BotonSvg-']:enabled:hover, [class^='BotonSvg-']:enabled:active { 
-    border : 1px solid darkred; text-decoration : none; 
+    border          : 1px solid darkred; 
+    text-decoration : none; 
 }            
 /* -[FIN devildrey33.button]- */            
             
@@ -211,3 +212,22 @@ and open the template in the editor.
     transform        : translateX(-50%) translateY(-50%); 
 }
 .Boton-Circular:enabled:hover::before, .Boton-Circular:active::before { width:300px; height:300px; }    
+
+
+/* Boton simple especial para las ventanas de mensajes */
+.BotonVentana {
+    border      : 1px solid #000;
+    background  : rgb(60,60,60);
+    transition  : 0.3s;
+    color       : #FFF;
+    font-size   : 1.7rem;
+    margin      : 10px;
+    padding     : 10px;
+    text-align  : center;
+    text-shadow : 1px 1px 1px #000;
+    outline     : none !important;
+}
+
+.BotonVentana:hover {
+    background : #ea504e; 
+}

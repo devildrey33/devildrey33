@@ -374,6 +374,7 @@ class Base {
        return $LogStr;
    }
 
+   // Función que parsea el log para resaltar el número de línea del warning/error
    static function ParsearLogPHP($Log) {
        $LogStr = "";
        $Lineas = explode("\n", $Log);
@@ -402,8 +403,9 @@ function Intro() {
 
 
 // Elimino el archivo que contiene los warnings y errores php
-if (file_exists(dirname(__FILE__)."/Cache/php-error.log") && devildrey33_Opciones::BorrarLogPHP() === 1) {
-    unlink(dirname(__FILE__)."/Cache/php-error.log");
+if (file_exists(dirname(__FILE__)."/Cache/php-error.log") /*&& devildrey33_Opciones::BorrarLogPHP() === 1 */) {
+//    unlink(dirname(__FILE__)."/Cache/php-error.log");
+    Base::ObtenerLogPHP();
 }
 
 // Establezco un archivo de log para guardar los errores/warnings 
