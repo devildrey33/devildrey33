@@ -155,7 +155,10 @@ $Base = new function() {
     this.MostrarErroresPHP = function() {
         console.log("Base.MostrarErroresPHP");
         $EFP = $("#ErroresFinPlantilla").html();
-        if ($EFP !== "") { $("#ErroresPHP_Info").html($EFP); }
+        if ($EFP !== "") { 
+            $("#ErroresFinPlantilla").html("");
+            $("#ErroresPHP_Info").html($EFP); 
+        }
         $("#ErroresPHP").attr({ "mostrar" : true });
     };
     
@@ -775,13 +778,15 @@ $Base = new function() {
         $.post($Base.Raiz + "cmd/Loguear.cmd", { "l" : l,  "p" : pass }).done(function(data, textStatus, jqXHR) {
 //            console.log("Base.Loguear", data);
             Datos = JSON.parse(data);
-            if (Datos.Mensaje === "Correcto!") { // Logueado
-                $Base.CargarJS("ObjetoAdmin.js", function() { $Admin.Iniciar(); });
+            if (Datos.Estado === 0) { // Logueado
                 localStorage["Comentarios_Usuario"] = $("#devildrey33_Usuario").val();
                 //$("#devildrey33_Password").val("");
                 $("#VentanaLogin").attr({ visible : false });
                 // Añado el html para administrador
                 $("#Marco33").html(Datos.HTMLAdmin);
+                // Cargo el JavaScript para el administrador
+                $Base.CargarJS("ObjetoAdmin.js", function() { $Admin.Iniciar(); });
+
                 // Carpeta ejemplos completa con checkboxes para añadir / eliminar de la versión de usuario.
                 $("#BarraNavegacion_Explorador").html(Datos.ExplorarLab);
                 $Lab.EnlazarEventosExplorador();
@@ -791,9 +796,14 @@ $Base = new function() {
                 // - Al loguear correctamente vuelve a ejecutar el comando de administración
                 $Base.FPL();
             }
-            else {  // Error login o password incorrectos
-                $("#VentanaLogin").removeClass("VentanaError_AnimacionError");
-                setTimeout(function() { $("#VentanaLogin").addClass("VentanaError_AnimacionError"); }, 50);
+            else {  // Error en el cmd
+                if (Datos.Estado === 1) { // Pass incorrecto
+                    $("#VentanaLogin").removeClass("VentanaError_AnimacionError");
+                    setTimeout(function() { $("#VentanaLogin").addClass("VentanaError_AnimacionError"); }, 50);
+                }
+                else if (Datos.Estado === 2) { // Error php en el loguear
+                    $Base.MostrarMensaje("Error interno del servidor...", "Error grave", "true");
+                }
                 $Base.Cargando("FALSE");
             }
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);

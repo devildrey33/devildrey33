@@ -2612,7 +2612,7 @@
     'Soportada'     => array ( 1, 1, 9, 9.5, 1 ),
     'Ejemplo'       => ':root',
     'Path'          => '',
-    'EjemplosExtra' => array ( ),
+    'EjemplosExtra' => array ("/Ejemplos/VariablesCSS/ambito.html",  "/Ejemplos/VariablesCSS/javascript.html"),
     'Tipo'          => 'DocCSS'
   ),
   array ( 
@@ -3255,12 +3255,12 @@
     'Nombre'        => 'var()',
     'TipoCSS'       => 2,
     'Grupo'         => 37,
-    'Descripcion'   => '',
+    'Descripcion'   => 'Función que enlaza una propiedad a una variable CSS.',
     'Version'       => 3,
-    'Soportada'     => array ( 49, 31, 0, 0, 0 ),
+    'Soportada'     => array ( 49, 31, 0, 38, 9.3 ),
     'Ejemplo'       => '',
     'Path'          => '',
-    'EjemplosExtra' => array ( ),
+    'EjemplosExtra' => array ( '/Ejemplos/VariablesCSS/ambito.html', '/Ejemplos/VariablesCSS/javascript.html' ),
     'Tipo'          => 'DocCSS'
   ),
   array ( 

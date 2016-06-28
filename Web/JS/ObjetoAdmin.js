@@ -12,15 +12,15 @@ $Admin = new function() {
         /* Activo el CSS para el modo administrador */
         $("body").attr({ "administrador33" : true });
         /* re-emplazo de la funcion click para el menu de administración */
-        $('#BarraPrincipal_Boton33_Estado').click(function(e){ $Base.ClickMenu(8); });
+        $('#BarraPrincipal_Boton33_Estado').off("click").on("click", function(e){ $Base.ClickMenu(8); });
         /* Boton ver logs */
-        $('#CH_Logs').click(function(e){ $Base.CargarURL('/Web/Log'); $Base.ClickMenu(0); }); /* MOSTRAR LOGS */
+        $('#CH_Logs').off("click").on("click", function(e){ $Base.CargarURL('/Web/Log'); $Base.ClickMenu(0); }); /* MOSTRAR LOGS */
         /* Boton ver stats */
-        $('#CH_Stats').click(function(e){ $Base.CargarURL('/Web/Stats'); $Base.ClickMenu(0); }); /* MOSTRAR stats */
+        $('#CH_Stats').off("click").on("click", function(e){ $Base.CargarURL('/Web/Stats'); $Base.ClickMenu(0); }); /* MOSTRAR stats */
         /* Boton ver php info */
-        $('#CH_PhpInfo').click(function(e){ $Base.CargarURL('/Web/phpinfo'); $Base.ClickMenu(0); }); /* MOSTRAR info php */
+        $('#CH_PhpInfo').off("click").on("click", function(e){ $Base.CargarURL('/Web/phpinfo'); $Base.ClickMenu(0); }); /* MOSTRAR info php */
         /* Botón generar cache del buscador */
-        $('#CH_GenCacheBuscador').click(function(e){ $Base.cmd('GenerarCacheBuscador');  }); 
+        $('#CH_GenCacheBuscador').off("click").on("click", function(e){ $Base.cmd('GenerarCacheBuscador');  }); 
         /* Boton explorar lab */
 //        $('#CH_Lab').click(function(e){ $Base.CargarURL('/Web/Lab-Explorar'); $Base.ClickMenu(0); });  /* EXPLORAR LAB */
         /* Boton editar entradas */
@@ -28,7 +28,7 @@ $Admin = new function() {
         /* Boton limpiar baneados */ 
         $('#CH_IPSBan').click(function(e){ $Base.cmd("LimpiarBaneados"); });  
         /* CheckBox del marco de administración */
-        $('#BarraPrincipal_Marco33 .CheckBox').click(function(e){ 
+        $('#BarraPrincipal_Marco33 .CheckBox').off("click").on("click", function(e){ 
             $(this).attr({ 'marcado' : ($(this).attr('marcado') === 'false') ? 'true' : 'false' });
             switch ($(this).attr('id')) {
                 case 'CH_Admin' : /* Desloguear */
@@ -112,12 +112,13 @@ $Admin = new function() {
             $Base.Cargando("FALSE");
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
             if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
+            $('body').attr({ 'administrador33' : false });
         });
         nAjax.fail(function( jqXHR, textStatus, tError ) { 
             console.log("Admin.Desloguear EscanearEjemplos Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarErrorAjax(jqXHR.status, false);
+            $('body').attr({ 'administrador33' : false });
         });                
-        $('body').attr({ 'administrador33' : false });
         $Base.ClickMenu(0);
         setTimeout(function() { $('#Marco33').html(''); }, 500);    
     };

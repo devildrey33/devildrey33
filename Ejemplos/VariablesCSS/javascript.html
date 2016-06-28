@@ -21,6 +21,8 @@
             .Col2 { background-color: var(--Color-2, #000); }  
             .Col3 { background-color: var(--Color-3, #000); }
             .Col4 { background-color: var(--Color-4, #000); }  /* Al estar la variable '--Color-4' comentada, tomará el segundo parámetro '#000' y el fondo inicialmente será negro */
+
+            /* CSS extra para resaltar el ejemplo */
             .Ejemplo { display:flex; flex-flow:row wrap; width:100%; } 
             button { outline:none; margin:10px 0px 0px; background:rgba(200,200,200,0.7); padding:6px; }
         </style> 
@@ -31,8 +33,11 @@
             function Rand(ValorMaximo) { return Math.floor(Math.random() * ValorMaximo); }
             // Modifica el color de una variable CSS
             function ModificarVariableCSS(Variable) {
+                // Color RGB aleatório
                 var Color = "rgb(" + Rand(255) + "," + Rand(255) + "," + Rand(255) + ")";
+                // Asigno el color a la variable global
                 document.body.style.setProperty(Variable, Color);
+                // Modifico el texto del span con el nuevo color
                 document.querySelector("." + Variable.replace("--Color-", "Col") + " > span").innerHTML = Variable + " : " + Color;
             }
             // Obtiene el valor de una variable CSS
@@ -50,17 +55,17 @@
             	<button OnClick='ModificarVariableCSS("--Color-1")'>Generar color aleatorio</button>
             </div>
         	<div class='Col2'>
-                <span>--Color-1 : blue</span>
+                <span>--Color-2 : blue</span>
                 <br />
             	<button OnClick='ModificarVariableCSS("--Color-2")'>Generar color aleatorio</button>
             </div>
         	<div class='Col3'>
-                <span>--Color-1 : green</span>
+                <span>--Color-3 : green</span>
                 <br />
             	<button OnClick='ModificarVariableCSS("--Color-3")'>Generar color aleatorio</button>
             </div>
         	<div class='Col4'>
-                <span>--Color-1 : </span>
+                <span>--Color-4 : </span>
                 <br />
             	<button OnClick='ModificarVariableCSS("--Color-4")'>Generar color aleatorio</button>
             </div>

@@ -78,20 +78,25 @@ class devildrey33_Opciones {
     
     
     static public function Login($Login, $Pass) {
-        $ArrayDatos = (require dirname(__FILE__).'/Passwords.php');
-        if ($Login === $ArrayDatos["LOGIN-devildrey33"] && Base::Decodificar($Pass) === $ArrayDatos["PASS-devildrey33"] && devildrey33_Opciones::ErrorLogin() < 10) {
-            devildrey33_Opciones::Administrador(1);
-            return "Correcto!";
-        }
-        else if ($Login === $ArrayDatos["LOGIN-Barba"] && Base::Decodificar($Pass) === $ArrayDatos["PASS-Barba"] && devildrey33_Opciones::ErrorLogin() < 10) {
-            devildrey33_Opciones::Administrador(2);
-            return "Correcto!";            
+        if (file_exists(dirname(__FILE__).'/Passwords.php')) {
+            $ArrayDatos = (require dirname(__FILE__).'/Passwords.php');
+            if ($Login === $ArrayDatos["LOGIN-devildrey33"] && Base::Decodificar($Pass) === $ArrayDatos["PASS-devildrey33"] && devildrey33_Opciones::ErrorLogin() < 10) {
+                devildrey33_Opciones::Administrador(1);
+                return 0;
+            }
+            else if ($Login === $ArrayDatos["LOGIN-Barba"] && Base::Decodificar($Pass) === $ArrayDatos["PASS-Barba"] && devildrey33_Opciones::ErrorLogin() < 10) {
+                devildrey33_Opciones::Administrador(2);
+                return 0;          
+            }
+            else {
+                return 1;
+                if (devildrey33_Opciones::MostrarConsola() === 1) echo " (".Base::Decodificar($Pass).")";
+            }
         }
         else {
-            return "Error ".devildrey33_Opciones::SumaErrorLogin().".";
-            if (devildrey33_Opciones::MostrarConsola() === 1) echo " (".Base::Decodificar($Pass).")";
+            error_log("<span style='color:red'>Error interno!</span> devildrey33_Opciones::Login : No se encuentra el archivo '/Web/Paswwords.php'");
+            return 2;
         }
-        
     }        
 };
 

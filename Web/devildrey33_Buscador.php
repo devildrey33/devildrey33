@@ -12,6 +12,19 @@ class devildrey33_Buscador {
 //        set_time_limit(60 * 60);
 //        header('Content-Type: text/html; charset=8859-1');
 //        header('Content-Type: text/html; charset=UTF-8');
+        if (!file_exists(dirname(__FILE__).'/Config/EntradasBlog.php')) {
+            error_log("<span style='color:red'>Error! </span> devildrey33_Buscador::GenerarCache -> No existe el archivo '/Config/EntradasBlog.php'");
+            return false;
+        }
+        if (!file_exists(dirname(__FILE__).'/Config/ListaLab.php')) {
+            error_log("<span style='color:red'>Error! </span> devildrey33_Buscador::GenerarCache -> No existe el archivo '/Config/ListaLab.php'");
+            return false;
+        }
+        if (!file_exists(dirname(__FILE__).'/Config/EntradasDocCSS.php')) {
+            error_log("<span style='color:red'>Error! </span> devildrey33_Buscador::GenerarCache -> No existe el archivo '/Config/EntradasDocCSS.php'");
+            return false;
+        }
+        
         $ArrayEntradasB = (require dirname(__FILE__).'/Config/EntradasBlog.php');
         $ArrayEntradasD = (require dirname(__FILE__).'/Config/EntradasDocCSS.php');
         $ArrayEntradasL = (require dirname(__FILE__).'/Config/ListaLab.php');
@@ -38,6 +51,7 @@ class devildrey33_Buscador {
         
         file_put_contents(Base::Path_Raiz()."Web/Cache/BDBuscador.php", "<?php return ".var_export($CacheBuscador, TRUE).";");
         
+        return true;
 //        print_r($CacheBuscador);
         // Tiempo máximo de ejecución en segundos (30 segundos)
 //        set_time_limit(30);

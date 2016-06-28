@@ -81,7 +81,7 @@
 }
 
 /* Si el usuario es administrador escondo el logo  hacia la izquierda */
-body[administrador33] #Logo {
+body[administrador33=true] #Logo {
     left:-100px;
 }
 

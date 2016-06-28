@@ -235,13 +235,18 @@ and open the template in the editor.
     position:relative;
 }
 
-.MiniLab_Contenedor > .MiniLab_ContenedorBotones > .Menu_Boton {
+.MiniLab_Contenedor > .MiniLab_ContenedorBotones > .Menu_Boton_Input + .Menu_Boton {
     margin:2px;
     min-width:42px;
     display:table-cell;
     vertical-align: middle;
     width:42px;
     height:42px;
+}
+
+.MiniLab_Contenedor > .MiniLab_ContenedorBotones > .Menu_Boton_Input:checked + .Menu_Boton {
+    background-color: #EA504E;
+    border-color:red;
 }
 
 .MiniLab_ContenedorBotones {

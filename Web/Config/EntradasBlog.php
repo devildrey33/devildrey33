@@ -2,7 +2,18 @@
     /* Tipo puede ser : 'Blog', 'Lab', 'DocCSS' */
     /* Las imagenes van sin su tamaño y debe haber una de imagen 155x125_, y una imagen de 250x200_ */ 
     /*  ej: 155x125_CSS3.png, 250x200_CSS3.png */
+
+    /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(
+        
+array(	"Titulo" 	=> "Referéncia CSS : Variables",
+        "Fecha" 	=> "21/06/2016",
+        "URL" 		=> "variables-css",
+        "Tags" 		=> array("CSS", "JavaScript", "HTML", "Programación"),
+        "Tipo"		=> "Blog",
+        "Autor"         => "Josep Antoni Bover",
+        "Idioma"        => "es",
+        "Imagen"	=> "CSS3.png"), 
         
 array(	"Titulo" 	=> "Algunos efectos para botones en CSS",
         "Fecha" 	=> "16/03/2016",

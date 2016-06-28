@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4">
         <file>
-            <url>Web/JS/ObjetoBase.js</url>
-            <bookmark id="4">
-                <name/>
-                <line>266</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
             <url>Web/JS/ObjetoAdmin.js</url>
             <bookmark id="1">
                 <name/>
@@ -30,6 +22,14 @@
                 <key/>
             </bookmark>
         </file>
+        <file>
+            <url>Web/JS/ObjetoBase.js</url>
+            <bookmark id="4">
+                <name/>
+                <line>269</line>
+                <key/>
+            </bookmark>
+        </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
@@ -39,6 +39,7 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/InyeccionSQL.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoIndice.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ComboBoxWeb.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Cache/BDBuscador.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/CSS3_Sombras_Bordes.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_1_6.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/ArchivosMinify.php</file>
@@ -82,6 +83,7 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Captcha1.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/FeedsRSS.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_cmd%20OLD.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/BarraPrincipal.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Tablas.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_HTML5_5.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_3_6.php</file>
@@ -110,9 +112,11 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_HTML5_7.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_3_4.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ColorearCodigoPHP_CSS.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/codemirror.min.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Antivirus_Fotos0506.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_1_7.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/MenuWebFijo.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/variables-css.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Log2.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Solitario/Solitario.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Lab.css</file>
@@ -125,12 +129,14 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Comentarios.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoComentarios.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ColorearCodigoPHP_JavaScript.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Selectores/root.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_HTML5_1.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/DWL2012-08-02-2012.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/FaqBarba.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/webs-contenido-dinamico.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_PintarCodigo.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/XamppUSB.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/EntradasDocCSS.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ColorearCodigoPHP_PHP.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/.htaccess</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_2_2.php</file>
@@ -141,6 +147,8 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/SeguridadServidorWeb.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/varios-ejemplos-de-menus.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/USB_Boot.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/VariablesCSS/ambito.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/FuncionesCSS/var.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/GenerarLibDesdeDll.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Logo.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_3_8.php</file>
@@ -161,6 +169,7 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Stats.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/CSS3_Transition_Transform.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_1_0.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Funciones/var.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/BarraNavegacion.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ColoresCSS.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_HTML5_6.php</file>
@@ -173,8 +182,8 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Editar-Entradas.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/notas-actualizacion-web.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/UnidadesCSS.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/VariablesCSS/javascript.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/flex-box-y-media-queries.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Diapositivas/Diapositivas3D.html</file>
         </group>
     </open-files>
 </project-private>

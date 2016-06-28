@@ -113,7 +113,7 @@ and open the template in the editor.
     z-index:1001;
     transition:0.5s cubic-bezier(.17,-0.42,0,1.35);
 }
-body[administrador33] #Marco33 {
+body[administrador33=true] #Marco33 {
     bottom:0px;
 }
 #Marco33 > .Menu_Boton {

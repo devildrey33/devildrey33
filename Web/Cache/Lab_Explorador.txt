@@ -244,6 +244,12 @@
 <a href='/Lab/Ejemplos/FuncionesCSS/rgba.html'>rgba.html</a>
 </div>
 </div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/FuncionesCSS/var.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/FuncionesCSS/var.html'>var.html</a>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1637,6 +1643,27 @@
 <div class='Lab_Archivo' path='/Lab/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_9_Ejemplo.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/Tutorial_HTML5/Tutorial_HTML5_9_Ejemplo.html'>Tutorial_HTML5_9_Ejemplo.html</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Directorio' path='/Lab/Ejemplos/VariablesCSS/'>
+<div class='Lab_IcoDirectorioC'></div>
+<span>VariablesCSS</span>
+</div>
+<div class='Lab_Directorio_Animacion'>
+<div class='Lab_Lista'><div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/VariablesCSS/ambito.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/VariablesCSS/ambito.html'>ambito.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/VariablesCSS/javascript.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/VariablesCSS/javascript.html'>javascript.html</a>
 </div>
 </div>
 </div>

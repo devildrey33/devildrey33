@@ -178,6 +178,7 @@ class devildrey33 {
                         "<a href='/Doc/CSS/Reglas'>Reglas</a>".Intro().
                         "<a href='/Doc/CSS/Selectores'>Selectores</a>".Intro().
                         "<a href='/Doc/CSS/Propiedades'>Propiedades</a>".Intro().
+                        "<a href='/Doc/CSS/Variables'>Variables</a>".Intro().
                     "</div>".Intro().
                 "</div>".Intro().
                 
@@ -536,7 +537,7 @@ class devildrey33 {
         // La función para loguear se utiliza tanto via ajax como al iniciar, por lo que tengo que pasar los errores PHP SOLO desde ajax.
         // Si añado los errores en la misma función de HerramientasAdmin se borraria una parte del log de errores al loguear desde devildrey33.php
         // En definitiva no hay que utilizar Base::ObtenerLogPHP() desde esta función
-        return array("Mensaje" => $EstadoLogin, "HTMLAdmin" => $HTMLAdmin, "ExplorarLab" => devildrey33_Lab::MostrarCarpetaEjemplos());        
+        return array("Estado" => $EstadoLogin, "HTMLAdmin" => $HTMLAdmin, "ExplorarLab" => devildrey33_Lab::MostrarCarpetaEjemplos());        
     }
     
     public function FinPlantilla() {
@@ -743,13 +744,19 @@ class devildrey33 {
     */		
     public function Head_CSS() {
         if (devildrey33_Opciones::Minificar_CSS() == 0) {
-            $ArrayCSS = (require dirname(__FILE__).'/Config/ArchivosMinify.php');
-            $Raiz = "/".str_replace("\\", "/", substr(dirname(__FILE__), strlen($_SERVER["DOCUMENT_ROOT"])));
+            if (file_exists(dirname(__FILE__).'/Config/ArchivosMinify.php')) {
+                $ArrayCSS = (require dirname(__FILE__).'/Config/ArchivosMinify.php');
+                $Raiz = "/".str_replace("\\", "/", substr(dirname(__FILE__), strlen($_SERVER["DOCUMENT_ROOT"])));
             // dirname(__FILE__)         = "c:\devildrey33\webs\devildrey33\Web"
             // $_SERVER["DOCUMENT_ROOT"] = "c:\devildrey33\webs" o "c:\devildrey33\webs\devildrey33"
-            foreach ($ArrayCSS["css"] as $Archivo) {
-                echo "<link rel='stylesheet' href='http://".$_SERVER["SERVER_NAME"].$Raiz.$Archivo."' />".Intro();
+                foreach ($ArrayCSS["css"] as $Archivo) {
+                    echo "<link rel='stylesheet' href='http://".$_SERVER["SERVER_NAME"].$Raiz.$Archivo."' />".Intro();
+                
+                }
             }
+            else {
+                error_log("<span style='color:red'>Error!</span> devildrey33::Head_CSS -> no se encuentra el archivo '/Config/ArchivosMinify.php'");
+            }                
         }
         else {
             echo "<link rel='stylesheet' href='http://".$_SERVER["SERVER_NAME"].$Raiz."Cache/devildrey33.min.css' />".Intro();
@@ -759,7 +766,7 @@ class devildrey33 {
     
     public function GenerarListaEntradasJS() {
         if (file_exists(dirname(__FILE__).'/Config/EntradasBlog.php') === false) {
-            error_log("<div style='color:red'>No existe el archivo '/Config/EntradasBlog.php' !!!</div>");
+            error_log("<div style='color:red'>No existe el archivo '/Config/EntradasBlog.php' !!! (devildrey33::GenerarListaEntradasJS)</div>");
             return;
         }
         $EntradasBlog   = require dirname(__FILE__).'/Config/EntradasBlog.php';
@@ -855,9 +862,14 @@ class devildrey33 {
         echo "<script src='".Base::URL_Cache()."EntradasBlog.js'></script>".Intro();
 
         if (devildrey33_Opciones::Minificar_JS() == 0) {
-            $ArrayCSS = (require dirname(__FILE__).'/Config/ArchivosMinify.php');
-            foreach ($ArrayCSS["js"] as $Archivo) {
-                echo "<script src='".rtrim(Base::URL_Web(), "/").$Archivo."'></script>".Intro();
+            if (file_exists(dirname(__FILE__).'/Config/ArchivosMinify.php')) {
+                $ArrayCSS = (require dirname(__FILE__).'/Config/ArchivosMinify.php');
+                foreach ($ArrayCSS["js"] as $Archivo) {
+                    echo "<script src='".rtrim(Base::URL_Web(), "/").$Archivo."'></script>".Intro();
+                }            
+            }
+            else { 
+                error_log("<span style='color:red'>Error!</span> devildrey33::Head_JS -> el archivo '/Config/ArchivosMinify.php' no existe.");
             }
         }
         else {
@@ -873,28 +885,34 @@ class devildrey33 {
     
     /* Comprime los archivos JS y CSS */
     static public function Minificar_JS_CSS() {
-        include("CSSMin.php");
-        include("JSMin.php");
-        
-        $MinDebug = "\n";
-        //$MinDebug = "";
-        
-        $ArrayMin = (require dirname(__FILE__).'/Config/ArchivosMinify.php');
-        $StringJS = "";
-        foreach ($ArrayMin["js"] as $Archivo) {
-            $JSMin = new JSMin(file_get_contents(dirname(__FILE__).$Archivo));
-            $StringJS .= $JSMin->min().$MinDebug;
+        if (file_exists(dirname(__FILE__).'/Config/ArchivosMinify.php')) {
+            include("CSSMin.php");
+            include("JSMin.php");
+
+            $MinDebug = "\n";
+            //$MinDebug = "";
+
+            $ArrayMin = (require dirname(__FILE__).'/Config/ArchivosMinify.php');
+            $StringJS = "";
+            foreach ($ArrayMin["js"] as $Archivo) {
+                $JSMin = new JSMin(file_get_contents(dirname(__FILE__).$Archivo));
+                $StringJS .= $JSMin->min().$MinDebug;
+            }
+            file_put_contents(dirname(__FILE__)."/Cache/devildrey33.min.js", $StringJS);
+
+            $StringCSS = "";
+            $CSSMin = new CSSmin;
+            foreach ($ArrayMin["css"] as $Archivo) {
+                $StringCSS .= $CSSMin->run(file_get_contents(dirname(__FILE__).$Archivo));            
+            }
+            file_put_contents(dirname(__FILE__)."/Cache/devildrey33.min.css", $StringCSS);
+
+            return "Cache actualizada!";
         }
-        file_put_contents(dirname(__FILE__)."/Cache/devildrey33.min.js", $StringJS);
-        
-        $StringCSS = "";
-        $CSSMin = new CSSmin;
-        foreach ($ArrayMin["css"] as $Archivo) {
-            $StringCSS .= $CSSMin->run(file_get_contents(dirname(__FILE__).$Archivo));            
+        else {
+            error_log("<span style='color:red'>Error!</span> devildrey33::Minificar_JS_CSS -> el archivo '/Config/ArchivosMinify.php' no existe.");
+            return "Error del servidor";
         }
-        file_put_contents(dirname(__FILE__)."/Cache/devildrey33.min.css", $StringCSS);
-        
-        return "Cache actualizada!";
     }
 
 };

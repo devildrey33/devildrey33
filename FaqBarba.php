@@ -403,10 +403,10 @@
 // -[INICIO devildrey33.ID?]-
 function LaMevaFuncioDelExemple () { };
 // -[FIN devildrey33.ID?]-
-$Web->PintarCodigo->PintarArchivoPHP("IDHTML", "Carregar javascript o css extern", basename(__FILE__), 'ID?'); 
+$Web->PintarCodigo->PintarArchivoPHP("IDHTML", "", basename(__FILE__), 'ID?'); 
 ?>
 -[FIN devildrey33.IDC4]- */
-    $Web->PintarCodigo->PintarArchivoPHP("ID4", "Carregar javascript o css extern", basename(__FILE__), 'IDC4'); 
+    $Web->PintarCodigo->PintarArchivoHTML("ID4", "", basename(__FILE__), 'IDC4'); 
 ?>
         
         
@@ -417,7 +417,7 @@ $Web->PintarCodigo->PintarArchivoPHP("IDHTML", "Carregar javascript o css extern
 /* -[INICIO devildrey33.IDC5]-
 <?php devildrey33_Lab::CrearMiniLab(array("Ejemplos/Checked/CheckBox-personalizado.html")); ?>
 -[FIN devildrey33.IDC5]- */
-    $Web->PintarCodigo->PintarArchivoPHP("ID5", "Carregar javascript o css extern", basename(__FILE__), 'IDC5'); 
+    $Web->PintarCodigo->PintarArchivoPHP("ID5", "", basename(__FILE__), 'IDC5'); 
 ?>
 
         <p>Aquest editor requereix que el codi a mostrar estigui dintre de la carpeta <i>/Ejemplos</i>, i tambè ha d'estar a la llista d'arxius permesos.</p>

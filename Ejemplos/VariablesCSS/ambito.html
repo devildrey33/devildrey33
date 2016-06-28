@@ -1,0 +1,52 @@
+<!-- Test para variables CSS Creado el 21/06/2016 por Josep Antoni Bover para http://devildrey33.es 
+		Ultima modificación el 21/06/2016 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">  
+            /* Las variables empiezan siempre por -- */
+            /* Para definir variables en el ámbito global se utiliza el selector :root */
+            :root {      --ColorTexto:red;    }
+            /* Re-defino la variable ColorTexto azul para los elementos dentro de una clase .ColAzul */
+            .ColAzul {   --ColorTexto:blue;   }
+            /* Re-defino la variable ColorTexto verde para los elementos dentro de una clase .ColVerde */            
+            .ColVerde {  --ColorTexto:green;  }
+            /* El color del texto de las etiquetas span queda enlazado a la variable --ColorTexto utilizando la función var */
+            /* En el segundo parámetro de la función var se especifica un color por defecto por si se da el caso de que la variable no existe */
+            span {  color:var(--ColorTexto, gray); }
+            span:hover {
+                background-color:var(--ColorTexto, gray);
+                color:white;
+            }
+            
+            /* CSS extra para resaltar el ejemplo */
+            body { margin:5px; border:1px dashed var(--ColorTexto, gray); padding:0px 5px; }
+            [class^='Col'] { margin:5px 5px 10px 20px; border:1px dashed var(--ColorTexto, gray); padding:0px 10px; position:relative; }
+            [class^='Col']::before, body::before { content:attr(class); position:absolute; top:0px; right:0px; color:white; background-color:var(--ColorTexto, gray); padding:0px 5px; opacity:0.8; }
+            body::before { top:5px; right:5px; content:"::root"; }
+            span { transition:0.4s; }
+        </style> 
+                 
+        <!-- Código javascript --> 
+        <script type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <p>Este ejemplo <b>no funciona en ninguna versión de Internet Explorer</b>.</p>        
+        <p>El color del texto de ámbito global para las etiquetas <span>&lt;span&gt;</span> es <span>rojo</span></p>
+        <div class='ColAzul'>
+            <p>El color del texto para las etiquetas <span>&lt;span&gt;</span> dentro de un elemento con la clase <code>ColAzul</code> es <span>azul</span></p>
+            <div class='ColVerde'>
+                <p>El color del texto para las etiquetas <span>&lt;span&gt;</span> dentro de un elemento con la clase <code>ColVerde</code> es <span>verde</span></p>
+            </div>
+        </div>
+        <div class='ColVerde'>
+            <p>El color del texto para las etiquetas <span>&lt;span&gt;</span> dentro de un elemento con la clase <code>ColVerde</code> es <span>verde</span></p>
+            <div class='ColAzul'>
+                <p>El color del texto para las etiquetas <span>&lt;span&gt;</span> dentro de un elemento con la clase <code>ColAzul</code> es <span>azul</span></p>
+            </div>
+        </div>
+        
+    </body> 
+</html>

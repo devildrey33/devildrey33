@@ -94,8 +94,9 @@
             // Si añado los errores en la misma función de HerramientasAdmin se borraria una parte del log de errores al loguear desde devildrey33.php
             $L = devildrey33::HerramientasAdmin($_POST["l"], $_POST["p"], TRUE); 
             $L["ErroresPHP"] = Base::ObtenerLogPHP();
-            if ($L["Mensaje"] === "Correcto!") { $L["Estado"] = 0; }
-            else                               { $L["Estado"] = 2; }
+/*            if ($L["Mensaje"] === 3) { $L["Estado"] = 2; }
+            else                                 { $L["Estado"] = 0; }*/
+            
             echo json_encode($L);
         }
         
@@ -171,8 +172,9 @@
         
         public function GenerarCacheBuscador() {
             if (devildrey33_Opciones::Administrador() > 0) { 
-                devildrey33_Buscador::GenerarCache();               
-                echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0, "Mensaje" => "Cache del buscador generada!"));
+                $Ret = devildrey33_Buscador::GenerarCache();
+                $Msg = ($Ret === true) ? "Cache del buscador generada!" : "Error generando la cache del buscador";
+                echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0, "Mensaje" => $Msg));
             }
             else {
                 $this->Desloguear(1);

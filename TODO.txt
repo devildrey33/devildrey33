@@ -131,12 +131,14 @@ Blog :
  V  - l'arxiu /Blog/Tutorial_WINAPI_4.php no te h2's apart del de comentaris! (afegits h2 i a mes l'he omplert de <linea> xd)
     - Mirar de començar a fer coses amb SVG's (Ejemplos/SVG/Iconos.html)
  V      - Despres d'un dia de svgs corel i adobe sembla que ja començo a tenir nocions básiques.
-    - Fer documentació preliminar i exemples per les VARIABLES CSS!!!!     (https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables)
+ V  - Fer documentació preliminar i exemples per les VARIABLES CSS!!!!     (https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables)
+ V      - Exemple dels ambits per les variables, exemple modificar variables javascript
  V  - Efectes hover per butons (aprofitant el concepte de butons :hover que he fet per la web /Ejemplos/Transition/Botones.html)
  V      - La majoria d'efectes avegades fan una linea blanca a la bora dreta del buto quan está dintre d'una finestra amb l'animacio de rotació. L'unic que sembla que no ho fa es el del box-shadow.
     
 Doc/CSS :
  V  - animation-timing-function amb exemple i aixi acabo l'apartat animaciones.
+ V  - Crear funció var, i actualitzar el selector :root pel tema de les variables CSS
     - cubic-bezier chulo al estil de http://cubic-bezier.com/
         - \devildrey33\Ejemplos\BezierJS.js (funció per pintar una curva bezier en js)
 

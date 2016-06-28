@@ -1,0 +1,36 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [28/06/2016] para devildrey33.es 
+		Ultima modificación el [28/06/2016] -->
+<!DOCTYPE>
+<html>
+    <head>
+        <style>
+            :root {
+                --ColorFondo : rgb(200, 200, 200);
+                --ColorTexto : red;
+                --RotarX     : 1deg;
+                --RotarY     : 10deg;
+                --RotarZ     : -1deg;
+                /* Variable que obtiene parte de su valor de otras variables */
+                --Transform  : perspective(6000px) 
+                               rotateX( var(--RotarX) ) 
+                               rotateY( var(--RotarY) ) 
+                               rotateZ( var(--RotarZ) );                 
+            }
+            
+            #Test {
+                /* Se puede utilizar la función var como un valor completo */
+                background-color : var(--ColorFondo);
+                color            : var(--ColorTexto);
+                /* Se puede utilizar la función var como parte del valor */
+                border           : 1px solid var(--ColorTexto);
+                /* Se puede utilizar una variable que requiere otras variables */
+                transform        : var(--Transform);
+                /* La variable --VariableQueNoExiste no existe, y especifico su valor en el segundo parámetro */
+                position         : var(--VariableQueNoExiste, "relative");
+            }
+        </style>
+    </head>
+    <body><span>aa</span>
+        <div id='Test'>Test simple de variables CSS</div>
+    </body>
+</html>
