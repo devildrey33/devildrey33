@@ -12,11 +12,6 @@ html[lang=en] #Comentarios > h2:nth-child(1)::after {
     border-left: none;
     border-right: none;
     padding:20px 0px 0px 0px;       
-    
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;        
 }
 
 #Comentarios > table {

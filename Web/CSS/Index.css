@@ -24,10 +24,6 @@
 
 /* Combo de categorias */
 #Categorias_Estado + #Categorias_Label + #Categorias {
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
     font-family: 'Karla', sans-serif;
     font-size:2.1rem;
     border-bottom: 1px solid #353338;

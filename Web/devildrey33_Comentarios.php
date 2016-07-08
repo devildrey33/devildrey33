@@ -9,7 +9,7 @@ class devildrey33_Comentarios {
     public function AgregarComentarios($Pagina, $BD, $SoloLectura = FALSE) {
         echo "<div class='Blog'>".Intro();
         if ($SoloLectura == FALSE) {
-            echo "<section id='Comentarios'>".Intro().
+            echo "<section id='Comentarios' class='SinSeleccion'>".Intro().
                     "<h2></h2><br />".Intro(). // Titulo por CSS (en ingles/castellano)
                     "<div id='Comentarios_MarcoDatos'>".Intro().
 /*                        "<table>"."<tr>"."<td>".*/

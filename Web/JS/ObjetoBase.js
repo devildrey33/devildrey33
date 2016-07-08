@@ -26,14 +26,15 @@ $Base = new function() {
     this.FuncionCargarJS    = function() { };
     /* Función post logueado */
     this.FPL                = function() { };
-    this.Timeout            = 0;
+//    this.Timeout            = 0;
     this.Raiz               = "";   // Path relativo de la raíz (puede ser "")
     this.RaizRelativa       = "";
-    this.URL                = "";
-    this.nURL               = "";
+//    this.URL                = "";
+//    this.nURL               = "";
+    this.FocoWeb            = true;
+    
+    this.PosBanner          = 0;
         
-    /* Buscador de google?¿? */
-    this.CustomSearchControl = 0;
     
     this.Iniciar = function() {
         /* Botones de las vistas del lab */
@@ -52,22 +53,22 @@ $Base = new function() {
          *  Obtengo el evento del control input que va asociado a un label invisible que ocupa el mismo espacio que el boton.
          *  De esta forma todo el proceso de la animación se hace mediante CSS.
          *  Solo se requiere javascript para determinar en que boton se ha presionado, para cerrar otras ventanas emergentes. */
-        $("#BarraPrincipal_Boton_Estado").click(function(e){                $Base.ClickMenu(0); }); /* tanca tot */
-        $("#BarraPrincipal_BotonCSS_Estado").click(function(e){             $Base.ClickMenu(1); });
-        $("#BarraPrincipal_BotonCPP_Estado").click(function(e){             $Base.ClickMenu(2); });
-        $("#BarraPrincipal_BotonJS_Estado").click(function(e){              $Base.ClickMenu(3); });
-        $("#BarraPrincipal_BotonPHP_Estado").click(function(e){             $Base.ClickMenu(4); });
-        $("#BarraPrincipal_BotonBuscar_Estado").click(function(e){          $Base.ClickMenu(5); });
+        $("#BarraPrincipal_Boton_Estado").click(function(e)          { $Base.ClickMenu(0); }); /* tanca tot */
+        $("#BarraPrincipal_BotonCSS_Estado").click(function(e)       { $Base.ClickMenu(1); });
+        $("#BarraPrincipal_BotonCPP_Estado").click(function(e)       { $Base.ClickMenu(2); });
+        $("#BarraPrincipal_BotonJS_Estado").click(function(e)        { $Base.ClickMenu(3); });
+        $("#BarraPrincipal_BotonPHP_Estado").click(function(e)       { $Base.ClickMenu(4); });
+        $("#BarraPrincipal_BotonBuscar_Estado").click(function(e)    { $Base.ClickMenu(5); });
         
-        $("#BarraNavegacion_BotonVer_Estado").click(function(e){            $Base.ClickMenu(6); });
-        $("#BarraNavegacion_BotonExplorar_Estado").click(function(e){       $Base.ClickMenu(7); });
-        $("#BarraNavegacion_Indice_Estado").click(function(e){              $Base.ClickMenu(9); });
-        $("#BarraNavegacion_PrevNext_Estado").click(function(e){            $Base.ClickMenu(10); });
-        $("#BarraNavegacion_RedesSociales_Estado").click(function(e){       $Base.ClickMenu(11); });
-        $("#BarraNavegacion_Votacion_Estado").click(function(e){            $Base.ClickMenu(12); });
+        $("#BarraNavegacion_BotonVer_Estado").click(function(e)      { $Base.ClickMenu(6); });
+        $("#BarraNavegacion_BotonExplorar_Estado").click(function(e) { $Base.ClickMenu(7); });
+        $("#BarraNavegacion_Indice_Estado").click(function(e)        { $Base.ClickMenu(9); });
+        $("#BarraNavegacion_PrevNext_Estado").click(function(e)      { $Base.ClickMenu(10); });
+        $("#BarraNavegacion_RedesSociales_Estado").click(function(e) { $Base.ClickMenu(11); });
+        $("#BarraNavegacion_Votacion_Estado").click(function(e)      { $Base.ClickMenu(12); });
         
-        $("#BarraPrincipal_MarcoBuscar_BotonBuscar").click(function(e) {                    $Base.Buscar(); });
-        $("#BarraPrincipal_MarcoBuscar_Edit").keyup(function(e) { if (event.which === 13) { $Base.Buscar(); } });
+        $("#BarraPrincipal_MarcoBuscar_BotonBuscar").click(function(e) { $Base.Buscar(); });
+        $("#BarraPrincipal_MarcoBuscar_Edit").keyup(function(e)        { if (event.which === 13) { $Base.Buscar(); } });
         
         /* Marco prev next */
         $("#BarraNavegacion_MarcoNextPrev_Prev").click(function(e){ $Base.BotonVerSiguiente(); });
@@ -151,6 +152,44 @@ $Base = new function() {
         }, 200);  
     };
     
+    /* Función para cargar un banner, si se especifica pos, se cargara el banner de esa posición, en caso contrario se cargara un banner aleatorio. */
+    /* -1 es prev y -2 es next */
+    this.Banner = function(Pos) {
+        if ($Banner !== null) { window.cancelAnimationFrame($Banner.RAFID); }
+        
+        var fPos = Pos;
+        // Si no se ha especificado ninguna posición generamos una aleatória
+        if (typeof (Pos === "undefined")) { fPos = RandInt(5); }
+        // Si es -1 es el botón Prev y si es -2 es el botón Next (de los controles del canvas)
+        if (Pos === -1) { // Prev
+            fPos = this.PosBanner -1; 
+            if (fPos < 0) { 
+                fPos = $Banner_Lista.length -1; 
+            } 
+        }
+        else if (Pos === -2) {  // Next
+            fPos = this.PosBanner +1; 
+            if (fPos >= $Banner_Lista.length) { 
+                fPos = 0;                       
+            } 
+        }
+        console.log("Base.Banner(Pos = " + Pos + ")", fPos);
+        this.PosBanner = fPos;
+        
+        $Banner = new ObjetoBanner(new $Banner_Lista[fPos]);
+        /*-
+        switch (fPos) {
+            case 0 : $Banner = new ObjetoBanner(new Banner_ResplandorCircular);         break;
+            case 1 : $Banner = new ObjetoBanner(new Banner_Colisiones);                 break;
+            case 2 : $Banner = new ObjetoBanner(new Banner_TranstornoLineal);           break;
+            case 3 : $Banner = new ObjetoBanner(new Banner_Espacio2D);                  break;
+            case 4 : $Banner = new ObjetoBanner(new Banner_MatrixLluviaHexadecimal);    break;
+        }*/
+//         $Banner = new ObjetoBanner(new Banner_TranstornoLineal); 
+        
+//        $Banner = new ObjetoBanner(Lista[fPos]);
+    };
+    
     /* Función para mostrar la ventana con los errores php */
     this.MostrarErroresPHP = function() {
         console.log("Base.MostrarErroresPHP");
@@ -194,7 +233,7 @@ $Base = new function() {
         Texto = $(".Cabecera > .Cabecera_Datos > h1").html();
         console.log("Base.BotonLinkEdin", Texto, window.location.href);
 //        window.open("https://www.linkedin.com/shareArticle?mini=true&url=" + window.location.href + "&t=" + Texto, "Google Plus", "toolbar=no,width=550,height=355");
-    }
+    };
     
     /* Objeto para mostrar / ocultar mensajes por la consola */
     /* Especifica si se muestran los logs de depuración */
@@ -474,6 +513,10 @@ $Base = new function() {
                 break;
             case "Blog" :
             case "DocCSS" :
+                // Inicio un banner aleatório
+                this.Banner();
+                
+                
                 $Comentarios.Iniciar();
                 this.MostrarBarraNavegacion();
                 break;
@@ -637,12 +680,12 @@ $Base = new function() {
             /* Escondo los marcos del indice */
             $("#MarcoIndice").attr({ "Visible" : false });
             $("#Categorias").attr({ "Visible" : false });
-            document.getElementById("Logo").className = "AnimarLogo";
+            document.getElementById("Logo").className = "AnimarLogo SinSeleccion";
             this.OcultarBarraNavegacion();
         }
         else {  
             this.PeticionAjax = 0;
-            document.getElementById("Logo").className = "";
+            document.getElementById("Logo").className = "SinSeleccion";
             /* Vuelvo al estado normal los marcos del indice */
             $("#MarcoIndice").attr({ "Visible" : true });
             $("#Categorias").attr({ "Visible" : true });
@@ -711,6 +754,7 @@ $Base = new function() {
         $("#BarraNavegacion > .Menu > input[type=checkbox]").removeAttr("checked");
         this.LogoCargando("TRUE");
         
+        // Si la url no tiene ninguna barra
         if (URL.indexOf("/") === -1) {
             Path = window.location.href.split('/');
             Path.pop();
@@ -737,6 +781,7 @@ $Base = new function() {
                 $Base.MostrarErrorAjax(404, false, 'No se ha encontrado');
             }
             else {
+                $Banner = null;
                 $("#MarcoNavegacion").html(Datos["HTML"]);
                 $Base.Entrada = $Base.IdentificarEntrada($Base.URL, $Base.nURL);    
                 window.history.pushState($Base.Entrada, document.title, $Base.URL);
@@ -956,6 +1001,7 @@ $Base = new function() {
                 $Base.MostrarErrorAjax(404, "false");
             }        
             else { /* Carga del historial normal */
+                $Banner = null;
                 $("#MarcoNavegacion").html(Datos["HTML"]);
                 $Base.Entrada = $Base.IdentificarEntrada(URL, nURL);    
                 $Base.RedireccionarLinks();
@@ -977,35 +1023,38 @@ $Base = new function() {
      *  Desde el administrador de tareas del chrome se ve que si la animación está activa, aunque no se vea en pantalla consume un 5% de cpu.
      *  Con esta función solucionamos el desperdicio de ciclos de la animación si no hay que mostrarla.
      * */
-    this.AnimarCabeceraBlog = function() {
+/*    this.AnimarCabeceraBlog = function() {
         Header = $(".Cabecera");
         if (Header.length > 0) {
             if ($(window).scrollTop() > 190 && Header.attr("animar")) {
                 console.log("Base.AnimarCabeceraBlog [animar=false]", Header);
                 Header.removeAttr("animar");        
+                if (this.Banner !== null) { this.Banner.Pausa(); }
             }
             else if ($(window).scrollTop() < 190 && typeof Header.attr("animar") === "undefined") {
                 console.log("Base.AnimarCabeceraBlog [animar=true]", Header);
                 Header.attr({ "animar" : "true" }); 
+                if (this.Banner !== null) { this.Banner.Reanudar(); }
             }
         }
-    };
-    
-    
-    /* Función que comprueba la ultima subversión de la web visitada con este navegador */
-    /* Si no hay sub-versión es que es la primera visita. */
-/*    this.ComprobarSubVersionWeb = function() {
-        SubVersion = 0;
-        // Es la primera vez que entra, no necesita conocer las actualizaciones 
-        if (typeof localStorage["devildrey33_SubVersion"] === 'undefined') {             
-            localStorage["devildrey33_SubVersion"] = SubVersion; 
-            // BUEN SITIO PARA INFORMAR DE COOKIES
-        }
-        // No es la misma versión, mostramos las notas de la subversión 
-        if (localStorage["devildrey33_SubVersion"] !== SubVersion) {
-            
-        }
     };*/
+                                            
+    this.ErrorJS = function(e) {
+        var ErrorStr =   "%cTipo     : %c" + e.type +
+                       "\n%cError    : %c" + e.error + 
+                       "\n%cArchivo  : %c" + e.filename.substring(e.filename.lastIndexOf('/') + 1)+
+                       "\n%cPath     : %c" + e.filename + ":" + e.lineno  +
+                       "\n%cLínea    : %c" + e.lineno +
+                       "\n%cCaracter : %c" + e.colno +
+                       "\n%cFecha    : %c" + new Date();
+        console.log(ErrorStr,   "font-weight: bold;", "color: #e74c3c;", 
+                                "font-weight: bold;", "font-weight: normal; color: #e74c3c;", 
+                                "font-weight: bold;", "font-weight: normal;", 
+                                "font-weight: bold;", "font-weight: normal; color: #3498db;", 
+                                "font-weight: bold;", "font-weight: normal;", 
+                                "font-weight: bold;", "font-weight: normal;", 
+                                "font-weight: bold;", "font-weight: normal;");
+    };
                                             
     this.ComprobarScrollVotacion = function() {
 //        console.log("Base.ComprobarScrollVotacion()", $("#Comentarios_Datos").offset())
@@ -1013,20 +1062,16 @@ $Base = new function() {
             if (typeof($("#Comentarios_Datos").offset()) !== "undefined") { FinalPagina = $("#Comentarios_Datos").offset().top;  }
             else                                                          { FinalPagina = $(document).height();                 }
             if ($(window).scrollTop() > FinalPagina - ($(window).height() * 2)) {
-    //        if ($(window).scrollTop() > ($(document).height() - ($(window).height() * 2))) {
                 console.log("Base.ComprobarScrollVotacion");
                 Pagina = $("#MarcoNavegacion > article").attr("pagina");
                 if (typeof localStorage["Voto_" + Pagina] === "undefined") {
-                    $("#BarraNavegacion_Votacion").attr({ "Mostrar" : true });
+                    $("#BarraNavegacion_Votacion").attr({ "mostrar" : "true" });
                     $("#BarraNavegacion_Votacion .VotarDocumento_Estrellas > button").off("click").on("click", function(e)  {
                         $Base.VotarWeb($(this).html());
                     });
                 }
             }
         }        
-/*        else {
-            $("#BarraNavegacion_Votacion").removeAttr("Mostrar");
-        }        */
     };
 };
 
@@ -1043,7 +1088,13 @@ window.addEventListener('popstate', function(event) {
     $Base.CALLBACK_Histroial(event);
 }, false);
 
+/* CALLBACK para los errores JavaScript */
+window.addEventListener('error', function(e) {
+    $Base.ErrorJS(e);
+});
+
 /* Al cargar */
-$(window).load(function()   { $Base.Iniciar(); });
+$(window).on("load", function() { $Base.Iniciar(); });
 /* Al usar el scroll */
-$(window).scroll(function() { $Base.AnimarCabeceraBlog();   $Base.ComprobarScrollVotacion();     });
+$(window).on("scroll", function() { $Base.ComprobarScrollVotacion(); });
+

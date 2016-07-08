@@ -18,10 +18,6 @@ and open the template in the editor.
     background:#252328;
     border-right:1px solid #353338;
     color:white;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 

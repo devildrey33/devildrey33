@@ -1,5 +1,5 @@
 <?php
-    include("/Web/devildrey33.php");
+    include("Web/devildrey33.php");
                     
 
     class Indice {    
@@ -8,7 +8,7 @@
                     
             $Codigo  = '<input id="Categorias_Estado" class="Menu_Boton_Input" type="checkbox">'.Intro();
             $Codigo .= '<label id="Categorias_Label" for="Categorias_Estado"></label>'.Intro();
-            $Codigo .= "<div id='Categorias' categoria='".$Categoria."'>".Intro();
+            $Codigo .= "<div id='Categorias' class='SinSeleccion' categoria='".$Categoria."'>".Intro();
             $Codigo .=      "<span>Categoria : ".$Categoria."</span>".Intro();
             $Codigo .=      "<div>".Intro();
             $Codigo .=         "<div path='".Base::URL_Raiz()."'>Todo</div>".Intro();

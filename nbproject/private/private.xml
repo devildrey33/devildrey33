@@ -26,13 +26,14 @@
             <url>Web/JS/ObjetoBase.js</url>
             <bookmark id="4">
                 <name/>
-                <line>269</line>
+                <line>290</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/Banner/Banner_p5noise.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_cmd.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/InstalarUbuntuVirtualBox.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Buscador.php</file>
@@ -74,9 +75,11 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Boton.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoAdmin.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/working-with-google-apis.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/Banner/Banner_LinesLines.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_4.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS_BD.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/utilizar-controles-input-ocultos-asociados-a-un-label.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoBanner.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoLab.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/NetBeansWindows.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/empezando-sqlte-c.php</file>
@@ -105,7 +108,6 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/LMD.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Opciones.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/varios-servidores-web-apache-de-pruebas.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/AsignarRaiz.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/DegradadosCSS.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Solitario/Solitario.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Canvas2D_1.php</file>
@@ -130,6 +132,7 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoComentarios.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ColorearCodigoPHP_JavaScript.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Selectores/root.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/Banner/Banner_ResplandorCircular.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_HTML5_1.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/DWL2012-08-02-2012.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/FaqBarba.php</file>
@@ -177,8 +180,10 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Mantenimiento.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_3_3.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_3_5.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/FuncionesGlobales.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ColorearCodigoPHP_HTML.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/DWL.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/Banner/Banner_Colisiones.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Editar-Entradas.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/notas-actualizacion-web.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/UnidadesCSS.php</file>

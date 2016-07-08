@@ -21,10 +21,6 @@ and open the template in the editor.
     position:fixed;
     cursor:ew-resize;
     z-index:1000;
-    -webkit-user-select: none; /* Chrome, Safari, y Opera 15 */
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
     display:none;
     border:1px solid #353338;
 }
@@ -82,10 +78,6 @@ and open the template in the editor.
     overflow-y:auto;
     white-space:nowrap;
     display:block;
-    -webkit-user-select: none; /* Chrome, Safari, y Opera 15 */
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 .Lab_Explorador .Lab_Directorio, .Lab_Explorador .Lab_Archivo {
@@ -366,5 +358,7 @@ and open the template in the editor.
     height: 60px;
     right:192px;
     margin:0px !important;
+    box-shadow:none !important; /* */
+    
     /*zoom:1 !important;*/
 }

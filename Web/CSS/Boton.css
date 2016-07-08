@@ -65,7 +65,7 @@ and open the template in the editor.
 /* -[INICIO devildrey33.button]- */            
 /* Clases que empiezan por 'Boton-' */
 [class^='Boton-'], [class^='BotonSvg-'] {
-    border              : 1px solid #000;                      /* 1 pixeles de borde negro                                                */
+    border              : 1px solid #353338;                   /* 1 pixeles de borde gris oscuro                                          */
     text-align          : center;                              /* Texto centrado                                                          */
     text-decoration     : none;                                /* Sin decoraciones para el texto (por defecto viene con underline)        */
     padding             : 10px;                                /* Un poco de padding para que se vea bien el botón                        */
@@ -101,7 +101,8 @@ and open the template in the editor.
     border          : 1px solid darkred; 
     text-decoration : none; 
 }            
-/* -[FIN devildrey33.button]- */            
+/* -[FIN devildrey33.button]- */   
+
             
 /* -[INICIO devildrey33.button2]- */
 /* Preparación para los pseudo elementos before y after */ /* Elemento Before para botones svg */
@@ -216,7 +217,7 @@ and open the template in the editor.
 
 /* Boton simple especial para las ventanas de mensajes */
 .BotonVentana {
-    border      : 1px solid #000;
+    border      : 1px solid #353338;
     background  : rgb(60,60,60);
     transition  : 0.3s;
     color       : #FFF;
@@ -226,8 +227,13 @@ and open the template in the editor.
     text-align  : center;
     text-shadow : 1px 1px 1px #000;
     outline     : none !important;
+    cursor      : pointer;
 }
 
 .BotonVentana:hover {
     background : #ea504e; 
+}
+
+.BotonVentana > img {
+    border:none !important;
 }

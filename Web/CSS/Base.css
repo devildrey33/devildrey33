@@ -118,10 +118,6 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
     transition          : 1.2s cubic-bezier(.17,-0.42,0,1.35);
     transform           : perspective(600px) rotateZ(-90deg) rotateY(-180deg);
     opacity             : 0;        
-    -webkit-user-select : none;
-    -moz-user-select    : none;
-    -ms-user-select     : none;
-    user-select         : none;
 }
 
 .MarcoVentana-350 { width : 350px !important; }
@@ -208,7 +204,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
     border     : 1px solid #353338;
 }
 
-.VentanaMensaje, .VentanaError, #VentanaLogin, #BarraPrincipal, #BarraNavegacion_Inferior, #BarraNavegacion {
+.VentanaMensaje, .VentanaError, #VentanaLogin, #BarraPrincipal, #BarraNavegacion_Inferior, #BarraNavegacion, .MarcoVentana-350, .MarcoVentana-250 {
     -webkit-user-select : none;
     -moz-user-select    : none;
     -ms-user-select     : none;
@@ -359,4 +355,11 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
 
 #ErroresFinPlantilla {
     display : none;
+}
+
+.SinSeleccion {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;    
 }

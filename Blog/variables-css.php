@@ -84,12 +84,21 @@
         <p>Una vez tenemos creadas las variables hay que enlazarlas a las propiedades, para ello se utiliza la función <a href='/Doc/CSS/Funciones/var()'>var</a>.</p>
         <h3>Sintaxis</h3>
         <pre class='Sintaxis'>var ( --Variable <span class="TxtGris">[requerido]</span> , ValorInicial <span class="TxtGris">[opcional]</span>  ) </pre>
-        <p>El primer parámetro es el nombre de la variable, y el segundo parámetro es el valor por defecto que tomará en el caso de que la variable no exista. Si se omite el segundo parámetro y la variable no existe, la propiedad no será modificada.</p>
+<table class='Tabla'>
+    <tr>
+        <td><b>--Variable</b></td>
+        <td>Nombre de la variable a enlazar. Las variables siempre empiezan por <code>--</code></td>
+    </tr>
+    <tr>
+        <td><b>ValorPorDefecto</b></td>
+        <td>Valor que recibirá la propiedad en el caso de no existir la variable. Este parámetro es opcional, si no se especifica este parámetro y la variable no existe, la propiedad permanecerá intacta.</td>
+    </tr>
+</table><br />
         <p>Veamos un ejemplo : </p>
         <pre style="display:none">
 /* -[INICIO devildrey33.var]- */
 :root { --MargenIzquierdo : 2em; }
-p      { margin-left       : var(--MargenIzquierdo); }
+p     { margin-left       : var(--MargenIzquierdo); }
 /* -[FIN devildrey33.var]- */
 
 /* -[INICIO devildrey33.borde]- */

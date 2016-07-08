@@ -67,40 +67,52 @@ h2:before {
 .FechaEntrada {
     color:rgb(200, 200, 200);
     font-size:12px;
+    text-shadow:1px 1px 1px #000;
 /*    padding-right:100px;    */
 }
 
 .Blog > .Cabecera > .Cabecera_Datos > h1 {
-    margin: 50px 0px 4px 0px;
+    margin: 80px 0px 4px 0px;
 }
-
+/*
 .Blog > .Cabecera > .Cabecera_Fondo {
     z-index:11; 
     height:600px;
     position:relative;
     width:calc(100% + 100px); /* 100 pixels mes ample per que l'animacio es pugui moure fins a 100 pixels a la dreta '*/
-    left:-100px;              /* Coloco el fondo 100 pixels a l'esquerra ja que es 100 pixels mes gran i per l'esquerra no sobresortira '*/
-    top:-10px;
+  /*  left:-100px;              /* Coloco el fondo 100 pixels a l'esquerra ja que es 100 pixels mes gran i per l'esquerra no sobresortira '*/
+/*    top:-10px;
     background-repeat: no-repeat;
     background-position: right -100px;     
 }
 
 .Blog > .Cabecera[animar=true] > .Cabecera_Fondo {
     animation: AnimacionCabecera 20s infinite ease-in-out alternate;
-}
+}*/
 
 
 .Blog > .Cabecera > .Cabecera_Datos {
     top:-1px;
     position:absolute;
     width:100%;
-    height:100%;
-    background: rgba(0,0,0, 0.75);
+    height:236px;
+    background: rgba(49,46,53, 1);    
+/*    background: rgba(0,0,0, 0) !important;*/
     z-index:12;
-    padding:6px 74px 58px 25px;
+    padding:6px 74px 0px 25px;
+    transition:0.5s;
 /*    padding:4px 4px 56px 25px;
     margin:0px -75px 0px -25px;*/
 }
+
+.Blog > .Cabecera[animar=true] > .Cabecera_Datos {
+    background: rgba(29,26,33, 0.5); 
+}
+
+.Blog > .Cabecera[animar=true]:hover > .Cabecera_Datos {
+    background: rgba(29,26,33, 0.1); 
+}
+
 
 .Blog > .Cabecera {
 /*    background: rgba(0,0,0, 0.75);*/
@@ -108,34 +120,98 @@ h2:before {
     background:-moz-radial-gradient(right top, farthest-side, rgb(100,100,100) 5%, rgb(29,26,33));
     background:-ms-radial-gradient(right top, farthest-side, rgb(100,100,100) 5%, rgb(29,26,33));
     background:radial-gradient(right top, farthest-side, rgb(100,100,100) 5%, rgb(29,26,33));*/
-    margin:0px -75px 0px -25px;
-    height:182px;
+    margin:0px;
+    height:240px;
     border-top:none;
-    border:1px solid #353338;
+/*    border:1px solid #353338;*/
     color:#FFFFFF;
+    background:rgba(49,46,53, 1);
     z-index:10;
-	position:relative;
+    position:relative;
 /*    min-height:125px;*/
     width:calc(100% + 100px);
     overflow:hidden;
+    left:-25px;
 }
-
+/*
 .Blog > .Cabecera > .Cabecera_Img1 {    background-image:url('../Graficos/FondoBlog1.png');   }
 .Blog > .Cabecera > .Cabecera_Img2 {    background-image:url('../Graficos/FondoBlog2.png');   }
 .Blog > .Cabecera > .Cabecera_Img3 {    background-image:url('../Graficos/FondoBlog3.png');   }
 .Blog > .Cabecera > .Cabecera_Img4 {    background-image:url('../Graficos/FondoBlog4.png');   }
+*/
+.Blog > .Cabecera > #Cabecera_Canvas {
+    width:calc(100% - 60px);
+    height:100%;
+    background: rgba(29,26,33, 1); 
+}
+
+.Blog > .Cabecera > #Cabecera_AutorAni, .Blog > .Cabecera > #Cabecera_PausaAni {
+    transition:0.3s cubic-bezier(.33,.05,.69,1.59);
+    z-index:13;
+    padding:10px;
+    margin:5px;    
+    background-color: rgba(37,35,40, 0.6);
+    color:#FFF;
+    text-shadow:1px 1px 1px #000;
+    position:absolute;
+    border:1px solid #353338;
+    right:60px;
+}
+
+.Blog > .Cabecera > #Cabecera_AutorAni {
+    transform-origin: bottom center;
+    transform:perspective(600px) rotateX(90deg);
+    bottom:0px;
+    display:flex;
+    white-space: nowrap;
+}
 
 
+.Blog > .Cabecera > #Cabecera_PausaAni {
+    transform-origin: top center;
+    transform:perspective(600px) rotateX(-90deg);
+    top:0px;
+}
 
 
+.Blog > .Cabecera > #Cabecera_AutorAni > .BotonVentana {
+    padding:0px;
+    margin:0px 5px;
+    z-index:100;
+    flex:1 1 60px;
+    width:60px;
+    height:60px;
+}
 
+#CabeceraAutorAni_HTML {
+    padding:0px 10px;
+}
+
+.Cabecera > #Cabecera_Stats {
+    position:absolute;
+    transition:0.3s cubic-bezier(.33,.05,.69,1.59);
+    transform-origin: top center;
+    transform:perspective(600px) rotateX(-90deg);  
+    z-index:120;
+}
+
+/* Solo se muestra la información de la animación si la animación está activa (puede estar visible pero inactiva si la web no tiene el foco) */
+.Blog > .Cabecera[animar=true]:hover > #Cabecera_AutorAni, .Blog > .Cabecera[animar=true]:hover > #Cabecera_Stats {
+    transform:perspective(600px) rotateX(0deg);    
+}
+/* Solo se muestra la información de la animación si la animación está activa (puede estar visible pero inactiva si la web no tiene el foco) */
+.Blog > .Cabecera[animar=false] > #Cabecera_PausaAni {
+    transform:perspective(600px) rotateX(0deg);    
+}
+
+/*
 @keyframes AnimacionCabecera {
     0%   { background-position: right -100px; transform:translateX(40px); }
     33%  { background-position: right -45px; transform:translateX(100px); }
     66%  { background-position: right -60px; transform:translateX(50px); }
     100% { background-position: right 0px; transform:translateX(15px); }
 }
-
+*/
 
 
 
@@ -163,11 +239,11 @@ h2:before {
     margin-right:3px;
 }
 
-.Navegador_Chrome       { background-image:url("/Web/Graficos/Chrome.png");  }
-.Navegador_FireFox      { background-image:url("/Web/Graficos/Firefox.png"); }
-.Navegador_Opera        { background-image:url("/Web/Graficos/Opera.png");   }
-.Navegador_Safari       { background-image:url("/Web/Graficos/Safari.png");  }
-.Navegador_IE           { background-image:url("/Web/Graficos/IE9.png");     }
+.Navegador_Chrome       { background-image:url("../Graficos/Chrome.png");  }
+.Navegador_FireFox      { background-image:url("../Graficos/Firefox.png"); }
+.Navegador_Opera        { background-image:url("../Graficos/Opera.png");   }
+.Navegador_Safari       { background-image:url("../Graficos/Safari.png");  }
+.Navegador_IE           { background-image:url("../Graficos/IE9.png");     }
 .Navegador_NoSoportado  { opacity:0.4;    }
 /* FIN Compatibilidad navegadores */
 

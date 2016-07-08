@@ -7,7 +7,7 @@
     return array(
         
 array(	"Titulo" 	=> "Referéncia CSS : Variables",
-        "Fecha" 	=> "21/06/2016",
+        "Fecha" 	=> "28/06/2016",
         "URL" 		=> "variables-css",
         "Tags" 		=> array("CSS", "JavaScript", "HTML", "Programación"),
         "Tipo"		=> "Blog",

@@ -49,7 +49,7 @@
 /*         "<div id='Lab_Explorador_Buscar'>".Intro().
          '<input type="text" placeholder="Texto a buscar.." />'.Intro().
          "</div>".Intro().*/
-         "<div id='Lab_Barra1'>".Intro().
+         "<div id='Lab_Barra1' class='SinSeleccion'>".Intro().
             "<div id='Lab_BotonExplorador' title='Mostrar / Ocultar el explorador'></div>".Intro().
          "</div>".Intro().
          "<div id='Lab_Barra2'></div>".Intro().

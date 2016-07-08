@@ -1,5 +1,5 @@
 <?php 
-	
+	/*
     $HEAD2 = '
             <style type="text/css">
                     .ColRes {
@@ -33,16 +33,17 @@
                             border-bottom-color:#CCC;
                             height:1px;
                     }
-
+                    .TablaColores td {
+                        padding:0px 10px;
+                    }
             </style>
-            <link href="/css/PropiedadesCSS.css" rel="stylesheet" type="text/css" />
             <script type="text/javascript">
                     function Color(Tipo) {
                             $("#ColRes" + Tipo).css({ "background-color" : $("#Col" + Tipo).val() });
                     }
             </script>
     ';
-
+*/
 
     include("../Web/devildrey33.php");
 /*	$Base = new devildrey33(devildrey33_TipoPlantilla::Articulo, basename(__FILE__));	
@@ -53,7 +54,7 @@
     $Base = new devildrey33;	
 
     $META = '<meta name="description" content="CSS Colores">
-    <meta name="keywords" content="CSS, CSS3, CSS3 Colores">';
+    <meta name="keywords" content="CSS, CSS3, CSS3 Colores, rgb, hsl, rgba, hsla, hex">';
 
     $Base->InicioPlantilla(basename(__FILE__), "Referéncia CSS : Colores", $META);
 
@@ -66,23 +67,28 @@
         $HSL = HexToHSL($Hex);
         echo '
             <tr>
-                <td class="TD_Nombre">'.$Nombre.'</td>
-                <td class="TD_Hex"><pre>'.$Hex.'</pre></td>
-                <td class="TD_RGB"><pre>'.$RGB.'</pre></td>
-                <td class="TD_HSL"><pre>'.$HSL.'</pre></td>
-                <td class="TD_Color" style="background-color:'.$Nombre.'"></td>
+                <td style="padding:0px 20px 0px 5px">'.$Nombre.'</td>
+                <td style="padding:0px 20px;"><pre>'.$Hex.'</pre></td>
+                <td style="padding:0px 20px;"><pre>'.$RGB.'</pre></td>
+                <td style="padding:0px 20px;"><pre>'.$HSL.'</pre></td>
+                <td style="padding:0px 20px; background-color:'.$Nombre.'"></td>
             </tr>';
     }
 
     function HexToRGB($Hex){  
-        if (substr($Hex,0,1) == "#")
-                $Hex = substr($Hex,1);   
-        $R = substr($Hex,0,2);
-
-        $G = substr($Hex,2,2);
-
-        $B = substr($Hex,4,2);
-        return "rgb(".hexdec($R).", ".hexdec($G).", ".hexdec($B).")";
+        if (substr($Hex,0,1) === "#") {
+            $Hex = substr($Hex,1);
+        }
+        $R = hexdec(substr($Hex,0,2));
+        if      ($R < 10)  { $R = "  ".$R; }
+        else if ($R < 100) { $R = " ".$R;  }
+        $G = hexdec(substr($Hex,2,2));
+        if      ($G < 10)  { $G = "  ".$G; }
+        else if ($G < 100) { $G = " ".$G;  }
+        $B = hexdec(substr($Hex,4,2));
+        if      ($B < 10)  { $B = "  ".$B; }
+        else if ($B < 100) { $B = " ".$B;  }
+        return "rgb(".$R.", ".$G.", ".$B.")";
     } 
 
 
@@ -125,7 +131,16 @@
             if (0 > $H) $H += 1;
             if (1 < $H) $H -= 1;
         }
-        return "hsl(".round($H * 360, 0).", ".round($S * 100, 0)."%, ".round($L * 100, 0)."%)";
+        $H = round($H * 360, 0);
+        if      ($H < 10)  { $H = "  ".$H; }
+        else if ($H < 100) { $H = " ".$H;  }
+        $S = round($S * 100, 0);
+        if      ($S < 10)  { $S = "  ".$S; }
+        else if ($S < 100) { $S = " ".$S;  }
+        $L = round($L * 100, 0);
+        if      ($L < 10)  { $L = "  ".$L; }
+        else if ($L < 100) { $L = " ".$L;  }
+        return "hsl(".$H.", ".$S."%, ".$L."%)";
     }
 ?>
 
@@ -138,10 +153,10 @@
                 <!-- FIN_INTRODUCCION -->
                 <h2>Colores hexadecimales</h2>
                 <p>Los colores hexadecimales se definen siempre con una parrilla al principio '#' y pueden tener 3 o 6 caracteres que cada uno de ellos representa un valor en hexadecimal. Cuando utilizamos solo 3 caracteres estamos utilizando una paleta de colores reducida que nos permite crear colores básicos, en cambio cuando utilizamos 6 caracteres tenemos una paleta completa de 24bits (ocupa 32bits en memoria pero como no hay transparencias realmente solo se utilizan 24).</p>
-				<p>Al usar 3 caracteres el primero corresponde al rojo, el segundo al verde, y el tercero al azul, #<span style="color:red">?</span><span style="color:green">?</span><span style="color:blue">?</span>. Cuando se usan 6 caracteres los colores se agrupan de 2 en 2 #<span style="color:red">??</span><span style="color:green">??</span><span style="color:blue">??</span>, y siguen el mismo orden : rojo, verde, y azul.</p>
+                <p>Al usar 3 caracteres el primero corresponde al rojo, el segundo al verde, y el tercero al azul, <code>#<span style="color:red">?</span><span style="color:green">?</span><span style="color:blue">?</span></code>. Cuando se usan 6 caracteres los colores se agrupan de 2 en 2 <code>#<span style="color:red">??</span><span style="color:green">??</span><span style="color:blue">??</span></code>, y siguen el mismo orden : rojo, verde, y azul.</p>
                 <p>Un valor en hexadecimal se expresa en base 16, esto quiere decir que disponemos en un solo carácter de un valor que llega de 0 a 15, y para representarlo además de números se pueden usar algunas letras : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.</p>
-				<p>Los valores cercanos a '<i>0</i>' son oscuros (negro), y los valores cercanos a '<i>F</i>' son claros (blanco), por lo tanto para definir el color negro debemos especificar #000000, para el color blanco #FFFFFF, al estar dividido en tres canales (Red, Green, Blue) podemos especificar el color rojo con #FF0000, el verde con #00FF00, y el azul con #0000FF.</p>
-                <p>Personalmente este tipo de colores me lía un poco sobre todo cuando llegamos a los valores comprendidos entre la "<i>A</i>" y la "<i>F</i>" por lo que no suelo utilizar esta alternativa.</p>
+                <p>Los valores cercanos a '<code>0</code>' son oscuros (negro), y los valores cercanos a '<code>F</code>' son claros (blanco), por lo tanto para definir el color negro debemos especificar <code>#000000</code>, para el color blanco <code>#FFFFFF</code>, al estar dividido en tres canales (Red, Green, Blue) podemos especificar el color rojo con <code>#FF0000</code>, el verde con <code>#00FF00</code>, y el azul con <code>#0000FF</code>.</p>
+                <p>Personalmente este tipo de colores me lía un poco sobre todo cuando llegamos a los valores comprendidos entre la "<code>A</code>" y la "<code>F</code>" por lo que no suelo utilizar esta alternativa.</p>
                 <div class='nota'>Un color en hexadecimal no nos permite especificar transparencia.</div><br />
 
                 <?php 
@@ -166,18 +181,19 @@
 
 
                 <br /><h2>Colores RGB (Red, Green, Blue)</h2>
+                <img src="/Web/Graficos/ColoresRGB.png" style='float:right; padding:10px; margin:10px;' />
                 <p>Los colores RGB funcionan prácticamente igual que los colores hexadecimales, con la diferencia de que los representamos con un valor decimal, y que para crear el color debemos utilizar la función <i>rgb</i>.</p>
                 <p>Cada canal de color puede ir de 0 a 255 (en hexadecimal 255 es FF), y al igual que con los colores hexadecimales los valores cercanos a cero son colores oscuros (negro) y los valores cercanos a 255 son colores claros (blanco).</p>
                 <p>También podemos especificar cada canal de color por porcentajes del 0% al 100%.</p>
                 <p>Para mi esta es una de las mejores opciones a la hora de especificar colores, ya que estoy muy acostumbrado a utilizar la escala RGB en varios lenguajes de programación, y me parece más clara que la hexadecimal, aunque para especificar un color hay que escribir algunos caracteres más.</p>
-                <div class='nota'>Un color en RGB no nos permite especificar transparencia, para añadir el canal Alpha (o dicho de otra forma usar transparencia) para usar transparencias deberíamos usar la función <i>RGBA</i>.</div><br />
+                <div class='nota'>Un color en RGB no nos permite especificar transparencia, para trabajar con transparencias utilizando la paleta RGB se tiene que utilizar la función <code>RGBA</code>.</div><br />
                 <?php 
 /* -[INICIO devildrey33.ID2]-
 <p style='background-color:rgb(255, 255, 255)'> Blanco </p>
-<p style='background-color:rgb(0, 0, 0)'      > Negro  </p>
-<p style='background-color:rgb(255, 0, 0)'    > Rojo   </p>
-<p style='background-color:rgb(0, 255, 0)'    > Verde  </p>
-<p style='background-color:rgb(0, 0, 255)'    > Azul   </p>
+<p style='background-color:rgb(  0,   0,   0)'> Negro  </p>
+<p style='background-color:rgb(255,   0,   0)'> Rojo   </p>
+<p style='background-color:rgb(  0, 255,   0)'> Verde  </p>
+<p style='background-color:rgb(  0,   0, 255)'> Azul   </p>
 -[FIN devildrey33.ID2]- */
                     $Base->PintarCodigo->PintarArchivoHTML('ColorHex', 'Colores RGB', basename(__FILE__), "ID2"); 
                 ?>
@@ -198,10 +214,10 @@
                 <?php 
 /* -[INICIO devildrey33.ID3]-
 <p style='background-color:rgba(255, 255, 255, 0.5)'> Blanco translucido </p>
-<p style='background-color:rgba(0, 0, 0, 0.5)'      > Negro translucido  </p>
-<p style='background-color:rgba(255, 0, 0, 0.5)'    > Rojo translucido   </p>
-<p style='background-color:rgba(0, 255, 0, 0.5)'    > Verde translucido  </p>
-<p style='background-color:rgba(0, 0, 255, 0.5)'    > Azul translucido   </p>
+<p style='background-color:rgba(  0,   0,   0, 0.5)'> Negro translucido  </p>
+<p style='background-color:rgba(255,   0,   0, 0.5)'> Rojo translucido   </p>
+<p style='background-color:rgba(  0, 255,   0, 0.5)'> Verde translucido  </p>
+<p style='background-color:rgba(  0,   0, 255, 0.5)'> Azul translucido   </p>
 -[FIN devildrey33.ID3]- */
                     $Base->PintarCodigo->PintarArchivoHTML('ColorHex', 'Colores RGBA', basename(__FILE__), "ID3"); 
                 ?>
@@ -215,16 +231,17 @@
 
 
                 <br /><h2>Colores HSL (Hue, Saturation, Lightness)</h2>
+                <img src="/Web/Graficos/ColoresHSL.png" style='float:right; padding:10px; margin:10px;' />
                 <p>Los colores HSL (Matriz, Saturación, Luminosidad) definen un modelo de color en términos de sus componentes constituyentes. El modelo HSL se representa gráficamente como un cono doble o un doble hexágono. Los dos vértices en el modelo HSL se corresponden con el blanco y el negro, el ángulo se corresponde con la matriz, la distancia al eje con la saturación, y la distancia al eje blanco-negro se corresponde con la luminancia.</p>
-                <p>La matriz se define de 0 a 360 grados donde 0-360 son rojo, 120 es verde, y 240 es azul. La saturación es un porcentaje del 0% (gris) al 100% (color claro). La luminosidad es otro porcentaje del 0% al 100% donde el 0 es negro y el 100 es blanco.</p>
+                <p>La matriz se define de 0 a 360 grados donde de 0º es rojo, 60º es amarillo, 120º es verde, y 240º es azul. La saturación es un porcentaje del 0% (gris) al 100% (color claro). La luminosidad es otro porcentaje del 0% al 100% donde el 0 es negro y el 100 es blanco.</p>
                 <div class='nota'>La función <i>HSL</i> está disponible en todos los navegadores actuales, pero en navegadores antiguos como Opera 9 y Explorer 8 e inferiores no está soportada.</div><br />
                 <?php 
 /* -[INICIO devildrey33.ID4]-
-<p style='background-color:hsl(0, 0%, 100%)'    > Blanco </p>
-<p style='background-color:hsl(0, 0%, 0%)'      > Negro  </p>
-<p style='background-color:hsl(0, 100%, 50%)'   > Rojo   </p>
-<p style='background-color:hsl(120, 100%, 50%)' > Verde  </p>
-<p style='background-color:hsl(240, 100%, 50%)' > Azul   </p>
+<p style='background-color:hsl(  0,   0%, 100%)'> Blanco </p>
+<p style='background-color:hsl(  0,   0%,   0%)'> Negro  </p>
+<p style='background-color:hsl(  0, 100%,  50%)'> Rojo   </p>
+<p style='background-color:hsl(120, 100%,  50%)'> Verde  </p>
+<p style='background-color:hsl(240, 100%,  50%)'> Azul   </p>
 -[FIN devildrey33.ID4]- */
                     $Base->PintarCodigo->PintarArchivoHTML('ColorHex', 'Colores HSL', basename(__FILE__), "ID4");
                 ?>
@@ -242,11 +259,11 @@
                 <div class='nota'>La función <i>HSLA</i> está disponible en todos los navegadores actuales, pero en navegadores antiguos como Firefox 2, Opera 9 y Explorer 8 e inferiores no está soportada.</div><br />
                 <?php
 /* -[INICIO devildrey33.ID5]-
-<p style='background-color:hsl(0, 0%, 100%, 0.5)'     > Blanco translucido </p>
-<p style='background-color:hsla(0, 0%, 0%, 0.5)'      > Negro translucido  </p>
-<p style='background-color:hsla(0, 100%, 50%, 0.5)'   > Rojo translucido   </p>
-<p style='background-color:hsla(120, 100%, 50%, 0.5)' > Verde translucido  </p>
-<p style='background-color:hsla(240, 100%, 50%, 0.5)' > Azul translucido   </p>
+<p style='background-color:hsla(  0,   0%, 100%, 0.5)'> Blanco translucido </p>
+<p style='background-color:hsla(  0,   0%,   0%, 0.5)'> Negro translucido  </p>
+<p style='background-color:hsla(  0, 100%,  50%, 0.5)'> Rojo translucido   </p>
+<p style='background-color:hsla(120, 100%,  50%, 0.5)'> Verde translucido  </p>
+<p style='background-color:hsla(240, 100%,  50%, 0.5)'> Azul translucido   </p>
 -[FIN devildrey33.ID5]- */
                     $Base->PintarCodigo->PintarArchivoHTML('ColorHex', 'Colores HSL', basename(__FILE__), "ID5"); 
                 ?>

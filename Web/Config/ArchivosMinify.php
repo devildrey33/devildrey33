@@ -32,11 +32,19 @@ return array(
                 ),				  
     /* Archivos JS */
     'js' => array(
+                                    "/JS/FuncionesGlobales.js", // Funciones simplificadas básicas (Randoms, etc...)
                                     "/JS/ObjetoBase.js",
                                     "/JS/ObjetoIndice.js",
                                     "/JS/ObjetoComentarios.js",
                                     "/JS/ObjetoPintarCodigo.js",
-                                    "/JS/ObjetoLab.js"
+                                    "/JS/ObjetoLab.js",
+                                    "/JS/Banner/Banner_Espacio2D.js",
+                                    "/JS/Banner/Banner_Colisiones.js",
+                                    "/JS/Banner/Banner_ResplandorCircular.js",
+                                    "/JS/Banner/Banner_TranstornoLineal.js",
+                                    "/JS/Banner/Banner_MatrixLluviaHexadecimal.js",
+                                    "/JS/ObjetoBanner.js", // Debe estar despues de los banners
+                                    "/JS/3rdParty/Stats.js" // FPS
                 )				  				  
 );
 

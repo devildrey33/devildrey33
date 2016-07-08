@@ -141,7 +141,7 @@ class devildrey33_PintarCodigo {
         echo $TextoColoreado;
     }
     /* Por compatibilidad se mantiene el nombre, pero ahora se usa la de HTML */
-    public function PintarArchivoXML($IDMarco, $Titulo, $Archivo, $ID) {
+    public function PintarArchivoXML($IDMarco, $Titulo, $Archivo, $ID = "") {
         $this->PintarArchivoHTML($IDMarco, $Titulo, $Archivo, $ID);
     }
     

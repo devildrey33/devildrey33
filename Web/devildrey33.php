@@ -153,7 +153,7 @@ class devildrey33 {
         "</div>".Intro().                
                 
         // Menú lateral izquierdo 
-        "<nav id='BarraPrincipal'>".Intro().
+        "<nav id='BarraPrincipal' class='SinSeleccion'>".Intro().
             "<input id='BarraPrincipal_Boton_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
             "<label class='Menu_Boton_Label' for='BarraPrincipal_Boton_Estado' tooltip-es='Menú principal' tooltip-en='Main menu' tooltip-pos='L'></label>".Intro().
             "<div class='Menu_Boton'>".Intro().
@@ -343,7 +343,7 @@ class devildrey33 {
                     
 //                "<span class='Menu_Boton_Cruz'>Ejem</span>".Intro().
                 "<div class='Menu_Marco' id ='BarraNavegacion_LabMarcoExplorador'>".Intro().
-                     "<div class='Lab_Explorador' id='BarraNavegacion_Explorador'>".Intro();
+                     "<div class='Lab_Explorador SinSeleccion' id='BarraNavegacion_Explorador'>".Intro();
             if (devildrey33_Opciones::Administrador() > 0) { echo devildrey33_Lab::MostrarCarpetaEjemplos(); }
             else                                           { echo devildrey33_Lab::LeerCache(); }
             echo    "</div>".Intro().
@@ -450,7 +450,7 @@ class devildrey33 {
         $EsAdmin = "";
         if (devildrey33_Opciones::Administrador() > 0) $EsAdmin = " NoMostrar=true";
         
-        echo "<div id='Logo'".$EsAdmin." class='AnimarLogo'>".
+        echo "<div id='Logo'".$EsAdmin." class='AnimarLogo SinSeleccion'>".
             "<div>D</div>".
             "<div>E</div>".
             "<div>V</div>".
@@ -558,10 +558,18 @@ class devildrey33 {
         echo "<article class='Blog' pagina='$NombreDocumento'>".Intro();        
 //        if (!isset($_GET["GenerarCacheBuscador"])) {
             echo    "<header class='Cabecera' animar='true'>".Intro().
-                        "<div class='Cabecera_Fondo Cabecera_Img".rand(1, 4)."'></div>".Intro().
+                        "<div id='Cabecera_Stats'></div>".Intro().
+//                        "<div class='Cabecera_Fondo Cabecera_Img".rand(1, 4)."'></div>".Intro().
+                        "<canvas id='Cabecera_Canvas'></canvas>".Intro().
                         "<div class='Cabecera_Datos'>".Intro();
             $this->LeerDatos($this->_NombreDocumento, $Titulo);
             echo        "</div>".Intro();
+            echo        "<div id='Cabecera_AutorAni' class='SinSeleccion'>".Intro().
+                            "<div class='BotonVentana'><img class='' src='http://devildrey33.st0rm/Web/SVG/Iconos50x50.svg#svg-prev'></div>".Intro().
+                            "<div id='CabeceraAutorAni_HTML'></div>".Intro().
+                            "<div class='BotonVentana'><img class='' src='http://devildrey33.st0rm/Web/SVG/Iconos50x50.svg#svg-next'></div>".Intro().
+                        "</div>".Intro();
+            echo        "<div id='Cabecera_PausaAni'>El navegador no tiene el foco, animación en pausa.</div>";
             echo    "</header>".Intro();
             if ($AlinearImagenDerecha === FALSE) 
                 echo "<img class='ImagenPortada' src='".Base::URL_Graficos()."250x200_".$this->EntradaBlog["Imagen"]."' alt='$Titulo' />".Intro();
@@ -750,7 +758,7 @@ class devildrey33 {
             // dirname(__FILE__)         = "c:\devildrey33\webs\devildrey33\Web"
             // $_SERVER["DOCUMENT_ROOT"] = "c:\devildrey33\webs" o "c:\devildrey33\webs\devildrey33"
                 foreach ($ArrayCSS["css"] as $Archivo) {
-                    echo "<link rel='stylesheet' href='http://".$_SERVER["SERVER_NAME"].$Raiz.$Archivo."' />".Intro();
+                    echo "<link rel='stylesheet' href='".Base::URL_Web().substr($Archivo, 1)."' />".Intro();
                 
                 }
             }
@@ -759,7 +767,7 @@ class devildrey33 {
             }                
         }
         else {
-            echo "<link rel='stylesheet' href='http://".$_SERVER["SERVER_NAME"].$Raiz."Cache/devildrey33.min.css' />".Intro();
+            echo "<link rel='stylesheet' href='".Base::URL_Cache()."devildrey33.min.css' />".Intro();
         }
     }
 
@@ -854,10 +862,11 @@ class devildrey33 {
         echo '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>'.Intro(); // Para la barra separadora del lab
         echo "<script type='text/javascript' src='https://www.google.es/jsapi'></script>".Intro(); // json api?
         /* addons del codemirror */
-        echo "<script src='".Base::URL_JS()."codemirror.min.js'></script>".Intro();
+        echo "<script src='".Base::URL_JS()."3rdParty/codemirror.min.js'></script>".Intro();
         /* Three js */
-        echo "<script src='".Base::URL_JS()."three-0.74.min.js'></script>".Intro();
-        echo "<script src='".Base::URL_JS()."tweenjs-0.6.2.min.js'></script>".Intro();
+        echo "<script src='".Base::URL_JS()."3rdParty/three-0.74.min.js'></script>".Intro();
+        echo "<script src='".Base::URL_JS()."3rdParty/tweenjs-0.6.2.min.js'></script>".Intro();
+//        echo "<script src='".Base::URL_JS()."3rdParty/stats.min.js'></script>".Intro();
         
         echo "<script src='".Base::URL_Cache()."EntradasBlog.js'></script>".Intro();
 
@@ -865,7 +874,7 @@ class devildrey33 {
             if (file_exists(dirname(__FILE__).'/Config/ArchivosMinify.php')) {
                 $ArrayCSS = (require dirname(__FILE__).'/Config/ArchivosMinify.php');
                 foreach ($ArrayCSS["js"] as $Archivo) {
-                    echo "<script src='".rtrim(Base::URL_Web(), "/").$Archivo."'></script>".Intro();
+                    echo "<script src='".Base::URL_Web().substr($Archivo, 1)."'></script>".Intro();
                 }            
             }
             else { 
