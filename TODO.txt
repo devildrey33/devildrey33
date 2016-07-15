@@ -77,7 +77,10 @@ Millores de la web :
     - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
         - Un exemple clar seria la web de elmundo
  V  - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
-        - De moment hi ha 2 baners creats, i una clase base per tots els futurs baners.
+ V      - De moment hi ha 5 baners creats, i una clase base per tots els futurs baners.
+ V      - Finestra per canviar de banner implementada
+            - Afegir opciosn especifiques per cada banner, i mostrar fps (de moment es veuen sempre)
+
     - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
     - Fer el error 404 chulo amb three.js
 

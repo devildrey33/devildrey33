@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4">
         <file>
+            <url>Web/JS/ObjetoBase.js</url>
+            <bookmark id="4">
+                <name/>
+                <line>299</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
             <url>Web/JS/ObjetoAdmin.js</url>
             <bookmark id="1">
                 <name/>
@@ -22,36 +30,31 @@
                 <key/>
             </bookmark>
         </file>
-        <file>
-            <url>Web/JS/ObjetoBase.js</url>
-            <bookmark id="4">
-                <name/>
-                <line>290</line>
-                <key/>
-            </bookmark>
-        </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/Banner/Banner_p5noise.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_cmd.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/InstalarUbuntuVirtualBox.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Buscador.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/InyeccionSQL.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoIndice.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Nuevo.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ComboBoxWeb.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Cache/BDBuscador.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/CSS3_Sombras_Bordes.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_1_6.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/Banner/Banner_Cubos3D.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/ArchivosMinify.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_BD.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_2_5.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_3_10.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_3_2.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/Banner/Banner_Espacio2D.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ColorearCodigoPHP_devildrey33_PintarCodigo.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Lab.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_EditarEntradas.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_HTML5_9.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Codemirror.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/ListaLab.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/resaltar-sintaxis-codigo-fuente.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/TODO.txt</file>
@@ -60,6 +63,7 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_3_9.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_HTML5_2.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_1_4.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Lab.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/PHPyXML.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_2_1.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Log.php</file>
@@ -75,10 +79,11 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Boton.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoAdmin.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/working-with-google-apis.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/Banner/Banner_LinesLines.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_4.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS_BD.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/404.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/utilizar-controles-input-ocultos-asociados-a-un-label.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/3rdParty/codemirror.min.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoBanner.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoLab.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/NetBeansWindows.php</file>
@@ -87,6 +92,7 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/FeedsRSS.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_cmd%20OLD.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/BarraPrincipal.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/Banner/Banner_MatrixLluviaHexadecimal.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Tablas.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_HTML5_5.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_3_6.php</file>
@@ -105,6 +111,7 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_1_1.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/how-to-use-google-app-scripts.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/PropiedadesCSS.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/Error404.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/LMD.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Opciones.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/varios-servidores-web-apache-de-pruebas.php</file>
@@ -114,7 +121,6 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_HTML5_7.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_3_4.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ColorearCodigoPHP_CSS.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/codemirror.min.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Antivirus_Fotos0506.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_1_7.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/MenuWebFijo.php</file>
@@ -127,6 +133,7 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/phpinfo.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/EntradasBlog.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_3_1.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/index.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_HTML5_8.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Comentarios.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoComentarios.js</file>
@@ -143,6 +150,7 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ColorearCodigoPHP_PHP.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/.htaccess</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_2_2.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Index.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/devildrey33_ListaDesplegable_2-0_BETA.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Canvas2D_4.php</file>
@@ -157,10 +165,12 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_3_8.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_1_5.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/DWL2012-15-02-2012.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/Banner/Banner_TranstornoLineal.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Base.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_HTML5_4.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/devildrey33_ListaDesplegable_2-0.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ColorearCodigoPHP_XML.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/3rdParty/Stats.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_3_7.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_1_2.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Canvas2D_2.php</file>

@@ -228,6 +228,8 @@ and open the template in the editor.
     text-shadow : 1px 1px 1px #000;
     outline     : none !important;
     cursor      : pointer;
+    transform   : perspective(600px);
+    transition  : 0.2s cubic-bezier(.33,.05,.69,1.59);    
 }
 
 .BotonVentana:hover {
@@ -236,4 +238,15 @@ and open the template in the editor.
 
 .BotonVentana > img {
     border:none !important;
+    transform:scale(1, 1);
+    transition:0.3s cubic-bezier(.33,.05,.69,1.59);    
+}
+
+.BotonVentana:hover > img {
+    transform:scale(1.25, 1.25);
+}    
+
+/* Alejo el objeto en la perspectiva cuando el usuario presiona sobre él */
+.BotonVentana:active {
+    transform : perspective(600px) translateZ(-75px) rotateZ(-0.5deg) rotateX(-10deg);  /* Hago un efecto 3D de hundimiento para la capa principal */
 }

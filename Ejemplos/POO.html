@@ -1,0 +1,66 @@
+<!-- 
+    Nuevo documento del laboratorio de pruebas para devildrey33
+    Se permite : HTML, JavaScript, CSS.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+        </style>
+        
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+
+        <!-- Si deseas utilizar Three 3D lib descomenta la siguiente línea -->
+        <!-- <script src="/Web/JS/3rdParty/three-0.74.min.js"></script> -->
+
+        <!-- Si deseas utilizar Tween (animaciones para Three) descomenta la siguiente línea -->
+        <!-- <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script> -->
+        
+        <!-- Si deseas utilizar stats (framerate para Three) descomenta la siguiente línea -->
+        <!-- <script src="https://code.createjs.com/stats.min.js"></script> -->
+
+        <!-- Si deseas utilizar DAT.GUY (Marco de opciones configurable) descomenta la siguiente línea -->
+        <!-- <script src="https://code.createjs.com/DAT.GUY.js"></script> -->
+        
+        <!-- Código javascript --> 
+        <script type="text/javascript">
+// Objeto base que requiere un parámetro            
+OBase = function(Param) {
+    console.log("OBase()", Param);
+    this.Param = Param;
+//    this.fc();
+};
+// Función que usa el parámetro
+OBase.prototype.fc = function() {
+    console.log("OBase.fc()", this.Param);
+};
+
+
+// Objeto que hereda de OBase
+OHeredado = function(Param) {
+    console.log("OHeredado()", Param);
+    OBase.call(this, Param);
+};
+// Función que usa el parámetro
+OHeredado.prototype.fc = function() {
+    console.log("OHeredado.fc()", this.Param);
+    OBase.prototype.fc(this);
+};
+// Prototipo de OHeredado es un prototipo de OBase 
+OHeredado.prototype = Object.create(OBase.prototype);
+OHeredado.constructor = OHeredado;
+            
+// Inicio el objeto
+var P = new OHeredado("test");
+P.fc();               
+            
+        </script>
+    </head>
+    <body>
+        <h1>
+            Nuevo documento de pruebas
+        </h1>
+    </body>
+</html>

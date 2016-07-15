@@ -26,12 +26,9 @@ $Base = new function() {
     this.FuncionCargarJS    = function() { };
     /* Función post logueado */
     this.FPL                = function() { };
-//    this.Timeout            = 0;
-    this.Raiz               = "";   // Path relativo de la raíz (puede ser "")
-    this.RaizRelativa       = "";
-//    this.URL                = "";
-//    this.nURL               = "";
-    this.FocoWeb            = true;
+    /* URL absoluta y relativa de la web */
+    this.Raiz               = "";   // http://devildrey33.es 
+    this.RaizRelativa       = "";   // Path relativo de la raíz (puede ser "")
     
     this.PosBanner          = 0;
         
@@ -157,37 +154,28 @@ $Base = new function() {
     this.Banner = function(Pos) {
         if ($Banner !== null) { window.cancelAnimationFrame($Banner.RAFID); }
         
-        var fPos = Pos;
+        var fPos = 0;
         // Si no se ha especificado ninguna posición generamos una aleatória
-        if (typeof (Pos === "undefined")) { fPos = RandInt(5); }
+        if (typeof (Pos === "undefined")) { fPos = RandInt($Banner_Lista.length / 2) * 2; }
+        else                              { fPos = Pos * 2 }
         // Si es -1 es el botón Prev y si es -2 es el botón Next (de los controles del canvas)
         if (Pos === -1) { // Prev
-            fPos = this.PosBanner -1; 
+            fPos = this.PosBanner -2; 
             if (fPos < 0) { 
-                fPos = $Banner_Lista.length -1; 
+                fPos = ($Banner_Lista.length) -2; 
             } 
         }
         else if (Pos === -2) {  // Next
-            fPos = this.PosBanner +1; 
-            if (fPos >= $Banner_Lista.length) { 
+            fPos = this.PosBanner + 2; 
+            if (fPos >= ($Banner_Lista.length)) { 
                 fPos = 0;                       
             } 
         }
         console.log("Base.Banner(Pos = " + Pos + ")", fPos);
         this.PosBanner = fPos;
         
-        $Banner = new ObjetoBanner(new $Banner_Lista[fPos]);
-        /*-
-        switch (fPos) {
-            case 0 : $Banner = new ObjetoBanner(new Banner_ResplandorCircular);         break;
-            case 1 : $Banner = new ObjetoBanner(new Banner_Colisiones);                 break;
-            case 2 : $Banner = new ObjetoBanner(new Banner_TranstornoLineal);           break;
-            case 3 : $Banner = new ObjetoBanner(new Banner_Espacio2D);                  break;
-            case 4 : $Banner = new ObjetoBanner(new Banner_MatrixLluviaHexadecimal);    break;
-        }*/
-//         $Banner = new ObjetoBanner(new Banner_TranstornoLineal); 
-        
-//        $Banner = new ObjetoBanner(Lista[fPos]);
+        $Banner = new ObjetoBanner(new $Banner_Lista[fPos], $Banner_Lista[fPos + 1]);
+//        $Banner = new ObjetoBanner(new Banner_Cubos3D, "THREE");
     };
     
     /* Función para mostrar la ventana con los errores php */

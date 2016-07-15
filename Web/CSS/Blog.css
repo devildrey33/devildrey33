@@ -145,7 +145,7 @@ h2:before {
     background: rgba(29,26,33, 1); 
 }
 
-.Blog > .Cabecera > #Cabecera_AutorAni, .Blog > .Cabecera > #Cabecera_PausaAni {
+.Blog > .Cabecera > #Cabecera_AutorAni, .Blog > .Cabecera > #Cabecera_PausaAni, .Cabecera > #Cabecera_Stats {
     transition:0.3s cubic-bezier(.33,.05,.69,1.59);
     z-index:13;
     padding:10px;
@@ -188,11 +188,9 @@ h2:before {
 }
 
 .Cabecera > #Cabecera_Stats {
-    position:absolute;
-    transition:0.3s cubic-bezier(.33,.05,.69,1.59);
     transform-origin: top center;
     transform:perspective(600px) rotateX(-90deg);  
-    z-index:120;
+    right:60px;
 }
 
 /* Solo se muestra la información de la animación si la animación está activa (puede estar visible pero inactiva si la web no tiene el foco) */

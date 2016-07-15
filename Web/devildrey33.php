@@ -556,26 +556,23 @@ class devildrey33 {
         $this->_NombreDocumento = $NombreDocumento;
         $this->BD = new devildrey33_BD();
         echo "<article class='Blog' pagina='$NombreDocumento'>".Intro();        
-//        if (!isset($_GET["GenerarCacheBuscador"])) {
             echo    "<header class='Cabecera' animar='true'>".Intro().
-                        "<div id='Cabecera_Stats'></div>".Intro().
-//                        "<div class='Cabecera_Fondo Cabecera_Img".rand(1, 4)."'></div>".Intro().
-                        "<canvas id='Cabecera_Canvas'></canvas>".Intro().
+                        "<div id='Cabecera_Stats'>0 FPS</div>".Intro().
+//                        "<canvas id='Cabecera_Canvas'></canvas>".Intro().
                         "<div class='Cabecera_Datos'>".Intro();
             $this->LeerDatos($this->_NombreDocumento, $Titulo);
             echo        "</div>".Intro();
             echo        "<div id='Cabecera_AutorAni' class='SinSeleccion'>".Intro().
-                            "<div class='BotonVentana'><img class='' src='http://devildrey33.st0rm/Web/SVG/Iconos50x50.svg#svg-prev'></div>".Intro().
+                            "<div class='BotonVentana'><img class='' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-prev'></div>".Intro().
                             "<div id='CabeceraAutorAni_HTML'></div>".Intro().
-                            "<div class='BotonVentana'><img class='' src='http://devildrey33.st0rm/Web/SVG/Iconos50x50.svg#svg-next'></div>".Intro().
+                            "<div class='BotonVentana'><img class='' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-next'></div>".Intro().
                         "</div>".Intro();
-            echo        "<div id='Cabecera_PausaAni'>El navegador no tiene el foco, animación en pausa.</div>";
+            echo        "<div id='Cabecera_PausaAni'>La web está en segundo plano, animación en pausa.</div>";
             echo    "</header>".Intro();
             if ($AlinearImagenDerecha === FALSE) 
                 echo "<img class='ImagenPortada' src='".Base::URL_Graficos()."250x200_".$this->EntradaBlog["Imagen"]."' alt='$Titulo' />".Intro();
             else 
                 echo "<img class='ImagenPortada2' src='".Base::URL_Graficos()."250x200_".$this->EntradaBlog["Imagen"]."' alt='$Titulo' />".Intro();
-//        }
     }
     
     /* Los datos para la Documentación hay que leerlos de otra forma */
