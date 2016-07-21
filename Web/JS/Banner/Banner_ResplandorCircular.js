@@ -5,29 +5,36 @@
  */
 
 
-Banner_ResplandorCircular = function() {
-    this.Nombre        = "Resplandor circular";
-    this.IdeaOriginal  = "Bailh";
-    this.URL           = "http://codepen.io/cathbailh/pen/KpPjPg";
-    this.NombreURL     = "Sweet chaos in the space of tulle";
-    
-    
-    this.Circulos     = [];
+var Banner_ResplandorCircular = function() {
+    // Llamo al constructor del ObjetoBanner
+    ObjetoBanner.call(this, "2d"); // Puede ser 2D o THREE
+    // Inicio los valores básicos
     this.Maximo       = 300;
     this.ColorActual  = 10;
     this.Avance       = 0.07;
-    
-    this.Iniciar = function() {
-        this.Circulos = [];
-        for (var i = 1; i < this.Maximo; i++) {
-            setTimeout(function(Banner) {
-                var Circulo = new Banner.Circulo();
-                Banner.Circulos.push(Circulo);
-            }, i * 2, this);
-        }
-    };
-    
-    this.Pintar = function() {        
+    // Inicio los circulos
+    this.Circulos = [];
+    for (var i = 1; i < this.Maximo; i++) {
+        setTimeout(function(Banner) {
+            var Circulo = new Banner.Circulo();
+            Banner.Circulos.push(Circulo);
+        }, i * 2, this);
+    }
+};
+
+Banner_ResplandorCircular.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {
+    constructor     : Banner_ResplandorCircular, 
+    // Datos de la animación [requerido]
+    Nombre          : "Resplandor circular",
+    IdeaOriginal    : "Bailh",
+    URL             : "http://codepen.io/cathbailh/pen/KpPjPg",
+    NombreURL       : "Sweet chaos in the space of tulle",    
+    // Función que se llama al redimensionar el documento
+    Redimensionar   : function() {    },
+    // Función que se llama al hacer scroll en el documento    
+    Scroll          : function() {    },
+    // Función que pinta cada frame de la animación
+    Pintar          : function() {
         // La clave para obtener el efecto de difuminado es "borrar" el fondo con un color rgba casi transparente 
         this.Context.fillStyle = "rgba(51, 51, 20, 0.02)";
         // Conserva el fondo
@@ -57,10 +64,10 @@ Banner_ResplandorCircular = function() {
             
         }                
 
-    };
+    },
     
     /* Objeto que contiene los datos de un circulo */
-    this.Circulo = function() {
+    Circulo         : function() {
         this.IniciarCirculo = function() {
             this.Radio = Rand(20, 80);
             this.X = ($Banner.Ancho / 2) + Rand(5, -5);
@@ -72,8 +79,5 @@ Banner_ResplandorCircular = function() {
             this.MaxAvance = Rand(0, 350);        
         };        
         this.IniciarCirculo();
-    };
-    
-    
-    
-};
+    }
+});

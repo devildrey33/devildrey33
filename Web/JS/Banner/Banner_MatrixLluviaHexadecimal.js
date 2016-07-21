@@ -5,28 +5,38 @@
  */
 
 
-Banner_MatrixLluviaHexadecimal = function() {
-    this.Nombre         = "Matrix lluvia hexadecimal";
-    this.IdeaOriginal   = "thecodeplayer";
-    this.URL            = "http://thecodeplayer.com/walkthrough/matrix-rain-animation-html5-canvas-javascript";
-    this.NombreURL      = "Matrix rain animation";
+var Banner_MatrixLluviaHexadecimal = function() {
+    // Llamo al constructor del ObjetoBanner
+    ObjetoBanner.call(this, "2d");       
 
     // Arrays para cada plano
     this.Caracteres = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" /*, "田", "由", "甲", "申", "甴", "电", "甶", "男", "甸", "甹", "町", "画", "甼", "甽", "甾", "甿", "畀", "畁", "畂", "畃", "畄", "畅", "畆", "畇", "畈", "畉", "畊", "畋", "界", "畍", "畎", "畏", "畐", "畑" */];    
     this.Columnas   = [];
     this.TamFuente  = 10;
     this.NoPintar   = false;
-    
+    // Inicio las columnas
+    this.Columnas = [];
+    var Cols = this.Ancho / this.TamFuente;
+    for (var i = 0; i < Cols; i++) {
+        this.Columnas[i] = 1;
+    }
+};    
 
-    this.Iniciar = function() {
-        this.Columnas = [];
-        var Cols = this.Ancho / this.TamFuente;
-        for (var i = 0; i < Cols; i++) {
-            this.Columnas[i] = 1;
-        }
-    };
+
+Banner_MatrixLluviaHexadecimal.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {
+    constructor         : Banner_MatrixLluviaHexadecimal, 
+
+    // Datos de la animación
+    Nombre              : "Matrix lluvia hexadecimal",
+    IdeaOriginal        : "thecodeplayer",
+    URL                 : "http://thecodeplayer.com/walkthrough/matrix-rain-animation-html5-canvas-javascript",
+    NombreURL           : "Matrix rain animation",    
     
-    this.Pintar = function() {        
+    Redimensionar       : function() {    },
+    
+    Scroll              : function() {    },
+    
+    Pintar              : function() {    
         // Evito procesar las columnas una de cada 2 veces que se llama a pintar
         this.NoPintar = !this.NoPintar;
         if (this.NoPintar === true) return;
@@ -49,7 +59,7 @@ Banner_MatrixLluviaHexadecimal = function() {
 
             this.Columnas[i] += 1;
         }
-    };
+    }
     
     
-}
+});

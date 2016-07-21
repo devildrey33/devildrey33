@@ -28,34 +28,44 @@
         <script type="text/javascript">
 // Objeto base que requiere un parámetro            
 OBase = function(Param) {
-    console.log("OBase()", Param);
+    console.log("constructor OBase('" + Param + "')");
     this.Param = Param;
-//    this.fc();
+//    this.fv();
 };
-// Función que usa el parámetro
-OBase.prototype.fc = function() {
-    console.log("OBase.fc()", this.Param);
+// Función que usa el parámetro 
+OBase.prototype.fv = function() {
+    console.log("OBase.fv() this.Param ='" + this.Param + "'");
 };
 
-
+//////////////////////////////////////////////////
 // Objeto que hereda de OBase
 OHeredado = function(Param) {
-    console.log("OHeredado()", Param);
+    console.log("constructor OHeredado('" + Param + "')");
     OBase.call(this, Param);
 };
-// Función que usa el parámetro
-OHeredado.prototype.fc = function() {
-    console.log("OHeredado.fc()", this.Param);
-    OBase.prototype.fc(this);
-};
-// Prototipo de OHeredado es un prototipo de OBase 
-OHeredado.prototype = Object.create(OBase.prototype);
-OHeredado.constructor = OHeredado;
-            
-// Inicio el objeto
-var P = new OHeredado("test");
-P.fc();               
-            
+
+// Prototipo de OHeredado tiene la estructura de OBase 
+OHeredado.prototype = Object.assign(Object.create(OBase.prototype), {
+    constructor : OHeredado,
+    // Función virtual
+    fv : function() { 
+        console.log("OHeredado.fv() this.Param ='" + this.Param + "'");
+        // Llamada a la función virtual de OBase
+        OBase.prototype.fv(this);
+    }
+});
+
+//////////////////////////////////////////////////
+
+console.log("- Objeto Heredado -");
+// Inicio el objeto heredado
+var H = new OHeredado("test");
+H.fv();               
+console.log("- Objeto Base -");
+// Inicio el objeto base
+var B = new OBase("test");
+B.fv();
+
         </script>
     </head>
     <body>

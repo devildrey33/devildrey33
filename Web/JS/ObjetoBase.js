@@ -36,10 +36,10 @@ $Base = new function() {
     this.Iniciar = function() {
         /* Botones de las vistas del lab */
 //        $("#BarraNavegacion_LabVer > .Menu_Boton").on("click"), function() { $("#BarraNavegacion_BotonVer_Estado").trigger("click") }
-        $(".Lab_BotonVerFilas").click(function(e){ $Lab.AjustarVista("0"); });
+        $(".Lab_BotonVerFilas").click(function(e)   { $Lab.AjustarVista("0"); });
         $(".Lab_BotonVerColumnas").click(function(e){ $Lab.AjustarVista("1"); });
-        $(".Lab_BotonVerCodigo").click(function(e){ $Lab.AjustarVista("2"); });
-        $(".Lab_BotonVerPreview").click(function(e){ $Lab.AjustarVista("3"); });
+        $(".Lab_BotonVerCodigo").click(function(e)  { $Lab.AjustarVista("2"); });
+        $(".Lab_BotonVerPreview").click(function(e) { $Lab.AjustarVista("3"); });
         /* Explorador del laboratorio */
 //        $("#BarraNavegacion_LabExplorar > .Menu_Boton > .Menu_Boton_Cruz > svg").on("click"), function() { $("#BarraNavegacion_BotonExplorar_Estado").trigger("click"); }
 //        $("#BarraNavegacion_LabMarcoVer > label.Menu_Boton:nth-child(8)").click(function(e){ $Lab.AjustarVista("3"); });
@@ -154,28 +154,35 @@ $Base = new function() {
     this.Banner = function(Pos) {
         if ($Banner !== null) { window.cancelAnimationFrame($Banner.RAFID); }
         
+        var Banner_Lista = [    Banner_ResplandorCircular,
+                                Banner_Colisiones,
+                                Banner_TranstornoLineal,
+                                Banner_Espacio2D,
+                                Banner_MatrixLluviaHexadecimal,
+                                Banner_Cubos3D                  ];                
         var fPos = 0;
         // Si no se ha especificado ninguna posición generamos una aleatória
-        if (typeof (Pos === "undefined")) { fPos = RandInt($Banner_Lista.length / 2) * 2; }
-        else                              { fPos = Pos * 2 }
+        if (typeof (Pos === "undefined")) { fPos = RandInt(Banner_Lista.length); }
+        else                              { fPos = Pos }
         // Si es -1 es el botón Prev y si es -2 es el botón Next (de los controles del canvas)
         if (Pos === -1) { // Prev
-            fPos = this.PosBanner -2; 
+            fPos = this.PosBanner -1; 
             if (fPos < 0) { 
-                fPos = ($Banner_Lista.length) -2; 
+                fPos = (Banner_Lista.length) -1; 
             } 
         }
         else if (Pos === -2) {  // Next
-            fPos = this.PosBanner + 2; 
-            if (fPos >= ($Banner_Lista.length)) { 
+            fPos = this.PosBanner + 1; 
+            if (fPos >= (Banner_Lista.length)) { 
                 fPos = 0;                       
             } 
         }
         console.log("Base.Banner(Pos = " + Pos + ")", fPos);
         this.PosBanner = fPos;
         
-        $Banner = new ObjetoBanner(new $Banner_Lista[fPos], $Banner_Lista[fPos + 1]);
-//        $Banner = new ObjetoBanner(new Banner_Cubos3D, "THREE");
+//        $Banner = new ObjetoBanner(new $Banner_Lista[fPos], $Banner_Lista[fPos + 1]);
+//        $Banner = new Banner_TranstornoLineal();
+        $Banner = new Banner_Lista[fPos];
     };
     
     /* Función para mostrar la ventana con los errores php */

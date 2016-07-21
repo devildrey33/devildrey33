@@ -175,16 +175,17 @@ class devildrey33_htaccess {
         $PosFin      = strpos($Datos, "#FIN Paths");
         $DatosNuevos = substr($Datos, 0, $PosInicio);
         
+        $Path = str_replace(" ", "%20", Base::PathRelativo_Raiz());
         
-        $DatosNuevos .= "#INICIO Paths /".Base::PathRelativo_Raiz()."\r\n".
+        $DatosNuevos .= "#INICIO Paths /".$Path."\r\n".
                         "# Document d'error (Comentar en localhost per veure els errors)\r\n".
-                        "ErrorDocument 404 /".Base::PathRelativo_Raiz()."Web/Error404.php\r\n".
+                        "ErrorDocument 404 /".$Path."Web/Error404.php\r\n".
                         "\r\n".
                         "# Modul RewriteEngine per simular directoris en les propietats css\r\n".
                         "Options +FollowSymlinks\r\n".
                         "RewriteEngine on\r\n".
                         "# Base arrel del servidor\r\n".
-                        "RewriteBase /".Base::PathRelativo_Raiz()."\r\n";
+                        "RewriteBase /".$Path."\r\n";
 
         $DatosNuevos .= substr($Datos, $PosFin, strlen($Datos) - $PosFin);
         file_put_contents(Base::Path_Raiz().".htaccess", $DatosNuevos);

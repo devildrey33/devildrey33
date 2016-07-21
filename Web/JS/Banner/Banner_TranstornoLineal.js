@@ -6,27 +6,31 @@
 
 
 Banner_TranstornoLineal = function() {
-    
-    this.Nombre        = "Transtorno Lineal";
-    this.NombreURL     = "Lines lines lines, love 'em!";
-    this.IdeaOriginal  = "Matei Copot";
-    this.URL           = "https://codepen.io/towc/pen/mJroQr";
-
-    
+    // Llamo al constructor del ObjetoBanner
+    ObjetoBanner.call(this, "2d"); // Puede ser 2D o THREE
+    // Inicio los valores
     this.Tick           = ( Rand() * 360 ) | 0;
+    this.MaxTriangulos  = 20;   
     this.Triangulos     = [];
-    this.MaxTriangulos  = 20;
+    // Establezco el ancho de línea y el color del fondo
+    this.Context.lineWidth = .1;
+    this.Context.fillStyle = 'rgb(49, 46, 53)';
+    this.Context.fillRect( 0, 0, this.Ancho, this.Alto );
+};   
     
-    this.Iniciar = function() {
-        this.Triangulos = [];
-        this.Context.lineWidth = .1;
-
-        this.Context.fillStyle = 'rgb(49, 46, 53)';
-        this.Context.fillRect( 0, 0, this.Ancho, this.Alto );
-   
-    };
-    
-    this.Pintar = function() {
+Banner_TranstornoLineal.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {
+    constructor     : Banner_TranstornoLineal, 
+    // Datos de la animación [requerido]
+    Nombre          : "Transtorno Lineal",
+    IdeaOriginal    : "Matei Copot",
+    URL             : "https://codepen.io/towc/pen/mJroQr",
+    NombreURL       : "Lines lines lines, love 'em!",    
+    // Función que se llama al redimensionar el documento
+    Redimensionar   : function() {    },
+    // Función que se llama al hacer scroll en el documento    
+    Scroll          : function() {    },
+    // Función que pinta cada frame de la animación
+    Pintar          : function() {    
         this.Tick += .2;
         this.Tick %= 360;
 
@@ -89,11 +93,10 @@ Banner_TranstornoLineal = function() {
         }
             
 //        this.Triangulos.map( function(Triangulo) { Triangulo.Avanzar(); } );
-    };
+    },
         
 
-    this.Triangulo = function() {
-        
+    Triangulo       : function() {        
         // Objeto que controla al posición de un triangulo  
         this.Posicion = function(Lado) {
             this.Lado = Lado;
@@ -115,7 +118,6 @@ Banner_TranstornoLineal = function() {
                 if (this.Y < 0 || this.Y > this.Lado) { this.VelocidadY *= -1; }
             };
         };
-        
         
         this.Iniciar = function() {
             this.Lado          = Rand(100, 50);
@@ -163,8 +165,5 @@ Banner_TranstornoLineal = function() {
         };
         
         this.Iniciar();
-        
-    };
-    
-    
-}
+    }
+});

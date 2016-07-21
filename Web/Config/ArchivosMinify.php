@@ -38,13 +38,13 @@ return array(
                                     "/JS/ObjetoComentarios.js",
                                     "/JS/ObjetoPintarCodigo.js",
                                     "/JS/ObjetoLab.js",
+                                    "/JS/ObjetoBanner.js", // Debe estar despues de los banners
                                     "/JS/Banner/Banner_Espacio2D.js",
                                     "/JS/Banner/Banner_Colisiones.js",
                                     "/JS/Banner/Banner_ResplandorCircular.js",
                                     "/JS/Banner/Banner_TranstornoLineal.js",
                                     "/JS/Banner/Banner_MatrixLluviaHexadecimal.js",
                                     "/JS/Banner/Banner_Cubos3D.js",
-                                    "/JS/ObjetoBanner.js", // Debe estar despues de los banners
 //                                    "/JS/3rdParty/Stats.js" // FPS
                 )				  				  
 );

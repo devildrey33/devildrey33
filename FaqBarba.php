@@ -22,7 +22,8 @@
                 echo "<p>Desde aquesta arrel ".Base::URL_Raiz()." es necesita un '<code>RewriteBase /".Base::PathRelativo_Raiz()."</code>' i tens ho configurat com a '<code style='color:green; font-weight:bold'>RewriteBase ".$htaccess["RewriteBase"]."</code>'. ";                
             }
         ?>
-            <div class='nota'>Si el <code>RewriteBase</code> no està configurat correctament, no funcionara cap enllaç que no estigui acabat amb <code>.php</code> ni tampoc funcionaran les peticions Ajax (el 99% de les peticions son al directori virtual <code>/cmd/</code>). </div>
+            <div class='nota'>No utulitzis espais ni caracters raros per l'arrel del directori. </div>
+            <p>Si el <code>RewriteBase</code> no està configurat correctament, no funcionara cap enllaç que no estigui acabat amb <code>.php</code> ni tampoc funcionaran les peticions Ajax (el 99% de les peticions son al directori virtual <code>/cmd/</code>). </p>
         <ul>
             <li><b>Si vols accedir a la web desde http://localhost/directori web/</b> però pot ser que alguna imatge o alguna url no funcionin correctament.
             </li>
