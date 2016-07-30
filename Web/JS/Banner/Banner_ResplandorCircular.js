@@ -9,7 +9,7 @@ var Banner_ResplandorCircular = function() {
     // Llamo al constructor del ObjetoBanner
     ObjetoBanner.call(this, "2d"); // Puede ser 2D o THREE
     // Inicio los valores básicos
-    this.Maximo       = 300;
+    this.Maximo       = 150;
     this.ColorActual  = 10;
     this.Avance       = 0.07;
     // Inicio los circulos
@@ -20,6 +20,7 @@ var Banner_ResplandorCircular = function() {
             Banner.Circulos.push(Circulo);
         }, i * 2, this);
     }
+    this.Cargando(false);
 };
 
 Banner_ResplandorCircular.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {

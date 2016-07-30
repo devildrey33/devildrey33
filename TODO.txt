@@ -84,14 +84,16 @@ Millores de la web :
             - Afegir opcions especifiques per cada banner,
  V      - Mostrar fps (de moment es veuen sempre al fer un hover sobre el banner)
  V      - Fer el banner compatible amb Three.js (implementat resize, i a part una etiqueta canvas que te un contexte 2d asociat dona error al crear un contexte 3d, i a la inversa [Solució borrar i crear la etiqueta <canvas> al crear el banner])
- V      - Petit exemple en Yhree.js que modifica la escala i el color de una parrilla de 20x20 rectangles.
-            - AVIS REPETIT, s'han de modificar els tutos /Blog/Canvas2D_1, i /Blog/Canvas2D_2 per fer servir requestAnimationFrame i no el setInterval que faig servir a saco a 10 ms.
-            - De moment te una animació totalment aleatoria per cada 'prisma rectangular' que forma la parrilla, la idea es fer varies animacións diferents que durin uns 10 segons.
-            - Molaria una animació en L que començi per una punta i acabi per l'altre
-            - De moment son 400 prismes col.locats en forma de quadrat, però es pordria adaptar per ocupat tot l'ample disponible... i donaria peu a fer una especie de marcador, on es podria fins i tot intentar animar texte...
-        - La veritat es que em repateja bastant els pebrots la forma que utilitzo per simular un objecte heredat rotllo c++, de fet la forma actual l'he denominat POEO 'Programació Orientada a Engullir Objectes' xd perque de fet, es el que faig [ObjetoBanner.js lineas de la 38 a 41 conformen l'engullibucle], i tot i que no queda molt net funciona bastant bé a l'hora de fer funcions "virtuals", però ara està de moda el model del prototype, i crec que podria ser mes adecuat, si no fos per que no soc capaç de fer algo similar a les funcións virtuals en c++)
-            - En definitiva, la POEO es una guarrada, que em permet fer d'alguna forma aproximada el que he fet tota la vida amb objectes c++, però aquest tipus de coses m'agrada fer-ho lo mes impecable posible... i lo de engullir no queda molt cool, ja m'entenc.
-        - Testejar /Doc/CSS/ en el server test.devildrey33.es peta....
+ V      - Exemple en Three.js 'Adiestramiento de Cubos'.
+            - Mirar d'afegir moviment a la camara a traves del mouse.
+ V      - Exemple en Three.js 'WormHole'
+            - Retocar el moviment del mouse per que resulti mes suau.
+ V      - Afegit event mousemove.
+ V      - Afegit estat de carrega (per textures).
+ V      - La veritat es que em repateja bastant els pebrots la forma que utilitzo per simular un objecte heredat rotllo c++, de fet la forma actual l'he denominat POEO 'Programació Orientada a Engullir Objectes' xd perque de fet, es el que faig [ObjetoBanner.js lineas de la 38 a 41 conformen l'engullibucle], i tot i que no queda molt net funciona bastant bé a l'hora de fer funcions "virtuals", però ara està de moda el model del prototype, i crec que podria ser mes adecuat, si no fos per que no soc capaç de fer algo similar a les funcións virtuals en c++)
+ V          - En definitiva, la POEO es una guarrada, que em permet fer d'alguna forma aproximada el que he fet tota la vida amb objectes c++, però aquest tipus de coses m'agrada fer-ho lo mes impecable posible... i lo de engullir no queda molt cool, ja m'entenc.
+ V      - Testejar /Doc/CSS/ en el server test.devildrey33.es peta.... (no he vist res raro)
+ V  - Retocada la finestra d'administració, ara te una estructura mes lògica (a base de <table>) i he retocat una mica l'estil dels marcs.
     - Fer el error 404 chulo amb three.js
     - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
 

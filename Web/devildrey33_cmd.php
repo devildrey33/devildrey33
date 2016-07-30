@@ -5,7 +5,7 @@
 
     /* Archivo para peticiones ajax, tambien se puede utilizar a modo de consola MUY básica. */
     //include("devildrey33.php");
-    include("../GenerarIndice.php");
+    include("GenerarIndice.php");
 
     /* Asigno si se verán o no los errores php */
     ini_set("display_errors", devildrey33_Opciones::MostrarErroresPHP());     

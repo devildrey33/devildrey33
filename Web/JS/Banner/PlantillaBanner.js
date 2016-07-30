@@ -17,6 +17,8 @@ PLANTILLABANNER.prototype = Object.assign( Object.create(ObjetoBanner.prototype)
     Redimensionar   : function() {    },
     // Función que se llama al hacer scroll en el documento    
     Scroll          : function() {    },
+    // Función que se llama al mover el mouse por el canvas
+    MouseMove       : function(X, Y) { },
     // Función que pinta cada frame de la animación
     Pintar          : function() {    }
 });

@@ -44,7 +44,8 @@ return array(
                                     "/JS/Banner/Banner_ResplandorCircular.js",
                                     "/JS/Banner/Banner_TranstornoLineal.js",
                                     "/JS/Banner/Banner_MatrixLluviaHexadecimal.js",
-                                    "/JS/Banner/Banner_Cubos3D.js",
+                                    "/JS/Banner/Banner_AdiestramientoCubos3D.js",
+                                    "/JS/Banner/Banner_WormHole.js",
 //                                    "/JS/3rdParty/Stats.js" // FPS
                 )				  				  
 );

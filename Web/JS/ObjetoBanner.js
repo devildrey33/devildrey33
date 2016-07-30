@@ -28,16 +28,22 @@
                       Banner_Cubos3D,                   "THREE"];
 */
 var $Banner = null;
+//var Banner_Depurar = true;
+var Banner_Depurar = false;
 
 /* El primer parametro es una nueva instancia a la classe banner que queremos ejecutar 
  * El segundo parámetro es el tipo de contexto, "2d" o "THREE", si no se especifica, por defecto es 2d */
-ObjetoBanner = function(Tipo) {
-    
+ObjetoBanner = function(Tipo) {    
+    // Marco/desmarco el checkbox de las opciones administrativas (pausar banner)
+    $("#CH_PausarBanner").attr({ "marcado" : !Banner_Depurar });
     
     // Hay que eliminar la etiqueta canvas por que al crear un 2d context encima de un webgl context y viceversa produce error.
     $("#Cabecera_Canvas").remove();
     $(".Cabecera").append("<canvas id='Cabecera_Canvas'></canvas>");
     this.Canvas = document.getElementById("Cabecera_Canvas");
+
+    // Asigno el estado cargando, que muestra una ventana que avisa al usuario.
+    this.Cargando(true);
 
     // Tipo por defecto
     if (typeof(Tipo) === "undefined") { this.Tipo = "2d"; }
@@ -50,6 +56,7 @@ ObjetoBanner = function(Tipo) {
         this.Context    = this.Canvas.getContext("2d");                         // Contexto 2D
     } else if(this.Tipo === "THREE") {
         this.Context    = new THREE.WebGLRenderer({ canvas : this.Canvas, antialias : true });    // Contexto THREE.JS
+        this.Context.setClearColor(0x312E35, 1);    // Color del fondo
     }
 //    this.Camara         = null;                                             // Camara para el Three.js
 
@@ -61,9 +68,6 @@ ObjetoBanner = function(Tipo) {
     this.PIx2           = Math.PI * 2;                                      // PI + PI
     this.FocoWeb        = true;                                             // Foco de la ventana de la web
     
-    // OJO si es TRUE nunca se pausara la animación!!
-//    this.Depurar        = true;
-    this.Depurar        = false;
     
     // Marco que contiene la información de la animación
     $("#CabeceraAutorAni_HTML").html(   "<div>"+ this.Nombre +"</div>" +
@@ -80,39 +84,18 @@ ObjetoBanner = function(Tipo) {
     if (typeof(this.Escena) !== "undefined") { window.scene = this.Escena; }
     
     
-//    this.IniciarBanner();
+    // Mousemove 
+    // Evento mouse movimiento
+    $(".Cabecera").on("mousemove", function(event) { 
+        if ($Banner !== null) {
+            $Banner.EventoMouseMove(event.clientX, event.clientY);
+        }
+    });    
 };
 
-/*ObjetoBanner.prototype.IniciarBanner = function() {
-    console.log("Banner.IniciarBanner", this.Tipo);
-
-    // Hay que eliminar la etiqueta canvas por que al crear un 2d context encima de un webgl context y viceversa produce error.
-    $("#Cabecera_Canvas").remove();
-    $(".Cabecera").append("<canvas id='Cabecera_Canvas'></canvas>");
-    this.Canvas = document.getElementById("Cabecera_Canvas");
-
-    // Creo el contexto según el tipo especificado
-    if (this.Tipo === "2d") {
-        this.Context    = this.Canvas.getContext("2d");                         // Contexto 2D
-    } else if(this.Tipo === "THREE") {
-        this.Context    = new THREE.WebGLRenderer({ canvas : this.Canvas, antialias : true });    // Contexto THREE.JS
-    }
-    // Marco que contiene la información de la animación
-    $("#CabeceraAutorAni_HTML").html(   "<div>"+ this.Nombre +"</div>" +
-                                        "<div><span style='color:#AAA;'>Concepto original : </span><b>" + this.IdeaOriginal + "</b></div>" + 
-                                        "<a href='" + this.URL + "' target='_blank'>" + this.NombreURL + "</a>");
-    // Eventos para los botones next / prev
-    $("#Cabecera_AutorAni > .BotonVentana:nth-child(1)").off("click").on("click", function() { $Base.Banner(-1); });
-    $("#Cabecera_AutorAni > .BotonVentana:nth-child(3)").off("click").on("click", function() { $Base.Banner(-2); });
-    this.EventoRedimensionar();
-    if (typeof(this.Iniciar) !== "undefined") { this.Iniciar.apply(this); }
-    this.RAFID = window.requestAnimationFrame(this.Actualizar);       
-
-    // Exporto la escena del THREE.JS para poder verla en el Three.js.inspector
-    if (typeof(this.Escena) !== "undefined") { window.scene = this.Escena; }
-
-
-};   */
+ObjetoBanner.prototype.Cargando = function(carga) {
+    $(".Cabecera").attr({ "cargando" : carga });
+};
 
 // Función interna utilizada por requestAnimationFrame para actualizar y pintar la animación
 ObjetoBanner.prototype.Actualizar = function() {
@@ -120,6 +103,13 @@ ObjetoBanner.prototype.Actualizar = function() {
         $Banner.FPS(); 
         $Banner.RAFID = window.requestAnimationFrame($Banner.Actualizar);
         $Banner.Pintar.apply($Banner); 
+    }
+};
+
+// Función que procesa el evento mousemove
+ObjetoBanner.prototype.EventoMouseMove = function(X, Y) {
+    if (typeof(this.MouseMove) !== "undefined") {
+        this.MouseMove.apply(this, [X, Y]);
     }
 };
 
@@ -150,7 +140,7 @@ ObjetoBanner.prototype.EventoRedimensionar = function() {
 // - Hay que detectar cuando la animación no es visible y cuando la ventana no tiene el foco para pausar la animación
 // - En modo depuración nunca se hace la pausa (esto es para poder depurar el Three.js en el Three.js.inspector)
 ObjetoBanner.prototype.Pausa = function() {
-    if (this.RAFID !== 0 && this.Depurar === false) {
+    if (this.RAFID !== 0 && Banner_Depurar === false) {
         $(".Cabecera").attr({ "animar" : "false" });
         console.log("Banner.Pausa");
         window.cancelAnimationFrame(this.RAFID); 
@@ -201,7 +191,7 @@ ObjetoBanner.prototype.FPS = function() {
       
 
 
-
+// Evento cambio de tamaño
 $(window).on("resize", function() { 
     if ($Banner !== null) { $Banner.EventoRedimensionar(); }
 });
@@ -231,3 +221,10 @@ $(window).on("focus", function() {
         }
     }
 });
+
+// Evento mouse movimiento
+/*$(window).on("mousemove", function(event) { 
+   if ($Banner !== null) {
+       $Banner.EventoMouseMove(event.clientX, event.clientY);
+   }
+});*/

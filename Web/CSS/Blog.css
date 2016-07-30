@@ -145,7 +145,10 @@ h2:before {
     background: rgba(29,26,33, 1); 
 }
 
-.Blog > .Cabecera > #Cabecera_AutorAni, .Blog > .Cabecera > #Cabecera_PausaAni, .Cabecera > #Cabecera_Stats {
+.Blog > .Cabecera > #Cabecera_AutorAni, 
+.Blog > .Cabecera > #Cabecera_PausaAni, 
+.Blog > .Cabecera > #Cabecera_Cargando,
+.Blog > .Cabecera > #Cabecera_Stats {
     transition:0.3s cubic-bezier(.33,.05,.69,1.59);
     z-index:13;
     padding:10px;
@@ -155,7 +158,6 @@ h2:before {
     text-shadow:1px 1px 1px #000;
     position:absolute;
     border:1px solid #353338;
-    right:60px;
 }
 
 .Blog > .Cabecera > #Cabecera_AutorAni {
@@ -164,6 +166,7 @@ h2:before {
     bottom:0px;
     display:flex;
     white-space: nowrap;
+    right:60px;    
 }
 
 
@@ -171,8 +174,14 @@ h2:before {
     transform-origin: top center;
     transform:perspective(600px) rotateX(-90deg);
     top:0px;
+    right:60px;    
 }
 
+.Blog > .Cabecera > #Cabecera_Cargando {
+    top:0px;
+    left:50%;
+    transform:perspective(600px) rotateX(-90deg) translateX(-50%);
+}
 
 .Blog > .Cabecera > #Cabecera_AutorAni > .BotonVentana {
     padding:0px;
@@ -187,7 +196,7 @@ h2:before {
     padding:0px 10px;
 }
 
-.Cabecera > #Cabecera_Stats {
+.Blog > .Cabecera > #Cabecera_Stats {
     transform-origin: top center;
     transform:perspective(600px) rotateX(-90deg);  
     right:60px;
@@ -200,6 +209,10 @@ h2:before {
 /* Solo se muestra la información de la animación si la animación está activa (puede estar visible pero inactiva si la web no tiene el foco) */
 .Blog > .Cabecera[animar=false] > #Cabecera_PausaAni {
     transform:perspective(600px) rotateX(0deg);    
+}
+/* Solo se muestra el texto cargando mientras el atributo cargando sea true (necesario para advertir de la carga de texturas) */
+.Blog > .Cabecera[cargando=true] > #Cabecera_Cargando {
+    transform:perspective(600px) rotateX(0deg) translateX(-50%);        
 }
 
 /*

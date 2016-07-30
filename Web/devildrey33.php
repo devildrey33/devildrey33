@@ -473,13 +473,14 @@ class devildrey33 {
         if ($Loguear === TRUE) $EstadoLogin = devildrey33_Opciones::Login($Login, $Pass);
         
         if (devildrey33_Opciones::Administrador() > 0) {            
-            $MinHTML    = (devildrey33_Opciones::Minificar_HTML()    === 1) ? "true" : "false";
-            $MinCSS     = (devildrey33_Opciones::Minificar_CSS()     === 1) ? "true" : "false";
-            $MinJS      = (devildrey33_Opciones::Minificar_JS()      === 1) ? "true" : "false";
-            $Consola    = (devildrey33_Opciones::MostrarConsola()    === 1) ? "true" : "false";
-            $PHPDebug   = (devildrey33_Opciones::MostrarErroresPHP() === 1) ? "true" : "false";
-            $BorrarPHP  = (devildrey33_Opciones::BorrarLogPHP()      === 1) ? "true" : "false";
-            $Cache      = (devildrey33_Opciones::ActualizarCache()   === 1) ? "true" : "false";
+            $MinHTML        = (devildrey33_Opciones::Minificar_HTML()    === 1) ? "true" : "false";
+            $MinCSS         = (devildrey33_Opciones::Minificar_CSS()     === 1) ? "true" : "false";
+            $MinJS          = (devildrey33_Opciones::Minificar_JS()      === 1) ? "true" : "false";
+            $Consola        = (devildrey33_Opciones::MostrarConsola()    === 1) ? "true" : "false";
+            $PHPDebug       = (devildrey33_Opciones::MostrarErroresPHP() === 1) ? "true" : "false";
+            $BorrarPHP      = (devildrey33_Opciones::BorrarLogPHP()      === 1) ? "true" : "false";
+            $Cache          = (devildrey33_Opciones::ActualizarCache()   === 1) ? "true" : "false";
+            $PausarBanner   = (devildrey33_Opciones::PausarBannerJS()    === 1) ? "true" : "false";
             $ValHT = devildrey33_htaccess::ObtenerValores();
             $HTMLAdmin = "<input id='BarraPrincipal_Boton33_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
                 "<label class='Menu_Boton_Label' for='BarraPrincipal_Boton33_Estado' tooltip-es='Administración' tooltip-en='Administration' tooltip-pos='L'></label>".Intro().
@@ -489,41 +490,74 @@ class devildrey33 {
                     "</span>".Intro().
                 "</div>".Intro().
                 "<div class='Menu_Marco' id='BarraPrincipal_Marco33'>".Intro().
-                    "<ul class='TablaMarco33 TablaSesion33'>".Intro().
-                        "<li>Administrador</li>".Intro().
-                        "<li>"."<div id='CH_Admin' class='CheckBox' marcado='true' title='Desactiva el modo administrador'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
-                        "<li>Comprimir HTML</li>".Intro().
-                        "<li>"."<div id='CH_HTML' class='CheckBox' marcado='".$MinHTML."' title='Comprime el HTML eliminando saltos de línea'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
-                        "<li>Comprimir CSS</li>".Intro().
-                        "<li>"."<div id='CH_CSS' class='CheckBox' marcado='".$MinCSS."' title='Comprime el CSS eliminando comentarios, espacios, tabulaciones, y saltos de línea.'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
-                        "<li>Comprimir JS</li>".Intro().
-                        "<li>"."<div id='CH_JS' class='CheckBox' marcado='".$MinJS."' title='Comprime el JS eliminando comentarios, espacios, tabulaciones, y saltos de línea.'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
-                        "<li>Actualizar Cache</li>".Intro().
-                        "<li>"."<div id='CH_Actualizar' class='CheckBox' marcado='".$Cache."' title='Comprime los archivos JS y CSS para crear su version minificada.'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
-                        "<li>Mostrar Debug JS</li>".Intro().
-                        "<li>"."<div id='CH_Consola' class='CheckBox' marcado='".$Consola."' title='Muestra datos de depuración por la consola'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
-                        "<li>Mostrar Debug PHP</li>".Intro().
-                        "<li>"."<div id='CH_DebugPHP' class='CheckBox' marcado='".$PHPDebug."' title='Muestra las advertencias y errores php en el mismo output'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
-                        "<li>Borrar Debug PHP</li>".Intro().
-                        "<li>"."<div id='CH_BorrarPHP' class='CheckBox' marcado='".$BorrarPHP."' title='Elimina el archivo log con los errores PHP antes de ejecutar código'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
-                    "</ul>".Intro();
+                    "<table class='MarcoOpciones2C MarcoOpcionesBorde' titulo='Sesión'>".Intro().
+                        "<tr>".Intro().
+                            "<td>Administrador</td>".Intro().
+                            "<td><div id='CH_Admin' class='CheckBox' marcado='true' title='Desactiva el modo administrador'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                        "</tr>".Intro().
+                        "<tr>".Intro().
+                            "<td>Comprimir HTML</td>".Intro().
+                            "<td>"."<div id='CH_HTML' class='CheckBox' marcado='".$MinHTML."' title='Comprime el HTML eliminando saltos de línea'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                        "</tr>".Intro().
+                        "<tr>".Intro().
+                            "<td>Comprimir CSS</td>".Intro().
+                            "<td>"."<div id='CH_CSS' class='CheckBox' marcado='".$MinCSS."' title='Comprime el CSS eliminando comentarios, espacios, tabulaciones, y saltos de línea.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                        "</tr>".Intro().
+                        "<tr>".Intro().
+                            "<td>Comprimir JS</td>".Intro().
+                            "<td>"."<div id='CH_JS' class='CheckBox' marcado='".$MinJS."' title='Comprime el JS eliminando comentarios, espacios, tabulaciones, y saltos de línea.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                        "</tr>".Intro().
+                        "<tr>".Intro().
+                            "<td>Actualizar Cache</td>".Intro().
+                            "<td>"."<div id='CH_Actualizar' class='CheckBox' marcado='".$Cache."' title='Comprime los archivos JS y CSS para crear su version minificada.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                        "</tr>".Intro().
+                        "<tr>".Intro().
+                            "<td>Mostrar Debug PHP</td>".Intro().
+                            "<td>"."<div id='CH_DebugPHP' class='CheckBox' marcado='".$PHPDebug."' title='Muestra las advertencias y errores php en el mismo output'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                        "</tr>".Intro().
+                        "<tr>".Intro().
+                            "<td>Borrar Debug PHP</td>".Intro().
+                            "<td>"."<div id='CH_BorrarPHP' class='CheckBox' marcado='".$BorrarPHP."' title='Elimina el archivo log con los errores PHP antes de ejecutar código'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                        "</tr>".Intro().
+                    "</table>".Intro().
+                    
+                    "<div>".Intro().
+                        "<table class='MarcoOpciones2C MarcoOpcionesBorde' titulo='JavaScript'>".Intro().
+                            "<tr>".Intro().
+                                "<td>Mostrar Debug JS</td>".Intro().
+                                "<td>"."<div id='CH_Consola' class='CheckBox' marcado='".$Consola."' title='Muestra datos de depuración por la consola'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                            "</tr>".Intro().
+                            "<tr>".Intro().
+                                "<td>Pausar banner</td>".
+                                "<td>"."<div id='CH_PausarBanner' class='CheckBox' marcado='".$PausarBanner."' title='Desactiva el banner cuando no está visible o cuando la pestaña pierde el foco.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                            "</tr>".Intro().
+                        "</table>".Intro();
+            
+
             if (devildrey33_Opciones::Administrador() === 1) {
-                $HTMLAdmin .= "<div class='ContenedorMarco33 TablaMarco33'>".Intro().
-                        "<ul class='TablaHtaccess33'>".Intro().
-                            "<li>Compresion gzip</li>".Intro().
-                            "<li>"."<div id='CH_CompresionGZip' class='CheckBox' marcado='".$ValHT["CompresionGZip"]."' title='Todos los datos son comprimidos con gzip antes de ser enviados.'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
-                            "<li>Cache Imagenes</li>".Intro().
-                            "<li>"."<div id='CH_CacheImagenes' class='CheckBox' marcado='".$ValHT["CacheImagenes"]."' title='Indica al navegador que puede cachear las imagenes durante un mes'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
-                            "<li>Mantenimiento</li>".Intro().
-                            "<li>"."<div id='CH_Mantenimiento' class='CheckBox' marcado='".$ValHT["Mantenimiento"]."' title='Anula todas las urls y muestra un mensaje de mantenimiento.'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
-                            "<li>CheckSpelling</li>".Intro().
-                            "<li>"."<div id='CH_CheckSpelling' class='CheckBox' marcado='".$ValHT["CheckSpelling"]."' title='Redirige una petición no encontrada a una url similar. \nPor ejemplo si vamos a /index2.php se redirige a /index.php automáticamente.'>"."<div></div>"."<div></div>"."</div>"."</li>".Intro().
-                        "</ul>".Intro().
-                        "<button class='Boton-Normal' id='CH_IPSBan' title='Elimina todas las ips baneadas de la lista'>Limpiar ips baneadas</button>".Intro().
+                $HTMLAdmin .= "<div class='MarcoOpcionesBorde' titulo='.htaccess'>".Intro().
+                            "<table class='MarcoOpciones2C'>".Intro().
+                                "<tr>".Intro().
+                                    "<td>Compresion gzip</td>".Intro().
+                                    "<td>"."<div id='CH_CompresionGZip' class='CheckBox' marcado='".$ValHT["CompresionGZip"]."' title='Todos los datos son comprimidos con gzip antes de ser enviados.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                                "</tr>".Intro().
+                                "<tr>".Intro().
+                                    "<td>Cache Imagenes</td>".Intro().
+                                    "<td>"."<div id='CH_CacheImagenes' class='CheckBox' marcado='".$ValHT["CacheImagenes"]."' title='Indica al navegador que puede cachear las imagenes durante un mes'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                                "<tr>".Intro().
+                                    "<td>Mantenimiento</td>".Intro().
+                                    "<td>"."<div id='CH_Mantenimiento' class='CheckBox' marcado='".$ValHT["Mantenimiento"]."' title='Anula todas las urls y muestra un mensaje de mantenimiento.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                                "<tr>".Intro().
+                                    "<td>CheckSpelling</td>".Intro().
+                                    "<td>"."<div id='CH_CheckSpelling' class='CheckBox' marcado='".$ValHT["CheckSpelling"]."' title='Redirige una petición no encontrada a una url similar. \nPor ejemplo si vamos a /index2.php se redirige a /index.php automáticamente.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                                "</tr>".Intro().
+                            "</table>".Intro().
+                            "<button class='Boton-Normal' id='CH_IPSBan' title='Elimina todas las ips baneadas de la lista'>Limpiar ips baneadas</button>".Intro().
+                        "</div>".Intro().
                     "</div>".Intro();
             }
                     
-            $HTMLAdmin .= "<div class='TablaMarco33 TablaGeneral'>".Intro().
+            $HTMLAdmin .= "<div class='MarcoOpcionesBorde' titulo='Varios PHP'>".Intro().
 //                        "<button class='Boton' id='CH_Entradas'>Editar Entradas</button>".Intro().
 //                        "<button class='Boton' id='CH_Lab'>Explorar Lab</button>".Intro().
                         "<button class='Boton-Normal' id='CH_Logs'>Log</button>".Intro().
@@ -531,7 +565,7 @@ class devildrey33 {
                         "<button class='Boton-Normal' id='CH_PhpInfo'>PHP Info</button>".Intro().
                         "<button class='Boton-Normal' id='CH_GenCacheBuscador'>Gen Cache Buscador</button>".Intro().
                     "</div>".Intro().
-                "</div>".Intro();
+                "</div>".Intro(); // #BarraPrincipal_Marco33
             
         }        
         // La función para loguear se utiliza tanto via ajax como al iniciar, por lo que tengo que pasar los errores PHP SOLO desde ajax.
@@ -568,6 +602,7 @@ class devildrey33 {
                             "<div class='BotonVentana'><img class='' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-next'></div>".Intro().
                         "</div>".Intro();
             echo        "<div id='Cabecera_PausaAni'>La web está en segundo plano, animación en pausa.</div>";
+            echo        "<div id='Cabecera_Cargando'>Cargando animación...</div>";
             echo    "</header>".Intro();
             if ($AlinearImagenDerecha === FALSE) 
                 echo "<img class='ImagenPortada' src='".Base::URL_Graficos()."250x200_".$this->EntradaBlog["Imagen"]."' alt='$Titulo' />".Intro();
@@ -861,7 +896,7 @@ class devildrey33 {
         /* addons del codemirror */
         echo "<script src='".Base::URL_JS()."3rdParty/codemirror.min.js'></script>".Intro();
         /* Three js */
-        echo "<script src='".Base::URL_JS()."3rdParty/three-0.74.min.js'></script>".Intro();
+        echo "<script src='".Base::URL_JS()."3rdParty/three-0.79.min.js'></script>".Intro();
         echo "<script src='".Base::URL_JS()."3rdParty/tweenjs-0.6.2.min.js'></script>".Intro();
 //        echo "<script src='".Base::URL_JS()."3rdParty/stats.min.js'></script>".Intro();
         

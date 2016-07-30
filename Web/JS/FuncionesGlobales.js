@@ -24,3 +24,7 @@ function Rand(Max, Min) {
     var max = (typeof(Max) !== "undefined") ? Max : 1; // Si no se especifica el máximo por defecto es 1
     return min + Math.random() * (max - min);    
 }
+
+function CInt(Decimal) {
+    return Math.floor(Decimal);
+}

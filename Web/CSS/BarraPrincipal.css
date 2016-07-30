@@ -131,26 +131,27 @@ body[administrador33=true] #Marco33 {
 }
 /* Botones dentro del marco 33 */
 #CH_IPSBan {
-    margin:18px auto 0px auto !important;
+    margin:4px !important;
 }
 
-/*#CH_Entradas, #CH_Lab,*/ #CH_Logs, #CH_Stats, #CH_PhpInfo  {
+/*#CH_Entradas, #CH_Lab,*/ #CH_Logs, #CH_Stats, #CH_PhpInfo, #CH_GenCacheBuscador  {
     display:inline-block;
+    margin:4px;
     margin:auto;
 }
-
+/*
 #BarraPrincipal_Marco33 h3 {
     padding-left:5px;
     margin:0px 0px -17px 5px;
-}
+}*/
 
-.ContenedorMarco33 {
+/*.ContenedorMarco33 {
     display:inline-block;
     vertical-align:top;
     padding-bottom:10px;
-}
+}*/
 /* Tabla con los controles del tipo checkbox */
-.TablaMarco33 {
+/*.TablaMarco33 {
     margin:20px 0px 0px 10px;
     border:1px solid #353338;
     border-radius:3px;    
@@ -160,7 +161,6 @@ body[administrador33=true] #Marco33 {
 .TablaHtaccess33 {
     width:220px;
     margin:0px;
-/*    padding:10px 0px !important;**/
 }
 .TablaSesion33, .TablaHtaccess33 {
     padding:10px 0px 2px 5px;  
@@ -187,12 +187,41 @@ body[administrador33=true] #Marco33 {
 
 .TablaMarco33 li:nth-child(odd) {
     width:140px;
-    /*padding:5px 0px 0px 5px;*/
 }
 
 .TablaMarco33 li:nth-child(even) {
     width:60px;
+}*/
+
+/* tabla de dos columnas para contener descrición y un control check*/
+.MarcoOpciones2C {
+    border-spacing: 2px;
+    border-collapse: separate;
 }
+
+.MarcoOpciones2C tr > td:nth-child(1) {
+    min-width:135px;
+}
+
+/* marco para separar las secciones */
+.MarcoOpcionesBorde {
+    border:1px solid #353338;
+    border-radius:3px; 
+    margin:20px 5px 5px 5px;
+    padding:0px 5px;
+    position:relative;
+}
+
+.MarcoOpcionesBorde::before {
+    content:attr(titulo);
+    position:absolute;
+    top:-15px;
+    left:0px;
+    display:table;
+    font-size:1.2rem;
+    color:#cccccc;
+}
+
 
 .TablaGeneral {
     padding:2px;

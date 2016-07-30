@@ -160,6 +160,8 @@ Redirect 301 /images/stories/3xp.php                                        /cmd
 Redirect 301 /wp-admin/admin-ajax.php                                       /cmd/BanearIP.php
 Redirect 301 /wp-content/plugins/revslider/temp/update_extract/7951425.php  /cmd/BanearIP.php
 Redirect 301 /administrator/index.php                                       /cmd/BanearIP.php
+Redirect 301 /wp/                                                           /cmd/BanearIP.php
+Redirect 301 /wordpress/                                                    /cmd/BanearIP.php
 
 #INICIO redirecciones Blog
 Redirect 301 /AnimacionesCSS3.php									/Blog/AnimacionesCSS3

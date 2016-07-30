@@ -63,6 +63,7 @@ class devildrey33_Opciones {
     static public function EntradasIndice($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("Indice_EntradasCargadas",                                                           16, 		$Valor);	}
     static public function MostrarErroresPHP($Valor = -1)   {   return devildrey33_Opciones::_ObtenerAsignarValor("MostrarErroresPHP",                                                                 0, 		$Valor);	}
     static public function BorrarLogPHP($Valor = -1)        {   return devildrey33_Opciones::_ObtenerAsignarValor("BorrarLogPHP",                                                                      1, 		$Valor);	}
+    static public function PausarBannerJS($Valor = -1)      {   return devildrey33_Opciones::_ObtenerAsignarValor("PausarBannerJS",                                                                    1, 		$Valor);	}
     
     
     static public function SumaErrorLogin()   {

@@ -31,6 +31,7 @@ $Admin = new function() {
         $('#BarraPrincipal_Marco33 .CheckBox').off("click").on("click", function(e){ 
             $(this).attr({ 'marcado' : ($(this).attr('marcado') === 'false') ? 'true' : 'false' });
             switch ($(this).attr('id')) {
+                // Session
                 case 'CH_Admin' : /* Desloguear */
                     $Admin.Desloguear();
                     break;
@@ -49,17 +50,11 @@ $Admin = new function() {
                 case 'CH_BorrarPHP' :
                     $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarBorrarLogPHP' : 'ActivarBorrarLogPHP' );
                     break;
-                case 'CH_Consola' :
-                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarConsola' : 'ActivarConsola' );
-                    $Base.Debug(($(this).attr('marcado') === 'false') ? false : true);
-                    break;
                 case 'CH_Actualizar' :
                     $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarActualizarCache' : 'ActivarActualizarCache' );
 //                    if ($(this).attr('marcado') !== 'false') { $Base.MostrarMensaje('Cache actualizada.'); }
                     break;
-                case 'CH_CheckSpelling' :
-                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarCheckSpelling' : 'ActivarCheckSpelling' );
-                    break;
+                // htaccess
                 case 'CH_CompresionGZip' :
                     $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarCompresionGZip' : 'ActivarCompresionGZip' );
                     break;
@@ -68,6 +63,18 @@ $Admin = new function() {
                     break;
                 case 'CH_Mantenimiento' :
                     $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarMantenimiento' : 'ActivarMantenimiento' );
+                    break;
+                case 'CH_CheckSpelling' :
+                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarCheckSpelling' : 'ActivarCheckSpelling' );
+                    break;
+                // JavaScript
+                case 'CH_Consola' :
+                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarConsola' : 'ActivarConsola' );
+                    $Base.Debug(($(this).attr('marcado') === 'false') ? false : true);
+                    break;
+                case 'CH_PausarBanner' :
+                    if ($(this).attr('marcado') === 'false')  { Banner_Depurar = true;  }
+                    else                                      { Banner_Depurar = false; }
                     break;
             }
         });

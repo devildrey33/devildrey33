@@ -40,6 +40,8 @@ var Banner_Colisiones = function() {
             this.CirculosInferior.push(new this.Circulo(x, y, Rand(6, 4), Color, this.Velocidad));
         }
     }
+    this.Cargando(false);
+
 };
     
     

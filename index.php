@@ -16,7 +16,7 @@
     $Categoria = str_replace("-", " ", $Categoria);
 
     
-    include("GenerarIndice.php");
+    include("Web/GenerarIndice.php");
         
     $Base = new devildrey33;
     

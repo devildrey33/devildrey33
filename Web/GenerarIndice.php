@@ -1,10 +1,10 @@
 <?php
-    include("Web/devildrey33.php");
+    include("devildrey33.php");
                     
 
     class Indice {    
         static function GenerarIndice($BD, $Categoria = "Todo", $Inicio = 0) {
-            $ArrayTags = (require dirname(__FILE__).'/Web/Config/EntradasTags.php');
+            $ArrayTags = (require dirname(__FILE__).'/Config/EntradasTags.php');
                     
             $Codigo  = '<input id="Categorias_Estado" class="Menu_Boton_Input" type="checkbox">'.Intro();
             $Codigo .= '<label id="Categorias_Label" for="Categorias_Estado"></label>'.Intro();
@@ -34,7 +34,7 @@
                 $Inicio = devildrey33_Opciones::EntradasIndice();
             }*/
             
-            $Entradas = (require dirname(__FILE__).'/Web/Config/EntradasBlog.php');
+            $Entradas = (require dirname(__FILE__).'/Config/EntradasBlog.php');
             if ($Categoria === "Todo") {
                 $EntradasPC = $Entradas;
             }

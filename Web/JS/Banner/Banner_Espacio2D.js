@@ -19,6 +19,7 @@ var Banner_Espacio2D = function() {
         var Col = 199 + Math.floor(Vel * 10);
         this.Estrellas[i] = new this.Estrella(RandInt(this.Ancho), RandInt(this.Alto), Vel, "rgb("+ Col +  "," + Col + "," + Col + ")");
     }
+    this.Cargando(false);
 };
 
 Banner_Espacio2D.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {

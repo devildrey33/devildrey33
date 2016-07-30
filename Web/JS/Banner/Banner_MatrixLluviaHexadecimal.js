@@ -20,6 +20,7 @@ var Banner_MatrixLluviaHexadecimal = function() {
     for (var i = 0; i < Cols; i++) {
         this.Columnas[i] = 1;
     }
+    this.Cargando(false);
 };    
 
 

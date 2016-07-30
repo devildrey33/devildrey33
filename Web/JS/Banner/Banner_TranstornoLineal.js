@@ -10,12 +10,13 @@ Banner_TranstornoLineal = function() {
     ObjetoBanner.call(this, "2d"); // Puede ser 2D o THREE
     // Inicio los valores
     this.Tick           = ( Rand() * 360 ) | 0;
-    this.MaxTriangulos  = 20;   
+    this.MaxTriangulos  = 10;   
     this.Triangulos     = [];
     // Establezco el ancho de línea y el color del fondo
     this.Context.lineWidth = .1;
     this.Context.fillStyle = 'rgb(49, 46, 53)';
     this.Context.fillRect( 0, 0, this.Ancho, this.Alto );
+    this.Cargando(false);
 };   
     
 Banner_TranstornoLineal.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {
