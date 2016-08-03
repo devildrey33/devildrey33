@@ -9,6 +9,11 @@
 /*@import url('http://fonts.googleapis.com/css?family=Nova+Mono');*/
 @import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext');
 
+::selection {
+    background: rgb(234, 80, 78);
+    color:#fff;
+}
+
 html, button, .boton {
    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
 }

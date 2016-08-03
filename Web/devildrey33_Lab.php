@@ -237,21 +237,21 @@
                         "<div class='MiniLab_VerPreview'></div>".Intro().
                         
                         "<div class='Menu'>".Intro().
-                            "<input id='MiniLab_Codigo_Estado_$ID' class='Menu_Boton_Input' type='radio' name='MiniLab_input_$ID'  />".Intro().
+                            "<input id='MiniLab_Codigo_Estado_$ID' class='Menu_Boton_Input SinSeleccion' type='radio' name='MiniLab_input_$ID'  />".Intro().
                             "<label tooltip-es='Ver el código' tooltip-en='Code' tooltip-pos='B' class='Menu_Boton_Label MiniLab_VerCodigo' for='MiniLab_Codigo_Estado_$ID'></label>".Intro().
                             "<div class='Menu_Boton'>".Intro().
                                 "<img src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-codigo' class='Menu_Boton_SVG' />".Intro().
                             "</div>".Intro().
                         "</div>".Intro().
                         "<div class='Menu'>".Intro().
-                            "<input id='MiniLab_Preview_Estado_$ID' class='Menu_Boton_Input' type='radio' name='MiniLab_input_$ID' />".Intro().
+                            "<input id='MiniLab_Preview_Estado_$ID' class='Menu_Boton_Input SinSeleccion' type='radio' name='MiniLab_input_$ID' />".Intro().
                             "<label tooltip-es='Ver la pre-visualización' tooltip-en='preview' tooltip-pos='B' class='Menu_Boton_Label MiniLab_VerPreview' for='MiniLab_Preview_Estado_$ID'></label>".Intro().
                             "<div class='Menu_Boton'>".Intro().
                                 "<img src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-preview' class='Menu_Boton_SVG' />".Intro().
                             "</div>".Intro().
                         "</div>".Intro().                        
                         "<div class='Menu'>".Intro().
-                            "<input id='MiniLab_Mixto_Estado_$ID' class='Menu_Boton_Input' type='radio' name='MiniLab_input_$ID' checked='checked' />".Intro().
+                            "<input id='MiniLab_Mixto_Estado_$ID' class='Menu_Boton_Input SinSeleccion' type='radio' name='MiniLab_input_$ID' checked='checked' />".Intro().
                             "<label tooltip-es='Vista mixta (código/preview)' tooltip-en='Mixed view (code/preview)' tooltip-pos='B' class='Menu_Boton_Label MiniLab_VerMixto' for='MiniLab_Mixto_Estado_$ID'></label>".Intro().
                             "<div class='Menu_Boton'>".Intro().
                                 "<img src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-columnas' class='Menu_Boton_SVG' />".Intro().                            

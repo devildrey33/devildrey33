@@ -5,6 +5,23 @@
 
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(
+array(	"Titulo" 	=> "Experimento con Three.js 'WormHole'", 
+        "Fecha" 	=> "03/08/2016",
+        "URL" 		=> "Ejemplos/BannerTest/WormHole.html", 
+        "Tags" 		=> array("Three js", "JavaScript", "CSS", "HTML", "Programación" ),
+        "Idioma"        => "es",
+        "Autor"         => "Josep Antoni Bover",
+        "Tipo"		=> "Lab",
+        "Imagen"	=> "WormHole.png"),
+
+array(	"Titulo" 	=> "Experimento con Three.js 'Adiestramiento de cubos'", 
+        "Fecha" 	=> "03/08/2016",
+        "URL" 		=> "Ejemplos/BannerTest/AdiestramientoCubos.html", 
+        "Tags" 		=> array("Three js", "JavaScript", "CSS", "HTML", "Programación"),
+        "Idioma"        => "es",
+        "Autor"         => "Josep Antoni Bover",
+        "Tipo"		=> "Lab",
+        "Imagen"	=> "Adiestramiento.png"),        
         
 array(	"Titulo" 	=> "Referéncia CSS : Variables",
         "Fecha" 	=> "28/06/2016",

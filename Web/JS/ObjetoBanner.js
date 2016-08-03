@@ -50,13 +50,23 @@ ObjetoBanner = function(Tipo) {
     else                              { this.Tipo = Tipo; }
 
     console.log("constructor ObjetoBanner", this.Tipo);
-
-    // Creo el contexto según el tipo especificado
-    if (this.Tipo === "2d") {
-        this.Context    = this.Canvas.getContext("2d");                         // Contexto 2D
-    } else if(this.Tipo === "THREE") {
-        this.Context    = new THREE.WebGLRenderer({ canvas : this.Canvas, antialias : true });    // Contexto THREE.JS
-        this.Context.setClearColor(0x312E35, 1);    // Color del fondo
+    
+    try {
+        // Creo el contexto según el tipo especificado
+        if (this.Tipo === "2d") {
+            this.Context    = this.Canvas.getContext("2d");                         // Contexto 2D
+        } else if(this.Tipo === "THREE") { 
+            if (this.PixelRatio() > 1) { // El antialias no va con el samsung galaxy alpha...
+               this.Context = new THREE.WebGLRenderer({ canvas : this.Canvas });    // Contexto THREE.JS
+            }
+            else {
+               this.Context = new THREE.WebGLRenderer({ canvas : this.Canvas, antialias : true });    // Contexto THREE.JS
+            }
+            this.Context.setClearColor(0x312E35, 1);    // Color del fondo
+        }
+    }
+    catch ( error ) {
+        $Base.MostrarMensaje(error, "Error creando el Banner");
     }
 //    this.Camara         = null;                                             // Camara para el Three.js
 
@@ -81,7 +91,7 @@ ObjetoBanner = function(Tipo) {
     this.RAFID = window.requestAnimationFrame(this.Actualizar);       
 
     // Exporto la escena del THREE.JS para poder verla en el Three.js.inspector
-    if (typeof(this.Escena) !== "undefined") { window.scene = this.Escena; }
+//    if (typeof(this.Escena) !== "undefined") { window.scene = this.Escena; }
     
     
     // Mousemove 
@@ -93,6 +103,21 @@ ObjetoBanner = function(Tipo) {
     });    
 };
 
+// Función que devuelve el pixel ratio del dispositivo actual
+ObjetoBanner.prototype.PixelRatio = function() {
+    var ratio = 1;
+    // To account for zoom, change to use deviceXDPI instead of systemXDPI
+    if (window.screen.systemXDPI !== undefined && window.screen.logicalXDPI !== undefined && window.screen.systemXDPI > window.screen.logicalXDPI) {
+        // Only allow for values > 1
+        ratio = window.screen.systemXDPI / window.screen.logicalXDPI;
+    }
+    else if (window.devicePixelRatio !== undefined) {
+        ratio = window.devicePixelRatio;
+    }
+    return ratio;    
+};
+
+// Función que determina el estado de carga (cargando/completo) true/false
 ObjetoBanner.prototype.Cargando = function(carga) {
     $(".Cabecera").attr({ "cargando" : carga });
 };

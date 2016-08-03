@@ -8,7 +8,10 @@
 var Banner_AdiestramientoCubos3D = function() {
     // Llamo al constructor del ObjetoBanner
     ObjetoBanner.call(this, "THREE");
-           
+
+/*    this.Reloj  = new THREE.Clock();
+    this.Matrix = new THREE.Matrix4();*/
+    
     this.TamCubo        = 0; // Tamaño de cada cubo
     
     this.Escena = new THREE.Scene();
@@ -23,7 +26,7 @@ var Banner_AdiestramientoCubos3D = function() {
     this.CharAni = 0;
     
     // Variables locales
-    var Divisiones  = 9;       // Numero de columnas de un lado
+    var Divisiones  = 7;       // Numero de columnas de un lado
     var Tam         = 1000;
 
     this.TamCubo = (Tam / (Divisiones / 2));
@@ -79,6 +82,8 @@ var Banner_AdiestramientoCubos3D = function() {
     this.Escena.add(pointLight);   
     
     this.Cargando(false);
+    
+    
 };
 
 
@@ -91,9 +96,9 @@ Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoBann
     // Datos de la animación
     Nombre              : "Adiestramiento de cubos",
     IdeaOriginal        : "devildrey33",
-    URL                 : "",
-    NombreURL           : "",
-    RotacionCam         : Rand(0.002, -0.002),
+    URL                 : "/Lab/Ejemplos/BannerTest/AdiestramientoCubos.html",
+    NombreURL           : "Lab : Adiestramiento de cubos",    
+    RotacionCam         : 0,
     AvanceCamZ          : 0.1,
     
     Redimensionar       : function() {
@@ -101,23 +106,32 @@ Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoBann
 //        this.Context.setSize(this.Ancho, this.Alto);
     },
     
-    Pintar              : function() {
+    AniCamara               : function() {
         // posición de la camara, y rotación del grupo de objetos
         var rnd = Rand();
         if (rnd < 0.15) {
             rnd = RandInt(4);
             if (rnd === 0)      { if (this.RotacionCam > -0.004)    { this.RotacionCam -= 0.0003; }}
             else if (rnd === 1) { if (this.RotacionCam < 0.004)     { this.RotacionCam += 0.0003; }}
-            else if (rnd === 2) { if (this.AvanceCamZ > -2)       { this.AvanceCamZ -= 0.1; }}
-            else if (rnd === 3) { if (this.AvanceCamZ < 2)        { this.AvanceCamZ += 0.1; }}
+            else if (rnd === 2) { if (this.AvanceCamZ > -2)         { this.AvanceCamZ -= 0.1; }}
+            else if (rnd === 3) { if (this.AvanceCamZ < 2)          { this.AvanceCamZ += 0.1; }}
         }
         // Rotación y
+ 
         this.GrupoCubos.rotation.y += this.RotacionCam;
         // Posición Z
         if ((this.Camara.position.z < 3800 && this.AvanceCamZ > 0) || (this.Camara.position.z > 2000 && this.AvanceCamZ < 0)) {
             this.Camara.position.z += this.AvanceCamZ;
         }
+/*        this.Matrix.makeRotationY(this.Reloj.getDelta() * ((Math.PI * 2) / 5));
+        this.Camara.position.applyMatrix4(this.Matrix);*/
         
+        this.Camara.lookAt(this.GrupoCubos);
+    },
+    
+    
+    Pintar              : function() {
+        this.AniCamara();
         var AniTerminada = true;
 //        this.GrupoCubos.rotation.z += 0.00033;
 //        this.GrupoCubos.rotation.x -= 0.00002;  
@@ -185,8 +199,7 @@ Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoBann
             if (this.RGBF[3] > 1) { this.RGBF[3] = 0; }*/
         }
     },
-    
-    
+        
     CrearMarcoCubo          : function(Objeto, Tam) {
         var Grupo = new THREE.Object3D();
         var Med = Tam / 2;
@@ -366,41 +379,41 @@ Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoBann
                                             " ", "x", " ", " ", " ", 
                                             " ", "x", "x", " ", " ", 
                                             " ", "x", " ", " ", " ", 
-                                            " ", "x", "x", "x", " ", ],
+                                            " ", "x", "x", "x", " " ],
                                         
                                 "v" :  [    "x", " ", " ", " ", "x", 
                                             "x", " ", " ", " ", "x", 
                                             " ", "x", " ", "x", " ", 
                                             " ", "x", " ", "x", " ", 
-                                            " ", " ", "x", " ", " ", ],
+                                            " ", " ", "x", " ", " " ],
                                         
                                 "i" :  [    " ", "x", "x", "x", " ", 
                                             " ", " ", "x", " ", " ", 
                                             " ", " ", "x", " ", " ", 
                                             " ", " ", "x", " ", " ", 
-                                            " ", "x", "x", "x", " ", ],
+                                            " ", "x", "x", "x", " " ],
                                         
                                 "l" :  [    " ", "x", " ", " ", " ", 
                                             " ", "x", " ", " ", " ", 
                                             " ", "x", " ", " ", " ", 
                                             " ", "x", " ", " ", " ", 
-                                            " ", "x", "x", "x", " ", ],
+                                            " ", "x", "x", "x", " " ],
                                         
                                 "r" :  [    " ", "x", "x", " ", " ", 
                                             " ", "x", " ", "x", " ", 
                                             " ", "x", "x", " ", " ", 
                                             " ", "x", " ", "x", " ", 
-                                            " ", "x", " ", "x", " ", ],
+                                            " ", "x", " ", "x", " " ],
                                         
                                 "y" :  [    " ", "x", " ", "x", " ", 
                                             " ", "x", " ", "x", " ", 
                                             " ", " ", "x", " ", " ", 
                                             " ", " ", "x", " ", " ", 
-                                            " ", " ", "x", " ", " ", ],
+                                            " ", " ", "x", " ", " " ],
                                         
                                 "3" :  [    " ", "x", "x", "x", " ", 
                                             " ", " ", " ", "x", " ", 
                                             " ", " ", "x", "x", " ", 
                                             " ", " ", " ", "x", " ", 
-                                            " ", "x", "x", "x", " ", ] }
+                                            " ", "x", "x", "x", " " ] }
 }); 

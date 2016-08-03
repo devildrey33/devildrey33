@@ -120,7 +120,9 @@ $Lab = new function() {
     
     
     /* Función que controla cuando se hace click en un archivo del explorador, para cargarlo en el labotatorio. */
-    this.ClickArchivo = function(Objeto, Dest) {
+    /* Dest DEPRECATED??? */
+//    this.ClickArchivo = function(Objeto, Dest) {
+    this.ClickArchivo = function(Objeto) {
         console.log("Lab_ClickArchivo", Objeto);
         var Rec = Objeto;
         var Ret = Rec.find("a").html();
@@ -131,8 +133,8 @@ $Lab = new function() {
             Ret = Rec.find("span").html() + "/" + Ret;
         }        
         Ret = "Ejemplos/" + Ret;
-        if (Dest) { $Admin.LabExplorar_CargarPreview(Ret); }
-        else      { this.CargarArchivo(Ret); }
+//        if (Dest) { $Admin.LabExplorar_CargarPreview(Ret); }
+   /*     else      { */this.CargarArchivo(Ret);// }
     };
     
     
@@ -163,11 +165,11 @@ $Lab = new function() {
     /* Función para cargar un archivo */
     this.CargarArchivo = function(Archivo, ID) {
         $Base.Cargando("TRUE");
-        var nopush = false;
+        $Base.CargarArchivo_nopush = false;
         console.log("Lab.CargarArchivo", Archivo);
-        if (Archivo === null) { Archivo = this.Archivo; nopush = true; }
-        if (ID === undefined)      { ID = -1; }        
-        $Base.PeticionAjax = $.post($Base.Raiz + "cmd/LabAbrirEjemplo.cmd",  { "Archivo" : Archivo, "ID" : ID }, function(data) {
+        if (Archivo === null) { Archivo = $Base.Archivo; $Base.CargarArchivo_nopush = true; }
+        if (ID === undefined) { ID = -1; }        
+        this.PeticionAjax = $.post($Base.Raiz + "cmd/LabAbrirEjemplo.cmd",  { "Archivo" : Archivo, "ID" : ID }, function(data) {
             Datos = JSON.parse(data);            
             if      (Datos["Ret"] === 404) { $Base.MostrarErrorAjax(404, false); }
             else if (Datos["Ret"] === 403) { $Base.MostrarErrorAjax(403, false); }
@@ -180,11 +182,19 @@ $Lab = new function() {
                     $Lab.Editor.setValue(Datos["Datos"]);  
                     
                     $Lab.Original = $Lab.Editor.getValue();
-                    $Lab.AjustarVista(Datos["Vista"]);  
+                    
+                    switch (Datos["Vista"]) {
+                        case "0" :     $(".Lab_BotonVerFilas").trigger("click");        break; 
+                        case "1" :     $(".Lab_BotonVerColumnas").trigger("click");     break; 
+                        case "2" :     $(".Lab_BotonVerCodigo").trigger("click");       break; 
+                        case "3" :     $(".Lab_BotonVerPreview").trigger("click");      break;             
+                    }
+                    
+//                    $Lab.AjustarVista(Datos["Vista"]);  
                     
                     URL = "/" + $Base.RaizRelativa + "Lab/" + Datos["Archivo"];
                     $("#MarcoNavegacionLab").attr({"pagina" : Datos["Archivo"]});
-                    if (nopush === false) {
+                    if ($Base.CargarArchivo_nopush === false) {
                         $Base.Entrada = $Base.IdentificarEntrada(URL, URL);    
                         $Base.Entrada["Titulo"] = "Lab : " + Datos["Archivo"];
                         window.history.pushState($Base.Entrada, document.title, URL);
@@ -248,11 +258,14 @@ $Lab = new function() {
         Alto = window.innerHeight;
         AnchoBarra1 = parseInt($("#Lab_Barra1").outerWidth());
         //AnchoExplorador = parseInt(localStorage["Lab_AnchoExplorador"]);
+        
+//        $("#Lab_VerFilas_Estado, #Lab_VerColumnas_Estado, #Lab_VerCodigo_Estado, #Lab_VerPreview_Estado").removeAttr("checked");
+        
         switch (NuevaVista) {
-            case "0" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "filas" });    break; // Mixto Filas
-            case "1" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "columnas" }); break; // Mixto Columnas
-            case "2" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "codigo" });   break; // Código
-            case "3" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "preview" });  break; // Preview                
+            case "0" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "filas" });      /*  $("#Lab_VerFilas_Estado").attr({ "checked" : "checked" });     */   break; // Mixto Filas
+            case "1" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "columnas" });   /*  $("#Lab_VerColumnas_Estado").attr({ "checked" : "checked" });  */   break; // Mixto Columnas
+            case "2" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "codigo" });     /*  $("#Lab_VerCodigo_Estado").attr({ "checked" : "checked" });    */   break; // Código
+            case "3" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "preview" });    /*  $("#Lab_VerPreview_Estado").attr({ "checked" : "checked" });   */   break; // Preview                
         }
 
 
