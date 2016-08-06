@@ -62,6 +62,30 @@
 </div>
 </div>
 <div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/BannerTest.css'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/BannerTest.css'>BannerTest.css</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/NuevoCanvas2D.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/NuevoCanvas2D.html'>NuevoCanvas2D.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/NuevoCanvasTHREE.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/NuevoCanvasTHREE.html'>NuevoCanvasTHREE.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/ObjetoCanvas.js'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/ObjetoCanvas.js'>ObjetoCanvas.js</a>
+</div>
+</div>
+<div class='Lab_Item'>
 <div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/WormHole.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/BannerTest/WormHole.html'>WormHole.html</a>

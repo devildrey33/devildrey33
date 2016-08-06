@@ -26,63 +26,32 @@ var Banner_WormHole = function() {
     this.TotalTexturas = 2;
     
     
-    
-    
-//    THREE.ImageUtils.crossOrigin = '';
-//    this.Textura = THREE.ImageUtils.loadTexture('https://luigimannoni.github.io/assets/001_electric.jpg');
-
-    /*this.Textura = THREE.ImageUtils.loadTexture('/Web/Graficos/Banner_WormHole1.jpg');
-    this.Textura.wrapT = this.Textura.wrapS = THREE.RepeatWrapping;
-    this.Textura.repeat.set( 1, 10 );*/
-    
-    var LoaderT1 = new THREE.TextureLoader().load('/Web/Graficos/Banner_WormHole11.jpg', function(T) { 
-        T.wrapT = T.wrapS = THREE.RepeatWrapping;
-        T.repeat.set( 1, 2 );
-        $Banner.Tunel = new THREE.Mesh(
-            new THREE.CylinderGeometry( 50, 50, 1000, 16, 32, true ),
+    this.TexturaCargada = function(Num, Textura) {
+        Textura.wrapT = Textura.wrapS = THREE.RepeatWrapping;
+        Textura.repeat.set( 1, 2 );
+        this.Tunel[Num] = new THREE.Mesh(
+            new THREE.CylinderGeometry( (Num * 10) + 50, (Num * 10) + 50, 1000, 16, 32, true ),
             new THREE.MeshBasicMaterial({ 
                 color: 0x666666,
                 transparent: true,
-                alphaMap: T,
+                alphaMap: Textura,
                 side: THREE.BackSide,
-                opacity:0.3
+                opacity: (Num === 0) ? 0.3 : 1 // El primer tubo es translucido con humo, el segundo es solido con rayos
             })
         );
-        $Banner.Tunel.rotation.x = 90 * (Math.PI / 180); // 45 grados
-        $Banner.Tunel.position.z = 128;        
-        $Banner.Escena.add($Banner.Tunel);
-        $Banner.Textura = T;
-        console.log(T);
- 
-        $Banner.TexturasCargadas ++;
+        this.Tunel[Num].rotation.x = 90 * (Math.PI / 180);  // 45 grados
+        this.Tunel[Num].position.z = 128 - Num;             // Por alguna razón que no entiendo, si la Z del segundo tubo es mayor o igual que la Z del primer tubo, el segundo tubo no se ve...
+        this.Escena.add(this.Tunel[Num]);
+        this.Textura[Num] = Textura;        
+        
+        this.TexturasCargadas ++;
         // La textura se ha cargado, retiro la ventana que avisa al usuario de la carga.
-        if ($Banner.TexturasCargadas === $Banner.TotalTexturas) { $Banner.Cargando(false); }
-    });
-
-    var LoaderT2 = new THREE.TextureLoader().load('/Web/Graficos/Banner_WormHole1.2.jpg', function(T2) { 
-        T2.wrapT = T2.wrapS = THREE.RepeatWrapping;
-        T2.repeat.set( 1, 2 );
-        $Banner.Tunel2 = new THREE.Mesh(
-            new THREE.CylinderGeometry( 60, 60, 1000, 16, 32, true ),
-            new THREE.MeshBasicMaterial({ 
-                color: 0x666666,
-                transparent: true,
-                alphaMap: T2,
-                side: THREE.BackSide,
-            })
-        );
-        $Banner.Tunel2.rotation.x = 90 * (Math.PI / 180); // 45 grados
-        $Banner.Tunel2.position.z = 127;        
-        $Banner.Escena.add($Banner.Tunel2);
-        $Banner.Textura2 = T2;
-        console.log(T2);
-        $Banner.TexturasCargadas ++;
-        // La textura se ha cargado, retiro la ventana que avisa al usuario de la carga.
-        if ($Banner.TexturasCargadas === $Banner.TotalTexturas) { $Banner.Cargando(false); }
-    });
-
-
-
+        if (this.TexturasCargadas === this.TotalTexturas) { this.Cargando(false); }
+    };
+    
+    var T1 = new THREE.TextureLoader().load('/Web/Graficos/Banner_WormHole11.jpg', this.TexturaCargada.bind(this, 0) );
+    var T2 = new THREE.TextureLoader().load('/Web/Graficos/Banner_WormHole1.2.jpg', this.TexturaCargada.bind(this, 1) );
+  
     this.Camara.lookAt(this.Escena.position);
 };
 
@@ -114,29 +83,29 @@ Banner_WormHole.prototype = Object.assign( Object.create(ObjetoBanner.prototype)
     // Función que pinta cada frame de la animación
     Pintar          : function() {    
         
-        if (typeof(this.Tunel) !== 'undefined') {
+        if (typeof(this.Tunel[0]) !== 'undefined') {
             this.H += 0.001;
             if (this.H > 1) { this.H = 0; }
-            this.Tunel.material.color.setHSL(this.H, 0.7, 0.7);
+            this.Tunel[0].material.color.setHSL(this.H, 0.7, 0.7);
 
             // Rotación del tunel
-            this.Tunel.rotation.y += 0.02;
+            this.Tunel[0].rotation.y += 0.02;
             // Textura infinita avanzando y rotando
 //            this.Textura.offset.z += 0.01;
-            this.Textura.offset.y -= 0.014;
+            this.Textura[0].offset.y -= 0.014;
         }
 
         if (typeof(this.Tunel2) !== 'undefined') {
             // Color del tunel
             this.H2 += 0.001;
             if (this.H2 > 1) { this.H2 = 0; }
-            this.Tunel2.material.color.setHSL(this.H2, 0.7, 0.7);
+            this.Tunel[1].material.color.setHSL(this.H2, 0.7, 0.7);
 
             // Rotación del tunel
-            this.Tunel2.rotation.y -= 0.017;
+            this.Tunel[1].rotation.y -= 0.017;
             // Textura infinita avanzando y rotando
 //            this.Textura2.offset.z += 0.005;
-            this.Textura2.offset.y -= 0.019;
+            this.Textura[1].offset.y -= 0.019;
         }        
         
         this.Context.render(this.Escena, this.Camara);

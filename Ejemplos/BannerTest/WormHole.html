@@ -2,316 +2,142 @@
     Test para el banner 3d de devildrey33.es creado por Josep Antoni Bover Comas el 31-07-2016
         - Consiste en 2 cilindros cada uno con una textura translucida, en los que las texturas avanzan hacia adelante simulando un agujero de gusano.
 	- Se utiliza JQuery y Three.js
-
 	Vista por defecto en el Laboratorio de pruebas  
 		devildrey33_Lab->Opciones->Vista = Preview;
-
-        Ultima modificación el 03/08/2016
+        Ultima modificación el 06/08/2016
 -->
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Estilos CSS -->
-<style type="text/css">
-body { margin:0px; padding:0px; }
-            
-/* Estilos para los marcos informativos */
-.Blog > #Cabecera {
-    margin:0px;
-    height:100%;
-    border-top:none;
-    color:#FFFFFF;
-    background:rgba(49,46,53, 1);
-    z-index:10;
-    position:absolute;
-    width:100%;
-    overflow:hidden;
-}        
-
-.Blog > #Cabecera > #Cabecera_Canvas {
-    width:100%;
-    height:100%;
-}
-            
-.Blog > #Cabecera > #Cabecera_Cargando,
-.Blog > #Cabecera > #Cabecera_Stats {
-    transition:0.3s cubic-bezier(.33,.05,.69,1.59);
-    z-index:13;
-    padding:10px;
-    margin:5px;    
-    background-color: rgba(37,35,40, 0.6);
-    color:#FFF;
-    text-shadow:1px 1px 1px #000;
-    position:absolute;
-    border:1px solid #353338;
-}
-
-.Blog > #Cabecera > #Cabecera_Cargando {
-    top:0px;
-    left:50%;
-    transform:perspective(600px) rotateX(-90deg) translateX(-50%);
-}        
-            
-.Blog > #Cabecera > #Cabecera_Stats {
-    transform-origin: top center;
-    transform:perspective(600px) rotateX(-90deg);  
-    right:0px;
-}
-         
-/* Solo se muestra la información de la animación si la animación está activa (puede estar visible pero inactiva si la web no tiene el foco) */
-.Blog > #Cabecera[animar=true]:hover > #Cabecera_Stats {
-    transform:perspective(600px) rotateX(0deg);    
-}
-/* Solo se muestra el texto cargando mientras el atributo cargando sea true (necesario para advertir de la carga de texturas) */
-.Blog > #Cabecera[cargando=true] > #Cabecera_Cargando {
-    transform:perspective(600px) rotateX(0deg) translateX(-50%);        
-}
-
-</style>
-        
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <!-- Estilos CSS para el test -->
+        <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
         <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
-        <!-- Si deseas utilizar Three 3D lib descomenta la siguiente línea -->
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        <!-- Three.JS -->
         <script src="/Web/JS/3rdParty/three-0.79.min.js"></script>
-
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Ejemplos/BannerTest/ObjetoCanvas.js"></script>
         <!-- Código javascript --> 
 <script type="text/javascript">
-WormHole = function(Tipo) {
-    this.Canvas = document.getElementById("Cabecera_Canvas");
-
-    // Asigno el estado cargando, que muestra una ventana que avisa al usuario.
-    $("#Cabecera").attr({ "cargando" : true, "animar" : true });
     
-    try {
-        this.Context = new THREE.WebGLRenderer({ canvas : this.Canvas });    // Contexto THREE.JS
-        this.Context.setClearColor(0x312E35, 1);    // Color del fondo
-    }
-    catch ( error ) {
-        alert(error, "Error creando el Banner");
-    }
-
-    this.Ancho          = 0;                                                // Ancho del canvas
-    this.Alto           = 0;                                                // Altura del canvas
-    this.RAFID          = 0;                                                // Request Animation Frame ID
-    this.FPS_UltimoTick = Date.now() + 1000;                                // Ultimo Tick del sistema + 1000ms
-    this.FPS_Contador   = 0;                                                // Contador de frames por segundo    
-    this.FocoWeb        = false;                                            // Foco de la ventana de la web
+/* Plantilla para crear banners animados en devildrey33.es */
+var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al perder el foco del teclado
+// Constructor SIN TIPO, el tipo se especifica según la animación
+var Banner_WormHole = function() {
+    
+    // Llamo al constructor del ObjetoBanner
+    ObjetoCanvas.call(this, "THREE"); // Puede ser 2D o THREE
+    
+    this.Escena = new THREE.Scene();
+   
+    this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);
+    // Preparo la camara
+//    this.Camara.position.y = (((this.Alto / 2) - 240) * 0.20);
+    this.Camara.position.set( 0, (((this.Alto / 2) - 240) * 0.20), 500 );
+    this.Escena.add(this.Camara);
+    this.H = 0;
+    this.H2 = 0.05;
+    
+    this.TexturasCargadas = 0;
+    this.TotalTexturas = 2;
+    this.Tunel   = [];   // array de tuneles 
+    this.Textura = []; // array de texturas
     
     
-    $("#Cabecera").on("mousemove", function(event) { 
-        if ($Banner !== null) {
-            $Banner.EventoMouseMove(event.clientX, event.clientY);
-        }
-    });    
-    
-    // Función que determina el estado de carga (cargando/completo) true/false
-    this.Cargando = function(carga) {
-        $("#Cabecera").attr({ "cargando" : carga });
-    };
-
-    this.Actualizar = function() {
-        if ($Banner !== null) {
-            $Banner.FPS(); 
-            $Banner.RAFID = window.requestAnimationFrame($Banner.Actualizar);
-            $Banner.Pintar(); 
-        }
-    };
-
-    // Función que procesa el evento mousemove
-    this.EventoMouseMove = function(X, Y) {
-        if (typeof(this.MouseMove) !== "undefined") {
-            this.MouseMove.apply(this, [X, Y]);
-        }
-    };
-
-    // Función que obtiene el tamaño del canvas una vez redimensionado.
-    this.EventoRedimensionar = function() {
-        /* El ancho del canvas siempre tiene que ser el mismo que #MarcoNavegacion - 60 pixeles que ocupan los botones de la izquierda
-         * La altura del canvas siempre es la misma desde el principio */
-        this.Ancho  = document.getElementById("Cabecera").offsetWidth; 
-        this.Alto   = document.getElementById("Cabecera").offsetHeight;
-        this.Context.setSize(this.Ancho, this.Alto);
-        if (this.Camara !== null && typeof(this.Camara) !== 'undefined') { // Si hay una camara creada
-            this.Camara.aspect = this.Ancho / this.Alto;
-            this.Camara.updateProjectionMatrix();            
-        }
+    this.TexturaCargada = function(Num, Textura) {
+        Textura.wrapT = Textura.wrapS = THREE.RepeatWrapping;
+        Textura.repeat.set( 1, 2 );
+        this.Tunel[Num] = new THREE.Mesh(
+            new THREE.CylinderGeometry( (Num * 10) + 50, (Num * 10) + 50, 1000, 16, 32, true ),
+            new THREE.MeshBasicMaterial({ 
+                color: 0x666666,
+                transparent: true,
+                alphaMap: Textura,
+                side: THREE.BackSide,
+                opacity: (Num === 0) ? 0.3 : 1 // El primer tubo es translucido con humo, el segundo es solido con rayos
+            })
+        );
+        this.Tunel[Num].rotation.x = 90 * (Math.PI / 180);  // 45 grados
+        this.Tunel[Num].position.z = 128 - Num;             // Por alguna razón que no entiendo, si la Z del segundo tubo es mayor o igual que la Z del primer tubo, el segundo tubo no se ve...
+        this.Escena.add(this.Tunel[Num]);
+        this.Textura[Num] = Textura;        
+        
+        this.TexturasCargadas ++;
+        // La textura se ha cargado, retiro la ventana que avisa al usuario de la carga.
+        if (this.TexturasCargadas === this.TotalTexturas) { this.Cargando(false); }
     };
     
-    
-    // Función que cuenta los frames por segundo
-    this.FPS = function() {
-        var Tick = Date.now();
-        if (Tick > this.FPS_UltimoTick) {
-            this.FPS_UltimoTick = Tick + 1000;
-            $("#Cabecera_Stats").html(this.FPS_Contador + " FPS");
-            this.FPS_Contador = 0;
-        }
-        else {
-            this.FPS_Contador ++;
-        }
-    };
-    ////////////////////////////////////////////////////////////////////////////////////////////  
-    
-    // Función que inicia los parámetros para este baner concreto
-    this.IniciarBanner = function() {
-        this.Escena = new THREE.Scene();
+    var T1 = new THREE.TextureLoader().load('/Web/Graficos/Banner_WormHole11.jpg', this.TexturaCargada.bind(this, 0) );
+    var T2 = new THREE.TextureLoader().load('/Web/Graficos/Banner_WormHole1.2.jpg', this.TexturaCargada.bind(this, 1) );
+  
+    this.Camara.lookAt(this.Escena.position);
+};
 
-        this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);
-        this.Camara.position.set( 0, 0, 500 );
-        this.Escena.add(this.Camara);
-        this.H = 0;
-        this.H2 = 0.05;
-        this.H3 = 0.1;
-
-        this.TexturasCargadas = 0;
-        this.TotalTexturas = 2;
-
-        var LoaderT1 = new THREE.TextureLoader().load('/Web/Graficos/Banner_WormHole11.jpg', function(T) { 
-            T.wrapT = T.wrapS = THREE.RepeatWrapping;
-            T.repeat.set( 1, 2 );
-            $Banner.Tunel = new THREE.Mesh(
-                new THREE.CylinderGeometry( 50, 50, 1000, 16, 32, true ),
-                new THREE.MeshBasicMaterial({ 
-                    color: 0x666666,
-                    transparent: true,
-                    alphaMap: T,
-                    side: THREE.BackSide,
-                    opacity:0.3
-                })
-            );
-            $Banner.Tunel.rotation.x = 90 * (Math.PI / 180); // 45 grados
-            $Banner.Tunel.position.z = 128;        
-            $Banner.Escena.add($Banner.Tunel);
-            $Banner.Textura = T;
-            console.log(T);
-
-            $Banner.TexturasCargadas ++;
-            // La textura se ha cargado, retiro la ventana que avisa al usuario de la carga.
-            if ($Banner.TexturasCargadas === $Banner.TotalTexturas) { $Banner.Cargando(false); }
-        });
-
-        var LoaderT2 = new THREE.TextureLoader().load('/Web/Graficos/Banner_WormHole1.2.jpg', function(T2) { 
-            T2.wrapT = T2.wrapS = THREE.RepeatWrapping;
-            T2.repeat.set( 1, 2 );
-            $Banner.Tunel2 = new THREE.Mesh(
-                new THREE.CylinderGeometry( 60, 60, 1000, 16, 32, true ),
-                new THREE.MeshBasicMaterial({ 
-                    color: 0x666666,
-                    transparent: true,
-                    alphaMap: T2,
-                    side: THREE.BackSide,
-                    opacity:0.8
-                })
-            );
-            $Banner.Tunel2.rotation.x = 90 * (Math.PI / 180); // 45 grados
-            $Banner.Tunel2.position.z = 127;        
-            $Banner.Escena.add($Banner.Tunel2);
-            $Banner.Textura2 = T2;
-            $Banner.TexturasCargadas ++;                       
-            
-            // La textura se ha cargado, retiro la ventana que avisa al usuario de la carga.
-            if ($Banner.TexturasCargadas === $Banner.TotalTexturas) { $Banner.Cargando(false); }
-        });
-
-       /* var LoaderT3 = new THREE.TextureLoader().load('/Web/Graficos/Banner_WormHole1.2.jpg', function(T3) { 
-            T3.wrapT = T3.wrapS = THREE.RepeatWrapping;
-            T3.repeat.set( 1, 2 );
-            $Banner.Tunel3 = new THREE.Mesh(
-                new THREE.CylinderGeometry( 70, 70, 1000, 16, 32, true ),
-                new THREE.MeshBasicMaterial({ 
-                    color: 0x666666,
-                    transparent: true,
-                    alphaMap: T3,
-                    side: THREE.BackSide,
-                })
-            );
-            $Banner.Tunel3.rotation.x = 90 * (Math.PI / 180); // 45 grados
-            $Banner.Tunel3.position.z = 126;        
-            $Banner.Escena.add($Banner.Tunel3);
-            $Banner.Textura3 = T3;
-            $Banner.Textura3.offset.y = 0.5;
-            $Banner.TexturasCargadas ++;
-            // La textura se ha cargado, retiro la ventana que avisa al usuario de la carga.
-            if ($Banner.TexturasCargadas === $Banner.TotalTexturas) { $Banner.Cargando(false); }
-        });*/
-
-        this.Camara.lookAt(this.Escena.position);        
-    };
-    
-    this.Pintar = function() {
-        if (typeof(this.Tunel) !== 'undefined') {
+Banner_WormHole.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor     : Banner_WormHole, 
+    // Datos de la animación [requerido]
+    Nombre          : "WormHole",
+    IdeaOriginal    : "devildrey33",
+    URL             : "/Lab/Ejemplos/BannerTest/WormHole.html",
+    NombreURL       : "Lab : WormHole",    
+    // Función que se llama al redimensionar el documento
+    Redimensionar   : function()     { },
+    // Función que se llama al hacer scroll en el documento    
+    Scroll          : function()     { },
+    // Función que se llama al mover el mouse por el canvas
+    MouseMove       : function(X, Y) {
+/*        var DestX = 0;
+        var DestY = 0;
+        if (X - (this.Ancho / 2) > 0)      {    DestX =  1;   }
+        else if (X - (this.Ancho / 2) < 0) {    DestX = -1;   }
+        if (Y - (this.Alto / 2) > 0)       {    DestY =  1;   }
+        else if (Y - (this.Alto / 2) < 0)  {    DestY = -1;   }
+        
+        
+        this.Camara.position.x = (((this.Ancho / 2) - X) * 0.040);
+        this.Camara.position.y = (((this.Alto / 2) - Y) * 0.20);*/
+//        this.Camara.lookAt(this.Escena.position);
+    },
+    // Función que pinta cada frame de la animación
+    Pintar          : function() {    
+        if (typeof(this.Tunel[0]) !== 'undefined') {
             this.H += 0.001;
             if (this.H > 1) { this.H = 0; }
-            this.Tunel.material.color.setHSL(this.H, 0.7, 0.7);
+            this.Tunel[0].material.color.setHSL(this.H, 0.7, 0.7);
 
             // Rotación del tunel
-            this.Tunel.rotation.y += 0.02;
-            // Textura infinita avanzando
-            this.Textura.offset.y -= 0.014;
+            this.Tunel[0].rotation.y += 0.02;
+            // Textura infinita avanzando y rotando
+//            this.Textura.offset.z += 0.01;
+            this.Textura[0].offset.y -= 0.014;
         }
 
-        if (typeof(this.Tunel2) !== 'undefined') {
+        if (typeof(this.Tunel[1]) !== 'undefined') {
             // Color del tunel
             this.H2 += 0.001;
             if (this.H2 > 1) { this.H2 = 0; }
-            this.Tunel2.material.color.setHSL(this.H2, 0.7, 0.7);
+            this.Tunel[1].material.color.setHSL(this.H2, 0.7, 0.7);
 
             // Rotación del tunel
-            this.Tunel2.rotation.y -= 0.017;
-            // Textura infinita avanzando
-            this.Textura2.offset.y -= 0.019;
+            this.Tunel[1].rotation.y -= 0.017;
+            // Textura infinita avanzando y rotando
+//            this.Textura2.offset.z += 0.005;
+            this.Textura[1].offset.y -= 0.019;
         }        
-        
-        if (typeof(this.Tunel3) !== 'undefined') {
-            // Color del tunel
-            this.H3 += 0.001;
-            if (this.H3 > 1) { this.H3 = 0; }
-            this.Tunel3.material.color.setHSL(this.H3, 0.7, 0.7);
-
-            // Rotación del tunel
-            this.Tunel3.rotation.y += 0.015;
-            // Textura infinita avanzando
-            this.Textura3.offset.y -= 0.016;
-            
-        }
-        
-        this.Context.render(this.Escena, this.Camara);        
-    };
-      
-      
-      
-    this.EventoRedimensionar();
-    this.IniciarBanner();
-    this.RAFID = window.requestAnimationFrame(this.Actualizar);       
-
-};
-
-var $Banner = null;
-
-$(window).on("load", function() { $Banner = new WormHole(); });
-
-
-// Evento cambio de tamaño
-$(window).on("resize", function() { 
-    if ($Banner !== null) { $Banner.EventoRedimensionar(); }
+        this.Context.render(this.Escena, this.Camara);
+    }
 });
-
-
-// Evento posición scroll
-$(window).on("scroll", function() { 
-    if ($Banner !== null) { $Banner.EventoScroll(); }
-});
-
+var Canvas = null;
+window.addEventListener('load', function() { Canvas = new Banner_WormHole; });
 </script>
     </head>
-    <body>                
-        <article class='Blog'>
-            <header id='Cabecera'>
-                <div id="Cabecera_Cargando">Cargando animación...</div>
-                <div id='Cabecera_Stats'>60 FPS</div>
-                <canvas id='Cabecera_Canvas'></canvas>
-            </header>
-        </article>
+    <body>
+        <header id='Cabecera'>
+            <div id="Cabecera_Cargando">Cargando animación...</div>
+            <div id='Cabecera_Stats'>0 FPS</div>
+            <canvas id='Cabecera_Canvas'></canvas>
+            <div id="Cabecera_PausaAni">El iframe está en segundo plano, animación en pausa.</div>            
+        </header>        
     </body>
 </html>

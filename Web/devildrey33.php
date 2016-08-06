@@ -130,8 +130,10 @@ class devildrey33 {
         echo "<script>";
         echo "\$Base.Raiz = '".Base::URL_Raiz()."'; ";
         echo "\$Base.RaizRelativa = '".Base::PathRelativo_Raiz()."'; ";
-        if (devildrey33_Opciones::MostrarConsola() == 0) {    echo "\$Base.Debug(false);"; }
-        else                                             {    echo "\$Base.Debug(true);";  } 
+        if (devildrey33_Opciones::PausarBannerJS() == 0) {  echo "Banner_Depurar = true;";  }
+        else                                             {  echo "Banner_Depurar = false;"; }
+        if (devildrey33_Opciones::MostrarConsola() == 0) {  echo "\$Base.Debug(false);";   }
+        else                                             {  echo "\$Base.Debug(true);";    } 
         echo "</script>".Intro().
     "</head>".Intro();
         

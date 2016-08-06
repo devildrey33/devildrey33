@@ -15,9 +15,9 @@ var Banner_AdiestramientoCubos3D = function() {
     this.TamCubo        = 0; // Tamaño de cada cubo
     
     this.Escena = new THREE.Scene();
-    this.Camara = new THREE.PerspectiveCamera(40, this.Ancho / this.Alto, 0.5, 10000);
+    this.Camara = new THREE.PerspectiveCamera(45, this.Ancho / this.Alto, 0.5, 10000);
     // Preparo la camara
-    this.Camara.position.set( 0, 0, 2000 );
+    this.Camara.position.set( 0, 2000, 2000 );
     this.Escena.add(this.Camara);
     // Colores base que se van alternando
 //    this.RGBF = [ 50, 0, 0, 0 ]; // RGB que incluye la fase en el ultimo valor (0=R, 1=G, 2=B);
@@ -71,7 +71,7 @@ var Banner_AdiestramientoCubos3D = function() {
     
     this.RandAni();
 
-    this.GrupoCubos.rotation.x = 0.55;        
+//    this.GrupoCubos.rotation.x = 0.55;        
     this.Escena.add(this.GrupoCubos);
 
 
@@ -100,6 +100,8 @@ Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoBann
     NombreURL           : "Lab : Adiestramiento de cubos",    
     RotacionCam         : 0,
     AvanceCamZ          : 0.1,
+    VarCam              : { VelX : 0.0001, MinVelX : -0.005, MaxVelX : 0.005, AniX : true  /* VelZ : -0.1, MinVelZ : -2, MaxVelZ : 2, AniZ : true, MinZ : 1800, MaxZ : 2600 */ }, 
+    
     
     Redimensionar       : function() {
 //        this.Camara.
@@ -107,26 +109,40 @@ Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoBann
     },
     
     AniCamara               : function() {
-        // posición de la camara, y rotación del grupo de objetos
-        var rnd = Rand();
-        if (rnd < 0.15) {
-            rnd = RandInt(4);
-            if (rnd === 0)      { if (this.RotacionCam > -0.004)    { this.RotacionCam -= 0.0003; }}
-            else if (rnd === 1) { if (this.RotacionCam < 0.004)     { this.RotacionCam += 0.0003; }}
-            else if (rnd === 2) { if (this.AvanceCamZ > -2)         { this.AvanceCamZ -= 0.1; }}
-            else if (rnd === 3) { if (this.AvanceCamZ < 2)          { this.AvanceCamZ += 0.1; }}
+        if (Rand() < 0.01) { // un 5% de probabilidades
+            switch (RandInt(2)) {
+                case 0 : this.VarCam.AniX = true;   break;
+                case 1 : this.VarCam.AniX = false;  break;
+/*                case 2 : this.VarCam.AniZ = true;   break;
+                case 3 : this.VarCam.AniZ = false;  break;*/
+            }
         }
-        // Rotación y
- 
-        this.GrupoCubos.rotation.y += this.RotacionCam;
-        // Posición Z
-        if ((this.Camara.position.z < 3800 && this.AvanceCamZ > 0) || (this.Camara.position.z > 2000 && this.AvanceCamZ < 0)) {
-            this.Camara.position.z += this.AvanceCamZ;
+        // Rotación de la camara
+        if (this.VarCam.AniX === true) {
+            if (this.VarCam.VelX < this.VarCam.MaxVelX) { this.VarCam.VelX += 0.0001; }
         }
-/*        this.Matrix.makeRotationY(this.Reloj.getDelta() * ((Math.PI * 2) / 5));
-        this.Camara.position.applyMatrix4(this.Matrix);*/
+        else {
+            if (this.VarCam.VelX > this.VarCam.MinVelX) { this.VarCam.VelX -= 0.0001; }            
+        }
+        // Zoom de la camara
+/*        if (this.VarCam.AniZ === true) {
+            if (this.VarCam.VelZ < this.VarCam.MaxVelZ) { this.VarCam.VelZ += 0.0001; }
+        }
+        else {
+            if (this.VarCam.VelZ > this.VarCam.MinVelZ) { this.VarCam.VelZ -= 0.0001; }                            
+        }*/
         
-        this.Camara.lookAt(this.GrupoCubos);
+        // Rotación de la camara alrededor del grupo de cubos
+        var x = this.Camara.position.x;
+        var z = this.Camara.position.z; // + this.VarCam.VelZ;
+        // Tope para el zoom
+//        if (z > this.VarCam.MaxZ) { z = this.VarCam.MaxZ; }
+//        if (z < this.VarCam.MinZ) { z = this.VarCam.MinZ; }
+//        console.log (z);
+        this.Camara.position.x = x * Math.cos(this.VarCam.VelX) - z * Math.sin(this.VarCam.VelX);
+        this.Camara.position.z = z * Math.cos(this.VarCam.VelX) + x * Math.sin(this.VarCam.VelX);        
+        
+        this.Camara.lookAt(this.GrupoCubos.position);
     },
     
     

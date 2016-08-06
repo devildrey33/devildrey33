@@ -289,6 +289,7 @@ $Lab = new function() {
                 });
                 $("#Lab_Preview").css({ left : AnchoMenu, width : Ancho + 1, display : "block" });
                 this.DragFilas(false);
+                $("#Lab_Preview").focus();      // Asigno el foco al iframe del resultado, especialmente por los ejempls con canvas
                 break;
             case "1" : // Mixto columnas
                 $(".CodeMirror").css({ "display" : "block" });
@@ -306,6 +307,7 @@ $Lab = new function() {
                 });
                 $("#Lab_Preview").css({ height : Alto + 1, left : PosBarra + AnchoMenu + 4, top : 0, display : "block" });
                 this.DragColumnas(false);
+                $("#Lab_Preview").focus();      // Asigno el foco al iframe del resultado, especialmente por los ejempls con canvas
                 break;
             case "2" : // Código
                 $("#Lab_Barra1").css({  display : "none" });
@@ -317,6 +319,7 @@ $Lab = new function() {
                 $("#Lab_Barra1").css({  display : "none" });
                 $("#Lab_Preview").css({ display : "block", top : 0, left : AnchoMenu, height : Alto, width : Ancho });
                 $(".CodeMirror").css({ "display" : "none" });
+                $("#Lab_Preview").focus();      // Asigno el foco al iframe del resultado, especialmente por los ejempls con canvas
                 break;
         }
     };

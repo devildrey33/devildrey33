@@ -63,6 +63,8 @@
                 case "DesactivarActualizarCache" :      $this->ActualizarCache(0);                  break;
                 case "ActivarConsola" :                 $this->Consola(1);                          break;
                 case "DesactivarConsola" :              $this->Consola(0);                          break;
+                case "ActivarPausarBanner" :            $this->PausarBanner(1);                     break;
+                case "DesactivarPausarBanner" :         $this->PausarBanner(0);                     break;
                 case "Lab_GenerarCache" :               $this->Lab_GenerarCache();                  break;
                 case "VerEmailComentario" :             $this->VerEmailComentario();                break;
                 case "EliminarComentario" :             $this->EliminarComentario();                break;
@@ -250,6 +252,16 @@
         public function Consola($Num) {            
             if (devildrey33_Opciones::Administrador() > 0) { 
                 devildrey33_Opciones::MostrarConsola($Num);            
+                echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
+            }            
+            else {
+                $this->Desloguear(1);
+            }
+        }
+
+        public function PausarBanner($Num) {            
+            if (devildrey33_Opciones::Administrador() > 0) { 
+                devildrey33_Opciones::PausarBannerJS($Num);            
                 echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
             }            
             else {

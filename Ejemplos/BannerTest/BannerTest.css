@@ -1,0 +1,76 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 05-ago-2016, 23:38:27
+    Author     : devildrey33
+*/
+
+body { margin:0px; padding:0px; }
+            
+/* Estilos para los marcos informativos */
+#Cabecera {
+    margin:0px;
+    height:100%;
+    border-top:none;
+    color:#FFFFFF;
+    background:rgba(49,46,53, 1);
+    z-index:10;
+    position:absolute;
+    width:100%;
+    overflow:hidden;
+}        
+
+#Cabecera > #Cabecera_Canvas {
+    width:100%;
+    height:100%;
+}
+            
+#Cabecera > #Cabecera_Cargando,
+#Cabecera > #Cabecera_PausaAni,
+#Cabecera > #Cabecera_Stats {
+    transition:0.3s cubic-bezier(.33,.05,.69,1.59);
+    z-index:13;
+    padding:10px;
+    margin:5px;    
+    background-color: rgba(37,35,40, 0.6);
+    color:#FFF;
+    text-shadow:1px 1px 1px #000;
+    position:absolute;
+    border:1px solid #353338;
+}
+
+#Cabecera > #Cabecera_Cargando {
+    top:0px;
+    left:50%;
+    transform:perspective(600px) rotateX(-90deg) translateX(-50%);
+}        
+            
+#Cabecera > #Cabecera_Stats {
+    transform-origin: top center;
+    transform:perspective(600px) rotateX(-90deg);  
+    right:0px;
+}
+
+#Cabecera > #Cabecera_PausaAni {
+    transform-origin: top center;
+    transform:perspective(600px) rotateX(-90deg);
+    top:0px;
+    right:0px;    
+}
+
+         
+/* Solo se muestra la información de la animación si la animación está activa (puede estar visible pero inactiva si la web no tiene el foco) */
+#Cabecera[animar=true]:hover > #Cabecera_Stats {
+    transform:perspective(600px) rotateX(0deg);    
+}
+/* Solo se muestra la información de la animación si la animación está activa (puede estar visible pero inactiva si la web no tiene el foco) */
+#Cabecera[animar=false] > #Cabecera_PausaAni {
+    transform:perspective(600px) rotateX(0deg);    
+}
+/* Solo se muestra el texto cargando mientras el atributo cargando sea true (necesario para advertir de la carga de texturas) */
+#Cabecera[cargando=true] > #Cabecera_Cargando {
+    transform:perspective(600px) rotateX(0deg) translateX(-50%);        
+}

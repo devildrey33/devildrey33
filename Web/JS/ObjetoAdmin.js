@@ -29,52 +29,55 @@ $Admin = new function() {
         $('#CH_IPSBan').click(function(e){ $Base.cmd("LimpiarBaneados"); });  
         /* CheckBox del marco de administración */
         $('#BarraPrincipal_Marco33 .CheckBox').off("click").on("click", function(e){ 
-            $(this).attr({ 'marcado' : ($(this).attr('marcado') === 'false') ? 'true' : 'false' });
+            var Marcado = ($(this).attr('marcado') === 'false') ? false : true;
+            $(this).attr({ 'marcado' : !Marcado });
             switch ($(this).attr('id')) {
                 // Session
                 case 'CH_Admin' : /* Desloguear */
                     $Admin.Desloguear();
                     break;
                 case 'CH_HTML' :
-                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarMinificarHTML' : 'ActivarMinificarHTML' );
+                    $Base.cmd((Marcado) ? 'DesactivarMinificarHTML' : 'ActivarMinificarHTML' );
                     break;
                 case 'CH_CSS' :
-                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarMinificarCSS' : 'ActivarMinificarCSS' );
+                    $Base.cmd((Marcado) ? 'DesactivarMinificarCSS' : 'ActivarMinificarCSS' );
                     break;
                 case 'CH_JS' :
-                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarMinificarJS' : 'ActivarMinificarJS' );
+                    $Base.cmd((Marcado) ? 'DesactivarMinificarJS' : 'ActivarMinificarJS' );
                     break;
                 case 'CH_DebugPHP' :
-                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarDebugPHP' : 'ActivarDebugPHP' );
+                    $Base.cmd((Marcado) ? 'DesactivarDebugPHP' : 'ActivarDebugPHP' );
                     break;
                 case 'CH_BorrarPHP' :
-                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarBorrarLogPHP' : 'ActivarBorrarLogPHP' );
+                    $Base.cmd((Marcado) ? 'DesactivarBorrarLogPHP' : 'ActivarBorrarLogPHP' );
                     break;
                 case 'CH_Actualizar' :
-                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarActualizarCache' : 'ActivarActualizarCache' );
+                    $Base.cmd((Marcado) ? 'DesactivarActualizarCache' : 'ActivarActualizarCache' );
 //                    if ($(this).attr('marcado') !== 'false') { $Base.MostrarMensaje('Cache actualizada.'); }
                     break;
                 // htaccess
                 case 'CH_CompresionGZip' :
-                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarCompresionGZip' : 'ActivarCompresionGZip' );
+                    $Base.cmd((Marcado) ? 'DesactivarCompresionGZip' : 'ActivarCompresionGZip' );
                     break;
                 case 'CH_CacheImagenes' :
-                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarCacheImagenes' : 'ActivarCacheImagenes' );
+                    $Base.cmd((Marcado) ? 'DesactivarCacheImagenes' : 'ActivarCacheImagenes' );
                     break;
                 case 'CH_Mantenimiento' :
-                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarMantenimiento' : 'ActivarMantenimiento' );
+                    $Base.cmd((Marcado) ? 'DesactivarMantenimiento' : 'ActivarMantenimiento' );
                     break;
                 case 'CH_CheckSpelling' :
-                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarCheckSpelling' : 'ActivarCheckSpelling' );
+                    $Base.cmd((Marcado) ? 'DesactivarCheckSpelling' : 'ActivarCheckSpelling' );
                     break;
                 // JavaScript
                 case 'CH_Consola' :
-                    $Base.cmd(($(this).attr('marcado') === 'false') ? 'DesactivarConsola' : 'ActivarConsola' );
-                    $Base.Debug(($(this).attr('marcado') === 'false') ? false : true);
+                    $Base.cmd((Marcado) ? 'DesactivarConsola' : 'ActivarConsola' );
+                    $Base.Debug((Marcado) ? false : true);
                     break;
                 case 'CH_PausarBanner' :
-                    if ($(this).attr('marcado') === 'false')  { Banner_Depurar = true;  }
-                    else                                      { Banner_Depurar = false; }
+                    $Base.cmd((Marcado) ? 'DesactivarPausarBanner' : 'ActivarPausarBanner' );
+                    Banner_Depurar = (Marcado) ? true : false;
+/*                    if (Marcado)  { Banner_Depurar = true;  }
+                    else                                      { Banner_Depurar = false; }*/
                     break;
             }
         });
@@ -138,7 +141,7 @@ $Admin = new function() {
     
     this.Lab_Guardar = function() {        
         $Lab.Guardando = true;
-        Archivo = $("#MarcoNavegacionLab").attr("pagina");
+        var Archivo = $("#MarcoNavegacionLab").attr("pagina");
         Codigo = $Lab.Editor.getValue();
 //        console.log("Admin.Lab_Guardar", Archivo, Codigo, $("body").attr("modificado"));
         if ($("body").attr("modificado") === "false") {
@@ -147,39 +150,45 @@ $Admin = new function() {
         }
         $Base.Cargando("TRUE");
         $Lab.Original = Codigo;
-        $.post($Base.Raiz + "cmd/LabGuardarEjemplo.cmd", { "Archivo" : Archivo, "Codigo" : Codigo }).done(function(data) {
-            Datos = JSON.parse(data);           
-            if (Datos["Estado"] === 1) { // Error no es admin
-                console.log("Admin.Lab_Guardar Ajax Error! no es admin");
-                $("#BarraNavegacion_Explorador").html(Datos["HTML"]);
-                $Lab.EnlazarEventosExplorador();
-                $('body').attr({ 'administrador33' : false });
-                $Base.ClickMenu(0);
-                setTimeout(function() { $('#Marco33').html(''); }, 500);                    
-//                $Base.MostrarMensaje("Error!, no eres administrador.");
-//                $Base.Loguear($Admin.Lab_Guardar);
-                $Base.MostrarLogin($Admin.Lab_Guardar);
-/*                $("#VentanaLogin").attr({ "Visible" : "true" }); 
-                setTimeout(function() { 
-                    if (typeof localStorage["Comentarios_Usuario"] === 'undefined') { $("#devildrey33_Usuario").focus(); }
-                    else                                                            { $("#devildrey33_Password").focus(); }
-                }, 200);
-                $Base.FPL = $Admin.Lab_Guardar;*/
-            }
-            else {            
-                console.log("Admin.Lab_Guardar Ajax " + Datos["Mensaje"] );
-                $Base.MostrarMensaje(Datos["Mensaje"]);
-                $("body").attr({"modificado" : "false"});
+        // Es un archivo nuevo, necesita una nueva ubicación
+        if (Archivo === "Ejemplos/Nuevo.html" || Archivo === "Ejemplos/NuevoCanvas2D.html", || Archivo === "Ejemplos/NuevoCanvasTHREE.html") {
+            
+        }
+        else { // Sobre-escritura de un archivo normal
+            $.post($Base.Raiz + "cmd/LabGuardarEjemplo.cmd", { "Archivo" : Archivo, "Codigo" : Codigo }).done(function(data) {
+                Datos = JSON.parse(data);           
+                if (Datos["Estado"] === 1) { // Error no es admin
+                    console.log("Admin.Lab_Guardar Ajax Error! no es admin");
+                    $("#BarraNavegacion_Explorador").html(Datos["HTML"]);
+                    $Lab.EnlazarEventosExplorador();
+                    $('body').attr({ 'administrador33' : false });
+                    $Base.ClickMenu(0);
+                    setTimeout(function() { $('#Marco33').html(''); }, 500);                    
+    //                $Base.MostrarMensaje("Error!, no eres administrador.");
+    //                $Base.Loguear($Admin.Lab_Guardar);
+                    $Base.MostrarLogin($Admin.Lab_Guardar);
+    /*                $("#VentanaLogin").attr({ "Visible" : "true" }); 
+                    setTimeout(function() { 
+                        if (typeof localStorage["Comentarios_Usuario"] === 'undefined') { $("#devildrey33_Usuario").focus(); }
+                        else                                                            { $("#devildrey33_Password").focus(); }
+                    }, 200);
+                    $Base.FPL = $Admin.Lab_Guardar;*/
+                }
+                else {            
+                    console.log("Admin.Lab_Guardar Ajax " + Datos["Mensaje"] );
+                    $Base.MostrarMensaje(Datos["Mensaje"]);
+                    $("body").attr({"modificado" : "false"});
+                    $Lab.Guardando = false;
+                }
+                $Base.Cargando("FALSE");
+                $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);            
+                if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
+            }).fail(function( jqXHR, textStatus, tError ) {
+                console.log("Admin.Lab_Guardar Error ajax", jqXHR, textStatus, tError);
+                $Base.MostrarErrorAjax(jqXHR.status, false);
                 $Lab.Guardando = false;
+            });    
             }
-            $Base.Cargando("FALSE");
-            $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);            
-            if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
-        }).fail(function( jqXHR, textStatus, tError ) {
-            console.log("Admin.Lab_Guardar Error ajax", jqXHR, textStatus, tError);
-            $Base.MostrarErrorAjax(jqXHR.status, false);
-            $Lab.Guardando = false;
-        });        
     };
     
     // DEPRECATED

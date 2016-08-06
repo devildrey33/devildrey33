@@ -2,257 +2,153 @@
     Test para el banner 3d de devildrey33.es creado por Josep Antoni Bover Comas el 31-07-2016
         - Consiste en un cuadrado de 7x7 cubos que se coordinan para realizar varios movimientos distintos.
 	- Se utiliza JQuery y Three.js
-
 	Vista por defecto en el Laboratorio de pruebas  
 		devildrey33_Lab->Opciones->Vista = Preview;
-
-        Ultima modificación el 03/08/2016
+        Ultima modificación el 06/08/2016
 -->
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Estilos CSS -->
-<style type="text/css">
-body { margin:0px; padding:0px; }
-            
-/* Estilos para los marcos informativos */
-.Blog > #Cabecera {
-    margin:0px;
-    height:100%;
-    border-top:none;
-    color:#FFFFFF;
-    background:rgba(49,46,53, 1);
-    z-index:10;
-    position:absolute;
-    width:100%;
-    overflow:hidden;
-}        
-
-.Blog > #Cabecera > #Cabecera_Canvas {
-    width:100%;
-    height:100%;
-}
-            
-.Blog > #Cabecera > #Cabecera_Cargando,
-.Blog > #Cabecera > #Cabecera_Stats {
-    transition:0.3s cubic-bezier(.33,.05,.69,1.59);
-    z-index:13;
-    padding:10px;
-    margin:5px;    
-    background-color: rgba(37,35,40, 0.6);
-    color:#FFF;
-    text-shadow:1px 1px 1px #000;
-    position:absolute;
-    border:1px solid #353338;
-}
-
-.Blog > #Cabecera > #Cabecera_Cargando {
-    top:0px;
-    left:50%;
-    transform:perspective(600px) rotateX(-90deg) translateX(-50%);
-}        
-            
-.Blog > #Cabecera > #Cabecera_Stats {
-    transform-origin: top center;
-    transform:perspective(600px) rotateX(-90deg);  
-    right:0px;
-}
-         
-/* Solo se muestra la información de la animación si la animación está activa (puede estar visible pero inactiva si la web no tiene el foco) */
-.Blog > #Cabecera[animar=true]:hover > #Cabecera_Stats {
-    transform:perspective(600px) rotateX(0deg);    
-}
-/* Solo se muestra el texto cargando mientras el atributo cargando sea true (necesario para advertir de la carga de texturas) */
-.Blog > #Cabecera[cargando=true] > #Cabecera_Cargando {
-    transform:perspective(600px) rotateX(0deg) translateX(-50%);        
-}
-
-</style>
-        
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <!-- Estilos CSS para el test -->
+        <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
         <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
-        <!-- Si deseas utilizar Three 3D lib descomenta la siguiente línea -->
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        <!-- Three.JS -->
         <script src="/Web/JS/3rdParty/three-0.79.min.js"></script>
-
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Ejemplos/BannerTest/ObjetoCanvas.js"></script>
         <!-- Código javascript --> 
 <script type="text/javascript">
-    
-/* Función para generar un valor aleatório entero */
-/* Si no se especifican parametros devuelve 0 o 1 */
-/* Si solo se especifica un parámetro, el primer parámetro será el máximo, y el mínimo será 0 */
-/* Si se especifican dos parámetros, el primero es el máximo, y el segundo es el mínimo. */
-function RandInt(Max, Min) {
-    return Math.floor(Rand(Max, Min));
-}
+/* Plantilla para crear banners animados en devildrey33.es */
+var Banner_Depurar = false; // Si es true, no se parará la animación al perder el foco del teclado
 
 
-/* Si no se especifican parametros devuelve 0 o 1 
-   Si se especifica solo el Máximo, el mínimo será 0 */
-function Rand(Max, Min) {
-    var min = (typeof(Min) !== "undefined") ? Min : 0; // Si no se especifica el mínimo por defecto es 0
-    var max = (typeof(Max) !== "undefined") ? Max : 1; // Si no se especifica el máximo por defecto es 1
-    return min + Math.random() * (max - min);    
-}
-    
-    
-AdiestramientoCubos = function(Tipo) {
-    this.Canvas = document.getElementById("Cabecera_Canvas");
 
-    // Asigno el estado cargando, que muestra una ventana que avisa al usuario.
-    $("#Cabecera").attr({ "cargando" : true, "animar" : true });
+var Banner_AdiestramientoCubos3D = function() {
+    // Llamo al constructor del ObjetoBanner
+    ObjetoCanvas.call(this, "THREE");
+
+/*    this.Reloj  = new THREE.Clock();
+    this.Matrix = new THREE.Matrix4();*/
     
-    try {
-        this.Context = new THREE.WebGLRenderer({ canvas : this.Canvas, "antialias" : true });    // Contexto THREE.JS
-        this.Context.setClearColor(0x312E35, 1);    // Color del fondo
+    this.TamCubo        = 0; // Tamaño de cada cubo
+    
+    this.Escena = new THREE.Scene();
+    this.Camara = new THREE.PerspectiveCamera(45, this.Ancho / this.Alto, 0.5, 10000);
+    // Preparo la camara
+    this.Camara.position.set( 0, 2000, 2000 );
+    this.Escena.add(this.Camara);
+    // Colores base que se van alternando
+//    this.RGBF = [ 50, 0, 0, 0 ]; // RGB que incluye la fase en el ultimo valor (0=R, 1=G, 2=B);
+    
+    this.TipoAni = 0;
+    this.CharAni = 0;
+    
+    // Variables locales
+    var Divisiones  = 7;       // Numero de columnas de un lado
+    var Tam         = 1000;
+
+    this.TamCubo = (Tam / (Divisiones / 2));
+    this.YBase = (this.TamCubo / 2) + this.TamCubo;
+            
+    // Creo la parrilla
+    this.Parrilla = new THREE.GridHelper(Tam, Divisiones, new THREE.Color(0xcccccc), new THREE.Color(0x999999));
+    this.Parrilla.position.y = this.TamCubo;
+
+    // Creo el grupo de columnas
+    this.GrupoCubos = new THREE.Object3D();
+    this.GrupoCubos.add(this.Parrilla);
+    t = this.TamCubo * 0.7;
+    var geometry = new THREE.BoxGeometry( t, t, t );    
+
+    // Inicio cada columna en su posición
+    for (var z = -(Divisiones / 2); z < (Divisiones / 2); z++) {
+        for (var x = -(Divisiones / 2); x < (Divisiones / 2); x++) {
+/*                var multiMaterial = [ new THREE.MeshBasicMaterial( { color: "rgb(0," + (50 + Math.floor(rnd)) + ", 0)" } ),
+                                      new THREE.MeshBasicMaterial( { color: "rgb(0," + (100 + Math.floor(rnd)) + ", 0)", wireframe: true, transparent: true } ) ];         */
+//                var Cubo = new THREE.SceneUtils.createMultiMaterialObject(geometry, multiMaterial);
+            
+            var Grupo = new THREE.Object3D();
+            var Cubo = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial( { color: "rgb(0,50,0)", /*wireframe : true*/ } ));
+//            Cubo.position.set((x * this.TamCubo) + (this.TamCubo / 2), (z * this.TamCubo) + (this.TamCubo / 2), this.YBase)
+/*            Cubo.position.x = (x * this.TamCubo) + (this.TamCubo / 2);
+            Cubo.position.z = (z * this.TamCubo) + (this.TamCubo / 2);                                
+            Cubo.position.y = this.YBase;*/
+            Grupo.Ani = new this.AniColumna(1, 1, 0);
+            Grupo.add(Cubo);
+            Grupo.position.set((x * this.TamCubo) + (this.TamCubo / 2), this.YBase, (z * this.TamCubo) + (this.TamCubo / 2));
+            this.CrearMarcoCubo(Grupo, t);
+            this.GrupoCubos.add(Grupo);
+        }
     }
-    catch ( error ) {
-        alert(error, "Error creando el Banner");
-    }
+    
+    this.RandAni();
 
-    this.Ancho          = 0;                                                // Ancho del canvas
-    this.Alto           = 0;                                                // Altura del canvas
-    this.RAFID          = 0;                                                // Request Animation Frame ID
-    this.FPS_UltimoTick = Date.now() + 1000;                                // Ultimo Tick del sistema + 1000ms
-    this.FPS_Contador   = 0;                                                // Contador de frames por segundo    
-    this.FocoWeb        = false;                                            // Foco de la ventana de la web
+//    this.GrupoCubos.rotation.x = 0.55;        
+    this.Escena.add(this.GrupoCubos);
+
+
+    // create a point light
+    var pointLight = new THREE.PointLight(0xFF0000);
+    pointLight.position.set(0, 10, 0);
+    // add to the scene
+    this.Escena.add(pointLight);   
+    
+    this.Cargando(false);
     
     
-    $("#Cabecera").on("mousemove", function(event) { 
-        if ($Banner !== null) {
-            $Banner.EventoMouseMove(event.clientX, event.clientY);
-        }
-    });    
-    
-    // Función que determina el estado de carga (cargando/completo) true/false
-    this.Cargando = function(carga) {
-        $("#Cabecera").attr({ "cargando" : carga });
-    };
+};
 
-    this.Actualizar = function() {
-        if ($Banner !== null) {
-            $Banner.FPS(); 
-            $Banner.RAFID = window.requestAnimationFrame($Banner.Actualizar);
-            $Banner.Pintar(); 
-        }
-    };
 
-    // Función que procesa el evento mousemove
-    this.EventoMouseMove = function(X, Y) {
-        if (typeof(this.MouseMove) !== "undefined") {
-            this.MouseMove.apply(this, [X, Y]);
-        }
-    };
 
-    // Función que obtiene el tamaño del canvas una vez redimensionado.
-    this.EventoRedimensionar = function() {
-        /* El ancho del canvas siempre tiene que ser el mismo que #MarcoNavegacion - 60 pixeles que ocupan los botones de la izquierda
-         * La altura del canvas siempre es la misma desde el principio */
-        this.Ancho  = document.getElementById("Cabecera").offsetWidth; 
-        this.Alto   = document.getElementById("Cabecera").offsetHeight;
-        this.Context.setSize(this.Ancho, this.Alto);
-        if (this.Camara !== null && typeof(this.Camara) !== 'undefined') { // Si hay una camara creada
-            this.Camara.aspect = this.Ancho / this.Alto;
-            this.Camara.updateProjectionMatrix();            
-        }
-    };
+Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor         : Banner_AdiestramientoCubos3D, 
+
+    // Datos de la animación
+    Nombre              : "Adiestramiento de cubos",
+    IdeaOriginal        : "devildrey33",
+    URL                 : "/Lab/Ejemplos/BannerTest/AdiestramientoCubos.html",
+    NombreURL           : "Lab : Adiestramiento de cubos",    
+    RotacionCam         : 0,
+    AvanceCamZ          : 0.1,
+    VarCam              : { VelX : 0.0001, MinVelX : -0.005, MaxVelX : 0.005, AniX : true  /* VelZ : -0.1, MinVelZ : -2, MaxVelZ : 2, AniZ : true, MinZ : 1800, MaxZ : 2600 */ }, 
     
     
-    // Función que cuenta los frames por segundo
-    this.FPS = function() {
-        var Tick = Date.now();
-        if (Tick > this.FPS_UltimoTick) {
-            this.FPS_UltimoTick = Tick + 1000;
-            $("#Cabecera_Stats").html(this.FPS_Contador + " FPS");
-            this.FPS_Contador = 0;
-        }
-        else {
-            this.FPS_Contador ++;
-        }
-    };
-    ////////////////////////////////////////////////////////////////////////////////////////////  
+    Redimensionar       : function() {
+//        this.Camara.
+//        this.Context.setSize(this.Ancho, this.Alto);
+    },
     
-    // Función que inicia los parámetros para este baner concreto
-    this.IniciarBanner = function() {
-        this.TamCubo        = 0; // Tamaño de cada cubo
-
-        this.Escena = new THREE.Scene();
-        this.Camara = new THREE.PerspectiveCamera(40, this.Ancho / this.Alto, 0.5, 10000);
-        // Preparo la camara
-        this.Camara.position.set( 0, 0, 2500 );
-        this.Escena.add(this.Camara);
-        // Colores base que se van alternando
-    //    this.RGBF = [ 50, 0, 0, 0 ]; // RGB que incluye la fase en el ultimo valor (0=R, 1=G, 2=B);
-
-        this.TipoAni = 0;
-        this.CharAni = 0;
-        
-        this.RotacionCam = Rand(0.002, -0.002);
-        this.AvanceCamZ  = -0.1;
-        
-        // Variables locales
-        var Divisiones  = 7;       // Numero de columnas de un lado
-        var Tam         = 1000;
-
-        this.TamCubo = (Tam / (Divisiones / 2));
-        this.YBase = (this.TamCubo / 2) + this.TamCubo;
-
-        // Creo la parrilla
-        this.Parrilla = new THREE.GridHelper(Tam, Divisiones, new THREE.Color(0xcccccc), new THREE.Color(0x999999));
-        this.Parrilla.position.y = this.TamCubo;
-
-        // Creo el grupo de columnas
-        this.GrupoCubos = new THREE.Object3D();
-        this.GrupoCubos.add(this.Parrilla);
-        t = this.TamCubo * 0.7;
-        var geometry = new THREE.BoxGeometry( t, t, t );    
-
-        // Inicio cada columna en su posición
-        for (var z = -(Divisiones / 2); z < (Divisiones / 2); z++) {
-            for (var x = -(Divisiones / 2); x < (Divisiones / 2); x++) {
-
-                var Grupo = new THREE.Object3D();
-                var Cubo = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial( { color: "rgb(0,50,0)" /*, wireframe : true */} ));
-                Grupo.Ani = new this.AniColumna(1, 1, 0);
-                Grupo.add(Cubo);
-                Grupo.position.set((x * this.TamCubo) + (this.TamCubo / 2), this.YBase, (z * this.TamCubo) + (this.TamCubo / 2));
-                this.CrearMarcoCubo(Grupo, t);
-                this.GrupoCubos.add(Grupo);
+    AniCamara               : function() {
+        // Deberia ser mas rapido rotar la camara, que rotar el grupo de cubos, pero por lo visto en el movil practicamente va igual....
+        // por testear en IE, que también ofrecia un pobre framerate
+        if (Rand() < 0.01) { // un 5% de probabilidades
+            switch (RandInt(2)) {
+                case 0 : this.VarCam.AniX = true;   break;
+                case 1 : this.VarCam.AniX = false;  break;
             }
         }
-
-        this.RandAni();
-
-        this.GrupoCubos.rotation.x = 0.55;        
-        this.Escena.add(this.GrupoCubos);
-
-
-        // create a point light
-        var pointLight = new THREE.PointLight(0xFF0000);
-        pointLight.position.set(0, 10, 0);
-        // add to the scene
-        this.Escena.add(pointLight);   
-
-        this.Cargando(false);     
-    };
-    
-    this.Pintar = function() {
-        // posición de la camara, y rotación del grupo de objetos
-        var rnd = Rand();
-        if (rnd < 0.15) {
-            rnd = RandInt(4);
-            if (rnd === 0)      { if (this.RotacionCam > -0.004)    { this.RotacionCam -= 0.0003; }}
-            else if (rnd === 1) { if (this.RotacionCam < 0.004)     { this.RotacionCam += 0.0003; }}
-            else if (rnd === 2) { if (this.AvanceCamZ > -2)       { this.AvanceCamZ -= 0.1; }}
-            else if (rnd === 3) { if (this.AvanceCamZ < 2)        { this.AvanceCamZ += 0.1; }}
+        // Rotación de la camara
+        if (this.VarCam.AniX === true) {
+            if (this.VarCam.VelX < this.VarCam.MaxVelX) { this.VarCam.VelX += 0.0001; }
         }
-        // Rotación y
-        this.GrupoCubos.rotation.y += this.RotacionCam;
-        // Posición Z
-        if ((this.Camara.position.z < 3800 && this.AvanceCamZ > 0) || (this.Camara.position.z > 2500 && this.AvanceCamZ < 0)) {
-            this.Camara.position.z += this.AvanceCamZ;
+        else {
+            if (this.VarCam.VelX > this.VarCam.MinVelX) { this.VarCam.VelX -= 0.0001; }            
         }
         
+        // Rotación de la camara alrededor del grupo de cubos
+        var x = this.Camara.position.x;
+        var z = this.Camara.position.z; // + this.VarCam.VelZ;
+        this.Camara.position.x = x * Math.cos(this.VarCam.VelX) - z * Math.sin(this.VarCam.VelX);
+        this.Camara.position.z = z * Math.cos(this.VarCam.VelX) + x * Math.sin(this.VarCam.VelX);        
+        
+        this.Camara.lookAt(this.GrupoCubos.position);
+    },
+    
+    
+    Pintar              : function() {
+        this.AniCamara();
         var AniTerminada = true;
         for (var c = 1; c < this.GrupoCubos.children.length; c++) {
             var Cubo = this.GrupoCubos.children[c];
@@ -278,10 +174,16 @@ AdiestramientoCubos = function(Tipo) {
                     Cubo.Ani.FaseAni = 2;
                 }
             }            
+            // Al escalar el cubo hay que modificar la Y
+//            Cubo.position.y = ((this.TamCubo * Cubo.scale.y) / 2);
             
             var col = Math.floor(50 + ((Cubo.position.y - this.YBase) * 0.5));
             
+//            Cubo.material.color.setStyle("rgb(180, " + (Math.floor((Cubo.scale.y - 1) * 25) + 50) + ",0)");            
+//            Cubo.material.color.setStyle("rgb(40, 30," + (Math.floor((Cubo.scale.y - 1) * 25) + 75) + ")");            
+//            Cubo.material.color.setStyle("rgb(180, " + col + ",0)");            
             Cubo.children[0].material.color.setStyle("rgb(180, " + col + ",0)");            
+//            Cubo.children[1].Material.color.setStyle("rgb(" + col + "," + "0" + "," + "0" + ")");            
             
             // Compruebo si la columna ha terminado
             if (Cubo.Ani.FaseAni !== 2) { 
@@ -307,11 +209,13 @@ AdiestramientoCubos = function(Tipo) {
         
         if (AniTerminada === true) { 
             this.RandAni(); 
+            // Loop para el color
+/*            this.RGBF[3] ++;
+            if (this.RGBF[3] > 1) { this.RGBF[3] = 0; }*/
         }
-    };
-      
-      
-    this.CrearMarcoCubo = function(Objeto, Tam) {
+    },
+        
+    CrearMarcoCubo          : function(Objeto, Tam) {
         var Grupo = new THREE.Object3D();
         var Med = Tam / 2;
         var GeoX = new THREE.Geometry();
@@ -366,9 +270,9 @@ AdiestramientoCubos = function(Tipo) {
         Grupo.add(Linea10);
         
         Objeto.add(Grupo);
-    };
+    },
     // Inicia la animación de un caracter
-    this.IniciarAni_Caracter = function(Char) {
+    IniciarAni_Caracter     : function(Char) {
 //        console.log("Banner_AdiestramientoCubos3D", Char);
         var ColumnasLado = Math.sqrt(this.GrupoCubos.children.length - 1);
         var Inicio       = Math.floor((ColumnasLado - 5) / 2); // Las letras son de 5x5
@@ -385,14 +289,14 @@ AdiestramientoCubos = function(Tipo) {
                 }
             }
         }
-    };
+    },
     // Inicia la animación del texto caracter a caracter
-    this.IniciarAni_Texto = function() {
+    IniciarAni_Texto        : function() {
         this.CharAni = 0;
         this.IniciarAni_Caracter('d');
-    };
+    },
     // Filas invertidas para el eje X o el eje Z
-    this.IniciarAni_Filas = function() {
+    IniciarAni_Filas        : function() {
         var ColumnasLado = Math.sqrt(this.GrupoCubos.children.length - 1);
         var Invertir = false;
         var rnd = Rand();
@@ -403,15 +307,15 @@ AdiestramientoCubos = function(Tipo) {
                 this.GrupoCubos.children[Pos].Ani = new this.AniColumna(300, 15, ((Invertir === true)? x * 80 : (ColumnasLado - x) * 80));
             }
         }
-    }; 
+    },    
     // Aleatório
-    this.IniciarAni_Rand = function() {
+    IniciarAni_Rand         : function() {
         for (var c = 1; c < this.GrupoCubos.children.length; c++) {
             this.GrupoCubos.children[c].Ani = new this.AniColumna(Rand(300, 100), Rand(15, 20), RandInt(500));
         }
-    };
+    },
     // Ola de izquierda a derecha, o derecha a izquierda, o de arriba a abajo, o de abajo a arriba
-    this.IniciarAni_Ola = function() {
+    IniciarAni_Ola          : function() {
         var rnd = Rand();        
         var rnd2 = Rand();
         var ColumnasLado = Math.sqrt(this.GrupoCubos.children.length - 1);
@@ -422,117 +326,107 @@ AdiestramientoCubos = function(Tipo) {
                 this.GrupoCubos.children[Pos].Ani = new this.AniColumna(Rand(300, 250), 15, ((rnd > 0.5) ? pos * 20 : (this.GrupoCubos.children.length - pos) * 20) );
             }
         }
-    };
+    },
     // Ola centrada en el eje X 
-    this.IniciarAni_OlaCentrada = function() {
+    IniciarAni_OlaCentrada  : function() {
         var rnd = Rand();
         var ColumnasLado = Math.sqrt(this.GrupoCubos.children.length - 1);
         var Max = Math.floor((this.GrupoCubos.children.length - 1) / 2);
         this.GrupoCubos.children[this.GrupoCubos.children.length - 1].Ani =  new this.AniColumna(Rand(300, 250), 15, Max * 20);
         for (var c = 0; c < Max + 1; c++) { 
+/*            var z = Math.round(c / (this.GrupoCubos.children.length / ColumnasLado));
+            var x = Math.floor(c - ((this.GrupoCubos.children.length / ColumnasLado) * z));
+            var t = (rnd2 > 0.9) ? (x + (z * ColumnasLado)) * 10 : (z + (x * ColumnasLado)) * 20;*/
             this.GrupoCubos.children[(Max + c)].Ani = new this.AniColumna(Rand(300, 250), 15, c * 20);
             this.GrupoCubos.children[(Max - c) + 1].Ani = new this.AniColumna(Rand(300, 250), 15, c * 20);
         }            
-    };
+    },
     
     // Inicia una animación aleatória
-    this.RandAni = function() {        
+    RandAni                 : function() {        
         if (this.TipoAni !== 4) { this.TipoAni = RandInt(5); }
         else                    { this.TipoAni = RandInt(4); } // Evito la animación del texto, si es la ultima que se ha hecho
 
+
+//        this.TipoAni  = 2;
+//        console.log("Banner_AdiestramientoCubos3D.RandAni", rnd);
         if (this.TipoAni  === 0)       {   this.IniciarAni_Rand(); }
         else if (this.TipoAni  === 1)  {   this.IniciarAni_Ola(); }
         else if (this.TipoAni  === 2)  {   this.IniciarAni_OlaCentrada(); }
         else if (this.TipoAni  === 3)  {   this.IniciarAni_Filas(); }
-        else if (this.TipoAni  === 4)  {   (Rand() > 0.2) ? this.RandAni() : this.IniciarAni_Texto(); } // la animación del texto que salga lo menos posible
-    };
+        else if (this.TipoAni  === 4)  {   (Rand() > 0.3) ? this.RandAni() : this.IniciarAni_Texto(); } // la animación del texto que salga lo menos posible
+    },
     
     // Estructura para guardar los valores de la animación
-    this.AniColumna = function(nMaxEscalaY, nVel, nRetardo) {
+    AniColumna              : function(nMaxEscalaY, nVel, nRetardo) {
         this.MaxEscalaY = nMaxEscalaY;
         this.Vel        = nVel;
         this.Retardo    = -nRetardo;
         this.FaseAni    = 0;            // 0 Animando, 1 Desanimando, 2 Terminado
-    };
-      
-    this.Letras5x5 = { "d"  :  [    " ", "x", "x", " ", " ",
-                                    " ", "x", " ", "x", " ", 
-                                    " ", "x", " ", "x", " ", 
-                                    " ", "x", " ", "x", " ", 
-                                    " ", "x", "x", " ", " " ],
+    },
+    
+    
+// Letras de 5x5
+    Letras5x5               : { "d" :  [    " ", "x", "x", " ", " ",
+                                            " ", "x", " ", "x", " ", 
+                                            " ", "x", " ", "x", " ", 
+                                            " ", "x", " ", "x", " ", 
+                                            " ", "x", "x", " ", " " ],
                                         
-                        "e" :  [    " ", "x", "x", "x", " ", 
-                                    " ", "x", " ", " ", " ", 
-                                    " ", "x", "x", " ", " ", 
-                                    " ", "x", " ", " ", " ", 
-                                    " ", "x", "x", "x", " " ],
-
-                        "v" :  [    "x", " ", " ", " ", "x", 
-                                    "x", " ", " ", " ", "x", 
-                                    " ", "x", " ", "x", " ", 
-                                    " ", "x", " ", "x", " ", 
-                                    " ", " ", "x", " ", " " ],
-
-                        "i" :  [    " ", "x", "x", "x", " ", 
-                                    " ", " ", "x", " ", " ", 
-                                    " ", " ", "x", " ", " ", 
-                                    " ", " ", "x", " ", " ", 
-                                    " ", "x", "x", "x", " " ],
-
-                        "l" :  [    " ", "x", " ", " ", " ", 
-                                    " ", "x", " ", " ", " ", 
-                                    " ", "x", " ", " ", " ", 
-                                    " ", "x", " ", " ", " ", 
-                                    " ", "x", "x", "x", " " ],
-
-                        "r" :  [    " ", "x", "x", " ", " ", 
-                                    " ", "x", " ", "x", " ", 
-                                    " ", "x", "x", " ", " ", 
-                                    " ", "x", " ", "x", " ", 
-                                    " ", "x", " ", "x", " " ],
-
-                        "y" :  [    " ", "x", " ", "x", " ", 
-                                    " ", "x", " ", "x", " ", 
-                                    " ", " ", "x", " ", " ", 
-                                    " ", " ", "x", " ", " ", 
-                                    " ", " ", "x", " ", " " ],
-
-                        "3" :  [    " ", "x", "x", "x", " ", 
-                                    " ", " ", " ", "x", " ", 
-                                    " ", " ", "x", "x", " ", 
-                                    " ", " ", " ", "x", " ", 
-                                    " ", "x", "x", "x", " " ] }           
-    this.EventoRedimensionar();
-    this.IniciarBanner();
-    this.RAFID = window.requestAnimationFrame(this.Actualizar);       
-
-};
-
-var $Banner = null;
-
-$(window).on("load", function() { $Banner = new AdiestramientoCubos(); });
+                                "e" :  [    " ", "x", "x", "x", " ", 
+                                            " ", "x", " ", " ", " ", 
+                                            " ", "x", "x", " ", " ", 
+                                            " ", "x", " ", " ", " ", 
+                                            " ", "x", "x", "x", " " ],
+                                        
+                                "v" :  [    "x", " ", " ", " ", "x", 
+                                            "x", " ", " ", " ", "x", 
+                                            " ", "x", " ", "x", " ", 
+                                            " ", "x", " ", "x", " ", 
+                                            " ", " ", "x", " ", " " ],
+                                        
+                                "i" :  [    " ", "x", "x", "x", " ", 
+                                            " ", " ", "x", " ", " ", 
+                                            " ", " ", "x", " ", " ", 
+                                            " ", " ", "x", " ", " ", 
+                                            " ", "x", "x", "x", " " ],
+                                        
+                                "l" :  [    " ", "x", " ", " ", " ", 
+                                            " ", "x", " ", " ", " ", 
+                                            " ", "x", " ", " ", " ", 
+                                            " ", "x", " ", " ", " ", 
+                                            " ", "x", "x", "x", " " ],
+                                        
+                                "r" :  [    " ", "x", "x", " ", " ", 
+                                            " ", "x", " ", "x", " ", 
+                                            " ", "x", "x", " ", " ", 
+                                            " ", "x", " ", "x", " ", 
+                                            " ", "x", " ", "x", " " ],
+                                        
+                                "y" :  [    " ", "x", " ", "x", " ", 
+                                            " ", "x", " ", "x", " ", 
+                                            " ", " ", "x", " ", " ", 
+                                            " ", " ", "x", " ", " ", 
+                                            " ", " ", "x", " ", " " ],
+                                        
+                                "3" :  [    " ", "x", "x", "x", " ", 
+                                            " ", " ", " ", "x", " ", 
+                                            " ", " ", "x", "x", " ", 
+                                            " ", " ", " ", "x", " ", 
+                                            " ", "x", "x", "x", " " ] }
+}); 
 
 
-// Evento cambio de tamaño
-$(window).on("resize", function() { 
-    if ($Banner !== null) { $Banner.EventoRedimensionar(); }
-});
-
-
-// Evento posición scroll
-$(window).on("scroll", function() { 
-    if ($Banner !== null) { $Banner.EventoScroll(); }
-});
-
+var Canvas = null;
+window.addEventListener('load', function() { Canvas = new Banner_AdiestramientoCubos3D; });
 </script>
     </head>
-    <body>                
-        <article class='Blog'>
-            <header id='Cabecera'>
-                <div id="Cabecera_Cargando">Cargando animación...</div>
-                <div id='Cabecera_Stats'>60 FPS</div>
-                <canvas id='Cabecera_Canvas'></canvas>
-            </header>
-        </article>
+    <body>
+        <header id='Cabecera'>
+            <div id="Cabecera_Cargando">Cargando animación...</div>
+            <div id='Cabecera_Stats'>0 FPS</div>
+            <canvas id='Cabecera_Canvas'></canvas>
+            <div id="Cabecera_PausaAni">El iframe está en segundo plano, animación en pausa.</div>            
+        </header>        
     </body>
 </html>
