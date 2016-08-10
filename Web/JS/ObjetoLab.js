@@ -58,7 +58,7 @@ $Lab = new function() {
                 if ($Lab.Original !== $Lab.Editor.getValue()) { $("body").attr({ "modificado" : "true" });  }
                 else                                          { $("body").attr({ "modificado" : "false" }); }
                 $Lab.Lab_Temporizador = 0;
-            }, 400);
+            }, 1500);
         });
         
         this.Original = $("#Lab_Codigo").val();

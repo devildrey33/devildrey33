@@ -7,7 +7,7 @@
 
 var Banner_MatrixLluviaHexadecimal = function() {
     // Llamo al constructor del ObjetoBanner
-    ObjetoBanner.call(this, "2d");       
+    if (ObjetoBanner.call(this, "2d") === false) { return false; }
 
     // Arrays para cada plano
     this.Caracteres = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" /*, "田", "由", "甲", "申", "甴", "电", "甶", "男", "甸", "甹", "町", "画", "甼", "甽", "甾", "甿", "畀", "畁", "畂", "畃", "畄", "畅", "畆", "畇", "畈", "畉", "畊", "畋", "界", "畍", "畎", "畏", "畐", "畑" */];    

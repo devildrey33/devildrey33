@@ -7,7 +7,7 @@
 
 var Banner_AdiestramientoCubos3D = function() {
     // Llamo al constructor del ObjetoBanner
-    ObjetoBanner.call(this, "THREE");
+    if (ObjetoBanner.call(this, "THREE") === false) { return false; }
 
 /*    this.Reloj  = new THREE.Clock();
     this.Matrix = new THREE.Matrix4();*/
@@ -98,56 +98,43 @@ Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoBann
     IdeaOriginal        : "devildrey33",
     URL                 : "/Lab/Ejemplos/BannerTest/AdiestramientoCubos.html",
     NombreURL           : "Lab : Adiestramiento de cubos",    
-    RotacionCam         : 0,
-    AvanceCamZ          : 0.1,
-    VarCam              : { VelX : 0.0001, MinVelX : -0.005, MaxVelX : 0.005, AniX : true  /* VelZ : -0.1, MinVelZ : -2, MaxVelZ : 2, AniZ : true, MinZ : 1800, MaxZ : 2600 */ }, 
+    AnimacionCamara     : { Rad : 0, RadAvance : 0, MinRadAvance : -0.005, MaxRadAvance : 0.005, RadAvancePositivo : true, Distancia : 1900, MinDistancia : 1600, MaxDistancia : 3100, DistanciaAvance : 0.1, MinDistanciaAvance : -3, MaxDistanciaAvance : 3, DistanciaAvancePositivo : true },     
     
-    
-    Redimensionar       : function() {
-//        this.Camara.
-//        this.Context.setSize(this.Ancho, this.Alto);
-    },
-    
-    AniCamara               : function() {
-        if (Rand() < 0.01) { // un 5% de probabilidades
-            switch (RandInt(2)) {
-                case 0 : this.VarCam.AniX = true;   break;
-                case 1 : this.VarCam.AniX = false;  break;
-/*                case 2 : this.VarCam.AniZ = true;   break;
-                case 3 : this.VarCam.AniZ = false;  break;*/
-            }
+    AvanceCamara        : function() {
+        if (Rand() < 0.01) { // una de cada 100
+            if (Rand() > 0.5)   { this.AnimacionCamara.RadAvancePositivo = !this.AnimacionCamara.RadAvancePositivo;             }
+            else                { this.AnimacionCamara.DistanciaAvancePositivo = !this.AnimacionCamara.DistanciaAvancePositivo; }
         }
-        // Rotación de la camara
-        if (this.VarCam.AniX === true) {
-            if (this.VarCam.VelX < this.VarCam.MaxVelX) { this.VarCam.VelX += 0.0001; }
+        // Avance de la rotación
+        if (this.AnimacionCamara.RadAvancePositivo === true) {
+            if (this.AnimacionCamara.RadAvance < this.AnimacionCamara.MaxRadAvance) { this.AnimacionCamara.RadAvance += 0.0001; }
         }
         else {
-            if (this.VarCam.VelX > this.VarCam.MinVelX) { this.VarCam.VelX -= 0.0001; }            
+            if (this.AnimacionCamara.RadAvance > this.AnimacionCamara.MinRadAvance) { this.AnimacionCamara.RadAvance -= 0.0001; }            
         }
-        // Zoom de la camara
-/*        if (this.VarCam.AniZ === true) {
-            if (this.VarCam.VelZ < this.VarCam.MaxVelZ) { this.VarCam.VelZ += 0.0001; }
+        this.AnimacionCamara.Rad += this.AnimacionCamara.RadAvance;
+        // Zoom
+        if (this.AnimacionCamara.DistanciaAvancePositivo === true) {
+            if (this.AnimacionCamara.DistanciaAvance < this.AnimacionCamara.MaxDistanciaAvance) { this.AnimacionCamara.DistanciaAvance += 0.1; }
         }
         else {
-            if (this.VarCam.VelZ > this.VarCam.MinVelZ) { this.VarCam.VelZ -= 0.0001; }                            
-        }*/
+            if (this.AnimacionCamara.DistanciaAvance > this.AnimacionCamara.MinDistanciaAvance) { this.AnimacionCamara.DistanciaAvance -= 0.1; }            
+        }
+        this.AnimacionCamara.Distancia += this.AnimacionCamara.DistanciaAvance;
+        // Tope del zoom
+        if (this.AnimacionCamara.Distancia > this.AnimacionCamara.MaxDistancia) { this.AnimacionCamara.Distancia = this.AnimacionCamara.MaxDistancia; }
+        if (this.AnimacionCamara.Distancia < this.AnimacionCamara.MinDistancia) { this.AnimacionCamara.Distancia = this.AnimacionCamara.MinDistancia; }
         
-        // Rotación de la camara alrededor del grupo de cubos
-        var x = this.Camara.position.x;
-        var z = this.Camara.position.z; // + this.VarCam.VelZ;
-        // Tope para el zoom
-//        if (z > this.VarCam.MaxZ) { z = this.VarCam.MaxZ; }
-//        if (z < this.VarCam.MinZ) { z = this.VarCam.MinZ; }
-//        console.log (z);
-        this.Camara.position.x = x * Math.cos(this.VarCam.VelX) - z * Math.sin(this.VarCam.VelX);
-        this.Camara.position.z = z * Math.cos(this.VarCam.VelX) + x * Math.sin(this.VarCam.VelX);        
+//        console.log(this.AnimacionCamara.DistanciaAvancePositivo, this.AnimacionCamara.RadAvancePositivo, this.AnimacionCamara.Distancia, this.AnimacionCamara.Rad);
         
+        this.Camara.position.x = this.AnimacionCamara.Distancia * Math.cos(this.AnimacionCamara.Rad);
+        this.Camara.position.z = this.AnimacionCamara.Distancia * Math.sin(this.AnimacionCamara.Rad);        
         this.Camara.lookAt(this.GrupoCubos.position);
     },
     
-    
     Pintar              : function() {
-        this.AniCamara();
+        this.AvanceCamara();
+
         var AniTerminada = true;
 //        this.GrupoCubos.rotation.z += 0.00033;
 //        this.GrupoCubos.rotation.x -= 0.00002;  

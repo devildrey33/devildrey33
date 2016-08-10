@@ -62,6 +62,12 @@
 </div>
 </div>
 <div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/Anillos.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/Anillos.html'>Anillos.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
 <div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/BannerTest.css'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/BannerTest/BannerTest.css'>BannerTest.css</a>

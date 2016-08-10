@@ -7,7 +7,7 @@
 
 Banner_TranstornoLineal = function() {
     // Llamo al constructor del ObjetoBanner
-    ObjetoBanner.call(this, "2d"); // Puede ser 2D o THREE
+    if (ObjetoBanner.call(this, "2d") === false) { return false; }
     // Inicio los valores
     this.Tick           = ( Rand() * 360 ) | 0;
     this.MaxTriangulos  = 10;   
@@ -41,7 +41,7 @@ Banner_TranstornoLineal.prototype = Object.assign( Object.create(ObjetoBanner.pr
         this.Context.globalCompositeOperation = 'lighter';
 
         if (this.Triangulos.length < this.MaxTriangulos && Rand() < 0.6 ) {
-            this.Triangulos.push(new this.Triangulo());
+            this.Triangulos.push(new this.Triangulo(this));
         }
 // step
         
@@ -97,7 +97,8 @@ Banner_TranstornoLineal.prototype = Object.assign( Object.create(ObjetoBanner.pr
     },
         
 
-    Triangulo       : function() {        
+    Triangulo       : function(Padre) {        
+        this.Padre = Padre;
         // Objeto que controla al posición de un triangulo  
         this.Posicion = function(Lado) {
             this.Lado = Lado;
@@ -124,7 +125,7 @@ Banner_TranstornoLineal.prototype = Object.assign( Object.create(ObjetoBanner.pr
             this.Lado          = Rand(100, 50);
             this.TotalLineas   = Rand(5, 2);
             this.Separaciones  = Rand(10, 5);
-            this.hue           = $Banner.Tick;
+            this.hue           = this.Padre.Tick;
             this.jitter        = 0.01 * this.Lado;
 
             var Velocidad      = Rand(2, 0);
@@ -134,14 +135,14 @@ Banner_TranstornoLineal.prototype = Object.assign( Object.create(ObjetoBanner.pr
             var Radio;
 
             if (Rand() < .5) {
-                this.X = Rand() * $Banner.Ancho;
-                this.Y = (Lado) ? -this.Lado : $Banner.Alto + this.Lado;
+                this.X = Rand() * this.Padre.Ancho;
+                this.Y = (Lado) ? -this.Lado : this.Padre.Alto + this.Lado;
 
                 Radio = (Lado) ? Rand() * Math.PI : - Rand() * Math.PI;
             } 
             else {
-                this.X = Rand() < .5 ? -this.Lado : $Banner.Ancho + this.Lado;
-                this.Y = Rand() * $Banner.Alto;
+                this.X = Rand() < .5 ? -this.Lado : this.Padre.Ancho + this.Lado;
+                this.Y = Rand() * this.Padre.Alto;
 
                 Radio = (Lado) ? Rand() * (Math.PI * 2) : -Rand() * (Math.PI * 2);
             }

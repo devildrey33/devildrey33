@@ -2,8 +2,7 @@
 /* ObjetoCanvas crea un Canvas2D o un Canvas utilizando THREE.js */
 /* Además están las funciones Rand(max, min) para decimales y RandInt(max, min) para enteros, todos los parámetros son opcionales */
 
-/* El primer parametro es una nueva instancia a la classe banner que queremos ejecutar 
- * El segundo parámetro es el tipo de contexto, "2d" o "THREE", si no se especifica, por defecto es 2d */
+/* El primer parámetro es el tipo de contexto, "2d" o "THREE", si no se especifica, por defecto es 2d */
 ObjetoCanvas = function(Tipo) {    
 
     this.Canvas = document.getElementById("Cabecera_Canvas");
@@ -24,6 +23,7 @@ ObjetoCanvas = function(Tipo) {
         if (this.Tipo === "2d") {
             this.Context    = this.Canvas.getContext("2d");                                             // Contexto 2D
         } else if(this.Tipo === "THREE") { 
+            // Aunque no es muy correcto... presupongo que los dispositivos con un pixel ratio mayor que uno son dispositivos moviles
             if (this.PixelRatio() > 1) {                                                                // El antialias no va con el samsung galaxy alpha...
                this.Context = new THREE.WebGLRenderer({ canvas : this.Canvas });                        // Contexto THREE.JS
             }
@@ -34,37 +34,40 @@ ObjetoCanvas = function(Tipo) {
         }
     }
     catch ( error ) {
-        alert(error, "Error creando el Canvas");
+        // Uso el marco de la carga para informar del error
+        document.getElementById("Cabecera_Cargando").innerHTML = "Error iniciando WebGL : " + error + "<br />" + 
+                                                                 "Si estas en chrome abre el enlace 'chrome://gpu', y vuelve atrás para re-cargar este ejemplo.";
+        return false;
     }
-//    this.Camara         = null;                                             // Camara para el Three.js
 
     this.Ancho          = 0;                                                // Ancho del canvas
     this.Alto           = 0;                                                // Altura del canvas
     this.RAFID          = 0;                                                // Request Animation Frame ID
     this.FPS_UltimoTick = Date.now() + 1000;                                // Ultimo Tick del sistema + 1000ms
     this.FPS_Contador   = 0;                                                // Contador de frames por segundo    
-    this.PIx2           = Math.PI * 2;                                      // PI + PI
     this.FocoWeb        = true;                                             // Foco de la ventana de la web
     
     
     this.EventoRedimensionar();
-//    if (typeof(this.Iniciar) !== "undefined") { this.Iniciar.apply(this); }
+
     this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this));       
 
     // Exporto la escena del THREE.JS para poder verla en el Three.js.inspector
 //    if (typeof(this.Escena) !== "undefined") { window.scene = this.Escena; }
-    
-    
-    // Mousemove 
+        
     // Evento mouse movimiento
     this.EnlazarEventos();
     
-    // Asigno el foc al canvas, ya que al ser un iframe para tests no suele tener el foco asignado
-    window.focus();
+    // Asigno el foco a la ventana del canvas, ya que al ser un iframe para tests no suele tener el foco asignado
+//    window.focus(); (si hay que midificar el código no va bien...)
+    
+    return true;
 };
 
 ObjetoCanvas.prototype.EnlazarEventos = function() {
     document.getElementById("Cabecera").addEventListener('mousemove', this.EventoMouseMove.bind(this));
+    document.getElementById("Cabecera").addEventListener('mouseenter', this.EventoMouseEnter.bind(this));
+    document.getElementById("Cabecera").addEventListener('mouseleave', this.EventoMouseLeave.bind(this));
     window.addEventListener('resize', this.EventoRedimensionar.bind(this));
     window.addEventListener('scroll', this.EventoScroll.bind(this));
     window.addEventListener('blur', this.EventoFocoPerdido.bind(this));
@@ -114,7 +117,21 @@ ObjetoCanvas.prototype.Actualizar = function() {
 // Función que procesa el evento mousemove
 ObjetoCanvas.prototype.EventoMouseMove = function(event) {    
     if (typeof(this.MouseMove) !== "undefined") {
-        this.MouseMove.apply(this, [event.clientX, event.clientY]);
+        this.MouseMove.apply(this, event);
+    }
+};
+
+// Función que procesa el evento mousemove
+ObjetoCanvas.prototype.EventoMouseEnter = function(event) {
+    if (typeof(this.MouseEnter) !== "undefined") {
+        this.MouseEnter.apply(this, event);
+    }
+};
+
+// Función que procesa el evento mousemove
+ObjetoCanvas.prototype.EventoMouseLeave = function(event) {
+    if (typeof(this.MouseLeave) !== "undefined") {
+        this.MouseLeave.apply(this, event);
     }
 };
 
@@ -124,6 +141,8 @@ ObjetoCanvas.prototype.EventoRedimensionar = function() {
      * La altura del canvas siempre es la misma desde el principio */
     this.Ancho  = document.getElementById("Cabecera").offsetWidth;
     this.Alto   = document.getElementById("Cabecera").offsetHeight;
+    this.Canvas.setAttribute("width", this.Ancho);
+    this.Canvas.setAttribute("height", this.Alto);
     if (this.Tipo === "THREE") { // redimensionar el THREE.JS
         this.Context.setSize(this.Ancho, this.Alto);
         if (this.Camara !== null && typeof(this.Camara) !== 'undefined') { // Si hay una camara creada

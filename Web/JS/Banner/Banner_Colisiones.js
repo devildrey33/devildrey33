@@ -7,7 +7,7 @@
 
 var Banner_Colisiones = function() {
     // Llamo al constructor del ObjetoBanner
-    ObjetoBanner.call(this, "2d");       
+    if (ObjetoBanner.call(this, "2d") === false) { return false; }
 
     // Arrays para cada plano
     this.CirculosSuperior = [];
@@ -137,20 +137,22 @@ Banner_Colisiones.prototype = Object.assign( Object.create(ObjetoBanner.prototyp
         this.VelocidadY = Velocidad * Math.sin(this.Angulo);
 
         this.Actualizar = function() {
-            if (this.X - this.Radio < 0 || this.X + this.Radio > $Banner.Ancho)     {  this.VelocidadX *= -1;  } 
-            else if (this.Y - this.Radio < 0 || this.Y + this.Radio > $Banner.Alto) {  this.VelocidadY *= -1;  }
-            if (!$Banner.Colision) {
-                var VA = Math.sqrt(this.VelocidadX * this.VelocidadX + this.VelocidadY * this.VelocidadY);  // Velocidad actual
-                var AA = Math.atan2(this.VelocidadY, this.VelocidadX);                                      // Ángulo actual
-                // Easing
-                if ($Banner.Velocidad < VA) {
-                    this.VelocidadX -= Math.cos(AA) * (VA - $Banner.Velocidad) * .15;
-                    this.VelocidadY -= Math.sin(AA) * (VA - $Banner.Velocidad) * .15;
+            if ($Banner !== null) {
+                if (this.X - this.Radio < 0 || this.X + this.Radio > $Banner.Ancho)     {  this.VelocidadX *= -1;  } 
+                else if (this.Y - this.Radio < 0 || this.Y + this.Radio > $Banner.Alto) {  this.VelocidadY *= -1;  }
+                if (!$Banner.Colision) {
+                    var VA = Math.sqrt(this.VelocidadX * this.VelocidadX + this.VelocidadY * this.VelocidadY);  // Velocidad actual
+                    var AA = Math.atan2(this.VelocidadY, this.VelocidadX);                                      // Ángulo actual
+                    // Easing
+                    if ($Banner.Velocidad < VA) {
+                        this.VelocidadX -= Math.cos(AA) * (VA - $Banner.Velocidad) * .15;
+                        this.VelocidadY -= Math.sin(AA) * (VA - $Banner.Velocidad) * .15;
+                    }
                 }
-            }
 
-            this.X += this.VelocidadX;
-            this.Y += this.VelocidadY;        
+                this.X += this.VelocidadX;
+                this.Y += this.VelocidadY;        
+            }
         };
     }
 });    

@@ -160,7 +160,8 @@ $Base = new function() {
                                 Banner_Espacio2D,
                                 Banner_MatrixLluviaHexadecimal,
                                 Banner_AdiestramientoCubos3D,
-                                Banner_WormHole                  ];                
+                                Banner_WormHole,
+                                Banner_Anillos                  ];                
         var fPos = 0;
         // Si no se ha especificado ninguna posición generamos una aleatória
         if (typeof (Pos === "undefined")) { fPos = RandInt(Banner_Lista.length); }
@@ -198,7 +199,7 @@ $Base = new function() {
     
     /* Función que muestra una ventana para el twiter */
     this.BotonTwitter = function() {
-        Texto = $(".Cabecera > .Cabecera_Datos > h1").html();
+        Texto = $("#Cabecera > .Cabecera_Datos > h1").html();
 //        if (typeof $(".Cabecera > .Cabecera_Datos > h1") === 'undefined') { Texto = $(".Cabecera > .Cabecera_Datos > h1").html();                     }
 //        else                                                              { Texto = "" + window.location.href.replace(/^.*[\\\/]/, ''); }
         console.log("Base.BotonTwitter", Texto, window.location.href);
@@ -207,7 +208,7 @@ $Base = new function() {
     
     /* Función que muestra una ventana para el facebook */
     this.BotonFacebook = function() {        
-        Texto = $(".Cabecera > .Cabecera_Datos > h1").html();
+        Texto = $("#Cabecera > .Cabecera_Datos > h1").html();
         //if (typeof $(".Cabecera > .Cabecera_Datos > h1") === 'undefined') { Texto = $(".Cabecera > .Cabecera_Datos > h1").html();                     }
         //else                                                              { Texto = "Experimento : " + window.location.href.replace(/^.*[\\\/]/, ''); }
         console.log("Base.BotonFacebook", Texto, window.location.href);
@@ -216,7 +217,7 @@ $Base = new function() {
 
     /* Función que muestra una ventana para el google+ */
     this.BotonGooglePlus = function() {        
-        Texto = $(".Cabecera > .Cabecera_Datos > h1").html();
+        Texto = $("#Cabecera > .Cabecera_Datos > h1").html();
         //if (typeof $(".Cabecera > .Cabecera_Datos > h1") === 'undefined') { Texto = $(".Cabecera > .Cabecera_Datos > h1").html();                     }
         //else                                                              { Texto = "Experimento : " + window.location.href.replace(/^.*[\\\/]/, ''); }
         console.log("Base.BotonGooglePlus", Texto, window.location.href);
@@ -225,7 +226,7 @@ $Base = new function() {
 
     //https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fdevildrey33.es%2Fcapitulo.php%3Fserie%3D2874%26temp%3D1%26cap%3D01%26sthash.R8lb5Hgr.mjjo&title=Ver%2037%20dias%201x01%20online&summary=Todas%20tus%20series%20para%20ver%20online%20o%20en%20descarga%20directa%20&source=    
     this.BotonLinkEdin = function() {        
-        Texto = $(".Cabecera > .Cabecera_Datos > h1").html();
+        Texto = $("#Cabecera > .Cabecera_Datos > h1").html();
         console.log("Base.BotonLinkEdin", Texto, window.location.href);
 //        window.open("https://www.linkedin.com/shareArticle?mini=true&url=" + window.location.href + "&t=" + Texto, "Google Plus", "toolbar=no,width=550,height=355");
     };
@@ -428,12 +429,12 @@ $Base = new function() {
     
     
     /* Función que identifica una entrada según su URL */
-    this.IdentificarEntrada = function(URL, URLReal) { 
+    this.IdentificarEntrada = function(iURL, URLReal) { 
         // Por defecto es el indice... de esta forma se detecta si está en un servidor local y dentro de un directorio, al estilo http://localhost/devildrey33.es/
-        var Ret = { "Titulo" : "devildrey33", "URL" : URL, "URLReal" : URLReal, "Imagen" : "", "TipoPagina" : "Desconocido", "Pos" : -2, "Idioma" : "es" };    
+        var Ret = { "Titulo" : "devildrey33", "URL" : iURL, "URLReal" : URLReal, "Imagen" : "", "TipoPagina" : "Desconocido", "Pos" : -2, "Idioma" : "es" };    
 
         /* Indice */
-        if (URLReal.indexOf("Categorias/") > -1 || URL === "/" + this.RaizRelativa || URL === this.Raiz) {
+        if (URLReal.indexOf("Categorias/") > -1 || iURL === "/" + this.RaizRelativa || iURL === this.Raiz) {
             Ret["TipoPagina"] = "Indice";
             $("body").attr({ "Tipo" : Ret["TipoPagina"] });
             console.log("Base.IdentificarEntrada : " + Ret["TipoPagina"], Ret);
@@ -441,15 +442,15 @@ $Base = new function() {
         }
 
         nURL = "";
-        cURL = URL.toLowerCase();
+        cURL = iURL.toLowerCase();
         /* Es una entrada del blog o Documentación */
         if (cURL.indexOf("blog/") > -1) {
             Ret["TipoPagina"] = "Blog";
-            nURL = URL.substr(6);
+            nURL = iURL.substr(6);
         }
         if (cURL.indexOf("doc/css") > -1) {
             Ret["TipoPagina"] = "DocCSS";
-            nURL = URL.substr(8);
+            nURL = iURL.substr(8);
         }
         if (cURL.indexOf("lab/") > -1) {
             Ret["TipoPagina"] = "Lab";
@@ -593,7 +594,7 @@ $Base = new function() {
     
     /* Muestra la barra de navegación con una animación */
     this.MostrarBarraNavegacion = function() { 
-        this.Entrada["Pos"] = this.BuscarEntradaActual(this.Entrada["URL"], $(".Cabecera > .Cabecera_Datos > h1").html());
+        this.Entrada["Pos"] = this.BuscarEntradaActual(this.Entrada["URL"], $("#Cabecera > .Cabecera_Datos > h1").html());
 
         console.log("Base.MostrarBarraNavegacion", this.Entrada);
 
@@ -738,10 +739,10 @@ $Base = new function() {
     
     
     /* Función que carga una URL interna dentro del #MarcoNavegacion */
-    this.CargarURL = function(URL) {    
+    this.CargarURL = function(cURL) {    
         /* Comprobación para determinar si hay un archivo modificado en el lab y mostrar un mensaje de advertencia */
         if ($Lab.Modificado() === true) { 
-            setTimeout(function(nURL) { $Base.CargarURL(nURL); }, 200, URL);
+            setTimeout(function(nURL) { $Base.CargarURL(nURL); }, 200, cURL);
             return;
         }
         
@@ -750,25 +751,25 @@ $Base = new function() {
         this.LogoCargando("TRUE");
         
         // Si la url no tiene ninguna barra
-        if (URL.indexOf("/") === -1) {
+        if (cURL.indexOf("/") === -1) {
             Path = window.location.href.split('/');
             Path.pop();
             Path = Path.join('/');
-            URL = Path + "/" + URL;
-            nURL = Path + "/" + URL;
+            cURL = Path + "/" + cURL;
+            nURL = Path + "/" + cURL;
         }        
         
-        if (URL === "/" + this.Raiz)    nURL = "/" + this.RaizRelativa + "index.php";
-        else                            nURL = URL;
+        if (cURL === "/" + this.Raiz)   nURL = "/" + this.RaizRelativa + "index.php";
+        else                            nURL = cURL;
 
         // En servidores locales no dedicados hay que redirigir las urls absolutas al directorio que utiliza la web.
-        if (URL.charAt(0) === '/') { // URL absoluta que empieza por '/'
-            nURL = "/" + this.RaizRelativa + URL.substr(1);
-            URL = nURL;
+        if (cURL.charAt(0) === '/') { // URL absoluta que empieza por '/'
+            nURL = "/" + this.RaizRelativa + cURL.substr(1);
+            cURL = nURL;
         }
         
         console.log("Base.CargarURL " + nURL);
-        this.URL = URL;
+        this.cURL = cURL;
         this.nURL = nURL;
         this.PeticionAjax = $.post(nURL, { "Regenerar" : "todo", "Categoria" : "Todo", "SinPlantilla" : "true" }).done(function(data) {
             Datos = JSON.parse(data);
@@ -778,8 +779,8 @@ $Base = new function() {
             else {
                 $Banner = null;
                 $("#MarcoNavegacion").html(Datos["HTML"]);
-                $Base.Entrada = $Base.IdentificarEntrada($Base.URL, $Base.nURL);    
-                window.history.pushState($Base.Entrada, document.title, $Base.URL);
+                $Base.Entrada = $Base.IdentificarEntrada($Base.cURL, $Base.nURL);    
+                window.history.pushState($Base.Entrada, document.title, $Base.cURL);
                 /* Pongo el scroll arriba DESPUES de identificar la URL y haber guardado el scroll para el historial */
                 $(window).scrollTop(0);
                 document.title = $Base.Entrada["Titulo"];
@@ -970,25 +971,25 @@ $Base = new function() {
         this.LogoCargando("TRUE");   
         console.log("Base.CALLBACK_Histroial", event.state);
         if (event.state)  {
-            URL = event.state["URL"];
+            cURL = event.state["URL"];
         }
         else  {
             // Esto no deberia suceder NUNCA
-            URL = window.location.href;
+            cURL = window.location.href;
         }       
         
-        URL.replace("..", "");
+        cURL.replace("..", "");
         
-        if (URL.indexOf("/") === -1) {
+        if (cURL.indexOf("/") === -1) {
             Path = window.location.href.split('/');
             Path.pop();
             Path = Path.join('/');
-            URL = Path + "/" + URL;
-            nURL = Path + "/" + URL;
+            cURL = Path + "/" + cURL;
+            nURL = Path + "/" + cURL;
         }
 
-        if (URL === "/") nURL = "/index.php";
-        else             nURL = URL;
+        if (cURL === "/") nURL = "/index.php";
+        else              nURL = cURL;
         this.PeticionAjax = $.post(nURL, { "Regenerar" : "todo", "Categoria" : "Todo", "SinPlantilla" : "true" }).done(function(data) {
             Datos = JSON.parse(data);
             /* Error 404 */
@@ -998,7 +999,7 @@ $Base = new function() {
             else { /* Carga del historial normal */
                 $Banner = null;
                 $("#MarcoNavegacion").html(Datos["HTML"]);
-                $Base.Entrada = $Base.IdentificarEntrada(URL, nURL);    
+                $Base.Entrada = $Base.IdentificarEntrada(cURL, nURL);    
                 $Base.RedireccionarLinks();
                 document.title = $Base.Entrada["Titulo"];
             }
@@ -1019,7 +1020,7 @@ $Base = new function() {
      *  Con esta función solucionamos el desperdicio de ciclos de la animación si no hay que mostrarla.
      * */
 /*    this.AnimarCabeceraBlog = function() {
-        Header = $(".Cabecera");
+        Header = $("#Cabecera");
         if (Header.length > 0) {
             if ($(window).scrollTop() > 190 && Header.attr("animar")) {
                 console.log("Base.AnimarCabeceraBlog [animar=false]", Header);

@@ -10,7 +10,7 @@
 var Banner_WormHole = function() {
     
     // Llamo al constructor del ObjetoBanner
-    ObjetoBanner.call(this, "THREE"); // Puede ser 2D o THREE
+    if (ObjetoBanner.call(this, "THREE") === false) { return false; }
     
     this.Escena = new THREE.Scene();
    
@@ -24,6 +24,8 @@ var Banner_WormHole = function() {
     
     this.TexturasCargadas = 0;
     this.TotalTexturas = 2;
+    this.Tunel = [];
+    this.Textura = [];
     
     
     this.TexturaCargada = function(Num, Textura) {
@@ -91,11 +93,10 @@ Banner_WormHole.prototype = Object.assign( Object.create(ObjetoBanner.prototype)
             // Rotación del tunel
             this.Tunel[0].rotation.y += 0.02;
             // Textura infinita avanzando y rotando
-//            this.Textura.offset.z += 0.01;
             this.Textura[0].offset.y -= 0.014;
         }
 
-        if (typeof(this.Tunel2) !== 'undefined') {
+        if (typeof(this.Tunel[1]) !== 'undefined') {
             // Color del tunel
             this.H2 += 0.001;
             if (this.H2 > 1) { this.H2 = 0; }
@@ -104,7 +105,6 @@ Banner_WormHole.prototype = Object.assign( Object.create(ObjetoBanner.prototype)
             // Rotación del tunel
             this.Tunel[1].rotation.y -= 0.017;
             // Textura infinita avanzando y rotando
-//            this.Textura2.offset.z += 0.005;
             this.Textura[1].offset.y -= 0.019;
         }        
         

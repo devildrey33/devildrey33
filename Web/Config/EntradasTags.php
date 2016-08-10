@@ -15,7 +15,8 @@
         "Linux", 
         "Google app scripts", 
         "Google api",
-        "Three js" 
+        "Three js",
+        "Canvas 2D"
     );
 
 ?>

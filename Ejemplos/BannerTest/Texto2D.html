@@ -1,10 +1,10 @@
 <!-- 
-    Plantilla para test de canvas creado por Josep Antoni Bover Comas el 05-07-2016
+    Pequeño test para crear texto en 2d dentro de una escena del THREE.js creado por Josep Antoni Bover Comas el 08-08-2016
 
         Vista por defecto en el Laboratorio de pruebas  
 		devildrey33_Lab->Opciones->Vista = Filas;
 
-        Ultima modificación el 03/08/2016
+        Ultima modificación el 08/08/2016
 -->
 <!DOCTYPE html>
 <html>
@@ -24,7 +24,7 @@
 var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al perder el foco del teclado
 
 // Constructor SIN TIPO, el tipo se especifica según la animación
-var NUEVOCANVASTHREE = function() {
+var Texto2D = function() {
     // Llamo al constructor del ObjetoBanner
     if (ObjetoCanvas.call(this, "THREE") === false) { return false; }
     // Se ha creado el canvas, inicio los valores de la animación ... 
@@ -38,19 +38,37 @@ var NUEVOCANVASTHREE = function() {
     this.Parrilla.position.y = -4;
     this.Escena.add(this.Parrilla);
     
-    this.Cubo = new THREE.Mesh(new THREE.BoxGeometry( 4, 4, 4 ), new THREE.MeshBasicMaterial( { color: "rgb(150,0,0)", wireframe : true } ));
-    this.Escena.add(this.Cubo);
+    // Valores para la rotación de la cámara
     this.Rotacion_Grados    = 0;
     this.Rotacion_Avance    = 0.005;
     this.Rotacion_Distancia = 20;
     this.Camara.position.set(0, 0, this.Rotacion_Distancia);
     
+    // Texto 2d
+    this.CanvasTexto = document.createElement("canvas");
+    this.CanvasTexto.setAttribute("width", 512);
+    this.CanvasTexto.setAttribute("height", 64);
+    this.CanvasTextoContext = this.CanvasTexto.getContext("2d");
+    this.CanvasTextoContext.font = "normal 50px monospace";
+    this.CanvasTextoContext.fillStyle = "rgba(255,0,0,0.95)";
+    this.CanvasTextoContext.fillText('Texto de prueba', 0, 40);
+    
+    this.TexturaTexto = new THREE.Texture(this.CanvasTexto);
+    this.TexturaTexto.needsUpdate = true;
+
+    var Mat = new THREE.MeshBasicMaterial( {map: this.TexturaTexto, side:THREE.DoubleSide } );
+//    Mat.transparent = true;
+    
+    this.PlanoTexto = new THREE.Mesh(new THREE.PlaneGeometry(80, 10), Mat);
+    this.PlanoTexto.scale.set(0.2, 0.2, 0.2);
+    this.Escena.add( this.PlanoTexto );    
+    
     // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
     this.Cargando(false);
 };
 
-NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
-    constructor     : NUEVOCANVASTHREE, 
+Texto2D.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor     : Texto2D, 
     // Función que se llama al redimensionar el documento
     Redimensionar   : function() {    },
     // Función que se llama al hacer scroll en el documento    
@@ -68,7 +86,7 @@ NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
 });
 
 var Canvas = null;
-window.addEventListener('load', function() { Canvas = new NUEVOCANVASTHREE; });
+window.addEventListener('load', function() { Canvas = new Texto2D; });
 </script>
     </head>
     <body>

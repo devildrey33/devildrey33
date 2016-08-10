@@ -7,7 +7,7 @@
 
 var Banner_Espacio2D = function() {
     // Llamo al constructor del ObjetoBanner
-    ObjetoBanner.call(this, "2d"); // Puede ser 2D o THREE
+    if (ObjetoBanner.call(this, "2d") === false) { return false; }
 
     // Arrays para cada plano
     this.Estrellas      = [];

@@ -592,7 +592,7 @@ class devildrey33 {
         $this->_NombreDocumento = $NombreDocumento;
         $this->BD = new devildrey33_BD();
         echo "<article class='Blog' pagina='$NombreDocumento'>".Intro();        
-            echo    "<header class='Cabecera' animar='true'>".Intro().
+            echo    "<header id='Cabecera' animar='true'>".Intro().
                         "<div id='Cabecera_Stats'>0 FPS</div>".Intro().
 //                        "<canvas id='Cabecera_Canvas'></canvas>".Intro().
                         "<div class='Cabecera_Datos'>".Intro();

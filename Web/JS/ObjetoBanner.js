@@ -39,7 +39,7 @@ ObjetoBanner = function(Tipo) {
     
     // Hay que eliminar la etiqueta canvas por que al crear un 2d context encima de un webgl context y viceversa produce error.
     $("#Cabecera_Canvas").remove();
-    $(".Cabecera").append("<canvas id='Cabecera_Canvas'></canvas>");
+    $("#Cabecera").append("<canvas id='Cabecera_Canvas'></canvas>");
     this.Canvas = document.getElementById("Cabecera_Canvas");
 
     // Asigno el estado cargando, que muestra una ventana que avisa al usuario.
@@ -66,7 +66,9 @@ ObjetoBanner = function(Tipo) {
         }
     }
     catch ( error ) {
-        $Base.MostrarMensaje(error, "Error creando el Banner");
+        document.getElementById("Cabecera_Cargando").innerHTML = "Error iniciando WebGL : " + error + "<br />" + 
+                                                                 "Si estas en chrome abre el enlace 'chrome://gpu', y vuelve atrás para re-cargar este ejemplo.";
+        return false;
     }
 //    this.Camara         = null;                                             // Camara para el Three.js
 
@@ -88,19 +90,34 @@ ObjetoBanner = function(Tipo) {
     $("#Cabecera_AutorAni > .BotonVentana:nth-child(3)").off("click").on("click", function() { $Base.Banner(-2); });
     this.EventoRedimensionar();
 //    if (typeof(this.Iniciar) !== "undefined") { this.Iniciar.apply(this); }
-    this.RAFID = window.requestAnimationFrame(this.Actualizar);       
+    this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this));       
 
     // Exporto la escena del THREE.JS para poder verla en el Three.js.inspector
 //    if (typeof(this.Escena) !== "undefined") { window.scene = this.Escena; }
     
-    
-    // Mousemove 
+    document.getElementById("Cabecera").addEventListener('mousemove', this.EventoMouseMove.bind(this));
+    document.getElementById("Cabecera").addEventListener('mouseenter', this.EventoMouseEnter.bind(this));
+    document.getElementById("Cabecera").addEventListener('mouseleave', this.EventoMouseLeave.bind(this));
+    // Mouse
     // Evento mouse movimiento
-    $(".Cabecera").on("mousemove", function(event) { 
+    $("#Cabecera").on("mousemove", function(event) { 
         if ($Banner !== null) {
-            $Banner.EventoMouseMove(event.clientX, event.clientY);
+            $Banner.EventoMouseMove(event);
         }
     });    
+    // Evento mouse movimiento
+    $("#Cabecera").on("mouseenter", function(event) { 
+        if ($Banner !== null) {
+            $Banner.EventoMouseEnter(event);
+        }
+    });    
+    // Evento mouse movimiento
+    $("#Cabecera").on("mouseleave", function(event) { 
+        if ($Banner !== null) {
+            $Banner.EventoMouseLeave(event);
+        }
+    });    
+    return true;
 };
 
 // Función que devuelve el pixel ratio del dispositivo actual
@@ -119,22 +136,34 @@ ObjetoBanner.prototype.PixelRatio = function() {
 
 // Función que determina el estado de carga (cargando/completo) true/false
 ObjetoBanner.prototype.Cargando = function(carga) {
-    $(".Cabecera").attr({ "cargando" : carga });
+    $("#Cabecera").attr({ "cargando" : carga });
 };
 
 // Función interna utilizada por requestAnimationFrame para actualizar y pintar la animación
 ObjetoBanner.prototype.Actualizar = function() {
-    if ($Banner !== null) {
-        $Banner.FPS(); 
-        $Banner.RAFID = window.requestAnimationFrame($Banner.Actualizar);
-        $Banner.Pintar.apply($Banner); 
+    this.FPS(); 
+    this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this));
+    this.Pintar.apply(this); 
+};
+
+// Función que procesa el evento mousemove
+ObjetoBanner.prototype.EventoMouseMove = function(event) {
+    if (typeof(this.MouseMove) !== "undefined") {
+        this.MouseMove.apply(this, event);
     }
 };
 
 // Función que procesa el evento mousemove
-ObjetoBanner.prototype.EventoMouseMove = function(X, Y) {
-    if (typeof(this.MouseMove) !== "undefined") {
-        this.MouseMove.apply(this, [X, Y]);
+ObjetoBanner.prototype.EventoMouseEnter = function(event) {
+    if (typeof(this.MouseEnter) !== "undefined") {
+        this.MouseEnter.apply(this, event);
+    }
+};
+
+// Función que procesa el evento mousemove
+ObjetoBanner.prototype.EventoMouseLeave = function(event) {
+    if (typeof(this.MouseLeave) !== "undefined") {
+        this.MouseLeave.apply(this, event);
     }
 };
 
@@ -166,7 +195,7 @@ ObjetoBanner.prototype.EventoRedimensionar = function() {
 // - En modo depuración nunca se hace la pausa (esto es para poder depurar el Three.js en el Three.js.inspector)
 ObjetoBanner.prototype.Pausa = function() {
     if (this.RAFID !== 0 && Banner_Depurar === false) {
-        $(".Cabecera").attr({ "animar" : "false" });
+        $("#Cabecera").attr({ "animar" : "false" });
         console.log("Banner.Pausa");
         window.cancelAnimationFrame(this.RAFID); 
         this.RAFID = 0;
@@ -176,15 +205,15 @@ ObjetoBanner.prototype.Pausa = function() {
 // Función para reanudar la animación desde el ultimo punto
 ObjetoBanner.prototype.Reanudar = function() {
     if (this.RAFID === 0 && this.FocoWeb === true) {
-        $(".Cabecera").attr({ "animar" : "true" }); 
-        this.RAFID = window.requestAnimationFrame(this.Actualizar); 
+        $("#Cabecera").attr({ "animar" : "true" }); 
+        this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this)); 
         console.log("Banner.Reanudar RAFID = " + this.RAFID);
     }
 };
 
 // Función que controla el scroll para determinar si la animación sigue a la vista o no y de esta forma detenerla / reanudarla
 ObjetoBanner.prototype.EventoScroll = function() {
-    var Header = $(".Cabecera");
+    var Header = $("#Cabecera");
     if (Header.length > 0) { // Hay páginas que no tienen la cabecera
         var PS = $(window).scrollTop();
         var Altura = Header.get(0).offsetHeight;

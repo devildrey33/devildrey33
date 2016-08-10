@@ -1,57 +1,6 @@
-- NETEJAR TODO
-
 Millores de la web :
- V  - Moure les votacións de les webs al menu lateral dret.
- V      - Trobar / fer icona per les votacions. (i es un svg!)
- V      - Resaltar el buto al arribar al final del document (afegides animacións independents per ocultar cada buto del menu lateral dret)
- V  - Solucionar obtenció de dades d'arxius del lab quan es mostren a l'index (visites, votacions, comentaris)
- V  - Implementar o eliminar buto linkedin de les reds socials (a series danko tinc un exemple pero es raro....) De moment queda ocultat...
- V  - Mirar d'optimitzar el temps de carrega de l'index principal (lo millor será mostrar els 10 primers, i fer un scroll infinit amb ajax...)
- V  - Eliminar ul i li del combo de les categories de l'index, ja que si li poso atributs, no valida correctament en html5. (amb divs si que valida)
- V  - Resaltar el H2 amb una animació del color al utilitzar el menú de la cadena. Ames el sistema mou SEMPRE el scroll, i nomes l'ha de moure si no es veu per pantalla.
- V  - Modificar aspecte de .Tabla segons el esboç de l'escriptori "concepte devildrey33.es (.tabla).png", "concepte devildrey33.es (.tabla) II.png"
- V  - Modificar l'aspecte dels marcs de PintarCodigo amb la mateixa aparença que el .Tabla pero amb la bora esquerra de color verd (el mateix verd que l'etiqueta linea) de forma que el color verd quedi associat a codis d'exemple visualment.
- V  - El lab refresca maça rapid el codi, s'ha de posar un temporitzador de mig segon o algo aixi desde l'ultim keyup... (500ms desde l'ultim onChange)
- V  - Retocar inputs del comentari i afegir en el :hover la sombra que poso en el :active.
- V  - Tooltips multi idioma pels butons de les barres laterals (haure de crear un tipus per la dreta, i unaltre per l'esquerra)
- V  - S'ha d'eliminar els ul / li del explorador del lab, ja que no em valida en HTML5
- X      - Ara no valida cap etiqueta amb atributs no-estandar (mostrar, tooltips, paths, etc...), i aixo si que no ho penso tocar...
- V  - El login utilitza la funció Admin.Iniciar 500ms despres de carregar les eines d'administració. S'ha de fer en ajax i mirar quan torna el request per utilitzar Admin.Iniciar
- V      - Afegit parametre a Base.CargarJS per executar una funció al carregar el script. (actualitzat al Faq)
- V  - Les bores de tots els marcs en el hover han de ser en gris (excepte els nota/postit que seran taronja).
- V  - Neteja del CSS dels butons dels menus (renombrat .BarraPrincipal_Boton a .BarraPrincipal_Boton_Label, i eliminats estils del label. El que porta els estils del buto es .BarraPrincipal_BotonMenu
- V  - Retocats butons dels submenus del menu principal (menu esquerra), ara es mostren en un flex box.
- V  - El codi estatic i el codi del lab no tenen la mateixa configuracio de color (NO POT SER)
- V  - Afegides noves URL a la llista de bans, que ultimament veig molta cosa rara de gent que proba aviam si tinc word-press en el log.
- V  - No van alguns comentaris en la documentació... (El problema ve de la funció Base.IdentificarEntrada, que no reconeix la URL si no te les mateixes majuscules i minuscules)        
- V  - Pasar a svg tots els icones dels menús laterals, excepte el burguer i la creu de tancar. (em falten els 4 de la vista del lab, que s'han de refer...)
- V      - Afegir efectes 3d en el hover dels svgs
- V  - La valoració del document (nota) en articles que tenen comentaris, no surt fins que no has vist varis comentaris, s'hauria de fer com a la del 2014, quan arribi a l'altura del h2 "Comentarios"
- V  - Retocar animació de la nota, per que resalti mes (animació amb una rotació del eix X del svg cada 10 segons +o-)
- V  - Retocar l'animació de carrega de sota a la dreta i afegirli una rotacio de la X a cada cercle. Ara com a minim si es queda trabat dona pilotaço xd
- V  - Crear enllaços del tipo <linea> amb etiquetes <a>, i ja de pas treure el verd, i posar unaltre color mes semblant als enllaços normals.
- V  - Retocar maquetació i css dels butons dels menus, comença a haber un bon barullo ja que inicialment eren de texte, despres els vaig adaptar per d'imatges, i ara son svg's.
- V      - Renombrar clases de tota la maquetació dels menus de forma que quedi mes clar i simplificat.
- V      - Afegir efecte d'escalat del svg al marcar el buto (apart de la rotació)
- V      - Retocat icona de les reds socials que no estava centrat. 
- V  - Fer tooltips pel menú lateral dret. (també he fet tooltips per les reds socials que no en tenien...)
- V  - Hi ha algo raro amb els butons de les reds socials, el marc ja es mes gran del compte, i lo xungo es que en localhost es veuen centrats, i a devildrey33.es es veuen alineats a la esquerra... :O (HE PASAT TOTS ELS MARCS A FLEX)
- V  - Els butons del minilab no tenen svg... (solucionat i ara tambè tenen tooltips)
- V  - Solucionat bug que no mostraba correctament el nùmero de comentaris de cada entrada.
- V  - Nous efectes hover per els butons estandar (i mirar d'implementar en els butons svg tambè)
- V      - mirar que es pot fer amb el buto dels comentaris... te el before ocupat per texte...
- V      - Mirar butons de les Ventana(Error/Mensaje)
- V  - Refer #BarraNavegacion_MarcoNextPrev amb display flex, i butons svg animats.
- V      - S'ha de fer algo per els butons desactivats. (falta modificar el color del svg.. o mostrar unaltre...)
-        - Afegir forma de filtrar per categorias (Todo, CSS, PHP, etc...)
- V  - SOLUCIONAT Fallo greu a l'hora d'enviar comentaris (els noms de les taules no poden superar els 64 caracters, i en algunes entrades pot pasar)
  V  - Al editar comentaris avegades es creen etiquetes amb el atribut contenteditable="true" (SOLUCIONAT)
-        - Ara avegades desapareixen lineas al editar, pero al recarregar es veu bè :O
- V  - Tots els warnings i errors de PHP es guarden en un log, i aquest es mostra en una finestra chula dintre de la web.
- V      - Mirar totes les dades que paso per ajax i adaptar els JSONS amb el texte d'error php.
- V          - ObjetoBase.js          - ObjetoAdmin.js          - ObjetoComentarios.js          - ObjetoLab.js          - ObjetoIndice.js
- V      - Casi que s'ha de mirar que totes les peticions ajax treballin amb json.... i aixi poder retornar els errors php (excepte carregar JS i CSS tot es fa amb JSON)
- V      - M'envia un correu quan pasa una advertencia o un error.
+        - Ara avegades desapareixen lineas al editar, pero al recarregar es veu bè :O ...
  V  - El buscador del menú principal (sense google)... aviam si al 2016 el faig.. xd
  V      - Generar un array amb les paraules de cada document (de moment Blog y Doc)
  V          - Parsejar arxius per eliminar codi php i etiquetes html.
@@ -60,41 +9,20 @@ Millores de la web :
  V      - Retocar CSS
  V      - Probar de llegir els arxius directament amb include : $foo = include 'return.php';
             http://php.net/manual/es/function.include.php
-        - S'ha d'ordenar el resultat ni que sigui per antiguetat, i fins i tot mirar de donar prioritat al blog abans que al Doc/CSS i al Lab
+        - S'ha d'ordenar el resultat ni que sigui per la data, i fins i tot mirar de donar prioritat al blog abans que al Doc/CSS i al Lab
  V      - Afegir els exemples del lab a la BD de paraules... (lo que repetira el solitario...)
             - OJU perque llavors poden haber exemples que ja surten a l'index del blog ( fer el mateix sistema pel Doc/CSS )
- V  - Refer devildrey33_cmd : ara es un objecte i es pot utilitzar desde altres documents (mantenimiento.php)
- V  - Pasar la BD del CSS_BD a un arxiu extern i ben tabulat
- V      - Creada funció Base::var_export que exporta un array tabulat com a mi m'agrada.
- V  - Retocar el paste dels comentaris, ara es pot pastejar html, i es parseja internament per eliminar etiquetes script i buttons. Tambè retoca enllaços a href i els hi posa el target='_blank'.
- V      - Els controls dels comentaris ara ja no son buttons, son divs, i aixi no bosen el outline pel focus.
- V  - Aprofitant el sistema de paths nou, fer funcionar la web en localhost de forma bàsica
- V      - Creat arxiu "/AsignarRaiz.php" per re-escriure el arixu ".htaccess" de tal forma que les re-direccions dels directoris virtuals funcionin bè.
- V  - El sistema de misatges de javascript es mono-missatge, s'ha de fer que es puguin mostrar varis missatges del mateix tipus a l'hora.
- V  - Desloguejar el javascript si demana una accio de admin i ha expirat la sesió.
- V  - Afegir al la funció devildrey33::Blog el parametre $AlinearImagenDerecha i encapsular la imatge d'introducció dels articles dintre de la mateixa funció.
- V      - Obviament requereix retocar TOTS els arixus del blog, i puc aprofitar per buscar imatges i posarles amb Base::URL_Graficos().
- V          - les imatges ara van amb path relatiu (desde el blog es '../Web/Graficos/imatge.img')
  V  - Modificada la visualització d'errors en javascript de forma que ara es mes fácil accedir a la línea afectada desde el log.
-    - Estudiar la posibilitat de moure els comentaris al menu lateral dret (pel lab mes que res)
-        - Un exemple clar seria la web de elmundo
+    - Estudiar la posibilitat de moure els comentaris al menu lateral dret (per poder utilitzar comentaris al lab...)
+        - Un exemple clar sería la web de elmundo
+        - Estudiar tambè una forma alternativa de comentaris al lab, sense modificar la estructura dels comentaris del blog.
  V  - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
- V      - De moment hi ha 5 baners creats, i una clase base per tots els futurs baners.
  V      - Finestra per canviar de banner implementada
-            - Afegir opcions especifiques per cada banner,
- V      - Mostrar fps (de moment es veuen sempre al fer un hover sobre el banner)
- V      - Fer el banner compatible amb Three.js (implementat resize, i a part una etiqueta canvas que te un contexte 2d asociat dona error al crear un contexte 3d, i a la inversa [Solució borrar i crear la etiqueta <canvas> al crear el banner])
- V      - Exemple en Three.js 'Adiestramiento de Cubos'.
-            - Mirar d'afegir moviment a la camara a traves del mouse.
- V      - Exemple en Three.js 'WormHole'
-            - Retocar el moviment del mouse per que resulti mes suau.
- V      - Afegit event mousemove.
- V      - Afegit estat de carrega (per textures).
- V      - La veritat es que em repateja bastant els pebrots la forma que utilitzo per simular un objecte heredat rotllo c++, de fet la forma actual l'he denominat POEO 'Programació Orientada a Engullir Objectes' xd perque de fet, es el que faig [ObjetoBanner.js lineas de la 38 a 41 conformen l'engullibucle], i tot i que no queda molt net funciona bastant bé a l'hora de fer funcions "virtuals", però ara està de moda el model del prototype, i crec que podria ser mes adecuat, si no fos per que no soc capaç de fer algo similar a les funcións virtuals en c++)
- V          - En definitiva, la POEO es una guarrada, que em permet fer d'alguna forma aproximada el que he fet tota la vida amb objectes c++, però aquest tipus de coses m'agrada fer-ho lo mes impecable posible... i lo de engullir no queda molt cool, ja m'entenc.
- V      - Testejar /Doc/CSS/ en el server test.devildrey33.es peta.... (no he vist res raro)
- V  - Retocada la finestra d'administració, ara te una estructura mes lògica (a base de <table>) i he retocat una mica l'estil dels marcs.
-    - Fer el error 404 chulo amb three.js
+            - Afegir opcions especifiques per cada banner amb un sistema chulo dintre de ObjetoBanner (em podria inspirar en algo tipo DAT.GUY)
+                - S'ha dimplementar algo semblant al DAT.GUY però al meu estil ... ...
+ V      - Exemple en Three.js 'WormHole' (2 cilindres un dintre de l'altre, amb la camara al centre dels dos, i posant una textura que avança i rota.)
+ V      - Exemple en Canvas 2D 'Anillos' (Varis cercles rotant al voltant del centre del canvas, amb un efecte de difuminat al borrar el fondo amb un color rgba)
+    - Fer l'error 404 chulo amb three.js (el que tinc es una cosa rara, i ames!!! tira del tween.js, i m'obliga a afegir-lo inicialment.......... !!!!!!!!
     - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
 
     - Pasa algo raro amb les ancles mirar : "/Blog/flex-box-y-media-queries" i probar en aquest ordre : 3, 2, 1 (el 2 no va, i no es veu a la pantalla)
@@ -110,54 +38,34 @@ Millores de la web :
 
 
 URGENT (pel temps que ha pasat casi que ja no cal, el proxim cop que actualitzi la Doc/CSS serà) :
-    - Afegir entrades del Doc/CSS a l'index del blog, i posar el box-sizing i el animation-fill-mode
+ X  - Afegir entrades del Doc/CSS a l'index del blog, i posar el box-sizing i el animation-fill-mode (too late??)
 
 Estils movils :
- V  - Probar l'index en Google Nexus 10, no es pot accedir a les seguents entrades amb l'escroll. 
- V      - Amb el kindle del principi es pitjor... habia ampliat a 15 pero no es suficient, d'alguna forma s'ha de contar els items que hi caben a la pantalla desde php...
- V  - Revisar estils de tablets i de movils (mirar que tots els que deixa probar el chrome es vegin be)
+    - algo raro pasa al mostrar el banner en "portrait "
     
 Index : 
- V  - Conservar el número d'entrades carregades en l'index per carregarles de cop despres si es torna a carregar l'index. (devildrey33_Opciones::EntradasIndice)
 
 Lab :
- V  - Al actualitzxar un codi, (ja sigui perque s'ha modificat, o perque s'ha carregat un nou codi) s'han de eliminar tots els timers del codi anterior.
- V      - La solució era mes facil del que pensaba, i consisteix en borrar el iframe del DOM i tornar-lo a crear.
- V  - Al carregar un codi, si no es el primer cop que entra al lab, triga els 500 ms del OnChange. S'ha de fer instantani.
- V  - A l'explorador d'arxius els enllaços no van amb un link 'a href' NO MOLA.
- V  - S'ha de fer per defecte sempre la vista mixta horitzontal si no s'especifica unaltre cosa.
- V      - S'han de poguer especificar les opcions que queden apart del ?Preview
- V  - Al recarregar la web amb F5 que miri si l'exemple esta guardat i mostri un missatge per guardar o no (teclat FULL)
- V      - Falta tambè fer un parche a Base.CargarURL i a Lab.CargarArchivo per avisar que no s'ha guardat l'arxiu.
- V  - El codemirror fa algo raro amb la mida de les lineas que te calculades internament, i al cap d'un rato de remenar s¡acaba calculant bè... s'ha de buscar que o com actualitzar aquestes mides...
- V      - Obligo al codemirror a recalcular la mida del editor 200 milisegons despres d'haber iniciat i carregat el contingut. (chapucilla pero es lo que hi ha...)
- V  - Al guardar sense privilegis dona error raro... (un cop ha pasat el temps del admin en el $_SERVER)
- V      - Era el putu json... (ara he afegit una animació d'alerta en el $Base.MostrarMensaje perque si no es pot guardar mostra un missatge que s'asembla molt al normal)
+ V  - Temps d'actualització en el OnChange augmentat de 400 a 1500ms.
     - Afegir barra per modificar l'amplada de la vista mixta en el minilab.
-    - Al guardar en el Nuevo.html que pregunti un nom d'arxiu (i que pugui crear directoris tambè)   
- V  - Especificar vista desde el mateix esemple amb un comentrari rotllo /* devildrey33_Lab->Opciones->Vista=Preview */ ara es porta la vista desde devildrey33_Lab.php
- V  - Els arxius CSS i JS es carreguen en vista mixta, i ha de ser vista de códi. Ames necesiten el seu modo de vista en el codemirror (text/css, application/javascript)
-    - Resaltar i obrir carpeta de l'exemple actual (de moment funciona nomes per un nivell)
+    - Al guardar en el Nuevo.html, NuevoCanvas2D.html i NuevoCanvasTHREE.html que pregunti un nom d'arxiu (i que pugui crear directoris tambè)   
+        - s'haura de crear una finestra especial, i es pot fer :
+            - rotllo input box (path a pelo)
+            - rotllo directory list....... estudiar totes les posibilitats.....
+    - Resaltar i obrir carpeta de l'exemple actual (de moment funciona nomes per un nivell, Dir -> Dir -> Archiu no funciona)
  V  - Guardat de documents al canviar de url si ha expirat la sesió ara demanara password, i si l'accepta guardara el document. 
-        - si canceles el login no se que deu fer encara amb el timer del Cargar_URL.... 
+        - si canceles el login no se que deu fer encara amb el timer del Cargar_URL....   !(quantes ??????)!
 
 Blog :
- V  - devildrey33_PintarCodigo 2.02 (+ exemples corretgits)
  X  - Revisar document "CSS3_Transition_Transform.php", te estils inline i s'han de posar amb un CSS a part. (el mateix css es l'exemple i inclueix l'etiqueta script, per lo que no el puc moure a un css...)
- V  - el "DegradadosCSS.php" te estils inline colocats al HEAD.... revisar tambè (estils dels degradats fets inline, a la merda xd)
  V  - l'arxiu /Blog/Tutorial_WINAPI_4.php no te h2's apart del de comentaris! (afegits h2 i a mes l'he omplert de <linea> xd)
     - Mirar de començar a fer coses amb SVG's (Ejemplos/SVG/Iconos.html)
  V      - Despres d'un dia de svgs corel i adobe sembla que ja començo a tenir nocions básiques.
- V  - Fer documentació preliminar i exemples per les VARIABLES CSS!!!!     (https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables)
- V      - Exemple dels ambits per les variables, exemple modificar variables javascript
- V  - Efectes hover per butons (aprofitant el concepte de butons :hover que he fet per la web /Ejemplos/Transition/Botones.html)
- V      - La majoria d'efectes avegades fan una linea blanca a la bora dreta del buto quan está dintre d'una finestra amb l'animacio de rotació. L'unic que sembla que no ho fa es el del box-shadow.
     - Actualitzar Tutorial Canvas2D 1 i 2 : l'animació la faig amb un setInterval a saco, i s'hauria d'utilitzar la funció requestAnimationFrame.
     - Tutorial sobre herencia en javascript i que doni solució al problema de les funcións virtuals amb el model prototype.
+    - Separar conceptes básics del THREE.js i fer varis tutos
 
 Doc/CSS :
- V  - animation-timing-function amb exemple i aixi acabo l'apartat animaciones.
- V  - Crear funció var, i actualitzar el selector :root pel tema de les variables CSS
     - cubic-bezier chulo al estil de http://cubic-bezier.com/
         - \devildrey33\Ejemplos\BezierJS.js (funció per pintar una curva bezier en js)
 
@@ -168,16 +76,12 @@ Solitario :
         - Amb els problemes que vaig tenir l'ultimc cop per redireccionar l'index... lo millor es fer un index.php unic que llegeixi el codi dels arxius (html css i js) mitjançant php.
 
     - En el explorer va chungo chungo xd
- V  - En firefox mostra malament totes les cartes (el firefox no pilla background-position-x y background-position-y. S'ha de fer amb background-position lo que em fa escriure un selector per carta).
     - ARA el chrome (abans no ho feia i no he tocat res...) al arroçegar una carta no es veu les cartes filles. (en firefox continua funcionant bè)
  ---- SI VULL CONTINUAR AMB EL SOLITARIO S'HA DE REFER EL DRAG & DROP I NO UTILITZAR L'IMPLEMENTACIÓ HTML5 QUE ES UN DESASTRE, PER NO UTILITZAR UN ADJECTIU DESPECTIU PITJOR...
 
 ESPECIFIC NAVEGADORS :    
- V  - Les fonts de les etiquetes <pre> i <code> monospace no tenen la mida iguals en chrome i firefox. He pillat una monospace del google i ara sembla que tenen la mateixa mida en tots. (pero tambè es provable que sigui la causant del BLINK que em fa el hover de remarcar una linea de codi nomes el primer cop que la remarco)
     Firefox :         
- V      - Els icones svg no fan bè l'animació en el hover (no la fan centrada).
     Explorer 11 :
- V      - Els svgs es veuen minis.
 
 ESPECIFIC PUTU I-TRASTO DEL TALIBA DELS PEBROTS
     - Per alguna extranya rao, no s'inicia la transició d'inici en l'index, es veu el combo box de categories en blanc (opacity 0.0), i els articles es veuen al reves perque no es fa la transició.    

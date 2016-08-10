@@ -151,10 +151,10 @@ $Admin = new function() {
         $Base.Cargando("TRUE");
         $Lab.Original = Codigo;
         // Es un archivo nuevo, necesita una nueva ubicación
-        if (Archivo === "Ejemplos/Nuevo.html" || Archivo === "Ejemplos/NuevoCanvas2D.html", || Archivo === "Ejemplos/NuevoCanvasTHREE.html") {
+/*        if (Archivo === "Ejemplos/Nuevo.html" || Archivo === "Ejemplos/NuevoCanvas2D.html", || Archivo === "Ejemplos/NuevoCanvasTHREE.html") {
             
         }
-        else { // Sobre-escritura de un archivo normal
+        else { // Sobre-escritura de un archivo normal*/
             $.post($Base.Raiz + "cmd/LabGuardarEjemplo.cmd", { "Archivo" : Archivo, "Codigo" : Codigo }).done(function(data) {
                 Datos = JSON.parse(data);           
                 if (Datos["Estado"] === 1) { // Error no es admin
@@ -188,7 +188,7 @@ $Admin = new function() {
                 $Base.MostrarErrorAjax(jqXHR.status, false);
                 $Lab.Guardando = false;
             });    
-            }
+//        }
     };
     
     // DEPRECATED

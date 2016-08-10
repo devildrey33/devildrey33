@@ -26,8 +26,11 @@ var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al 
 // Constructor SIN TIPO, el tipo se especifica según la animación
 var NUEVOCANVAS2D = function() {
     // Llamo al constructor del ObjetoBanner
-    ObjetoCanvas.call(this, "2d"); // Puede ser 2D o THREE
+    if (ObjetoCanvas.call(this, "2d") === false) { return false; }
     // Se ha creado el canvas, inicio los valores de la animación ... 
+
+    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
+    this.Cargando(false);
 };
 
 NUEVOCANVAS2D.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
@@ -51,7 +54,7 @@ window.addEventListener('load', function() { Canvas = new NUEVOCANVAS2D; });
             <div id="Cabecera_Cargando">Cargando animación...</div>
             <div id='Cabecera_Stats'>0 FPS</div>
             <canvas id='Cabecera_Canvas'></canvas>
-            <div id="Cabecera_PausaAni">El iframe está en segundo plano, animación en pausa.</div>            
+            <div id="Cabecera_PausaAni">El canvas está en segundo plano, animación en pausa.</div>            
         </header>        
     </body>
 </html>

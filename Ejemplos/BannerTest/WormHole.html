@@ -2,9 +2,11 @@
     Test para el banner 3d de devildrey33.es creado por Josep Antoni Bover Comas el 31-07-2016
         - Consiste en 2 cilindros cada uno con una textura translucida, en los que las texturas avanzan hacia adelante simulando un agujero de gusano.
 	- Se utiliza JQuery y Three.js
+        - Segundo test serio sobre THREE.JS, en esencia es un test básico sobre como utilizar texturas (tanto a la hora de programar, como a la hora de crear texturas según ciertas necesidades)
+        - La idea original surgio a raíz del siguiente codepen : http://codepen.io/luigimannoni/pen/bdPVVz, que convendría estudiar en el futuro para el tema de los reflejos de luz en el cubo. (el problema con este ejemplo es que usa la versión 0.70 del three.js, y el tema de cargar texturas ha variado a partir de la 0.73+).
 	Vista por defecto en el Laboratorio de pruebas  
 		devildrey33_Lab->Opciones->Vista = Preview;
-        Ultima modificación el 06/08/2016
+        Ultima modificación el 08/08/2016
 -->
 <!DOCTYPE html>
 <html>
@@ -27,14 +29,14 @@ var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al 
 var Banner_WormHole = function() {
     
     // Llamo al constructor del ObjetoBanner
-    ObjetoCanvas.call(this, "THREE"); // Puede ser 2D o THREE
+    if (ObjetoCanvas.call(this, "THREE") === false) { return false; }
     
     this.Escena = new THREE.Scene();
    
     this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);
     // Preparo la camara
 //    this.Camara.position.y = (((this.Alto / 2) - 240) * 0.20);
-    this.Camara.position.set( 0, (((this.Alto / 2) - 240) * 0.20), 500 );
+    this.Camara.position.set( 0, 0, 500 );
     this.Escena.add(this.Camara);
     this.H = 0;
     this.H2 = 0.05;
@@ -137,7 +139,7 @@ window.addEventListener('load', function() { Canvas = new Banner_WormHole; });
             <div id="Cabecera_Cargando">Cargando animación...</div>
             <div id='Cabecera_Stats'>0 FPS</div>
             <canvas id='Cabecera_Canvas'></canvas>
-            <div id="Cabecera_PausaAni">El iframe está en segundo plano, animación en pausa.</div>            
+            <div id="Cabecera_PausaAni">El canvas está en segundo plano, animación en pausa.</div>            
         </header>        
     </body>
 </html>

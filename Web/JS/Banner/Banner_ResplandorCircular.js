@@ -7,7 +7,7 @@
 
 var Banner_ResplandorCircular = function() {
     // Llamo al constructor del ObjetoBanner
-    ObjetoBanner.call(this, "2d"); // Puede ser 2D o THREE
+    if (ObjetoBanner.call(this, "2d") === false) { return false; }
     // Inicio los valores básicos
     this.Maximo       = 150;
     this.ColorActual  = 10;
@@ -16,7 +16,7 @@ var Banner_ResplandorCircular = function() {
     this.Circulos = [];
     for (var i = 1; i < this.Maximo; i++) {
         setTimeout(function(Banner) {
-            var Circulo = new Banner.Circulo();
+            var Circulo = new Banner.Circulo(this);
             Banner.Circulos.push(Circulo);
         }, i * 2, this);
     }
@@ -60,7 +60,7 @@ Banner_ResplandorCircular.prototype = Object.assign( Object.create(ObjetoBanner.
             this.Circulos[C].Y += this.Circulos[C].VelocidadY * -2;
             this.Circulos[C].Avance ++;
             if (this.Circulos[C].Avance >= this.Circulos[C].MaxAvance || this.Circulos[C].Radio <= .05) {
-                this.Circulos[C] = new this.Circulo();
+                this.Circulos[C] = new this.Circulo(this);
             }                        
             
         }                
@@ -68,14 +68,15 @@ Banner_ResplandorCircular.prototype = Object.assign( Object.create(ObjetoBanner.
     },
     
     /* Objeto que contiene los datos de un circulo */
-    Circulo         : function() {
+    Circulo         : function(Padre) {
+        this.Padre = Padre;
         this.IniciarCirculo = function() {
             this.Radio = Rand(20, 80);
-            this.X = ($Banner.Ancho / 2) + Rand(5, -5);
-            this.Y = ($Banner.Alto / 2) + Rand(2, -2);
+            this.X = (this.Padre.Ancho / 2) + Rand(5, -5);
+            this.Y = (this.Padre.Alto / 2) + Rand(2, -2);
             this.VelocidadX = Rand(7, -7);
             this.VelocidadY = Rand(3.5, -3.5);
-            this.Color = "hsla(" + $Banner.ColorActual + ", 100%, 40%, .05)";
+            this.Color = "hsla(" + this.Padre.ColorActual + ", 100%, 40%, .05)";
             this.Avance = 0.004;
             this.MaxAvance = Rand(0, 350);        
         };        
