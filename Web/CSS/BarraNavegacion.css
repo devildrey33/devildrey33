@@ -149,7 +149,7 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
 }
 
 #BarraNavegacion_SubIndice > div:hover, #BarraNavegacion_LabMarcoVer > div:hover {
-    background: #EA504E;
+    background: rgb(234, 80, 78);
 }
 
 #BarraNavegacion_LabVer > #BarraNavegacion_LabMarcoVer {
@@ -345,7 +345,7 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
 
 #BarraNavegacion_MarcoNextPrev_Desc:hover {
     cursor:pointer;
-/*    background:#EA504E;
+/*    background:rgb(234, 80, 78);
     border:1px solid red;*/
 }
 
@@ -585,7 +585,7 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     width:40px;
     height:40px;
     border:10px solid #353338;
-    border-color:#353338 #EA504E;
+    border-color:#353338 rgb(234, 80, 78);
     animation:Rotacion 10s infinite ease-in-out alternate;
 }
 
@@ -597,7 +597,7 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     width:20px;
     height:20px;
     border:5px solid #353338;
-    border-color:#EA504E #353338;
+    border-color:rgb(234, 80, 78) #353338;
     animation:RotacionInv 10s infinite alternate;
 }
 
@@ -608,9 +608,9 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     20%  { transform:rotateZ(720deg)    rotateX(0deg);      border-color:#FFF #353338; }
     30%  { transform:rotateZ(1080deg)   rotateX(0deg);      border-color:#FFF #353338; }
     40%  { transform:rotateZ(1440deg)   rotateX(0deg);      border-color:#EEE #353338; }
-    50%  { transform:rotateZ(1800deg)   rotateX(180deg);    border-color:#EA504E #353338; }
-    60%  { transform:rotateZ(1440deg)   rotateX(180deg);    border-color:#EA504E #353338; }
-    70%  { transform:rotateZ(1080deg)   rotateX(180deg);    border-color:#EA504E #353338; }
+    50%  { transform:rotateZ(1800deg)   rotateX(180deg);    border-color:rgb(234, 80, 78) #353338; }
+    60%  { transform:rotateZ(1440deg)   rotateX(180deg);    border-color:rgb(234, 80, 78) #353338; }
+    70%  { transform:rotateZ(1080deg)   rotateX(180deg);    border-color:rgb(234, 80, 78) #353338; }
     80%  { transform:rotateZ(720deg)    rotateX(0deg);      border-color:#FFF #353338; }
     90%  { transform:rotateZ(360deg)    rotateX(0deg);      border-color:#FFF #353338; }
     100% { transform:rotateZ(0deg)      rotateX(0deg);      border-color:#FFF #353338; }           
@@ -624,8 +624,8 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     30%  { transform:rotateZ(-1080deg)   rotateX(0deg);     border-color:#FFF #353338;}
     40%  { transform:rotateZ(-1440deg)   rotateX(0deg);     border-color:#FFF #353338;}
     50%  { transform:rotateZ(-1800deg)   rotateX(0deg);     border-color:#FFF #353338;}
-    60%  { transform:rotateZ(-1440deg)   rotateX(180deg);   border-color:#EA504E #353338;  }
-    70%  { transform:rotateZ(-1080deg)   rotateX(180deg);   border-color:#EA504E #353338;  }
+    60%  { transform:rotateZ(-1440deg)   rotateX(180deg);   border-color:rgb(234, 80, 78) #353338;  }
+    70%  { transform:rotateZ(-1080deg)   rotateX(180deg);   border-color:rgb(234, 80, 78) #353338;  }
     80%  { transform:rotateZ(-720deg)    rotateX(0deg);     border-color:#FFF #353338;}
     90%  { transform:rotateZ(-360deg)    rotateX(0deg);     border-color:#FFF #353338;}
     100% { transform:rotateZ(0deg)       rotateX(0deg);     border-color:#FFF #353338;}           

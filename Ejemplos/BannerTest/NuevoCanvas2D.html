@@ -14,8 +14,6 @@
         <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
         <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
 <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
-        <!-- Three.JS -->
-        <script src="/Web/JS/3rdParty/three-0.79.min.js"></script>
         <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
         <script src="/Ejemplos/BannerTest/ObjetoCanvas.js"></script>
         <!-- Código javascript --> 
@@ -34,13 +32,13 @@ var NUEVOCANVAS2D = function() {
 };
 
 NUEVOCANVAS2D.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
-    constructor     : NUEVOCANVAS, 
+    constructor     : NUEVOCANVAS2D, 
     // Función que se llama al redimensionar el documento
     Redimensionar   : function() {    },
     // Función que se llama al hacer scroll en el documento    
     Scroll          : function() {    },
     // Función que se llama al mover el mouse por el canvas
-    MouseMove       : function(X, Y) { },
+    MouseMove       : function(Evento) { },
     // Función que pinta cada frame de la animación
     Pintar          : function() {    }
 });

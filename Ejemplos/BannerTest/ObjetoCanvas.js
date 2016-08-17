@@ -59,7 +59,7 @@ ObjetoCanvas = function(Tipo) {
     this.EnlazarEventos();
     
     // Asigno el foco a la ventana del canvas, ya que al ser un iframe para tests no suele tener el foco asignado
-//    window.focus(); (si hay que midificar el código no va bien...)
+//    window.focus(); (si hay que modificar el código no va bien...)
     
     return true;
 };

@@ -15,8 +15,6 @@
         <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
         <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
 <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
-        <!-- Three.JS -->
-        <script src="/Web/JS/3rdParty/three-0.79.min.js"></script>
         <!-- ObjetoCanvas similar al ObjetoBanner de la web para testear Banners -->
         <script src="/Ejemplos/BannerTest/ObjetoCanvas.js"></script>
         <!-- Código javascript --> 
@@ -72,9 +70,9 @@ Anillos.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     Invertir        : false,
 
     // Función que se llama al entrar con el mouse en el canvas
-    MouseEnter      : function(event) { this.Invertir = true; },
+    MouseEnter      : function(Evento) { this.Invertir = true; },
     // Función que se llama al salir con el mouse del canvas
-    MouseLeave      : function(event) { this.Invertir = false; },
+    MouseLeave      : function(Evento) { this.Invertir = false; },
     // Función que pinta cada frame de la animación
     Pintar          : function() {    
         this.Context.fillStyle = (this.Invertir === true) ? 'rgba(49, 46, 53, 0.02)' : 'rgba(49, 46, 53, 0.09)';

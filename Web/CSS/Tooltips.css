@@ -13,7 +13,7 @@ and open the template in the editor.
 html[lang='es'] *[tooltip-es]::after, html[lang='en'] *[tooltip-en]::after {
     position:absolute;    
     display:block;
-    background:#EA504E;
+    background:rgb(234, 80, 78);
     border:1px solid red;        
     border-left:4px solid red;
     color:#FFF;

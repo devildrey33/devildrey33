@@ -138,7 +138,7 @@ Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoCanv
         if (this.AnimacionCamara.Distancia > this.AnimacionCamara.MaxDistancia) { this.AnimacionCamara.Distancia = this.AnimacionCamara.MaxDistancia; }
         if (this.AnimacionCamara.Distancia < this.AnimacionCamara.MinDistancia) { this.AnimacionCamara.Distancia = this.AnimacionCamara.MinDistancia; }
         
-        console.log(this.AnimacionCamara.DistanciaAvancePositivo, this.AnimacionCamara.RadAvancePositivo, this.AnimacionCamara.Distancia, this.AnimacionCamara.Rad);
+//        console.log(this.AnimacionCamara.DistanciaAvancePositivo, this.AnimacionCamara.RadAvancePositivo, this.AnimacionCamara.Distancia, this.AnimacionCamara.Rad);
         
         this.Camara.position.x = this.AnimacionCamara.Distancia * Math.cos(this.AnimacionCamara.Rad);
         this.Camara.position.z = this.AnimacionCamara.Distancia * Math.sin(this.AnimacionCamara.Rad);        

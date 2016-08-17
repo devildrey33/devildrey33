@@ -77,7 +77,7 @@ and open the template in the editor.
 
 #BarraPrincipal_MarcoCPP > a:hover, #BarraPrincipal_MarcoCSS > a:hover, #BarraPrincipal_MarcoJS > a:hover, #BarraPrincipal_MarcoPHP > a:hover {
     border:1px solid #red;
-    background-color:#EA504E;
+    background-color:rgb(234, 80, 78);
 }
 
 
@@ -231,7 +231,7 @@ body[administrador33=true] #Marco33 {
 
 #BarraPrincipal_MarcoBuscar {
 /*    display:block !important;*/
-/*    background:#EA504E !important;*/
+/*    background:rgb(234, 80, 78) !important;*/
     width:500px;
     text-align: left;
 }
@@ -271,7 +271,7 @@ body[administrador33=true] #Marco33 {
 }
 
 #BarraPrincipal_MarcoBuscar_Resultado > a > div:hover {
-    background-color:#EA504E;
+    background-color:rgb(234, 80, 78);
 }
 
 
@@ -300,11 +300,11 @@ body[administrador33=true] #Marco33 {
 
 /* ?????????? */
 /*.Menu_Boton_Label:hover + div + div + .Menu_Boton {
-    background-color:#EA504E;    
+    background-color:rgb(234, 80, 78);    
 }*/
 
 .BarraPrincipal_BotonSubMenu:hover {
-    background-color:#EA504E;
+    background-color:rgb(234, 80, 78);
     border:1px solid red;
 }
 .BarraPrincipal_BotonSubMenu:active {

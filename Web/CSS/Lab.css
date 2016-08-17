@@ -90,7 +90,7 @@ and open the template in the editor.
 }
 
 .Lab_Explorador .Lab_Directorio:hover, .Lab_Explorador .Lab_Archivo:hover {
-    background:#EA504E !important;
+    background:rgb(234, 80, 78) !important;
     color:#FFFFFF;
 }
 
@@ -240,7 +240,7 @@ and open the template in the editor.
 }
 
 .MiniLab_Contenedor > .MiniLab_ContenedorBotones > .Menu_Boton_Input:checked + .Menu_Boton {
-    background-color: #EA504E;
+    background-color: rgb(234, 80, 78);
     border-color:red;
 }
 
@@ -346,7 +346,7 @@ and open the template in the editor.
 .Menu_Boton_Input:checked + .MiniLab_VerCodigo, 
 .Menu_Boton_Input:checked + .MiniLab_VerMixto,
 .MiniLab_VerPreview:hover, .MiniLab_VerCodigo:hover, .MiniLab_VerMixto:hover {
-    background-color:#EA504E;
+    background-color:rgb(234, 80, 78);
     border:1px solid red;
 }*/
 

@@ -19,7 +19,7 @@ and open the template in the editor.
     cursor              : pointer;
     text-align          : center;
     font-size           : 1.7rem;
-    outline-color       : #EA504E;
+    outline-color       : rgb(234, 80, 78);
     -webkit-user-select : none;
     -moz-user-select    : none;
     -ms-user-select     : none;
@@ -37,7 +37,7 @@ and open the template in the editor.
 }
 
 .Boton:hover:enabled, button:hover:enabled {
-    background      : #EA504E;
+    background      : rgb(234, 80, 78);
     text-decoration : underline;
     border          : 1px solid red;
 }

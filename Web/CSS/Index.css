@@ -7,7 +7,7 @@
 }
 
 .Articulo_Portada > h1 > a:hover {
-    color:#EA504E;
+    color:rgb(234, 80, 78);
 }
 
 .Articulo_Portada:hover > h1 > a {
@@ -75,7 +75,7 @@
 }*/
 
 #Categorias > div > div:hover {
-    color:#EA504E;
+    color:rgb(234, 80, 78);
     padding-left:10px;
     margin-right:10px;
     background:#252328;

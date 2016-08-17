@@ -23,6 +23,21 @@ Millores de la web :
  V      - Exemple en Three.js 'WormHole' (2 cilindres un dintre de l'altre, amb la camara al centre dels dos, i posant una textura que avança i rota.)
  V      - Exemple en Canvas 2D 'Anillos' (Varis cercles rotant al voltant del centre del canvas, amb un efecte de difuminat al borrar el fondo amb un color rgba)
     - Fer l'error 404 chulo amb three.js (el que tinc es una cosa rara, i ames!!! tira del tween.js, i m'obliga a afegir-lo inicialment.......... !!!!!!!!
+ V      - PUES NO, el faig amb 2D, es un space invaders amb un escut que son les lletres del ERROR 404, el tipic tank que dispara (amb la seva barra de poder), i els bichos.
+ V          - Buffer per conservar les llestre d'error amb un segon canvas en plan backbuffer
+ V          - Les bales tenen angle i no tentn per que anar rectes.
+                - De moment el detector de colisions nomes es mira pel pixel que han avançat (que poden ser 5, 10 , 15) i el problema es que no mira els anteriors, es a dir pot avançar desde Y0 a Y20 i nomes mira el 20, el resto l'ignora i el deixa com atraveçat.
+                - Deteccio i eliminació de vida del jugador
+                - Munició :
+                    - Colors diferents per enemics i jugador?, o color diferent per tipus de munició?
+ +o-                - Perforant [la primera que he fet], però falta ajustar el detector de colisions
+                    - Explosiva en plan cercle amb distancia variable, 
+                    - lasers instantanis per l'ufo a varis llocs a l'hora
+ V          - El tank del jugador dispara a les coordenades on está situat el mouse.
+ V          - Crear imatge bàsica pels enemics, de moment arribo a mostrar els 3 primers, però tinc el ufo sense utilitzar (i aquest pot ser destroyer destroyer jeje)
+            - Implementar vida als bichos? te el seu punt si poso molts Tanque.MaxDisparosPorSegundo (però sense pasarse que gripo la màquina xd)
+            - l'objectiu es clar : ell ha buscat una pagina que no existeix, HA DE SER CASTIGAT AMB TOT EL ARSENAL QUE ES PUGUI IMAGINAR EN 4-5 COLORS. (potser mes si comptem l'opacitat de les explosions)
+
     - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
 
     - Pasa algo raro amb les ancles mirar : "/Blog/flex-box-y-media-queries" i probar en aquest ordre : 3, 2, 1 (el 2 no va, i no es veu a la pantalla)
@@ -68,6 +83,7 @@ Blog :
 Doc/CSS :
     - cubic-bezier chulo al estil de http://cubic-bezier.com/
         - \devildrey33\Ejemplos\BezierJS.js (funció per pintar una curva bezier en js)
+    - Actualitzar Unidades CSS amb vh vw, etc.... (Viewport-Percentage)  http://stackoverflow.com/questions/1575141/make-div-100-height-of-browser-window
 
 Solitario :
     - Crear vista per depurar els moviments de la IA

@@ -35,7 +35,7 @@ NOTA : se puede añadir un span entre Menu_Boton_Cruz y Menu_Boton_SVG para agre
 
 /* Fondo del boton rojo al estar marcado */
 .Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton {
-    background-color:#EA504E;
+    background-color:rgb(234, 80, 78);
     border:1px solid red !important;
 }
 
@@ -86,7 +86,7 @@ a.Menu_Boton { overflow:visible; } /* Lo necesito para los menús que son solo u
 
 .Menu_Boton:hover,                          /* Algunos botones no tienen label */
 .Menu_Boton_Label:hover + .Menu_Boton {     /* Los botones que tienen label necesitan procesar el hover desde él */
-    background-color:#EA504E;
+    background-color:rgb(234, 80, 78);
     border:1px solid red;
 }         
 
@@ -113,7 +113,7 @@ a.Menu_Boton { overflow:visible; } /* Lo necesito para los menús que son solo u
 
 /* Transición de SVG a cruz */
 .Menu > .Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > .Menu_Boton_Cruz {
-    color:#EA504E;
+    color:rgb(234, 80, 78);
     transition:0.4s;
     transform:rotateZ(180deg); /*  scale(0.5, 0.5) */
 }

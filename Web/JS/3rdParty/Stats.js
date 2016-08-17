@@ -46,11 +46,11 @@ var Stats = function () {
 
 	var beginTime = ( performance || Date ).now(), prevTime = beginTime, frames = 0;
 
-	var fpsPanel = addPanel( new Stats.Panel( 'FPS', '#EA504E', 'rgba(37,35,40, 0.6)' ) );
-	var msPanel = addPanel( new Stats.Panel( 'MS', '#EA504E', 'rgba(37,35,40, 0.6)' ) );
+	var fpsPanel = addPanel( new Stats.Panel( 'FPS', 'rgb(234, 80, 78)', 'rgba(37,35,40, 0.6)' ) );
+	var msPanel = addPanel( new Stats.Panel( 'MS', '#rgb(234, 80, 78)', 'rgba(37,35,40, 0.6)' ) );
 
 	if ( self.performance && self.performance.memory ) {
-		var memPanel = addPanel( new Stats.Panel( 'MB', '#EA504E', 'rgba(37,35,40, 0.6)' ) );
+		var memPanel = addPanel( new Stats.Panel( 'MB', 'rgb(234, 80, 78)', 'rgba(37,35,40, 0.6)' ) );
 	}
 
 	showPanel( 0 );

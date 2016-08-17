@@ -28,7 +28,7 @@ h2, h3, h4, h5 { margin : 0px; }
 h1 { font-size : 2.5rem; }             
 h2 { font-size : 2.5rem;    display : table;   transition : 0.5s ease-in-out; } /* transición para la el resaltado de color de texto del ancla */
 h3 { font-size : 2.0rem;    display : table; }
-h2[resaltado] { color : #EA504E; }
+h2[resaltado] { color : rgb(234, 80, 78); }
 
 body { 
     margin      : 0px; 
@@ -88,11 +88,11 @@ body[Tipo=Indice] > #MarcoNavegacion, body[Tipo=Lab] > #MarcoNavegacion, body[Ti
 
 /* TextBox */
 input[type=text], input[type=url], input[type=email], input[type=date], input[type=password] {
-    outline-color : #EA504E;    
+    outline-color : rgb(234, 80, 78);    
 }
 /* TextBox con foco */
 input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[type=date]:focus, input[type=password]:focus {
-    box-shadow : 0px 0px 5px #EA504E;
+    box-shadow : 0px 0px 5px rgb(234, 80, 78);
 }
 
 
@@ -158,7 +158,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
     height        : 25px;        
     padding       : 5px 0px 0px 10px;
     left          : -30px;         
-    background    : #EA504E;     
+    background    : rgb(234, 80, 78);     
     width         : calc(100% + 50px);                
     box-shadow    : 0 5px 5px -5px rgba(255,255,255, .9) inset;
     border-radius : 6px 6px 0px 0px;                
@@ -191,8 +191,8 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
 @keyframes Ani_VentanaLogin_Error {
     0%   { transform  : perspective(600px) rotateZ(0deg) rotateY(0deg);     background : #1D1A21; }
     30%  { transform  : perspective(600px) rotateZ(3deg) rotateY(75deg) translateZ(-20px);        }
-    35%  { background : #EA504E;                                                                  }
-    55%  { background : #EA504E;                                                                  }
+    35%  { background : rgb(234, 80, 78);                                                                  }
+    55%  { background : rgb(234, 80, 78);                                                                  }
     70%  { transform  : perspective(600px) rotateZ(-3deg) rotateY(-75deg) translateZ(20px);       }
     100% { transform  : perspective(600px) rotateZ(0deg) rotateY(0deg);     background : #1D1A21; }
 }
@@ -349,7 +349,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
     cursor     : pointer;
 }
 #ErroresPHP_Cerrar:hover {
-    background : #EA504E;
+    background : rgb(234, 80, 78);
 }
 
 #ErroresPHP_Info {
