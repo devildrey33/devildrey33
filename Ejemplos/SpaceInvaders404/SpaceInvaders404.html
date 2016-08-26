@@ -1,0 +1,224 @@
+<!-- 
+    Test para el canvas del error 404 de devildrey33.es creado por Josep Antoni Bover Comas el 12-07-2016
+    Idea original : http://es.gizmodo.com/la-mejor-pagina-de-error-404-te-deja-jugar-a-space-inva-510812213
+        - En esencia me he basado en la imagen, ya que esa pagina de error ya no existe por desgracia (http://www.masswerk.at/404), aunque ahora tiene otra animación que también está muy bien.
+        Vista por defecto en el Laboratorio de pruebas  
+		devildrey33_Lab->Opciones->Vista = Columnas;
+
+        Ultima modificación el 24/08/2016
+
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <!-- Estilos CSS para el test -->
+        <link rel='stylesheet' href='/Ejemplos/SpaceInvaders404/SpaceInvaders404.css' />
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Web/JS/FuncionesGlobales.js"></script>
+<!--        <script src="/Web/JS/ObjetoBanner.js"></script> -->
+        <script src="/Ejemplos/SpaceInvaders404/ObjetoAnimacion.js"></script>
+        <script src="/Ejemplos/SpaceInvaders404/SpaceInvaders404.js"></script>
+        <!-- Código javascript --> 
+        <script type="text/javascript">
+            var Error404 = null;
+            window.addEventListener('load', function() { Error404 = new SpaceInvaders404; });
+        </script>
+    </head>
+    <body>
+        <div id='SpaceInvaders404_Texto'  class="SinSeleccion">
+            <h1>NO SE HA ENCONTRADO</h1>
+            <div>La página : '<code id='SpaceInvaders404_URLError404'></code>' <u>no existe!</u></div>
+        </div>
+        <div id="SpaceInvaders404_Contenedor"  class="SinSeleccion">
+            <canvas id="SpaceInvaders404" width="500" height="500"></canvas>
+            <div id='SpaceInvaders404_Info'>
+                <span></span> <!-- vida -->
+                <span></span> <!-- vida -->
+                <span></span> <!-- vida -->              
+                <div id='Disparos'><div id='Disparos_Valor'></div></div>
+                <div id='Puntuacion'>Puntuación : 0</div>
+            </div>
+            
+            <div id='SpaceInvaders404_Debug'>
+                <div>X Tanque    : <span id='SpaceInvaders404_Debug_TanqueX'></span></div>
+                <div>X Mouse     : <span id='SpaceInvaders404_Debug_MouseX'></span></div>
+                <div>Y Mouse     : <span id='SpaceInvaders404_Debug_MouseY'></span></div>
+                <div>FPS         : <span id='SpaceInvaders404_Debug_FPS'></span></div>
+                <div>Enemigos    : <span id='SpaceInvaders404_Debug_Enemigos'></span></div>
+                <div>Disparos    : <span id='SpaceInvaders404_Debug_Disparos'></span></div>
+                <div>Explosiones : <span id='SpaceInvaders404_Debug_Explosiones'></span></div>
+                <div>Textos      : <span id='SpaceInvaders404_Debug_Textos'></span></div>
+                <div>Animaciones : <span id='SpaceInvaders404_Debug_Animaciones'></span></div>
+            </div>
+            
+            <div id="SpaceInvaders404_Instrucciones">
+                <div id='SpaceInvaders404_Instrucciones_Intro'>
+                    <h2>Alerta! intrusos en vector de intercepción!</h2>
+                    <p>Bienvenido! Tenemos malas noticias, y es que a parte de que no has encontrado lo que buscabas, se acerca una oleada de invasores del espacio!!</p>
+                    <p>Debo advertirte de que los invasores disponen de un arsenal renovado y altamente destructivo. Pero no te preocupes! el departamento de ingenieria ha improvisado un tanque a partir de un rectangulo y un cuadrado, para que puedas defenderte.</p>
+                    <button>Siguiente</button>
+                </div>
+                
+                <div id='SpaceInvaders404_Instrucciones_Intro2'>
+                    <p id='TextoError404'>Utiliza el error 404 para cubrirte de los ataques. <span id='TextoVidas'>Tienes 4 tanques, utilizalos bien!</span></p>                    
+                    <p id='TextoArma'>El cañon puede llegar a disparar 10 proyectiles por segundo con la barra al máximo, y 5 por segundo con la barra al mínimo. Dispones de munición perforante que alcanza unos 300 pixeles por segundo de velocidad, y que puede llegar a perforar 8 pixeles por proyectil.</p>
+                    <p id='TextoPuntuacion'>Intenta obtener la puntuación mas alta, para poder dejar tu nombre entre los mejores.</p>
+                    <button>Siguiente</button>                    
+                </div>
+                
+                
+                <div id='SpaceInvaders404_Instrucciones_Intro3'>
+                    <!-- <p>Tu tanque está basado en un rectangulo de 30x10 y un cuadrado de 10x10 para la torreta, y viene equipado con munición perforante.</p> -->
+                    <div class='SpaceInvaders404_Instrucciones_Teclado'>
+                        <div class='TecladoCSS' style='margin-top:10px;'>
+                            <div class='TecladoCSS_Col1'>
+                                <div class='TecladoCSS_FilaEsc'>
+                                    <div class='TecladoCSS_Tecla Tecla_Esc'>Esc</div>
+                                    <div class='TecladoCSS_Tecla'>F1</div>
+                                    <div class='TecladoCSS_Tecla'>F2</div>
+                                    <div class='TecladoCSS_Tecla'>F3</div>
+                                    <div class='TecladoCSS_Tecla Tecla_F4'>F4</div>
+                                    <div class='TecladoCSS_Tecla'>F5</div>
+                                    <div class='TecladoCSS_Tecla'>F6</div>
+                                    <div class='TecladoCSS_Tecla'>F7</div>
+                                    <div class='TecladoCSS_Tecla Tecla_F8'>F8</div>
+                                    <div class='TecladoCSS_Tecla'>F9</div>
+                                    <div class='TecladoCSS_Tecla'>F10</div>
+                                    <div class='TecladoCSS_Tecla'>F11</div>
+                                    <div class='TecladoCSS_Tecla'>F12</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla'>\</div>
+                                    <div class='TecladoCSS_Tecla'>1</div>
+                                    <div class='TecladoCSS_Tecla'>2</div>
+                                    <div class='TecladoCSS_Tecla'>3</div>
+                                    <div class='TecladoCSS_Tecla'>4</div>
+                                    <div class='TecladoCSS_Tecla'>5</div>
+                                    <div class='TecladoCSS_Tecla'>6</div>
+                                    <div class='TecladoCSS_Tecla'>7</div>
+                                    <div class='TecladoCSS_Tecla'>8</div>
+                                    <div class='TecladoCSS_Tecla'>9</div>
+                                    <div class='TecladoCSS_Tecla'>0</div>
+                                    <div class='TecladoCSS_Tecla'>?</div>
+                                    <div class='TecladoCSS_Tecla'>¿</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Borrar'>Borrar</div>
+                                </div>
+                                <div>
+                                    <div class='TecladoCSS_Tecla Tecla_Tab'>Tab</div>
+                                    <div class='TecladoCSS_Tecla'>Q</div>
+                                    <div class='TecladoCSS_Tecla'>W</div>
+                                    <div class='TecladoCSS_Tecla'>E</div>
+                                    <div class='TecladoCSS_Tecla'>R</div>
+                                    <div class='TecladoCSS_Tecla'>T</div>
+                                    <div class='TecladoCSS_Tecla'>Y</div>
+                                    <div class='TecladoCSS_Tecla'>U</div>
+                                    <div class='TecladoCSS_Tecla'>I</div>
+                                    <div class='TecladoCSS_Tecla'>O</div>
+                                    <div class='TecladoCSS_Tecla'>P</div>
+                                    <div class='TecladoCSS_Tecla'>[</div>
+                                    <div class='TecladoCSS_Tecla'>]</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Intro'>Intro</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla Tecla_Mayus'>Mayus</div>
+                                    <div class='TecladoCSS_Tecla TecladoCSS_AniMovimiento'>A</div>
+                                    <div class='TecladoCSS_Tecla'>S</div>
+                                    <div class='TecladoCSS_Tecla TecladoCSS_AniMovimiento'>D</div>
+                                    <div class='TecladoCSS_Tecla'>F</div>
+                                    <div class='TecladoCSS_Tecla'>G</div>
+                                    <div class='TecladoCSS_Tecla'>H</div>
+                                    <div class='TecladoCSS_Tecla'>J</div>
+                                    <div class='TecladoCSS_Tecla'>K</div>
+                                    <div class='TecladoCSS_Tecla'>L</div>
+                                    <div class='TecladoCSS_Tecla'>Ñ</div>
+                                    <div class='TecladoCSS_Tecla'>´</div>
+                                    <div class='TecladoCSS_Tecla'>Ç</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla Tecla_Shift'>Shift</div>
+                                    <div class='TecladoCSS_Tecla'>> <</div>
+                                    <div class='TecladoCSS_Tecla'>Z</div>
+                                    <div class='TecladoCSS_Tecla'>X</div>
+                                    <div class='TecladoCSS_Tecla'>C</div>
+                                    <div class='TecladoCSS_Tecla'>V</div>
+                                    <div class='TecladoCSS_Tecla'>B</div>
+                                    <div class='TecladoCSS_Tecla'>N</div>
+                                    <div class='TecladoCSS_Tecla'>M</div>
+                                    <div class='TecladoCSS_Tecla'>;</div>
+                                    <div class='TecladoCSS_Tecla'>:</div>
+                                    <div class='TecladoCSS_Tecla'>-</div>
+                                    <div class='TecladoCSS_Tecla Tecla_ShiftD'>Shift D.</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla Tecla_Control'>Ctrl</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Win'>Win</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Alt'>Alt</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Espacio TecladoCSS_AniDisparo'>Espacio</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Alt'>Alt</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Fn'>Fn</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Menu'>Menú</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Control'>Ctrl</div>
+                                </div>
+                            </div>                    
+
+                            <!-- cursores -->            
+                            <div class='TecladoCSS_Col2'>
+                                <div class='TecladoCSS_FilaEsc'>
+                                    <div class='TecladoCSS_Tecla'>Imp</div>
+                                    <div class='TecladoCSS_Tecla'>Blo</div>
+                                    <div class='TecladoCSS_Tecla'>Pau</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla'>Ins</div>
+                                    <div class='TecladoCSS_Tecla'>Ini</div>
+                                    <div class='TecladoCSS_Tecla'>Rep</div>
+                                </div>
+
+                                <div style='margin-bottom:34px'>
+                                    <div class='TecladoCSS_Tecla'>Sup</div>
+                                    <div class='TecladoCSS_Tecla'>Fin</div>
+                                    <div class='TecladoCSS_Tecla'>Avp</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla TecladoCSS_AniDisparo' style='margin: 0px 30px;'>/\</div>
+                                </div>
+                                <div>
+                                    <div class='TecladoCSS_Tecla TecladoCSS_AniMovimiento'><=</div>
+                                    <div class='TecladoCSS_Tecla'>\/</div>
+                                    <div class='TecladoCSS_Tecla TecladoCSS_AniMovimiento'>=></div>
+                                </div>
+                            </div>
+
+                            <!-- mouse -->
+                            <div class='MouseCSS'>
+                                <div class='MouseCSS_Boton1 MouseCSS_AniDisparo'></div>
+                                <div class='MouseCSS_Boton2'></div>
+                                <div class='MouseCSS_Rueda'></div>
+                                
+                                <div class='MouseCSS_FlechaArriba'></div>
+                                <div class='MouseCSS_FlechaAbajo'></div>
+                                <div class='MouseCSS_FlechaIzquierda'></div>
+                                <div class='MouseCSS_FlechaDerecha'></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <p id='TextoMovimiento'>El tanque puede moverse lateralmente con las teclas marcadas en <span style='color:lightgreen'>verde</span>.</p>
+                    <p id='TextoDisparo'>Para disparar tienes que mover el mouse apuntando hacia el objetivo<span id='TextoDisparo2'>, y pulsar una de las las teclas o el botón del mouse marcados en <span style='color:red'>rojo</span>.</span></p>
+                    <button>Empezar</button>
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,223 @@
+<!-- 
+    Teclado CSS creado por Josep Antoni Bover Comas el 20-08-2016
+	- Reproducción de un teclado en CSS (la idea es utilizarlo para el SpaceInvaders404)
+        Ultima modificación el 20/08/2016
+
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <!-- Estilos CSS para el test -->
+        <style>
+.TecladoCSS {
+    display:flex;
+    flex-flow:row nowrap;
+}
+.TecladoCSS_Col1, .TecladoCSS_Col2, .TecladoCSS_Col3  { display:inline-block }
+.TecladoCSS_Col2, .TecladoCSS_Col3 { margin-left:18px; }
+.TecladoCSS_Col3 { margin-top:38px; }
+
+.TecladoCSS_FilaEsc { margin-bottom:8px; }
+
+.TecladoCSS_Tecla {
+    min-width: 24px;
+    height: 19px;
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 4px;
+    color: #000;
+    background: #FFF;
+    margin: 2px 0px;
+    vertical-align: middle;
+    text-align: center;
+    padding: 5px 0px 0px 0px;
+    font-size:0.8rem;
+}
+
+.Tecla_Tab { width:40px; }
+.Tecla_Mayus { width:48px; }
+.Tecla_Shift, .Tecla_Control, .Tecla_Win, .Tecla_Alt, .Tecla_Fn, .Tecla_Menu { width:32px; }
+.Tecla_Espacio { width:177px; }
+.Tecla_ShiftD { width:75px; }
+.Tecla_Borrar { width:54px; }
+.Tecla_Intro { width:36px; position:relative; border-bottom-color: transparent; border-right-color: transparent; }            
+.Tecla_Intro::after { content:''; position:absolute; width:30px; display:inline-block; height:54px; top:-1px; right:-2px; background-color:#FFF; z-index:-1; border-radius:4px; border:1px solid #000; }
+
+.Tecla_Num_0 { width:54px; }
+.Tecla_Num_Sum, .Tecla_Num_Intro { position:relative; border-color:transparent; background:transparent; margin-top:1px; }
+.Tecla_Num_Sum::after, .Tecla_Num_Intro::after { content:''; position:absolute; width:24px; display:inline-block; height:54px; top:-1px; right:-1px; background-color:#FFF; z-index:-1; border-radius:4px; border:1px solid #000; }        
+
+.Tecla_Esc { margin-right: 30px; }
+.Tecla_F4, .Tecla_F8 { margin-right: 15px; }
+        </style>
+	</head>
+    <body>
+        <!-- El teclado está repartido en 3 columnas, dentro de cada columna hay varias filas.
+            Columna 1 : desde el esc al F12 * desde el Control izquierdo al Control derecho.
+            Columna 2 : desde el imprimir pantalla al pausa * desde el cursor izquierdo al cursor derecho 
+            Columna 3 : teclado numérico -->                    
+        <div class='TecladoCSS'>
+            <div class='TecladoCSS_Col1'>
+                <div class='TecladoCSS_FilaEsc'>
+                    <div class='TecladoCSS_Tecla Tecla_Esc'>Esc</div>
+                    <div class='TecladoCSS_Tecla'>F1</div>
+                    <div class='TecladoCSS_Tecla'>F2</div>
+                    <div class='TecladoCSS_Tecla'>F3</div>
+                    <div class='TecladoCSS_Tecla Tecla_F4'>F4</div>
+                    <div class='TecladoCSS_Tecla'>F5</div>
+                    <div class='TecladoCSS_Tecla'>F6</div>
+                    <div class='TecladoCSS_Tecla'>F7</div>
+                    <div class='TecladoCSS_Tecla Tecla_F8'>F8</div>
+                    <div class='TecladoCSS_Tecla'>F9</div>
+                    <div class='TecladoCSS_Tecla'>F10</div>
+                    <div class='TecladoCSS_Tecla'>F11</div>
+                    <div class='TecladoCSS_Tecla'>F12</div>
+                </div>
+
+                <div>
+                    <div class='TecladoCSS_Tecla'>\</div>
+                    <div class='TecladoCSS_Tecla'>1</div>
+                    <div class='TecladoCSS_Tecla'>2</div>
+                    <div class='TecladoCSS_Tecla'>3</div>
+                    <div class='TecladoCSS_Tecla'>4</div>
+                    <div class='TecladoCSS_Tecla'>5</div>
+                    <div class='TecladoCSS_Tecla'>6</div>
+                    <div class='TecladoCSS_Tecla'>7</div>
+                    <div class='TecladoCSS_Tecla'>8</div>
+                    <div class='TecladoCSS_Tecla'>9</div>
+                    <div class='TecladoCSS_Tecla'>0</div>
+                    <div class='TecladoCSS_Tecla'>'</div>
+                    <div class='TecladoCSS_Tecla'>¡</div>
+                    <div class='TecladoCSS_Tecla Tecla_Borrar'>Borrar</div>
+                </div>
+                <div>
+                    <div class='TecladoCSS_Tecla Tecla_Tab'>Tab</div>
+                    <div class='TecladoCSS_Tecla'>Q</div>
+                    <div class='TecladoCSS_Tecla'>W</div>
+                    <div class='TecladoCSS_Tecla'>E</div>
+                    <div class='TecladoCSS_Tecla'>R</div>
+                    <div class='TecladoCSS_Tecla'>T</div>
+                    <div class='TecladoCSS_Tecla'>Y</div>
+                    <div class='TecladoCSS_Tecla'>U</div>
+                    <div class='TecladoCSS_Tecla'>I</div>
+                    <div class='TecladoCSS_Tecla'>O</div>
+                    <div class='TecladoCSS_Tecla'>P</div>
+                    <div class='TecladoCSS_Tecla'>`</div>
+                    <div class='TecladoCSS_Tecla'>+</div>
+                    <div class='TecladoCSS_Tecla Tecla_Intro'>Intro</div>
+                </div>
+
+                <div>
+                    <div class='TecladoCSS_Tecla Tecla_Mayus'>Mayus</div>
+                    <div class='TecladoCSS_Tecla'>A</div>
+                    <div class='TecladoCSS_Tecla'>S</div>
+                    <div class='TecladoCSS_Tecla'>D</div>
+                    <div class='TecladoCSS_Tecla'>F</div>
+                    <div class='TecladoCSS_Tecla'>G</div>
+                    <div class='TecladoCSS_Tecla'>H</div>
+                    <div class='TecladoCSS_Tecla'>J</div>
+                    <div class='TecladoCSS_Tecla'>K</div>
+                    <div class='TecladoCSS_Tecla'>L</div>
+                    <div class='TecladoCSS_Tecla'>Ñ</div>
+                    <div class='TecladoCSS_Tecla'>´</div>
+                    <div class='TecladoCSS_Tecla'>Ç</div>
+                </div>
+
+                <div>
+                    <div class='TecladoCSS_Tecla Tecla_Shift'>Shift</div>
+                    <div class='TecladoCSS_Tecla'>> <</div>
+                    <div class='TecladoCSS_Tecla'>Z</div>
+                    <div class='TecladoCSS_Tecla'>X</div>
+                    <div class='TecladoCSS_Tecla'>C</div>
+                    <div class='TecladoCSS_Tecla'>V</div>
+                    <div class='TecladoCSS_Tecla'>B</div>
+                    <div class='TecladoCSS_Tecla'>N</div>
+                    <div class='TecladoCSS_Tecla'>M</div>
+                    <div class='TecladoCSS_Tecla'>;</div>
+                    <div class='TecladoCSS_Tecla'>:</div>
+                    <div class='TecladoCSS_Tecla'>-</div>
+                    <div class='TecladoCSS_Tecla Tecla_ShiftD'>Shift D.</div>
+                </div>
+
+                <div>
+                    <div class='TecladoCSS_Tecla Tecla_Control'>Ctrl</div>
+                    <div class='TecladoCSS_Tecla Tecla_Win'>Win</div>
+                    <div class='TecladoCSS_Tecla Tecla_Alt'>Alt</div>
+                    <div class='TecladoCSS_Tecla Tecla_Espacio'>Espacio</div>
+                    <div class='TecladoCSS_Tecla Tecla_Alt'>Alt</div>
+                    <div class='TecladoCSS_Tecla Tecla_Fn'>Fn</div>
+                    <div class='TecladoCSS_Tecla Tecla_Menu'>Menú</div>
+                    <div class='TecladoCSS_Tecla Tecla_Control'>Ctrl</div>
+                </div>
+            </div>                    
+
+            <!-- cursores -->            
+            <div class='TecladoCSS_Col2'>
+                <div class='TecladoCSS_FilaEsc'>
+                    <div class='TecladoCSS_Tecla'>Imp</div>
+                    <div class='TecladoCSS_Tecla'>Blo</div>
+                    <div class='TecladoCSS_Tecla'>Pau</div>
+                </div>
+                
+                <div>
+                    <div class='TecladoCSS_Tecla'>Ins</div>
+                    <div class='TecladoCSS_Tecla'>Ini</div>
+                    <div class='TecladoCSS_Tecla'>Rep</div>
+                </div>
+
+                <div style='margin-bottom:34px'>
+                    <div class='TecladoCSS_Tecla'>Sup</div>
+                    <div class='TecladoCSS_Tecla'>Fin</div>
+                    <div class='TecladoCSS_Tecla'>Avp</div>
+                </div>
+
+                <div>
+                    <div class='TecladoCSS_Tecla' style='margin: 0px 30px;'>/\</div>
+                </div>
+                <div>
+                    <div class='TecladoCSS_Tecla'><=</div>
+                    <div class='TecladoCSS_Tecla'>\/</div>
+                    <div class='TecladoCSS_Tecla'>=></div>
+                </div>
+            </div>
+
+            <!-- teclado numérico -->
+            <div class='TecladoCSS_Col3'>
+                <div>
+                    <div class='TecladoCSS_Tecla'>B.n.</div>
+                    <div class='TecladoCSS_Tecla'>/</div>
+                    <div class='TecladoCSS_Tecla'>*</div>
+                    <div class='TecladoCSS_Tecla'>-</div>
+                </div>
+
+                <div>
+                    <div class='TecladoCSS_Tecla'>7</div>
+                    <div class='TecladoCSS_Tecla'>8</div>
+                    <div class='TecladoCSS_Tecla'>9</div>
+                    <div class='TecladoCSS_Tecla Tecla_Num_Sum'>+</div>
+                </div>
+
+                <div>
+                    <div class='TecladoCSS_Tecla'>4</div>
+                    <div class='TecladoCSS_Tecla'>5</div>
+                    <div class='TecladoCSS_Tecla'>6</div>
+                </div>
+
+                <div>
+                    <div class='TecladoCSS_Tecla'>1</div>
+                    <div class='TecladoCSS_Tecla'>2</div>
+                    <div class='TecladoCSS_Tecla'>3</div>
+                    <div class='TecladoCSS_Tecla Tecla_Num_Intro'>Intro</div>
+                </div>
+
+                <div>
+                    <div class='TecladoCSS_Tecla Tecla_Num_0'>0</div>
+                    <div class='TecladoCSS_Tecla'>.</div>
+                </div>
+
+            </div>                        
+
+        </div>
+    </body>
+</html>

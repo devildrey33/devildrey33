@@ -32,6 +32,9 @@ $Base = new function() {
     
     this.PosBanner          = 0;
         
+    this.TimerTiempoSesion  = 0;
+    // Función vacia para resetear el tiempo de la sesión (la función se rellena al iniciar el objeto admin)
+    this.ResetearTimerTiempoSesion = function() {  };
     
     this.Iniciar = function() {
         /* Botones de las vistas del lab */
@@ -136,6 +139,7 @@ $Base = new function() {
         /* Usuario para el login */
         if (typeof localStorage["Comentarios_Usuario"] !== 'undefined') { $("#devildrey33_Usuario").val(localStorage["Comentarios_Usuario"]); }
     };
+    
     
     this.MostrarLogin = function(FuncionPostLogin) {
         // Asigno el callback post login
@@ -740,6 +744,9 @@ $Base = new function() {
     
     /* Función que carga una URL interna dentro del #MarcoNavegacion */
     this.CargarURL = function(cURL) {    
+        // Reseteo el temporizador para el tiempo de la sesión
+        this.ResetearTimerTiempoSesion();
+        
         /* Comprobación para determinar si hay un archivo modificado en el lab y mostrar un mensaje de advertencia */
         if ($Lab.Modificado() === true) { 
             setTimeout(function(nURL) { $Base.CargarURL(nURL); }, 200, cURL);
@@ -861,6 +868,8 @@ $Base = new function() {
 
     /* Función para enviar comandos simples */
     this.cmd = function(Comando) {
+        // Reseteo el temporizador para el tiempo de la sesión
+        this.ResetearTimerTiempoSesion();
         $.post(this.Raiz + "cmd/" + Comando + ".cmd").done(function(data) {
             Datos = JSON.parse(data);
             console.log("Base.cmd(" + Comando + ")", Datos);
@@ -883,7 +892,7 @@ $Base = new function() {
         });                    
     };
     
-    
+    /*
     this.IniciarBuscador = function(nBuscar) {
         if (this.CustomSearchControl === 0) {
 //            this.CargarJS("https://www.google.es/jsapi");
@@ -901,7 +910,7 @@ $Base = new function() {
         }
 //        if ($nBuscar !== "") $DHE .= "customSearchControl.execute('".$nBuscar."');";
         
-    };
+    };*/
     
     
     /* Carga un archivo JS dinamicamente 
@@ -959,6 +968,8 @@ $Base = new function() {
 
     /* CALLBACK para el historial de navegación */
     this.CALLBACK_Histroial = function(event) {
+        // Reseteo el temporizador para el tiempo de la sesión
+        this.ResetearTimerTiempoSesion();
         /* Comprobación para determinar si hay un archivo modificado en el lab y mostrar un mensaje de advertencia */        
         if ($Lab.Modificado() === true) { 
             setTimeout(function(nURL) { $Base.CALLBACK_Histroial(event); }, 200, event);

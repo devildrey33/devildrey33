@@ -1,0 +1,224 @@
+body { background: rgb(49,46,53); margin:0px; padding:0px; }            
+/* Contenedor vertical */
+#SpaceInvaders404_Contenedor { height:100vh; }
+/* Contenedor de las vidas y la puntuación */
+#SpaceInvaders404_Contenedor > #SpaceInvaders404_Info { position:absolute; height:30px; width:500px; left:calc(50% - 250px); top:calc(50% + 265px); transition:1s cubic-bezier(.17,-0.22,0,1.35); transform-origin:center left; transform:perspective(800px) rotateY(90deg); }
+#SpaceInvaders404_Contenedor > #SpaceInvaders404_Info[visible='true'] { transform:perspective(800px) rotateY(0deg); }
+/* Marco para la energia de los disparos algo mas oscuro que el fondo */
+#SpaceInvaders404_Contenedor > #SpaceInvaders404_Info > #Disparos { position:absolute; height:18px; display:inline-block; width:100px; left:calc(50% - 50px); background:rgb(50, 50, 50); top:-4px; }
+/* Barra de energia para los disparos */
+#SpaceInvaders404_Contenedor > #SpaceInvaders404_Info > #Disparos > #Disparos_Valor { position:absolute; height:18px; display:inline-block; width:100px; left:0px; background:rgb(234, 80, 78);  }
+/* Puntuación */
+#SpaceInvaders404_Contenedor > #SpaceInvaders404_Info > #Puntuacion { position:absolute; height:30px; display:inline-block; right:0; top:-6px; color:rgb(234, 80, 78); font-weight:bold; font-size:18px; }
+/* Vidas */
+#SpaceInvaders404_Contenedor > #SpaceInvaders404_Info > span { display: inline-block; position:relative; width:30px; background:rgb(234, 80, 78); height:10px;  }
+#SpaceInvaders404_Contenedor > #SpaceInvaders404_Info > span::before { content:''; position:absolute; width:10px; background:inherit; height:10px; top:-6px; left:10px;  }
+#SpaceInvaders404_Contenedor[estado='1'] > #SpaceInvaders404_Info[visible='true'] > span:nth-child(1) { animation:AniColorFondoRojoAmarillo 0.5s ease 2.75s 2 alternate; }
+#SpaceInvaders404_Contenedor[estado='1'] > #SpaceInvaders404_Info[visible='true'] > span:nth-child(2) { animation:AniColorFondoRojoAmarillo 0.5s ease 3s 2 alternate;    }
+#SpaceInvaders404_Contenedor[estado='1'] > #SpaceInvaders404_Info[visible='true'] > span:nth-child(3) { animation:AniColorFondoRojoAmarillo 0.5s ease 3.25s 2 alternate; }
+/* Depuración */
+#SpaceInvaders404_Contenedor > #SpaceInvaders404_Debug[visible = 'true'] { position:absolute; width:200px; left:calc(50% + 250px); top:calc(50%); color:#FFF; margin-left: 10px; }
+
+
+@keyframes AniColorFondoRojoAmarillo {
+    100% { background:rgb(255, 255, 0); }
+    0%   { background:rgb(234, 80, 78); }
+}
+@keyframes AniColorTextoRojoAmarillo {
+    100% { color:rgb(255, 255, 0); }
+    0%   { color:rgb(234, 80, 78); }
+}
+
+#SpaceInvaders404_Contenedor[estado='1'] > #SpaceInvaders404_Info[visible='true'] #Disparos_Valor { animation:AniColorFondoRojoAmarillo 0.5s ease 5s 6 alternate; }
+#SpaceInvaders404_Contenedor[estado='1'] > #SpaceInvaders404_Info[visible='true'] > #Puntuacion   { animation:AniColorTextoRojoAmarillo 0.5s ease 9s 6 alternate; }
+
+/* Canvas */
+#SpaceInvaders404 { width:500px; height:500px; display:table; margin:auto; top:calc(50% - 250px); position:relative; /*border-bottom:3px solid rgb(234, 80, 78); /* border-top:1px solid rgb(234, 80, 78); */ /* cursor:none; */  }
+#SpaceInvaders404_Contenedor[estado='3'] > #SpaceInvaders404 { cursor:none; }
+/* Información de la página 404 */
+#SpaceInvaders404_Texto { display:table; position:absolute; bottom:10px; left:50%; transform:translateX(-50%); /*background:rgba(64,64,64, 0.5);*/ }
+/* Titulo del error */
+#SpaceInvaders404_Texto > h1 { color:rgb(234, 80, 78); display:table; margin:10px auto; }
+/* Descripción del error 404 */
+#SpaceInvaders404_Texto > div:nth-child(2) { color:white; font-weight:bold; }
+#SpaceInvaders404_URLError404 { color: rgb(210, 210, 210); font-weight:normal; } 
+/* Instrucciones del juego*/
+#SpaceInvaders404_Instrucciones h2 { margin:10px auto 0px auto; display:table; text-shadow:1px 1px 2px #000; }
+#SpaceInvaders404_Instrucciones > div { padding:0px 10px; color:#fff; border:1px solid rgb(28, 20, 104); background:rgba(28, 20, 54, 0.85); position:absolute; display:inline-block; visibility:hidden; top:10px; left:50%; transform:translate(-50%, 0%); width:700px; opacity:0; transition:0.5s; top:-500px; }
+#SpaceInvaders404_Instrucciones button { border:1px solid blue; background:rgb(80, 78, 234); font-size:1.4rem; color:#FFF; margin:10px auto; display:table; outline:none; text-shadow:1px 1px 1px #000; transition:0.5s; cursor:pointer; }
+#SpaceInvaders404_Instrucciones button:hover { color:#FFFF00; }
+#SpaceInvaders404_Instrucciones > div[visible='true'] { opacity:1; top:10px; visibility:visible; }
+
+/* Teclado CSS */
+.TecladoCSS {
+    display:flex;
+    flex-flow:row nowrap;
+}
+.TecladoCSS_Col1, .TecladoCSS_Col2, .TecladoCSS_Col3  { display:inline-block }
+.TecladoCSS_Col2, .TecladoCSS_Col3 { margin-left:18px; }
+.TecladoCSS_Col3 { margin-top:38px; }
+
+.TecladoCSS_FilaEsc { margin-bottom:8px; }
+
+.TecladoCSS_Tecla {
+    min-width: 24px;
+    height: 19px;
+    display: inline-block;
+    border: 1px solid #666;
+    border-radius: 4px;
+    color: #FFF;
+    background: #222;
+    margin: 2px 0px;
+    vertical-align: middle;
+    text-align: center;
+    padding: 5px 0px 0px 0px;
+    font-size:0.8rem;
+}
+
+.Tecla_Tab { width:40px; }
+.Tecla_Mayus { width:48px; }
+.Tecla_Shift, .Tecla_Control, .Tecla_Win, .Tecla_Alt, .Tecla_Fn, .Tecla_Menu { width:32px; }
+.Tecla_Espacio { width:177px; }
+.Tecla_ShiftD { width:75px; }
+.Tecla_Borrar { width:54px; }
+.Tecla_Intro { width:36px; position:relative; border-bottom-color: transparent; border-right-color: transparent; }            
+.Tecla_Intro::after { content:''; position:absolute; width:30px; display:inline-block; height:54px; top:-1px; right:-2px; background-color:#222; z-index:-1; border-radius:4px; border:1px solid #666; }
+
+.Tecla_Num_0 { width:54px; }
+.Tecla_Num_Sum, .Tecla_Num_Intro { position:relative; border-color:transparent; background:transparent; margin-top:1px; }
+.Tecla_Num_Sum::after, .Tecla_Num_Intro::after { content:''; position:absolute; width:24px; display:inline-block; height:54px; top:-1px; right:-1px; background-color:#222; z-index:-1; border-radius:4px; border:1px solid #666; }        
+
+.Tecla_Esc { margin-right: 30px; }
+.Tecla_F4, .Tecla_F8 { margin-right: 15px; }
+
+
+#SpaceInvaders404_Instrucciones_Intro3[visible='true'] .TecladoCSS_AniMovimiento {  animation:AniTeclasMovimiento 0.5s ease 0s 8 alternate;    animation-fill-mode:both;        }           
+#SpaceInvaders404_Instrucciones_Intro3[visible='true'] .TecladoCSS_AniDisparo {  animation:AniTeclasDisparo 0.5s ease 8s 8 alternate;         animation-fill-mode:both;   }
+
+@keyframes AniTeclasMovimiento {
+    100% { color:#FFF; background:#2A2; }
+    0%   { color:#FFF; background:#242; }
+}
+
+@keyframes AniTeclasDisparo {
+    100% { color:#FFF; background:#D22; }
+    0%   { color:#FFF; background:#422; }
+}
+
+/*            @keyframes AniBotonDisparo {
+    0%   { background:#ECC; }
+    100% { background:#D22; }
+}*/
+
+.MouseCSS {
+    width:70px; 
+    height:120px;
+    border-radius:80% 80% 100% 100% / 50% 50% 100% 100%;
+    background: #CCC;
+    border: 1px solid #666;
+    position:relative;
+    margin-left:45px;
+    margin-top:35px;
+}
+
+.MouseCSS_Boton1, .MouseCSS_Boton2 {
+    position:absolute;
+    width:35px;
+    height:45px;
+    top:-1px;
+    border: 1px solid #666;
+}
+
+.MouseCSS_Boton1 {
+    background:#CAA;
+    left:-1px;
+    border-radius:80% 0% 0% 0% / 50% 0% 0% 0%;
+}
+.MouseCSS_Boton2 {
+    left:35px;
+    border-radius:0% 80% 0% 0% / 0% 50% 0% 0%;
+}
+
+.MouseCSS_Rueda {
+    position:absolute; width:8px; height:25px;
+    left:31px; top:22px;
+    border-radius:4px;
+    background:#222;
+}
+
+#SpaceInvaders404_Instrucciones_Intro2[visible='true'] .MouseCSS_AniDisparo {  animation:AniBotonDisparo 0.5s ease 8s 8 alternate;         animation-fill-mode:both;   }
+
+@keyframes AniBotonDisparo {
+    100%   { background:#D22; }
+    0% { background:#CAA; }
+}
+
+#TextoDisparo, #TextoMovimiento, #TextoDisparo2, #TextoVidas, #TextoArma, #TextoPuntuacion { opacity:0; text-shadow:1px 1px 1px #222;}
+#SpaceInvaders404_Instrucciones_Intro3[visible='true'] #TextoMovimiento { animation:AniOpacidadTexto 1.5s ease 0s 1 normal;         animation-fill-mode:forwards;  }
+#SpaceInvaders404_Instrucciones_Intro3[visible='true'] #TextoDisparo { animation:AniOpacidadTexto 1.5s ease 4s 1 normal;         animation-fill-mode:forwards;  }
+#SpaceInvaders404_Instrucciones_Intro3[visible='true'] #TextoDisparo2 { animation:AniOpacidadTexto 1.5s ease 8s 1 normal;         animation-fill-mode:forwards;  }
+
+
+#SpaceInvaders404_Instrucciones_Intro2[visible='true'] #TextoVidas { animation:AniOpacidadTexto 1.5s ease 2.5s 1 normal;         animation-fill-mode:forwards;  }
+#SpaceInvaders404_Instrucciones_Intro2[visible='true'] #TextoArma { animation:AniOpacidadTexto 1.5s ease 5s 1 normal;         animation-fill-mode:forwards;  }
+#SpaceInvaders404_Instrucciones_Intro2[visible='true'] #TextoPuntuacion { animation:AniOpacidadTexto 1.5s ease 9s 1 normal;         animation-fill-mode:forwards;  }
+
+@keyframes AniOpacidadTexto {
+    0%   { opacity:0; }
+    100% { opacity:1; }
+}
+
+.MouseCSS_FlechaArriba, .MouseCSS_FlechaAbajo, .MouseCSS_FlechaIzquierda, .MouseCSS_FlechaDerecha {
+    border-top: 2px solid rgb(255, 255, 0);
+    border-right:2px solid rgb(255, 255, 0);
+    width:10px;
+    height:10px;
+    position:absolute;
+    opacity:0;
+}
+
+#SpaceInvaders404_Instrucciones_Intro3[visible='true'] .MouseCSS_FlechaArriba {
+    transform:rotateZ(315deg);                
+    left:calc(50% - 5px);
+    top:-20px;
+    animation:AniFlechaArriba 1s ease-out 4s 4 normal;
+}
+#SpaceInvaders404_Instrucciones_Intro3[visible='true'] .MouseCSS_FlechaAbajo {
+    left:calc(50% - 5px);
+    transform:rotateZ(135deg);                
+    bottom:-20px;
+    animation:AniFlechaAbajo 1s ease-out 4s 4 normal;
+}
+#SpaceInvaders404_Instrucciones_Intro3[visible='true'] .MouseCSS_FlechaIzquierda {
+    transform:rotateZ(225deg);                
+    top:calc(50% - 5px);
+    left:-20px;
+    animation:AniFlechaIzquierda 1s ease-out 4s 4 normal;
+}
+#SpaceInvaders404_Instrucciones_Intro3[visible='true'] .MouseCSS_FlechaDerecha {
+    transform:rotateZ(45deg);
+    top:calc(50% - 5px);
+    right:-20px;
+    animation:AniFlechaDerecha 1s ease-out 4s 4 normal;
+}
+
+@keyframes AniFlechaArriba {
+    100%   { top:-35px; opacity:0; }
+    0% { top:-15px; opacity:1; }
+}
+@keyframes AniFlechaAbajo {
+    100%   { bottom:-35px; opacity:0; }
+    0% { bottom:-15px; opacity:1; }
+}
+@keyframes AniFlechaDerecha {
+    100%   { right:-35px; opacity:0; }
+    0% { right:-15px; opacity:1; }
+}
+@keyframes AniFlechaIzquierda {
+    100%   { left:-35px; opacity:0; }
+    0% { left:-15px; opacity:1; }
+}
+
+
+
+.SinSeleccion { -moz-user-select: none;  -webkit-user-select: none; -ms-user-select: none;  user-select: none; }

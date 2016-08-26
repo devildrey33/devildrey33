@@ -199,11 +199,84 @@ ObjetoCanvas.prototype.FPS = function() {
         this.FPS_Contador ++;
     }
 };
+
+
+
+// Objeto que crea y contiene un canvas 2d para utilizarlo de back buffer
+var BufferCanvas = function(Ancho, Alto) {
+    this.Canvas = document.createElement("canvas");
+    this.Canvas.setAttribute("width", Ancho);
+    this.Canvas.setAttribute("height", Alto);
+    this.Context = this.Canvas.getContext("2d"); 
+    this.Ancho = Ancho;
+    this.Alto = Alto;
+};
+
       
       
       
       
       
+      
+var ObjetoAnimacion_Paso = function(Datos, Tiempo, Retraso, FuncionTiempo) {
+    this.Datos   = Datos;
+    this.Tiempo  = (typeof Tiempo        !== 'undefined') ? Tiempo  : 1;
+    this.Retraso = (typeof Retraso       !== 'undefined') ? Retraso : 0;
+    this.Funcion = (typeof FuncionTiempo !== 'undefined') ? Funcion : function() { };
+};
+
+var ObjetoAnimacion = function(ArrayPasos, FuncionTerminado) {
+    this._UltimoTick         = 0;            // Ultimo date.now que se ha obtenido con la función Actualizar
+    this._Pasos              = ArrayPasos;   // Array con los parámetros
+    this._PosPasos           = 1;            // Posición dentro del array de datos
+    this._PasoOrig           = this._Pasos[this._PosPasos - 1];
+    this._PasoDest           = this._Pasos[this._PosPasos];
+    this._Avance             = 0;
+    this._FuncionTerminado   = (typeof FuncionTerminado !== 'undefined') ? FuncionTerminado : function() { };
+    this.Terminado           = false;        // Animación terminada
+    // Valores iniciales
+    for (var Indice in this._PasoOrig.Datos) {                    
+        this[Indice] = this._PasoOrig.Datos[Indice];
+    }    
+        
+    this.Actualizar = function() {
+        if (this.Terminado === true) { return; }
+        var t = Date.now();
+        if (this._UltimoTick !== 0) {
+            // Tiempo desde el ultimo frame a este frame
+            var TiempoFrame = t - this._UltimoTick;
+            if (this._PasoDest.Retraso > 0) {
+                this._PasoDest.Retraso = this._PasoDest.Retraso - TiempoFrame; 
+            }
+            else {
+                this._Avance += (TiempoFrame / this._PasoDest.Tiempo);
+                for (var Indice in this._PasoDest.Datos) {                    
+                    this[Indice] = this._PasoOrig.Datos[Indice] - (this._PasoOrig.Datos[Indice] - this._PasoDest.Datos[Indice]) * this._Avance;
+                }
+                if (this._Avance >= 1) {
+                    this._PosPasos ++;
+                    if (this._PosPasos < this._Pasos.length) {
+                        this._PasoOrig = this._Pasos[this._PosPasos - 1];
+                        this._PasoDest = this._Pasos[this._PosPasos];
+                        this._Avance = 0;
+                    }
+                    else {
+                        this.Terminado = true;
+                        this._FuncionTerminado();
+                    }
+                }
+            }
+        }        
+        this._UltimoTick = t;
+    };
+};
+      
+
+/*var ani = new ObjetoAnimacion(Array(
+    new ObjetoAnimacion_Paso({ x : 0, y : 500 }),
+    new ObjetoAnimacion_Paso({ x : 500, y : 0 }, 5000),
+    new ObjetoAnimacion_Paso({ x : 2500, y : -2500 }, 500)
+));*/
       
       
       

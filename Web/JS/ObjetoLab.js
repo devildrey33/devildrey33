@@ -164,6 +164,8 @@ $Lab = new function() {
     
     /* Función para cargar un archivo */
     this.CargarArchivo = function(Archivo, ID) {
+        // Reseteo el temporizador para el tiempo de la sesión
+        $Base.ResetearTimerTiempoSesion();
         $Base.Cargando("TRUE");
         $Base.CargarArchivo_nopush = false;
         console.log("Lab.CargarArchivo", Archivo);

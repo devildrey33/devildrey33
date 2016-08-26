@@ -175,6 +175,11 @@ $Comentarios = new function() {
         }
         
         this.Enviando = true;
+
+        // Reseteo el temporizador para el tiempo de la sesión
+        $Base.ResetearTimerTiempoSesion();
+        $Base.Cargando("TRUE");
+        
         // Guardo los datos introducidos en el navegador 
         localStorage["Comentarios_Usuario"] = $("#Comentarios_Nombre").val();
         localStorage["Comentarios_Correo"]  = $("#Comentarios_Correo").val();
@@ -198,11 +203,11 @@ $Comentarios = new function() {
             // Mensaje enviado
             else {                                
                 $("#Comentarios_Datos").html(Datos["HTML"] + $("#Comentarios_Datos").html());
-                $Base.Cargando("FALSE");
                 $Comentarios.Iniciar();
                 $("body, html").stop().animate({ scrollTop : $("#Comentarios_Datos").offset().top - 200 }, 200);
                 $Base.MostrarMensaje("Comentario enviado correctamente.");
             }
+            $Base.Cargando("FALSE");
             $Comentarios.Enviando = false;
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
             if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
@@ -221,6 +226,8 @@ $Comentarios = new function() {
     this.Obtener20 = function() {
         if ($("div[fincomentarios=true]").offset()) return;
         if (this.Obteniendo === true) return;
+        // Reseteo el temporizador para el tiempo de la sesión
+        $Base.ResetearTimerTiempoSesion();
         $Base.Cargando("TRUE");
         Pagina = $("#MarcoNavegacion > article.Blog").attr("pagina")
         Desde = $("#Comentarios_Datos div[comentario]:last-child").attr("comentario");
@@ -250,6 +257,8 @@ $Comentarios = new function() {
     this.ObtenerHastaNum = function(Num) {
         if ($("div[fincomentarios=true]").offset()) return;
         if (this.Obteniendo === true) return;
+        // Reseteo el temporizador para el tiempo de la sesión
+        $Base.ResetearTimerTiempoSesion();
         $Base.Cargando("TRUE");
 
 //        if (typeof(Num) === undefined) return;

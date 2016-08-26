@@ -1,0 +1,1165 @@
+<!-- 
+    Test para el canvas del error 404 de devildrey33.es creado por Josep Antoni Bover Comas el 12-07-2016
+    Idea original : http://es.gizmodo.com/la-mejor-pagina-de-error-404-te-deja-jugar-a-space-inva-510812213
+        - En esencia me he basado en la imagen, ya que esa pagina de error ya no existe por desgracia (http://www.masswerk.at/404), aunque ahora tiene otra animación que también está muy bien.
+        Vista por defecto en el Laboratorio de pruebas  
+		devildrey33_Lab->Opciones->Vista = Columnas;
+
+        Ultima modificación el 24/08/2016
+
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <!-- Estilos CSS para el test -->
+        <style>
+            body { background: rgb(49,46,53); margin:0px; padding:0px; }            
+            /* Contenedor vertical */
+            #SpaceInvaders404_Contenedor { height:100vh; }
+            /* Contenedor de las vidas y la puntuación */
+            #SpaceInvaders404_Contenedor > #SpaceInvaders404_Info { position:absolute; height:30px; width:500px; left:calc(50% - 250px); top:calc(50% + 265px); transition:1s cubic-bezier(.17,-0.22,0,1.35); transform-origin:center left; transform:perspective(800px) rotateY(90deg); }
+            #SpaceInvaders404_Contenedor > #SpaceInvaders404_Info[visible='true'] { transform:perspective(800px) rotateY(0deg); }
+            /* Marco para la energia de los disparos algo mas oscuro que el fondo */
+            #SpaceInvaders404_Contenedor > #SpaceInvaders404_Info > #Disparos { position:absolute; height:18px; display:inline-block; width:100px; left:calc(50% - 50px); background:rgb(50, 50, 50); top:-4px; }
+            /* Barra de energia para los disparos */
+            #SpaceInvaders404_Contenedor > #SpaceInvaders404_Info > #Disparos > #Disparos_Valor { position:absolute; height:18px; display:inline-block; width:0px; left:0px; background:rgb(234, 80, 78);  }
+            /* Puntuación */
+            #SpaceInvaders404_Contenedor > #SpaceInvaders404_Info > #Puntuacion { position:absolute; height:30px; display:inline-block; right:0; top:-6px; color:rgb(234, 80, 78); font-weight:bold; font-size:18px; }
+            /* Vidas */
+            #SpaceInvaders404_Contenedor > #SpaceInvaders404_Info > span { display: inline-block; position:relative; width:30px; background:rgb(234, 80, 78); height:10px;  }
+            #SpaceInvaders404_Contenedor > #SpaceInvaders404_Info > span::before { content:''; position:absolute; width:10px; background:inherit; height:10px; top:-6px; left:10px;  }
+            #SpaceInvaders404_Contenedor > #SpaceInvaders404_Info[visible='true'] > span:nth-child(1) { animation:AniColorFondoRojoAmarillo 0.5s ease 2.75s 2 alternate; }
+            #SpaceInvaders404_Contenedor > #SpaceInvaders404_Info[visible='true'] > span:nth-child(2) { animation:AniColorFondoRojoAmarillo 0.5s ease 3s 2 alternate;    }
+            #SpaceInvaders404_Contenedor > #SpaceInvaders404_Info[visible='true'] > span:nth-child(3) { animation:AniColorFondoRojoAmarillo 0.5s ease 3.25s 2 alternate; }
+
+            @keyframes AniColorFondoRojoAmarillo {
+                100% { background:rgb(255, 255, 0); }
+                0%   { background:rgb(240, 80, 78); }
+            }
+            @keyframes AniColorTextoRojoAmarillo {
+                100% { color:rgb(255, 255, 0); }
+                0%   { color:rgb(240, 80, 78); }
+            }
+            
+            #SpaceInvaders404_Contenedor > #SpaceInvaders404_Info[visible='true'] #Disparos_Valor { animation:AniColorFondoRojoAmarillo 0.5s ease 5s 6 alternate; }
+            #SpaceInvaders404_Contenedor > #SpaceInvaders404_Info[visible='true'] > #Puntuacion   { animation:AniColorTextoRojoAmarillo 0.5s ease 9s 6 alternate; }
+            
+            /* Canvas */
+            #SpaceInvaders404 { width:500px; height:500px; display:table; margin:auto; top:calc(50% - 250px); position:relative; /*border-bottom:3px solid rgb(234, 80, 78); /* border-top:1px solid rgb(234, 80, 78); */ /* cursor:none; */  }
+            /* Información de la página 404 */
+            #SpaceInvaders404_Texto { display:table; position:absolute; bottom:10px; left:50%; transform:translateX(-50%); /*background:rgba(64,64,64, 0.5);*/ }
+            /* Titulo del error */
+            #SpaceInvaders404_Texto > h1 { color:rgb(234, 80, 78); display:table; margin:10px auto; }
+            /* Descripción del error 404 */
+            #SpaceInvaders404_Texto > div:nth-child(2) { color:white; font-weight:bold; }
+            #SpaceInvaders404_URLError404 { color: rgb(210, 210, 210); font-weight:normal; } 
+            /* Instrucciones del juego*/
+            #SpaceInvaders404_Instrucciones h2 { margin:10px auto 0px auto; display:table; text-shadow:1px 1px 2px #000; }
+            #SpaceInvaders404_Instrucciones > div { padding:0px 10px; color:#fff; border:1px solid rgb(28, 20, 104); background:rgba(28, 20, 54, 0.85); position:absolute; display:inline-block; visibility:hidden; top:10px; left:50%; transform:translate(-50%, 0%); width:700px; opacity:0; transition:0.5s; top:-500px; }
+            #SpaceInvaders404_Instrucciones button { border:1px solid blue; background:rgb(80, 78, 234); font-size:1.4rem; color:#FFF; margin:10px auto; display:table; outline:none; text-shadow:1px 1px 1px #000; transition:0.5s; cursor:pointer; }
+            #SpaceInvaders404_Instrucciones button:hover { color:#FFFF00; }
+            #SpaceInvaders404_Instrucciones > div[visible='true'] { opacity:1; top:10px; visibility:visible; }
+
+
+            .TecladoCSS {
+                display:flex;
+                flex-flow:row nowrap;
+            }
+            .TecladoCSS_Col1, .TecladoCSS_Col2, .TecladoCSS_Col3  { display:inline-block }
+            .TecladoCSS_Col2, .TecladoCSS_Col3 { margin-left:18px; }
+            .TecladoCSS_Col3 { margin-top:38px; }
+
+            .TecladoCSS_FilaEsc { margin-bottom:8px; }
+
+            .TecladoCSS_Tecla {
+                min-width: 24px;
+                height: 19px;
+                display: inline-block;
+                border: 1px solid #666;
+                border-radius: 4px;
+                color: #FFF;
+                background: #222;
+                margin: 2px 0px;
+                vertical-align: middle;
+                text-align: center;
+                padding: 5px 0px 0px 0px;
+                font-size:0.8rem;
+            }
+
+            .Tecla_Tab { width:40px; }
+            .Tecla_Mayus { width:48px; }
+            .Tecla_Shift, .Tecla_Control, .Tecla_Win, .Tecla_Alt, .Tecla_Fn, .Tecla_Menu { width:32px; }
+            .Tecla_Espacio { width:177px; }
+            .Tecla_ShiftD { width:75px; }
+            .Tecla_Borrar { width:54px; }
+            .Tecla_Intro { width:36px; position:relative; border-bottom-color: transparent; border-right-color: transparent; }            
+            .Tecla_Intro::after { content:''; position:absolute; width:30px; display:inline-block; height:54px; top:-1px; right:-2px; background-color:#222; z-index:-1; border-radius:4px; border:1px solid #666; }
+
+            .Tecla_Num_0 { width:54px; }
+            .Tecla_Num_Sum, .Tecla_Num_Intro { position:relative; border-color:transparent; background:transparent; margin-top:1px; }
+            .Tecla_Num_Sum::after, .Tecla_Num_Intro::after { content:''; position:absolute; width:24px; display:inline-block; height:54px; top:-1px; right:-1px; background-color:#222; z-index:-1; border-radius:4px; border:1px solid #666; }        
+
+            .Tecla_Esc { margin-right: 30px; }
+            .Tecla_F4, .Tecla_F8 { margin-right: 15px; }
+
+            #SpaceInvaders404_Instrucciones_Intro2[visible='true'] .TecladoCSS_AniMovimiento {  animation:AniTeclasMovimiento 0.5s ease 0s 8 alternate;    animation-fill-mode:both;        }           
+            #SpaceInvaders404_Instrucciones_Intro2[visible='true'] .TecladoCSS_AniDisparo {  animation:AniTeclasDisparo 0.5s ease 8s 8 alternate;         animation-fill-mode:both;   }
+            
+            @keyframes AniTeclasMovimiento {
+                100%   { color:#FFF; background:#2A2; }
+                0% { color:#FFF; background:#242; }
+            }
+            
+            @keyframes AniTeclasDisparo {
+                100%   { color:#FFF; background:#D22; }
+                0%  { color:#FFF; background:#422; }
+            }
+            
+/*            @keyframes AniBotonDisparo {
+                0%   { background:#ECC; }
+                100% { background:#D22; }
+            }*/
+            
+            .MouseCSS {
+                width:70px; 
+                height:120px;
+                border-radius:80% 80% 100% 100% / 50% 50% 100% 100%;
+                background: #CCC;
+                border: 1px solid #666;
+                position:relative;
+                margin-left:45px;
+                margin-top:35px;
+            }
+            
+            .MouseCSS_Boton1, .MouseCSS_Boton2 {
+                position:absolute;
+                width:35px;
+                height:45px;
+                top:-1px;
+                border: 1px solid #666;
+            }
+            
+            .MouseCSS_Boton1 {
+                background:#CAA;
+                left:-1px;
+                border-radius:80% 0% 0% 0% / 50% 0% 0% 0%;
+            }
+            .MouseCSS_Boton2 {
+                left:35px;
+                border-radius:0% 80% 0% 0% / 0% 50% 0% 0%;
+            }
+
+            .MouseCSS_Rueda {
+                position:absolute; width:8px; height:25px;
+                left:31px; top:22px;
+                border-radius:4px;
+                background:#222;
+            }
+            
+            #SpaceInvaders404_Instrucciones_Intro2[visible='true'] .MouseCSS_AniDisparo {  animation:AniBotonDisparo 0.5s ease 8s 8 alternate;         animation-fill-mode:both;   }
+            
+            @keyframes AniBotonDisparo {
+                100%   { background:#D22; }
+                0% { background:#CAA; }
+            }
+            
+            #TextoDisparo, #TextoMovimiento, #TextoDisparo2, #TextoVidas, #TextoArma, #TextoPuntuacion { opacity:0; text-shadow:1px 1px 1px #222;}
+            #SpaceInvaders404_Instrucciones_Intro2[visible='true'] #TextoMovimiento { animation:AniOpacidadTexto 1.5s ease 0s 1 normal;         animation-fill-mode:forwards;  }
+            #SpaceInvaders404_Instrucciones_Intro2[visible='true'] #TextoDisparo { animation:AniOpacidadTexto 1.5s ease 4s 1 normal;         animation-fill-mode:forwards;  }
+            #SpaceInvaders404_Instrucciones_Intro2[visible='true'] #TextoDisparo2 { animation:AniOpacidadTexto 1.5s ease 8s 1 normal;         animation-fill-mode:forwards;  }
+            
+
+            #SpaceInvaders404_Instrucciones_Intro3[visible='true'] #TextoVidas { animation:AniOpacidadTexto 1.5s ease 2.5s 1 normal;         animation-fill-mode:forwards;  }
+            #SpaceInvaders404_Instrucciones_Intro3[visible='true'] #TextoArma { animation:AniOpacidadTexto 1.5s ease 5s 1 normal;         animation-fill-mode:forwards;  }
+            #SpaceInvaders404_Instrucciones_Intro3[visible='true'] #TextoPuntuacion { animation:AniOpacidadTexto 1.5s ease 9s 1 normal;         animation-fill-mode:forwards;  }
+
+            @keyframes AniOpacidadTexto {
+                0%   { opacity:0; }
+                100% { opacity:1; }
+            }
+            
+            .MouseCSS_FlechaArriba, .MouseCSS_FlechaAbajo, .MouseCSS_FlechaIzquierda, .MouseCSS_FlechaDerecha {
+                border-top: 2px solid rgb(255, 255, 0);
+                border-right:2px solid rgb(255, 255, 0);
+                width:10px;
+                height:10px;
+                position:absolute;
+                opacity:0;
+            }
+            
+            #SpaceInvaders404_Instrucciones_Intro2[visible='true'] .MouseCSS_FlechaArriba {
+                transform:rotateZ(315deg);                
+                left:calc(50% - 5px);
+                top:-20px;
+                animation:AniFlechaArriba 1s ease-out 4s 4 normal;
+            }
+            #SpaceInvaders404_Instrucciones_Intro2[visible='true'] .MouseCSS_FlechaAbajo {
+                left:calc(50% - 5px);
+                transform:rotateZ(135deg);                
+                bottom:-20px;
+                animation:AniFlechaAbajo 1s ease-out 4s 4 normal;
+            }
+            #SpaceInvaders404_Instrucciones_Intro2[visible='true'] .MouseCSS_FlechaIzquierda {
+                transform:rotateZ(225deg);                
+                top:calc(50% - 5px);
+                left:-20px;
+                animation:AniFlechaIzquierda 1s ease-out 4s 4 normal;
+            }
+            #SpaceInvaders404_Instrucciones_Intro2[visible='true'] .MouseCSS_FlechaDerecha {
+                transform:rotateZ(45deg);
+                top:calc(50% - 5px);
+                right:-20px;
+                animation:AniFlechaDerecha 1s ease-out 4s 4 normal;
+            }
+            
+            @keyframes AniFlechaArriba {
+                100%   { top:-35px; opacity:0; }
+                0% { top:-15px; opacity:1; }
+            }
+            @keyframes AniFlechaAbajo {
+                100%   { bottom:-35px; opacity:0; }
+                0% { bottom:-15px; opacity:1; }
+            }
+            @keyframes AniFlechaDerecha {
+                100%   { right:-35px; opacity:0; }
+                0% { right:-15px; opacity:1; }
+            }
+            @keyframes AniFlechaIzquierda {
+                100%   { left:-35px; opacity:0; }
+                0% { left:-15px; opacity:1; }
+            }
+            
+            
+            
+            .SinSeleccion { -moz-user-select: none;  -webkit-user-select: none; -ms-user-select: none;  user-select: none; }
+        </style>
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Web/JS/FuncionesGlobales.js"></script>
+<!--        <script src="/Web/JS/ObjetoBanner.js"></script> -->
+        <!-- Código javascript --> 
+<script type="text/javascript">
+"use strict";  
+var RgbToHex = function(r, g, b) {
+    this.Hex = function(c) {
+        var h = c.toString(16);
+        return (h.length === 1) ? "0" + h : h;
+    };    
+    return this.Hex(r) + this.Hex(g) + this.Hex(b);
+};
+
+var HexToRgb = function(h) {
+    var hex = (h.charAt(0) === "#") ? h.substring(1, 7) : h;
+/*    this.r = parseInt(hex.substring(0,2), 16);
+    this.g = parseInt(hex.substring(2,4), 16);
+    this.b = parseInt(hex.substring(4,6), 16);*/
+    return { r : parseInt(hex.substring(0,2), 16), g : parseInt(hex.substring(2,4), 16), b : parseInt(hex.substring(4,6), 16) };
+};
+
+// Objeto que crea y contiene un canvas 2d para utilizarlo de back buffer
+var BufferCanvas = function(Ancho, Alto) {
+    this.Canvas = document.createElement("canvas");
+    this.Canvas.setAttribute("width", Ancho);
+    this.Canvas.setAttribute("height", Alto);
+    this.Context = this.Canvas.getContext("2d"); 
+};
+
+// 
+var SpaceInvaders404 = function() {
+    this.ColorFondo     = "rgba(41,39,44, 1)";
+    this.Canvas         = document.getElementById('SpaceInvaders404');
+    this.Context        = this.Canvas.getContext("2d");                                             // Contexto 2D
+    this.Ancho          = 500;
+    this.Alto           = 500;
+    this.Buffer404      = null;
+    this.Mouse          = { X : 0, Y : 0 };
+    // Imagen que contiene 3 tipos de enemigos con 2 caras, y el ovni
+    this.PngEnemigos    = new Image(); // NOTES\devildrey33.es\SpaceInvaders Error404\SpaceInvaders404-60x30.png
+    this.PngEnemigos.src = "data:image/png;base64,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";
+                         /* Espacio     /\           A            D           <-          ->         */
+    this.Teclado        = { 32 : false, 38 : false,  65 : false,  68 : false, 37 : false, 39 : false };
+    this.Disparos       = [];   // Array de disparos 
+    this.Enemigos       = [];   // Array de enemigos
+    this.Estado         = 0;    // Estado del juego (0 inicio, 1 juego, 2 muerto, 3 terminado)
+    this.ActualizarEstado = function () { }; // Función de pintado para el estado actual
+    
+    this.Opciones       = { 
+        HUD     : true,     // Ayuda visual con las barras de la X, Y del mouse, y el ángulo de disparo
+        Tanque  : {         // Opciones para el tanque
+            DisparosPorSegundo    : 5,  // Máximo de disparos por segundo
+            MaxDisparosPorSegundo : 10, // Disparos por segundo actuales
+            DisparosVelocidad     : 10, // Velocidad de desplazamiento de los disparos
+            MaxVelocidad          : 5,  // Máximo de velocidad del tanque al moverse de derecha a izquierda
+            Ancho                 : 30, // Ancho del tanque
+            Alto                  : 10  // Alto de la base del tanque
+        },
+        Enemigo : {
+            VelocidadX            : 1,    // Velocidad del enemigo al moverse de derecha a izquierda
+            VelocidadY            : 4,    // Velocidad del enemigo al moverse hacia abajo
+            MaxDisparosPorSegundo : 5,    // Máximo de disparos por segundo (de todos los enemigos)
+            DisparosVelocidad     : 6,   // Velocidad de desplazamiento de los disparos
+            MaxAnimacion          : 333,  // 500 ms para alternar la imagen
+            AnimacionMS           : 0,    // Tiempo actual de la animación
+            AnimacionCara         : false,// Cada enemigo tiene 2 imagenes (false/true)
+            AniDerecha            : true, // Los enemigos van hacia la derecha
+            EspacioAlto           : 30    // Espacio de alto que hay entre 2 enemigos
+//            DisparosPorSegundo    : 3
+        }
+    };
+    
+    // Actualizo la URL para el texto de error
+    document.getElementById("SpaceInvaders404_URLError404").innerHTML = window.location.href;
+
+    // Función que crea un buffer con el texto 'error 404'
+    this.CrearError404 = function() {
+        // Creo un canvas que utilizare de back buffer para almacenar la imagen del 404, y asi poder almacenar los pixeles destruidos.
+        this.Buffer404 = new BufferCanvas(this.Ancho, this.Alto);
+        this.Buffer404.Context.font = "160px monospace";
+        this.Buffer404.Context.fillStyle = "rgb(234, 80, 78)";
+        this.Buffer404.Context.fillText("ERROR", (this.Ancho - this.Buffer404.Context.measureText("ERROR").width) / 2, 240); // La w suele tener un ancho aproximado a la altura del texto....
+        this.Buffer404.Context.font = "260px monospace";
+        this.Buffer404.Context.fillStyle = "rgb(234, 80, 78)";
+        this.Buffer404.Context.fillText("404", (this.Ancho - this.Buffer404.Context.measureText("404").width) / 2, 440); // La w suele tener un ancho aproximado a la altura del texto....
+        this.Buffer404.Context.strokeStyle = "rgba(41,39,44, 1)";
+        // Con esta operación hacemos un clear encima del buffer 404 en el que todo lo que se pinta, borra el buffer con color transparente.
+        this.Buffer404.Context.globalCompositeOperation = 'destination-out';
+    };    
+
+    this.TipoEnemigos = { // imgs de 60x30
+        0 : { Ancho : 33, Alto : 24, X1 : 0,   X2 : 60 },
+        1 : { Ancho : 24, Alto : 24, X1 : 120, X2 : 180 },
+        2 : { Ancho : 36, Alto : 24, X1 : 240, X2 : 300 },
+        3 : { Ancho : 48, Alto : 21, X1 : 360 } // ovni
+    };
+
+    // Estructura para los datos de un enemigo
+    this.Enemigo = function(X, Y, Tipo) {
+        this.X                  = X;
+        this.Y                  = Y; 
+        this.Tipo               = Tipo;
+        this.DisparosPorSegundo = 0;
+    };
+    
+    this.CrearEnemigos = function() {
+//        for (var y = 2; y > -1; y--) {
+        for (var y = 0; y < 3; y++) {
+            for (var x = 0; x < 8; x++) {
+                var Centro = 10 + Math.floor((40 - this.TipoEnemigos[y].Ancho) / 2);
+                this.Enemigos.push(new this.Enemigo( Centro + (x * 40), this.Opciones.Enemigo.EspacioAlto * (y +1), y));
+            }
+        }
+    };
+            
+    // Estructura para los datos del tanque del jugador
+    this.JugadorTanque = function (Padre) {        
+        this.X        = (Padre.Ancho - Padre.Opciones.Tanque.Ancho) / 2,
+        this.Y        = Padre.Alto - 20;
+        this.Angulo   = 90; // Ángulo de disparoqa
+        this.Vel      = 0;  // Velocidad actual de desplazamiento
+//        this.MuertoMS = 0;  // variable para la invulnerabilidad despues de morir
+    };                 
+       
+    // Estructura para un disparo
+    // Angulo 0 a 180 es hacia arriba (jugador) y de 180 a 360 es hacia abajo (enemigos)
+    this.Disparo = function(X, Y, Angulo) {
+        this.X          = X;        // x inicial
+        this.Y          = Y;        // y inicial
+        this.Angulo     = Angulo;   // ángulo de avance
+        this.Distancia  = 1;        // distancia a recorrer desde las coordenadas x,y iniciales
+    };     
+    
+    this.ColorTanque = new ObjetoAnimacion(Array( 
+        new ObjetoAnimacion_Paso({ R : 240, G :  80, B :  78, A : 1 }),
+        new ObjetoAnimacion_Paso({ R :   0, G : 255, B :   0, A : 1 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R :  34, G :  68, B :  34, A : 1 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R :   0, G : 255, B :   0, A : 1 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R :  34, G :  68, B :  34, A : 1 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R :   0, G : 255, B :   0, A : 1 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R :  34, G :  68, B :  34, A : 1 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R :   0, G : 255, B :   0, A : 1 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R :  34, G :  68, B :  34, A : 1 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R : 240, G :  80, B :  78, A : 1 }, 500, 0)
+    ));
+        
+    this.ColorHud = new ObjetoAnimacion(Array(
+        new ObjetoAnimacion_Paso({ R : 240, G :  80, B :  78, A : 0.4 }),
+        new ObjetoAnimacion_Paso({ R : 255, G : 255, B :   0, A : 1 }, 500, 3700),
+        new ObjetoAnimacion_Paso({ R : 255, G : 255, B :   0, A : 0 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R : 255, G : 255, B :   0, A : 1 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R : 255, G : 255, B :   0, A : 0 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R : 255, G : 255, B :   0, A : 1 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R : 255, G : 255, B :   0, A : 0 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R : 255, G : 255, B :   0, A : 1 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R : 255, G : 255, B :   0, A : 0 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R : 240, G :  80, B :  78, A : 0.4 }, 500, 0)
+    ));
+
+    this.ColorError404 = new ObjetoAnimacion(Array(
+        new ObjetoAnimacion_Paso({ R : 240, G :  80, B :  78, A : 1 }),
+        new ObjetoAnimacion_Paso({ R : 255, G : 255, B :   0, A : 1 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R : 240, G :  80, B :  78, A : 1 }, 500, 250),
+        new ObjetoAnimacion_Paso({ R : 255, G : 255, B :   0, A : 1 }, 500, 0),
+        new ObjetoAnimacion_Paso({ R : 240, G :  80, B :  78, A : 1 }, 500, 250)
+    ));
+    
+    
+    // Actualiza la posición del vehiculo 
+    this.Teclado = function() {
+        if (this.Opciones.Tanque.DisparosPorSegundo < this.Opciones.Tanque.MaxDisparosPorSegundo) {
+            this.Opciones.Tanque.DisparosPorSegundo += this.Opciones.Tanque.MaxDisparosPorSegundo / 60;
+        }
+        // Barra que muestra el poder de disparo
+        var Porcentaje = (100 / this.Opciones.Tanque.MaxDisparosPorSegundo) * this.Opciones.Tanque.DisparosPorSegundo;
+        document.getElementById("Disparos_Valor").style.width = Porcentaje + "px";
+        if (this.Teclado[65] === true || this.Teclado[37] === true) { 
+            if (this.Tanque.Vel > -this.Opciones.Tanque.MaxVelocidad)  { this.Tanque.Vel -= 0.5; }
+            if (this.Tanque.X > 0) { this.Tanque.X += this.Tanque.Vel; }
+            else { this.Tanque.X = 0; }            
+        } // A, <-
+        else if (this.Teclado[68] === true || this.Teclado[39] === true) {  
+            if (this.Tanque.Vel < this.Opciones.Tanque.MaxVelocidad)  { this.Tanque.Vel += 0.5; }
+            if (this.Tanque.X < this.Ancho - this.Opciones.Tanque.Ancho) { this.Tanque.X += this.Tanque.Vel; }
+            else { this.Tanque.X = this.Ancho - this.Opciones.Tanque.Ancho; }
+        } // D, ->     
+        // Al mover el tanque hay que recalcular el ángulo de disparo del tanque
+        if (this.Teclado[65] === true || this.Teclado[37] === true || this.Teclado[68] === true || this.Teclado[39] === true) { 
+            this.CalcularAnguloDisparoTanque();
+        }
+        
+        // spc, cursor arriba (tambien se dispara con el mouse pero se simula una pulsación de la tecla espacio : 'this.Teclado[32] = true/false')
+        if (this.Teclado[32] === true || this.Teclado[38] === true) {
+            if (this.Opciones.Tanque.DisparosPorSegundo > 0) {
+                this.Disparos.push(new this.Disparo(this.Tanque.X + (this.Opciones.Tanque.Ancho / 2), this.Tanque.Y - 12, this.Tanque.Angulo));
+                this.Opciones.Tanque.DisparosPorSegundo --;
+            }
+        }        
+    };
+    
+    /* No se que algoritmo se usa en el canvas para pintar una línea con moveto, lineto (por descarte imagino que el : https://rosettacode.org/wiki/Xiaolin_Wu%27s_line_algorithm)
+     * - he utilizado el algoritmo de bresenham para calcular la línea que he pintado en el disparo, pero es impreciso ... 
+     * - Por lo que veo el problema es que el canvas pinta las líneas con algun anti alias, y eso hace que algunos pixeles detectados en el bucle del bresenham den falsos positivos... 
+     *      - Al encontrar una colision se pintara de nuevo el pixel colisionado, y de esta forma no se trabara el algoritmo de bresenham */     
+    
+    
+    /* Hace avanzar los disparos en su dirección, y detecta las colisiones de todo el recorrido del disparo */
+/*    this.ColisionesDisparos = function() {
+        // getImageData es un peligro.... memory leak al canto 
+        this.ArrayPixels = this.Context.getImageData(0, 0, this.Ancho, this.Alto);
+        var Fondo = HexToRgb("#EA504E");
+        this.Context.strokeStyle = "#FFFFFF";
+        for (var i = this.Disparos.length - 1; i > -1; i--) {
+            var Eliminado = false;
+            // Calculo las coordenadas x (cos), y (sin)
+            var s = Math.sin(this.Disparos[i].Angulo * (Math.PI / 180));
+            var c = Math.cos(this.Disparos[i].Angulo * (Math.PI / 180));
+            // Posición inicial
+            var x1 = Math.floor(this.Disparos[i].X - (this.Disparos[i].Distancia * c));
+            var y1 = Math.floor(this.Disparos[i].Y - (this.Disparos[i].Distancia * s));
+            // Posición final
+            var x2 = Math.floor(this.Disparos[i].X - ((this.Disparos[i].Distancia + this.Opciones.Tanque.DisparosVelocidad) * c));
+            var y2 = Math.floor(this.Disparos[i].Y - ((this.Disparos[i].Distancia + this.Opciones.Tanque.DisparosVelocidad) * s));
+            
+            // Pinto el disparo en el buffer del 404
+            this.Buffer404.Context.beginPath();
+            this.Buffer404.Context.lineWidth = 1;
+            this.Buffer404.Context.moveTo(x1, y1);
+            this.Buffer404.Context.lineTo(x2, y2);
+            this.Buffer404.Context.stroke();               
+            // Pinto el disparo            
+            this.Context.beginPath();
+            this.Context.moveTo(x1, y1);
+            this.Context.lineTo(x2, y2);                
+            this.Context.stroke();
+
+            // Define differences and error check (bresenham algorithm)
+            var dx = Math.abs(x2 - x1);     // Desplazamiento x
+            var dy = Math.abs(y2 - y1);     // Desplazamiento y
+            var sx = (x1 < x2) ? 1 : -1;    // Suma x
+            var sy = (y1 < y2) ? 1 : -1;    // Suma y
+            var err = dx - dy;                        
+            // Compruebo todos los pixeles por los que tiene que pasar el disparo
+            while (!((x1 === x2) && (y1 === y2))) {
+                var e2 = err << 1;
+                if (e2 > -dy) { err -= dy;  x1 += sx; }
+                if (e2 < dx)  { err += dx;  y1 += sy; }                
+                // Posición del pixel dentro del dataImage 
+                var Pos = ((y1 * this.Alto) + x1) * 4;                                
+                // Colisión
+                if (this.ArrayPixels.data[Pos] ===  Fondo.r && this.ArrayPixels.data[Pos + 1] === Fondo.g && this.ArrayPixels.data[Pos + 2] === Fondo.b) { 
+                    // Borro el pixel de la colisión (en determinados ángulos puede haber pixeles que no se han borrado con el moveto - lineto)
+                    this.Buffer404.Context.fillRect(x1, y1, 1, 1);
+                    // Busco si ha impactado en un enemigo
+                    for (var e = this.Enemigos.length - 1; e > - 1; e--) {
+                        if (this.Enemigos[e].X < x1 && this.Enemigos[e].X + this.TipoEnemigos[this.Enemigos[e].Tipo].Ancho > x1 &&
+                            this.Enemigos[e].Y < y1 && this.Enemigos[e].Y + this.TipoEnemigos[this.Enemigos[e].Tipo].Alto > y1) {
+                            // Elimino el enemigo, ademas este es el sitio ideal para empezar una animación de explosión
+                            this.Enemigos.splice(e, 1);  
+                        }
+                    }
+                    // Busco si ha impactado en el jugador
+                    if (this.Tanque.X < x1 && this.Tanque.X + this.Opciones.Tanque.Ancho > x1 && this.Tanque.Y < y1 && this.Tanque.Y + this.Opciones.Tanque.Alto > y1) {
+                        this.MatarTanque();
+                    }
+                    this.Disparos.splice(i, 1);                                                    
+                    Eliminado = true;
+                    break;
+                }
+                // No hay colisión
+                else {
+                    // Compruebo si se ha salido el disparo de la pantalla para eliminarlo
+                    if (x1 < 0 || x1 > this.Ancho || y1 < 0 || y1 > this.Alto) {
+                        this.Disparos.splice(i, 1);
+                        Eliminado = true;
+                        break;
+                    }
+                }                                                
+                
+            }
+            
+            if (Eliminado === false) {
+                this.Disparos[i].Distancia += this.Opciones.Tanque.DisparosVelocidad;
+            }
+            
+        }        
+        this.ArrayPixels = null;
+    };    */
+
+    /* El problema es que solo miro el pixel del final donde ha avanzado el disparo, y no todo su recorrido... 
+     *  Es decir si por ejemplo el disparo está en X = 250, y = 0 avanza 10 pixeles en un ánguilo de 90º (hacia arriba) la colisión ignora los pixeles del 0 al 9 de la Y, y solo mira el [250, 10].     * */
+    /* Hace avanzar los disparos en su dirección, y detecta las colisiones*/
+    this.ColisionesDisparos = function() {
+        var Pixel = null;
+        var Fondo = HexToRgb("#EA504E");
+        this.Context.strokeStyle = "#FFFFFF";
+        for (var i = this.Disparos.length - 1; i > -1; i--) {
+            var s = Math.sin(this.Disparos[i].Angulo * (Math.PI / 180));
+            var c = Math.cos(this.Disparos[i].Angulo * (Math.PI / 180));
+            // Avanzo los disparos
+            var ux = this.Disparos[i].X - (this.Disparos[i].Distancia * c);
+            var uy = this.Disparos[i].Y - (this.Disparos[i].Distancia * s);
+            this.Disparos[i].Distancia += this.Opciones.Tanque.DisparosVelocidad;
+            var x = this.Disparos[i].X - (this.Disparos[i].Distancia  * c);
+            var y = this.Disparos[i].Y - (this.Disparos[i].Distancia * s);
+            Pixel = this.Context.getImageData(Math.floor(x), Math.floor(y), 1, 1);
+
+            // Pinto el disparo en el buffer del 404
+            this.Buffer404.Context.beginPath();
+            this.Buffer404.Context.moveTo(this.Disparos[i].X, this.Disparos[i].Y);
+            this.Buffer404.Context.lineTo(Math.floor(x), Math.floor(y));                
+            this.Buffer404.Context.stroke();               
+            // Colision
+            if (Pixel.data[0] === Fondo.r && Pixel.data[1] === Fondo.g && Pixel.data[2] === Fondo.b) { 
+                // Busco si ha impactado en un aenemigo
+                for (var e = this.Enemigos.length - 1; e > - 1; e--) {
+                    if (this.Enemigos[e].X < x && this.Enemigos[e].X + this.TipoEnemigos[this.Enemigos[e].Tipo].Ancho > x &&
+                        this.Enemigos[e].Y < y && this.Enemigos[e].Y + this.TipoEnemigos[this.Enemigos[e].Tipo].Alto > y) {
+                        // Elimino el enemigo, ademas este es el sitio ideal para empezar una animación de explosión
+                        this.Enemigos.splice(e, 1);  
+                    }
+                }
+                // Busco si ha impactado en el jugador
+                if (this.Tanque.X < x && this.Tanque.X + this.Opciones.Tanque.Ancho > x && this.Tanque.Y < y && this.Tanque.Y + this.Opciones.Tanque.Alto > y) {
+                    this.MatarTanque();
+                }
+                
+                this.Disparos.splice(i, 1);                                
+            }
+            // No hay colisión
+            else {
+                // Compruebo si se ha salido el disparo de la pantalla para eliminarlo
+                if (x < 0 || x > this.Ancho || y < 0 || y > this.Alto) {
+                    this.Disparos.splice(i, 1);
+                }
+                else {
+                    // Pinto el disparo            
+                    this.Context.beginPath();
+                    this.Context.moveTo(ux, uy);
+                    this.Context.lineTo(x, y);                
+                    this.Context.stroke();
+                }
+            }
+            
+            
+        }        
+    };    
+    
+    this.MatarTanque = function() { 
+        console.log("BUM");
+    };
+    
+    // Función que pinta el tanque y el HUD
+    this.PintarTanque = function() {        
+        // Pinto el HUD : 
+        //  - una línea de izquerda a derecha con la posición X del mouse
+        //  - una línea de arriba a abajo con la posición Y del mouse
+        //  - línea desde el cañon del tanque a la posición x, y del mouse. 
+        if (this.Opciones.HUD === true) {
+            this.Context.strokeStyle = "rgba(" + Math.floor(this.ColorHud.R) + "," + Math.floor(this.ColorHud.G) + "," + Math.floor(this.ColorHud.B) + "," + this.ColorHud.A + ")"; 
+            var s = Math.sin(this.Tanque.Angulo * (Math.PI / 180));
+            var c = Math.cos(this.Tanque.Angulo * (Math.PI / 180));
+            // Ángulo de disparo
+            this.Context.beginPath();
+            this.Context.moveTo((this.Tanque.X + (this.Opciones.Tanque.Ancho / 2)) - c, (this.Tanque.Y - 12) - s);
+            this.Context.lineTo(((this.Tanque.X + (this.Opciones.Tanque.Ancho / 2)) - (c * 1000)), ((this.Tanque.Y - 12) - (s * 1000)));                
+            this.Context.stroke();
+            // Eje X
+            this.Context.beginPath();
+            this.Context.moveTo(0, this.Mouse.Y);
+            this.Context.lineTo(this.Ancho, this.Mouse.Y);
+            this.Context.stroke();
+            // Eje Y
+            this.Context.beginPath();
+            this.Context.moveTo(this.Mouse.X, 0);
+            this.Context.lineTo(this.Mouse.X, this.Alto);
+            this.Context.stroke();
+        }
+        // Pinto el vehiculo del jugador
+        this.Context.fillStyle = "rgba(" + Math.floor(this.ColorTanque.R) + "," + Math.floor(this.ColorTanque.G) + "," + Math.floor(this.ColorTanque.B) + "," + this.ColorTanque.A + ")"; 
+        this.Context.fillRect(this.Tanque.X, this.Tanque.Y, this.Opciones.Tanque.Ancho, this.Opciones.Tanque.Alto);
+        this.Context.fillRect(this.Tanque.X + this.Opciones.Tanque.Ancho / 3, this.Tanque.Y - 6, this.Opciones.Tanque.Ancho / 3, 16);
+    };
+
+    this.PintarEnemigos = function() {
+        // Animación de la cara 
+        this.Opciones.Enemigo.AnimacionMS += 16;
+        if (this.Opciones.Enemigo.AnimacionMS > this.Opciones.Enemigo.MaxAnimacion) { 
+            this.Opciones.Enemigo.AnimacionMS = 0;
+            this.Opciones.Enemigo.AnimacionCara = !this.Opciones.Enemigo.AnimacionCara;
+        }
+        
+        if (this.Enemigos.length === 0) { return; }
+        // Guardo la posición del enemigo que está mas a la derecha
+        var PosEnemigoDerecha = 0;
+        var PosEnemigoIzquierda = this.Enemigos[0].X;
+        for (var i = 0; i < this.Enemigos.length; i++) {
+            if (this.Enemigos[i].X > PosEnemigoDerecha)   { PosEnemigoDerecha   = this.Enemigos[i].X; } 
+            if (this.Enemigos[i].X < PosEnemigoIzquierda) { PosEnemigoIzquierda = this.Enemigos[i].X; } 
+        }        
+
+        // Compruebo si hay que alternar la dirección de los enemigos
+        var AvanceY = 0;
+        if (PosEnemigoIzquierda < 10)              { this.Opciones.Enemigo.AniDerecha = true;  AvanceY = this.Opciones.Enemigo.VelocidadY; }
+        if (PosEnemigoDerecha > (this.Ancho - 50)) { this.Opciones.Enemigo.AniDerecha = false; AvanceY = this.Opciones.Enemigo.VelocidadY; }
+                
+        // Pinto los enemigos
+        for (var i = 0; i < this.Enemigos.length; i++) {
+            this.Enemigos[i].X = (this.Opciones.Enemigo.AniDerecha === true) ? this.Enemigos[i].X + this.Opciones.Enemigo.VelocidadX : this.Enemigos[i].X - this.Opciones.Enemigo.VelocidadX;
+            this.Enemigos[i].Y += AvanceY;
+            // Alterno la cara del enemigo
+            var x = (this.Opciones.Enemigo.AnimacionCara === false) ? this.TipoEnemigos[this.Enemigos[i].Tipo].X1 : this.TipoEnemigos[this.Enemigos[i].Tipo].X2;
+            // Pinto el enemigo en la pantalla
+            this.Context.drawImage(this.PngEnemigos,    x,                                              0,                                              // coordenadas source
+                                                        this.TipoEnemigos[this.Enemigos[i].Tipo].Ancho, this.TipoEnemigos[this.Enemigos[i].Tipo].Alto,  // tam source
+                                                        this.Enemigos[i].X,                             this.Enemigos[i].Y,                             // coordenadas dest
+                                                        this.TipoEnemigos[this.Enemigos[i].Tipo].Ancho, this.TipoEnemigos[this.Enemigos[i].Tipo].Alto); // tam dest
+            // Pinto el enemigo en el buffer del 404
+            this.Buffer404.Context.drawImage(this.PngEnemigos,  x,                                              0,                                              // coordenadas source
+                                                                this.TipoEnemigos[this.Enemigos[i].Tipo].Ancho, this.TipoEnemigos[this.Enemigos[i].Tipo].Alto,  // tam source
+                                                                this.Enemigos[i].X,                             this.Enemigos[i].Y,                             // coordenadas dest
+                                                                this.TipoEnemigos[this.Enemigos[i].Tipo].Ancho, this.TipoEnemigos[this.Enemigos[i].Tipo].Alto); // tam dest
+            // Sumo los nuevos disparos por segundo
+            if (this.Enemigos[i].DisparosPorSegundo < this.Opciones.Enemigo.MaxDisparosPorSegundo) {
+                this.Enemigos[i].DisparosPorSegundo += this.Opciones.Enemigo.MaxDisparosPorSegundo / 60;
+            }
+            // Si quedan disparos por segundo
+            if (this.Enemigos[i].DisparosPorSegundo > 0) {
+                this.Enemigos[i].DisparosPorSegundo --; 
+//                console.assert(i === 15);
+//                if (this.BuscarEnemigo(this.Enemigos[i].X + (this.TipoEnemigos[this.Enemigos[i].Tipo].Ancho / 2), this.Enemigos[i].Y + this.Opciones.Enemigo.EspacioAlto) === null) {
+                    console.log(i, this.Enemigos[i]);
+                    var Angulo = Math.atan2(this.Enemigos[i].Y - (this.Tanque.Y - 12), (this.Enemigos[i].X + (this.TipoEnemigos[this.Enemigos[i].Tipo].Ancho / 2)) - (this.Tanque.X + (this.Opciones.Tanque.Ancho / 2))) * 180 / Math.PI;
+                    Angulo += Rand(2, -2);
+                    this.Disparos.push(new this.Disparo(Math.floor(this.Enemigos[i].X + (this.TipoEnemigos[this.Enemigos[i].Tipo].Ancho / 2)), Math.floor(this.Enemigos[i].Y + (this.TipoEnemigos[this.Enemigos[i].Tipo].Alto)) , Angulo));
+            }
+        }        
+    };
+
+    this.BuscarEnemigo = function(x, y) {
+        for (var i = this.Enemigos.length -1; i > -1; i--) {
+            if (this.Enemigos[i].X > x && this.Enemigos[i].X < x + this.TipoEnemigos[this.Enemigos[i].Tipo].Ancho && this.Enemigos[i].Y === y) { 
+                return this.Enemigos[i]; 
+            }
+        }
+        return null;
+    };
+
+    this.CalcularAnguloDisparoTanque = function() {
+        var Medio = { X : this.Tanque.X + (this.Opciones.Tanque.Ancho / 2),  Y : this.Tanque.Y - 12 };
+        this.Tanque.Angulo = Math.atan2(Medio.Y - this.Mouse.Y, Medio.X - this.Mouse.X) * 180 / Math.PI;               
+    };
+    
+    this.EjecutarEstado = [];
+    
+    // Intro (Info 1)
+    this.EjecutarEstado[0] = function() {
+        this.Context.drawImage(this.Buffer404.Canvas, 0 ,0);                                
+    };
+    
+    // Info 2
+    this.EjecutarEstado[1] = function() {
+        // Compruebo las teclas presionadas
+        this.Teclado();        
+
+        this.ColorTanque.Actualizar();
+        this.ColorHud.Actualizar();
+        // Primera capa : tanque y el hud para el mouse que indica el ángulo de disparo.
+        this.PintarTanque();
+
+        // CanvasBuffer que contiene el texto 404 pintado
+        this.Context.drawImage(this.Buffer404.Canvas, 0 ,0);                                    
+
+        // Cuarta capa : disparos 
+        // - compruebo las colisiones (contra el muro, los enemigos, y el jugador)
+        this.ColisionesDisparos();
+    };
+    
+    // Info 3
+    this.EjecutarEstado[2] = function() {
+        // Compruebo las teclas presionadas
+        this.Teclado();        
+
+        this.ColorTanque.Actualizar();
+        // Primera capa : tanque y el hud para el mouse que indica el ángulo de disparo.
+        this.PintarTanque();
+
+        if (this.ColorError404.Terminado === false) {
+            this.ColorError404.Actualizar();
+            this.Context.font = "160px monospace";
+            this.Context.fillStyle = "rgb(" + Math.floor(this.ColorError404.R) + "," + Math.floor(this.ColorError404.G) + "," + Math.floor(this.ColorError404.B) + ")";
+            this.Context.fillText("ERROR", (this.Ancho - this.Context.measureText("ERROR").width) / 2, 240); // La w suele tener un ancho aproximado a la altura del texto....
+            this.Context.font = "260px monospace";
+            this.Context.fillText("404", (this.Ancho - this.Context.measureText("404").width) / 2, 440); // La w suele tener un ancho aproximado a la altura del texto....
+        }
+        else {
+            this.Context.drawImage(this.Buffer404.Canvas, 0 ,0);                                                    
+        }
+        // Cuarta capa : disparos 
+        // - compruebo las colisiones (contra el muro, los enemigos, y el jugador)
+        this.ColisionesDisparos();
+    };
+    
+    // Juego
+    this.EjecutarEstado[3] = function() {
+        // Compruebo las teclas presionadas
+        this.Teclado();        
+
+        // Primera capa : tanque y el hud para el mouse que indica el ángulo de disparo.
+        this.PintarTanque();
+
+        // Segunda capa : CanvasBuffer que contiene el texto 404 pintado
+        this.Context.drawImage(this.Buffer404.Canvas, 0 ,0);
+
+        // Tercera capa : enemigos
+        this.PintarEnemigos();
+
+        // Cuarta capa : disparos 
+        // - compruebo las colisiones (contra el muro, los enemigos, y el jugador)
+        this.ColisionesDisparos();
+    };
+    
+    this.Actualizar = function() {        
+        // Borro el canvas
+        this.Context.fillStyle = this.ColorFondo;
+        this.Context.clearRect(0, 0, this.Ancho, this.Alto);
+        // Utilizo la función EjecutarEstado del estado actual
+        this.ActualizarEstado();
+        
+        // Temporizador para el siguiente frame
+        this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this)); 
+    };
+    
+    this.AsignarEstado = function(nEstado) {
+        this.Estado = nEstado;
+        this.ActualizarEstado = this.EjecutarEstado[this.Estado];
+        // Introducción
+        if (nEstado === 0) {
+            $("#SpaceInvaders404_Instrucciones_Intro").attr("visible", true);
+            $("#SpaceInvaders404_Instrucciones_Intro2").attr("visible", false);    
+            $("#SpaceInvaders404_Instrucciones_Intro3").attr("visible", false);                
+        }
+        
+        // Instrucciones (movimiento y disparo)
+        if (nEstado === 1) {
+            $("#SpaceInvaders404_Instrucciones_Intro").attr("visible", false);
+            $("#SpaceInvaders404_Instrucciones_Intro2").attr("visible", true);    
+            $("#SpaceInvaders404_Instrucciones_Intro3").attr("visible", false);    
+        }
+        
+        // Instrucciones (covertura, vidas y puntuación)
+        if (nEstado === 2) {
+            $("#SpaceInvaders404_Instrucciones_Intro").attr("visible", false);    
+            $("#SpaceInvaders404_Instrucciones_Intro2").attr("visible", false);    
+            $("#SpaceInvaders404_Instrucciones_Intro3").attr("visible", true);
+            // puntuación, vidas y energia de disparo visibles
+            $("#SpaceInvaders404_Info").attr("visible", true);
+            // Vuelvo a poner los colores del hud normales por si avanza de INFO antes de que termine la animación de color del HUD
+            this.ColorHud.R = 240; this.ColorHud.G = 80; this.ColorHud.B = 78; this.ColorHud.A = 0.4;
+            this.ColorTanque = new ObjetoAnimacion(Array(
+                new ObjetoAnimacion_Paso({ R : 240, G :  80, B :  78, A : 1 }),
+                new ObjetoAnimacion_Paso({ R : 255, G : 255, B :   0, A : 1 }, 500, 2500),
+                new ObjetoAnimacion_Paso({ R : 240, G :  80, B :  78, A : 1 }, 500, 0)
+            ), function() {});                
+        }
+        
+        if (nEstado === 3) {
+            $("#SpaceInvaders404_Instrucciones_Intro").attr("visible", false);
+            $("#SpaceInvaders404_Instrucciones_Intro2").attr("visible", false);
+            $("#SpaceInvaders404_Instrucciones_Intro3").attr("visible", false);
+            
+        }
+
+    };
+    
+        
+    this.EventoTeclaPresionada = function(Evento) {
+        this.Teclado[Evento.keyCode] = true;
+    };
+    
+    this.EventoTeclaSoltada = function(Evento) {
+        this.Teclado[Evento.keyCode] = false;
+        // 'A' 'D' '<-' '->'
+        if (Evento.keyCode === 65 || Evento.keyCode === 68 || Evento.keyCode === 37 || Evento.keyCode === 39 ) { 
+            this.Tanque.Vel = 0;
+        }
+    };
+    
+    this.EventoMouseMove = function(Evento) {       
+        this.Mouse = { X : Evento.clientX - this.Canvas.offsetLeft,  Y : Evento.clientY - this.Canvas.offsetTop };
+        // Tope para el mouse
+        if (this.Mouse.Y > this.Alto - 32) { this.Mouse.Y = this.Alto - 32; }
+        if (this.Mouse.Y < 0) { this.Mouse.Y = 0; }
+        if (this.Mouse.X > this.Ancho) { this.Mouse.X = this.Ancho; }
+        if (this.Mouse.X < 0) { this.Mouse.X = 0; }
+        this.CalcularAnguloDisparoTanque();
+//        console.log(this.Mouse, this.Tanque.Angulo);
+    };
+
+    this.EventoMouseDown = function(Evento) {
+        this.Teclado[32] = true;
+    };
+    
+    this.EventoMouseUp = function(Evento) {
+        this.Teclado[32] = false;    
+    };
+        
+        
+    // MAIN
+    this.CrearError404();
+    this.CrearEnemigos();
+        
+    // Creo la estructura con los datos del tanque del jugador
+    this.Tanque = new this.JugadorTanque(this);
+    
+    // Enlazar eventos
+    window.addEventListener('keydown', this.EventoTeclaPresionada.bind(this));
+    window.addEventListener('keyup', this.EventoTeclaSoltada.bind(this));
+    window.addEventListener('mousemove', this.EventoMouseMove.bind(this));
+    window.addEventListener('mousedown', this.EventoMouseDown.bind(this));
+    window.addEventListener('mouseup', this.EventoMouseUp.bind(this));
+    // Asigno el foco del teclado a esta ventana 
+    window.focus();
+    // Info 1
+    $("#SpaceInvaders404_Instrucciones_Intro > button").on("click", this.AsignarEstado.bind(this, 1));
+    // Info 2
+    $("#SpaceInvaders404_Instrucciones_Intro2 > button").on("click", this.AsignarEstado.bind(this, 2)); 
+    // Info 3
+    $("#SpaceInvaders404_Instrucciones_Intro3 > button").on("click", this.AsignarEstado.bind(this, 3)); 
+    
+    this.AsignarEstado(0);
+    
+    
+    // Actualizo la escena
+    this.Actualizar();
+//    this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this)); 
+    
+};
+
+
+/* Funciones de tiempo :    https://github.com/mietek/ease-tween/blob/master/src/index.js
+                            https://gist.github.com/mckamey/3783009 
+     */
+
+var ObjetoAnimacion_Paso = function(Datos, Tiempo, Retraso, FuncionTiempo) {
+    this.Datos   = Datos;
+    this.Tiempo  = (typeof Tiempo        !== 'undefined') ? Tiempo  : 1;
+    this.Retraso = (typeof Retraso       !== 'undefined') ? Retraso : 0;
+    this.Funcion = (typeof FuncionTiempo !== 'undefined') ? Funcion : function() { };
+};
+
+var ObjetoAnimacion = function(ArrayPasos, FuncionTerminado) {
+    this._UltimoTick         = 0;            // Ultimo date.now que se ha obtenido con la función Actualizar
+    this._Pasos              = ArrayPasos;   // Array con los parámetros
+    this._PosPasos           = 1;            // Posición dentro del array de datos
+    this._PasoOrig           = this._Pasos[this._PosPasos - 1];
+    this._PasoDest           = this._Pasos[this._PosPasos];
+    this._Avance             = 0;
+    this._FuncionTerminado   = (typeof FuncionTerminado !== 'undefined') ? FuncionTerminado : function() { };
+    this.Terminado           = false;        // Animación terminada
+    // Valores iniciales
+    for (var Indice in this._PasoOrig.Datos) {                    
+        this[Indice] = this._PasoOrig.Datos[Indice];
+    }    
+        
+    this.Actualizar = function() {
+        if (this.Terminado === true) { return; }
+        var t = Date.now();
+        if (this._UltimoTick !== 0) {
+            // Tiempo desde el ultimo frame a este frame
+            var TiempoFrame = t - this._UltimoTick;
+            if (this._PasoDest.Retraso > 0) {
+                this._PasoDest.Retraso = this._PasoDest.Retraso - TiempoFrame; 
+            }
+            else {
+                this._Avance += (TiempoFrame / this._PasoDest.Tiempo);
+                if (this._Avance < 1) {
+                    for (var Indice in this._PasoDest.Datos) {                    
+                        this[Indice] = this._PasoOrig.Datos[Indice] - (this._PasoOrig.Datos[Indice] - this._PasoDest.Datos[Indice]) * this._Avance;
+                    }
+                }
+                else {
+                    // Valores finales
+                    for (var Indice in this._PasoDest.Datos) {                    
+                        this[Indice] = this._PasoDest.Datos[Indice];
+                    }    
+                    this._PosPasos ++;
+                    if (this._PosPasos < this._Pasos.length) {
+                        this._PasoOrig = this._Pasos[this._PosPasos - 1];
+                        this._PasoDest = this._Pasos[this._PosPasos];
+                        this._Avance = 0;
+                    }
+                    else {
+                        this._FuncionTerminado();
+                        this.Terminado = true;
+                    }
+                }
+            }
+        }        
+        this._UltimoTick = t;
+    };
+};
+      
+
+
+var Error404 = null;
+window.addEventListener('load', function() { Error404 = new SpaceInvaders404; });
+</script>
+    </head>
+    <body>
+        <div id='SpaceInvaders404_Texto'  class="SinSeleccion">
+            <h1>NO SE HA ENCONTRADO</h1>
+            <div>La página : '<code id='SpaceInvaders404_URLError404'></code>' <u>no existe!</u></div>
+        </div>
+        <div id="SpaceInvaders404_Contenedor"  class="SinSeleccion">
+            <canvas id="SpaceInvaders404" width="500" height="500"></canvas>
+            <div id='SpaceInvaders404_Info'>
+                <span></span> <!-- vida -->
+                <span></span> <!-- vida -->
+                <span></span> <!-- vida -->              
+                <div id='Disparos'><div id='Disparos_Valor'></div></div>
+                <div id='Puntuacion'>Puntuación : 0</div>
+            </div>
+            
+            <div id="SpaceInvaders404_Instrucciones">
+                <div id='SpaceInvaders404_Instrucciones_Intro'>
+                    <h2>Alerta! intrusos en vector de intercepción!</h2>
+                    <p>Bienvenido! Tenemos malas noticias, y es que a parte de que no has encontrado lo que buscabas, se acerca una oleada de invasores del espacio!!</p>
+                    <p>Debo advertirte de que los invasores disponen de un arsenal renovado y altamente destructivo. Pero no te preocupes! el departamento de ingenieria ha improvisado un tanque a partir de un rectangulo y un cuadrado, para que puedas defenderte.</p>
+                    <button>Siguiente</button>
+                </div>
+                
+                <div id='SpaceInvaders404_Instrucciones_Intro2'>
+                    <!-- <p>Tu tanque está basado en un rectangulo de 30x10 y un cuadrado de 10x10 para la torreta, y viene equipado con munición perforante.</p> -->
+                    <div class='SpaceInvaders404_Instrucciones_Teclado'>
+                        <div class='TecladoCSS' style='margin-top:10px;'>
+                            <div class='TecladoCSS_Col1'>
+                                <div class='TecladoCSS_FilaEsc'>
+                                    <div class='TecladoCSS_Tecla Tecla_Esc'>Esc</div>
+                                    <div class='TecladoCSS_Tecla'>F1</div>
+                                    <div class='TecladoCSS_Tecla'>F2</div>
+                                    <div class='TecladoCSS_Tecla'>F3</div>
+                                    <div class='TecladoCSS_Tecla Tecla_F4'>F4</div>
+                                    <div class='TecladoCSS_Tecla'>F5</div>
+                                    <div class='TecladoCSS_Tecla'>F6</div>
+                                    <div class='TecladoCSS_Tecla'>F7</div>
+                                    <div class='TecladoCSS_Tecla Tecla_F8'>F8</div>
+                                    <div class='TecladoCSS_Tecla'>F9</div>
+                                    <div class='TecladoCSS_Tecla'>F10</div>
+                                    <div class='TecladoCSS_Tecla'>F11</div>
+                                    <div class='TecladoCSS_Tecla'>F12</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla'>\</div>
+                                    <div class='TecladoCSS_Tecla'>1</div>
+                                    <div class='TecladoCSS_Tecla'>2</div>
+                                    <div class='TecladoCSS_Tecla'>3</div>
+                                    <div class='TecladoCSS_Tecla'>4</div>
+                                    <div class='TecladoCSS_Tecla'>5</div>
+                                    <div class='TecladoCSS_Tecla'>6</div>
+                                    <div class='TecladoCSS_Tecla'>7</div>
+                                    <div class='TecladoCSS_Tecla'>8</div>
+                                    <div class='TecladoCSS_Tecla'>9</div>
+                                    <div class='TecladoCSS_Tecla'>0</div>
+                                    <div class='TecladoCSS_Tecla'>?</div>
+                                    <div class='TecladoCSS_Tecla'>¿</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Borrar'>Borrar</div>
+                                </div>
+                                <div>
+                                    <div class='TecladoCSS_Tecla Tecla_Tab'>Tab</div>
+                                    <div class='TecladoCSS_Tecla'>Q</div>
+                                    <div class='TecladoCSS_Tecla'>W</div>
+                                    <div class='TecladoCSS_Tecla'>E</div>
+                                    <div class='TecladoCSS_Tecla'>R</div>
+                                    <div class='TecladoCSS_Tecla'>T</div>
+                                    <div class='TecladoCSS_Tecla'>Y</div>
+                                    <div class='TecladoCSS_Tecla'>U</div>
+                                    <div class='TecladoCSS_Tecla'>I</div>
+                                    <div class='TecladoCSS_Tecla'>O</div>
+                                    <div class='TecladoCSS_Tecla'>P</div>
+                                    <div class='TecladoCSS_Tecla'>[</div>
+                                    <div class='TecladoCSS_Tecla'>]</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Intro'>Intro</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla Tecla_Mayus'>Mayus</div>
+                                    <div class='TecladoCSS_Tecla TecladoCSS_AniMovimiento'>A</div>
+                                    <div class='TecladoCSS_Tecla'>S</div>
+                                    <div class='TecladoCSS_Tecla TecladoCSS_AniMovimiento'>D</div>
+                                    <div class='TecladoCSS_Tecla'>F</div>
+                                    <div class='TecladoCSS_Tecla'>G</div>
+                                    <div class='TecladoCSS_Tecla'>H</div>
+                                    <div class='TecladoCSS_Tecla'>J</div>
+                                    <div class='TecladoCSS_Tecla'>K</div>
+                                    <div class='TecladoCSS_Tecla'>L</div>
+                                    <div class='TecladoCSS_Tecla'>Ñ</div>
+                                    <div class='TecladoCSS_Tecla'>´</div>
+                                    <div class='TecladoCSS_Tecla'>Ç</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla Tecla_Shift'>Shift</div>
+                                    <div class='TecladoCSS_Tecla'>> <</div>
+                                    <div class='TecladoCSS_Tecla'>Z</div>
+                                    <div class='TecladoCSS_Tecla'>X</div>
+                                    <div class='TecladoCSS_Tecla'>C</div>
+                                    <div class='TecladoCSS_Tecla'>V</div>
+                                    <div class='TecladoCSS_Tecla'>B</div>
+                                    <div class='TecladoCSS_Tecla'>N</div>
+                                    <div class='TecladoCSS_Tecla'>M</div>
+                                    <div class='TecladoCSS_Tecla'>;</div>
+                                    <div class='TecladoCSS_Tecla'>:</div>
+                                    <div class='TecladoCSS_Tecla'>-</div>
+                                    <div class='TecladoCSS_Tecla Tecla_ShiftD'>Shift D.</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla Tecla_Control'>Ctrl</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Win'>Win</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Alt'>Alt</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Espacio TecladoCSS_AniDisparo'>Espacio</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Alt'>Alt</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Fn'>Fn</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Menu'>Menú</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Control'>Ctrl</div>
+                                </div>
+                            </div>                    
+
+                            <!-- cursores -->            
+                            <div class='TecladoCSS_Col2'>
+                                <div class='TecladoCSS_FilaEsc'>
+                                    <div class='TecladoCSS_Tecla'>Imp</div>
+                                    <div class='TecladoCSS_Tecla'>Blo</div>
+                                    <div class='TecladoCSS_Tecla'>Pau</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla'>Ins</div>
+                                    <div class='TecladoCSS_Tecla'>Ini</div>
+                                    <div class='TecladoCSS_Tecla'>Rep</div>
+                                </div>
+
+                                <div style='margin-bottom:34px'>
+                                    <div class='TecladoCSS_Tecla'>Sup</div>
+                                    <div class='TecladoCSS_Tecla'>Fin</div>
+                                    <div class='TecladoCSS_Tecla'>Avp</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla TecladoCSS_AniDisparo' style='margin: 0px 30px;'>/\</div>
+                                </div>
+                                <div>
+                                    <div class='TecladoCSS_Tecla TecladoCSS_AniMovimiento'><=</div>
+                                    <div class='TecladoCSS_Tecla'>\/</div>
+                                    <div class='TecladoCSS_Tecla TecladoCSS_AniMovimiento'>=></div>
+                                </div>
+                            </div>
+
+                            <!-- mouse -->
+                            <div class='MouseCSS'>
+                                <div class='MouseCSS_Boton1 MouseCSS_AniDisparo'></div>
+                                <div class='MouseCSS_Boton2'></div>
+                                <div class='MouseCSS_Rueda'></div>
+                                
+                                <div class='MouseCSS_FlechaArriba'></div>
+                                <div class='MouseCSS_FlechaAbajo'></div>
+                                <div class='MouseCSS_FlechaIzquierda'></div>
+                                <div class='MouseCSS_FlechaDerecha'></div>
+                            </div>
+                            
+                            <!-- teclado numérico -->
+<!--                            <div class='TecladoCSS_Col3'>
+                                <div>
+                                    <div class='TecladoCSS_Tecla'>B.n.</div>
+                                    <div class='TecladoCSS_Tecla'>/</div>
+                                    <div class='TecladoCSS_Tecla'>*</div>
+                                    <div class='TecladoCSS_Tecla'>-</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla'>7</div>
+                                    <div class='TecladoCSS_Tecla'>8</div>
+                                    <div class='TecladoCSS_Tecla'>9</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Num_Sum'>+</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla'>4</div>
+                                    <div class='TecladoCSS_Tecla'>5</div>
+                                    <div class='TecladoCSS_Tecla'>6</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla'>1</div>
+                                    <div class='TecladoCSS_Tecla'>2</div>
+                                    <div class='TecladoCSS_Tecla'>3</div>
+                                    <div class='TecladoCSS_Tecla Tecla_Num_Intro'>Intro</div>
+                                </div>
+
+                                <div>
+                                    <div class='TecladoCSS_Tecla Tecla_Num_0'>0</div>
+                                    <div class='TecladoCSS_Tecla'>.</div>
+                                </div>
+
+                            </div>        -->                
+
+                        </div>
+                    </div>
+                    
+                    <p id='TextoMovimiento'>El tanque puede moverse lateralmente con las teclas marcadas en <span style='color:lightgreen'>verde</span>.</p>
+                    <p id='TextoDisparo'>Para disparar tienes que mover el mouse apuntando hacia el objetivo<span id='TextoDisparo2'>, y pulsar una de las las teclas o el botón del mouse marcados en <span style='color:red'>rojo</span>.</span></p>
+                    <button>Siguiente</button>
+                    
+                </div>
+                <div id='SpaceInvaders404_Instrucciones_Intro3'>
+                    <p id='TextoError404'>Utiliza el error 404 para cubrirte de los ataques. <span id='TextoVidas'>Tienes 4 tanques, utilizalos bien!</span></p>                    
+                    <p id='TextoArma'>El cañon puede llegar a disparar 10 proyectiles por segundo con la barra al máximo, y 5 por segundo con la barra al mínimo. Dispones de munición perforante que alcanza unos 300 pixeles por segundo de velocidad, y que puede llegar a perforar 8 pixeles por proyectil.</p>
+                    <p id='TextoPuntuacion'>Intenta obtener la puntuación mas alta, para poder dejar tu nombre entre los mejores.</p>
+                    <button>Empezar</button>                    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

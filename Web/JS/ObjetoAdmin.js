@@ -106,6 +106,18 @@ $Admin = new function() {
                 }
             }
         };
+        
+        /* Re-emplazo la función $Base.ResetearTimerTiempoSesion por una versión para administradores */
+        $Base.ResetearTimerTiempoSesion = function () { 
+            // hay un timer activo
+            if ($Base.TimerTiempoSesion !== 0) {
+                clearTimeout($Base.TimerTiempoSesion);
+            }
+            $Base.TimerTiempoSesion = setTimeout(function() {  $Admin.Desloguear(); }, 30 * 60 * 1000);
+//            $Base.TimerTiempoSesion = setTimeout(function() { $Base.MostrarMensaje("La sesión ha expirado, y has sido deslogueado.", "Sesión expirada"); $Admin.Desloguear(); }, 3000)
+        };
+        
+        $Base.ResetearTimerTiempoSesion();
     };
     
     /* Función para desloguear, vuelve a dejar toda la web a nivel usuario eliminando el código de administración */
@@ -123,6 +135,11 @@ $Admin = new function() {
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
             if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
             $('body').attr({ 'administrador33' : false });
+            /* Elimino el código de la función $Base.ResetearTimerTiempoSesion */
+            $Base.ResetearTimerTiempoSesion = function () { };
+            // Elimino el temporizador de la sesión
+            if ($Base.TimerTiempoSesion !== 0) { clearTimeout($Base.TimerTiempoSesion); }
+            $Base.TimerTiempoSesion = 0;
         });
         nAjax.fail(function( jqXHR, textStatus, tError ) { 
             console.log("Admin.Desloguear EscanearEjemplos Error ajax", jqXHR, textStatus, tError);
@@ -679,6 +696,8 @@ $Admin = new function() {
     };
     
     
+    
+    /* DEPRECATED */
     /*******************/
     /* Editar entradas */
     /*******************/
@@ -784,8 +803,7 @@ $Admin = new function() {
 };
 
 
-
-
+// Requerido por si se recarga toda la pagina siendo admin
 $(window).load(function() { $Admin.Iniciar(); });
 
 

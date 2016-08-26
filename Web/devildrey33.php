@@ -618,11 +618,19 @@ class devildrey33 {
         $this->BD = new devildrey33_BD();
         echo "<article class='Blog' pagina='$NombreDocumento'>".Intro();        
 //        if (!isset($_GET["GenerarCacheBuscador"])) {
-            echo    "<header class='Cabecera' animar='true'>".Intro().
-                        "<div class='Cabecera_Fondo Cabecera_Img".rand(1, 4)."'></div>".Intro().
+            echo    "<header id='Cabecera' animar='true'>".Intro().
+                        "<div id='Cabecera_Stats'>0 FPS</div>".Intro().
                         "<div class='Cabecera_Datos'>".Intro();
         $this->LeerDatosPathFalso($this->_NombreDocumento, $Titulo);
             echo        "</div>".Intro();
+            echo        "<div id='Cabecera_AutorAni' class='SinSeleccion'>".Intro().
+                            "<div class='BotonVentana'><img class='' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-prev'></div>".Intro().
+                            "<div id='CabeceraAutorAni_HTML'></div>".Intro().
+                            "<div class='BotonVentana'><img class='' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-next'></div>".Intro().
+                        "</div>".Intro();
+            echo        "<div id='Cabecera_PausaAni'>La web está en segundo plano, animación en pausa.</div>";
+            echo        "<div id='Cabecera_Cargando'>Cargando animación...</div>";
+            
             echo    "</header>".Intro();
 //        }
     }

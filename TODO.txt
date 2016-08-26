@@ -50,10 +50,8 @@ Millores de la web :
         - El problema es que no es pot utilitzar el <img> amb la id del svg en tots els navegadors...
     - Els 5 putus primers caracters que imprimeix qualsevol document php... no se d'on cony surten... tinc echos de l'ordre de carrega dels objectes y echos de putes distribuits estrategicament de forma que no funcionara res de res, aviam si puc obtenir un callback complet d'execució sense fer guarrades amb els echos.
         - S'imprimeixen just abans d'iniciar el constructor de devildrey33.php, pero no he pogut aillar l'origen....
-
-
-URGENT (pel temps que ha pasat casi que ja no cal, el proxim cop que actualitzi la Doc/CSS serà) :
- X  - Afegir entrades del Doc/CSS a l'index del blog, i posar el box-sizing i el animation-fill-mode (too late??)
+ V  - En el tema d'administració s'ha de posar un timer de 30 minuts per elminiar el status admin. Aquest timer s'ha de renovar cada cop que s'utilitzi un CargarURL o un cmd. (tambè afegit a les peticións ajaxs dels comentaris i el lab)
+ V      - No crec que sigui exacte però serà bastant aproximat i ames acabara de tancar tot el tema que vaig re-escriure per advertir del timeout en php en tots els cmd.
 
 Estils movils :
     - algo raro pasa al mostrar el banner en "portrait "

@@ -1,0 +1,117 @@
+<!-- 
+    Plantilla para test de canvas creado por Josep Antoni Bover Comas el 05-07-2016
+
+        Vista por defecto en el Laboratorio de pruebas  
+		devildrey33_Lab->Opciones->Vista = Filas;
+
+        Ultima modificación el 03/08/2016
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <!-- Estilos CSS para el test -->
+        <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Ejemplos/BannerTest/ObjetoCanvas.js"></script>
+        <!-- Código javascript --> 
+<script type="text/javascript">
+/* Plantilla para crear banners animados en devildrey33.es */
+var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al perder el foco del teclado
+
+// Constructor SIN TIPO, el tipo se especifica según la animación
+var Sinusoidal = function() {
+    // Llamo al constructor del ObjetoBanner
+    if (ObjetoCanvas.call(this, "2d") === false) { return false; }
+    // Se ha creado el canvas, inicio los valores de la animación ... 
+    // 
+    this.ImgOnda = new BufferCanvas(this.Ancho + 360, this.Alto);
+    this.ImgOnda.Context.strokeStyle = "rgba(40, 30, 200, 1)";
+    
+    this.ImgOnda.Context.moveTo(0, this.ImgOnda.Alto / 2);    
+    var Avance = 0;
+    var y, y2, y3;
+//    var neg = false;
+//    var y = this.ImgOnda.Alto / 2;
+    for (var x = 0; x <= this.ImgOnda.Ancho; x++){
+//        y = (this.ImgOnda.Alto / 2) - Math.sin((x) * Math.PI / 180) * (this.ImgOnda.Alto / 3);
+        Avance = (x * ((Math.PI / 180) * 2));
+        y = Math.sin(Avance * 2) * (this.ImgOnda.Alto / 6);
+        y2 = y + Math.sin(Avance * 4) * (this.ImgOnda.Alto / 6);
+        
+//        console.log(neg);
+//        y4 = Math.sin(Avance * 2) * (this.ImgOnda.Alto / 6);
+//console.log(y2 + y3);
+        this.ImgOnda.Context.lineTo(x, (this.Alto / 2) + (y2)  );
+    }
+    this.ImgOnda.Context.stroke();        
+        
+    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
+    this.Cargando(false);
+};
+
+Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototype), {
+    constructor     : Sinusoidal, 
+    Avance          : 0,
+    Avance2         : 0,
+    // Función que se llama al redimensionar el documento
+    Redimensionar   : function() {    },
+    // Función que se llama al hacer scroll en el documento    
+    Scroll          : function() {    },
+    // Función que se llama al mover el mouse por el canvas
+    MouseMove       : function(Evento) { },
+    // Función que pinta cada frame de la animación
+    Pintar          : function() {    
+        this.Context.fillStyle = "#000";
+        this.Context.fillRect(0, 0, this.Ancho, this.Alto);
+        // Avance para el backbufer
+        this.Avance +=1;
+        if (this.Avance >= 360) this.Avance = 0;
+        this.Context.drawImage(this.ImgOnda.Canvas, this.Avance, 0, this.Ancho / 2, this.Alto, 0, 0, this.Ancho /2, this.Alto);
+        // Circulo central
+        this.Context.strokeStyle = "rgba(40, 30, 200, 1)";
+        this.Context.beginPath();
+        this.Context.arc((this.Ancho / 2) + 300, this.Alto / 2, this.ImgOnda.Alto / 6, 0, 2 * Math.PI);
+        this.Context.stroke();
+        
+        this.Avance2 -= (Math.PI / 180) * 2;
+        // Circulo rotando        
+        var x = Math.cos(this.Avance2 * 1) * (this.ImgOnda.Alto / 6);
+        var y = Math.sin(this.Avance2 * 1) * (this.ImgOnda.Alto / 6);
+        this.Context.beginPath();
+        this.Context.arc(x + (this.Ancho / 2) + 300, y + (this.Alto / 2), this.ImgOnda.Alto / 6, 0, 2 * Math.PI);
+        this.Context.stroke();
+        // Barra
+        var x2 = Math.cos(this.Avance2 * 4) * (this.ImgOnda.Alto / 6);
+        var y2 = Math.sin(this.Avance2 * 4) * (this.ImgOnda.Alto / 6);
+        this.Context.beginPath();
+        this.Context.moveTo(x + x2 + (this.Ancho / 2) + 300, y + y2 + (this.Alto / 2));
+        this.Context.lineTo(this.Ancho / 2, y + y2 + (this.Alto / 2));
+        this.Context.stroke();
+        
+//        this.Context.drawImage(this.ImgOnda.Canvas, this.Avance2, 0, this.Ancho, this.Alto, 0, 0, this.Ancho, this.Alto);
+    }
+});
+
+var Canvas = null;
+window.addEventListener('load', function() { Canvas = new Sinusoidal; });
+
+
+
+
+
+
+
+</script>
+    </head>
+    <body>
+        <header id='Cabecera'>
+            <div id="Cabecera_Cargando">Cargando animación...</div>
+            <div id='Cabecera_Stats'>0 FPS</div>
+            <canvas id='Cabecera_Canvas'></canvas>
+            <div id="Cabecera_PausaAni">El canvas está en segundo plano, animación en pausa.</div>            
+        </header>        
+    </body>
+</html>
