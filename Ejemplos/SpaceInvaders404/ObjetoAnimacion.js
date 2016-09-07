@@ -17,8 +17,9 @@ var ObjetoAnimacion = new function() {
     this.Animaciones = [];
     // Actualiza las animaciones
     this.Actualizar = function() {
+        var Tick = Date.now();
         for (var i = this.Animaciones.length - 1; i > -1; i--) {
-            if (this.Animaciones[i].Actualizar() === true) { // Si ha terminado, elimino la animación del array de animaciones pendientes
+            if (this.Animaciones[i].Actualizar(Tick) === true) { // Si ha terminado, elimino la animación del array de animaciones pendientes
                 this.Animaciones.splice(i, 1);
             }
         }
@@ -63,9 +64,9 @@ var ObjetoAnimacion = new function() {
             }            
         };
         // Actualiza la animación
-        this.Actualizar = function() {
+        this.Actualizar = function(t) {
             if (this.Terminado === true) { return true; }
-            var t = Date.now();
+//            var t = Date.now();
             if (this._UltimoTick !== 0) {
                 // Tiempo desde el ultimo frame a este frame
                 var TiempoFrame = t - this._UltimoTick;

@@ -47,6 +47,7 @@ return array(
                                     "/JS/Banner/Banner_AdiestramientoCubos3D.js",
                                     "/JS/Banner/Banner_WormHole.js",
                                     "/JS/Banner/Banner_Anillos.js",
+                                    "/JS/Banner/Banner_Sinusoidal.js",
 //                                    "/JS/3rdParty/Stats.js" // FPS
                 )				  				  
 );

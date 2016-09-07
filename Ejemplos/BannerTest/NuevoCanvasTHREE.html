@@ -57,6 +57,10 @@ NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     Scroll          : function() {    },
     // Función que se llama al mover el mouse por el canvas
     MouseMove       : function(Evento) { },
+    // Función que se llama al entrar con el mouse en el canvas
+    MouseEnter      : function(Evento) {  },
+    // Función que se llama al salir con el mouse del canvas
+    MouseLeave      : function(Evento) {  },
     // Función que pinta cada frame de la animación
     Pintar          : function() {  
         this.Rotacion_Grados += this.Rotacion_Avance;

@@ -165,7 +165,8 @@ $Base = new function() {
                                 Banner_MatrixLluviaHexadecimal,
                                 Banner_AdiestramientoCubos3D,
                                 Banner_WormHole,
-                                Banner_Anillos                  ];                
+                                Banner_Anillos,
+                                Banner_Sinusoidal                  ];                
         var fPos = 0;
         // Si no se ha especificado ninguna posición generamos una aleatória
         if (typeof (Pos === "undefined")) { fPos = RandInt(Banner_Lista.length); }
@@ -186,7 +187,7 @@ $Base = new function() {
         console.log("Base.Banner(Pos = " + Pos + ")", fPos);
         this.PosBanner = fPos;
         
-//        $Banner = new Banner_WormHole();
+//        $Banner = new Banner_Sinusoidal();
         $Banner = new Banner_Lista[fPos];
     };
     

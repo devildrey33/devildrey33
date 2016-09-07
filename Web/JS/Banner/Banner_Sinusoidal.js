@@ -1,30 +1,13 @@
-<!-- 
-    Plantilla para test de canvas creado por Josep Antoni Bover Comas el 05-07-2016
+   /* Banner creado por Josep Antoni Bover Comas para devildrey33.es 
+ *  Creado el : 07/09/2016
+ *  Ultima modificación : 07/09/2016
+ * */
 
-        Vista por defecto en el Laboratorio de pruebas  
-		devildrey33_Lab->Opciones->Vista = Filas;
-
-        Ultima modificación el 03/08/2016
--->
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-        <!-- Estilos CSS para el test -->
-        <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
-        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
-<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
-        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
-        <script src="/Ejemplos/BannerTest/ObjetoCanvas.js"></script>
-        <!-- Código javascript --> 
-<script type="text/javascript">
-/* Plantilla para crear banners animados en devildrey33.es */
-var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al perder el foco del teclado
 
 // Constructor SIN TIPO, el tipo se especifica según la animación
 var Banner_Sinusoidal = function() {    
     // Llamo al constructor del ObjetoBanner
-    if (ObjetoCanvas.call(this, "2d") === false) { return false; }
+    if (ObjetoBanner.call(this, "2d") === false) { return false; }
     // Se ha creado el canvas, inicio los valores de la animación ... 
     // Color para el gráfico
     this.Color = "rgb(234, 80, 78)";
@@ -33,22 +16,26 @@ var Banner_Sinusoidal = function() {
     this.DegradadoTranslucido = this.Context.createLinearGradient(0, 0, this.DegradadoTranslucido_Ancho, 0);
     this.DegradadoTranslucido.addColorStop(0, "rgba(49, 46, 53, 1)");
     this.DegradadoTranslucido.addColorStop(1, "rgba(49, 46, 53, 0)");
-    
+     
     this.Velocidad1 = (Math.PI / 90);
     this.Velocidad2 = 4; // Velocidad2 es multiplicada por Velocidad1, y puede ser negativo
     
-    this.Reiniciar();
+    this.Iniciar();
     // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
     this.Cargando(false);
 };
 
 
-Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototype), {
+Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoBanner.prototype), {
     constructor     : Banner_Sinusoidal,
     
-    Avance2         : 0,
+    Nombre          : "Onda Sinusoidal",
+    IdeaOriginal    : "devildrey33",
+    URL             : "/Lab/Ejemplos/BannerTest/Sinusoidal.html",
+    NombreURL       : "Lab : Sinusoidal",  
+    
     // Función que se llama al redimensionar el documento
-    Redimensionar   : function() {  this.Reiniciar();  },
+    Redimensionar   : function() {  this.Iniciar();  },
     // Función que se llama al hacer scroll en el documento    
     Scroll          : function() {    },
     // Función que se llama al mover el mouse por el canvas
@@ -58,11 +45,11 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
     // Función que se llama al salir con el mouse del canvas
     MouseLeave      : function(Evento) {  },
     
-    Reiniciar       : function() { 
+    Iniciar       : function() { 
         this.DegradadoTranslucido_Ancho =  this.Ancho / 8;
-        this.AnchoGrafico = this.Ancho * 0.6;
+        this.AnchoGrafico = this.Ancho * 0.7;
         // Posición del circulo central
-        this.PosCirculo = this.Ancho * 0.8,
+        this.PosCirculo = this.Ancho * 0.9,
 
         this.ImgOnda = new BufferCanvas((this.AnchoGrafico) + 360, this.Alto);
         this.ImgOnda.Context.strokeStyle = this.Color;    
@@ -80,7 +67,7 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
         }
         this.ImgOnda.Context.stroke();        
 
-        this.Avance = -Math.floor(this.AnchoGrafico);
+        this.Avance = -(this.AnchoGrafico + 1);
         this.Avance2 = 0;
     },
     
@@ -148,24 +135,3 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
 //        this.Context.drawImage(this.ImgOnda.Canvas, this.Avance2, 0, this.Ancho, this.Alto, 0, 0, this.Ancho, this.Alto);
     }
 });
-
-var Canvas = null;
-window.addEventListener('load', function() { Canvas = new Banner_Sinusoidal; });
-
-
-
-
-
-
-
-</script>
-    </head>
-    <body>
-        <header id='Cabecera'>
-            <div id="Cabecera_Cargando">Cargando animación...</div>
-            <div id='Cabecera_Stats'>0 FPS</div>
-            <canvas id='Cabecera_Canvas'></canvas>
-            <div id="Cabecera_PausaAni">El canvas está en segundo plano, animación en pausa.</div>            
-        </header>        
-    </body>
-</html>

@@ -247,6 +247,16 @@ ObjetoBanner.prototype.FPS = function() {
       
       
       
+
+// Objeto que crea y contiene un canvas 2d para utilizarlo de back buffer
+var BufferCanvas = function(Ancho, Alto) {
+    this.Canvas = document.createElement("canvas");
+    this.Canvas.setAttribute("width", Ancho);
+    this.Canvas.setAttribute("height", Alto);
+    this.Context = this.Canvas.getContext("2d"); 
+    this.Ancho = Ancho;
+    this.Alto = Alto;
+};
       
       
       
@@ -255,6 +265,7 @@ ObjetoBanner.prototype.FPS = function() {
       
       
       
+// Objeto para crear animaciones      
 var ObjetoAnimacion_Paso = function(Datos, Tiempo, Retraso, FuncionTiempo) {
     this.Datos   = Datos;
     this.Tiempo  = (typeof Tiempo        !== 'undefined') ? Tiempo  : 1;
