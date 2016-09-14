@@ -119,7 +119,7 @@ var SpaceInvaders404 = function() {
         if (this.Oleada === null) {
            this.Oleada = this.CrearTexto("Centrado", 40, "40px monospace", "Oleada " + this.OleadaEnemigos++, 2000, this.CrearEnemigos.bind(this));
         }
-    };  
+    };
     
     this.CrearEnemigos = function() {
         this.Opciones.Enemigo.VelocidadX += 0.3;
@@ -434,7 +434,7 @@ var SpaceInvaders404 = function() {
         }
         var Texto = new ObjetoAnimacion.Crear(Array(
             new ObjetoAnimacion.Paso({ Y : nY, A : 1, }),
-            new ObjetoAnimacion.Paso({ Y : nY - 10, A : 0, }, nTiempo, 1)
+            new ObjetoAnimacion.Paso({ Y : nY - 15, A : 0, }, nTiempo, 1)
         ), function() { }, nFuncionTerminado);
         Texto.X = nX;
         Texto.Y = nY;
@@ -673,6 +673,7 @@ var SpaceInvaders404 = function() {
             $("#SpaceInvaders404_Instrucciones_Intro").attr("visible", true);
             $("#SpaceInvaders404_Instrucciones_Intro2").attr("visible", false);    
             $("#SpaceInvaders404_Instrucciones_Intro3").attr("visible", false);                
+            $("#SpaceInvaders404_Instrucciones_Intro > button").focus();
         }       
         
         // Instrucciones (covertura, vidas y puntuación)
@@ -680,6 +681,7 @@ var SpaceInvaders404 = function() {
             $("#SpaceInvaders404_Instrucciones_Intro").attr("visible", false);    
             $("#SpaceInvaders404_Instrucciones_Intro2").attr("visible", true);    
             $("#SpaceInvaders404_Instrucciones_Intro3").attr("visible", false);
+            $("#SpaceInvaders404_Instrucciones_Intro2 > button").focus();
             // puntuación, vidas y energia de disparo visibles
             $("#SpaceInvaders404_Info").attr("visible", true);
             this.ColorError404 = new ObjetoAnimacion.Crear(Array(
@@ -702,6 +704,7 @@ var SpaceInvaders404 = function() {
             $("#SpaceInvaders404_Instrucciones_Intro").attr("visible", false);
             $("#SpaceInvaders404_Instrucciones_Intro2").attr("visible", false);    
             $("#SpaceInvaders404_Instrucciones_Intro3").attr("visible", true);    
+            $("#SpaceInvaders404_Instrucciones_Intro3 > button").focus();
             this.ColorTanque.Terminar();
             this.ColorError404.Terminar();            
 

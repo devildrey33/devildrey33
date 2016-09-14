@@ -86,9 +86,9 @@
 </div>
 </div>
 <div class='Lab_Item'>
-<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/ObjetoCanvas.js'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/Sinusoidal.html'>
 <div class='Lab_IcoArchivo'></div>
-<a href='/Lab/Ejemplos/BannerTest/ObjetoCanvas.js'>ObjetoCanvas.js</a>
+<a href='/Lab/Ejemplos/BannerTest/Sinusoidal.html'>Sinusoidal.html</a>
 </div>
 </div>
 <div class='Lab_Item'>
@@ -1556,6 +1556,39 @@
 <div class='Lab_Archivo' path='/Lab/Ejemplos/Solitario/Solitario.js'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/Solitario/Solitario.js'>Solitario.js</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Directorio' path='/Lab/Ejemplos/SpaceInvaders404/'>
+<div class='Lab_IcoDirectorioC'></div>
+<span>SpaceInvaders404</span>
+</div>
+<div class='Lab_Directorio_Animacion'>
+<div class='Lab_Lista'><div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/SpaceInvaders404/SpaceInvaders404 - copia.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/SpaceInvaders404/SpaceInvaders404 - copia.html'>SpaceInvaders404 - copia.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/SpaceInvaders404/SpaceInvaders404.css'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/SpaceInvaders404/SpaceInvaders404.css'>SpaceInvaders404.css</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/SpaceInvaders404/SpaceInvaders404.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/SpaceInvaders404/SpaceInvaders404.html'>SpaceInvaders404.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/SpaceInvaders404/SpaceInvaders404.js'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/SpaceInvaders404/SpaceInvaders404.js'>SpaceInvaders404.js</a>
 </div>
 </div>
 </div>

@@ -27,16 +27,19 @@ Millores de la web :
  V          - Buffer per conservar les llestre d'error amb un segon canvas en plan backbuffer
  V          - Les bales tenen angle i no tentn per que anar rectes.
                 - De moment el detector de colisions nomes es mira pel pixel que han avançat (que poden ser 5, 10 , 15) i el problema es que no mira els anteriors, es a dir pot avançar desde Y0 a Y20 i nomes mira el 20, el resto l'ignora i el deixa com atraveçat.
+                    - Encara es pitjor del que m'imaginaba ja que el moveto - lineto fa servir antialias per que no es notin les lineas pixelades, amb lo cual fa inutil utilitzar l'algoritme de bresenham, ja que dona falsos positius en certs angles...
+                    - La unica opcio seria probar l'algoritme : Xiaolin Wu's line algorithm, pero no es segur que sigui el mateix que fa servir el canvas, i no el veig per detectar de 10 a 30 bales a 60 fps...
                 - Deteccio i eliminació de vida del jugador
                 - Munició :
                     - Colors diferents per enemics i jugador?, o color diferent per tipus de munició?
- +o-                - Perforant [la primera que he fet], però falta ajustar el detector de colisions
+ +o-                - Perforant [la primera que he fet].
                     - Explosiva en plan cercle amb distancia variable, 
                     - lasers instantanis per l'ufo a varis llocs a l'hora
  V          - El tank del jugador dispara a les coordenades on está situat el mouse.
  V          - Crear imatge bàsica pels enemics, de moment arribo a mostrar els 3 primers, però tinc el ufo sense utilitzar (i aquest pot ser destroyer destroyer jeje)
             - Implementar vida als bichos? te el seu punt si poso molts Tanque.MaxDisparosPorSegundo (però sense pasarse que gripo la màquina xd)
             - l'objectiu es clar : ell ha buscat una pagina que no existeix, HA DE SER CASTIGAT AMB TOT EL ARSENAL QUE ES PUGUI IMAGINAR EN 4-5 COLORS. (potser mes si comptem l'opacitat de les explosions)
+                - En l'estat actual i tot i que no es pot morir, jo crec que ningu pasara del nivel 20. i aixo que falten municións i bichos extra (ufo, i altres posibles jefes reproduibles a 2 colors xd.
 
     - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
 
@@ -59,6 +62,13 @@ Estils movils :
 Index : 
 
 Lab :
+
+!!! - L'arxiu : http://devildrey33.es/Lab/Ejemplos/BannerTest/WormHole.html no es guarda en le lab, (i no es l'unic) PERQUE?¿ (3:27 despres de 4l)
+
+    - Implementar alguna forma d'afegir links al codi.
+        - Lo que donaria peu a poguer fer enllaços en els includes / links / scripts externs, i poder-los obrir en una pestanya nova.
+            - I si em poso serio, obrir tots els 'includes' de l'arxiu en pestanyes diferents (i internes del propi lab) al obrir arxius que requereixen d'arxius externs.
+        - Primera google pista : http://stackoverflow.com/questions/26933344/codemirror-detect-and-create-links-inside-editor
  V  - Temps d'actualització en el OnChange augmentat de 400 a 1500ms.
     - Afegir barra per modificar l'amplada de la vista mixta en el minilab.
     - Al guardar en el Nuevo.html, NuevoCanvas2D.html i NuevoCanvasTHREE.html que pregunti un nom d'arxiu (i que pugui crear directoris tambè)   

@@ -5,6 +5,15 @@
 
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(
+array(	"Titulo" 	=> "Experimento con Canvas 2D 'Sinusoidal'", 
+        "Fecha" 	=> "07/09/2016",
+        "URL" 		=> "Ejemplos/BannerTest/Sinusoidal.html", 
+        "Tags" 		=> array("Canvas 2D", "JavaScript", "CSS", "HTML", "Programación" ),
+        "Idioma"        => "es",
+        "Autor"         => "Josep Antoni Bover",
+        "Tipo"		=> "Lab",
+        "Imagen"	=> "Sinusoidal.png"),
+
 array(	"Titulo" 	=> "Experimento con Canvas 2D 'Anillos'", 
         "Fecha" 	=> "07/08/2016",
         "URL" 		=> "Ejemplos/BannerTest/Anillos.html", 
