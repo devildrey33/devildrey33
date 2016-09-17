@@ -13,27 +13,26 @@
     <head>
         <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
         <!-- Estilos CSS para el test -->
+        <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
         <link rel='stylesheet' href='/Ejemplos/SpaceInvaders404/SpaceInvaders404.css' />
         <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
         <script src="/Web/JS/FuncionesGlobales.js"></script>
 <!--        <script src="/Web/JS/ObjetoBanner.js"></script> -->
+        <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
         <script src="/Ejemplos/Utils/ObjetoAnimacion.js"></script>
         <script src="/Ejemplos/SpaceInvaders404/SpaceInvaders404.js"></script>
-        <!-- Código javascript --> 
-        <script type="text/javascript">
-            var Error404 = null;
-            window.addEventListener('load', function() { Error404 = new SpaceInvaders404; });
-        </script>
     </head>
     <body>
+        <header id='Cabecera'></header>
+        
         <div id='SpaceInvaders404_Texto'  class="SinSeleccion">
             <h1>NO SE HA ENCONTRADO</h1>
             <div>La página : '<code id='SpaceInvaders404_URLError404'></code>' <u>no existe!</u></div>
         </div>
         <div id="SpaceInvaders404_Contenedor"  class="SinSeleccion">
-            <canvas id="SpaceInvaders404" width="500" height="500"></canvas>
+           <!-- <canvas id="SpaceInvaders404" width="500" height="500"></canvas> -->
             <div id='SpaceInvaders404_Info'>
                 <span></span> <!-- vida -->
                 <span></span> <!-- vida -->
@@ -46,7 +45,6 @@
                 <div>X Tanque    : <span id='SpaceInvaders404_Debug_TanqueX'></span></div>
                 <div>X Mouse     : <span id='SpaceInvaders404_Debug_MouseX'></span></div>
                 <div>Y Mouse     : <span id='SpaceInvaders404_Debug_MouseY'></span></div>
-                <div>FPS         : <span id='SpaceInvaders404_Debug_FPS'></span></div>
                 <div>Enemigos    : <span id='SpaceInvaders404_Debug_Enemigos'></span></div>
                 <div>Disparos    : <span id='SpaceInvaders404_Debug_Disparos'></span></div>
                 <div>Explosiones : <span id='SpaceInvaders404_Debug_Explosiones'></span></div>
@@ -68,7 +66,6 @@
                     <p id='TextoPuntuacion'>Intenta obtener la puntuación mas alta, para poder dejar tu nombre entre los mejores.</p>
                     <button>Siguiente</button>                    
                 </div>
-                
                 
                 <div id='SpaceInvaders404_Instrucciones_Intro3'>
                     <!-- <p>Tu tanque está basado en un rectangulo de 30x10 y un cuadrado de 10x10 para la torreta, y viene equipado con munición perforante.</p> -->
@@ -215,10 +212,21 @@
                     
                     <p id='TextoMovimiento'>El tanque puede moverse lateralmente con las teclas marcadas en <span style='color:lightgreen'>verde</span>.</p>
                     <p id='TextoDisparo'>Para disparar tienes que mover el mouse apuntando hacia el objetivo<span id='TextoDisparo2'>, y pulsar una de las las teclas o el botón del mouse marcados en <span style='color:red'>rojo</span>.</span></p>
-                    <button>Empezar</button>
+                    <button>Empezar</button>                    
+                </div>
+                
+                <div id='SpaceInvaders404_Instrucciones_JuegoTerminado'>
                     
                 </div>
+                
+                
+                <div id='SpaceInvaders404_Instrucciones_NuevoRecord'>
+                    
+                </div>
+                
             </div>
+            
         </div>
+        
     </body>
 </html>

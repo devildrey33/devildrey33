@@ -7,6 +7,8 @@
 $Lab = new function() {
     /* Temporizador para actualizar el resultado */
     this.Lab_Temporizador     = 0;
+    this.Lab_TemporizadorS    = 0;
+    this.Lab_SegundosActualizar = 0;
     /* Objeto que contiene el codemirror */
     this.Editor  = new Object;
     /* Path del archivo que se está editando */
@@ -49,16 +51,17 @@ $Lab = new function() {
             }*/
         });
         
-        this.Editor.on("change", function(cm, change) {
-            if ($Lab.Lab_Temporizador !== 0) {
-                clearTimeout($Lab.Lab_Temporizador);
-            }
-            $Lab.Lab_Temporizador = setTimeout(function() { 
+        this.Editor.on("change", function(CM, Evento) {
+            $Lab.TemporizadorActualizarResultado_Iniciar();
+        });
+        
+        this.Editor.on("keyup", function(CM, Evento) {
+            if (Evento.altKey && (Evento.keyCode === 65 || Evento.keyCode === 97)) {  // Alt + A (actualizar resultado)
                 $Lab.ActualizarResultado();
-                if ($Lab.Original !== $Lab.Editor.getValue()) { $("body").attr({ "modificado" : "true" });  }
-                else                                          { $("body").attr({ "modificado" : "false" }); }
-                $Lab.Lab_Temporizador = 0;
-            }, 1500);
+            }
+            if (Evento.keyCode === 27) { // Escape (cancelar actualización del resultado)
+                $Lab.TemporizadorActualizarResultado_Cancelar();
+            }
         });
         
         this.Original = $("#Lab_Codigo").val();
@@ -76,6 +79,38 @@ $Lab = new function() {
             $Lab.Editor.setSize(parseInt($(".Codemirror").attr("width")), parseInt($(".Codemirror").attr("height")));            
         }, 5000);
 //        this.CargarArchivo();  
+    };
+    
+    // Inicia el temporizador de 5 segundos para actualizar el ejemplo
+    this.TemporizadorActualizarResultado_Iniciar = function() {
+        this.TemporizadorActualizarResultado_Cancelar();
+        // Tiempo que se tarda desde el keyup a actualizar el resultado (en segundos).
+        this.Lab_SegundosActualizar = 3;
+        $("#Lab_Actualizar").attr({ "visible" : true });
+        $("#Lab_Actualizar_Tiempo").html(this.Lab_SegundosActualizar);
+        // Temporizador para la ventana de actualización
+        this.Lab_Temporizador = setTimeout(function() { 
+            $Lab.ActualizarResultado();
+        }, this.Lab_SegundosActualizar * 1000);        
+        // Temporizador para los segundos de la ventana de actualización
+        this.Lab_TemporizadorS = setInterval(function() { 
+            $Lab.Lab_SegundosActualizar --;
+            $("#Lab_Actualizar_Tiempo").html($Lab.Lab_SegundosActualizar);
+            if ($Lab.Lab_SegundosActualizar < 0) { 
+                clearInterval(this.Lab_TemporizadorS);
+            }
+        }, 1000);
+    };
+    
+    this.TemporizadorActualizarResultado_Cancelar = function() {
+        $("#Lab_Actualizar").attr({ "visible" : false });
+
+        if ($Lab.Lab_Temporizador !== 0) {
+            clearTimeout($Lab.Lab_Temporizador);
+            clearInterval(this.Lab_TemporizadorS);
+        }
+        $Lab.Lab_Temporizador = 0;
+        $Lab.Lab_TemporizadorS = 0;
     };
     
     /* Función que asigna los eventos para el explorador del laboratorio */
@@ -373,7 +408,7 @@ $Lab = new function() {
 
     /* Función que actualiza el marco del resultado */
     this.ActualizarResultado = function() {
-        if (this.Lab_Temporizador !== 0) clearTimeout(this.Lab_Temporizador);
+        this.TemporizadorActualizarResultado_Cancelar();
         // Para eliminar todos los temporizadores que pueda haber cargados en el ejemplo elimino la etiqueta iframe y la vuelvo a crear.                
         var Estilos = $("#Lab_Preview").attr( "style" );
         $("#Lab_Preview").remove();
@@ -385,7 +420,8 @@ $Lab = new function() {
         var Codigo = this.Editor.getValue();
         preview.write(Codigo);
         preview.close();    
-        this.Lab_Temporizador = 0;
+        if ($Lab.Original !== $Lab.Editor.getValue()) { $("body").attr({ "modificado" : "true" });  }
+        else                                          { $("body").attr({ "modificado" : "false" }); }        
     };
     
 

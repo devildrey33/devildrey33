@@ -13,6 +13,7 @@ body { background: rgb(49,46,53); margin:0px; padding:0px; }
 /* Vidas */
 #SpaceInvaders404_Contenedor > #SpaceInvaders404_Info > span { display: inline-block; position:relative; width:30px; background:rgb(234, 80, 78); height:10px;  }
 #SpaceInvaders404_Contenedor > #SpaceInvaders404_Info > span::before { content:''; position:absolute; width:10px; background:inherit; height:10px; top:-6px; left:10px;  }
+#SpaceInvaders404_Contenedor > #SpaceInvaders404_Info > span { transition:0.4s; }
 #SpaceInvaders404_Contenedor[estado='1'] > #SpaceInvaders404_Info[visible='true'] > span:nth-child(1) { animation:AniColorFondoRojoAmarillo 0.5s ease 2.75s 2 alternate; }
 #SpaceInvaders404_Contenedor[estado='1'] > #SpaceInvaders404_Info[visible='true'] > span:nth-child(2) { animation:AniColorFondoRojoAmarillo 0.5s ease 3s 2 alternate;    }
 #SpaceInvaders404_Contenedor[estado='1'] > #SpaceInvaders404_Info[visible='true'] > span:nth-child(3) { animation:AniColorFondoRojoAmarillo 0.5s ease 3.25s 2 alternate; }
@@ -43,6 +44,7 @@ body { background: rgb(49,46,53); margin:0px; padding:0px; }
 #SpaceInvaders404_Texto > div:nth-child(2) { color:white; font-weight:bold; }
 #SpaceInvaders404_URLError404 { color: rgb(210, 210, 210); font-weight:normal; } 
 /* Instrucciones del juego*/
+#SpaceInvaders404_Instrucciones > div { z-index:15; }
 #SpaceInvaders404_Instrucciones h2 { margin:10px auto 0px auto; display:table; text-shadow:1px 1px 2px #000; }
 #SpaceInvaders404_Instrucciones > div { padding:0px 10px; color:#fff; border:1px solid rgb(28, 20, 104); background:rgba(28, 20, 54, 0.85); position:absolute; display:inline-block; visibility:hidden; top:10px; left:50%; transform:translate(-50%, 0%); width:700px; opacity:0; transition:0.5s; top:-500px; }
 #SpaceInvaders404_Instrucciones button { border:1px solid blue; background:rgb(80, 78, 234); font-size:1.4rem; color:#FFF; margin:10px auto; display:table; outline:none; text-shadow:1px 1px 1px #000; transition:0.5s; cursor:pointer; }

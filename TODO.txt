@@ -70,6 +70,8 @@ Lab :
             - I si em poso serio, obrir tots els 'includes' de l'arxiu en pestanyes diferents (i internes del propi lab) al obrir arxius que requereixen d'arxius externs.
         - Primera google pista : http://stackoverflow.com/questions/26933344/codemirror-detect-and-create-links-inside-editor
  V  - Temps d'actualització en el OnChange augmentat de 400 a 1500ms.
+ V      - Revisat, ara està a 3s i mostra una finestra que informa que el codi s'actualitzara en 3s, i que a mes te les opcions de actualitzar (Alt+A) o cancelar l'actualització (Esc).
+        - Fer el mateix pel minilab.
     - Afegir barra per modificar l'amplada de la vista mixta en el minilab.
     - Al guardar en el Nuevo.html, NuevoCanvas2D.html i NuevoCanvasTHREE.html que pregunti un nom d'arxiu (i que pugui crear directoris tambè)   
         - s'haura de crear una finestra especial, i es pot fer :

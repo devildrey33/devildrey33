@@ -1,7 +1,7 @@
 <!-- 
     Test para el banner 3d de devildrey33.es creado por Josep Antoni Bover Comas el 31-07-2016
         - Consiste en un cuadrado de 7x7 cubos que se coordinan para realizar varios movimientos distintos.
-	- Se utiliza JQuery y Three.js
+	- Se utiliza Three.js
         - Este es mi primer test serio con THREE.JS abarca varios temas básicos : geometria básica, animar y sincronizar varias figuras, modificar su color (MeshBasicMaterial), y control básico y aleatório de la camara.
 	Vista por defecto en el Laboratorio de pruebas  
 		devildrey33_Lab->Opciones->Vista = Preview;
@@ -420,11 +420,6 @@ window.addEventListener('load', function() { Canvas = new Banner_AdiestramientoC
 </script>
     </head>
     <body>
-        <header id='Cabecera'>
-            <div id="Cabecera_Cargando">Cargando animación...</div>
-            <div id='Cabecera_Stats'>0 FPS</div>
-            <canvas id='Cabecera_Canvas'></canvas>
-            <div id="Cabecera_PausaAni">El canvas está en segundo plano, animación en pausa.</div>            
-        </header>        
+        <header id="Cabecera"></header>
     </body>
 </html>

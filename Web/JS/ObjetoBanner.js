@@ -149,21 +149,21 @@ ObjetoBanner.prototype.Actualizar = function() {
 // Función que procesa el evento mousemove
 ObjetoBanner.prototype.EventoMouseMove = function(event) {
     if (typeof(this.MouseMove) !== "undefined") {
-        this.MouseMove.apply(this, event);
+        this.MouseMove.apply(this, [ event ]);
     }
 };
 
 // Función que procesa el evento mousemove
 ObjetoBanner.prototype.EventoMouseEnter = function(event) {
     if (typeof(this.MouseEnter) !== "undefined") {
-        this.MouseEnter.apply(this, event);
+        this.MouseEnter.apply(this, [ event ]);
     }
 };
 
 // Función que procesa el evento mousemove
 ObjetoBanner.prototype.EventoMouseLeave = function(event) {
     if (typeof(this.MouseLeave) !== "undefined") {
-        this.MouseLeave.apply(this, event);
+        this.MouseLeave.apply(this, [ event ]);
     }
 };
 

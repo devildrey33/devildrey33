@@ -1,3 +1,7 @@
+/* Objeto para crear animaciones de tiempo creado por Josep Antoni Bover Creado el 25/08/2016
+ *  Ultima modificación el 17/09/2016
+ * */
+
 
 
 /* Funciones de tiempo :    https://github.com/mietek/ease-tween/blob/master/src/index.js
@@ -16,8 +20,10 @@ var ObjetoAnimacion = new function() {
     // Array de animaciones
     this.Animaciones = [];
     // Actualiza las animaciones
-    this.Actualizar = function() {
-        var Tick = Date.now();
+    this.Actualizar = function(nTick) {
+        var Tick;
+        if (typeof(nTick) === undefined) { Tick = Date.now(); }
+        else                             { Tick = nTick;}
         for (var i = this.Animaciones.length - 1; i > -1; i--) {
             if (this.Animaciones[i].Actualizar(Tick) === true) { // Si ha terminado, elimino la animación del array de animaciones pendientes
                 this.Animaciones.splice(i, 1);

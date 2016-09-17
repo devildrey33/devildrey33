@@ -1,14 +1,36 @@
-/* Base para crear ejemplos que usen Canvas 2D o THREE.JS */
-/* ObjetoCanvas crea un Canvas2D o un Canvas utilizando THREE.js */
+/* Base para crear ejemplos que usen Canvas 2D o THREE.JS, y que ademas simula el objeto utilizado en http://devildrey33.es para crear banners animados en la cabecera de las entradas del blog/doc */
+/* Se puede crear un Canvas2D o un Canvas utilizando THREE.js */
+/* Dispone de varios eventos enlazados listos para usar : mousedown, mouseup, mousemove, mouseenter, mouseleave, keydown, keyup, focus, blur, scroll, resize */
 /* Además están las funciones Rand(max, min) para decimales y RandInt(max, min) para enteros, todos los parámetros son opcionales */
+/* Tambien incluye un pequeño objeto para crear canvas que van a ser utilizados de buffer (BufferCanvas) */
 
-/* El primer parámetro es el tipo de contexto, "2d" o "THREE", si no se especifica, por defecto es 2d */
-ObjetoCanvas = function(Tipo) {    
+
+/* El parámetro Tipo es el tipo de contexto, "2d" o "THREE", si no se especifica, por defecto es 2d */
+/* Si no se especifica AnchoFijo y AltoFijo el canvas se adaptara al tamaño de la ventana, y se centrara */
+ObjetoCanvas = function(Tipo, AnchoFijo, AltoFijo) {    
+    this.Ancho          = 0;                                                // Ancho del canvas
+    this.Alto           = 0;                                                // Altura del canvas
+    
+    // Determino el ancho y altura del canvas (fijo o variable)
+    if (typeof(AnchoFijo) !== "undefined") { this.AnchoFijo = true; this.Ancho = AnchoFijo; }
+    else                                   { this.AnchoFijo = false;                        }
+    if (typeof(AltoFijo) !== "undefined")  { this.AltoFijo = true; this.Alto = AltoFijo;    }
+    else                                   { this.AltoFijo = false;                         }
+
+    // Creo las etiquetas que contienen información adicional sobre la animación
+    var Cabecera = document.getElementById("Cabecera");
+    Cabecera.innerHTML =        '<div id="Cabecera_Cargando">Cargando animación...</div>' +
+                                "<div id='Cabecera_Stats'>0 FPS</div>" +
+                                "<canvas id='Cabecera_Canvas'></canvas>" +
+                                '<div id="Cabecera_PausaAni">El canvas está en segundo plano, animación en pausa.</div>';
+
 
     this.Canvas = document.getElementById("Cabecera_Canvas");
+    // Si el canvas es de ancho fijo, añado el css para centrar-lo
+    if (this.AnchoFijo === true) { this.Canvas.style.width = this.Ancho + "px"; this.Canvas.style.left = "calc(50% - (" + this.Ancho + "px / 2))"; }
+    if (this.AltoFijo === true)  { this.Canvas.style.height = this.Alto + "px"; this.Canvas.style.top = "calc(50% - (" + this.Ancho + "px / 2))";  }
 
     // Asigno el estado cargando, que muestra una ventana que avisa al usuario.
-    var Cabecera = document.getElementById("Cabecera");
     Cabecera.setAttribute("cargando", true);
     Cabecera.setAttribute("animar", true);
 
@@ -24,7 +46,7 @@ ObjetoCanvas = function(Tipo) {
             this.Context    = this.Canvas.getContext("2d");                                             // Contexto 2D
         } else if(this.Tipo === "THREE") { 
             // Aunque no es muy correcto... presupongo que los dispositivos con un pixel ratio mayor que uno son dispositivos moviles
-            if (this.PixelRatio() > 1) {                                                                // El antialias no va con el samsung galaxy alpha...
+            if (this.PixelRatio() > 1) {                                                                // El antialias no va con mi samsung galaxy alpha...
                this.Context = new THREE.WebGLRenderer({ canvas : this.Canvas });                        // Contexto THREE.JS
             }
             else {
@@ -40,12 +62,11 @@ ObjetoCanvas = function(Tipo) {
         return false;
     }
 
-    this.Ancho          = 0;                                                // Ancho del canvas
-    this.Alto           = 0;                                                // Altura del canvas
     this.RAFID          = 0;                                                // Request Animation Frame ID
     this.FPS_UltimoTick = Date.now() + 1000;                                // Ultimo Tick del sistema + 1000ms
     this.FPS_Contador   = 0;                                                // Contador de frames por segundo    
     this.FocoWeb        = true;                                             // Foco de la ventana de la web
+    this.Tick           = 0;                                                // Date.now actualizado en cada frame
     
     
     this.EventoRedimensionar();
@@ -59,27 +80,33 @@ ObjetoCanvas = function(Tipo) {
     this.EnlazarEventos();
     
     // Asigno el foco a la ventana del canvas, ya que al ser un iframe para tests no suele tener el foco asignado
-//    window.focus(); (si hay que modificar el código no va bien...)
+//    window.focus(); (si hay que modificar el código en el lab es un follón..)
     
     return true;
 };
 
 ObjetoCanvas.prototype.EnlazarEventos = function() {
     document.getElementById("Cabecera").addEventListener('mousemove', this.EventoMouseMove.bind(this));
+    document.getElementById("Cabecera").addEventListener('mousedown', this.EventoMousePresionado.bind(this));
+    document.getElementById("Cabecera").addEventListener('mouseup', this.EventoMouseSoltado.bind(this));
     document.getElementById("Cabecera").addEventListener('mouseenter', this.EventoMouseEnter.bind(this));
     document.getElementById("Cabecera").addEventListener('mouseleave', this.EventoMouseLeave.bind(this));
+    window.addEventListener('keydown', this.EventoTeclaPresionada.bind(this));
+    window.addEventListener('keyup', this.EventoTeclaSoltada.bind(this));
     window.addEventListener('resize', this.EventoRedimensionar.bind(this));
     window.addEventListener('scroll', this.EventoScroll.bind(this));
     window.addEventListener('blur', this.EventoFocoPerdido.bind(this));
     window.addEventListener('focus', this.EventoFocoRecibido.bind(this));
 };
 
+// Evento que salta cuando se obtiene el foco de la ventana
 ObjetoCanvas.prototype.EventoFocoRecibido = function() {
     console.log("Foco de la ventana recibido");
     this.FocoWeb = true;
     this.Reanudar();
 };
     
+// Evento que salta cuando se pierde el foco de la ventana
 ObjetoCanvas.prototype.EventoFocoPerdido = function() {
     console.log("Foco de la ventana perdido");
     this.FocoWeb = false;
@@ -107,40 +134,51 @@ ObjetoCanvas.prototype.Cargando = function(carga) {
 
 // Función interna utilizada por requestAnimationFrame para actualizar y pintar la animación
 ObjetoCanvas.prototype.Actualizar = function() {
-//    if ($Banner !== null) {
+    this.Tick = Date.now();
     this.FPS(); 
     this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this));
     this.Pintar.apply(this); 
-//    }
+};
+
+// Función que procesa el evento keydown
+ObjetoCanvas.prototype.EventoTeclaPresionada = function(event) {    
+    if (typeof(this.TeclaPresionada) !== "undefined") { this.TeclaPresionada.apply(this, [ event ]); }        
+};
+// Función que procesa el evento keyup
+ObjetoCanvas.prototype.EventoTeclaSoltada = function(event) {    
+    if (typeof(this.TeclaSoltada) !== "undefined") { this.TeclaSoltada.apply(this, [ event ]); }    
 };
 
 // Función que procesa el evento mousemove
 ObjetoCanvas.prototype.EventoMouseMove = function(event) {    
-    if (typeof(this.MouseMove) !== "undefined") {
-        this.MouseMove.apply(this, event);
-    }
+    if (typeof(this.MouseMove) !== "undefined") { this.MouseMove.apply(this, [ event ] ); }
+};
+
+// Función que procesa el evento mousedown
+ObjetoCanvas.prototype.EventoMousePresionado = function(event) {    
+    if (typeof(this.MousePresionado) !== "undefined") { this.MousePresionado.apply(this, [ event ]); }
+};
+// Función que procesa el evento mouseup
+ObjetoCanvas.prototype.EventoMouseSoltado = function(event) {    
+    if (typeof(this.MouseSoltado) !== "undefined") {  this.MouseSoltado.apply(this, [ event ]);   }
 };
 
 // Función que procesa el evento mousemove
 ObjetoCanvas.prototype.EventoMouseEnter = function(event) {
-    if (typeof(this.MouseEnter) !== "undefined") {
-        this.MouseEnter.apply(this, event);
-    }
+    if (typeof(this.MouseEnter) !== "undefined") { this.MouseEnter.apply(this, [ event ]); }
 };
 
 // Función que procesa el evento mousemove
-ObjetoCanvas.prototype.EventoMouseLeave = function(event) {
-    if (typeof(this.MouseLeave) !== "undefined") {
-        this.MouseLeave.apply(this, event);
-    }
+ObjetoCanvas.prototype.EventoMouseLeave = function(event) { 
+    if (typeof(this.MouseLeave) !== "undefined") { this.MouseLeave.apply(this, [ event ]); }
 };
 
 // Función que obtiene el tamaño del canvas una vez redimensionado.
 ObjetoCanvas.prototype.EventoRedimensionar = function() {
     /* El ancho del canvas siempre tiene que ser el mismo que #MarcoNavegacion - 60 pixeles que ocupan los botones de la izquierda
      * La altura del canvas siempre es la misma desde el principio */
-    this.Ancho  = document.getElementById("Cabecera").offsetWidth;
-    this.Alto   = document.getElementById("Cabecera").offsetHeight;
+    if (this.AnchoFijo === false) { this.Ancho  = document.getElementById("Cabecera").offsetWidth;  }
+    if (this.AltoFijo === false)  { this.Alto   = document.getElementById("Cabecera").offsetHeight; }
     this.Canvas.setAttribute("width", this.Ancho);
     this.Canvas.setAttribute("height", this.Alto);
     if (this.Tipo === "THREE") { // redimensionar el THREE.JS
@@ -154,8 +192,6 @@ ObjetoCanvas.prototype.EventoRedimensionar = function() {
     if (typeof(this.Redimensionar) !== "undefined") {
         this.Redimensionar.apply(this);
     }
-    // Hago la llamada a la función Iniciar que debería tener el NuevoBanner
-//        if (typeof(this.Iniciar) !== "undefined") { this.Iniciar(); }
 };
 
 // Función para pausar la animación
@@ -189,9 +225,8 @@ ObjetoCanvas.prototype.EventoScroll = function() {
 
 // Función que cuenta los frames por segundo
 ObjetoCanvas.prototype.FPS = function() {
-    var Tick = Date.now();
-    if (Tick > this.FPS_UltimoTick) {
-        this.FPS_UltimoTick = Tick + 1000;
+    if (this.Tick > this.FPS_UltimoTick) {
+        this.FPS_UltimoTick = this.Tick + 1000;
         document.getElementById("Cabecera_Stats").innerHTML = this.FPS_Contador + " FPS";
         this.FPS_Contador = 0;
     }
@@ -201,8 +236,9 @@ ObjetoCanvas.prototype.FPS = function() {
 };
 
 
-
-// Objeto que crea y contiene un canvas 2d para utilizarlo de back buffer
+////////////////////////////////////////////////////////////////////////////
+// Objeto que crea y contiene un canvas 2d para utilizarlo de back buffer //
+////////////////////////////////////////////////////////////////////////////
 var BufferCanvas = function(Ancho, Alto) {
     this.Canvas = document.createElement("canvas");
     this.Canvas.setAttribute("width", Ancho);
@@ -214,69 +250,6 @@ var BufferCanvas = function(Ancho, Alto) {
 
       
       
-      
-      
-      
-      
-var ObjetoAnimacion_Paso = function(Datos, Tiempo, Retraso, FuncionTiempo) {
-    this.Datos   = Datos;
-    this.Tiempo  = (typeof Tiempo        !== 'undefined') ? Tiempo  : 1;
-    this.Retraso = (typeof Retraso       !== 'undefined') ? Retraso : 0;
-    this.Funcion = (typeof FuncionTiempo !== 'undefined') ? Funcion : function() { };
-};
-
-var ObjetoAnimacion = function(ArrayPasos, FuncionTerminado) {
-    this._UltimoTick         = 0;            // Ultimo date.now que se ha obtenido con la función Actualizar
-    this._Pasos              = ArrayPasos;   // Array con los parámetros
-    this._PosPasos           = 1;            // Posición dentro del array de datos
-    this._PasoOrig           = this._Pasos[this._PosPasos - 1];
-    this._PasoDest           = this._Pasos[this._PosPasos];
-    this._Avance             = 0;
-    this._FuncionTerminado   = (typeof FuncionTerminado !== 'undefined') ? FuncionTerminado : function() { };
-    this.Terminado           = false;        // Animación terminada
-    // Valores iniciales
-    for (var Indice in this._PasoOrig.Datos) {                    
-        this[Indice] = this._PasoOrig.Datos[Indice];
-    }    
-        
-    this.Actualizar = function() {
-        if (this.Terminado === true) { return; }
-        var t = Date.now();
-        if (this._UltimoTick !== 0) {
-            // Tiempo desde el ultimo frame a este frame
-            var TiempoFrame = t - this._UltimoTick;
-            if (this._PasoDest.Retraso > 0) {
-                this._PasoDest.Retraso = this._PasoDest.Retraso - TiempoFrame; 
-            }
-            else {
-                this._Avance += (TiempoFrame / this._PasoDest.Tiempo);
-                for (var Indice in this._PasoDest.Datos) {                    
-                    this[Indice] = this._PasoOrig.Datos[Indice] - (this._PasoOrig.Datos[Indice] - this._PasoDest.Datos[Indice]) * this._Avance;
-                }
-                if (this._Avance >= 1) {
-                    this._PosPasos ++;
-                    if (this._PosPasos < this._Pasos.length) {
-                        this._PasoOrig = this._Pasos[this._PosPasos - 1];
-                        this._PasoDest = this._Pasos[this._PosPasos];
-                        this._Avance = 0;
-                    }
-                    else {
-                        this.Terminado = true;
-                        this._FuncionTerminado();
-                    }
-                }
-            }
-        }        
-        this._UltimoTick = t;
-    };
-};
-      
-
-/*var ani = new ObjetoAnimacion(Array(
-    new ObjetoAnimacion_Paso({ x : 0, y : 500 }),
-    new ObjetoAnimacion_Paso({ x : 500, y : 0 }, 5000),
-    new ObjetoAnimacion_Paso({ x : 2500, y : -2500 }, 500)
-));*/
       
       
       

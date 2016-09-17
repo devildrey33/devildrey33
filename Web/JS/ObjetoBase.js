@@ -158,11 +158,11 @@ $Base = new function() {
     this.Banner = function(Pos) {
         if ($Banner !== null) { window.cancelAnimationFrame($Banner.RAFID); }
         
-        var Banner_Lista = [    Banner_ResplandorCircular,
+        var Banner_Lista = [    /*Banner_ResplandorCircular,
                                 Banner_Colisiones,
-                                Banner_TranstornoLineal,
+                                Banner_TranstornoLineal,*/
                                 Banner_Espacio2D,
-                                Banner_MatrixLluviaHexadecimal,
+//                                Banner_MatrixLluviaHexadecimal,
                                 Banner_AdiestramientoCubos3D,
                                 Banner_WormHole,
                                 Banner_Anillos,

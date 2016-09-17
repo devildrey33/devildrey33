@@ -11,6 +11,7 @@ and open the template in the editor.
 #MarcoNavegacionLab {
     margin:0px 62px 0px 2px;
     min-height:100%;
+    position:relative;
 }
 
 #Lab_Barra1 {
@@ -224,6 +225,33 @@ and open the template in the editor.
 /*    position:relative;*/
     display:table;
 }
+
+
+#Lab_Actualizar { 
+    position:absolute;
+    top:5px; 
+    right:5px;
+    color:#FFF;
+    text-shadow:1px 1px 1px #000;
+    background-color:rgba(37,35,40, 0.8);
+    transition:0.3s cubic-bezier(.33,.05,.69,1.59);
+    transform-origin:top center;
+    transform:perspective(600px) rotateX(-90deg);    
+    z-index:999;
+    padding:5px;
+}
+
+#Lab_Actualizar[visible=true] {
+    transform:perspective(600px) rotateX(0deg);        
+}
+
+#Lab_Actualizar_Tiempo {
+    font-weight:bold;
+}
+
+
+
+
 
 
 .MiniLab_Contenedor {

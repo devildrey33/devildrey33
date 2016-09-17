@@ -12,6 +12,7 @@
         <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
         <!-- Estilos CSS para el test -->
         <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
+        <style>button { position:absolute; top:10px; left:10px; background:#000; color:#FFF; outline:none; border:1px solid rgba(236,80,78, 0.6); cursor:pointer; padding:5px; opacity:0.8; }                </style>
         <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
 <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
         <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
@@ -21,7 +22,7 @@
 /* Plantilla para crear banners animados en devildrey33.es */
 var ObjetoCanvas_Depurar = true; // Si es true, no se parará la animación al perder el foco del teclado
 
-// Constructor SIN TIPO, el tipo se especifica según la animación
+// Constructor
 var Banner_Sinusoidal = function() {    
     // Llamo al constructor del ObjetoBanner
     if (ObjetoCanvas.call(this, "2d") === false) { return false; }
@@ -46,16 +47,16 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
     MouseEnter      : function(Evento) {  },
     // Función que se llama al salir con el mouse del canvas
     MouseLeave      : function(Evento) {  },
-    
+    // Array de circulos
     Circulos        : [],
         
+    // Función que crea los circulos, se puede especificar un array con los tamaños de cada circulo, si no se especifica nada, será aleatorio
+    // Está calculado para un máximo de 10 circulos, y en teoría la onda no deberia salirse de la pantalla (aunque alguna vez se sale por poco.. 1 o 2 pixeles)
     CrearCirculos   : function(ArrayCirculos) {
-        var TotalCirculos = RandInt(10, 4);
-        
+        var TotalCirculos = RandInt(10, 4);        
         this.Circulos = [];
-        if (typeof(ArrayCirculos) === "undefined") {
-            var cAlpha = 1 - (TotalCirculos / 10);
-            
+        if (typeof(ArrayCirculos) === "undefined") { // No hay array predefinido 
+            var cAlpha = 1 - (TotalCirculos / 10);            
             for (var i = 0; i < TotalCirculos; i++) {                
                 this.Circulos.push(new this.Circulo(RandInt((this.Alto / TotalCirculos) - 2, 15), 
                     "rgb(" + Math.floor(234 * cAlpha) + "," + Math.floor(80 * cAlpha) + "," + Math.floor(78 * cAlpha) + ")",
@@ -80,7 +81,7 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
         
         this.Circulos[this.Circulos.length - 1].Color = "rgb(234, 80, 78)";
     },
-    
+    // Objeto que representa un circulo
     Circulo : function(Tam, Color, ColorPunto) {
         this.Tam = Tam;
         this.X = 0;
@@ -93,9 +94,8 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
             this.X = CirculoPadre.X + (Math.cos(Avance) * (CirculoPadre.Tam));
             this.Y = CirculoPadre.Y + (Math.sin(Avance) * (CirculoPadre.Tam));            
         };
-//        this.Vel = Rand();
     },
-    
+    // Función para reiniciar la animación
     Reiniciar       : function() { 
         this.DegradadoTranslucido_Ancho =  this.Ancho / 8;
         this.AnchoGrafico = this.Ancho - (this.Alto);
@@ -115,28 +115,24 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
 //        this.CrearCirculos([60, 40, 30, 45]);
         this.CrearCirculos();
                 
+        // Creo un buffer para pintar toda la onda de punta a punta de la pantalla
         this.ImgOnda = new BufferCanvas((this.AnchoGrafico) + 360, this.Alto);
         this.ImgOnda.Context.strokeStyle = this.Color;    
-
-        this.DiametroCirculo = this.ImgOnda.Alto / 5;
-        
+       
+        // Pinto la onda en el buffer 
         this.ImgOnda.Context.beginPath();
         this.ImgOnda.Context.moveTo(0, this.ImgOnda.Alto / 2);
-        var Avance = 0;
-//        var MitadAltura = this.Alto / 2;
+        var Avance = 0;        
         
-        /* 360 deg = Math.PI * 2 */
         for (var x = 0; x <= (this.AnchoGrafico) + 360; x++){
             Avance -= this.Velocidad;
             for (var i = 1; i < this.Circulos.length; i++) {
                 this.Circulos[i].Avance(Avance * i, this.Circulos[i - 1]);
-                
-//                this.Circulos[i].Y = this.Circulos[i - 1].Y + (Math.sin(Avance * i) * (this.Circulos[i - 1].Tam));
             }
             this.ImgOnda.Context.lineTo(x, this.Circulos[this.Circulos.length - 1].Y);
         }
         this.ImgOnda.Context.stroke();
-
+        // Situo la posición inicial del backbuffer a la derecha
         this.Avance = -Math.floor(this.AnchoGrafico);
         this.Avance2 = 0;
     },
@@ -145,9 +141,8 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
     // Función que pinta cada frame de la animación
     Pintar          : function() {    
         this.Context.fillStyle = "rgba(49, 46, 53, 0.95)";
-/*        this.Context.fillStyle = "#FFF";*/
         this.Context.fillRect(0, 0, this.Ancho, this.Alto);
-
+        // Pinto las líneas grises que determinan el centro del primer circulo
         this.Context.setLineDash([2.5]);
         this.Context.strokeStyle = "rgb(80, 80, 80)";                
         this.Context.beginPath();
@@ -158,26 +153,23 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
         this.Context.moveTo(this.PosXCirculoCentral, 5);
         this.Context.lineTo(this.PosXCirculoCentral, this.Alto - 5);
         this.Context.stroke();
-        this.Context.setLineDash([1, 0]);
-        
+        this.Context.setLineDash([1, 0]);        
         
         // Avance para el backbufer
         this.Avance +=1;
-        if (this.Avance >= 360) this.Avance = 0;
+        if (this.Avance >= 360) { this.Avance = 0; }
         this.Context.drawImage(this.ImgOnda.Canvas, this.Avance, 0, this.AnchoGrafico, this.Alto, 0, 0, this.AnchoGrafico, this.Alto);
 
-
+        // Avance para los circulos
         this.Avance2 -= this.Velocidad;
-//        this.Context.fillStyle = this.ColorPuntos;                       
-        
-//        this.Context.strokeStyle = this.Color;        
         this.Context.fillStyle = this.ColorPunto;        
+        // Calculo las posiciones de los circulos y los pinto
         for (var i = 0; i < this.Circulos.length; i++) {
             this.Context.strokeStyle = this.Circulos[i].Color;        
             this.Context.fillStyle = this.Circulos[i].ColorPunto;        
             if (i !== 0) { // No hay que calcular la posición del primer circulo porque es fijo.
                 this.Circulos[i].Avance(this.Avance2 * i, this.Circulos[i - 1]);
-
+                // Pinto el punto del eje
                 this.Context.beginPath();
                 this.Context.arc(this.Circulos[i].X, this.Circulos[i].Y, 2, 0, 2 * Math.PI);
                 this.Context.fill();            
@@ -205,9 +197,6 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
         // Pinto un degradado para suavizar la parte izquierda del banner
         this.Context.fillStyle = this.DegradadoTranslucido;
         this.Context.fillRect(0, 0, this.DegradadoTranslucido_Ancho, this.Alto);        
-        
-        
-//        this.Context.drawImage(this.ImgOnda.Canvas, this.Avance2, 0, this.Ancho, this.Alto, 0, 0, this.Ancho, this.Alto);
     }
 });
 
@@ -215,19 +204,9 @@ var Canvas = null;
 window.addEventListener('load', function() { Canvas = new Banner_Sinusoidal; });
 
 
-
-
-
-
-
 </script>
     </head>
     <body>
-        <header id='Cabecera'>
-            <div id="Cabecera_Cargando">Cargando animación...</div>
-            <div id='Cabecera_Stats'>0 FPS</div>
-            <canvas id='Cabecera_Canvas'></canvas>
-            <div id="Cabecera_PausaAni">El canvas está en segundo plano, animación en pausa.</div>            
-        </header>        
+        <header id="Cabecera"></header>
     </body>
 </html>

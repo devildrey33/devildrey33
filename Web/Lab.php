@@ -54,6 +54,7 @@
          "</div>".Intro().
          "<div id='Lab_Barra2'></div>".Intro().
          "<div id='Lab_ParcheIframe'></div>".Intro().
+         "<div id='Lab_Actualizar'>Actualización en <span id='Lab_Actualizar_Tiempo'>5</span>s<br /><b>Esc</b> para cancelar<br /> <b>Alt+A</b> para actualizar</div>".Intro().
     "</article>".Intro();
 
     
