@@ -29,7 +29,7 @@ Millores de la web :
                 - De moment el detector de colisions nomes es mira pel pixel que han avançat (que poden ser 5, 10 , 15) i el problema es que no mira els anteriors, es a dir pot avançar desde Y0 a Y20 i nomes mira el 20, el resto l'ignora i el deixa com atraveçat.
                     - Encara es pitjor del que m'imaginaba ja que el moveto - lineto fa servir antialias per que no es notin les lineas pixelades, amb lo cual fa inutil utilitzar l'algoritme de bresenham, ja que dona falsos positius en certs angles...
                     - La unica opcio seria probar l'algoritme : Xiaolin Wu's line algorithm, pero no es segur que sigui el mateix que fa servir el canvas, i no el veig per detectar de 10 a 30 bales a 60 fps...
-                - Deteccio i eliminació de vida del jugador
+ V              - Deteccio i eliminació de vida del jugador
                 - Munició :
                     - Colors diferents per enemics i jugador?, o color diferent per tipus de munició?
  +o-                - Perforant [la primera que he fet].
@@ -39,7 +39,7 @@ Millores de la web :
  V          - Crear imatge bàsica pels enemics, de moment arribo a mostrar els 3 primers, però tinc el ufo sense utilitzar (i aquest pot ser destroyer destroyer jeje)
             - Implementar vida als bichos? te el seu punt si poso molts Tanque.MaxDisparosPorSegundo (però sense pasarse que gripo la màquina xd)
             - l'objectiu es clar : ell ha buscat una pagina que no existeix, HA DE SER CASTIGAT AMB TOT EL ARSENAL QUE ES PUGUI IMAGINAR EN 4-5 COLORS. (potser mes si comptem l'opacitat de les explosions)
-                - En l'estat actual i tot i que no es pot morir, jo crec que ningu pasara del nivel 20. i aixo que falten municións i bichos extra (ufo, i altres posibles jefes reproduibles a 2 colors xd.
+                - falten municións i bichos extra (ufo, i altres posibles jefes reproduibles a 2 colors xd.
 
     - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
 
@@ -79,7 +79,7 @@ Lab :
             - rotllo directory list....... estudiar totes les posibilitats.....
     - Resaltar i obrir carpeta de l'exemple actual (de moment funciona nomes per un nivell, Dir -> Dir -> Archiu no funciona)
  V  - Guardat de documents al canviar de url si ha expirat la sesió ara demanara password, i si l'accepta guardara el document. 
-        - si canceles el login no se que deu fer encara amb el timer del Cargar_URL....   !(quantes ??????)!
+        - si canceles el login no se que deu fer encara amb el timer del Cargar_URL....   
 
 Blog :
  X  - Revisar document "CSS3_Transition_Transform.php", te estils inline i s'han de posar amb un CSS a part. (el mateix css es l'exemple i inclueix l'etiqueta script, per lo que no el puc moure a un css...)

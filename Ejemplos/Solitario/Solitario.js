@@ -1,16 +1,18 @@
 /* Ejemplo creado por Josep Antoni Bover Comas para devildrey33.es el 28/11/2015 
     Se distribuye bajo licencia Creative Commons. (http://es.creativecommons.org/blog/licencias/) 
-    Versión 1.0
-    Última modificación : 18/12/2015  
+    Versión 1.02
+    Última modificación : 29/09/2016  
      TODO :
                 - Hacer un set de cartas mas pequeño para resoluciones bajas.
                 - Crear opción para que juegue solo, para asi poder revisar algunos detalles de la IA.
                 - Revisar la detección de la derrota, he visto alguna cosa rara... pero necesito ver mas..
  */
 
-$(window).load(function()   { $Solitario.Iniciar(); });
+window.addEventListener('load', function() { Solitario = new ObjetoSolitario;
+            Solitario.Iniciar(); });
 
-$Solitario = new function() {
+
+var ObjetoSolitario = function() {
     // Carta utilizada en el drag & drop
     this.CartaDrag        = new Array();
     // Imagen para el drag & drop
@@ -29,32 +31,32 @@ $Solitario = new function() {
         // Teclado para el juego
         $("body").on("keydown", function(e) { 
             if (e.ctrlKey && (String.fromCharCode(e.which) === 'z' || String.fromCharCode(e.which) === 'Z')) {
-                $Solitario.Deshacer(e); 
+                Solitario.Deshacer(e); 
             }
             else if (e.ctrlKey && (String.fromCharCode(e.which) === 'y' || String.fromCharCode(e.which) === 'Y')) {
-                $Solitario.Rehacer(e);             
+                Solitario.Rehacer(e);             
             }
             else if (String.fromCharCode(e.which) === 'n' || String.fromCharCode(e.which) === 'N') {
-                $Solitario.NuevoJuego();   
+                Solitario.NuevoJuego();   
             }
             else if (String.fromCharCode(e.which) === ' ') {
-                $Solitario.MostrarAyuda();
+                Solitario.MostrarAyuda();
             }
         });
         
-        $("ventanamenu > button:nth-child(1)").on("click", function(e) { $Solitario.NuevoJuego(); });
-        $("ventanamenu > button:nth-child(2)").on("click", function(e) { $Solitario.Deshacer(e); });
-        $("ventanamenu > button:nth-child(3)").on("click", function(e) { $Solitario.Rehacer(e); });
-        $("ventanamenu > button:nth-child(4)").on("click", function(e) { $Solitario.MostrarAyuda(); });
+        $("ventanamenu > button:nth-child(1)").on("click", this.NuevoJuego.bind(this));
+        $("ventanamenu > button:nth-child(2)").on("click", this.Deshacer.bind(this));
+        $("ventanamenu > button:nth-child(3)").on("click", this.Rehacer.bind(this));
+        $("ventanamenu > button:nth-child(4)").on("click", this.MostrarAyuda.bind(this));
         this.NuevoJuego();
     };
     
     // Función para resaltar las cartas al pedir ayuda (con el espacio)
     this.MostrarAyuda = function() {
         $("Carta, Solucion, Baraja, Columna").removeAttr("ayuda1").removeAttr("ayuda2");
-        var Mov = $Solitario.MovimientosAuyda[$Solitario.MovimientosAuydaActual];   
-        if ($Solitario.MovimientosAuydaActual === $Solitario.MovimientosAuyda.length - 1) { $Solitario.MovimientosAuydaActual = 0; }
-        else                                                                              { $Solitario.MovimientosAuydaActual ++; }
+        var Mov = this.MovimientosAuyda[this.MovimientosAuydaActual];   
+        if (this.MovimientosAuydaActual === this.MovimientosAuyda.length - 1) { this.MovimientosAuydaActual = 0; }
+        else                                                                  { this.MovimientosAuydaActual ++; }
         Mov.origen.attr({ "ayuda1" : "true"});
         Mov.destino.attr({ "ayuda2" : "true"});        
     }
@@ -102,19 +104,19 @@ $Solitario = new function() {
             Carta.css({ "z-index" : i - Contador });
         }
 
-        Baraja[0].off("click").on("click",          function(e) { $Solitario.Baraja1_EventoClick(e); });
+        Baraja[0].off("click").on("click",          this.Baraja1_EventoClick.bind(this));
 
-        $("Carta").off("mouseover").on('mouseover', function(e) { $Solitario.Carta_EventoMouseOver(e); });
-        $("Carta").off("mouseout").on('mouseout',   function(e) { $Solitario.Carta_EventoMouseOut(e);  });
-        $("Carta").off("dragstart").on('dragstart', function(e) { $Solitario.Carta_EventoDragStart(e); });
-        $("Carta").off("dragend").on('dragend',     function(e) { $Solitario.Carta_EventoDragEnd(e);   });        
-        $("Carta").off("dblclick").on('dblclick',   function(e) { $Solitario.Carta_EventoDblClick(e);  });
+        $("Carta").off("mouseover").on('mouseover', this.Carta_EventoMouseOver.bind(this));
+        $("Carta").off("mouseout").on('mouseout',   this.Carta_EventoMouseOut.bind(this));
+        $("Carta").off("dragstart").on('dragstart', this.Carta_EventoDragStart.bind(this));
+        $("Carta").off("dragend").on('dragend',     this.Carta_EventoDragEnd.bind(this));
+        $("Carta").off("dblclick").on('dblclick',   this.Carta_EventoDblClick.bind(this));
 
-        $("Columna").off("drop").on('drop',          function(e) { $Solitario.Columna_EventoDrop(e);     });
-        $("Columna").off("dragover").on('dragover',  function(e) { $Solitario.Columna_EventoDragOver(e); });
+        $("Columna").off("drop").on('drop',          this.Columna_EventoDrop.bind(this));
+        $("Columna").off("dragover").on('dragover',  this.Columna_EventoDragOver.bind(this));
         
-        $("Solucion").off("drop").on('drop',         function(e) { $Solitario.Solucion_EventoDrop(e);     });
-        $("Solucion").off("dragover").on('dragover', function(e) { $Solitario.Solucion_EventoDragOver(e); });
+        $("Solucion").off("drop").on('drop',         this.Solucion_EventoDrop.bind(this));
+        $("Solucion").off("dragover").on('dragover', this.Solucion_EventoDragOver.bind(this));
     
     
         this.UltimoHijo($("Columna[num=7]"));
@@ -367,11 +369,11 @@ $Solitario = new function() {
             $("Columna[num='7']").html(DH["Columna7"]);
             $("Carta").css({ opacity : 1 }).removeAttr("hover");
             /* Re-asignamos los eventos */
-            $("Carta").off("mouseover").on('mouseover', function(e) { $Solitario.Carta_EventoMouseOver(e); });
-            $("Carta").off("mouseout").on('mouseout',   function(e) { $Solitario.Carta_EventoMouseOut(e);  });
-            $("Carta").off("dragstart").on('dragstart', function(e) { $Solitario.Carta_EventoDragStart(e); });
-            $("Carta").off("dragend").on('dragend',     function(e) { $Solitario.Carta_EventoDragEnd(e);   });        
-            $("Carta").off("dblclick").on('dblclick',   function(e) { $Solitario.Carta_EventoDblClick(e);  });
+            $("Carta").off("mouseover").on('mouseover', this.Carta_EventoMouseOver.bind(this));
+            $("Carta").off("mouseout").on('mouseout',   this.Carta_EventoMouseOut.bind(this));
+            $("Carta").off("dragstart").on('dragstart', this.Carta_EventoDragStart.bind(this));
+            $("Carta").off("dragend").on('dragend',     this.Carta_EventoDragEnd.bind(this));  
+            $("Carta").off("dblclick").on('dblclick',   this.Carta_EventoDblClick.bind(this));
         }
         $("movimientos").html(this.Movimiento - 1);
         $("Derrota").css({ "display" : (this.Ayuda() === false) ? "block" : "none" });
@@ -398,11 +400,11 @@ $Solitario = new function() {
             $("Columna[num='7']").html(DH["Columna7"]);
             $("Carta").css({ opacity : 1 }).removeAttr("hover");
             /* Re-asignamos los eventos */
-            $("Carta").off("mouseover").on('mouseover', function(e) { $Solitario.Carta_EventoMouseOver(e); });
-            $("Carta").off("mouseout").on('mouseout',   function(e) { $Solitario.Carta_EventoMouseOut(e);  });
-            $("Carta").off("dragstart").on('dragstart', function(e) { $Solitario.Carta_EventoDragStart(e); });
-            $("Carta").off("dragend").on('dragend',     function(e) { $Solitario.Carta_EventoDragEnd(e);   });        
-            $("Carta").off("dblclick").on('dblclick',   function(e) { $Solitario.Carta_EventoDblClick(e);  });
+            $("Carta").off("mouseover").on('mouseover', this.Carta_EventoMouseOver.bind(this));
+            $("Carta").off("mouseout").on('mouseout',   this.Carta_EventoMouseOut.bind(this));
+            $("Carta").off("dragstart").on('dragstart', this.Carta_EventoDragStart.bind(this));
+            $("Carta").off("dragend").on('dragend',     this.Carta_EventoDragEnd.bind(this));
+            $("Carta").off("dblclick").on('dblclick',   this.Carta_EventoDblClick.bind(this));
             $("movimientos").html(this.Movimiento - 1);
         }
         
@@ -511,7 +513,7 @@ $Solitario = new function() {
         /* Para depurar la IA he decidido que lo mejor es mostrar los movimientos de cada turno de forma eficiente 
          * además de contar con un experto anónimo local para mejorar la IA del juego hasta donde mis habilidades lo permitan */ 
         
-        var DebugIA =$("DebugIA");
+        var DebugIA = $("DebugIA");
         
         var DebugHTML = "<ul>";
         var ValoresCartas = Array("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" )

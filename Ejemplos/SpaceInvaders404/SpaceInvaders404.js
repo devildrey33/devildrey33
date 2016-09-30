@@ -5,12 +5,15 @@ var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al 
 
 // Constructor SIN TIPO, el tipo se especifica según la animación
 var SpaceInvaders404 = function() {
-    // Llamo al constructor del ObjetoBanner
-    if (ObjetoCanvas.call(this, "2d", 500, 500) === false) { return false; }
-
     // Se ha creado el canvas, inicio los valores de la animación ... 
     this.PngEnemigos      = new Image(); // NOTES\devildrey33.es\SpaceInvaders Error404\SpaceInvaders404-60x30.png
     this.PngEnemigos.src  = "data:image/png;base64,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";
+    // Creo la estructura con los datos del tanque del jugador
+    this.Tanque = new this.JugadorTanque(this);
+
+    // Llamo al constructor del ObjetoBanner
+    if (ObjetoCanvas.call(this, "2d", 500, 500) === false) { return false; }
+
     
     this.Iniciar();
     // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
@@ -26,12 +29,12 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     // Imagen que contiene 3 tipos de enemigos con 2 caras, y el ovni
                              /* Espacio     /\           A            D           <-          ->         */
     Teclas             : { 32 : false, 38 : false,  65 : false,  68 : false, 37 : false, 39 : false },
+    Estado             : 0,    // Estado del juego (0 inicio, 1 juego, 2 muerto, 3 terminado)
+    ActualizarEstado   : function () { }, // Función de pintado para el estado actual
     Disparos           : [],   // Array de disparos 
     Enemigos           : [],   // Array de enemigos
     Explosiones        : [],   // Array de explosiones
     Textos             : [],   // Array de textos;
-    Estado             : 0,    // Estado del juego (0 inicio, 1 juego, 2 muerto, 3 terminado)
-    ActualizarEstado   : function () { }, // Función de pintado para el estado actual
     OleadaEnemigos     : 1,
     Oleada             : null,
     Puntos             : 0,
@@ -67,14 +70,13 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         if (this.Opciones.Debug === true) {
             $("#SpaceInvaders404_Debug").attr({ "visible" : true });
         }
+        // Creo la estructura con los datos del tanque del jugador
+        this.Tanque = new this.JugadorTanque(this);
 
         // Actualizo la URL para el texto de error
         document.getElementById("SpaceInvaders404_URLError404").innerHTML = window.location.href;
 
         this.CrearError404();
-
-        // Creo la estructura con los datos del tanque del jugador
-        this.Tanque = new this.JugadorTanque(this);
 
         // Enlazar eventos
 /*        window.addEventListener('keydown', this.EventoTeclaPresionada.bind(this));
@@ -91,10 +93,33 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         // Info 3
         $("#SpaceInvaders404_Instrucciones_Intro3 > button").off("click").on("click", this.AsignarEstado.bind(this, 3)); 
 
+        // Boton reiniciar al terminar el juego
+        $("#SpaceInvaders404_Instrucciones_JuegoTerminado > button").off("click").on("click", this.Reiniciar.bind(this)); 
+        // Boton terminar de los records
+        $("#SpaceInvaders404_Instrucciones_NuevoRecord > button").off("click").on("click", this.AsignarEstado.bind(this, 4)); 
+
         this.AsignarEstado(0);
 
         // Actualizo la escena
 //        this.Actualizar();            
+    },
+    
+    Reiniciar : function() {
+        this.Disparos           = [],   // Array de disparos 
+        this.Enemigos           = [],   // Array de enemigos
+        this.Explosiones        = [],   // Array de explosiones
+        this.Textos             = [],   // Array de textos;
+        this.OleadaEnemigos     = 1,
+        this.Oleada             = null,
+        this.Puntos             = 0,
+        // Creo la estructura con los datos del tanque del jugador
+        this.Tanque = new this.JugadorTanque(this);
+        for (var i = 1; i < 4; i++) {
+            $("#SpaceInvaders404_Info > span:nth-child(" + i + ")").css({ "opacity" : 1 });
+        }
+        
+        this.CrearError404();
+        this.AsignarEstado(3);
     },
     // Función que crea un buffer con el texto 'error 404'
     CrearError404 : function() {
@@ -410,7 +435,7 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             this.SiguienteOleadaEnemigos();
             return;
         }
-        if (this.Tanque.MuertoMS === 0) {
+        if (this.Tanque.MuertoMS === 0 && this.Estado === 3) {
             // Animación de la cara 
             this.Opciones.Enemigo.AnimacionMS += 16;
             if (this.Opciones.Enemigo.AnimacionMS > this.Opciones.Enemigo.MaxAnimacion) { 
@@ -435,24 +460,11 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
                 
         // Pinto los enemigos
         for (var i = 0; i < this.Enemigos.length; i++) {
-            // Avance del enemigo
-            if (this.Tanque.MuertoMS === 0) {
+            
+            if (this.Tanque.MuertoMS === 0 && this.Estado === 3) {
+                // Avance del enemigo
                 this.Enemigos[i].X = (this.Opciones.Enemigo.AniDerecha === true) ? this.Enemigos[i].X + this.Opciones.Enemigo.VelocidadX : this.Enemigos[i].X - this.Opciones.Enemigo.VelocidadX;
                 this.Enemigos[i].Y += AvanceY;
-            }
-            // Alterno la cara del enemigo
-            var x = (this.Opciones.Enemigo.AnimacionCara === false) ? this.TipoEnemigo[this.Enemigos[i].Tipo].X1 : this.TipoEnemigo[this.Enemigos[i].Tipo].X2;
-            // Pinto el enemigo en la pantalla
-            this.Context.drawImage(this.PngEnemigos,    x,                                              0,                                              // coordenadas source
-                                                        this.TipoEnemigo[this.Enemigos[i].Tipo].Ancho, this.TipoEnemigo[this.Enemigos[i].Tipo].Alto,  // tam source
-                                                        this.Enemigos[i].X,                             this.Enemigos[i].Y,                             // coordenadas dest
-                                                        this.TipoEnemigo[this.Enemigos[i].Tipo].Ancho, this.TipoEnemigo[this.Enemigos[i].Tipo].Alto); // tam dest
-            // Pinto el enemigo en el buffer del 404
-            this.Buffer404.Context.drawImage(this.PngEnemigos,  x,                                              0,                                              // coordenadas source
-                                                                this.TipoEnemigo[this.Enemigos[i].Tipo].Ancho, this.TipoEnemigo[this.Enemigos[i].Tipo].Alto,  // tam source
-                                                                this.Enemigos[i].X,                             this.Enemigos[i].Y,                             // coordenadas dest
-                                                                this.TipoEnemigo[this.Enemigos[i].Tipo].Ancho, this.TipoEnemigo[this.Enemigos[i].Tipo].Alto); // tam dest
-            if (this.Tanque.MuertoMS === 0) {
                 // Sumo los nuevos disparos por segundo
                 if (this.Enemigos[i].DisparosPorSegundo < this.Opciones.Enemigo.MaxDisparosPorSegundo) {
                     this.Enemigos[i].DisparosPorSegundo += this.Opciones.Enemigo.MaxDisparosPorSegundo / 60;
@@ -468,6 +480,19 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
                     }
                 }
             }
+            // Alterno la cara del enemigo
+            var x = (this.Opciones.Enemigo.AnimacionCara === false) ? this.TipoEnemigo[this.Enemigos[i].Tipo].X1 : this.TipoEnemigo[this.Enemigos[i].Tipo].X2;
+            // Pinto el enemigo en la pantalla
+            this.Context.drawImage(this.PngEnemigos,    x,                                              0,                                              // coordenadas source
+                                                        this.TipoEnemigo[this.Enemigos[i].Tipo].Ancho, this.TipoEnemigo[this.Enemigos[i].Tipo].Alto,  // tam source
+                                                        this.Enemigos[i].X,                             this.Enemigos[i].Y,                             // coordenadas dest
+                                                        this.TipoEnemigo[this.Enemigos[i].Tipo].Ancho, this.TipoEnemigo[this.Enemigos[i].Tipo].Alto); // tam dest
+            // Pinto el enemigo en el buffer del 404
+            this.Buffer404.Context.drawImage(this.PngEnemigos,  x,                                              0,                                              // coordenadas source
+                                                                this.TipoEnemigo[this.Enemigos[i].Tipo].Ancho, this.TipoEnemigo[this.Enemigos[i].Tipo].Alto,  // tam source
+                                                                this.Enemigos[i].X,                             this.Enemigos[i].Y,                             // coordenadas dest
+                                                                this.TipoEnemigo[this.Enemigos[i].Tipo].Ancho, this.TipoEnemigo[this.Enemigos[i].Tipo].Alto); // tam dest
+            
         }        
     },
     
@@ -552,15 +577,29 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             
         },
         function() { // Estado 4
+            // Segunda capa : CanvasBuffer que contiene el texto 404 pintado
+            this.Context.drawImage(this.Buffer404.Canvas, 0 ,0);
+
+            // Tercera capa : enemigos
+            this.PintarEnemigos();
             
+            // Cuarta capa : disparos 
+            // - compruebo las colisiones (contra el muro, los enemigos, y el jugador)
+            this.ColisionesDisparos();
+            
+            // Explosiones
+            this.PintarExplosiones();
+
+            // Textos
+            this.PintarTextos();            
         },
         function() { // Estado 5
             
         },
     ],
     
+    Redimensionar   : function() {  this.Pintar();  },
     // Función que pinta cada frame de la animación
-
     Pintar : function() {        
         // Guardo el tiempo en ms de este frame (todas las funciones que requieran una marca de tiempo utilizaran este Date.now(), y de esta forma reducir los ciclos en cada frame)
         this.Tick = Date.now();
@@ -618,6 +657,8 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             $("#SpaceInvaders404_Instrucciones_Intro").attr("visible", true);
             $("#SpaceInvaders404_Instrucciones_Intro2").attr("visible", false);    
             $("#SpaceInvaders404_Instrucciones_Intro3").attr("visible", false);                
+            $("#SpaceInvaders404_Instrucciones_JuegoTerminado").attr("visible", false);                
+            $("#SpaceInvaders404_Instrucciones_NuevoRecord").attr("visible", false);                
             $("#SpaceInvaders404_Instrucciones_Intro > button").focus();
         }       
         
@@ -626,6 +667,8 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             $("#SpaceInvaders404_Instrucciones_Intro").attr("visible", false);    
             $("#SpaceInvaders404_Instrucciones_Intro2").attr("visible", true);    
             $("#SpaceInvaders404_Instrucciones_Intro3").attr("visible", false);
+            $("#SpaceInvaders404_Instrucciones_JuegoTerminado").attr("visible", false);                
+            $("#SpaceInvaders404_Instrucciones_NuevoRecord").attr("visible", false);                
             $("#SpaceInvaders404_Instrucciones_Intro2 > button").focus();
             // puntuación, vidas y energia de disparo visibles
             $("#SpaceInvaders404_Info").attr("visible", true);
@@ -651,6 +694,8 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             $("#SpaceInvaders404_Instrucciones_Intro").attr("visible", false);
             $("#SpaceInvaders404_Instrucciones_Intro2").attr("visible", false);    
             $("#SpaceInvaders404_Instrucciones_Intro3").attr("visible", true);    
+            $("#SpaceInvaders404_Instrucciones_JuegoTerminado").attr("visible", false);                
+            $("#SpaceInvaders404_Instrucciones_NuevoRecord").attr("visible", false);                
             $("#SpaceInvaders404_Instrucciones_Intro3 > button").focus();
             this.ColorTanque.Terminar();
             this.ColorError404.Terminar();            
@@ -700,6 +745,8 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             $("#SpaceInvaders404_Instrucciones_Intro").attr("visible", false);
             $("#SpaceInvaders404_Instrucciones_Intro2").attr("visible", false);
             $("#SpaceInvaders404_Instrucciones_Intro3").attr("visible", false);
+            $("#SpaceInvaders404_Instrucciones_JuegoTerminado").attr("visible", false);                
+            $("#SpaceInvaders404_Instrucciones_NuevoRecord").attr("visible", false);                
             this.ColorTanque.Terminar();
             this.ColorError404.Terminar();            
             this.ColorHud.Terminar();
@@ -711,9 +758,23 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         // Terminado con record
         if (nEstado === 4) {
             
+            $("#SpaceInvaders404_Instrucciones_Intro").attr("visible", false);
+            $("#SpaceInvaders404_Instrucciones_Intro2").attr("visible", false);
+            $("#SpaceInvaders404_Instrucciones_Intro3").attr("visible", false);
+            $("#SpaceInvaders404_Instrucciones_JuegoTerminado").attr("visible", true);                
+            $("#SpaceInvaders404_Instrucciones_NuevoRecord").attr("visible", false);                
+            
+            $("#SpaceInvaders404_Instrucciones_JuegoTerminado > button").focus();
+
         }
         // Terminado
         if (nEstado === 5) {
+            
+            $("#SpaceInvaders404_Instrucciones_Intro").attr("visible", false);
+            $("#SpaceInvaders404_Instrucciones_Intro2").attr("visible", false);
+            $("#SpaceInvaders404_Instrucciones_Intro3").attr("visible", false);
+            $("#SpaceInvaders404_Instrucciones_JuegoTerminado").attr("visible", false);                
+            $("#SpaceInvaders404_Instrucciones_NuevoRecord").attr("visible", true);                
             
         }
         

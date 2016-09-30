@@ -443,16 +443,17 @@ class devildrey33 {
                 "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-guardar-cache' />".Intro().
             "</div>".Intro().
                     
-        "</nav>".Intro().
+        "</nav>".Intro();
                    
 /*        "<nav id='BarraInferiorDerecha'>".Intro().
             "<div id='BarraInferiorDerecha_Cargando'><div></div><div></div></div>".Intro().
         "</nav>".Intro();*/
         
-        $EsAdmin = "";
-        if (devildrey33_Opciones::Administrador() > 0) $EsAdmin = " NoMostrar=true";
+//        $EsAdmin = "";
+//        if (devildrey33_Opciones::Administrador() > 0) $EsAdmin = " NoMostrar=true";
         
-        echo "<div id='Logo'".$EsAdmin." class='AnimarLogo SinSeleccion'>".
+//        echo "<div id='Logo'".$EsAdmin." class='AnimarLogo SinSeleccion'>".
+        echo "<div id='Logo' class='AnimarLogo SinSeleccion'>".
             "<div>D</div>".
             "<div>E</div>".
             "<div>V</div>".

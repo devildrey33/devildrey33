@@ -17,6 +17,10 @@ ObjetoCanvas = function(Tipo, AnchoFijo, AltoFijo) {
     if (typeof(AltoFijo) !== "undefined")  { this.AltoFijo = true; this.Alto = AltoFijo;    }
     else                                   { this.AltoFijo = false;                         }
 
+    var PreCabecera = document.createElement('header');
+    PreCabecera.id = "Cabecera";
+    document.body.appendChild(PreCabecera);
+    
     // Creo las etiquetas que contienen información adicional sobre la animación
     var Cabecera = document.getElementById("Cabecera");
     Cabecera.innerHTML =        '<div id="Cabecera_Cargando">Cargando animación...</div>' +

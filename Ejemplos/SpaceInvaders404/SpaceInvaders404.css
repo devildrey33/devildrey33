@@ -152,17 +152,17 @@ body { background: rgb(49,46,53); margin:0px; padding:0px; }
 
 @keyframes AniBotonDisparo {
     100%   { background:#D22; }
-    0% { background:#CAA; }
+    0%     { background:#CAA; }
 }
 
-#TextoDisparo, #TextoMovimiento, #TextoDisparo2, #TextoVidas, #TextoArma, #TextoPuntuacion { opacity:0; text-shadow:1px 1px 1px #222;}
+#TextoDisparo, #TextoMovimiento, #TextoDisparo2, #TextoVidas, #TextoArma, #TextoPuntuacion { opacity:0; text-shadow:1px 1px 1px #222; }
 #SpaceInvaders404_Instrucciones_Intro3[visible='true'] #TextoMovimiento { animation:AniOpacidadTexto 1.5s ease 0s 1 normal;         animation-fill-mode:forwards;  }
-#SpaceInvaders404_Instrucciones_Intro3[visible='true'] #TextoDisparo { animation:AniOpacidadTexto 1.5s ease 4s 1 normal;         animation-fill-mode:forwards;  }
-#SpaceInvaders404_Instrucciones_Intro3[visible='true'] #TextoDisparo2 { animation:AniOpacidadTexto 1.5s ease 8s 1 normal;         animation-fill-mode:forwards;  }
+#SpaceInvaders404_Instrucciones_Intro3[visible='true'] #TextoDisparo    { animation:AniOpacidadTexto 1.5s ease 4s 1 normal;         animation-fill-mode:forwards;  }
+#SpaceInvaders404_Instrucciones_Intro3[visible='true'] #TextoDisparo2   { animation:AniOpacidadTexto 1.5s ease 8s 1 normal;         animation-fill-mode:forwards;  }
 
 
-#SpaceInvaders404_Instrucciones_Intro2[visible='true'] #TextoVidas { animation:AniOpacidadTexto 1.5s ease 2.5s 1 normal;         animation-fill-mode:forwards;  }
-#SpaceInvaders404_Instrucciones_Intro2[visible='true'] #TextoArma { animation:AniOpacidadTexto 1.5s ease 5s 1 normal;         animation-fill-mode:forwards;  }
+#SpaceInvaders404_Instrucciones_Intro2[visible='true'] #TextoVidas      { animation:AniOpacidadTexto 1.5s ease 2.5s 1 normal;       animation-fill-mode:forwards;  }
+#SpaceInvaders404_Instrucciones_Intro2[visible='true'] #TextoArma       { animation:AniOpacidadTexto 1.5s ease 5s 1 normal;         animation-fill-mode:forwards;  }
 #SpaceInvaders404_Instrucciones_Intro2[visible='true'] #TextoPuntuacion { animation:AniOpacidadTexto 1.5s ease 9s 1 normal;         animation-fill-mode:forwards;  }
 
 @keyframes AniOpacidadTexto {
@@ -178,7 +178,7 @@ body { background: rgb(49,46,53); margin:0px; padding:0px; }
     position:absolute;
     opacity:0;
 }
-
+/* Flechas de la animación del mouse */
 #SpaceInvaders404_Instrucciones_Intro3[visible='true'] .MouseCSS_FlechaArriba {
     transform:rotateZ(315deg);                
     left:calc(50% - 5px);
@@ -224,3 +224,11 @@ body { background: rgb(49,46,53); margin:0px; padding:0px; }
 
 
 .SinSeleccion { -moz-user-select: none;  -webkit-user-select: none; -ms-user-select: none;  user-select: none; }
+
+
+@media only screen and (max-height: 600px) {
+    #SpaceInvaders404_Texto           {    display:none;     }
+}
+
+
+#PuntuacionFinal { font-weight: bold; }
