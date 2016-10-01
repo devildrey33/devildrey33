@@ -1,6 +1,6 @@
 /* Objeto que contiene las funciones para el administrador */
 
-$Admin = new function() {
+ObjetoAdmin = function() {
 
     this.Iniciar = function() {        
         
@@ -14,7 +14,7 @@ $Admin = new function() {
         /* re-emplazo de la funcion click para el menu de administración */
         $('#BarraPrincipal_Boton33_Estado').off("click").on("click", function(e){ $Base.ClickMenu(8); });
         /* Boton ver logs */
-        $('#CH_Logs').off("click").on("click", function(e){ $Base.CargarURL('/Web/Log'); $Base.ClickMenu(0); }); /* MOSTRAR LOGS */
+        $('#CH_Logs').off("click").on("click", function(e){ console.log("a"); $Base.CargarURL('/Web/Log'); $Base.ClickMenu(0); }); /* MOSTRAR LOGS */
         /* Boton ver stats */
         $('#CH_Stats').off("click").on("click", function(e){ $Base.CargarURL('/Web/Stats'); $Base.ClickMenu(0); }); /* MOSTRAR stats */
         /* Boton ver php info */
@@ -802,9 +802,9 @@ $Admin = new function() {
     };
 };
 
-
+var $Admin = new ObjetoAdmin;
 // Requerido por si se recarga toda la pagina siendo admin
-$(window).load(function() { $Admin.Iniciar(); });
+$(window).on("load", function() { $Admin.Iniciar(); });
 
 
 /* Avisa cuando recargas la pagina sin guardar el codumento del Lab */

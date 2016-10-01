@@ -164,7 +164,8 @@ class devildrey33 {
             "<div id='BarraPrincipal_Submenus'>".Intro().
                 "<div id='BarraPrincipal_Fondo'></div>".Intro().
                 // <!-- CSS -->
-                "<div class='Menu' mostrar='true'>".Intro().
+//                "<div class='Menu' mostrar='true'>".Intro().
+                "<div class='Menu'>".Intro().
                     "<input id='BarraPrincipal_BotonCSS_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
                     "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonCSS_Estado' tooltip-es='CSS' tooltip-en='CSS' tooltip-pos='L'></label>".Intro().
                     "<div class='Menu_Boton'>".Intro().
@@ -185,7 +186,8 @@ class devildrey33 {
                 "</div>".Intro().
                 
                 // <!-- C / C++ -->
-                "<div class='Menu' mostrar='true'>".Intro().
+                "<div class='Menu'>".Intro().
+//                "<div class='Menu' mostrar='true'>".Intro().
                     "<input id='BarraPrincipal_BotonCPP_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
                     "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonCPP_Estado' tooltip-es='C/C++ en Windows' tooltip-en='C/C++ on Windows' tooltip-pos='L'></label>".Intro().
                     "<div class='Menu_Boton'>".Intro().
@@ -204,7 +206,8 @@ class devildrey33 {
                 // <!-- HTML -->
 //                "<a href='/Categorias/HTML' class='Menu_Boton'><span>HTML</span></a>".
                 // <!-- JS -->
-                "<div class='Menu' mostrar='true'>".Intro().
+                "<div class='Menu'>".Intro().
+//                "<div class='Menu' mostrar='true'>".Intro().
                     "<input id='BarraPrincipal_BotonJS_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
                     "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonJS_Estado' tooltip-es='JavaScript y jQuery' tooltip-en='JavaScript and jQuery' tooltip-pos='L'></label>".Intro().
                     "<div class='Menu_Boton'>".Intro().
@@ -218,12 +221,16 @@ class devildrey33 {
                         "<a href='/Blog/Canvas2D_3'>Canvas 2D 3</a>".Intro().
                         "<a href='/Blog/Canvas2D_4'>Canvas 2D 4</a>".Intro().
                         "<a href='/Blog/devildrey33_ListaDesplegable_2-0'>Lista desplegable</a>".Intro().
-                        "<a href='/Lab/Ejemplos/Solitario/Solitario.html?Preview'>Solitario HTML5</a>".Intro().                
+                        "<a href='/Lab/Ejemplos/Solitario/Solitario.html'>Lab : Solitario HTML5</a>".Intro().                
+                        "<a href='/Lab/Ejemplos/BannerTest/WormHole.html'>Lab : Adiestrando cubos</a>".Intro().                
+                        "<a href='/Lab/Ejemplos/BannerTest/WormHole.html'>Lab : WormHole</a>".Intro().                
+                        "<a href='/Lab/Ejemplos/BannerTest/WormHole.html'>Lab : Sinusoidal</a>".Intro().                
                     "</div>".Intro().
                 "</div>".Intro().
 
                 // <!-- PHP -->
-                "<div class='Menu' mostrar='true'>".Intro().
+                "<div class='Menu'>".Intro().
+//                "<div class='Menu' mostrar='true'>".Intro().
                     "<input id='BarraPrincipal_BotonPHP_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
                     "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonPHP_Estado' tooltip-es='PHP' tooltip-en='PHP' tooltip-pos='L'></label>".Intro().
                     "<div class='Menu_Boton'>".Intro().
@@ -240,7 +247,8 @@ class devildrey33 {
                 "</div>".Intro().
                 
                 // <!-- Buscar -->
-                "<div class='Menu' mostrar='true'>".Intro().
+                "<div class='Menu'>".Intro().
+//                "<div class='Menu' mostrar='true'>".Intro().
                     "<input id='BarraPrincipal_BotonBuscar_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
                     "<label class='Menu_Boton_Label' for='BarraPrincipal_BotonBuscar_Estado' tooltip-es='Buscar' tooltip-en='Search' tooltip-pos='L'></label>".Intro().
                     "<div class='Menu_Boton'>".Intro().
@@ -256,6 +264,13 @@ class devildrey33 {
 //                               "<span class='IcoLupa20x20'></span>".Intro().
                         "</div>".Intro().
                         "<div id='BarraPrincipal_MarcoBuscar_Resultado'></div>".Intro().
+                    "</div>".Intro().
+                "</div>".Intro().
+                
+                // <!-- Sobre devildrey33 -->
+                "<div class='Menu'>".Intro().                    
+                    "<div  id='SobreDevildrey33' class='Menu_Boton' tooltip-es='Sobre devildrey33' tooltip-en='About devildrey33' tooltip-pos='L'>".Intro().
+                        "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-logo' />".Intro().
                     "</div>".Intro().
                 "</div>".Intro().
                 
@@ -900,10 +915,15 @@ class devildrey33 {
     public function Head_JS() {
         $this->GenerarListaEntradasJS();                
 //        $Raiz = "/".str_replace("\\", "/", substr(dirname(__FILE__), strlen($_SERVER["DOCUMENT_ROOT"])));
-        
-        echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>'.Intro();
-        echo '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>'.Intro(); // Para la barra separadora del lab
-        echo "<script type='text/javascript' src='https://www.google.es/jsapi'></script>".Intro(); // json api?
+        if (devildrey33_Opciones::Minificar_JS() == 0) { // jQuery sin minificar        
+            echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>'.Intro();
+            echo '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>'.Intro(); // Para la barra separadora del lab
+        }
+        else {
+            echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>'.Intro();
+            echo '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>'.Intro(); // Para la barra separadora del lab
+        }
+//        echo "<script type='text/javascript' src='https://www.google.es/jsapi'></script>".Intro(); // json api?
         /* addons del codemirror */
         echo "<script src='".Base::URL_JS()."3rdParty/codemirror.min.js'></script>".Intro();
         /* Three js */

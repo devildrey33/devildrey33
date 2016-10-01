@@ -51,10 +51,12 @@ Millores de la web :
         font-size        : 1!!.4rem!!;
     - Tornar a afegir els iconos58x58.svg dintre del HTML bàsic, aquest cop el carregarem directament de l'arxiu, i aixi no cal posarlo dintre del devildrey33.php i serà tot mes còmode.
         - El problema es que no es pot utilitzar el <img> amb la id del svg en tots els navegadors...
+ V      - Icones SVG re-editats amb corel X8 ja que no queden iguals que amb el X7... (tot per afegir l'icona del logo)
     - Els 5 putus primers caracters que imprimeix qualsevol document php... no se d'on cony surten... tinc echos de l'ordre de carrega dels objectes y echos de putes distribuits estrategicament de forma que no funcionara res de res, aviam si puc obtenir un callback complet d'execució sense fer guarrades amb els echos.
         - S'imprimeixen just abans d'iniciar el constructor de devildrey33.php, pero no he pogut aillar l'origen....
  V  - En el tema d'administració s'ha de posar un timer de 30 minuts per elminiar el status admin. Aquest timer s'ha de renovar cada cop que s'utilitzi un CargarURL o un cmd. (tambè afegit a les peticións ajaxs dels comentaris i el lab)
  V      - No crec que sigui exacte però serà bastant aproximat i ames acabara de tancar tot el tema que vaig re-escriure per advertir del timeout en php en tots els cmd.
+ V  - Actualitzat a jQuery 3.1.1 (en fase de test)
 
 Estils movils :
     - algo raro pasa al mostrar el banner en "portrait "

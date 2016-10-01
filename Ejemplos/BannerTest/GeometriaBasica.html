@@ -1,0 +1,88 @@
+<!-- 
+    Test para el banner GeometriaBasica creado por Josep Antoni Bover Comas el 01-10-2016
+
+        Vista por defecto en el Laboratorio de pruebas  
+		devildrey33_Lab->Opciones->Vista = Filas;
+
+        Ultima modificación el 03/08/2016
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <!-- Estilos CSS para el test -->
+        <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
+        <!-- Código javascript --> 
+<script type="text/javascript">
+/* Plantilla para crear banners animados en devildrey33.es */
+var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al perder el foco del teclado
+
+// Constructor SIN TIPO, el tipo se especifica según la animación
+var GeometrieaBasica = function() {
+    // Llamo al constructor del ObjetoBanner
+    if (ObjetoCanvas.call(this, "2d") === false) { return false; }
+    // Se ha creado el canvas, inicio los valores de la animación ... 
+
+    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
+    this.Cargando(false);
+};
+
+GeometrieaBasica.prototype = Object.assign( Object.create(ObjetoCanvas.prototype), {
+    constructor     : GeometrieaBasica, 
+    // Función que se llama al redimensionar el documento
+    Redimensionar   : function() {    },
+    // Función que se llama al hacer scroll en el documento    
+    Scroll          : function() {    },
+    // Función que se llama al mover el mouse por el canvas
+    MouseMove       : function(Evento) { },
+    // Función que se llama al presionar un botón del mouse por el canvas
+    MousePresionado : function(Evento) { },
+    // Función que se llama al soltar un botón del mouse por el canvas
+    MouseSoltado    : function(Evento) { },
+    // Función que se llama al entrar con el mouse en el canvas
+    MouseEnter      : function(Evento) {  },
+    // Función que se llama al salir con el mouse del canvas
+    MouseLeave      : function(Evento) {  },
+    // Función que se llama al presionar una tecla
+    TeclaPresionada : function(Evento) { },
+    // Función que se llama al soltar una tecla
+    TeclaSoltada    : function(Evento) { },
+    
+    Figuras         : [],
+    
+    Figura          : function(Ancho, Alto) {
+        this.X          = Rand(Ancho, 0);
+        this.Y          = Alto;
+        this.Tam        = Rand(8, 36);
+        this.Velocidad  = Rand(8, 0.2);
+        this.Tipo       = RandInt(2, 0); /* 0 Cuadrado, 1 Circulo, 2 Triangulo */
+        this.Opacidad   = 1;
+        this.Avance = function(MouseX, MouseY, Ancho) {
+            var aX = (Ancho /2) - MouseX;
+            var aY = Alto - MouseY;
+            this.X = Math.cos(aY);
+            this.Y = Math.sin(aX);
+        };
+    },
+    
+    Iniciar         : function() {
+        for (var i = 0; i < 100; i++) {
+            this.Figuras[i] = new this.Figura(this.Ancho, this.Alto);
+        }
+    },
+    
+    // Función que pinta cada frame de la animación
+    Pintar          : function() {    }
+});
+
+var Canvas = null;
+window.addEventListener('load', function() { Canvas = new NUEVOCANVAS2D; });
+</script>
+    </head>
+    <body>
+    </body>
+</html>

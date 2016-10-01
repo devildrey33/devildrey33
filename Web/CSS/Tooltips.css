@@ -23,7 +23,6 @@ html[lang='es'] *[tooltip-es]::after, html[lang='en'] *[tooltip-en]::after {
     opacity:0;
     width:0px;
     transition:.4s cubic-bezier(.17,-0.42,0,1.35);
-    content:'';
     transform:perspective(600px) rotateX(-90deg);
     transform-origin:center top;
     text-align:center;

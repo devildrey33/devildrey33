@@ -68,7 +68,7 @@
         <script>
 			var Menu_Temporitzador = 0;
 			/* Al cargar la página */
-			$(window).load(function() {
+			$(window).on("load", function() {
 				/* Re-emplazo los eventos mouseover y mouseout */
 				$(".MenuSubrayado > li").on("mouseover", function() { 
 					Menu_AnimarSubrayat(this);

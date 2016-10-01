@@ -53,21 +53,21 @@ $Base = new function() {
          *  Obtengo el evento del control input que va asociado a un label invisible que ocupa el mismo espacio que el boton.
          *  De esta forma todo el proceso de la animación se hace mediante CSS.
          *  Solo se requiere javascript para determinar en que boton se ha presionado, para cerrar otras ventanas emergentes. */
-        $("#BarraPrincipal_Boton_Estado").click(function(e)          { $Base.ClickMenu(0); }); /* tanca tot */
-        $("#BarraPrincipal_BotonCSS_Estado").click(function(e)       { $Base.ClickMenu(1); });
-        $("#BarraPrincipal_BotonCPP_Estado").click(function(e)       { $Base.ClickMenu(2); });
-        $("#BarraPrincipal_BotonJS_Estado").click(function(e)        { $Base.ClickMenu(3); });
-        $("#BarraPrincipal_BotonPHP_Estado").click(function(e)       { $Base.ClickMenu(4); });
-        $("#BarraPrincipal_BotonBuscar_Estado").click(function(e)    { $Base.ClickMenu(5); });
+        $("#BarraPrincipal_Boton_Estado").click(            this.ClickMenu.bind(this, 0)); /* tanca tot */
+        $("#BarraPrincipal_BotonCSS_Estado").click(         this.ClickMenu.bind(this, 1));
+        $("#BarraPrincipal_BotonCPP_Estado").click(         this.ClickMenu.bind(this, 2));
+        $("#BarraPrincipal_BotonJS_Estado").click(          this.ClickMenu.bind(this, 3));
+        $("#BarraPrincipal_BotonPHP_Estado").click(         this.ClickMenu.bind(this, 4));
+        $("#BarraPrincipal_BotonBuscar_Estado").click(      this.ClickMenu.bind(this, 5));
         
-        $("#BarraNavegacion_BotonVer_Estado").click(function(e)      { $Base.ClickMenu(6); });
-        $("#BarraNavegacion_BotonExplorar_Estado").click(function(e) { $Base.ClickMenu(7); });
-        $("#BarraNavegacion_Indice_Estado").click(function(e)        { $Base.ClickMenu(9); });
-        $("#BarraNavegacion_PrevNext_Estado").click(function(e)      { $Base.ClickMenu(10); });
-        $("#BarraNavegacion_RedesSociales_Estado").click(function(e) { $Base.ClickMenu(11); });
-        $("#BarraNavegacion_Votacion_Estado").click(function(e)      { $Base.ClickMenu(12); });
+        $("#BarraNavegacion_BotonVer_Estado").click(        this.ClickMenu.bind(this, 6));
+        $("#BarraNavegacion_BotonExplorar_Estado").click(   this.ClickMenu.bind(this, 7));
+        $("#BarraNavegacion_Indice_Estado").click(          this.ClickMenu.bind(this, 9));
+        $("#BarraNavegacion_PrevNext_Estado").click(        this.ClickMenu.bind(this, 10));
+        $("#BarraNavegacion_RedesSociales_Estado").click(   this.ClickMenu.bind(this, 11));
+        $("#BarraNavegacion_Votacion_Estado").click(        this.ClickMenu.bind(this, 12));
         
-        $("#BarraPrincipal_MarcoBuscar_BotonBuscar").click(function(e) { $Base.Buscar(); });
+        $("#BarraPrincipal_MarcoBuscar_BotonBuscar").click( this.Buscar.bind(this));
         $("#BarraPrincipal_MarcoBuscar_Edit").keyup(function(e)        { if (event.which === 13) { $Base.Buscar(); } });
         
         /* Marco prev next */
@@ -266,22 +266,22 @@ $Base = new function() {
     /* Función que determina el estado del menú lateral izquierdo */
     this.ClickMenu = function(Menu) { 
         console.log("Base.ClickMenu", Menu);
-        if (Menu !== 1) { $("#BarraPrincipal_BotonCSS_Estado").removeAttr("checked");    }
-        if (Menu !== 2) { $("#BarraPrincipal_BotonCPP_Estado").removeAttr("checked");    }
-        if (Menu !== 3) { $("#BarraPrincipal_BotonJS_Estado").removeAttr("checked");     }
-        if (Menu !== 4) { $("#BarraPrincipal_BotonPHP_Estado").removeAttr("checked");    }
-        if (Menu !== 5) { $("#BarraPrincipal_BotonBuscar_Estado").removeAttr("checked"); }
+        if (Menu !== 1) { $("#BarraPrincipal_BotonCSS_Estado").prop("checked", false);    }
+        if (Menu !== 2) { $("#BarraPrincipal_BotonCPP_Estado").prop("checked", false);    }
+        if (Menu !== 3) { $("#BarraPrincipal_BotonJS_Estado").prop("checked", false);     }
+        if (Menu !== 4) { $("#BarraPrincipal_BotonPHP_Estado").prop("checked", false);    }
+        if (Menu !== 5) { $("#BarraPrincipal_BotonBuscar_Estado").prop("checked", false); }
         /* Paso el foco al editbox de la busqueda */
         if (Menu === 5) { $("#BarraPrincipal_MarcoBuscar_Edit").focus().select();  }        
-        if (Menu !== 6) { $("#BarraNavegacion_BotonVer_Estado").removeAttr("checked"); }
-        if (Menu !== 7) { $("#BarraNavegacion_BotonExplorar_Estado").removeAttr("checked"); }
-        if (Menu !== 8) { $("#BarraPrincipal_Boton33_Estado").removeAttr("checked");    }
-        if (Menu !== 9) { $("#BarraNavegacion_Indice_Estado").removeAttr("checked"); }
+        if (Menu !== 6) { $("#BarraNavegacion_BotonVer_Estado").prop("checked", false); }
+        if (Menu !== 7) { $("#BarraNavegacion_BotonExplorar_Estado").prop("checked", false); }
+        if (Menu !== 8) { $("#BarraPrincipal_Boton33_Estado").prop("checked", false);    }
+        if (Menu !== 9) { $("#BarraNavegacion_Indice_Estado").prop("checked", false); }
         /* El menú admin cierra el menu principal (para ciertas vistas moviles puede no haber espacio para los dos a la vez) */
-        if (Menu === 8) { $("#BarraPrincipal_Boton_Estado").removeAttr("checked"); }
-        if (Menu !== 10) { $("#BarraNavegacion_PrevNext_Estado").removeAttr("checked"); }
-        if (Menu !== 11) { $("#BarraNavegacion_RedesSociales_Estado").removeAttr("checked"); }
-        if (Menu !== 12) { $("#BarraNavegacion_Votacion_Estado").removeAttr("checked"); }
+        if (Menu === 8) { $("#BarraPrincipal_Boton_Estado").prop("checked", false); }
+        if (Menu !== 10) { $("#BarraNavegacion_PrevNext_Estado").prop("checked", false); }
+        if (Menu !== 11) { $("#BarraNavegacion_RedesSociales_Estado").prop("checked", false); }
+        if (Menu !== 12) { $("#BarraNavegacion_Votacion_Estado").prop("checked", false); }
     };
     
 

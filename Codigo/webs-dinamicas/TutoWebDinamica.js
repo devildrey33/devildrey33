@@ -1,6 +1,6 @@
 PeticionAjax = 0;
 // -[INICIO devildrey33.OnLoad]-
-$(window).load(function() {
+$(window).on("load", function() {
     ActualizarContenido();
 });
 // -[FIN devildrey33.OnLoad]-

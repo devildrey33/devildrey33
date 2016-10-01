@@ -79,5 +79,5 @@ $PintarCodigo = new function() {
 
 
 // OnLoad para los tests
-$(window).load(function()   { $PintarCodigo.EnlazarEtiquetas(); });
+$(window).on("load", function()   { $PintarCodigo.EnlazarEtiquetas(); });
 
