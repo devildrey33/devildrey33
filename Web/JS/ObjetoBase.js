@@ -166,7 +166,9 @@ $Base = new function() {
                                 Banner_AdiestramientoCubos3D,
                                 Banner_WormHole,
                                 Banner_Anillos,
-                                Banner_Sinusoidal                  ];                
+                                Banner_Sinusoidal,
+                                Banner_GeometriaBasica
+                            ];                
         var fPos = 0;
         // Si no se ha especificado ninguna posición generamos una aleatória
         if (typeof (Pos === "undefined")) { fPos = RandInt(Banner_Lista.length); }

@@ -513,6 +513,7 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
 
 /* Transición de resaltado para los iconos en SVG con rotaciones y escalas */
 .MiniLab > .Menu > .Menu_Boton > .Menu_Boton_SVG,                                                           /* Botones Minilab */
+.Menu > .Menu_Boton > .Menu_Boton_SVG,                                                                      /* Botones svg normales */
 .Menu > .Menu_Boton > .Menu_Boton_Cruz > .Menu_Boton_SVG,                                                   /* Botones check */
 .Menu > .Menu_Boton > .Menu_Boton_Cruz > span > .Menu_Boton_SVG,                                            /* Boton de la votación (requiere un span extra para la animación de rotación) */
 #BarraNavegacion_LabMarcoVer > .Menu_Boton_Label + .Menu_Boton > .Menu_Boton_Cruz > .Menu_Boton_SVG,        /* Marco con los botones para las vistas del lab */
@@ -525,6 +526,7 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
 }
 
 .MiniLab > .Menu:hover > .Menu_Boton > .Menu_Boton_SVG,                                                     /* Botones Minilab */
+.Menu:hover > .Menu_Boton > .Menu_Boton_SVG,                                                                /* Botones svg normales */
 .Menu:hover > .Menu_Boton > .Menu_Boton_Cruz > .Menu_Boton_SVG,                                             /* Botones check */
 .Menu:hover > .Menu_Boton > .Menu_Boton_Cruz > span > .Menu_Boton_SVG,                                      /* Boton de la votación (requiere un span extra para la animación de rotación) */
 #BarraNavegacion_LabMarcoVer > .Menu_Boton_Label:hover + .Menu_Boton > .Menu_Boton_Cruz > .Menu_Boton_SVG,  /* Marco con los botones para las vistas del lab */

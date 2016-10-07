@@ -36,6 +36,7 @@ $Lab = new function() {
             lineNumbers         : true,
             autoCloseTags       : true,
             autoCloseBrackets   : true,
+            scrollbarStyle      : "simple",
             matchTags           : { bothTags : true },
             
             extraKeys           : { "Ctrl-S" : function(instance) { 

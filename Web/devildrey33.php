@@ -269,7 +269,7 @@ class devildrey33 {
                 
                 // <!-- Sobre devildrey33 -->
                 "<div class='Menu'>".Intro().                    
-                    "<div  id='SobreDevildrey33' class='Menu_Boton' tooltip-es='Sobre devildrey33' tooltip-en='About devildrey33' tooltip-pos='L'>".Intro().
+                    "<div  id='SobreDevildrey33' class='Menu_Boton' tooltip-es='Sobre el autor' tooltip-en='About devildrey33' tooltip-pos='L'>".Intro().
                         "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-logo' />".Intro().
                     "</div>".Intro().
                 "</div>".Intro().

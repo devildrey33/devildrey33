@@ -83,7 +83,7 @@ class devildrey33_BD {
     
 
 
-    // UNUSED ???
+    // utilizada en devildrey33_Descargas.php
     // Suma 1 al contador de descargas
     public function SumarDescarga($Archivo) {
         if ($this->_BDFuncional === false) return FALSE;

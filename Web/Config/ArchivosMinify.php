@@ -28,6 +28,7 @@ return array(
                                     "/CSS/Index.css",
                                     "/CSS/Media.css",
                                     "/CSS/Codemirror.css",
+                                    "/CSS/Codemirror-SimpleScrollBar.css",
                                     "/CSS/Tablas.css"
                 ),				  
     /* Archivos JS */
@@ -40,14 +41,15 @@ return array(
                                     "/JS/ObjetoLab.js",
                                     "/JS/ObjetoBanner.js", // Debe estar despues de los banners
                                     "/JS/Banner/Banner_Espacio2D.js",
-                                    "/JS/Banner/Banner_Colisiones.js",
-                                    "/JS/Banner/Banner_ResplandorCircular.js",
-                                    "/JS/Banner/Banner_TranstornoLineal.js",
-                                    "/JS/Banner/Banner_MatrixLluviaHexadecimal.js",
+//                                    "/JS/Banner/Banner_Colisiones.js",
+//                                    "/JS/Banner/Banner_ResplandorCircular.js",
+//                                    "/JS/Banner/Banner_TranstornoLineal.js",
+//                                    "/JS/Banner/Banner_MatrixLluviaHexadecimal.js",
                                     "/JS/Banner/Banner_AdiestramientoCubos3D.js",
                                     "/JS/Banner/Banner_WormHole.js",
                                     "/JS/Banner/Banner_Anillos.js",
                                     "/JS/Banner/Banner_Sinusoidal.js",
+                                    "/JS/Banner/Banner_GeometriaBasica.js",
 //                                    "/JS/3rdParty/Stats.js" // FPS
                 )				  				  
 );

@@ -24,7 +24,7 @@
     $Web = new devildrey33;	
 
     $META = '<meta name="description" content="CSS Variables">
-    <meta name="keywords" content="CSS, CSS3, CSS3 Variables">
+    <meta name="keywords" content="CSS, CSS3, CSS3 Variables, CSS4, CSS4 Variables">
     <meta name="robots" content="index, follow">';
 
     $Web->InicioPlantilla(basename(__FILE__), "Referéncia CSS : Variables", $META);
@@ -38,7 +38,7 @@
 
         <p>Recientemente se han vuelto a habilitar las variables css en chrome, y me parece un tema a empezar a tener en cuenta ya que a mi entender es algo que debería haber existido desde el CSS1. Por ejemplo en cualquier diseño web se acaban utilizando siempre unos determinados colores, estos colores se pueden llegar a repetir decenas e incluso cientos de veces en una o varias hojas de estilo, y  si llega el caso de querer modificar uno de esos colores vamos a tener una ardua tarea por delante.</p>
         <p>Con las variables CSS este problema desaparece, ya que podemos declarar dicho color y enlazar todos los elementos que lo van a utilizar a la variable. Además podemos llegar a modificar la variable desde JavaScript, lo que nos da aún mas versatilidad. Por ultimo también ayuda mucho a la hora de leer el código, ver una variable del estilo <code>--ColorFondo</code> que ver <code>#632784</code>.</p>
-        <p>En definitiva todo son ventajas, excepto por una cosa... <b>no funciona ni funcionará</b> en ninguna versión de <b>Internet Explorer</b>. Por suerte he leído en alguna parte que desde hace poco funcionan las variables css en Edge (el nuevo navegador de windows 10), pero es algo que no he podido comprobar.</p>
+        <p>En definitiva todo son ventajas, excepto por una cosa... <b>no funciona ni funcionará</b> en ninguna versión de <b>Internet Explorer</b>. <strike>Por suerte he leído en alguna parte que desde hace poco funcionan las variables css en Edge (el nuevo navegador de windows 10), pero es algo que no he podido comprobar.</strike></p>
         <div class='nota'>Puede que con algún script tipo Modernizr se pueda hacer algo con variables css en Internet Explorer, pero seguimos con la misma tónica respecto a los navegadores huérfanos de microsoft. Cada vez que sale una nueva versión de windows sale con su navegador mejorado, pero van dejando los navegadores de las versiones anteriores de windows sin actualizar.</div>
         <h2>Declaración de variables CSS</h2>
         <p>Lo primero que debemos entender antes de nada es que las variables se declaran en un ámbito, y este ámbito puede ser global o restringido solo para ciertos elementos.</p>

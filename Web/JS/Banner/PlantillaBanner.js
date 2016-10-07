@@ -21,11 +21,19 @@ PLANTILLABANNER.prototype = Object.assign( Object.create(ObjetoBanner.prototype)
     // Función que se llama al hacer scroll en el documento    
     Scroll          : function() {    },
     // Función que se llama al mover el mouse por el canvas
-    MouseMove       : function(event) { },
+    MouseMove       : function(Evento) { },
+    // Función que se llama al presionar un botón del mouse por el canvas
+    MousePresionado : function(Evento) { },
+    // Función que se llama al soltar un botón del mouse por el canvas
+    MouseSoltado    : function(Evento) { },
     // Función que se llama al entrar con el mouse en el canvas
-    MouseEnter      : function(event) { },
+    MouseEnter      : function(Evento) {  },
     // Función que se llama al salir con el mouse del canvas
-    MouseLeave      : function(event) { },
+    MouseLeave      : function(Evento) {  },
+    // Función que se llama al presionar una tecla
+    TeclaPresionada : function(Evento) { },
+    // Función que se llama al soltar una tecla
+    TeclaSoltada    : function(Evento) { },
     // Función que pinta cada frame de la animación
     Pintar          : function() {    }
 });

@@ -74,6 +74,12 @@
 </div>
 </div>
 <div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/GeometriaBasica.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/GeometriaBasica.html'>GeometriaBasica.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
 <div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/NuevoCanvas2D.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/BannerTest/NuevoCanvas2D.html'>NuevoCanvas2D.html</a>
@@ -83,6 +89,12 @@
 <div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/NuevoCanvasTHREE.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/BannerTest/NuevoCanvasTHREE.html'>NuevoCanvasTHREE.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/NuevoCanvasTreeShader.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/NuevoCanvasTreeShader.html'>NuevoCanvasTreeShader.html</a>
 </div>
 </div>
 <div class='Lab_Item'>
@@ -1568,12 +1580,6 @@
 </div>
 <div class='Lab_Directorio_Animacion'>
 <div class='Lab_Lista'><div class='Lab_Item'>
-<div class='Lab_Archivo' path='/Lab/Ejemplos/SpaceInvaders404/SpaceInvaders404 - copia.html'>
-<div class='Lab_IcoArchivo'></div>
-<a href='/Lab/Ejemplos/SpaceInvaders404/SpaceInvaders404 - copia.html'>SpaceInvaders404 - copia.html</a>
-</div>
-</div>
-<div class='Lab_Item'>
 <div class='Lab_Archivo' path='/Lab/Ejemplos/SpaceInvaders404/SpaceInvaders404.css'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/SpaceInvaders404/SpaceInvaders404.css'>SpaceInvaders404.css</a>

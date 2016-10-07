@@ -1,30 +1,14 @@
-<!-- 
-    Test para el banner GeometriaBasica creado por Josep Antoni Bover Comas el 01-10-2016
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-        Vista por defecto en el Laboratorio de pruebas  
-		devildrey33_Lab->Opciones->Vista = Filas;
-
-        Ultima modificación el 03/08/2016
--->
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-        <!-- Estilos CSS para el test -->
-        <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
-        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
-<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
-        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
-        <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
-        <!-- Código javascript --> 
-<script type="text/javascript">
-/* Plantilla para crear banners animados en devildrey33.es */
-var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al perder el foco del teclado
 
 // Constructor SIN TIPO, el tipo se especifica según la animación
-var GeometrieaBasica = function() {
+var Banner_GeometriaBasica = function() {
     // Llamo al constructor del ObjetoBanner
-    if (ObjetoCanvas.call(this, "2d") === false) { return false; }
+    if (ObjetoBanner.call(this, "2d") === false) { return false; }
     // Se ha creado el canvas, inicio los valores de la animación ... 
 
     this.Iniciar();
@@ -32,8 +16,13 @@ var GeometrieaBasica = function() {
     this.Cargando(false);
 };
 
-GeometrieaBasica.prototype = Object.assign( Object.create(ObjetoCanvas.prototype), {
-    constructor     : GeometrieaBasica, 
+Banner_GeometriaBasica.prototype = Object.assign( Object.create(ObjetoBanner.prototype), {
+    constructor     : Banner_GeometriaBasica , 
+    // Datos de la animación [requerido]
+    Nombre          : "Geometría básica",
+    IdeaOriginal    : "devildrey33",
+    URL             : "/Lab/Ejemplos/BannerTest/GeometriaBasica.html",
+    NombreURL       : "Lab : GeometriaBasica",    
     // Función que se llama al redimensionar el documento
     Redimensionar   : function() {    },
     // Función que se llama al hacer scroll en el documento    
@@ -93,20 +82,7 @@ GeometrieaBasica.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             this.Figuras[i] = new this.Figura(this.Ancho, this.Alto);
         }
     },
-/*
-    PintarCuadrado2s  : function(X, Y, Tam, Rotacion) {
-        var x1 = Math.cos(Rotacion * -(Tam));
-        var y1 = Math.sin(Rotacion * -(Tam));
-        var x2 = Math.cos(Rotacion * Tam);
-        var y2 = Math.sin(Rotacion * Tam);
-        this.Context.beginPath();
-        this.Context.moveTo(x1 + X, y1 + Y);
-        this.Context.lineTo(x2 + X, y1 + Y);
-        this.Context.lineTo(x2 + X, y2 + Y);
-        this.Context.lineTo(x1 + X, y2 + Y);
-        this.Context.closePath();
-        this.Context.fill();
-    },*/
+
     
     PintarCuadrado  : function(X, Y, Tam, Rotacion) {
         this.Context.save();
@@ -153,11 +129,3 @@ GeometrieaBasica.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         }
     }
 });
-
-var Canvas = null;
-window.addEventListener('load', function() { Canvas = new GeometrieaBasica; });
-</script>
-    </head>
-    <body>
-    </body>
-</html>
