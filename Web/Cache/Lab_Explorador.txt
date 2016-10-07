@@ -74,6 +74,12 @@
 </div>
 </div>
 <div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/EsferaVShader.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/EsferaVShader.html'>EsferaVShader.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
 <div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/GeometriaBasica.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/BannerTest/GeometriaBasica.html'>GeometriaBasica.html</a>
@@ -92,9 +98,9 @@
 </div>
 </div>
 <div class='Lab_Item'>
-<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/NuevoCanvasTreeShader.html'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/NuevoCanvasThreeShader.html'>
 <div class='Lab_IcoArchivo'></div>
-<a href='/Lab/Ejemplos/BannerTest/NuevoCanvasTreeShader.html'>NuevoCanvasTreeShader.html</a>
+<a href='/Lab/Ejemplos/BannerTest/NuevoCanvasThreeShader.html'>NuevoCanvasThreeShader.html</a>
 </div>
 </div>
 <div class='Lab_Item'>

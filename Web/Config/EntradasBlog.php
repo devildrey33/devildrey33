@@ -5,6 +5,24 @@
 
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(
+array(	"Titulo" 	=> "Experimento con Three.js 'Esfera (Vertex Shader)'", 
+        "Fecha" 	=> "07/10/2016",
+        "URL" 		=> "Ejemplos/BannerTest/EsferaVShader.html", 
+        "Tags" 		=> array("Three.js", "JavaScript", "CSS", "HTML", "Programación" ),
+        "Idioma"        => "es",
+        "Autor"         => "Josep Antoni Bover",
+        "Tipo"		=> "Lab",
+        "Imagen"	=> "EsferaVShader.png"),
+
+array(	"Titulo" 	=> "Experimento con Canvas 2D 'Geometría básica'", 
+        "Fecha" 	=> "01/10/2016",
+        "URL" 		=> "Ejemplos/BannerTest/GeometriaBasica.html", 
+        "Tags" 		=> array("Three.js", "JavaScript", "CSS", "HTML", "Programación" ),
+        "Idioma"        => "es",
+        "Autor"         => "Josep Antoni Bover",
+        "Tipo"		=> "Lab",
+        "Imagen"	=> "GeometriaBasica.png"),
+
 array(	"Titulo" 	=> "Experimento con Canvas 2D 'Sinusoidal'", 
         "Fecha" 	=> "07/09/2016",
         "URL" 		=> "Ejemplos/BannerTest/Sinusoidal.html", 

@@ -50,6 +50,7 @@ return array(
                                     "/JS/Banner/Banner_Anillos.js",
                                     "/JS/Banner/Banner_Sinusoidal.js",
                                     "/JS/Banner/Banner_GeometriaBasica.js",
+                                    "/JS/Banner/Banner_EsferaVShader.js",
 //                                    "/JS/3rdParty/Stats.js" // FPS
                 )				  				  
 );

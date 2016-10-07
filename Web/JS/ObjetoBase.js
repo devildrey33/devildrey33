@@ -167,7 +167,8 @@ $Base = new function() {
                                 Banner_WormHole,
                                 Banner_Anillos,
                                 Banner_Sinusoidal,
-                                Banner_GeometriaBasica
+                                Banner_GeometriaBasica,
+                                Banner_EsferaVShader
                             ];                
         var fPos = 0;
         // Si no se ha especificado ninguna posición generamos una aleatória

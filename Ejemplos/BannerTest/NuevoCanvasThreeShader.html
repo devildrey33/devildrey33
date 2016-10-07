@@ -127,7 +127,7 @@ NUEVOCANVASTHREESHADERS.prototype = Object.assign( Object.create(ObjetoCanvas.pr
             transparent    : true
         });
         // Buffer con la geometría de un cubo (se requiere que sea un buffer para aplicarlo al shader)
-        var CuboGeo = new THREE.BoxBufferGeometry( 4, 4, 4 );
+        var CuboGeo = new THREE.BoxBufferGeometry( 16, 16, 16 );
         // Creo el cubo con los datos del shader
         this.Cubo = new THREE.Mesh(
             CuboGeo,
