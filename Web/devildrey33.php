@@ -130,8 +130,8 @@ class devildrey33 {
         echo "<script>";
         echo "\$Base.Raiz = '".Base::URL_Raiz()."'; ";
         echo "\$Base.RaizRelativa = '".Base::PathRelativo_Raiz()."'; ";
-        if (devildrey33_Opciones::PausarBannerJS() == 0) {  echo "Banner_Depurar = true;";  }
-        else                                             {  echo "Banner_Depurar = false;"; }
+        if (devildrey33_Opciones::PausarBannerJS() == 0) {  echo "\$Base.ObjetoCanvas_Depurar = true;";  }
+        else                                             {  echo "\$Base.ObjetoCanvas_Depurar = false;"; }
         if (devildrey33_Opciones::MostrarConsola() == 0) {  echo "\$Base.Debug(false);";   }
         else                                             {  echo "\$Base.Debug(true);";    } 
         echo "</script>".Intro().
@@ -269,9 +269,9 @@ class devildrey33 {
                 
                 // <!-- Sobre devildrey33 -->
                 "<div class='Menu'>".Intro().                    
-                    "<div  id='SobreDevildrey33' class='Menu_Boton' tooltip-es='Sobre el autor' tooltip-en='About devildrey33' tooltip-pos='L'>".Intro().
+                    "<a href='".Base::URL_Raiz()."Sobre-el-autor' id='SobreDevildrey33' class='Menu_Boton' tooltip-es='Sobre el autor' tooltip-en='About devildrey33' tooltip-pos='L'>".Intro().
                         "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-logo' />".Intro().
-                    "</div>".Intro().
+                    "</a>".Intro().
                 "</div>".Intro().
                 
 
@@ -615,9 +615,9 @@ class devildrey33 {
             $this->LeerDatos($this->_NombreDocumento, $Titulo);
             echo        "</div>".Intro();
             echo        "<div id='Cabecera_AutorAni' class='SinSeleccion'>".Intro().
-                            "<div class='BotonVentana'><img class='' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-prev'></div>".Intro().
+                            "<div class='BotonVentana' onclick='\$Base.Banner(-1);'><img class='' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-prev'></div>".Intro().
                             "<div id='CabeceraAutorAni_HTML'></div>".Intro().
-                            "<div class='BotonVentana'><img class='' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-next'></div>".Intro().
+                            "<div class='BotonVentana' onclick='\$Base.Banner(-2);'><img class='' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-next'></div>".Intro().
                         "</div>".Intro();
             echo        "<div id='Cabecera_PausaAni'>La web está en segundo plano, animación en pausa.</div>";
             echo        "<div id='Cabecera_Cargando'>Cargando animación...</div>";

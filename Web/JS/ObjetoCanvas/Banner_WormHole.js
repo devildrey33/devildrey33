@@ -9,26 +9,49 @@
 // Constructor SIN TIPO, el tipo se especifica según la animación
 var Banner_WormHole = function() {
     
-    // Llamo al constructor del ObjetoBanner
-    if (ObjetoBanner.call(this, "THREE") === false) { return false; }
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : 'THREE',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Banner',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
     
-    this.Escena = new THREE.Scene();
-   
-    this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);
-    // Preparo la camara
-//    this.Camara.position.y = (((this.Alto / 2) - 240) * 0.20);
-    this.Camara.position.set( 0, (((this.Alto / 2) - 240) * 0.20), 500 );
-    this.Escena.add(this.Camara);
-    this.H = 0;
-    this.H2 = 0.05;
+    this.Iniciar();
+};
+
+Banner_WormHole.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor     : Banner_WormHole, 
+    // Datos de la animación [requerido]
+    Nombre          : "WormHole",
+    IdeaOriginal    : "devildrey33",
+    URL             : "/Lab/Ejemplos/BannerTest/WormHole.html",
+    NombreURL       : "Lab : WormHole",    
     
-    this.TexturasCargadas = 0;
-    this.TotalTexturas = 2;
-    this.Tunel = [];
-    this.Textura = [];
+    Iniciar         : function() {
+        this.Escena = new THREE.Scene();
+
+        this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);
+        // Preparo la camara
+    //    this.Camara.position.y = (((this.Alto / 2) - 240) * 0.20);
+        this.Camara.position.set( 0, (((this.Alto / 2) - 240) * 0.20), 500 );
+        this.Escena.add(this.Camara);
+        this.H = 0;
+        this.H2 = 0.05;
+
+        this.TexturasCargadas = 0;
+        this.TotalTexturas = 2;
+        this.Tunel = [];
+        this.Textura = [];
+
+        var T1 = new THREE.TextureLoader().load('/Web/Graficos/Banner_WormHole11.jpg', this.TexturaCargada.bind(this, 0) );
+        var T2 = new THREE.TextureLoader().load('/Web/Graficos/Banner_WormHole1.2.jpg', this.TexturaCargada.bind(this, 1) );
+
+        this.Camara.lookAt(this.Escena.position);        
+    },
     
-    
-    this.TexturaCargada = function(Num, Textura) {
+    TexturaCargada   : function(Num, Textura) {
         Textura.wrapT = Textura.wrapS = THREE.RepeatWrapping;
         Textura.repeat.set( 1, 2 );
         this.Tunel[Num] = new THREE.Mesh(
@@ -45,29 +68,12 @@ var Banner_WormHole = function() {
         this.Tunel[Num].position.z = 128 - Num;             // Por alguna razón que no entiendo, si la Z del segundo tubo es mayor o igual que la Z del primer tubo, el segundo tubo no se ve...
         this.Escena.add(this.Tunel[Num]);
         this.Textura[Num] = Textura;        
-        
+
         this.TexturasCargadas ++;
         // La textura se ha cargado, retiro la ventana que avisa al usuario de la carga.
         if (this.TexturasCargadas === this.TotalTexturas) { this.Cargando(false); }
-    };
+    },
     
-    var T1 = new THREE.TextureLoader().load('/Web/Graficos/Banner_WormHole11.jpg', this.TexturaCargada.bind(this, 0) );
-    var T2 = new THREE.TextureLoader().load('/Web/Graficos/Banner_WormHole1.2.jpg', this.TexturaCargada.bind(this, 1) );
-  
-    this.Camara.lookAt(this.Escena.position);
-};
-
-Banner_WormHole.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {
-    constructor     : Banner_WormHole, 
-    // Datos de la animación [requerido]
-    Nombre          : "WormHole",
-    IdeaOriginal    : "devildrey33",
-    URL             : "/Lab/Ejemplos/BannerTest/WormHole.html",
-    NombreURL       : "Lab : WormHole",    
-    // Función que se llama al redimensionar el documento
-    Redimensionar   : function()     { },
-    // Función que se llama al hacer scroll en el documento    
-    Scroll          : function()     { },
     // Función que se llama al mover el mouse por el canvas
     MouseMove       : function(X, Y) {
 /*        var DestX = 0;

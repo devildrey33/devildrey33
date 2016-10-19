@@ -1,5 +1,9 @@
 /* Objeto principal para devildrey33 */
 $Base = new function() {
+    // Variable que contiene la animación de Sobre el autor ...
+    this.SobreElAutor       = null;
+    this.CanvasError404     = null;
+    this.ObjetoCanvas_Depurar = false; // necesaria para poder controlar la depuración desde el panel de administración
     /* Entrada actual */
     this.Entrada            = [];
     /* Estado del login */
@@ -128,7 +132,7 @@ $Base = new function() {
                 case 27 : $("#VentanaLogin").attr({ "Visible" : "false" });     break;
                 case 13 : $Base.Loguear();                                      break;
             } 
-        });
+        });               
 
         // Boton cerrar para el log de errores php
         $("#ErroresPHP_Cerrar").click(function(e){ $("#ErroresPHP").attr({ "mostrar" : false }); });
@@ -156,7 +160,9 @@ $Base = new function() {
     /* Función para cargar un banner, si se especifica pos, se cargara el banner de esa posición, en caso contrario se cargara un banner aleatorio. */
     /* -1 es prev y -2 es next */
     this.Banner = function(Pos) {
-        if ($Banner !== null) { window.cancelAnimationFrame($Banner.RAFID); }
+        if ($Banner !== null) { 
+            $Banner.Terminar();
+        }
         
         var Banner_Lista = [    /*Banner_ResplandorCircular,
                                 Banner_Colisiones,
@@ -464,8 +470,12 @@ $Base = new function() {
             Ret["TipoPagina"] = "Lab";
             nURL = "";
         }
-        if (cURL.indexOf("web/") > -1 || cURL.indexOf("faqbarba") > -1) {
+        if (cURL.indexOf("web/") > -1) {
             Ret["TipoPagina"] = "Web";
+            nURL = "";
+        }
+        if (cURL.indexOf("sobre-el-autor") > -1 || cURL.indexOf("faqbarba") > -1) { 
+            Ret["TipoPagina"] = "Simple";
             nURL = "";
         }
 
@@ -500,11 +510,11 @@ $Base = new function() {
         console.log("Base.ActualizarBarraNavegacion", this.Entrada);
         this.EscanearAnclas();
         switch (this.Entrada["TipoPagina"]) {
-            case "LabError" :
+/*            case "LabError" :
             case "Error404" :
             case "Error404SinPlantilla" :
                 this.MostrarBarraNavegacion();
-                break;
+                break;*/
             case "Lab" :
                 $Lab.Iniciar();
                 this.MostrarBarraNavegacion();
@@ -518,9 +528,7 @@ $Base = new function() {
             case "Blog" :
             case "DocCSS" :
                 // Inicio un banner aleatório
-                this.Banner();
-                
-                
+                this.Banner();                                
                 $Comentarios.Iniciar();
                 this.MostrarBarraNavegacion();
                 break;
@@ -531,8 +539,9 @@ $Base = new function() {
                 $("#BarraNavegacion_Prev").hide();
                 $("#BarraNavegacion_Next").hide();
                 break;
+            case "Simple" :
             default : 
-                this.OcultarBarraNavegacion();
+                this.MostrarBarraNavegacion(true);
                 break;
         }
     };    
@@ -601,24 +610,30 @@ $Base = new function() {
     }
     
     /* Muestra la barra de navegación con una animación */
-    this.MostrarBarraNavegacion = function() { 
-        this.Entrada["Pos"] = this.BuscarEntradaActual(this.Entrada["URL"], $("#Cabecera > .Cabecera_Datos > h1").html());
+    this.MostrarBarraNavegacion = function(nSimple) { 
+        var Simple = (typeof nSimple === 'undefined') ? false : true;
+        console.log("Base.MostrarBarraNavegacion(Simple)", Simple);
 
-        console.log("Base.MostrarBarraNavegacion", this.Entrada);
-
+        $("#BarraNavegacion_RedesSociales, #BarraNavegacion_Votacion").attr('mostrar', !Simple);
+                
         // Idioma del articulo
         $("html").attr({ "lang" : this.Entrada["Idioma"] });
-
-        this.PosPrevNext = this.Entradas_BuscarSiguienteMismoTipo(this.Entrada["Pos"]);
-        if (this.PosPrevNext == -1) { this.PosPrevNext = this.Entradas_BuscarAnteriorMismoTipo(this.Entrada["Pos"]); }
-
         /* Muestro la barra de navegacion */
         $("#BarraNavegacion").attr({ "Visible" : true });
-        if (this.Entrada["Pos"] !== -1) { $("#BarraNavegacion_NextPrev").attr({ "mostrar" : "true" }); }
-        else                            { $("#BarraNavegacion_NextPrev").removeAttr("mostrar"); }
 
+        if (Simple === false) {
+            this.Entrada["Pos"] = this.BuscarEntradaActual(this.Entrada["URL"], $("#Cabecera > .Cabecera_Datos > h1").html());
 
-        this.CrearPrevNext(this.PosPrevNext);
+            this.PosPrevNext = this.Entradas_BuscarSiguienteMismoTipo(this.Entrada["Pos"]);
+            if (this.PosPrevNext == -1) { this.PosPrevNext = this.Entradas_BuscarAnteriorMismoTipo(this.Entrada["Pos"]); }
+
+            $("#BarraNavegacion_NextPrev").attr({ "mostrar" : (this.Entrada["Pos"] !== -1) ? "true" : "false" }); 
+
+            this.CrearPrevNext(this.PosPrevNext);
+        }
+        else {
+            $("#BarraNavegacion_NextPrev").attr({ "mostrar" : "false" }); 
+        }
     };
     
     
@@ -745,6 +760,20 @@ $Base = new function() {
 
     };
     
+    this.TerminarCanvas = function() {
+        if ($Banner !== null) {
+            $Banner.Terminar();
+            $Banner = null;
+        }
+        if (this.SobreElAutor !== null) {
+            this.SobreElAutor.Terminar();
+            this.SobreElAutor = null;
+        }
+        if (this.CanvasError404 !== null) {
+            this.CanvasError404.Terminar();
+            this.CanvasError404 = null;
+        }
+    },
     
     /* Función que carga una URL interna dentro del #MarcoNavegacion */
     this.CargarURL = function(cURL) {    
@@ -788,7 +817,7 @@ $Base = new function() {
                 $Base.MostrarErrorAjax(404, false, 'No se ha encontrado');
             }
             else {
-                $Banner = null;
+                $Base.TerminarCanvas();
                 $("#MarcoNavegacion").html(Datos["HTML"]);
                 $Base.Entrada = $Base.IdentificarEntrada($Base.cURL, $Base.nURL);    
                 window.history.pushState($Base.Entrada, document.title, $Base.cURL);
@@ -1012,7 +1041,7 @@ $Base = new function() {
                 $Base.MostrarErrorAjax(404, "false");
             }        
             else { /* Carga del historial normal */
-                $Banner = null;
+                $Base.TerminarCanvas();
                 $("#MarcoNavegacion").html(Datos["HTML"]);
                 $Base.Entrada = $Base.IdentificarEntrada(cURL, nURL);    
                 $Base.RedireccionarLinks();
@@ -1108,4 +1137,9 @@ window.addEventListener('error', function(e) {
 $(window).on("load", function() { $Base.Iniciar(); });
 /* Al usar el scroll */
 $(window).on("scroll", function() { $Base.ComprobarScrollVotacion(); });
+
+
+
+var $Banner = null;
+//var Banner_Depurar = true;
 

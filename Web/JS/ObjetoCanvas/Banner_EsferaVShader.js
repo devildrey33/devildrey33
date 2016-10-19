@@ -8,14 +8,21 @@
 // Constructor SIN TIPO, el tipo se especifica según la animación
 var Banner_EsferaVShader = function() {
     // Llamo al constructor del ObjetoBanner
-    if (ObjetoBanner.call(this, "THREE") === false) { return false; }
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : 'THREE',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Banner',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
 
     this.Iniciar();
     // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
     this.Cargando(false);
 };
 
-Banner_EsferaVShader.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {
+Banner_EsferaVShader.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     constructor     : Banner_EsferaVShader, 
     // Datos de la animación
     Nombre          : "Esfera (Vertex Shader)",
@@ -67,7 +74,6 @@ Banner_EsferaVShader.prototype = Object.assign( Object.create(ObjetoBanner.proto
 
 
         var shaderMaterial = new THREE.ShaderMaterial({
-//            attributes: 	attributesS6,
             uniforms:		this.Uniforms,
             vertexShader:   this.Shaders.Vertex,   // document.getElementById('vertexshader').innerHTML,
             fragmentShader: this.Shaders.Fragment, // document.getElementById('fragmentshader').innerHTML,
@@ -112,6 +118,8 @@ Banner_EsferaVShader.prototype = Object.assign( Object.create(ObjetoBanner.proto
         this.Camara.lookAt(this.Escena.position);
         this.Context.render(this.Escena, this.Camara);  
     },
+    
+    
     
     Shaders         : {
         'Vertex'    : [ "precision highp float;",

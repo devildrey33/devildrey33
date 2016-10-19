@@ -280,10 +280,10 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
     width:75%;
 }
 
-#BarraNavegacion_NextPrev {
+#BarraNavegacion_NextPrev, #BarraNavegacion_RedesSociales, #BarraNavegacion_Votacion {
     display:none;
 }
-#BarraNavegacion_NextPrev[mostrar=true] {
+#BarraNavegacion_NextPrev[mostrar=true], #BarraNavegacion_RedesSociales[mostrar=true], #BarraNavegacion_Votacion[mostrar=true] {
     display:block;
 }
 

@@ -7,45 +7,23 @@
 
 var Banner_Colisiones = function() {
     // Llamo al constructor del ObjetoBanner
-    if (ObjetoBanner.call(this, "2d") === false) { return false; }
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : '2d',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Banner',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
 
-    // Arrays para cada plano
-    this.CirculosSuperior = [];
-    this.CirculosMedio    = [];
-    this.CirculosInferior = [];
-    
-    this.Colision = false;
-    this.Velocidad = 1.26;
+    this.Iniciar();
 
-    this.CirculosSuperior = [];
-    this.CirculosMedio    = [];
-    this.CirculosInferior = [];
-    // Inicio los planos de circulos
-    for (var Y = 1; Y < (this.Alto / 70); Y++) {        // Cada 70 pixeles de alto
-        for (var X = 1; X < (this.Ancho / 110); X++) {  // Cada 110 pixeles de ancho
-            var x   = X * 110 + Rand(-20, 20);
-            var y   = Y * 70 + Rand(-16, 16);                
-            var Rnd = RandInt(0, 3);
-
-            if (Rnd === 0 || Rnd === 2) { // Creo un circulo en el plano superior
-                var Color = "rgb(" + RandInt(95, 75) + "," + RandInt(121, 101) + "," + RandInt(135, 115) + ")";
-                this.CirculosSuperior.push(new this.Circulo(x, y, Rand(16, 10), Color, this.Velocidad));
-            }
-            if (Rnd === 0 || Rnd === 1) { // Creo un circulo en el plano del medio
-                var Color = "rgb(" + RandInt(147, 127) + "," + RandInt(149, 129) + "," + RandInt(81, 61) + ")";
-                this.CirculosMedio.push(new this.Circulo(x, y, Rand(8, 7), Color, this.Velocidad));
-            }
-            // Creo un circulo en el plano inferior
-            var Color = "rgb(" + RandInt(112, 92) + "," + RandInt(89, 69) + "," + RandInt(97, 77) + ")";                    
-            this.CirculosInferior.push(new this.Circulo(x, y, Rand(6, 4), Color, this.Velocidad));
-        }
-    }
     this.Cargando(false);
 
 };
     
     
-Banner_Colisiones.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {
+Banner_Colisiones.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     constructor         : Banner_Colisiones, 
 
     // Datos de la animación
@@ -53,6 +31,40 @@ Banner_Colisiones.prototype = Object.assign( Object.create(ObjetoBanner.prototyp
     IdeaOriginal        : "mxmx",
     URL                 : "http://codepen.io/mnmxmx/pen/mEVxeg",
     NombreURL           : "Particles",    
+    
+    Iniciar             : function() {
+        // Arrays para cada plano
+        this.CirculosSuperior = [];
+        this.CirculosMedio    = [];
+        this.CirculosInferior = [];
+
+        this.Colision = false;
+        this.Velocidad = 1.26;
+
+        this.CirculosSuperior = [];
+        this.CirculosMedio    = [];
+        this.CirculosInferior = [];
+        // Inicio los planos de circulos
+        for (var Y = 1; Y < (this.Alto / 70); Y++) {        // Cada 70 pixeles de alto
+            for (var X = 1; X < (this.Ancho / 110); X++) {  // Cada 110 pixeles de ancho
+                var x   = X * 110 + Rand(-20, 20);
+                var y   = Y * 70 + Rand(-16, 16);                
+                var Rnd = RandInt(0, 3);
+
+                if (Rnd === 0 || Rnd === 2) { // Creo un circulo en el plano superior
+                    var Color = "rgb(" + RandInt(95, 75) + "," + RandInt(121, 101) + "," + RandInt(135, 115) + ")";
+                    this.CirculosSuperior.push(new this.Circulo(x, y, Rand(16, 10), Color, this.Velocidad));
+                }
+                if (Rnd === 0 || Rnd === 1) { // Creo un circulo en el plano del medio
+                    var Color = "rgb(" + RandInt(147, 127) + "," + RandInt(149, 129) + "," + RandInt(81, 61) + ")";
+                    this.CirculosMedio.push(new this.Circulo(x, y, Rand(8, 7), Color, this.Velocidad));
+                }
+                // Creo un circulo en el plano inferior
+                var Color = "rgb(" + RandInt(112, 92) + "," + RandInt(89, 69) + "," + RandInt(97, 77) + ")";                    
+                this.CirculosInferior.push(new this.Circulo(x, y, Rand(6, 4), Color, this.Velocidad));
+            }
+        }        
+    },
     
     Redimensionar       : function() {    },
     

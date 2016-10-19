@@ -4,12 +4,19 @@
 var PLANTILLABANNER = function() {
     // Llamo al constructor del ObjetoBanner, y si devuelve un error salgo retornando false.
     // El segundo parámetro del constructor puede ser "2d" o "THREE".
-    if (ObjetoBanner.call(this, "2d") === false) { return false; }
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : '2d',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Banner',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
     // Retorno true para advertir que se ha creado el canvas correctamente
     return true;
 };
 
-PLANTILLABANNER.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {
+PLANTILLABANNER.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     constructor     : PLANTILLABANNER, 
     // Datos de la animación [requerido]
     Nombre          : "Cubos 3D",

@@ -7,24 +7,22 @@
 
 var Banner_MatrixLluviaHexadecimal = function() {
     // Llamo al constructor del ObjetoBanner
-    if (ObjetoBanner.call(this, "2d") === false) { return false; }
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : '2d',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Banner',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
 
-    // Arrays para cada plano
-    this.Caracteres = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" /*, "田", "由", "甲", "申", "甴", "电", "甶", "男", "甸", "甹", "町", "画", "甼", "甽", "甾", "甿", "畀", "畁", "畂", "畃", "畄", "畅", "畆", "畇", "畈", "畉", "畊", "畋", "界", "畍", "畎", "畏", "畐", "畑" */];    
-    this.Columnas   = [];
-    this.TamFuente  = 10;
-    this.NoPintar   = false;
-    // Inicio las columnas
-    this.Columnas = [];
-    var Cols = this.Ancho / this.TamFuente;
-    for (var i = 0; i < Cols; i++) {
-        this.Columnas[i] = 1;
-    }
+    this.Iniciar();
+    
     this.Cargando(false);
 };    
 
 
-Banner_MatrixLluviaHexadecimal.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {
+Banner_MatrixLluviaHexadecimal.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     constructor         : Banner_MatrixLluviaHexadecimal, 
 
     // Datos de la animación
@@ -32,6 +30,21 @@ Banner_MatrixLluviaHexadecimal.prototype = Object.assign( Object.create(ObjetoBa
     IdeaOriginal        : "thecodeplayer",
     URL                 : "http://thecodeplayer.com/walkthrough/matrix-rain-animation-html5-canvas-javascript",
     NombreURL           : "Matrix rain animation",    
+    
+    Iniciar             : function() {
+        // Arrays para cada plano
+        this.Caracteres = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" /*, "田", "由", "甲", "申", "甴", "电", "甶", "男", "甸", "甹", "町", "画", "甼", "甽", "甾", "甿", "畀", "畁", "畂", "畃", "畄", "畅", "畆", "畇", "畈", "畉", "畊", "畋", "界", "畍", "畎", "畏", "畐", "畑" */];    
+        this.Columnas   = [];
+        this.TamFuente  = 10;
+        this.NoPintar   = false;
+        // Inicio las columnas
+        this.Columnas = [];
+        var Cols = this.Ancho / this.TamFuente;
+        for (var i = 0; i < Cols; i++) {
+            this.Columnas[i] = 1;
+        }
+        
+    },
     
     Redimensionar       : function() {    },
     

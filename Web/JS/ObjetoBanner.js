@@ -29,14 +29,11 @@
 */
 var $Banner = null;
 //var Banner_Depurar = true;
-var Banner_Depurar = false;
+var Banner_Depurar = false; // necesaria para poder controlar la depuración desde el panel de administración
 
 /* El primer parametro es una nueva instancia a la classe banner que queremos ejecutar 
  * El segundo parámetro es el tipo de contexto, "2d" o "THREE", si no se especifica, por defecto es 2d */
-ObjetoBanner = function(Tipo) {    
-    // Marco/desmarco el checkbox de las opciones administrativas (pausar banner)
-    $("#CH_PausarBanner").attr({ "marcado" : !Banner_Depurar });
-    
+ObjetoBanner = function(Tipo) {        
     // Hay que eliminar la etiqueta canvas por que al crear un 2d context encima de un webgl context y viceversa produce error.
     $("#Cabecera_Canvas").remove();
     $("#Cabecera").append("<canvas id='Cabecera_Canvas'></canvas>");

@@ -7,28 +7,40 @@
 
 var Banner_Espacio2D = function() {
     // Llamo al constructor del ObjetoBanner
-    if (ObjetoBanner.call(this, "2d") === false) { return false; }
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : '2d',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Banner',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
 
-    // Arrays para cada plano
-    this.Estrellas      = [];
-    this.TotalEstrellas = ((this.Ancho * this.Alto) / 250);
+    this.Iniciar();
 
-    // Creo el array de estrellas
-    for (var i = 0; i < this.TotalEstrellas; i++) {
-        var Vel = Rand(5) + 0.5;
-        var Col = 199 + Math.floor(Vel * 10);
-        this.Estrellas[i] = new this.Estrella(RandInt(this.Ancho), RandInt(this.Alto), Vel, "rgb("+ Col +  "," + Col + "," + Col + ")");
-    }
     this.Cargando(false);
 };
 
-Banner_Espacio2D.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {
+Banner_Espacio2D.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     constructor     : Banner_Espacio2D, 
     // Datos de la animación [requerido]
     Nombre          : "Espacio 2D",
     IdeaOriginal    : "devildrey33",
     URL             : "http://devildrey33.es/Blog/Canvas2D_1",
     NombreURL       : "Tutorial HTML5 Canvas2D parte 1",    
+    
+    Iniciar         : function() { 
+        // Arrays para cada plano
+        this.Estrellas      = [];
+        this.TotalEstrellas = ((this.Ancho * this.Alto) / 250);
+
+        // Creo el array de estrellas
+        for (var i = 0; i < this.TotalEstrellas; i++) {
+            var Vel = Rand(5) + 0.5;
+            var Col = 199 + Math.floor(Vel * 10);
+            this.Estrellas[i] = new this.Estrella(RandInt(this.Ancho), RandInt(this.Alto), Vel, "rgb("+ Col +  "," + Col + "," + Col + ")");
+        }
+    },
     
     // Función que se llama al redimensionar el documento
     Redimensionar   : function() {    },

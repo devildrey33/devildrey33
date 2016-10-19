@@ -164,7 +164,14 @@ var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al 
 // Constructor SIN TIPO, el tipo se especifica según la animación
 var EsferaVShader = function() {
     // Llamo al constructor del ObjetoBanner
-    if (ObjetoCanvas.call(this, "THREE") === false) { return false; }
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : 'THREE',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Normal',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
 
     this.Iniciar();
     // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)

@@ -13,6 +13,7 @@
                                     - Banner   , Canvas diseñado para el Banner de devildrey33.
     Opciones['MostrarFPS']      puede ser : true o false.                                       (TRUE POR DEFECTO)
     Opciones['ElementoRaiz']    elemento del HTML donde se creará el canvas                     (POR DEFECTO es 'document.body')
+    Opciones['Pausar']          pausa el canvas si está en segundo plano                        (POR DEFECTO es 'true')
 */
 
 ObjetoCanvas = function(Opciones) {
@@ -23,7 +24,8 @@ ObjetoCanvas = function(Opciones) {
         'Alto'          : 'Auto',
         'Entorno'       : 'Normal',
         'MostrarFPS'    : true,
-        'ElementoRaiz'  : document.body
+        'ElementoRaiz'  : document.body,
+        'Pausar'        : true              // Pausar si el canvas está en segundo plano
     };
     // Copio las nuevas opciones encima de las opciones por defecto
     if (typeof Opciones === 'object') {
@@ -98,8 +100,8 @@ ObjetoCanvas = function(Opciones) {
         }
     }
     catch ( error ) {
-        document.getElementById("Cabecera_Cargando").innerHTML = "Error iniciando WebGL : " + error + "<br />" + 
-                                                                 "Si estas en chrome abre el enlace 'chrome://gpu', y vuelve atrás para re-cargar este ejemplo.";
+/*        document.getElementById("Cabecera_Cargando").innerHTML = "Error iniciando WebGL : " + error + "<br />" + 
+                                                                 "Si estas en chrome abre el enlace 'chrome://gpu', y vuelve atrás para re-cargar este ejemplo.";*/
         return false;
     }    
     
@@ -288,7 +290,7 @@ ObjetoCanvas.prototype.EventoRedimensionar = function() {
 // - Hay que detectar cuando la animación no es visible y cuando la ventana no tiene el foco para pausar la animación
 // - En modo depuración nunca se hace la pausa (esto es para poder depurar el Three.js en el Three.js.inspector)
 ObjetoCanvas.prototype.Pausa = function() {
-    if (this.RAFID !== 0 && ObjetoCanvas_Depurar === false) {
+    if (this.RAFID !== 0 && this.OpcionesCanvas.Pausar === true) {
         document.getElementById("Cabecera").setAttribute("animar", false);
         console.log("ObjetoCanvas.Pausa");
         window.cancelAnimationFrame(this.RAFID); 
@@ -350,28 +352,3 @@ var BufferCanvas = function(Ancho, Alto) {
     this.Ancho = Ancho;
     this.Alto = Alto;
 };
-
-
-
-
-
-
-
-
-    
-/* Función para generar un valor aleatório entero */
-/* Si no se especifican parametros devuelve 0 o 1 */
-/* Si solo se especifica un parámetro, el primer parámetro será el máximo, y el mínimo será 0 */
-/* Si se especifican dos parámetros, el primero es el máximo, y el segundo es el mínimo. */
-function RandInt(Max, Min) {
-    return Math.floor(Rand(Max, Min));
-}
-
-
-/* Si no se especifican parametros devuelve 0 o 1 
-   Si se especifica solo el Máximo, el mínimo será 0 */
-function Rand(Max, Min) {
-    var min = (typeof(Min) !== "undefined") ? Min : 0; // Si no se especifica el mínimo por defecto es 0
-    var max = (typeof(Max) !== "undefined") ? Max : 1; // Si no se especifica el máximo por defecto es 1
-    return min + Math.random() * (max - min);    
-}      

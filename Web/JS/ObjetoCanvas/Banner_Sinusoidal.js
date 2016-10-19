@@ -4,8 +4,15 @@
  * */
 // Constructor SIN TIPO, el tipo se especifica según la animación
 var Banner_Sinusoidal = function() {    
-    // Llamo al constructor del ObjetoBanner
-    if (ObjetoBanner.call(this, "2d") === false) { return false; }
+    // Llamo al constructor del ObjetoCanvas
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : '2d',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Banner',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
     // Se ha creado el canvas, inicio los valores de la animación ...         
     this.Reiniciar();
     // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
@@ -13,7 +20,7 @@ var Banner_Sinusoidal = function() {
 };
 
 
-Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoBanner.prototype), {
+Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototype), {
     constructor     : Banner_Sinusoidal,
 
     Nombre          : "Onda Sinusoidal",

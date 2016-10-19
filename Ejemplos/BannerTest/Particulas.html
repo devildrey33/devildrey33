@@ -20,48 +20,18 @@
         <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
 
 <script id="VertexShader" type="x-shader/x-vertex">
-    uniform float Tiempo;
+//    uniform float Tiempo;
     void main() {
         gl_Position = projectionMatrix *
                       modelViewMatrix *
-                      vec4(position.x, position.y + (sin(Tiempo) * 2.0), position.z ,1.0);
+                      vec4(position.x, position.y, position.z , 1.0);
     }    
 </script>        
 <script id="FragmentShader" type="x-shader/x-fragment">
-    uniform float Tiempo;
-    uniform vec2 resolution;
+//    uniform float Tiempo;
     
-
-    float ball(vec2 p, float fx, float fy, float ax, float ay) {
-        vec2 r = vec2(p.x + cos(Tiempo * fx) * ax, p.y + sin(Tiempo * fy) * ay);	
-        return 0.03 / length(r);
-    }
-    
-    void main() { // R, G, B, A
-        
-        
-        vec2 q = gl_FragCoord.xy / resolution.xy;
-        vec2 p = -1.0 + 2.0 * q;	
-        p.x	*= resolution.x / resolution.y;
-
-        float col = 0.0;
-        
-//        vec2 r = ;
-/*    col += ball(p, 0.10, 0.20, 0.1, 0.2);
-    col += ball(p, 0.15, 0.25, 0.2, 0.3);
-    col += ball(p, 0.20, 0.30, 0.3, 0.4);
-    col += ball(p, 0.25, 0.35, 0.4, 0.5);
-    col += ball(p, 0.30, 0.40, 0.5, 0.6);	
-    col += ball(p, 0.35, 0.5, 0.6, 0.7);*/
-        col += ball(p, 1.0, 2.0, 0.1, 0.2);
-        col += ball(p, 1.5, 2.5, 0.2, 0.3);
-        col += ball(p, 2.0, 3.0, 0.3, 0.4);
-        col += ball(p, 2.5, 3.5, 0.4, 0.5);
-        col += ball(p, 3.0, 4.0, 0.5, 0.6);	
-        col += ball(p, 1.5, 0.5, 0.6, 0.7);
-        
-        gl_FragColor = vec4(col, col * 0.3, col * 0.3, 0.5);
-       // gl_FragColor = vec4(0.5 + (sin(Tiempo)), 0.0,  0.0, 0.5); 
+    void main() { // R, G, B, A               
+        gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
     }    
 </script>        
         
@@ -72,7 +42,7 @@
 var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al perder el foco del teclado
 
 // Constructor SIN TIPO, el tipo se especifica según la animación
-var NUEVOCANVASTHREESHADERS = function() {
+var Particulas = function() {
     // Llamo al constructor del ObjetoBanner
     if (ObjetoCanvas.call(this, { 
         'Tipo'          : 'THREE',
@@ -88,8 +58,8 @@ var NUEVOCANVASTHREESHADERS = function() {
     this.Cargando(false);
 };
 
-NUEVOCANVASTHREESHADERS.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
-    constructor     : NUEVOCANVASTHREESHADERS, 
+Particulas.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor     : Particulas, 
     // Función que se llama al redimensionar el documento
     Redimensionar   : function() {    },
     // Función que se llama al hacer scroll en el documento    
@@ -116,36 +86,43 @@ NUEVOCANVASTHREESHADERS.prototype = Object.assign( Object.create(ObjetoCanvas.pr
         this.Camara.position.set(0, 0, 20);
         this.Escena.add(this.Camara);
 
-        // Parrilla para iniciar la plantilla (se puede eliminar)
-        this.Parrilla = new THREE.GridHelper(10, 10, new THREE.Color(0xcccccc), new THREE.Color(0x999999));
-        this.Parrilla.position.y = -4;
-        this.Escena.add(this.Parrilla);
+        this.Particulas = new THREE.BufferGeometry();
+        
+        for (var i = 0; i < 20000; i++) {
+            var Particula = new THREE.Vector3(Rand(10, -10), Rand(10, -10), Rand(10, -10));
+            this.Particulas.vertices.push(Particula);
+        }
 
         // Variables para el shader (para este ejemplo solo se requiere un valor de Tiempo)
         this.Uniforms = { 
             Tiempo : { "type" : "1f", value : 0 }, 
             resolution : { "type" : "1f", value : new Float32Array([this.Ancho, this.Alto]) } 
         };
-
-        var MaterialShader = new THREE.ShaderMaterial({
-            uniforms       : this.Uniforms,
+        
+/*var particleMaterial = new THREE.PointsMaterial(
+            {color: 0xffffff, 
+             size: 4,
+             blending: THREE.AdditiveBlending,
+             transparent: true,
+            });*/
+      
+        this.MaterialShader = new THREE.ShaderMaterial({
+color: 0xffffff, 
+             size: 1,
+             uniforms       : this.Uniforms,
             vertexShader   : document.getElementById('VertexShader').innerHTML,
             fragmentShader : document.getElementById('FragmentShader').innerHTML,
-            transparent    : true
+            /*transparent    : true*/
         });
-        // Buffer con la geometría de un cubo (se requiere que sea un buffer para aplicarlo al shader)
-        var CuboGeo = new THREE.BoxBufferGeometry( 16, 16, 16 );
-        // Creo el cubo con los datos del shader
-        this.Cubo = new THREE.Mesh(
-            CuboGeo,
-            MaterialShader
-        );
-        this.Escena.add(this.Cubo);
+        
+        this.SistemaParticulas = new THREE.Points(this.Particulas, this.MaterialShader);
+
+        this.Escena.add(this.SistemaParticulas);
         // Rotación de la cámara
-        this.Rotacion_Grados    = 0;
+/*        this.Rotacion_Grados    = 0;
         this.Rotacion_Avance    = 0.005;
         this.Rotacion_Distancia = 20;
-        this.Camara.position.set(0, 0, this.Rotacion_Distancia);
+        this.Camara.position.set(0, 0, this.Rotacion_Distancia);*/
         
     },
     // Función que pinta cada frame de la animación
@@ -153,16 +130,17 @@ NUEVOCANVASTHREESHADERS.prototype = Object.assign( Object.create(ObjetoCanvas.pr
         // Amplio el valor del tiempo que le paso al shader en este frame.
         this.Uniforms.Tiempo.value += 0.03;
         // Rotación de la cámara
-        this.Rotacion_Grados += this.Rotacion_Avance;
+/*        this.Rotacion_Grados += this.Rotacion_Avance;
         this.Camara.position.x = this.Rotacion_Distancia * Math.cos(this.Rotacion_Grados);
         this.Camara.position.z = this.Rotacion_Distancia * Math.sin(this.Rotacion_Grados);
-        this.Camara.lookAt(this.Escena.position);
+        this.Camara.lookAt(this.Escena.position);*/
+        
         this.Context.render(this.Escena, this.Camara);  
     }
 });
 
 var Canvas = null;
-window.addEventListener('load', function() { Canvas = new NUEVOCANVASTHREESHADERS; });
+window.addEventListener('load', function() { Canvas = new Particulas; });
 </script>
     </head>
     <body>

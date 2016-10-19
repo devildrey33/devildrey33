@@ -6,24 +6,22 @@
 
 
 var Banner_ResplandorCircular = function() {
-    // Llamo al constructor del ObjetoBanner
-    if (ObjetoBanner.call(this, "2d") === false) { return false; }
-    // Inicio los valores básicos
-    this.Maximo       = 150;
-    this.ColorActual  = 10;
-    this.Avance       = 0.07;
-    // Inicio los circulos
-    this.Circulos = [];
-    for (var i = 1; i < this.Maximo; i++) {
-        setTimeout(function(Banner) {
-            var Circulo = new Banner.Circulo(this);
-            Banner.Circulos.push(Circulo);
-        }, i * 2, this);
-    }
+    // Llamo al constructor del ObjetoCanvas
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : '2d',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Banner',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
+    
+    this.Iniciar();
+    
     this.Cargando(false);
 };
 
-Banner_ResplandorCircular.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {
+Banner_ResplandorCircular.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     constructor     : Banner_ResplandorCircular, 
     // Datos de la animación [requerido]
     Nombre          : "Resplandor circular",
@@ -34,6 +32,21 @@ Banner_ResplandorCircular.prototype = Object.assign( Object.create(ObjetoBanner.
     Redimensionar   : function() {    },
     // Función que se llama al hacer scroll en el documento    
     Scroll          : function() {    },
+    
+    Iniciar         : function() {
+        // Inicio los valores básicos
+        this.Maximo       = 150;
+        this.ColorActual  = 10;
+        this.Avance       = 0.07;
+        // Inicio los circulos
+        this.Circulos = [];
+        for (var i = 1; i < this.Maximo; i++) {
+            setTimeout(function(Banner) {
+                var Circulo = new Banner.Circulo(this);
+                Banner.Circulos.push(Circulo);
+            }, i * 2, this);
+        }    
+    },
     // Función que pinta cada frame de la animación
     Pintar          : function() {
         // La clave para obtener el efecto de difuminado es "borrar" el fondo con un color rgba casi transparente 

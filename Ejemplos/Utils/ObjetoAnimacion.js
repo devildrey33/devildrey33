@@ -16,6 +16,23 @@ this.ColorTanque = new ObjetoAnimacion.Crear(Array(
 ));
  
      **/    
+var FuncionesTiempo = {
+    Linear : function(Tiempo) { return Tiempo; },
+    BounceIn : function(Tiempo) { return 1 - FuncionesTiempo.BounceOut(1 - Tiempo); }.bind(this),
+    BounceOut : function(Tiempo) {
+        if (Tiempo < 1/2.75) {
+            return (7.5625 * Tiempo * Tiempo);
+        } else if (Tiempo < 2/2.75) {
+            return (7.5625 * (Tiempo -= 1.5 / 2.75) * Tiempo + 0.75);
+        } else if (Tiempo < 2.5/2.75) {
+            return (7.5625 * (Tiempo -= 2.25 / 2.75) * Tiempo + 0.9375);
+        } else {
+            return (7.5625 * (Tiempo -= 2.625/2.75) * Tiempo + 0.984375);
+        }
+    }
+};
+    
+    
 var ObjetoAnimacion = new function() {
     // Array de animaciones
     this.Animaciones = [];
@@ -30,6 +47,7 @@ var ObjetoAnimacion = new function() {
             }
         }
     };
+        
     
     // Estructura con los datos que debe tener un paso
     this.Paso = function(Paso, Tiempo, Retraso, FuncionTiempo) {
@@ -37,7 +55,7 @@ var ObjetoAnimacion = new function() {
         this.Tiempo             = (typeof Tiempo            !== 'undefined') ? Tiempo  : 1;
         this.Retraso            = (typeof Retraso           !== 'undefined') ? Retraso : 0;
 //        this.FuncionActualizar  = (typeof FuncionActualizar !== 'undefined') ? FuncionActualizar : function(Indice, Valor) { };
-        this.FuncionTiempo      = (typeof FuncionTiempo     !== 'undefined') ? FuncionTiempo : function(n) { return n; };
+        this.FuncionTiempo      = (typeof FuncionTiempo     !== 'undefined') ? FuncionTiempo : FuncionesTiempo.Linear;
     };
     
     // Función para crear una nueva animación

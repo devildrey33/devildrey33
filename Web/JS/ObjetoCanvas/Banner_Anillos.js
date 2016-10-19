@@ -2,13 +2,33 @@
 // Constructor SIN TIPO, el tipo se especifica según la animación
 var Banner_Anillos = function() {
     // Llamo al constructor del ObjetoBanner
-    if (ObjetoBanner.call(this, "2d") === false) { return false; }
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : '2d',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Banner',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
     // Se ha creado el canvas, inicio los valores de la animación ... 
+    this.Iniciar();
+
     
-    this.TotalCirculos = 350;
-    this.Circulos      = [];
+
+    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
+    this.Cargando(false);
+};
+
+Banner_Anillos.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor     : Banner_Anillos, 
+    // Datos de la animación
+    Nombre          : "Anillos",
+    IdeaOriginal    : "devildrey33",
+    URL             : "/Lab/Ejemplos/BannerTest/Anillos.html",
+    NombreURL       : "Lab : Anillos",    
+    Invertir        : false,
     
-    this.Circulo = function(Padre) {
+    Circulo         : function(Padre) {
         this.Padre = Padre;
         var CentroX = (this.Padre.Ancho / 2);
         this.CentroY = (this.Padre.Alto / 2);
@@ -27,29 +47,18 @@ var Banner_Anillos = function() {
             this.X = (this.Padre.Ancho / 2) +(this.Distancia * Math.cos(this.Angulo));
             this.Y = (this.Padre.Alto / 2) + (this.Distancia * Math.sin(this.Angulo));            
         };
-    }; 
+    },
     
-    for (var i = 0; i < this.TotalCirculos; i++) {
-        this.Circulos[i] = new this.Circulo(this);
-    }
+    Iniciar         : function() { 
+        this.TotalCirculos = 350;
+        this.Circulos      = [];
+        for (var i = 0; i < this.TotalCirculos; i++) {
+            this.Circulos[i] = new this.Circulo(this);
+        }
 
-    this.Context.fillStyle = 'rgb(49, 46, 53)';
-    this.Context.fillRect(0, 0, this.Ancho, this.Alto);
-
-    
-
-    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
-    this.Cargando(false);
-};
-
-Banner_Anillos.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {
-    constructor     : Banner_Anillos, 
-    // Datos de la animación
-    Nombre          : "Anillos",
-    IdeaOriginal    : "devildrey33",
-    URL             : "/Lab/Ejemplos/BannerTest/Anillos.html",
-    NombreURL       : "Lab : Anillos",    
-    Invertir        : false,
+        this.Context.fillStyle = 'rgb(49, 46, 53)';
+        this.Context.fillRect(0, 0, this.Ancho, this.Alto);        
+    },
 
     // Función que se llama al entrar con el mouse en el canvas
     MouseEnter      : function(event) { this.Invertir = true; },

@@ -6,30 +6,39 @@
 
 
 Banner_TranstornoLineal = function() {
-    // Llamo al constructor del ObjetoBanner
-    if (ObjetoBanner.call(this, "2d") === false) { return false; }
-    // Inicio los valores
-    this.Tick           = ( Rand() * 360 ) | 0;
-    this.MaxTriangulos  = 10;   
-    this.Triangulos     = [];
-    // Establezco el ancho de línea y el color del fondo
-    this.Context.lineWidth = .1;
-    this.Context.fillStyle = 'rgb(49, 46, 53)';
-    this.Context.fillRect( 0, 0, this.Ancho, this.Alto );
+    // Llamo al constructor del ObjetoCanvas
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : '2d',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Banner',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
+    
+    this.Iniciar();
+    
     this.Cargando(false);
 };   
     
-Banner_TranstornoLineal.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {
+Banner_TranstornoLineal.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     constructor     : Banner_TranstornoLineal, 
     // Datos de la animación [requerido]
     Nombre          : "Transtorno Lineal",
     IdeaOriginal    : "Matei Copot",
     URL             : "https://codepen.io/towc/pen/mJroQr",
     NombreURL       : "Lines lines lines, love 'em!",    
-    // Función que se llama al redimensionar el documento
-    Redimensionar   : function() {    },
-    // Función que se llama al hacer scroll en el documento    
-    Scroll          : function() {    },
+    
+    Iniciar         : function() { 
+        // Inicio los valores
+        this.Tick           = ( Rand() * 360 ) | 0;
+        this.MaxTriangulos  = 10;   
+        this.Triangulos     = [];
+        // Establezco el ancho de línea y el color del fondo
+        this.Context.lineWidth = .1;
+        this.Context.fillStyle = 'rgb(49, 46, 53)';
+        this.Context.fillRect( 0, 0, this.Ancho, this.Alto );
+    },
     // Función que pinta cada frame de la animación
     Pintar          : function() {    
         this.Tick += .2;

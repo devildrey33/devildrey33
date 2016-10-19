@@ -25,7 +25,14 @@ var ObjetoCanvas_Depurar = true; // Si es true, no se parará la animación al p
 // Constructor
 var Banner_Sinusoidal = function() {    
     // Llamo al constructor del ObjetoBanner
-    if (ObjetoCanvas.call(this, "2d") === false) { return false; }
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : '2d',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Normal',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
     // Se ha creado el canvas, inicio los valores de la animación ...         
     this.Reiniciar();
     // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)

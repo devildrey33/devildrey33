@@ -113,22 +113,30 @@ h2:before {
     background: rgba(29,26,33, 0.1); 
 }
 
+/* Cabecera para los canvas a pantalla completa (SobreDevildrey33, Error404, etc..)*/
+#MarcoNavegacion > #Cabecera {
+    margin:0px;
+    height:100%;
+    color:#FFFFFF;
+/*    background:rgba(49,46,53, 1);*/
+    z-index:10;
+/*    position:absolute;*/
+    left:0px;
+    right:0px;
+/*    overflow:hidden;*/
+    position:absolute;
+    top:0px;
+    bottom:0px;
+}
 
 .Blog > #Cabecera {
-/*    background: rgba(0,0,0, 0.75);*/
-/*    background:-webkit-radial-gradient(right top, farthest-side, rgb(100,100,100) 5%, rgb(29,26,33));
-    background:-moz-radial-gradient(right top, farthest-side, rgb(100,100,100) 5%, rgb(29,26,33));
-    background:-ms-radial-gradient(right top, farthest-side, rgb(100,100,100) 5%, rgb(29,26,33));
-    background:radial-gradient(right top, farthest-side, rgb(100,100,100) 5%, rgb(29,26,33));*/
     margin:0px;
     height:240px;
     border-top:none;
-/*    border:1px solid #353338;*/
     color:#FFFFFF;
     background:rgba(49,46,53, 1);
     z-index:10;
     position:relative;
-/*    min-height:125px;*/
     width:calc(100% + 100px);
     overflow:hidden;
     left:-25px;
@@ -140,15 +148,15 @@ h2:before {
 .Blog > #Cabecera > .Cabecera_Img4 {    background-image:url('../Graficos/FondoBlog4.png');   }
 */
 .Blog > #Cabecera > #Cabecera_Canvas {
-    width:calc(100% - 60px);
     height:100%;
     background: rgba(29,26,33, 1); 
+    width:calc(100% - 60px);
 }
 
-.Blog > #Cabecera > #Cabecera_AutorAni, 
-.Blog > #Cabecera > #Cabecera_PausaAni, 
-.Blog > #Cabecera > #Cabecera_Cargando,
-.Blog > #Cabecera > #Cabecera_Stats {
+#Cabecera > #Cabecera_AutorAni, 
+#Cabecera > #Cabecera_PausaAni, 
+#Cabecera > #Cabecera_Cargando,
+#Cabecera > #Cabecera_Stats {
     transition:0.3s cubic-bezier(.33,.05,.69,1.59);
     z-index:13;
     padding:10px;
@@ -160,7 +168,7 @@ h2:before {
     border:1px solid #353338;
 }
 
-.Blog > #Cabecera > #Cabecera_AutorAni {
+#Cabecera > #Cabecera_AutorAni {
     transform-origin: bottom center;
     transform:perspective(600px) rotateX(90deg);
     bottom:0px;
@@ -170,14 +178,14 @@ h2:before {
 }
 
 
-.Blog > #Cabecera > #Cabecera_PausaAni {
+#Cabecera > #Cabecera_PausaAni {
     transform-origin: top center;
     transform:perspective(600px) rotateX(-90deg);
     top:0px;
     right:60px;    
 }
 
-.Blog > #Cabecera > #Cabecera_Cargando {
+#Cabecera > #Cabecera_Cargando {
     top:0px;
     left:50%;
     transform:perspective(600px) rotateX(-90deg) translateX(-50%);
@@ -196,22 +204,22 @@ h2:before {
     padding:0px 10px;
 }
 
-.Blog > #Cabecera > #Cabecera_Stats {
+#Cabecera > #Cabecera_Stats {
     transform-origin: top center;
     transform:perspective(600px) rotateX(-90deg);  
     right:60px;
 }
 
 /* Solo se muestra la información de la animación si la animación está activa (puede estar visible pero inactiva si la web no tiene el foco) */
-.Blog > #Cabecera[animar=true]:hover > #Cabecera_AutorAni, .Blog > #Cabecera[animar=true]:hover > #Cabecera_Stats {
+.Blog > #Cabecera[animar=true]:hover > #Cabecera_AutorAni, #Cabecera[animar=true]:hover > #Cabecera_Stats {
     transform:perspective(600px) rotateX(0deg);    
 }
 /* Solo se muestra la información de la animación si la animación está activa (puede estar visible pero inactiva si la web no tiene el foco) */
-.Blog > #Cabecera[animar=false] > #Cabecera_PausaAni {
+#Cabecera[animar=false] > #Cabecera_PausaAni {
     transform:perspective(600px) rotateX(0deg);    
 }
 /* Solo se muestra el texto cargando mientras el atributo cargando sea true (necesario para advertir de la carga de texturas) */
-.Blog > #Cabecera[cargando=true] > #Cabecera_Cargando {
+#Cabecera[cargando=true] > #Cabecera_Cargando {
     transform:perspective(600px) rotateX(0deg) translateX(-50%);        
 }
 

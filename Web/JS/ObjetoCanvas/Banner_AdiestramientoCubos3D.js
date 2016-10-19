@@ -7,79 +7,16 @@
 
 var Banner_AdiestramientoCubos3D = function() {
     // Llamo al constructor del ObjetoBanner
-    if (ObjetoBanner.call(this, "THREE") === false) { return false; }
-
-/*    this.Reloj  = new THREE.Clock();
-    this.Matrix = new THREE.Matrix4();*/
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : 'THREE',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Banner',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
     
-    this.TamCubo        = 0; // Tamaño de cada cubo
-    
-    this.Escena = new THREE.Scene();
-    this.Camara = new THREE.PerspectiveCamera(45, this.Ancho / this.Alto, 0.5, 10000);
-    // Preparo la camara
-    this.Camara.position.set( 0, 2000, 2000 );
-    this.Escena.add(this.Camara);
-    // Colores base que se van alternando
-//    this.RGBF = [ 50, 0, 0, 0 ]; // RGB que incluye la fase en el ultimo valor (0=R, 1=G, 2=B);
-    
-    this.TipoAni = 0;
-    this.CharAni = 0;
-    
-    // Variables locales
-    var Divisiones  = 7;       // Numero de columnas de un lado
-    var Tam         = 1000;
-
-    this.TamCubo = (Tam / (Divisiones / 2));
-    this.YBase = (this.TamCubo / 2) + this.TamCubo;
-            
-    // Creo la parrilla
-    this.Parrilla = new THREE.GridHelper(Tam, Divisiones, new THREE.Color(0xcccccc), new THREE.Color(0x999999));
-    this.Parrilla.position.y = this.TamCubo;
-//    this.Parrilla.setColors(new THREE.Color(0xcccccc), new THREE.Color(0x999999));    // blanco
-//    this.Parrilla.setColors(new THREE.Color(0xdddd00), new THREE.Color(0xcc9900));    // naranja
-//    this.Parrilla.setColors(new THREE.Color(0x00cc00), new THREE.Color(0x009900));    // verde
-//    this.Parrilla.setColors(new THREE.Color(0x6666cc), new THREE.Color(0x333399));      // azul
-//        this.Parrilla = this.CrearParrilla(Tam, Divisiones, 0xdd6666, 0x888888);
-//        this.Escena.add(this.Parrilla);
-
-    // Creo el grupo de columnas
-    this.GrupoCubos = new THREE.Object3D();
-    this.GrupoCubos.add(this.Parrilla);
-    t = this.TamCubo * 0.7;
-    var geometry = new THREE.BoxGeometry( t, t, t );    
-
-    // Inicio cada columna en su posición
-    for (var z = -(Divisiones / 2); z < (Divisiones / 2); z++) {
-        for (var x = -(Divisiones / 2); x < (Divisiones / 2); x++) {
-/*                var multiMaterial = [ new THREE.MeshBasicMaterial( { color: "rgb(0," + (50 + Math.floor(rnd)) + ", 0)" } ),
-                                      new THREE.MeshBasicMaterial( { color: "rgb(0," + (100 + Math.floor(rnd)) + ", 0)", wireframe: true, transparent: true } ) ];         */
-//                var Cubo = new THREE.SceneUtils.createMultiMaterialObject(geometry, multiMaterial);
-            
-            var Grupo = new THREE.Object3D();
-            var Cubo = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial( { color: "rgb(0,50,0)", /*wireframe : true*/ } ));
-//            Cubo.position.set((x * this.TamCubo) + (this.TamCubo / 2), (z * this.TamCubo) + (this.TamCubo / 2), this.YBase)
-/*            Cubo.position.x = (x * this.TamCubo) + (this.TamCubo / 2);
-            Cubo.position.z = (z * this.TamCubo) + (this.TamCubo / 2);                                
-            Cubo.position.y = this.YBase;*/
-            Grupo.Ani = new this.AniColumna(1, 1, 0);
-            Grupo.add(Cubo);
-            Grupo.position.set((x * this.TamCubo) + (this.TamCubo / 2), this.YBase, (z * this.TamCubo) + (this.TamCubo / 2));
-            this.CrearMarcoCubo(Grupo, t);
-            this.GrupoCubos.add(Grupo);
-        }
-    }
-    
-    this.RandAni();
-
-//    this.GrupoCubos.rotation.x = 0.55;        
-    this.Escena.add(this.GrupoCubos);
-
-
-    // create a point light
-    var pointLight = new THREE.PointLight(0xFF0000);
-    pointLight.position.set(0, 10, 0);
-    // add to the scene
-    this.Escena.add(pointLight);   
+    this.Iniciar();
     
     this.Cargando(false);
     
@@ -90,7 +27,7 @@ var Banner_AdiestramientoCubos3D = function() {
 
 
 
-Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoBanner.prototype) , {
+Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     constructor         : Banner_AdiestramientoCubos3D, 
 
     // Datos de la animación
@@ -99,6 +36,77 @@ Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoBann
     URL                 : "/Lab/Ejemplos/BannerTest/AdiestramientoCubos.html",
     NombreURL           : "Lab : Adiestramiento de cubos",    
     AnimacionCamara     : { Rad : 0, RadAvance : 0, MinRadAvance : -0.005, MaxRadAvance : 0.005, RadAvancePositivo : true, Distancia : 1900, MinDistancia : 1600, MaxDistancia : 3100, DistanciaAvance : 0.1, MinDistanciaAvance : -3, MaxDistanciaAvance : 3, DistanciaAvancePositivo : true },     
+    
+    Iniciar             : function() {
+        this.TamCubo        = 0; // Tamaño de cada cubo
+
+        this.Escena = new THREE.Scene();
+        this.Camara = new THREE.PerspectiveCamera(45, this.Ancho / this.Alto, 0.5, 10000);
+        // Preparo la camara
+        this.Camara.position.set( 0, 2000, 2000 );
+        this.Escena.add(this.Camara);
+        // Colores base que se van alternando
+    //    this.RGBF = [ 50, 0, 0, 0 ]; // RGB que incluye la fase en el ultimo valor (0=R, 1=G, 2=B);
+
+        this.TipoAni = 0;
+        this.CharAni = 0;
+
+        // Variables locales
+        var Divisiones  = 7;       // Numero de columnas de un lado
+        var Tam         = 1000;
+
+        this.TamCubo = (Tam / (Divisiones / 2));
+        this.YBase = (this.TamCubo / 2) + this.TamCubo;
+
+        // Creo la parrilla
+        this.Parrilla = new THREE.GridHelper(Tam, Divisiones, new THREE.Color(0xcccccc), new THREE.Color(0x999999));
+        this.Parrilla.position.y = this.TamCubo;
+    //    this.Parrilla.setColors(new THREE.Color(0xcccccc), new THREE.Color(0x999999));    // blanco
+    //    this.Parrilla.setColors(new THREE.Color(0xdddd00), new THREE.Color(0xcc9900));    // naranja
+    //    this.Parrilla.setColors(new THREE.Color(0x00cc00), new THREE.Color(0x009900));    // verde
+    //    this.Parrilla.setColors(new THREE.Color(0x6666cc), new THREE.Color(0x333399));      // azul
+    //        this.Parrilla = this.CrearParrilla(Tam, Divisiones, 0xdd6666, 0x888888);
+    //        this.Escena.add(this.Parrilla);
+
+        // Creo el grupo de columnas
+        this.GrupoCubos = new THREE.Object3D();
+        this.GrupoCubos.add(this.Parrilla);
+        t = this.TamCubo * 0.7;
+        var geometry = new THREE.BoxGeometry( t, t, t );    
+
+        // Inicio cada columna en su posición
+        for (var z = -(Divisiones / 2); z < (Divisiones / 2); z++) {
+            for (var x = -(Divisiones / 2); x < (Divisiones / 2); x++) {
+    /*                var multiMaterial = [ new THREE.MeshBasicMaterial( { color: "rgb(0," + (50 + Math.floor(rnd)) + ", 0)" } ),
+                                          new THREE.MeshBasicMaterial( { color: "rgb(0," + (100 + Math.floor(rnd)) + ", 0)", wireframe: true, transparent: true } ) ];         */
+    //                var Cubo = new THREE.SceneUtils.createMultiMaterialObject(geometry, multiMaterial);
+
+                var Grupo = new THREE.Object3D();
+                var Cubo = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial( { color: "rgb(0,50,0)", /*wireframe : true*/ } ));
+    //            Cubo.position.set((x * this.TamCubo) + (this.TamCubo / 2), (z * this.TamCubo) + (this.TamCubo / 2), this.YBase)
+    /*            Cubo.position.x = (x * this.TamCubo) + (this.TamCubo / 2);
+                Cubo.position.z = (z * this.TamCubo) + (this.TamCubo / 2);                                
+                Cubo.position.y = this.YBase;*/
+                Grupo.Ani = new this.AniColumna(1, 1, 0);
+                Grupo.add(Cubo);
+                Grupo.position.set((x * this.TamCubo) + (this.TamCubo / 2), this.YBase, (z * this.TamCubo) + (this.TamCubo / 2));
+                this.CrearMarcoCubo(Grupo, t);
+                this.GrupoCubos.add(Grupo);
+            }
+        }
+
+        this.RandAni();
+
+    //    this.GrupoCubos.rotation.x = 0.55;        
+        this.Escena.add(this.GrupoCubos);
+
+
+        // create a point light
+        var pointLight = new THREE.PointLight(0xFF0000);
+        pointLight.position.set(0, 10, 0);
+        // add to the scene
+        this.Escena.add(pointLight);           
+    },
     
     AvanceCamara        : function() {
         if (Rand() < 0.01) { // una de cada 100

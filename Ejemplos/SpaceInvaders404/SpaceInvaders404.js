@@ -12,8 +12,14 @@ var SpaceInvaders404 = function() {
     this.Tanque = new this.JugadorTanque(this);
 
     // Llamo al constructor del ObjetoBanner
-    if (ObjetoCanvas.call(this, "2d", 500, 500) === false) { return false; }
-
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : '2d',
+        'Ancho'         : 500,
+        'Alto'          : 500,
+        'Entorno'       : 'Normal',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
     
     this.Iniciar();
     // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)

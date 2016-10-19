@@ -26,7 +26,14 @@ var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al 
 // Constructor SIN TIPO, el tipo se especifica según la animación
 var Texto2D = function() {
     // Llamo al constructor del ObjetoBanner
-    if (ObjetoCanvas.call(this, "THREE") === false) { return false; }
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : 'THREE',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Normal',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
     // Se ha creado el canvas, inicio los valores de la animación ... 
     this.Escena = new THREE.Scene();
     this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);

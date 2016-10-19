@@ -24,7 +24,14 @@ var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al 
 // Constructor SIN TIPO, el tipo se especifica según la animación
 var GeometrieaBasica = function() {
     // Llamo al constructor del ObjetoBanner
-    if (ObjetoCanvas.call(this, "2d") === false) { return false; }
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : '2d',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Normal',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
     // Se ha creado el canvas, inicio los valores de la animación ... 
 
     this.Iniciar();

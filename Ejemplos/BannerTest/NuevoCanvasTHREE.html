@@ -26,24 +26,17 @@ var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al 
 // Constructor SIN TIPO, el tipo se especifica según la animación
 var NUEVOCANVASTHREE = function() {
     // Llamo al constructor del ObjetoBanner
-    if (ObjetoCanvas.call(this, "THREE") === false) { return false; }
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : 'THREE',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Normal',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
+    
     // Se ha creado el canvas, inicio los valores de la animación ... 
-    this.Escena = new THREE.Scene();
-    this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);
-    this.Camara.position.set(0, 0, 20);
-    this.Escena.add(this.Camara);
-    
-    // Parrilla para iniciar la plantilla (se puede eliminar)
-    this.Parrilla = new THREE.GridHelper(10, 10, new THREE.Color(0xcccccc), new THREE.Color(0x999999));
-    this.Parrilla.position.y = -4;
-    this.Escena.add(this.Parrilla);
-    
-    this.Cubo = new THREE.Mesh(new THREE.BoxGeometry( 4, 4, 4 ), new THREE.MeshBasicMaterial( { color: "rgb(150,0,0)", wireframe : true } ));
-    this.Escena.add(this.Cubo);
-    this.Rotacion_Grados    = 0;
-    this.Rotacion_Avance    = 0.005;
-    this.Rotacion_Distancia = 20;
-    this.Camara.position.set(0, 0, this.Rotacion_Distancia);
+    this.Iniciar();
     
     // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
     this.Cargando(false);
@@ -69,6 +62,26 @@ NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     TeclaPresionada : function(Evento) { },
     // Función que se llama al soltar una tecla
     TeclaSoltada    : function(Evento) { },
+    // Función que inicia el ejemplo
+    Iniciar         : function() {
+        this.Escena = new THREE.Scene();
+        this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);
+        this.Camara.position.set(0, 0, 20);
+        this.Escena.add(this.Camara);
+
+        // Parrilla para iniciar la plantilla (se puede eliminar)
+        this.Parrilla = new THREE.GridHelper(10, 10, new THREE.Color(0xcccccc), new THREE.Color(0x999999));
+        this.Parrilla.position.y = -4;
+        this.Escena.add(this.Parrilla);
+
+        this.Cubo = new THREE.Mesh(new THREE.BoxGeometry( 4, 4, 4 ), new THREE.MeshBasicMaterial( { color: "rgb(150,0,0)", wireframe : true } ));
+        this.Escena.add(this.Cubo);
+        this.Rotacion_Grados    = 0;
+        this.Rotacion_Avance    = 0.005;
+        this.Rotacion_Distancia = 20;
+        this.Camara.position.set(0, 0, this.Rotacion_Distancia);        
+    },
+    
     // Función que pinta cada frame de la animación
     Pintar          : function() {  
         this.Rotacion_Grados += this.Rotacion_Avance;
