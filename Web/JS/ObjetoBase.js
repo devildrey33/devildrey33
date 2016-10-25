@@ -171,10 +171,11 @@ $Base = new function() {
 //                                Banner_MatrixLluviaHexadecimal,
                                 Banner_AdiestramientoCubos3D,
                                 Banner_WormHole,
-                                Banner_Anillos,
+//                                Banner_Anillos,
                                 Banner_Sinusoidal,
                                 Banner_GeometriaBasica,
-                                Banner_EsferaVShader
+                                Banner_EsferaVShader,
+                                Banner_ReunionDeCirculos
                             ];                
         var fPos = 0;
         // Si no se ha especificado ninguna posición generamos una aleatória
@@ -470,14 +471,16 @@ $Base = new function() {
             Ret["TipoPagina"] = "Lab";
             nURL = "";
         }
-        if (cURL.indexOf("web/") > -1) {
+/*        if (cURL.indexOf("web/") > -1) {
             Ret["TipoPagina"] = "Web";
             nURL = "";
-        }
-        if (cURL.indexOf("sobre-el-autor") > -1 || cURL.indexOf("faqbarba") > -1) { 
+        }*/
+        // Web / Admin                || Sobre el autor                      || Faq barba                     || Página de error 404
+        if (cURL.indexOf("web/") > -1 || cURL.indexOf("sobre-el-autor") > -1 || cURL.indexOf("faqbarba") > -1 || document.getElementById('Error404') !== null) { 
             Ret["TipoPagina"] = "Simple";
             nURL = "";
         }
+        // Página de error 404
 
         $("body").attr({ "Tipo" : Ret["TipoPagina"] });
 
@@ -532,9 +535,9 @@ $Base = new function() {
                 $Comentarios.Iniciar();
                 this.MostrarBarraNavegacion();
                 break;
-            case "Web" :
+/*            case "Web" :
                 this.MostrarBarraNavegacion();
-                break;            
+                break;            */
             case "Buscar" :
                 $("#BarraNavegacion_Prev").hide();
                 $("#BarraNavegacion_Next").hide();

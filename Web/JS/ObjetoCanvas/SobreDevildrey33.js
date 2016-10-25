@@ -49,36 +49,59 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
 //    Animaciones     : new ObjetoAnimacion(),
     
     Iniciar         : function() {
+        this.Test = new ObjetoTest({ "bottom" : "10px", "right" : "10px" });
+        
 	this.Context.shadowMap.enabled	= true;
         // Antialias para las sombras
-        this.Context.shadowMap.type = THREE.PCFSoftShadowMap;
+//        this.Context.shadowMap.type = THREE.PCFSoftShadowMap;
         
         this.RayCaster = new THREE.Raycaster();
         this.Mouse = new THREE.Vector2();
         
         this.Escena = new THREE.Scene();
+        
+/*        this.Escena.fog = new THREE.Fog( 0xffffff, 1, 5000 );
+        this.Escena.fog.color.setHSL( 0.6, 0, 1 );        */
+        
 //        this.Camara = new THREE.OrthographicCamera(this.Ancho / -2, this.Ancho / 2, this.Alto / 2, this.Alto / -2, 0.5, 1000);
         this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);
         this.Camara.position.set(0, 0, 1000);
         this.Escena.add(this.Camara);
+        this.AnimacionAvanceCamara = function() {
+            if (typeof this.AniAvanceCamara !== 'undefined') this.AniAvanceCamara.Terminar();
+            this.AniAvanceCamara = ObjetoAnimacion.Crear([
+                { 'Paso' : { z : 500, y: 150 }},
+                { 'Paso' : { z :  70, y:  35 }, 'Tiempo' : 2250, 'FuncionTiempo' : FuncionesTiempo.SinInOut }
+            ], { "Repetir" : 0, FuncionActualizar : function(Indice, Valor) { this.Camara.position[Indice] = Valor; }.bind(this) });
+        }        
+        
+        var tcam = this.Test.AgregarLista("Cámara");
+        tcam.Agregar({ "Padre" : this.Camara.position, "Variable" : "x", "Min" : -200, "Max" : 200, "Nombre" : "position.x" });
+        tcam.Agregar({ "Padre" : this.Camara.position, "Variable" : "y", "Min" : -200, "Max" : 200, "Nombre" : "position.y" });
+        tcam.Agregar({ "Padre" : this.Camara.position, "Variable" : "z", "Min" : -200, "Max" : 500, "Nombre" : "position.z" });
+        tcam.Agregar({ "Padre" : this.Camara.rotation, "Variable" : "x", "Min" : 0, "Max" : Math.PI * 2, "Nombre" : "rotation.x" });
+        tcam.Agregar({ "Padre" : this.Camara.rotation, "Variable" : "y", "Min" : 0, "Max" : Math.PI * 2, "Nombre" : "rotation.y" });
+        tcam.Agregar({ "Padre" : this.Camara.rotation, "Variable" : "z", "Min" : 0, "Max" : Math.PI * 2, "Nombre" : "rotation.z" });
+        tcam.Agregar({ "Padre" : this, "Variable" : "AnimacionAvanceCamara", "Nombre" : "Animación avance" });
+        
 
         // Parrilla para iniciar la plantilla (se puede eliminar)
 /*        this.Parrilla = new THREE.GridHelper(100, 100, new THREE.Color(0xcccccc), new THREE.Color(0x999999));
         this.Parrilla.position.y = -4;
         this.Escena.add(this.Parrilla);*/
         
-        var MaterialSuelo	= new THREE.MeshPhongMaterial({
-		color		: 0x666666,
-		shininess	: 200, 
+        this.MaterialSuelo	= new THREE.MeshPhongMaterial({
+		color		: 0x444477,
 		specular	: 0x33AA33,
+/*		shininess	: 600, 
 		shading		: THREE.SmoothShading,
 /*                transparent     : true,
                 opacity         : 0.7-*/
 	});
-        var MaterialPared	= new THREE.MeshPhongMaterial({
-		color		: 0x8888AA,
-		shininess	: 200, 
+        this.MaterialPared	= new THREE.MeshPhongMaterial({
+		color		: 0x444477,
 		specular	: 0x33AA33,
+/*		shininess	: 600, 
 		shading		: THREE.SmoothShading,
 /*                transparent     : true,
                 opacity         : 0.7-*/ 
@@ -99,20 +122,20 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         });*/
 
 //        var MaterialCubo1 = new THREE.MeshBasicMaterial( { color: 0x0000AA, envMap: mirrorCamera.renderTarget } );
-        var MaterialCubo1	= new THREE.MeshPhongMaterial({
+        this.MaterialCubo1	= new THREE.MeshPhongMaterial({
 		color		: 0x0000AA,
-		shininess	: 300, 
 		specular	: 0x33AA33,
-		shading		: THREE.SmoothShading,
+/*		shininess	: 300, 
+		shading		: THREE.SmoothShading,*/
                 transparent     : true,
                 opacity         : 0.7                
 	});
         
-        var MaterialCubo2	= new THREE.MeshPhongMaterial({
+        this.MaterialCubo2	= new THREE.MeshPhongMaterial({
 		color		: 0x0000AA,
-		shininess	: 300, 
 		specular	: 0x33AA33,
-		shading		: THREE.SmoothShading,
+/*		shininess	: 300, 
+		shading		: THREE.SmoothShading,*/
                 transparent     : true,
                 opacity         : 0.7                
 	});
@@ -135,65 +158,48 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             opacity:0.8,
             wireframe: true
         });*/
+        
 
-        
-        
-        hemiLight = new THREE.HemisphereLight( 0xddeeff, 0x0f0e0d, 0.02 );
-        hemiLight.position.set( 0, 50, -10 );
-	hemiLight.castShadow		= true;
-        this.Escena.add( hemiLight );
-        hemiLight.intensity = 0.7;
-        
-        
-        this.Suelo = new THREE.Mesh(new THREE.BoxGeometry( 300, 1, 300 ), MaterialSuelo );
-//        this.Suelo.position.y = -12;
-        this.Suelo.castShadow = false;
-        this.Suelo.receiveShadow = true;
-        this.Escena.add(this.Suelo);
-        
-        this.ParedI = new THREE.Mesh(new THREE.BoxGeometry( 1, 150, 300 ), MaterialPared );
-        this.ParedI.position.x = -150;
-        this.ParedI.position.y = 75;
-        this.ParedI.castShadow = false;
-        this.ParedI.receiveShadow = true;
-        this.Escena.add(this.ParedI);
+        var tluces = this.Test.AgregarLista("Luces");
+        this.dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
+        this.dirLight.color.setHSL( 0.1, 1, 0.95 );
+        this.dirLight.position.set( -1, 1.75, 1 );
+        this.dirLight.position.multiplyScalar( 50 );
+        this.Escena.add( this.dirLight );
+        this.dirLight.castShadow = true;
+        this.dirLight.shadow.mapSize.width = 2048;
+        this.dirLight.shadow.mapSize.height = 2048;
+        var d = 50;
+        this.dirLight.shadow.camera.left = -d;
+        this.dirLight.shadow.camera.right = d;
+        this.dirLight.shadow.camera.top = d;
+        this.dirLight.shadow.camera.bottom = -d;
+        this.dirLight.shadow.camera.far = 3500;
+        this.dirLight.shadow.bias = -0.0001;       
+        this.dlhelper = new THREE.CameraHelper(this.dirLight.shadow.camera);
+        this.Escena.add(this.dlhelper);
+        this.dlhelper.visible = false;
+        var tdl = tluces.AgregarLista("DirectionalLight");
+        tdl.Agregar({ "Padre" : this.dirLight.position, "Variable" : "x", "Min" : -100, "Max" : 100});
+        tdl.Agregar({ "Padre" : this.dirLight.position, "Variable" : "y", "Min" : -100, "Max" : 100});
+        tdl.Agregar({ "Padre" : this.dirLight.position, "Variable" : "z", "Min" : -200, "Max" : 200});
+        tdl.Agregar({ "Padre" : this.dirLight, "Variable" : "intensity", "Min" : 0.0, "Max" : 1.0});
+        tdl.Agregar({ "Padre" : this.dlhelper,  "Variable" : "visible", "Nombre" : "helper" });
 
-        this.ParedD = new THREE.Mesh(new THREE.BoxGeometry( 1, 150, 300 ), MaterialPared );
-        this.ParedD.position.x = 150;
-        this.ParedD.position.y = 75;
-        this.ParedD.castShadow = false;
-        this.ParedD.receiveShadow = true;
-        this.Escena.add(this.ParedD);
+        this.HemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
+        this.HemiLight.color.setHSL( 0.6, 1, 0.6 );
+        this.HemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
+        this.HemiLight.position.set( 0, 500, 0 );
+        this.Escena.add( this.HemiLight );        
+//        this.hlhelper = new THREE.CameraHelper(this.HemiLight.shadow.camera);
+//        this.Escena.add(this.hlhelper);
 
-        this.ParedC = new THREE.Mesh(new THREE.BoxGeometry( 300, 150, 1 ), MaterialPared );
-        this.ParedC.position.z = -150;
-        this.ParedC.position.y = 75;
-        this.ParedC.castShadow = false;
-        this.ParedC.receiveShadow = true;
-        this.Escena.add(this.ParedC);
-
-        this.Cubo = new THREE.Mesh(new THREE.BoxGeometry( 12, 12, 12 ), MaterialCubo1 );
-        this.Cubo.castShadow = true;
-        this.Cubo.receiveShadow = false;
-        this.Cubo.position.set(-12, 20, 20);
-        this.Escena.add(this.Cubo);
-        
-        this.Cubo2 = new THREE.Mesh(new THREE.BoxGeometry( 12, 12, 12 ), MaterialCubo1 );
-        this.Cubo2.castShadow = true;
-        this.Cubo2.receiveShadow = false;
-        this.Cubo2.position.set(12, 20, 20);
-        this.Escena.add(this.Cubo2);
-/*        this.Rotacion_Grados    = 0;
-        this.Rotacion_Avance    = 0.005;
-        this.Rotacion_Distancia = 20;
-        this.Camara.position.set(0, 0, this.Rotacion_Distancia);                */
-
-        this.PointLight = new THREE.PointLight( 0xffee88, 25000, 200, 10 );
-        this.PointLight.position.set( 0, 120, 70 );
-	this.PointLight.castShadow		= true;
-//        this.PointLight.add(this.Cubo);
-        this.Escena.add(this.PointLight); 
-        
+        var thl = tluces.AgregarLista("HemisphereLight"); 
+        thl.Agregar({ "Padre" : this.HemiLight.position, "Variable" : "x", "Min" : -100, "Max" : 100});
+        thl.Agregar({ "Padre" : this.HemiLight.position, "Variable" : "y", "Min" : 0, "Max" : 500});
+        thl.Agregar({ "Padre" : this.HemiLight.position, "Variable" : "z", "Min" : -200, "Max" : 200});
+        thl.Agregar({ "Padre" : this.HemiLight, "Variable" : "intensity", "Min" : 0.0, "Max" : 1.0});
+//        tdl.Agregar({ "Padre" : this.hlhelper,  "Variable" : "visible", "Nombre" : "helper" });
 
 /*        var ambient	= new THREE.AmbientLight( 0x444444 );
 	this.Escena.add( ambient );*/
@@ -202,15 +208,152 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
 	light.position.set( 1, -1, 1 ).normalize();
 	scene.add( light );*/
 
-/*	this.SpotLight	= new THREE.SpotLight( 0xFFAADD, 0 );
-	this.SpotLight.position.set( 60, 80, 120 );
+	this.SpotLight	= new THREE.SpotLight( 0xFFAADD, 0 );
+	this.SpotLight.position.set( 0, 50, 100 );
 	this.SpotLight.shadow.camera.near	= 0.01;		
 	this.SpotLight.castShadow		= true;
-	this.SpotLight.target.position.set(0,-100,-400);
-        this.SpotLight.target.updateMatrixWorld();
-        this.Escena.add( this.SpotLight );	*/
-        /*var helper = new THREE.CameraHelper(this.SpotLight.shadow.camera);
-        this.Escena.add(helper);*/
+        this.SpotLight.target = new THREE.Object3D(100, 0, 0);
+        this.SpotLight.castShadow = true;
+/*        this.SpotLight.shadow.bias = 1;
+        this.SpotLight.shadow.camera.far =500;
+        this.SpotLight.shadow.camera.near = 1;
+        this.SpotLight.shadow.camera.fov = 700;//        */
+        this.Escena.add( this.SpotLight );	
+        this.splhelper = new THREE.CameraHelper(this.SpotLight.shadow.camera);
+        this.Escena.add(this.splhelper);
+        this.splhelper.visible = false;        
+
+        this.AnimacionEncenderLuz = function() {
+            if (typeof this.AniEncenderLuz !== 'undefined') this.AniEncenderLuz.Terminar();
+            this.AniEncenderLuz = ObjetoAnimacion.Crear([
+                { 'Paso' : { Intensidad : 0 }},
+                { 'Paso' : { Intensidad : 0.7, }, 'Tiempo' : 60, 'FuncionTiempo' : FuncionesTiempo.SinInOut, 'Retraso' : 2000 },
+                { 'Paso' : { Intensidad : 0, },'Tiempo' : 60, 'FuncionTiempo' : FuncionesTiempo.SinInOut },
+                { 'Paso' : { Intensidad : 0.6, }, 'Tiempo' : 60, 'FuncionTiempo' : FuncionesTiempo.SinInOut, },
+                { 'Paso' : { Intensidad : 0.1, },'Tiempo' : 50, 'FuncionTiempo' : FuncionesTiempo.SinInOut },
+                { 'Paso' : { Intensidad : 0.7} , 'Tiempo' : 850, 'FuncionTiempo' : FuncionesTiempo.SinInOut },
+                { 'Paso' : { Intensidad : 1} , 'Tiempo' : 2500, 'FuncionTiempo' : FuncionesTiempo.SinInOut }
+            ], { "Repetir" : 0, FuncionActualizar : function(Indice, Valor) { this.SpotLight.intensity = Valor; }.bind(this) });            
+        };
+        
+        var tspl = tluces.AgregarLista("SpotLight");
+        tspl.Agregar({ "Padre" : this.SpotLight.position, "Variable" : "x", "Min" : -100, "Max" : 100 });
+        tspl.Agregar({ "Padre" : this.SpotLight.position, "Variable" : "y", "Min" : -100, "Max" : 100 });
+        tspl.Agregar({ "Padre" : this.SpotLight.position, "Variable" : "z", "Min" : -200, "Max" : 200 });
+        tspl.Agregar({ "Padre" : this.SpotLight, "Variable" : "intensity", "Min" : 0.0, "Max" : 1.0});
+        tspl.Agregar({ "Padre" : this.splhelper,  "Variable" : "visible", "Nombre" : "helper"  });
+        tspl.Agregar({ "Padre" : this,  "Variable" : "AnimacionEncenderLuz", "Nombre" : "Ani Encender luz"  });        
+        
+        
+        
+        this.Suelo = new THREE.Mesh(new THREE.PlaneGeometry( 10000, 10000 ), this.MaterialSuelo );
+        this.Suelo.rotation.x = -Math.PI/2;
+//        this.Suelo.position.y = -12;
+        this.Suelo.castShadow = false;
+        this.Suelo.receiveShadow = true;
+        this.Escena.add(this.Suelo);
+        
+        this.ParedI = new THREE.Mesh(new THREE.BoxGeometry( 1, 150, 300 ), this.MaterialPared );
+        this.ParedI.position.x = -150;
+        this.ParedI.position.y = 75;
+        this.ParedI.castShadow = false;
+        this.ParedI.receiveShadow = true;
+        this.Escena.add(this.ParedI);
+
+        this.ParedD = new THREE.Mesh(new THREE.BoxGeometry( 1, 150, 300 ), this.MaterialPared );
+        this.ParedD.position.x = 150;
+        this.ParedD.position.y = 75;
+        this.ParedD.castShadow = false;
+        this.ParedD.receiveShadow = true;
+        this.Escena.add(this.ParedD);
+
+        this.ParedC = new THREE.Mesh(new THREE.BoxGeometry( 300, 150, 1 ), this.MaterialPared );
+        this.ParedC.position.z = -150;
+        this.ParedC.position.y = 75;
+        this.ParedC.castShadow = false;
+        this.ParedC.receiveShadow = true;
+        this.Escena.add(this.ParedC);
+        
+        
+        var tParedes = this.Test.AgregarLista("Paredes");
+        tParedes.Agregar({ "Padre" : this.MaterialPared, "Variable" : "shininess", "Min" : 0, "Max" : 4000 });
+        tParedes.Agregar({ "Padre" : this.ParedI, "Variable" : "visible", "Nombre" : "ParedI visible" });        
+        tParedes.Agregar({ "Padre" : this.ParedC, "Variable" : "visible", "Nombre" : "ParedC visible" });
+        tParedes.Agregar({ "Padre" : this.ParedD, "Variable" : "visible", "Nombre" : "ParedD visible" });
+        
+
+        this.Cubo = new THREE.Mesh(new THREE.BoxGeometry( 12, 12, 12 ), this.MaterialCubo1 );
+        this.Cubo.castShadow = true;
+        this.Cubo.receiveShadow = false;
+        this.Cubo.position.set(-12, 20, 20);
+        this.Escena.add(this.Cubo);
+        
+        this.Cubo2 = new THREE.Mesh(new THREE.BoxGeometry( 12, 12, 12 ), this.MaterialCubo2 );
+        this.Cubo2.castShadow = true;
+        this.Cubo2.receiveShadow = false;
+        this.Cubo2.position.set(12, 20, 20);
+        this.Escena.add(this.Cubo2);
+        
+        this.AnimacionRotarCubo = function(Cubo) {
+            if (typeof this.AniRotarCubo !== 'undefined') this.AniRotarCubo.Cancelar();
+            var CaraX = RandInt(5);
+            var CaraY = RandInt(5);
+            var CaraZ = RandInt(5);                       
+            this.AniRotarCubo = ObjetoAnimacion.Crear([
+                { 'Paso' : { x : this.Cubo.rotation.x, y : this.Cubo.rotation.y, z : this.Cubo.rotation.z }},
+                { 'Paso' : { x : CaraX * (Math.PI / 2), y : CaraY * (Math.PI / 2), z : CaraZ * (Math.PI / 2) }, Tiempo : 1750, FuncionTiempo : FuncionesTiempo.SinOut},
+            ], { "Repetir" : 0, FuncionActualizar : function(Indice, Valor) { this.Cubo.rotation[Indice] = Valor; }.bind(this) });            
+        };
+        
+        this.AnimacionRotarCubo2 = function(Cubo) {
+            if (typeof this.AniRotarCubo2 !== 'undefined') this.AniRotarCubo2.Cancelar();
+            var CaraX = RandInt(5);
+            var CaraY = RandInt(5);
+            var CaraZ = RandInt(5);                       
+            this.AniRotarCubo2 = ObjetoAnimacion.Crear([
+                { 'Paso' : { x : this.Cubo2.rotation.x, y : this.Cubo2.rotation.y, z : this.Cubo2.rotation.z }},
+                { 'Paso' : { x : CaraX * (Math.PI / 2), y : CaraY * (Math.PI / 2), z : CaraZ * (Math.PI / 2) }, Tiempo : 1750, FuncionTiempo : FuncionesTiempo.SinOut},
+            ], { "Repetir" : 0, FuncionActualizar : function(Indice, Valor) { this.Cubo2.rotation[Indice] = Valor; }.bind(this) });            
+        };        
+        
+        var tCubo1 = this.Test.AgregarLista("Cubo1");
+        tCubo1.Agregar({ "Padre" : this.MaterialCubo1, "Variable" : "opacity", "Min" : 0, "Max" : 1 });
+        tCubo1.Agregar({ "Padre" : this.MaterialCubo1, "Variable" : "shininess", "Min" : 0, "Max" : 100 });
+        tCubo1.Agregar({ "Padre" : this.Cubo, "Variable" : "castShadow", "Nombre" : "C1.castShadow" });
+        tCubo1.Agregar({ "Padre" : this.Cubo.position, "Variable" : "x", "Min" : -50, "Max" : 50, "Nombre" : "position.x" });
+        tCubo1.Agregar({ "Padre" : this.Cubo.position, "Variable" : "y", "Min" : -50, "Max" : 50, "Nombre" : "position.y" });
+        tCubo1.Agregar({ "Padre" : this.Cubo.position, "Variable" : "z", "Min" : -50, "Max" : 50, "Nombre" : "position.z" });
+        tCubo1.Agregar({ "Padre" : this.Cubo.rotation, "Variable" : "x", "Min" : 0, "Max" : Math.PI * 2, "Nombre" : "rotation.x" });
+        tCubo1.Agregar({ "Padre" : this.Cubo.rotation, "Variable" : "y", "Min" : 0, "Max" : Math.PI * 2, "Nombre" : "rotation.y" });
+        tCubo1.Agregar({ "Padre" : this.Cubo.rotation, "Variable" : "z", "Min" : 0, "Max" : Math.PI * 2, "Nombre" : "rotation.z" });
+        tCubo1.Agregar({ "Padre" : this, "Variable" : "AnimacionRotarCubo", "Nombre" : "Ani rotación" });
+
+        var tCubo2 = this.Test.AgregarLista("Cubo2");
+        tCubo2.Agregar({ "Padre" : this.MaterialCubo2, "Variable" : "opacity", "Min" : 0, "Max" : 1 });
+        tCubo2.Agregar({ "Padre" : this.MaterialCubo2, "Variable" : "shininess", "Min" : 0, "Max" : 100 });
+        tCubo2.Agregar({ "Padre" : this.Cubo2, "Variable" : "castShadow" });
+        tCubo2.Agregar({ "Padre" : this.Cubo2.position, "Variable" : "x", "Min" : -50, "Max" : 50, "Nombre" : "position.x"  });
+        tCubo2.Agregar({ "Padre" : this.Cubo2.position, "Variable" : "y", "Min" : -50, "Max" : 50, "Nombre" : "position.y"  });
+        tCubo2.Agregar({ "Padre" : this.Cubo2.position, "Variable" : "z", "Min" : -50, "Max" : 50, "Nombre" : "position.z" });
+        tCubo2.Agregar({ "Padre" : this.Cubo2.rotation, "Variable" : "x", "Min" : 0, "Max" : Math.PI * 2, "Nombre" : "rotation.x" });
+        tCubo2.Agregar({ "Padre" : this.Cubo2.rotation, "Variable" : "y", "Min" : 0, "Max" : Math.PI * 2, "Nombre" : "rotation.y" });
+        tCubo2.Agregar({ "Padre" : this.Cubo2.rotation, "Variable" : "z", "Min" : 0, "Max" : Math.PI * 2, "Nombre" : "rotation.z" });
+        tCubo2.Agregar({ "Padre" : this, "Variable" : "AnimacionRotarCubo2", "Nombre" : "Ani rotación" });
+        
+/*        this.Rotacion_Grados    = 0;
+        this.Rotacion_Avance    = 0.005;
+        this.Rotacion_Distancia = 20;
+        this.Camara.position.set(0, 0, this.Rotacion_Distancia);                */
+
+/*        this.PointLight = new THREE.PointLight( 0xffee88, 25000, 200, 10 );
+        this.PointLight.position.set( 0, 120, 70 );
+	this.PointLight.castShadow		= true;
+        //this.PointLight.shadowCameraFov = VIEW_ANGLE;
+//        this.PointLight.add(this.Cubo);
+        this.Escena.add(this.PointLight); */
+        
+        
+        
 
 /*        this.SpotLight2	= new THREE.SpotLight( 0xFFAAEE, 1 );
 	this.SpotLight2.position.set( 0, 80, 120 );
@@ -231,15 +374,11 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         var helperl = new THREE.CameraHelper(this.Luz.shadow.camera);
         this.Escena.add(helperl);*/
 
-        
+        this.AnimacionAvanceCamara();
 /*        this.AniAvanceCamara = new ObjetoAnimacion.Crear(Array(
             new ObjetoAnimacion.Paso({ Z : 500, Y: 150 }),
             new ObjetoAnimacion.Paso({ Z : 25, Y :  0}, 4250, 0, FuncionesTiempo.SinOut)
         ));*/
-        this.AniAvanceCamara = ObjetoAnimacion.Crear([
-            { 'Paso' : { z : 500, y: 150 }},
-            { 'Paso' : { z :  70, y:  35 }, 'Tiempo' : 2250, 'FuncionTiempo' : FuncionesTiempo.SinInOut }
-        ], { "Repetir" : 0, FuncionActualizar : function(Indice, Valor) { this.Camara.position[Indice] = Valor; }.bind(this) });
         
         
         this.AniCuboY1 = ObjetoAnimacion.Crear([
@@ -256,11 +395,13 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         
         
         this.AniPosLuz = ObjetoAnimacion.Crear([ 
-            { 'Paso' : { x : -20, y : 120, z : 70 }},
-            { 'Paso' : { x : 20, y : 110, z : 60 }, Tiempo : 12000, FuncionTiempo : FuncionesTiempo.SinInOut },
-            { 'Paso' : { x : -20, y : 120, z : 70 }, Tiempo : 12000, FuncionTiempo : FuncionesTiempo.SinInOut },
-        ], { Repetir : -1, FuncionActualizar : function(Indice, Valor) { this.PointLight.position[Indice] = Valor; }.bind(this) });
-/*        this.AniEncenderLuz = ObjetoAnimacion.Crear([
+            { 'Paso' : { x : -60, y : 120, z : 70 }},
+            { 'Paso' : { x : 60, y : 110, z : 60 }, Tiempo : 12000, FuncionTiempo : FuncionesTiempo.SinInOut },
+            { 'Paso' : { x : -60, y : 120, z : 70 }, Tiempo : 12000, FuncionTiempo : FuncionesTiempo.SinInOut },
+        ], { Repetir : -1, FuncionActualizar : function(Indice, Valor) { this.dirLight.position[Indice] = Valor; }.bind(this) });
+
+        this.AnimacionEncenderLuz();
+        /*this.AniEncenderLuz = ObjetoAnimacion.Crear([
             { 'Paso' : { Intensidad : 0 }},
             { 'Paso' : { Intensidad : 0.7, }, 'Tiempo' : 60, 'FuncionTiempo' : FuncionesTiempo.SinInOut, Retraso : 2000},
             { 'Paso' : { Intensidad : 0, },'Tiempo' : 60, 'FuncionTiempo' : FuncionesTiempo.SinInOut },
@@ -268,8 +409,8 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             { 'Paso' : { Intensidad : 0.1, },'Tiempo' : 50, 'FuncionTiempo' : FuncionesTiempo.SinInOut },
             { 'Paso' : { Intensidad : 0.7} , 'Tiempo' : 850, 'FuncionTiempo' : FuncionesTiempo.SinInOut },
             { 'Paso' : { Intensidad : 1} , 'Tiempo' : 2500, 'FuncionTiempo' : FuncionesTiempo.SinInOut }
-        ], { "Repetir" : 0, FuncionActualizar : function(Indice, Valor) { this.SpotLight.intensity = Valor; }.bind(this) });
-        */
+        ], { "Repetir" : 0, FuncionActualizar : function(Indice, Valor) { this.SpotLight.intensity = Valor; }.bind(this) });*/
+        
         
         this.Tiempo = Date.now();
         
@@ -279,7 +420,7 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     // Función que pinta cada frame de la animación
     Pintar          : function() {    
         ObjetoAnimacion.Actualizar(this.Tick);
-        
+        this.Test.ActualizarValores();
 /*        this.mirrorCube.visible = false;
 	this.mirrorCubeCamera.updateCubeMap( this.Context, this.Escena );
 	this.mirrorCube.visible = true;        */

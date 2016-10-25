@@ -28,3 +28,4 @@ function Rand(Max, Min) {
 function CInt(Decimal) {
     return Math.floor(Decimal);
 }
+

@@ -108,7 +108,7 @@ ObjetoAdmin = function() {
         };
         
         // Marco/desmarco el checkbox de las opciones administrativas (pausar banner)
-        $("#CH_PausarBanner").attr({ "marcado" : !ObjetoCanvas_Depurar });
+        $("#CH_PausarBanner").attr({ "marcado" : !$Base.ObjetoCanvas_Depurar });
         
         
         /* Re-emplazo la función $Base.ResetearTimerTiempoSesion por una versión para administradores */

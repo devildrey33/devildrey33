@@ -1,0 +1,186 @@
+/* ObjetoTest creado por Josep Antoni Bover Comas para devildrey33.es el 20/10/2016 
+    Este objeto está pensado para facilitarme la vida a la hora de probar código, consiste en un UI con varios controles, que permiten modificar variables y ejecutar funciones.
+    Inspirado en dat.GUI pero solo para asignar valores / ejecutar funciones, nada de refrescar valores
+    Ultima modificaión 24/10/2016
+*/
+
+/* NOTA no afegir aquest import en la versió de la web */
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext'); 
+
+.ObjetoTest {
+    position:fixed;
+    min-width:350px;
+    font-family:Inconsolata, monospace;
+    font-size:12px;
+    z-index:1000;
+}
+
+.ObjetoTest_Nombre, .ObjetoTest_Barra, .ObjetoTest_Bool, .ObjetoTest_Boton {
+    -webkit-user-select : none;
+    -moz-user-select    : none;
+    -ms-user-select     : none;
+    user-select         : none;
+}
+
+.ObjetoTest_Lista .ObjetoTest_Lista {
+    margin-left:4px;
+}
+
+.ObjetoTest_Contenedor {
+    position:relative;
+    height:22px;
+    overflow:hidden;        
+    transition:0.5s ease-out;
+}
+
+.ObjetoTest_Nombre, .ObjetoTest_NombreLista {
+    color:#DDDDDD;
+    height:16px;
+    display:inline-block;
+    width:calc(40% - 8px);
+    position:relative;
+}
+.ObjetoTest_Nombre {
+    padding:6px 2px 2px 2px;
+    top:-2px;
+    background:rgba(20,20,20,0.9);
+}
+.ObjetoTest_NombreLista {
+    padding:4px 2px 2px 4px;
+    font-weight: bold; 
+    font-size:14px; 
+    width:calc(100% - 10px);
+    transition:0.4s; 
+    background:rgba(30,30,30,0.9);
+    border-left:4px solid #ea504e;
+    text-shadow:1px 1px 1px #000;
+}
+
+.ObjetoTest_Contenedor[abierto=true] > .ObjetoTest_NombreLista {
+    background:#aa402e;
+    border-bottom-left-radius:3px;
+}
+
+.ObjetoTest_Contenedor > .ObjetoTest_NombreLista:hover { background:#ea504e; }
+
+
+.ObjetoTest_Contenedor[lista=true] > .ObjetoTest_Nombre {
+    width:calc(100% - 8px);
+}
+
+.ObjetoTest_InputString, .ObjetoTest_InputNum {
+    display:inline-block;    
+    height:17px;
+    padding:2px;
+    border:none;
+    background:#444;
+    color:#CCC;
+    outline:1px solid transparent;
+    transition:background 0.4s, color 0.4s;
+    position:relative;    
+    outline:none;
+    border:1px solid rgba(20,20,20,0.9);
+}
+
+.ObjetoTest_InputString:hover, .ObjetoTest_InputNum:hover {
+    background:#555;
+    color:#FFF;
+}
+
+.ObjetoTest_InputString:focus, .ObjetoTest_InputNum:focus {
+    background:#555;
+    color:#FFF;
+    outline:2px solid #ea504e;
+}
+
+.ObjetoTest_InputString {    
+    width:calc(60% - 2px);
+    top:-1px;
+}
+
+.ObjetoTest_InputNum {
+    text-align: right;
+    width:20%;
+    float:right;
+}
+
+.ObjetoTest_Barra {
+    width:calc(40% - 2px); /* 4 pixels por los paddings y 4 pixels por el margin-right */
+    height:24px;
+    display:inline-block;
+    position:absolute;
+    overflow:hidden; /* Por si se pasa del máximo */
+    background:transparent;
+    transition:0.4s;
+    border:none;
+    padding:0px;
+    border:1px solid rgba(20,20,20,0.9);
+    background:rgba(20,20,20,0.9);    
+    cursor:ew-resize;
+}
+.ObjetoTest_Barra:focus {
+    outline:none;
+}
+
+.ObjetoTest_Barra:hover {
+    background:#444;
+}
+
+.ObjetoTest_Barra::before, .ObjetoTest_Barra::after {
+    position:absolute;
+    top:6px;    
+    color:#CCC;
+    transition:0.4s;
+    z-index:200;
+    font-size:8px;
+}
+.ObjetoTest_Barra:hover::before, .ObjetoTest_Barra:hover::after {
+    color:#FFF;
+}
+
+.ObjetoTest_Barra::before {
+    left:2px;
+    content:attr(min);
+}
+.ObjetoTest_Barra::after {
+    right:2px;
+    content:attr(max);
+}
+
+.ObjetoTest_Barra > .ObjetoTest_Barra_Valor {
+    height:100%;
+    position:relative;
+    transition:background 0.4s;
+    background:#aa402e;
+}
+
+.ObjetoTest_Barra:hover > .ObjetoTest_Barra_Valor {
+    background:#ea504e;
+}
+
+.ObjetoTest_Boton, .ObjetoTest_Bool {    
+    text-align:center;
+    color:#DDDDDD;
+    height:16px;
+    padding:5px 2px 3px 2px;
+    background:#222222;
+    display:inline-block;
+    cursor:pointer;
+    transition:0.4s;
+    position:relative;
+    border:1px solid rgba(20,20,20,0.9);
+}
+
+.ObjetoTest_Boton { width:calc(60% - 2px); }
+.ObjetoTest_Bool {  width:calc(30% - 4px); }
+/*.ObjetoTest_Bool:nth-child(3) {  border-left:2px solid rgba(20,20,20,0.9); }*/
+
+
+.ObjetoTest_Bool[marcado=true] {
+    background:#aa402e;
+}
+
+.ObjetoTest_Boton:hover, .ObjetoTest_Bool:hover {
+    background:#ea504e;
+    /*outline:1px solid #F00;*/
+}

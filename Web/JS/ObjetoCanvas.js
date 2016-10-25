@@ -88,20 +88,22 @@ ObjetoCanvas = function(Opciones) {
     try {
         if (this.OpcionesCanvas.Tipo.toLowerCase() === '2d') {
             this.Context    = this.Canvas.getContext("2d");                         // Contexto 2D
+            console.log("ObjetoCanvas iniciado en modo 2d");
         }
         else if (this.OpcionesCanvas.Tipo.toLowerCase() === 'three') {
             if (this.PixelRatio() > 1) { // El antialias no va con el samsung galaxy alpha...
                this.Context = new THREE.WebGLRenderer({ canvas : this.Canvas });    // Contexto THREE.JS
+                console.log("ObjetoCanvas iniciado en modo THREE sin antialias");
             }
             else {
                this.Context = new THREE.WebGLRenderer({ canvas : this.Canvas, antialias : true });    // Contexto THREE.JS
+                console.log("ObjetoCanvas iniciado en modo THREE con antialias");
             }
             this.Context.setClearColor(0x312E35, 1);    // Color del fondo
         }
     }
     catch ( error ) {
-/*        document.getElementById("Cabecera_Cargando").innerHTML = "Error iniciando WebGL : " + error + "<br />" + 
-                                                                 "Si estas en chrome abre el enlace 'chrome://gpu', y vuelve atrás para re-cargar este ejemplo.";*/
+        document.getElementById("Cabecera_Cargando").innerHTML = "Error iniciando WebGL : " + error;                                                                 
         return false;
     }    
     

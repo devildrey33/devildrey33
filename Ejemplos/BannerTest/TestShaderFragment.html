@@ -18,22 +18,53 @@
         <script src="/Web/JS/3rdParty/three-0.79.min.js"></script>
         <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
         <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
+
 <script id="VertexShader" type="x-shader/x-vertex">
     uniform float Tiempo;
     void main() {
         gl_Position = projectionMatrix *
                       modelViewMatrix *
-                      vec4(position.x, position.y + (sin(Tiempo)), position.z ,1.0);
+                      vec4(position.x, position.y + (sin(Tiempo) * 2.0), position.z ,1.0);
     }    
 </script>        
-
 <script id="FragmentShader" type="x-shader/x-fragment">
     uniform float Tiempo;
-    void main() {  // R, G, B, A
-        gl_FragColor = vec4(0.5 + (sin(Tiempo)), 0.0,  0.0, 0.5); 
+    uniform vec2 resolution;
+    
+
+    float ball(vec2 p, float fx, float fy, float ax, float ay) {
+        vec2 r = vec2(p.x + cos(Tiempo * fx) * ax, p.y + sin(Tiempo * fy) * ay);	
+        return 0.03 / length(r);
+    }
+    
+    void main() { // R, G, B, A
+        
+        
+        vec2 q = gl_FragCoord.xy / resolution.xy;
+        vec2 p = -1.0 + 2.0 * q;	
+        p.x	*= resolution.x / resolution.y;
+
+        float col = 0.0;
+        
+//        vec2 r = ;
+/*    col += ball(p, 0.10, 0.20, 0.1, 0.2);
+    col += ball(p, 0.15, 0.25, 0.2, 0.3);
+    col += ball(p, 0.20, 0.30, 0.3, 0.4);
+    col += ball(p, 0.25, 0.35, 0.4, 0.5);
+    col += ball(p, 0.30, 0.40, 0.5, 0.6);	
+    col += ball(p, 0.35, 0.5, 0.6, 0.7);*/
+        col += ball(p, 1.0, 2.0, 0.1, 0.2);
+        col += ball(p, 1.5, 2.5, 0.2, 0.3);
+        col += ball(p, 2.0, 3.0, 0.3, 0.4);
+        col += ball(p, 2.5, 3.5, 0.4, 0.5);
+        col += ball(p, 3.0, 4.0, 0.5, 0.6);	
+        col += ball(p, 1.5, 0.5, 0.6, 0.7);
+        
+        gl_FragColor = vec4(col, col * 0.3, col * 0.3, 0.5);
+       // gl_FragColor = vec4(0.5 + (sin(Tiempo)), 0.0,  0.0, 0.5); 
     }    
 </script>        
-
+        
         
 <!-- Código javascript --> 
 <script type="text/javascript">
@@ -57,10 +88,28 @@ var NUEVOCANVASTHREESHADERS = function() {
     this.Cargando(false);
 };
 
-
 NUEVOCANVASTHREESHADERS.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     constructor     : NUEVOCANVASTHREESHADERS, 
     // Función que se llama al redimensionar el documento
+    Redimensionar   : function() {    },
+    // Función que se llama al hacer scroll en el documento    
+    Scroll          : function() {    },
+    // Función que se llama al mover el mouse por el canvas
+    MouseMove       : function(Evento) { },
+    // Función que se llama al presionar un botón del mouse por el canvas
+    MousePresionado : function(Evento) { },
+    // Función que se llama al soltar un botón del mouse por el canvas
+    MouseSoltado    : function(Evento) { },
+    // Función que se llama al entrar con el mouse en el canvas
+    MouseEnter      : function(Evento) { },
+    // Función que se llama al salir con el mouse del canvas
+    MouseLeave      : function(Evento) { },
+    // Función que se llama al presionar una tecla
+    TeclaPresionada : function(Evento) { },
+    // Función que se llama al soltar una tecla
+    TeclaSoltada    : function(Evento) { },
+    
+    
     Iniciar         : function() {
         this.Escena = new THREE.Scene();
         this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);
@@ -73,7 +122,10 @@ NUEVOCANVASTHREESHADERS.prototype = Object.assign( Object.create(ObjetoCanvas.pr
         this.Escena.add(this.Parrilla);
 
         // Variables para el shader (para este ejemplo solo se requiere un valor de Tiempo)
-        this.Uniforms = { Tiempo : { "type" : "1f", value : 0 } };
+        this.Uniforms = { 
+            Tiempo : { "type" : "1f", value : 0 }, 
+            resolution : { "type" : "1f", value : new Float32Array([this.Ancho, this.Alto]) } 
+        };
 
         var MaterialShader = new THREE.ShaderMaterial({
             uniforms       : this.Uniforms,
@@ -82,7 +134,7 @@ NUEVOCANVASTHREESHADERS.prototype = Object.assign( Object.create(ObjetoCanvas.pr
             transparent    : true
         });
         // Buffer con la geometría de un cubo (se requiere que sea un buffer para aplicarlo al shader)
-        var CuboGeo = new THREE.BoxBufferGeometry( 4, 4, 4 );
+        var CuboGeo = new THREE.BoxBufferGeometry( 16, 16, 16 );
         // Creo el cubo con los datos del shader
         this.Cubo = new THREE.Mesh(
             CuboGeo,

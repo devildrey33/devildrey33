@@ -29,7 +29,8 @@ return array(
                                     "/CSS/Media.css",
                                     "/CSS/Codemirror.css",
                                     "/CSS/Codemirror-SimpleScrollBar.css",
-                                    "/CSS/Tablas.css"
+                                    "/CSS/Tablas.css",
+                                    "/CSS/ObjetoTest.css"
                 ),				  
     /* Archivos JS */
     'js' => array(
@@ -48,12 +49,13 @@ return array(
 //                                    "/JS/Banner/Banner_MatrixLluviaHexadecimal.js",
                                     "/JS/ObjetoCanvas/Banner_AdiestramientoCubos3D.js",
                                     "/JS/ObjetoCanvas/Banner_WormHole.js",
-                                    "/JS/ObjetoCanvas/Banner_Anillos.js",
+//                                    "/JS/ObjetoCanvas/Banner_Anillos.js",
                                     "/JS/ObjetoCanvas/Banner_Sinusoidal.js",
                                     "/JS/ObjetoCanvas/Banner_GeometriaBasica.js",
                                     "/JS/ObjetoCanvas/Banner_EsferaVShader.js",
+                                    "/JS/ObjetoCanvas/Banner_ReunionDeCirculos.js",
                                     "/JS/ObjetoCanvas/SobreDevildrey33.js",
-//                                    "/JS/3rdParty/Stats.js" // FPS
+                                    "/JS/ObjetoTest.js"
                 )				  				  
 );
 

@@ -23,7 +23,8 @@ ObjetoCanvas = function(Opciones) {
         'Alto'          : 'Auto',
         'Entorno'       : 'Normal',
         'MostrarFPS'    : true,
-        'ElementoRaiz'  : document.body
+        'ElementoRaiz'  : document.body,
+        'Pausar'        : true              // Pausar si el canvas está en segundo plano
     };
     // Copio las nuevas opciones encima de las opciones por defecto
     if (typeof Opciones === 'object') {
@@ -86,20 +87,22 @@ ObjetoCanvas = function(Opciones) {
     try {
         if (this.OpcionesCanvas.Tipo.toLowerCase() === '2d') {
             this.Context    = this.Canvas.getContext("2d");                         // Contexto 2D
+            console.log("ObjetoCanvas iniciado en modo 2d");
         }
         else if (this.OpcionesCanvas.Tipo.toLowerCase() === 'three') {
             if (this.PixelRatio() > 1) { // El antialias no va con el samsung galaxy alpha...
                this.Context = new THREE.WebGLRenderer({ canvas : this.Canvas });    // Contexto THREE.JS
+                console.log("ObjetoCanvas iniciado en modo THREE sin antialias");
             }
             else {
                this.Context = new THREE.WebGLRenderer({ canvas : this.Canvas, antialias : true });    // Contexto THREE.JS
+                console.log("ObjetoCanvas iniciado en modo THREE con antialias");
             }
             this.Context.setClearColor(0x312E35, 1);    // Color del fondo
         }
     }
     catch ( error ) {
-        document.getElementById("Cabecera_Cargando").innerHTML = "Error iniciando WebGL : " + error + "<br />" + 
-                                                                 "Si estas en chrome abre el enlace 'chrome://gpu', y vuelve atrás para re-cargar este ejemplo.";
+        document.getElementById("Cabecera_Cargando").innerHTML = "Error iniciando WebGL : " + error;                                                                 
         return false;
     }    
     
@@ -288,7 +291,7 @@ ObjetoCanvas.prototype.EventoRedimensionar = function() {
 // - Hay que detectar cuando la animación no es visible y cuando la ventana no tiene el foco para pausar la animación
 // - En modo depuración nunca se hace la pausa (esto es para poder depurar el Three.js en el Three.js.inspector)
 ObjetoCanvas.prototype.Pausa = function() {
-    if (this.RAFID !== 0 && ObjetoCanvas_Depurar === false) {
+    if (this.RAFID !== 0 && this.OpcionesCanvas.Pausar === true) {
         document.getElementById("Cabecera").setAttribute("animar", false);
         console.log("ObjetoCanvas.Pausa");
         window.cancelAnimationFrame(this.RAFID); 
@@ -337,7 +340,6 @@ ObjetoCanvas.prototype.FPS = function() {
         this.FPS_Contador ++;
     }
 };
-
 
 ////////////////////////////////////////////////////////////////////////////
 // Objeto que crea y contiene un canvas 2d para utilizarlo de back buffer //

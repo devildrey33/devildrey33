@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+    Logo para mostrar en los ejemplos de codepen.io
+-->
+<html>
+    <head>
+        <title>Test ObjetoTest</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+<!--        <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoTest.css' />        
+        <script src="/Ejemplos/Utils/ObjetoTest.js"></script> -->
+
+        <link rel='stylesheet' href='/Web/CSS/ObjetoTest.css' />        
+        <script src="/Web/JS/ObjetoTest.js"></script>
+
+        <script>
+            window.addEventListener('load', function() {
+                var Test = new ObjetoTest({ right : "10px" });
+                window.texto = "mi texto";
+                window.numero = 0.5;
+                window.numerolargolargo = 10000.33;
+                window.bool = true;
+                window.funcion = function() { alert("funcion"); };
+                Test.Agregar({  "Padre" : window, "Variable" : "texto" });
+                Test.Agregar({  "Padre" : window, "Variable" : "funcion" });
+                Test.Agregar({  "Padre" : window, "Variable" : "texto" });
+                Test.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : 0.0, "Max" : 1.0 });
+                Test.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+                Test.Agregar({  "Padre" : window, "Variable" : "funcion" });
+                Test.Agregar({  "Padre" : window, "Variable" : "numerolargolargo", "Min" : 0, "Max" : 10000.33  });
+                Test.Agregar({  "Padre" : window, "Variable" : "texto" });
+                var l = Test.AgregarLista("Nueva lista");
+                l.Agregar({  "Padre" : window, "Variable" : "texto" });
+                l.Agregar({  "Padre" : window, "Variable" : "funcion" });                
+                var l2 = l.AgregarLista("Nueva sublista");
+                l2.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+                l2.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+                l2.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+                l2.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+                var l3 = l.AgregarLista("Nueva sublista");
+                l3.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+                l3.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+                l3.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+                l3.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+
+                Test.Agregar({  "Padre" : window, "Variable" : "funcion" });                
+                Test.Agregar({  "Padre" : window, "Variable" : "bool", "True" : "Encender", "False" : "Apagar" });
+
+                var ll = Test.AgregarLista("Nueva lista");
+                ll.Agregar({  "Padre" : window, "Variable" : "texto" });
+                ll.Agregar({  "Padre" : window, "Variable" : "funcion" });                
+                var ll2 = ll.AgregarLista("Nueva sublista");
+                ll2.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+                ll2.Agregar({  "Padre" : window, "Variable" : "texto" });
+                ll2.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+                ll2.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+                var lll2 = ll2.AgregarLista("Nueva sublista");
+                lll2.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+                lll2.Agregar({  "Padre" : window, "Variable" : "texto" });
+                lll2.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+                lll2.Agregar({  "Padre" : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+        
+                
+            });            
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
