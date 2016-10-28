@@ -137,15 +137,26 @@ $Lab = new function() {
         // Asigno la altura en pixeles del directorio por abrir
         var Altura = Animacion.css("height");
         var AltoPadre = 0;
-        if (typeof(SoloAbrir) === "undefined") {
-            if (parseInt(Altura) === 0)   { Animacion.css({ "height" : Directorio.height()});   AltoPadre = Directorio.height();  }
-            else                          { Animacion.css({ "height" : 0 });                    AltoPadre = -Directorio.height();  }
-        }
-        else {
+//        var Diferencia = 0;
+//        if (typeof(SoloAbrir) === "undefined") {
+            if (parseInt(Altura) === 0)   { 
+                Animacion.css({ "height" : Directorio.height()});   
+                AltoPadre = Directorio.height();
+//                Diferencia = parseInt(Directorio.height());
+            }
+            else                          { 
+                if (typeof(SoloAbrir) === "undefined") {
+                    Animacion.css({ "height" : 0 });         
+                    AltoPadre = -Directorio.height(); 
+//                    Diferencia = -parseInt(Directorio.height());
+                }
+                else { return; }
+            }
+/*        else { // checkbox
             if (parseInt(Altura) === 0)   { Animacion.css({ "height" : Directorio.height()});   AltoPadre = Directorio.height(); }
             else { return; }
-        }
-
+        }*/
+        
         Padre = Objeto.parent().parent().parent();
         while (Padre !== null) {
             if (Padre.attr("class") !== "Lab_Directorio_Animacion") break;

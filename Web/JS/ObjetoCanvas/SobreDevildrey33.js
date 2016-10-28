@@ -45,11 +45,15 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     TeclaPresionada : function(Evento) { },
     // Función que se llama al soltar una tecla
     TeclaSoltada    : function(Evento) { },
+    // Función que se llama al pausar el banner
+    Pausa           : function() { this.Animaciones.Pausa(); },
+    // Función que se llama al reanudar el banner
+    Reanudar        : function() { this.Animaciones.Reanudar(); },
     
-//    Animaciones     : new ObjetoAnimacion(),
+    Animaciones     : new ObjetoAnimacion(),
     
     Iniciar         : function() {
-        this.Test = new ObjetoTest({ "bottom" : "10px", "right" : "10px" });
+        this.Test = new ObjetoTest({ css : { "bottom" : "10px", "right" : "10px" } });
         
 	this.Context.shadowMap.enabled	= true;
         // Antialias para las sombras
@@ -69,10 +73,13 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         this.Escena.add(this.Camara);
         this.AnimacionAvanceCamara = function() {
             if (typeof this.AniAvanceCamara !== 'undefined') this.AniAvanceCamara.Terminar();
-            this.AniAvanceCamara = ObjetoAnimacion.Crear([
+            this.AniAvanceCamara = this.Animaciones.Crear([
                 { 'Paso' : { z : 500, y: 150 }},
                 { 'Paso' : { z :  70, y:  35 }, 'Tiempo' : 2250, 'FuncionTiempo' : FuncionesTiempo.SinInOut }
-            ], { "Repetir" : 0, FuncionActualizar : function(Indice, Valor) { this.Camara.position[Indice] = Valor; }.bind(this) });
+            ], { "Repetir" : 0, FuncionActualizar : function(Valores) { 
+                    this.Camara.position.y = Valores.y; 
+                    this.Camara.position.z = Valores.z; 
+                }.bind(this) });
         }        
         
         var tcam = this.Test.AgregarLista("Cámara");
@@ -225,15 +232,15 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
 
         this.AnimacionEncenderLuz = function() {
             if (typeof this.AniEncenderLuz !== 'undefined') this.AniEncenderLuz.Terminar();
-            this.AniEncenderLuz = ObjetoAnimacion.Crear([
+            this.AniEncenderLuz = this.Animaciones.Crear([
                 { 'Paso' : { Intensidad : 0 }},
                 { 'Paso' : { Intensidad : 0.7, }, 'Tiempo' : 60, 'FuncionTiempo' : FuncionesTiempo.SinInOut, 'Retraso' : 2000 },
                 { 'Paso' : { Intensidad : 0, },'Tiempo' : 60, 'FuncionTiempo' : FuncionesTiempo.SinInOut },
                 { 'Paso' : { Intensidad : 0.6, }, 'Tiempo' : 60, 'FuncionTiempo' : FuncionesTiempo.SinInOut, },
                 { 'Paso' : { Intensidad : 0.1, },'Tiempo' : 50, 'FuncionTiempo' : FuncionesTiempo.SinInOut },
-                { 'Paso' : { Intensidad : 0.7} , 'Tiempo' : 850, 'FuncionTiempo' : FuncionesTiempo.SinInOut },
+                { 'Paso' : { Intensidad : 0.7} , 'Tiempo' : 3850, 'FuncionTiempo' : FuncionesTiempo.SinInOut },
                 { 'Paso' : { Intensidad : 1} , 'Tiempo' : 2500, 'FuncionTiempo' : FuncionesTiempo.SinInOut }
-            ], { "Repetir" : 0, FuncionActualizar : function(Indice, Valor) { this.SpotLight.intensity = Valor; }.bind(this) });            
+            ], { "Repetir" : 0, FuncionActualizar : function(Valores) { this.SpotLight.intensity = Valores.Intensidad; }.bind(this) });            
         };
         
         var tspl = tluces.AgregarLista("SpotLight");
@@ -299,10 +306,14 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             var CaraX = RandInt(5);
             var CaraY = RandInt(5);
             var CaraZ = RandInt(5);                       
-            this.AniRotarCubo = ObjetoAnimacion.Crear([
+            this.AniRotarCubo = this.Animaciones.Crear([
                 { 'Paso' : { x : this.Cubo.rotation.x, y : this.Cubo.rotation.y, z : this.Cubo.rotation.z }},
                 { 'Paso' : { x : CaraX * (Math.PI / 2), y : CaraY * (Math.PI / 2), z : CaraZ * (Math.PI / 2) }, Tiempo : 1750, FuncionTiempo : FuncionesTiempo.SinOut},
-            ], { "Repetir" : 0, FuncionActualizar : function(Indice, Valor) { this.Cubo.rotation[Indice] = Valor; }.bind(this) });            
+            ], { "Repetir" : 0, FuncionActualizar : function(Valores) { 
+                    this.Cubo.rotation.x = Valores.x; 
+                    this.Cubo.rotation.x = Valores.y; 
+                    this.Cubo.rotation.x = Valores.z; 
+                }.bind(this) });            
         };
         
         this.AnimacionRotarCubo2 = function(Cubo) {
@@ -310,10 +321,14 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             var CaraX = RandInt(5);
             var CaraY = RandInt(5);
             var CaraZ = RandInt(5);                       
-            this.AniRotarCubo2 = ObjetoAnimacion.Crear([
+            this.AniRotarCubo2 = this.Animaciones.Crear([
                 { 'Paso' : { x : this.Cubo2.rotation.x, y : this.Cubo2.rotation.y, z : this.Cubo2.rotation.z }},
                 { 'Paso' : { x : CaraX * (Math.PI / 2), y : CaraY * (Math.PI / 2), z : CaraZ * (Math.PI / 2) }, Tiempo : 1750, FuncionTiempo : FuncionesTiempo.SinOut},
-            ], { "Repetir" : 0, FuncionActualizar : function(Indice, Valor) { this.Cubo2.rotation[Indice] = Valor; }.bind(this) });            
+            ], { "Repetir" : 0, FuncionActualizar : function(Valores) { 
+                    this.Cubo2.rotation.x = Valores.x; 
+                    this.Cubo2.rotation.x = Valores.y; 
+                    this.Cubo2.rotation.x = Valores.z; 
+                }.bind(this) });            
         };        
         
         var tCubo1 = this.Test.AgregarLista("Cubo1");
@@ -381,24 +396,28 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         ));*/
         
         
-        this.AniCuboY1 = ObjetoAnimacion.Crear([
+        this.AniCuboY1 = this.Animaciones.Crear([
             { 'Paso' : { y: 35 }},
             { 'Paso' : { y: 40 }, Tiempo : 750, FuncionTiempo : FuncionesTiempo.SinOut},
             { 'Paso' : { y: 35 }, Tiempo : 750, FuncionTiempo : FuncionesTiempo.SinIn},
-        ], { "Repetir" : -1, FuncionActualizar : function(Indice, Valor) { this.Cubo.position[Indice] = Valor; }.bind(this) });
+        ], { "Repetir" : -1, FuncionActualizar : function(Valores) { this.Cubo.position.y = Valores.y; }.bind(this) });
         
-        this.AniCuboY2 = ObjetoAnimacion.Crear([
+        this.AniCuboY2 = this.Animaciones.Crear([
             { 'Paso' : { y: 35 }},
             { 'Paso' : { y: 40 }, Tiempo : 750, FuncionTiempo : FuncionesTiempo.SinOut, Retraso : 375},
             { 'Paso' : { y: 35 }, Tiempo : 750, FuncionTiempo : FuncionesTiempo.SinIn},
-        ], { "Repetir" : -1, FuncionActualizar : function(Indice, Valor) { this.Cubo2.position[Indice] = Valor; }.bind(this) });
+        ], { "Repetir" : -1, FuncionActualizar : function(Valores) { this.Cubo2.position.y = Valores.y; }.bind(this) });
         
         
-        this.AniPosLuz = ObjetoAnimacion.Crear([ 
+        this.AniPosLuz = this.Animaciones.Crear([ 
             { 'Paso' : { x : -60, y : 120, z : 70 }},
             { 'Paso' : { x : 60, y : 110, z : 60 }, Tiempo : 12000, FuncionTiempo : FuncionesTiempo.SinInOut },
             { 'Paso' : { x : -60, y : 120, z : 70 }, Tiempo : 12000, FuncionTiempo : FuncionesTiempo.SinInOut },
-        ], { Repetir : -1, FuncionActualizar : function(Indice, Valor) { this.dirLight.position[Indice] = Valor; }.bind(this) });
+        ], { Repetir : -1, FuncionActualizar : function(Valores) { 
+            this.dirLight.position.x = Valores.x; 
+            this.dirLight.position.y = Valores.y; 
+            this.dirLight.position.z = Valores.z; 
+        }.bind(this) });
 
         this.AnimacionEncenderLuz();
         /*this.AniEncenderLuz = ObjetoAnimacion.Crear([
@@ -419,7 +438,7 @@ SobreDevildrey33.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     
     // Función que pinta cada frame de la animación
     Pintar          : function() {    
-        ObjetoAnimacion.Actualizar(this.Tick);
+        this.Animaciones.Actualizar(this.Tick);
         this.Test.ActualizarValores();
 /*        this.mirrorCube.visible = false;
 	this.mirrorCubeCamera.updateCubeMap( this.Context, this.Escena );

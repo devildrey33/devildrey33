@@ -4,42 +4,85 @@
     Ultima modificaión 24/10/2016
 */
 
-var ObjetoTest = function(Opciones) {    
-    this.Variables = [];
-    this.MousePresionado = null;
+/* Opciones por defecto
+Opciones { 
+    css            : { // Especificar el css al estilo JavaScript, es decir sin barras separadoras, y poniendo la mayuscula de separador
+        top        : 'auto',
+        left       : 'auto',
+        riguht     : 'auto',
+        bottom     : 'auto'
+        position   : 'fixed';
+        minWidth   : '350px';
+        fontFamily : 'Inconsolata, monospace';
+        fontSize   : '12px';
+        zIndex     : '1000';
+    },
+    AutoActualizar : false // Si es true, se creará un temporizador cada 16ms (1000ms / 60fps) que actualizará todos los valores.
+}*/
 
-    // Contenedores para el UI
-    this.ControlLista = document.createElement('div');
-    this.ControlLista.className = "ObjetoTest";
-    if (typeof Opciones !== 'undefined') {
-        if (typeof Opciones["top"] !== 'undefined')    { this.ControlLista.style.top = Opciones['top']; }
-        if (typeof Opciones["left"] !== 'undefined')   { this.ControlLista.style.left = Opciones['left']; }
-        if (typeof Opciones["right"] !== 'undefined')  { this.ControlLista.style.right = Opciones['right']; }
-        if (typeof Opciones["bottom"] !== 'undefined') { this.ControlLista.style.bottom = Opciones['bottom']; }
-    }
-    
-    if (document.body.childNodes.length > 0) {
-        document.body.insertBefore(this.ControlLista, document.body.childNodes[0]);
-    }
-    else {
-        document.body.appendChild(this.ControlLista);
-    }
-    this.Lista = new ObjetoTest_Lista(this.ControlLista, this, false);
-    
-        
-    this.Agregar = function(Opciones) {
-        return this.Lista.Agregar(Opciones);
+var ObjetoTest = function(Opciones) {        
+    this.AutoActualizar_Iniciar = function() {
+        this.AutoActualizar_Cancelar();
+        this.Timer_AutoActualizar = setTimeout(this.ActualizarValores.bind(this), 1000 / 60);
     };
     
-    this.AgregarLista = function(Nombre) {
-        return this.Lista.AgregarLista(Nombre);
-    };
-        
-    this.ActualizarValores = function() {
-        for (var i = 0; i < this.Variables.length; i++) {
-            this.Variables[i].Actualizar();
+    this.AutoActualizar_Cancelar = function() {
+        if (this.Timer_AutoActualizar !== 0) {
+            clearInterval(this.Timer_AutoActualizar);
+            this.Timer_AutoActualizar = 0;
         }
     };
+    
+    this.Iniciar = function(Opciones) {
+        this.Variables = [];
+        this.MousePresionado = null;
+        this.AutoActualizar = false;
+        // Contenedores para el UI
+        this.ControlLista = document.createElement('div');
+        this.ControlLista.className = "ObjetoTest";
+        if (typeof Opciones !== 'undefined') {
+            if (typeof Opciones.css !== 'undefined') {
+                for (var Indice in Opciones.css) {
+                    this.ControlLista.style[Indice] = Opciones.css[Indice];
+                }
+            }
+/*            if (typeof Opciones["top"] !== 'undefined')             { this.ControlLista.style.top = Opciones['top']; }
+            if (typeof Opciones["left"] !== 'undefined')            { this.ControlLista.style.left = Opciones['left']; }
+            if (typeof Opciones["right"] !== 'undefined')           { this.ControlLista.style.right = Opciones['right']; }
+            if (typeof Opciones["bottom"] !== 'undefined')          { this.ControlLista.style.bottom = Opciones['bottom']; }*/
+            if (typeof Opciones["AutoActualizar"] !== 'undefined')  { this.AutoActualizar = Opciones["AutoActualizar"]; }
+        }
+
+
+        if (document.body.childNodes.length > 0) {
+            document.body.insertBefore(this.ControlLista, document.body.childNodes[0]);
+        }
+        else {
+            document.body.appendChild(this.ControlLista);
+        }
+        this.Lista = new ObjetoTest_Lista(this.ControlLista, this, false);
+
+
+        this.Agregar = function(Opciones) {
+            return this.Lista.Agregar(Opciones);
+        };
+
+        this.AgregarLista = function(Nombre) {
+            return this.Lista.AgregarLista(Nombre);
+        };
+
+        this.ActualizarValores = function() {
+            for (var i = 0; i < this.Variables.length; i++) {
+                this.Variables[i].Actualizar();
+            }
+        };
+
+        if (this.AutoActualizar === true) {
+            this.AutoActualizar_Iniciar();
+        }        
+    };
+    
+    this.Iniciar(Opciones);
 };
 
 var ObjetoTest_Lista = function(ControlPadre, ObjetoTestPadre, Visible) {

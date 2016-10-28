@@ -86,6 +86,12 @@
 </div>
 </div>
 <div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/MultiCubo.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/MultiCubo.html'>MultiCubo.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
 <div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/NuevoCanvas2D.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/BannerTest/NuevoCanvas2D.html'>NuevoCanvas2D.html</a>
@@ -101,6 +107,12 @@
 <div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/NuevoCanvasThreeShader.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/BannerTest/NuevoCanvasThreeShader.html'>NuevoCanvasThreeShader.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/ReunionDeCirculos.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/ReunionDeCirculos.html'>ReunionDeCirculos.html</a>
 </div>
 </div>
 <div class='Lab_Item'>

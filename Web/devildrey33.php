@@ -933,7 +933,7 @@ class devildrey33 {
         else {
             echo "<script src='".Base::URL_JS()."3rdParty/three-0.79.min.js'></script>".Intro();            
         }
-        echo "<script src='".Base::URL_JS()."3rdParty/tweenjs-0.6.2.min.js'></script>".Intro();
+//        echo "<script src='".Base::URL_JS()."3rdParty/tweenjs-0.6.2.min.js'></script>".Intro();
 //        echo "<script src='".Base::URL_JS()."3rdParty/stats.min.js'></script>".Intro();
         
         echo "<script src='".Base::URL_Cache()."EntradasBlog.js'></script>".Intro();

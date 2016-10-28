@@ -44,6 +44,7 @@ body {
 
 i { background-color: rgba(255,255,255,0.8); }
 a { 
+    cursor          : pointer; /* las etiquetas a sin href no tienen el cursor:pointer (necesario para etiquetas a con código javascript en el onclick)*/
     color           : rgb(234,80,78); 
     text-decoration : none; 
     text-shadow     : 0px 0px 1px rgba(234,80,78, 0.6); 
@@ -80,7 +81,7 @@ hr {
     height     : auto !important;
 }
 
-body[Tipo=Indice] > #MarcoNavegacion, body[Tipo=Lab] > #MarcoNavegacion, body[Tipo=LabError] > #MarcoNavegacion {
+body[Tipo=Indice] > #MarcoNavegacion, body[Tipo=Lab] > #MarcoNavegacion, body[Tipo=LabError] > #MarcoNavegacion, body[Tipo=Error404] > #MarcoNavegacion {
     background : #29272C;
 }
 

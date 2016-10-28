@@ -160,7 +160,7 @@ $Base = new function() {
     /* Función para cargar un banner, si se especifica pos, se cargara el banner de esa posición, en caso contrario se cargara un banner aleatorio. */
     /* -1 es prev y -2 es next */
     this.Banner = function(Pos) {
-        if ($Banner !== null) { 
+        if ($Banner !== null) {             
             $Banner.Terminar();
         }
         
@@ -175,8 +175,10 @@ $Base = new function() {
                                 Banner_Sinusoidal,
                                 Banner_GeometriaBasica,
                                 Banner_EsferaVShader,
-                                Banner_ReunionDeCirculos
+                                Banner_ReunionDeCirculos,
+                                Banner_MultiCubo
                             ];                
+                            
         var fPos = 0;
         // Si no se ha especificado ninguna posición generamos una aleatória
         if (typeof (Pos === "undefined")) { fPos = RandInt(Banner_Lista.length); }
@@ -476,11 +478,15 @@ $Base = new function() {
             nURL = "";
         }*/
         // Web / Admin                || Sobre el autor                      || Faq barba                     || Página de error 404
-        if (cURL.indexOf("web/") > -1 || cURL.indexOf("sobre-el-autor") > -1 || cURL.indexOf("faqbarba") > -1 || document.getElementById('Error404') !== null) { 
+        if (cURL.indexOf("web/") > -1 || cURL.indexOf("sobre-el-autor") > -1 || cURL.indexOf("faqbarba") > -1) { 
             Ret["TipoPagina"] = "Simple";
             nURL = "";
         }
         // Página de error 404
+        if (document.getElementById('Error404') !== null) {
+            Ret["TipoPagina"] = "Error404";
+            nURL = "";            
+        }
 
         $("body").attr({ "Tipo" : Ret["TipoPagina"] });
 

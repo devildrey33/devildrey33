@@ -57,6 +57,13 @@ Millores de la web :
  V  - En el tema d'administració s'ha de posar un timer de 30 minuts per elminiar el status admin. Aquest timer s'ha de renovar cada cop que s'utilitzi un CargarURL o un cmd. (tambè afegit a les peticións ajaxs dels comentaris i el lab)
  V      - No crec que sigui exacte però serà bastant aproximat i ames acabara de tancar tot el tema que vaig re-escriure per advertir del timeout en php en tots els cmd.
  V  - Actualitzat a jQuery 3.1.1 (en fase de test)
+ V  - ObjetoAnimacion per crear animacións de temps
+ V      - Ajustada "FuncionActualizar" per que salti un cop per actualització i no un cop per cada valor. Abans tenia 2 parametres : Indice , Valor. Ara nomes te un parametre : Valores.
+ V      - El objeto animación ja no es estatic, s'ha de crear una instancia.
+ V      - Afegides funcións per pausar i seguir l'animació (Pausar, Reanudar). Bàsicament refresco la variable _UltimoTick de cada animació al tick que obtinc en la funció Reanudar.
+ V  - ObjetoTest per crear tests de variables / funcions 
+ V       - s'ha de fer un auto actualizar amb un timer, especificant-ho per les opcions inicials (NTY)!!
+ V  - Reimplementada una pàgina d'error 404 simple, aixi ja no haig de carregar el tween.js per defecte...... ni mai mes xd (ObjetoAnimacion)
 
 Estils movils :
     - algo raro pasa al mostrar el banner en "portrait "
@@ -106,8 +113,7 @@ Solitario :
         - Amb els problemes que vaig tenir l'ultimc cop per redireccionar l'index... lo millor es fer un index.php unic que llegeixi el codi dels arxius (html css i js) mitjançant php.
 
     - En el explorer va chungo chungo xd
-    - ARA el chrome (abans no ho feia i no he tocat res...) al arroçegar una carta no es veu les cartes filles. (en firefox continua funcionant bè)
- ---- SI VULL CONTINUAR AMB EL SOLITARIO S'HA DE REFER EL DRAG & DROP I NO UTILITZAR L'IMPLEMENTACIÓ HTML5 QUE ES UN DESASTRE, PER NO UTILITZAR UN ADJECTIU DESPECTIU PITJOR...
+ ---- SI VULL CONTINUAR AMB EL SOLITARIO S'HA DE REFER EL DRAG & DROP I NO UTILITZAR L'IMPLEMENTACIÓ HTML5 QUE ES UN DESASTRE...
 
 ESPECIFIC NAVEGADORS :    
     Firefox :         

@@ -1,6 +1,6 @@
 /* Fusión del ObjetoCanvas (originalmente destinado a tests de banners) con el ObjetoBanner 
     Creado el 14/10/2016 por Josep Antoni Bover Comas para devildrey33.es 
-    Ultima modificación :  14/10/2016 
+    Ultima modificación :  28/10/2016 
  */
 
 /*  Opciones['Tipo']            puede ser : 
@@ -13,7 +13,8 @@
                                     - Banner   , Canvas diseñado para el Banner de devildrey33.
     Opciones['MostrarFPS']      puede ser : true o false.                                       (TRUE POR DEFECTO)
     Opciones['ElementoRaiz']    elemento del HTML donde se creará el canvas                     (POR DEFECTO es 'document.body')
-*/
+    Opciones['ColorFondo']      color del fondo en HEX (SOLO para THREE.js)                     (POR DEFECTO es '0x312E35' gris oscuro) 
+ */
 
 ObjetoCanvas = function(Opciones) {
     // Opciones por defecto
@@ -24,7 +25,8 @@ ObjetoCanvas = function(Opciones) {
         'Entorno'       : 'Normal',
         'MostrarFPS'    : true,
         'ElementoRaiz'  : document.body,
-        'Pausar'        : true              // Pausar si el canvas está en segundo plano
+        'Pausar'        : true,             // Pausar si el canvas está en segundo plano
+        'ColorFondo'    : 0x312E35          // Color del fondo por defecto (solo si usas THREE.js)
     };
     // Copio las nuevas opciones encima de las opciones por defecto
     if (typeof Opciones === 'object') {
@@ -98,7 +100,7 @@ ObjetoCanvas = function(Opciones) {
                this.Context = new THREE.WebGLRenderer({ canvas : this.Canvas, antialias : true });    // Contexto THREE.JS
                 console.log("ObjetoCanvas iniciado en modo THREE con antialias");
             }
-            this.Context.setClearColor(0x312E35, 1);    // Color del fondo
+            this.Context.setClearColor(this.OpcionesCanvas.ColorFondo, 1);    // Color del fondo
         }
     }
     catch ( error ) {
@@ -189,11 +191,11 @@ ObjetoCanvas.prototype.EventoFocoRecibido = function() {
     console.log("Foco de la ventana recibido");
     this.FocoWeb = true;
     if (this.OpcionesCanvas.Entorno === "Normal") {
-        this.Reanudar();
+        this.EventoReanudar();
     }
     // En el entorno banner, solo se reanuda si el banner es visible en la ventana
     else if (this.OpcionesCanvas.Entorno === "Banner" && window.scrollX < 190) {
-        this.Reanudar();
+        this.EventoReanudar();
     }
 };
     
@@ -201,7 +203,7 @@ ObjetoCanvas.prototype.EventoFocoRecibido = function() {
 ObjetoCanvas.prototype.EventoFocoPerdido = function() {
     console.log("Foco de la ventana perdido");
     this.FocoWeb = false;
-    this.Pausa();
+    this.EventoPausa();
 };
     
 // Función que devuelve el pixel ratio del dispositivo actual
@@ -290,21 +292,23 @@ ObjetoCanvas.prototype.EventoRedimensionar = function() {
 // Función para pausar la animación
 // - Hay que detectar cuando la animación no es visible y cuando la ventana no tiene el foco para pausar la animación
 // - En modo depuración nunca se hace la pausa (esto es para poder depurar el Three.js en el Three.js.inspector)
-ObjetoCanvas.prototype.Pausa = function() {
+ObjetoCanvas.prototype.EventoPausa = function() {
     if (this.RAFID !== 0 && this.OpcionesCanvas.Pausar === true) {
         document.getElementById("Cabecera").setAttribute("animar", false);
         console.log("ObjetoCanvas.Pausa");
         window.cancelAnimationFrame(this.RAFID); 
         this.RAFID = 0;
+        if (typeof this.Pausa !== 'undefined') {  this.Pausa();   }
     }
 };
 
 // Función para reanudar la animación desde el ultimo punto
-ObjetoCanvas.prototype.Reanudar = function() {
+ObjetoCanvas.prototype.EventoReanudar = function() {
     if (this.RAFID === 0 && this.FocoWeb === true) {
         document.getElementById("Cabecera").setAttribute("animar", true);
         this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this)); 
         console.log("ObjetoCanvas.Reanudar RAFID = " + this.RAFID);
+        if (typeof this.Pausa !== 'undefined') {  this.Reanudar();   }
     }
 };
 
@@ -316,10 +320,10 @@ ObjetoCanvas.prototype.EventoScroll = function() {
         var PS = $(window).scrollTop();
         var Altura = this.Cabecera.offsetHeight;
         if (PS > Altura) {
-            this.Pausa();
+            this.EventoPausa();
         }
         else if (PS < Altura) {
-            this.Reanudar();
+            this.EventoReanudar();
         }
     }
 

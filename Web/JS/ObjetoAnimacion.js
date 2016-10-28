@@ -1,5 +1,5 @@
 /* Objeto para crear animaciones de tiempo creado por Josep Antoni Bover Creado el 25/08/2016
- *  Ultima modificación el 17/09/2016
+ *  Ultima modificación el 28/10/2016
  * */
 
 
@@ -21,16 +21,17 @@ var FuncionesTiempo = {
     Linear      : function(Tiempo) { return Tiempo; },
     SinIn       : function(Tiempo) { return 1 - Math.cos(Tiempo * Math.PI / 2); },
     SinOut      : function(Tiempo) { return Math.sin(Tiempo * Math.PI / 2); },
-    SinInOut    : function(Tiempo) { return -0.5 * (Math.cos(Math.PI * Tiempo) - 1);  }
-    
+    SinInOut    : function(Tiempo) { return -0.5 * (Math.cos(Math.PI * Tiempo) - 1);  }    
 };
     
     
-var ObjetoAnimacion = new function() {
+var ObjetoAnimacion = function() {
     // Array de animaciones
     this.Animaciones = [];
+    this.EnPausa = false;
     // Actualiza las animaciones
     this.Actualizar = function(nTick) {
+        if (this.EnPausa === true) { return; }
         var Tick;
         if (typeof(nTick) === 'undefined') { Tick = Date.now(); }
         else                               { Tick = nTick;}
@@ -40,7 +41,25 @@ var ObjetoAnimacion = new function() {
             }
         }
     };
+    
+    // Función que pausa TODAS las animaciones de este objeto
+    this.Pausa = function() {
+        this.EnPausa = true;
+    };
+    
+    // Función que reanuda TODAS las animaciones de este objeto
+    this.Reanudar = function() {
+        var Tick = Date.now();
+        // Actualizo el ultimo tick de todas las animaciones para que no pase nada de tiempo desde que se ha pausado
+        for (var i = this.Animaciones.length - 1; i > -1; i--) {
+            this.Animaciones[i]._UltimoTick = Tick - 1;
+        }
+        this.EnPausa = false;
+    };
         
+    this.Limpiar = function() {
+        this.Animaciones = [];
+    };
     // Ejemplo : 
     /*  var Animacion = ObjetoAnimacion.Crear([
             { 'Paso' : { X : 100, Y: -100 }}, // El primer paso es el punto de inicio, y no tiene ni retraso, ni tiempo, ni función de tiempo.
@@ -48,7 +67,7 @@ var ObjetoAnimacion = new function() {
             { 'Paso' : { X : 100, Y: -100 }, 'Retraso' : 100, 'Tiempo' : 1000, 'FuncionTiempo' : FuncionesTiempo.SinIn }
         ], { 
             "Repetir"           : 2,                               // Repetir 2 veces
-            "FuncionActualizar" : function(Indice, Valor) { },     // Función que se llama cada vez que se actualiza un valor
+            "FuncionActualizar" : function(Valores) { },           // Función que se llama cada vez que se actualizan los valores
             "FuncionTerminado"  : function() { }                   // Función que se llama al terminar la animación
         });*/
     // NOTA : Los retrasos ya no se aplican al repetir la animación
@@ -66,15 +85,12 @@ var ObjetoAnimacion = new function() {
         this._PasoOrig           = this._Pasos[this._PosPasos - 1]; 
         this._PasoDest           = this._Pasos[this._PosPasos];
         this._Avance             = 0;
-        this._Opciones           = { Repetir : 0, FuncionActualizar : function() { }, FuncionTerminado : function() { } };
+        this._Opciones           = { Repetir : 0, FuncionActualizar : function(Valores) { }, FuncionTerminado : function() { } };
         if (typeof (Opciones) !== 'undefined') { 
             if (typeof Opciones.Repetir !== "undefined")           { this._Opciones.Repetir = Opciones.Repetir;                     }
             if (typeof Opciones.FuncionActualizar !== "undefined") { this._Opciones.FuncionActualizar = Opciones.FuncionActualizar; }
             if (typeof Opciones.FuncionTerminado !== "undefined")  { this._Opciones.FuncionTerminado = Opciones.FuncionTerminado;   }
         }
-/*        this._Repetir            = (typeof Repetir !== 'undefined') ? Repetir : 0;  // -1 para repetir siempre
-        this._FuncionActualizar  = (typeof FuncionActualizar !== 'undefined') ? FuncionActualizar : function() { };
-        this._FuncionTerminado   = (typeof FuncionTerminado !== 'undefined') ? FuncionTerminado : function() { };*/
         this.Terminado           = false;        // Animación terminada
         // Completo los datos de cada paso
         for (var Paso in this._Pasos) {
@@ -86,10 +102,9 @@ var ObjetoAnimacion = new function() {
         // Valores iniciales
         for (var Indice in this._PasoOrig.Paso) {                    
             this[Indice] = this._PasoOrig.Paso[Indice];
-//            this._PasoDest.FuncionActualizar(Indice, this[Indice]);
             this._Opciones.FuncionActualizar(Indice, this[Indice]);
         }    
-        
+        this._Opciones.FuncionActualizar(this);
         
         // Función que termina la animación y la deja tal y como está
         this.Cancelar = function() {
@@ -105,8 +120,8 @@ var ObjetoAnimacion = new function() {
             this.Terminado = true;            
             for (var Indice in this._Pasos[this._Pasos.length - 1].Paso) {                    
                 this[Indice] = this._Pasos[this._Pasos.length - 1].Paso[Indice];
-                this._Opciones.FuncionActualizar(Indice, this[Indice]);
             }                        
+            this._Opciones.FuncionActualizar(this);
         };
         // Actualiza la animación
         this.Actualizar = function(t) {
@@ -125,17 +140,15 @@ var ObjetoAnimacion = new function() {
                     if (this._Avance < 1 && this._Avance > 0) {
                         for (var Indice in this._PasoDest.Paso) {                    
                             this[Indice] = this._PasoOrig.Paso[Indice] - (this._PasoOrig.Paso[Indice] - this._PasoDest.Paso[Indice]) * FuncionTiempo;
-                            this._Opciones.FuncionActualizar(Indice, this[Indice]);
-//                            this._PasoDest.FuncionActualizar(Indice, this[Indice]);
                         }
+                        this._Opciones.FuncionActualizar(this);
                     }
                     else {
                         // Valores finales de este paso
                         for (var Indice in this._PasoDest.Paso) {                    
                             this[Indice] = this._PasoDest.Paso[Indice];
-                            this._Opciones.FuncionActualizar(Indice, this[Indice]);
-//                            this._PasoDest.FuncionActualizar(Indice, this[Indice]);
                         }    
+                        this._Opciones.FuncionActualizar(this);
                         // Avanzo al siguiente paso
                         this._PosPasos ++;
                         if (this._PosPasos < this._Pasos.length) {

@@ -94,7 +94,6 @@ Banner_ReunionDeCirculos.prototype = Object.assign( Object.create(ObjetoCanvas.p
                 else                                                     { this.Iniciar();     } // Reinicio 
             }
             var Color = 'hsla(' + this.ColorH + ", 70%, 50%, " + this.ColorA + ")"; 
-            console.log(Color);
             this.Padre.Context.beginPath();
             this.Padre.Context.strokeStyle = Color;
             this.Padre.Context.arc(this.X, this.Y, this.Radio, 0, 2 * Math.PI, false);            

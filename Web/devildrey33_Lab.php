@@ -98,39 +98,41 @@
             $Ret = "<div class='Lab_Lista'>".Intro();            
             $Dir = opendir($Directorio);
             if ($Dir === FALSE) { $Ret .= "<div>Error abriendo el directorio : ".$Directorio."</div>".Intro()."</div>";  return $Ret;}
+            $RetDir = "";
+            $RetArchivo = "";
             while (false !== ($Archivo = readdir($Dir))) {
                 if ($Archivo != "." && $Archivo != "..") {
                     $HREF = str_replace(Base::Path_Raiz(), "/Lab/", $Directorio."/".$Archivo);
                     // Directorio                
                     if (is_dir($Directorio."/".$Archivo) === TRUE) {
-                        $Ret .= "<div class='Lab_Item'>".Intro();
+                        $RetDir .= "<div class='Lab_Item'>".Intro();
                         if ($CheckBox === TRUE) {
                             $BRet = devildrey33_Lab::_Buscar($Entradas, $HREF."/");
                             if ($BRet === TRUE)
-                                $Ret .= "<input class='Lab_Explorador_Check' type='checkbox' checked='checked' def='1' />".Intro();
+                                $RetDir .= "<input class='Lab_Explorador_Check' type='checkbox' checked='checked' def='1' />".Intro();
                             else 
-                                $Ret .= "<input class='Lab_Explorador_Check' type='checkbox' def='0' />".Intro();
+                                $RetDir .= "<input class='Lab_Explorador_Check' type='checkbox' def='0' />".Intro();
                         }
-                        $Ret .= "<div class='Lab_Directorio' path='".$HREF."/'>".Intro().
+                        $RetDir .= "<div class='Lab_Directorio' path='".$HREF."/'>".Intro().
                                     "<div class='Lab_IcoDirectorioC'></div>".Intro().
                                     "<span>".$Archivo."</span>".Intro().
                                 "</div>".Intro().
                                 "<div class='Lab_Directorio_Animacion'>".Intro();
-                        $Ret .= devildrey33_Lab::_EscanearDirectorio($Directorio."/".$Archivo, $CheckBox);
-                        $Ret .=    "</div>".Intro().
+                        $RetDir .= devildrey33_Lab::_EscanearDirectorio($Directorio."/".$Archivo, $CheckBox);
+                        $RetDir .=    "</div>".Intro().
                             "</div>".Intro();
                     }
                     // Archivo
                     else {
-                        $Ret .= "<div class='Lab_Item'>".Intro();
+                        $RetArchivo .= "<div class='Lab_Item'>".Intro();
                         if ($CheckBox === TRUE) {
                             $BRet = devildrey33_Lab::_Buscar($Entradas, $HREF);
                             if ($BRet === TRUE)
-                                $Ret .= "<input class='Lab_Explorador_Check' type='checkbox' checked='checked' def='1' />".Intro();
+                                $RetArchivo .= "<input class='Lab_Explorador_Check' type='checkbox' checked='checked' def='1' />".Intro();
                             else
-                                $Ret .= "<input class='Lab_Explorador_Check' type='checkbox' def='0' />".Intro();
+                                $RetArchivo .= "<input class='Lab_Explorador_Check' type='checkbox' def='0' />".Intro();
                         }
-                        $Ret .= "<div class='Lab_Archivo' path='".$HREF."'>".Intro().
+                        $RetArchivo .= "<div class='Lab_Archivo' path='".$HREF."'>".Intro().
                                     "<div class='Lab_IcoArchivo'></div>".Intro().
 //                                    "<span>".$Archivo."</span>".Intro().
                                     "<a href='".$HREF."'>".$Archivo."</a>".Intro(). // link invisible para los buscadores
@@ -139,7 +141,7 @@
                     }
                 }
             }            
-            $Ret .= "</div>".Intro();
+            $Ret .= $RetDir . $RetArchivo. "</div>".Intro();
             return $Ret;
         }
         

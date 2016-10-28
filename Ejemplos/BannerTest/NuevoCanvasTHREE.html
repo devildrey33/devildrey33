@@ -12,12 +12,26 @@
         <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
         <!-- Estilos CSS para el test -->
         <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
+        
+        <!-- Estilos CSS para el ObjetoTest -->
+        <!-- <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoTest.css' /> -->
+        
         <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
-<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
         <!-- Three.JS -->
         <script src="/Web/JS/3rdParty/three-0.79.min.js"></script>
+        <!-- Three.JS para depuración -->
+        <!-- <script src="/Web/JS/3rdParty/three-0.79.js"></script> -->
+
         <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
         <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
+        
+        <!-- Objeto para crear animaciones de tiempo -->
+        <!-- <script src="/Ejemplos/Utils/ObjetoAnimacion.js"></script> -->
+        
+        <!-- Objeto para crear tests rápidos -->
+        <!-- <script src="/Ejemplos/Utils/ObjetoTest.js"></script> -->
+        
         <!-- Código javascript --> 
 <script type="text/javascript">
 /* Plantilla para crear banners animados en devildrey33.es */
@@ -32,7 +46,8 @@ var NUEVOCANVASTHREE = function() {
         'Alto'          : 'Auto',
         'Entorno'       : 'Normal',
         'MostrarFPS'    : true,
-        'ElementoRaiz'  : document.body
+        'ElementoRaiz'  : document.body,
+        'ColorFondo'    : 0xFFFFFF
     }) === false) { return false; }
     
     // Se ha creado el canvas, inicio los valores de la animación ... 
@@ -62,6 +77,10 @@ NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     TeclaPresionada : function(Evento) { },
     // Función que se llama al soltar una tecla
     TeclaSoltada    : function(Evento) { },
+    // Función que se llama al pausar el banner
+    Pausa           : function() { },
+    // Función que se llama al reanudar el banner
+    Reanudar        : function() { },
     // Función que inicia el ejemplo
     Iniciar         : function() {
         this.Escena = new THREE.Scene();

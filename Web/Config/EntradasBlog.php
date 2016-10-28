@@ -5,6 +5,24 @@
 
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(
+array(	"Titulo" 	=> "Experimento con Three.js 'MultiCubo'", 
+        "Fecha" 	=> "26/10/2016",
+        "URL" 		=> "Ejemplos/BannerTest/MultiCubo.html", 
+        "Tags" 		=> array("Three.js", "JavaScript", "CSS", "HTML", "Programación" ),
+        "Idioma"        => "es",
+        "Autor"         => "Josep Antoni Bover",
+        "Tipo"		=> "Lab",
+        "Imagen"	=> "MultiCubo.png"),
+        
+array(	"Titulo" 	=> "Experimento con Canvas 2D 'Reunion de circulos'", 
+        "Fecha" 	=> "26/10/2016",
+        "URL" 		=> "Ejemplos/BannerTest/ReunionDeCirculos.html", 
+        "Tags" 		=> array("Canvas 2D", "JavaScript", "CSS", "HTML", "Programación" ),
+        "Idioma"        => "es",
+        "Autor"         => "Josep Antoni Bover",
+        "Tipo"		=> "Lab",
+        "Imagen"	=> "ReunionDeCirculos.png"),
+        
 array(	"Titulo" 	=> "Experimento con Three.js 'Esfera (Vertex Shader)'", 
         "Fecha" 	=> "07/10/2016",
         "URL" 		=> "Ejemplos/BannerTest/EsferaVShader.html", 
@@ -17,7 +35,7 @@ array(	"Titulo" 	=> "Experimento con Three.js 'Esfera (Vertex Shader)'",
 array(	"Titulo" 	=> "Experimento con Canvas 2D 'Geometría básica'", 
         "Fecha" 	=> "01/10/2016",
         "URL" 		=> "Ejemplos/BannerTest/GeometriaBasica.html", 
-        "Tags" 		=> array("Three.js", "JavaScript", "CSS", "HTML", "Programación" ),
+        "Tags" 		=> array("Canvas 2D", "JavaScript", "CSS", "HTML", "Programación" ),
         "Idioma"        => "es",
         "Autor"         => "Josep Antoni Bover",
         "Tipo"		=> "Lab",

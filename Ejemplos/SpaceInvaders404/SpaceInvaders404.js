@@ -1,3 +1,11 @@
+/*
+    Test para el canvas del error 404 de devildrey33.es creado por Josep Antoni Bover Comas el 12-07-2016
+    Idea original : http://es.gizmodo.com/la-mejor-pagina-de-error-404-te-deja-jugar-a-space-inva-510812213
+        Vista por defecto en el Laboratorio de pruebas  
+		devildrey33_Lab->Opciones->Vista = Columnas;
+
+        Ultima modificación el 27/10/2016
+*/
 "use strict";  
 
 /* Plantilla para crear banners animados en devildrey33.es */
@@ -45,6 +53,8 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     Oleada             : null,
     Puntos             : 0,
     
+    Animacion          : new ObjetoAnimacion,
+    
     Opciones           : { 
 //        HUD     : false,                // Ayuda visual con las barras de la X, Y del mouse, y el ángulo de disparo
         Debug        : true,            // Mostrar informacion de depuración
@@ -72,7 +82,8 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     },
 
         
-    Iniciar : function() {
+    Iniciar : function() {        
+        
         if (this.Opciones.Debug === true) {
             $("#SpaceInvaders404_Debug").attr({ "visible" : true });
         }
@@ -368,10 +379,10 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     },
 
     CrearExplosion : function(X, Y, Rad) {
-        var Explosion = new ObjetoAnimacion.Crear(Array(
-            new ObjetoAnimacion.Paso({ R : 255, G : 255, B :   0, A : 1, Radio : 1 }),
-            new ObjetoAnimacion.Paso({ R : 233, G :  80, B :  78, A : 0, Radio : 20 }, 250, 0)
-        ));
+        var Explosion = this.Animacion.Crear([
+            { "Paso" : { R : 255, G : 255, B :   0, A : 1, Radio : 1 }},
+            { "Paso" : { R : 233, G :  80, B :  78, A : 0, Radio : 20 }, "Tiempo" : 250 },
+        ]);
         Explosion.X = X; //this.Enemigos[e].X + (this.TipoEnemigo[this.Enemigos[e].Tipo].Ancho / 2);
         Explosion.Y = Y; //this.Enemigos[e].Y + (this.TipoEnemigo[this.Enemigos[e].Tipo].Alto / 2);
         this.Explosiones.push(Explosion);    
@@ -407,11 +418,11 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         if (nX === "Centrado") {
             this.Context.font = nFuente;
             nX = (this.Ancho - this.Context.measureText(nTexto).width) / 2;
-        }
-        var Texto = new ObjetoAnimacion.Crear(Array(
-            new ObjetoAnimacion.Paso({ Y : nY, A : 1, }),
-            new ObjetoAnimacion.Paso({ Y : nY - 15, A : 0, }, nTiempo, 1)
-        ), function() { }, nFuncionTerminado);
+        }       
+        var Texto = this.Animacion.Crear([
+            { "Paso" : { Y : nY, A : 1 }},
+            { "Paso" : { Y : nY - 15, A : 0 }, "Tiempo" : nTiempo, "Retraso" : 1 }
+        ], { "FuncionTerminado" :  nFuncionTerminado });
         Texto.X = nX;
         Texto.Y = nY;
         Texto.Fuente = nFuente;
@@ -613,7 +624,7 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         this.Context.fillStyle = this.ColorFondo;
         this.Context.clearRect(0, 0, this.Ancho, this.Alto);
         
-        ObjetoAnimacion.Actualizar(this.Tick);
+        this.Animacion.Actualizar(this.Tick);
         // Utilizo la función EjecutarEstado del estado actual
         this.ActualizarEstado();
         
@@ -625,30 +636,28 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             $("#SpaceInvaders404_Debug_Disparos").html(this.Disparos.length);    
             $("#SpaceInvaders404_Debug_Explosiones").html(this.Explosiones.length);    
             $("#SpaceInvaders404_Debug_Textos").html(this.Textos.length);    
-            $("#SpaceInvaders404_Debug_Animaciones").html(ObjetoAnimacion.Animaciones.length);    
+            $("#SpaceInvaders404_Debug_Animaciones").html(this.Animacion.Animaciones.length);    
         }        
         
         // Temporizador para el siguiente frame
 //        this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this)); 
     },
     
-    ActualizarAniDisparoTanque : function(Indice, Valor) {
+    ActualizarAniDisparoTanque : function(Valores) {
         this.BloquearControles = true;
-        if (Indice === "X") { this.Tanque.X = Valor; }
-        if (Indice === "XM") { this.Mouse.X = Valor; }
-        if (Indice === "YM") { this.Mouse.Y = Valor; }
-        this.CalcularAnguloDisparoTanque();
-        if (Indice === "Disparo") {
-            for (var d = 0; d < this.Opciones.Tanque.MaxDisparosPorSegundo; d++) {
-                var Porcentaje = (100 / this.Opciones.Tanque.MaxDisparosPorSegundo) * this.Opciones.Tanque.DisparosPorSegundo;
-                document.getElementById("Disparos_Valor").style.width = Porcentaje + "px";
-                if (Valor >= 1) {
-                    if (this.Opciones.Tanque.DisparosPorSegundo > 0) {
-                        this.Disparos.push(new this.Disparo(this.Tanque.X + (this.Opciones.Tanque.Ancho / 2), this.Tanque.Y - 12, this.Tanque.Angulo, this.Opciones.Tanque.DisparosVelocidad));
-                        this.Opciones.Tanque.DisparosPorSegundo --;
-                    }
-                }            
-            }
+        this.Tanque.X = Valores.X; 
+        this.Mouse.X = Valores.XM; 
+        this.Mouse.Y = Valores.YM; 
+        this.CalcularAnguloDisparoTanque();        
+        for (var d = 0; d < this.Opciones.Tanque.MaxDisparosPorSegundo; d++) {
+            var Porcentaje = (100 / this.Opciones.Tanque.MaxDisparosPorSegundo) * this.Opciones.Tanque.DisparosPorSegundo;
+            document.getElementById("Disparos_Valor").style.width = Porcentaje + "px";
+            if (Valores.Disparo >= 1) {
+                if (this.Opciones.Tanque.DisparosPorSegundo > 0) {
+                    this.Disparos.push(new this.Disparo(this.Tanque.X + (this.Opciones.Tanque.Ancho / 2), this.Tanque.Y - 12, this.Tanque.Angulo, this.Opciones.Tanque.DisparosVelocidad));
+                    this.Opciones.Tanque.DisparosPorSegundo --;
+                }
+            }            
         }
     },
     
@@ -678,19 +687,21 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             $("#SpaceInvaders404_Instrucciones_Intro2 > button").focus();
             // puntuación, vidas y energia de disparo visibles
             $("#SpaceInvaders404_Info").attr("visible", true);
-            this.ColorError404 = new ObjetoAnimacion.Crear(Array(
-                new ObjetoAnimacion.Paso({ R : 234, G :  80, B :  78, A : 1 }),
-                new ObjetoAnimacion.Paso({ R : 255, G : 255, B :   0, A : 1 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R : 234, G :  80, B :  78, A : 1 }, 500, 250),
-                new ObjetoAnimacion.Paso({ R : 255, G : 255, B :   0, A : 1 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R : 234, G :  80, B :  78, A : 1 }, 500, 250)
-            ));
+
+            
+            this.ColorError404 = this.Animacion.Crear([
+                { 'Paso' : { R : 234, G :  80, B :  78, A : 1 }},
+                { 'Paso' : { R : 255, G : 255, B :   0, A : 1 }, "Tiempo" : 500, "Retraso" : 0},
+                { 'Paso' : { R : 234, G :  80, B :  78, A : 1 }, "Tiempo" : 500, "Retraso" : 250},
+                { 'Paso' : { R : 255, G : 255, B :   0, A : 1 }, "Tiempo" : 500, "Retraso" : 0},
+                { 'Paso' : { R : 234, G :  80, B :  78, A : 1 }, "Tiempo" : 500, "Retraso" : 250},
+            ]);
             // Vuelvo a poner los colores del hud normales por si avanza de INFO antes de que termine la animación de color del HUD
-            this.ColorTanque = new ObjetoAnimacion.Crear(Array(
-                new ObjetoAnimacion.Paso({ R : 234, G :  80, B :  78, A : 1 }),
-                new ObjetoAnimacion.Paso({ R : 255, G : 255, B :   0, A : 1 }, 500, 2500),
-                new ObjetoAnimacion.Paso({ R : 234, G :  80, B :  78, A : 1 }, 500, 0)
-            ));                
+            this.ColorTanque = this.Animacion.Crear([
+                { 'Paso' : { R : 234, G :  80, B :  78, A : 1 }},
+                { 'Paso' : { R : 255, G : 255, B :   0, A : 1 }, "Tiempo" : 500, "Retraso" : 2500},
+                { 'Paso' : { R : 234, G :  80, B :  78, A : 1 }, "Tiempo" : 500, "Retraso" : 0},
+            ]);                
         }
         
         // Instrucciones (movimiento y disparo)
@@ -706,44 +717,42 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             this.ColorTanque.Terminar();
             this.ColorError404.Terminar();            
 
-            this.ColorTanque = new ObjetoAnimacion.Crear(Array( 
-                new ObjetoAnimacion.Paso({ R : 234, G :  80, B :  78, A : 1 }),
-                new ObjetoAnimacion.Paso({ R :   0, G : 255, B :   0, A : 1 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R :  34, G :  68, B :  34, A : 1 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R :   0, G : 255, B :   0, A : 1 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R :  34, G :  68, B :  34, A : 1 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R :   0, G : 255, B :   0, A : 1 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R :  34, G :  68, B :  34, A : 1 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R :   0, G : 255, B :   0, A : 1 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R :  34, G :  68, B :  34, A : 1 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R : 234, G :  80, B :  78, A : 1 }, 500, 0)
-            ));
+            this.ColorTanque = this.Animacion.Crear([ 
+                { 'Paso' : { R : 234, G :  80, B :  78, A : 1 }},
+                { 'Paso' : { R :   0, G : 255, B :   0, A : 1 }, "Tiempo" : 500},
+                { 'Paso' : { R :  34, G :  68, B :  34, A : 1 }, "Tiempo" : 500},
+                { 'Paso' : { R :   0, G : 255, B :   0, A : 1 }, "Tiempo" : 500},
+                { 'Paso' : { R :  34, G :  68, B :  34, A : 1 }, "Tiempo" : 500},
+                { 'Paso' : { R :   0, G : 255, B :   0, A : 1 }, "Tiempo" : 500},
+                { 'Paso' : { R :  34, G :  68, B :  34, A : 1 }, "Tiempo" : 500},
+                { 'Paso' : { R : 234, G :  80, B :  78, A : 1 }, "Tiempo" : 500}
+            ]);
 
-            this.ColorHud = new ObjetoAnimacion.Crear(Array(
-                new ObjetoAnimacion.Paso({ R : 240, G :  80, B :  78, A : 0.4 }),
-                new ObjetoAnimacion.Paso({ R : 255, G : 255, B :   0, A : 1 }, 500, 4000),
-                new ObjetoAnimacion.Paso({ R : 255, G : 255, B :   0, A : 0 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R : 255, G : 255, B :   0, A : 1 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R : 255, G : 255, B :   0, A : 0 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R : 255, G : 255, B :   0, A : 1 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R : 255, G : 255, B :   0, A : 0 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R : 255, G : 255, B :   0, A : 1 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R : 255, G : 255, B :   0, A : 0 }, 500, 0),
-                new ObjetoAnimacion.Paso({ R : 240, G :  80, B :  78, A : 0.4 }, 500, 0)
-            ));        
+            this.ColorHud = this.Animacion.Crear([
+                { 'Paso' : { R : 240, G :  80, B :  78, A : 0.4 }},
+                { 'Paso' : { R : 255, G : 255, B :   0, A : 1 }, "Tiempo" : 500, "Retraso" : 4000},
+                { 'Paso' : { R : 255, G : 255, B :   0, A : 0 }, "Tiempo" : 500},
+                { 'Paso' : { R : 255, G : 255, B :   0, A : 1 }, "Tiempo" : 500},
+                { 'Paso' : { R : 255, G : 255, B :   0, A : 0 }, "Tiempo" : 500},
+                { 'Paso' : { R : 255, G : 255, B :   0, A : 1 }, "Tiempo" : 500},
+                { 'Paso' : { R : 255, G : 255, B :   0, A : 0 }, "Tiempo" : 500},
+                { 'Paso' : { R : 255, G : 255, B :   0, A : 1 }, "Tiempo" : 500},
+                { 'Paso' : { R : 255, G : 255, B :   0, A : 0 }, "Tiempo" : 500},
+                { 'Paso' : { R : 240, G :  80, B :  78, A : 0.4 }, "Tiempo" : 500}
+            ]);        
     
-            this.AniDisparoTanque = new ObjetoAnimacion.Crear(Array( 
-                new ObjetoAnimacion.Paso({ X : 235, XM : this.Mouse.X,  YM : this.Mouse.X,  Disparo : 0 }),
-                new ObjetoAnimacion.Paso({ X : 157, XM : 202,           YM : 243,           Disparo : 0  }, 250 ,8000),
-                new ObjetoAnimacion.Paso({ X : 157, XM : 202,           YM : 243,           Disparo : 1  }, 500 ,0),
-                new ObjetoAnimacion.Paso({ X : 157, XM : 202,           YM : 243,           Disparo : 0  }, 500 ,0),
-                new ObjetoAnimacion.Paso({ X : 157, XM : 202,           YM : 243,           Disparo : 1  }, 500 ,0),
-                new ObjetoAnimacion.Paso({ X : 317, XM : 298,           YM : 237,           Disparo : 0  }, 500 ,0),
-                new ObjetoAnimacion.Paso({ X : 317, XM : 298,           YM : 237,           Disparo : 1  }, 500 ,0),
-                new ObjetoAnimacion.Paso({ X : 317, XM : 298,           YM : 237,           Disparo : 0  }, 500 ,0),
-                new ObjetoAnimacion.Paso({ X : 317, XM : 298,           YM : 237,           Disparo : 1  }, 500 ,0),
-                new ObjetoAnimacion.Paso({ X : 235, XM : 298,           YM : 237,           Disparo : 0  }, 500 ,0)
-            ), this.ActualizarAniDisparoTanque.bind(this), this.TerminarAniDisparoTanque.bind(this));
+            this.AniDisparoTanque = this.Animacion.Crear([
+                { 'Paso' : { X : 235, XM : this.Mouse.X,  YM : this.Mouse.X,  Disparo : 0 }},
+                { 'Paso' : { X : 157, XM : 202,           YM : 243,           Disparo : 0 }, Tiempo : 250, Retraso : 8000},
+                { 'Paso' : { X : 157, XM : 202,           YM : 243,           Disparo : 1 }, Tiempo : 500},
+                { 'Paso' : { X : 157, XM : 202,           YM : 243,           Disparo : 0 }, Tiempo : 500},
+                { 'Paso' : { X : 157, XM : 202,           YM : 243,           Disparo : 1 }, Tiempo : 500},
+                { 'Paso' : { X : 317, XM : 298,           YM : 237,           Disparo : 0 }, Tiempo : 500},
+                { 'Paso' : { X : 317, XM : 298,           YM : 237,           Disparo : 1 }, Tiempo : 500},
+                { 'Paso' : { X : 317, XM : 298,           YM : 237,           Disparo : 0 }, Tiempo : 500},
+                { 'Paso' : { X : 317, XM : 298,           YM : 237,           Disparo : 1 }, Tiempo : 500},
+                { 'Paso' : { X : 235, XM : 298,           YM : 237,           Disparo : 0 }, Tiempo : 500}
+            ], { FuncionActualizar : this.ActualizarAniDisparoTanque.bind(this), FuncionTerminado : this.TerminarAniDisparoTanque.bind(this) });
         }        
         
         // Juego

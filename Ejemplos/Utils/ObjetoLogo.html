@@ -20,7 +20,7 @@
                 height:40px;
                 border-radius:4px;
                 border:2px solid #000;
-                background-image:radial-gradient(rgba(50, 50, 50, 0.3), rgba(0, 0, 0, 0.95));
+                background-image:radial-gradient(rgba(35, 35, 35, 0.5), rgba(0, 0, 0, 0.95));
                 cursor:pointer;
                 transition:0.4s cubic-bezier(.33,.05,.69,1.59);
                 overflow:hidden;
@@ -66,7 +66,7 @@
             }
             
             #Logo_devildrey33 > div > span {
-                transition:0.4s;
+                transition:0.5s cubic-bezier(.17,-0.42,0,1.15);
                 opacity:0;
                 position: relative;
                 display: inline-block;
@@ -95,6 +95,14 @@
                 0%   { left:500px;  }
                 100% { left:5px;  }
             }            
+            
+            #Logo_devildrey33 > img {
+                transition:0.4s;
+            }
+            
+            #Logo_devildrey33:hover > img {
+                transform: scale(1.5, 1.5);
+            }
                      
         </style>
         
@@ -119,7 +127,7 @@
                                         "<span>3</span>" + 
                                         "<span>3</span>" +
                                     "</div>" +
-                                    "<img src='http://devildrey33.es/Web/Graficos/Logo.png' />";
+                                    "<img src='http://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-logo' />";
                 document.body.appendChild(PreLogo);                
             };            
             
