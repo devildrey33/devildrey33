@@ -1,0 +1,228 @@
+<!-- 
+    Plantilla para test de canvas creado por Josep Antoni Bover Comas el 05-07-2016
+
+        Vista por defecto en el Laboratorio de pruebas  
+		devildrey33_Lab->Opciones->Vista = Filas;
+
+        Ultima modificación el 03/08/2016
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <!-- Estilos CSS para el test -->
+        <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
+        
+        <!-- Estilos CSS para el ObjetoTest -->
+        <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoTest.css' />
+        <!-- Objeto para crear tests rápidos -->
+        <script src="/Ejemplos/Utils/ObjetoTest.js"></script>
+        
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        <!-- Three.JS -->
+        <script src="/Web/JS/3rdParty/three-0.79.min.js"></script>
+        <!-- Three.JS para depuración -->
+        <!-- <script src="/Web/JS/3rdParty/three-0.79.js"></script> -->
+
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
+        
+        <!-- Objeto para crear animaciones de tiempo -->
+        <!-- <script src="/Ejemplos/Utils/ObjetoAnimacion.js"></script> -->
+        
+        
+        <!-- Código javascript --> 
+<script type="text/javascript">
+
+var EspectroAudible = function() {
+    // Llamo al constructor del ObjetoBanner
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : 'THREE',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Normal',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body,
+        'Pausar'        : true,             // Pausa el canvas si la pestaña no tiene el foco del teclado
+        'ColorFondo'    : 0xFFFFFF
+    }) === false) { return false; }
+    
+    // Se ha creado el canvas, inicio los valores de la animación ... 
+    this.Iniciar();
+    
+    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
+//    this.Cargando(false);
+};
+
+EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor     : EspectroAudible, 
+    // Función que se llama al redimensionar el documento
+    Redimensionar   : function() {    },
+    // Función que se llama al hacer scroll en el documento    
+    Scroll          : function() {    },
+    // Función que se llama al mover el mouse por el canvas
+    MouseMove       : function(Evento) { },
+    // Función que se llama al presionar un botón del mouse por el canvas
+    MousePresionado : function(Evento) { },
+    // Función que se llama al soltar un botón del mouse por el canvas
+    MouseSoltado    : function(Evento) { },
+    // Función que se llama al entrar con el mouse en el canvas
+    MouseEnter      : function(Evento) { },
+    // Función que se llama al salir con el mouse del canvas
+    MouseLeave      : function(Evento) { },
+    // Función que se llama al presionar una tecla
+    TeclaPresionada : function(Evento) { },
+    // Función que se llama al soltar una tecla
+    TeclaSoltada    : function(Evento) { },
+    // Función que se llama al pausar el banner
+    Pausa           : function() { this.Cancion.pause(); },
+    // Función que se llama al reanudar el banner
+    Reanudar        : function() { this.Cancion.play(); },
+    
+    Cubos           : [],
+    
+    // Función que inicia el ejemplo
+    Iniciar         : function() {
+        this.Test = new ObjetoTest({ "css" : { top : "10px", left : "10px" } });
+        
+        this.IniciarAudio();
+        this.Context.shadowMap.enabled = true;
+        this.Escena = new THREE.Scene();
+        this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);
+        this.Camara.Rotacion = { Grados : -180 * (Math.PI / 180), Avance : (Math.PI / 180) / 6, Distancia : 25, MirarHacia : new THREE.Vector3(0, 0, 0) };
+        this.Camara.position.set(0, 20, this.Camara.Rotacion.Distancia);        
+        // Función para que la cámara rote alrededor de la escena
+        this.Camara.Rotar = function() {
+            this.Rotacion.Grados += this.Rotacion.Avance;
+            this.position.x = this.Rotacion.Distancia * Math.cos(this.Rotacion.Grados);
+            this.position.z = this.Rotacion.Distancia * Math.sin(this.Rotacion.Grados);
+            this.lookAt(this.Rotacion.MirarHacia);            
+        };
+        this.Escena.add(this.Camara);
+        this.Camara.lookAt(this.Camara.Rotacion.MirarHacia);
+
+        // Creo el suelo
+        this.Suelo = new THREE.Mesh(    new THREE.PlaneGeometry(32, 32), 
+                                        new THREE.MeshPhongMaterial({ color: 0x666666, specular : 0xffffff }));
+        this.Suelo.rotation.x = -Math.PI / 2;
+        this.Suelo.position.set(-0.5, 0, -0.5);
+        this.Suelo.castShadow = false;
+        this.Suelo.receiveShadow = true;
+        this.Escena.add(this.Suelo);
+        
+        
+        this.IniciarLuces();
+        
+        this.ReIniciar(32);
+        this.TamBuffer = { "32x32" : 32, "16x16" : 16, "8x8" :  8, "4x4" : 4 };
+        this.Test.Agregar( { Padre : this, Variable : "TamBuffer", Actualizar : function(NuevoValor) {
+            this.ReIniciar(parseInt(NuevoValor));             
+        }.bind(this) });
+    
+    },
+    
+    ReIniciar       : function(TamLado) {
+//        var TamLado = Math.sqrt(TamBuffer);
+        console.log (TamLado);
+        this.Analizador.fftSize = (TamLado * TamLado) * 2;
+        this.DatosAnalizador = new Uint8Array(this.Analizador.frequencyBinCount);
+                
+        // Elimino los cubos de la escena anterior
+        for (var i = 0; i < this.Cubos.length; i++) { this.Escena.remove(this.Cubos[i]); }
+        this.Cubos = [];
+        
+        // Creo una parrilla de cubos del tamaño especificado        
+        var CuboGeo = new THREE.BoxGeometry(0.8, 1, 0.8);
+        var CuboMat = new THREE.MeshPhongMaterial({ color: 0xAAAAAA, wireframe : false, transparent : false, opacity: 0.9 });
+        var Contador = 0;
+        for (var z = 0; z < TamLado; z++) {
+            for (var x = 0; x < TamLado; x++) {
+                this.Cubos[Contador] = new THREE.Mesh(CuboGeo, CuboMat);
+                this.Cubos[Contador].position.set(x - (TamLado / 2), 0, z - (TamLado / 2));
+                this.Cubos[Contador].castShadow = false;
+                this.Cubos[Contador].receiveShadow = true;
+                this.Escena.add(this.Cubos[Contador++]);                
+            }
+        }
+    },
+
+    IniciarAudio    : function() {
+        this.AudioContext =  window.AudioContext || window.webkitAudioContext;
+        this.Audio = new this.AudioContext();
+        this.Analizador = this.Audio.createAnalyser();
+        this.Analizador.fftSize = 2048;
+//        console.log(this.Analizador.frequencyBinCount);
+        this.DatosAnalizador = new Uint8Array(this.Analizador.frequencyBinCount);
+        
+        this.Canciones = [ "Painkiller.mp3", "BatleHymn.mp3", "WelcomeBack.mp3", "SweepTone_16-256hz.ogg", 
+                            "SweepTone_256-2000hz.ogg", "SweepTone_20-20000hz.ogg", "SweepTone_2000-16000hz.ogg" ];
+        
+        this.Test.Agregar( { Padre : this, Variable : "Canciones", Actualizar : function(NuevoValor) {
+            this.CargarCancion(NuevoValor);
+        }.bind(this) });
+        
+        this.CargarCancion(this.Canciones[0]);
+        
+//        this.Cancion.src = "WelcomeBack.mp3";
+//        this.Cancion.src = "SweepTone_16-256hz.ogg";
+//        this.Cancion.src = "SweepTone_256-2000hz.ogg";
+//        this.Cancion.src = "SweepTone_20-20000hz.ogg";
+//        this.Cancion.src = "SweepTone_2000-16000hz.ogg";
+        
+    },    
+    
+    CargarCancion : function(Nombre) {
+        this.Cargando(true);
+        if (this.Cancion) {
+            this.Cancion.pause();
+        }
+        this.Cancion = new Audio();
+        this.Cancion.controls = false;
+        this.Cancion.src = Nombre;
+        this.Cancion.addEventListener('canplay', function() {            
+            this.Cargando(false);
+            this.AudioSource = this.Audio.createMediaElementSource(this.Cancion);
+            this.AudioSource.connect(this.Analizador);
+            this.Analizador.connect(this.Audio.destination);
+            this.Cancion.play();
+        }.bind(this));        
+    },
+    
+    IniciarLuces    : function() {
+        this.SpotLight = new THREE.SpotLight( 0xffffff,0.7);
+        this.SpotLight.position.set(100,140,130);
+        this.SpotLight.castShadow = true;
+        this.SpotLight2 = new THREE.SpotLight( 0x534da7,0.4);
+        this.SpotLight2.position.set(-100,140,-130);
+        this.SpotLight2.castShadow = true;
+        this.Escena.add(this.SpotLight);
+        this.Escena.add(this.SpotLight2);
+    },
+    
+    
+    ActualizarCubos : function() {        
+        this.Analizador.getByteFrequencyData(this.DatosAnalizador);
+        for (var i = 0; i < this.Cubos.length; i++) {
+            this.Cubos[i].scale.y = 1 + (this.DatosAnalizador[i] / 20);
+            this.Cubos[i].position.y = this.Cubos[i].scale.y / 2;
+        }
+    },
+    
+    // Función que pinta cada frame de la animación
+    Pintar          : function() {  
+        this.Camara.Rotar();
+        
+        this.ActualizarCubos();
+        
+        this.Context.render(this.Escena, this.Camara);  
+    }
+});
+
+var Canvas = null;
+window.addEventListener('load', function() { Canvas = new EspectroAudible; });
+</script>
+    </head>
+    <body>
+    </body>
+</html>

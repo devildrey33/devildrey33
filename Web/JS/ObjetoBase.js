@@ -216,7 +216,9 @@ $Base = new function() {
     
     /* Función que muestra una ventana para el twiter */
     this.BotonTwitter = function() {
-        Texto = $("#Cabecera > .Cabecera_Datos > h1").html();
+       // Texto = $("#Cabecera > .Cabecera_Datos > h1").html();
+        Texto = document.title;
+        
 //        if (typeof $(".Cabecera > .Cabecera_Datos > h1") === 'undefined') { Texto = $(".Cabecera > .Cabecera_Datos > h1").html();                     }
 //        else                                                              { Texto = "" + window.location.href.replace(/^.*[\\\/]/, ''); }
         console.log("Base.BotonTwitter", Texto, window.location.href);
@@ -225,7 +227,8 @@ $Base = new function() {
     
     /* Función que muestra una ventana para el facebook */
     this.BotonFacebook = function() {        
-        Texto = $("#Cabecera > .Cabecera_Datos > h1").html();
+     //   Texto = $("#Cabecera > .Cabecera_Datos > h1").html();
+        Texto = document.title;
         //if (typeof $(".Cabecera > .Cabecera_Datos > h1") === 'undefined') { Texto = $(".Cabecera > .Cabecera_Datos > h1").html();                     }
         //else                                                              { Texto = "Experimento : " + window.location.href.replace(/^.*[\\\/]/, ''); }
         console.log("Base.BotonFacebook", Texto, window.location.href);
@@ -234,7 +237,8 @@ $Base = new function() {
 
     /* Función que muestra una ventana para el google+ */
     this.BotonGooglePlus = function() {        
-        Texto = $("#Cabecera > .Cabecera_Datos > h1").html();
+   //     Texto = $("#Cabecera > .Cabecera_Datos > h1").html();
+        Texto = document.title;
         //if (typeof $(".Cabecera > .Cabecera_Datos > h1") === 'undefined') { Texto = $(".Cabecera > .Cabecera_Datos > h1").html();                     }
         //else                                                              { Texto = "Experimento : " + window.location.href.replace(/^.*[\\\/]/, ''); }
         console.log("Base.BotonGooglePlus", Texto, window.location.href);
@@ -243,7 +247,8 @@ $Base = new function() {
 
     //https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fdevildrey33.es%2Fcapitulo.php%3Fserie%3D2874%26temp%3D1%26cap%3D01%26sthash.R8lb5Hgr.mjjo&title=Ver%2037%20dias%201x01%20online&summary=Todas%20tus%20series%20para%20ver%20online%20o%20en%20descarga%20directa%20&source=    
     this.BotonLinkEdin = function() {        
-        Texto = $("#Cabecera > .Cabecera_Datos > h1").html();
+//        Texto = $("#Cabecera > .Cabecera_Datos > h1").html();
+        Texto = document.title;
         console.log("Base.BotonLinkEdin", Texto, window.location.href);
 //        window.open("https://www.linkedin.com/shareArticle?mini=true&url=" + window.location.href + "&t=" + Texto, "Google Plus", "toolbar=no,width=550,height=355");
     };
@@ -287,10 +292,12 @@ $Base = new function() {
         if (Menu === 5) { $("#BarraPrincipal_MarcoBuscar_Edit").focus().select();  }        
         if (Menu !== 6) { $("#BarraNavegacion_BotonVer_Estado").prop("checked", false); }
         if (Menu !== 7) { $("#BarraNavegacion_BotonExplorar_Estado").prop("checked", false); }
+        // Localiza el archivo abierto en la lista de archivos del lab
+        if (Menu === 7) { setTimeout( function() { $Lab.ResaltarArchivoActual($("#MarcoNavegacion > article").attr("pagina"), true); }, 400); }        
         if (Menu !== 8) { $("#BarraPrincipal_Boton33_Estado").prop("checked", false);    }
-        if (Menu !== 9) { $("#BarraNavegacion_Indice_Estado").prop("checked", false); }
         /* El menú admin cierra el menu principal (para ciertas vistas moviles puede no haber espacio para los dos a la vez) */
         if (Menu === 8) { $("#BarraPrincipal_Boton_Estado").prop("checked", false); }
+        if (Menu !== 9) { $("#BarraNavegacion_Indice_Estado").prop("checked", false); }
         if (Menu !== 10) { $("#BarraNavegacion_PrevNext_Estado").prop("checked", false); }
         if (Menu !== 11) { $("#BarraNavegacion_RedesSociales_Estado").prop("checked", false); }
         if (Menu !== 12) { $("#BarraNavegacion_Votacion_Estado").prop("checked", false); }
@@ -342,8 +349,8 @@ $Base = new function() {
         Pagina = $("#MarcoNavegacion > article").attr("pagina");
         // Desmarco el boton de las votaciones
         $("#BarraNavegacion_Votacion_Estado").removeAttr("checked");
-        
         console.log("Base.VotarWeb", Valor, Pagina);
+        if (Valor <= 2) Valor += 3;
         if (typeof localStorage["Voto_" + Pagina] === "undefined") {
             localStorage["Voto_" + Pagina] = Valor;
             $.post(this.Raiz + "cmd/VotarPagina.cmd", { "Pagina" : Pagina, "Valor" : Valor, "URL" : window.location.href }).done(function(data) {
@@ -489,11 +496,25 @@ $Base = new function() {
         }
 
         $("body").attr({ "Tipo" : Ret["TipoPagina"] });
+        var p = this.BuscarEntrada(iURL);
+        if (p !== -1) {
+            Ret["Titulo"] = EntradasBlog[p]["Titulo"];
+        }
+        
 
 //        this.BuscarEntradaActual(URL, $(".Cabecera > .Cabecera_Datos > h1").html());
 
         console.log("Base.IdentificarEntrada : " + Ret["TipoPagina"], Ret);
         return Ret;    
+    };
+    
+    this.BuscarEntrada = function(nURL) {
+        for (i = 0; i < EntradasBlog.length; i++) {
+            if (nURL.indexOf(EntradasBlog[i]["URL"]) !== -1) {
+                return i;
+            }
+        }
+        return -1;
     };
     
     this.BuscarEntradaActual = function(nURL, nTitulo) {
@@ -832,7 +853,9 @@ $Base = new function() {
                 window.history.pushState($Base.Entrada, document.title, $Base.cURL);
                 /* Pongo el scroll arriba DESPUES de identificar la URL y haber guardado el scroll para el historial */
                 $(window).scrollTop(0);
-                document.title = $Base.Entrada["Titulo"];
+                if ($Base.Entrada["TipoPagina"] !== "Lab") {
+                    document.title = $Base.Entrada["Titulo"];
+                }
 //                if (isset($Base.Entrada["Idioma"]))
                 $Base.RedireccionarLinks();
                 $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);

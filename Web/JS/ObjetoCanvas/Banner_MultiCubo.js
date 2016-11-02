@@ -250,7 +250,7 @@ Banner_MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         this.dirLight = new THREE.DirectionalLight( 0xffffff, 0.7 );
 //        this.dirLight.position.set(0.3, - 1, - 1).normalize();
         this.dirLight.color.setHSL( 0.1, 1, 0.95 );
-        this.dirLight.position.set( 0, 35, 50 );
+        this.dirLight.position.set( 20, 35, 50 ).normalize();
         this.dirLight.position.multiplyScalar( 50 );
         this.Escena.add( this.dirLight );
         this.dirLight.castShadow = true;

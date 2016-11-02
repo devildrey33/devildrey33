@@ -48,8 +48,15 @@ if (!defined('DEF_devildrey33_EditarEntradas')) {
         
         public function BuscarEntrada($Titulo, $URL) {
             foreach ($this->Datos as $Entrada) {
-                if ($Entrada["Titulo"] === $Titulo && $Entrada["URL"] === $URL) {
-                    return $Entrada;
+                if ($Entrada["Tipo"] === "Blog") { // Para las entradas del blog necesito comparar el titulo, ya que alguna puede compartir la ruta
+                    if ($Entrada["Titulo"] === $Titulo && $Entrada["URL"] === substr($URL, 0, -4)) {
+                        return $Entrada;
+                    }
+                }
+                else {
+                    if ($Entrada["URL"] === $URL) {
+                        return $Entrada;
+                    }
                 }
             }
             return false;

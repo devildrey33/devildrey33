@@ -22,10 +22,7 @@
         <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
         <!-- Código javascript --> 
 <script type="text/javascript">
-    
-/* Plantilla para crear banners animados en devildrey33.es */
-var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al perder el foco del teclado
-// Constructor SIN TIPO, el tipo se especifica según la animación
+// Constructor
 var Banner_WormHole = function() {
     
     // Llamo al constructor del ObjetoBanner
@@ -35,6 +32,7 @@ var Banner_WormHole = function() {
         'Alto'          : 'Auto',
         'Entorno'       : 'Normal',
         'MostrarFPS'    : true,
+        'Pausar'        : true,             // Pausa el canvas si la pestaña no tiene el foco del teclado
         'ElementoRaiz'  : document.body
     }) === false) { return false; }
     

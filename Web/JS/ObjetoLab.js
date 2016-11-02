@@ -72,14 +72,27 @@ $Lab = new function() {
             case "2" :     $(".Lab_BotonVerCodigo").trigger("click");       break; 
             case "3" :     $(".Lab_BotonVerPreview").trigger("click");      break;             
         }
-        this.ResaltarArchivoActual(this.Archivo);
+//        this.ResaltarArchivoActual(this.Archivo, true);
         this.ActualizarResultado();
 
         /* Chapuça per que s'actualitzi be l'altura de les lineas dintre del codemirror */
-        setTimeout(function() {
+//        setTimeout(function() {
             $Lab.Editor.setSize(parseInt($(".Codemirror").attr("width")), parseInt($(".Codemirror").attr("height")));            
-        }, 5000);
+  //      }, 5000);
 //        this.CargarArchivo();  
+
+//        $(".Lab_Directorio_Animacion").css({ height : "0px" });
+    };
+    
+    this.IniciarEjemplo = function(Archivo) {
+        this.ResaltarArchivoActual(Archivo, true);
+        var DatosEntrada = $Base.BuscarEntrada(Archivo);
+        if (DatosEntrada !== -1) {
+            document.title = EntradasBlog[DatosEntrada]["Titulo"];
+        }
+        else {
+            document.title = "Lab : " + Archivo;
+        }        
     };
     
     // Inicia el temporizador de 5 segundos para actualizar el ejemplo
@@ -132,28 +145,46 @@ $Lab = new function() {
     /* NOTA NO especificar nada en SoloAbrir si se desea hacer un togle */
     this.ClickDirectorio = function(Objeto, SoloAbrir) {
         console.log("Lab.ClickDirectorio", Objeto);
+        
+//        SA = SoloAbrir || true;
         Animacion = Objeto.next();
         Directorio = Animacion.find(".Lab_Lista");
         // Asigno la altura en pixeles del directorio por abrir
         var Altura = Animacion.css("height");
         var AltoPadre = 0;
-//        var Diferencia = 0;
-//        if (typeof(SoloAbrir) === "undefined") {
-            if (parseInt(Altura) === 0)   { 
-                Animacion.css({ "height" : Directorio.height()});   
+        if (typeof(SoloAbrir) === "undefined") {
+            if (parseInt(Altura) === 0) {
+                Animacion.css({ "height" : Directorio.height()});
                 AltoPadre = Directorio.height();
-//                Diferencia = parseInt(Directorio.height());
+            }        
+            else {
+                Animacion.css({ "height" : 0 });         
+                AltoPadre = -Directorio.height();                 
             }
-            else                          { 
-                if (typeof(SoloAbrir) === "undefined") {
-                    Animacion.css({ "height" : 0 });         
-                    AltoPadre = -Directorio.height(); 
-//                    Diferencia = -parseInt(Directorio.height());
-                }
-                else { return; }
+        }
+        else {
+            if (SoloAbrir === true) {
+                Animacion.css({ "height" : Directorio.height()});
+                AltoPadre = Directorio.height();
             }
-/*        else { // checkbox
-            if (parseInt(Altura) === 0)   { Animacion.css({ "height" : Directorio.height()});   AltoPadre = Directorio.height(); }
+            else {
+                Animacion.css({ "height" : 0 });         
+                AltoPadre = -Directorio.height();                                 
+            }
+        }
+        console.log(Altura, AltoPadre);
+
+        /*
+        if (parseInt(Altura) === 0) {
+            console.log(Directorio.height());
+            Animacion.css({ "height" : Directorio.height()});   
+            AltoPadre = Directorio.height();
+        }
+        else  { 
+            if (typeof(SoloAbrir) === "undefined") {
+                Animacion.css({ "height" : 0 });         
+                AltoPadre = -Directorio.height(); 
+            }
             else { return; }
         }*/
         
@@ -225,7 +256,7 @@ $Lab = new function() {
             else                           { 
                 // Laboratorio principal
                 if (Datos["ID"] === -1) {
-                    $Lab.ResaltarArchivoActual(Datos["Archivo"]);
+                    $Lab.IniciarEjemplo(Datos['Archivo']);
                     
                     $Lab.Editor.setOption("mode", Datos["Modo"]);
                     $Lab.Editor.setValue(Datos["Datos"]);  
@@ -240,6 +271,13 @@ $Lab = new function() {
                     }
                     
 //                    $Lab.AjustarVista(Datos["Vista"]);  
+/*                    var DatosEntrada = $Base.BuscarEntrada(Datos["Archivo"]);
+                    if (DatosEntrada !== -1) {
+                        document.title = EntradasBlog[DatosEntrada]["Titulo"];
+                    }
+                    else {
+                        document.title = "Lab : " + Datos["Archivo"];
+                    }*/
                     
                     URL = "/" + $Base.RaizRelativa + "Lab/" + Datos["Archivo"];
                     $("#MarcoNavegacionLab").attr({"pagina" : Datos["Archivo"]});
@@ -249,8 +287,9 @@ $Lab = new function() {
                         window.history.pushState($Base.Entrada, document.title, URL);
                         /* Pongo el scroll arriba DESPUÉS de identificar la URL y haber guardado el scroll para el historial */
                         $(window).scrollTop(0);
-                        document.title = $Base.Entrada["Titulo"];
                     }
+                    
+                    
                     $("body").attr({ "modificado" : "false" });
                     $Base.ComprobarScrollVotacion();
                     $Lab.ActualizarResultado(); 

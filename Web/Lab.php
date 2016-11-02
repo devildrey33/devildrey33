@@ -29,7 +29,7 @@
     
     $HEAD = "";
 
-    $Base->InicioPlantilla(basename(__FILE__), "Laboratorio de pruebas", $HEAD);
+    $Base->InicioPlantilla($Archivo, "Lab : ".basename($Archivo), $HEAD);
 /*    if ($CArchivo["Ret"] != 200) { // Error al abrir el archivo
         $Archivo = "Ejemplos/Error.html"; 
 //        $MostrarError = TRUE;
@@ -63,6 +63,8 @@
             "\$Lab.ForzarVista = '".$CArchivo["Vista"]."';".Intro().
             "\$Lab.Modo = '".$CArchivo["Modo"]."';".Intro();
     if ($MostrarError == TRUE) echo "\$Base.MostrarErrorAjax(404, false);".Intro();
+    echo "window.addEventListener('load', function() { \$Lab.IniciarEjemplo('".$Archivo."'); });";
+    
     echo "</script>".Intro();
 
 

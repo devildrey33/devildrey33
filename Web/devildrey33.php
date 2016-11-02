@@ -75,7 +75,7 @@ class devildrey33 {
         register_shutdown_function(array($this, "CALLBACK_Shutdown"));
 
         $Entradas = new devildrey33_EditarEntradas;
-        $this->EntradaBlog = $Entradas->BuscarEntrada($Titulo, substr($NombreDocumento, 0, -4));
+        $this->EntradaBlog = $Entradas->BuscarEntrada($Titulo, $NombreDocumento);
         
 /*        echo "<pre>";
         print_r($this->EntradaBlog);
@@ -88,7 +88,10 @@ class devildrey33 {
         $this->_NombreDocumento = $NombreDocumento;
         
         $Idioma = 'es';
-        if ($this->EntradaBlog !== false) $Idioma = $this->EntradaBlog["Idioma"];
+        if ($this->EntradaBlog !== false) { 
+            $Idioma = $this->EntradaBlog["Idioma"];
+            $Titulo = $this->EntradaBlog["Titulo"];
+        }
         
         echo "<!DOCTYPE HTML>".Intro().
 "<html lang='".$Idioma."'>".Intro().
@@ -99,8 +102,6 @@ class devildrey33 {
         if ($this->EntradaBlog !== false) {
             echo "<meta name='author' content='".$this->EntradaBlog["Autor"]."' />".Intro().
             
-            /* Manifest per android (https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android) */
-            '<link rel="manifest" href="/manifest.json">'.Intro().
                     
             /* Twitter Card data */
             "<meta name='twitter:card' content='summary' />".Intro().        
@@ -123,6 +124,8 @@ class devildrey33 {
                 
         echo $Meta.Intro().    
         '<meta name="msapplication-config" content="none"/>'.Intro(). // Para que el explorer no busque el archivo BrowserConfig.xml de las pelotas.
+        /* Manifest per android (https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android) */
+//        '<link rel="manifest" href="/manifest.json">'.Intro().
         "<link rel='shortcut icon' href='http://".$_SERVER["SERVER_NAME"]."/Web/Graficos/devildrey33.ico' />".Intro();
 //        "<link rel='alternate' type='application/rss+xml' title='RSS 2.0' href='http://devildrey33.es/rss.xml' />".Intro();
         $this->Head_CSS();      // Enlace/s de los estilos CSS
@@ -268,11 +271,11 @@ class devildrey33 {
                 "</div>".Intro().
                 
                 // <!-- Sobre devildrey33 -->
-                "<div class='Menu'>".Intro().                    
+/*                "<div class='Menu'>".Intro().                    
                     "<a href='".Base::URL_Raiz()."Sobre-el-autor' id='SobreDevildrey33' class='Menu_Boton' tooltip-es='Sobre el autor' tooltip-en='About devildrey33' tooltip-pos='L'>".Intro().
                         "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-logo' />".Intro().
                     "</a>".Intro().
-                "</div>".Intro().
+                "</div>".Intro().*/
                 
 
             "</div>".Intro().

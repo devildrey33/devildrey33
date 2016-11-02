@@ -64,6 +64,8 @@ Millores de la web :
  V  - ObjetoTest per crear tests de variables / funcions 
  V       - s'ha de fer un auto actualizar amb un timer, especificant-ho per les opcions inicials (NTY)!!
  V  - Reimplementada una pàgina d'error 404 simple, aixi ja no haig de carregar el tween.js per defecte...... ni mai mes xd (ObjetoAnimacion)
+ V  - Retocat el sistema que afegia les dades meta per reds socials, ara ja hauria de funcionar amb el lab.
+ V  - Els butons de reds socials ara posen bè el texte (dintre del lab)
 
 Estils movils :
     - algo raro pasa al mostrar el banner en "portrait "
@@ -91,6 +93,7 @@ Lab :
     - Resaltar i obrir carpeta de l'exemple actual (de moment funciona nomes per un nivell, Dir -> Dir -> Archiu no funciona)
  V  - Guardat de documents al canviar de url si ha expirat la sesió ara demanara password, i si l'accepta guardara el document. 
         - si canceles el login no se que deu fer encara amb el timer del Cargar_URL....   
+ V  - Revisada la funció ResaltarArchivoActual del lab, i amb alguna chapuça (timer)... ara va bè... el problema es que mentres la llista esta amagada, no es computen bè les mides.
 
 Blog :
  X  - Revisar document "CSS3_Transition_Transform.php", te estils inline i s'han de posar amb un CSS a part. (el mateix css es l'exemple i inclueix l'etiqueta script, per lo que no el puc moure a un css...)

@@ -122,6 +122,8 @@ ObjetoAdmin = function() {
         };
         
         $Base.ResetearTimerTiempoSesion();
+        
+        //$Lab.ResaltarArchivoActual(Archivo, true);
     };
     
     /* Función para desloguear, vuelve a dejar toda la web a nivel usuario eliminando el código de administración */

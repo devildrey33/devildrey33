@@ -158,10 +158,7 @@
 
         <!-- Código javascript --> 
 <script type="text/javascript">
-/* Plantilla para crear banners animados en devildrey33.es */
-var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al perder el foco del teclado
 
-// Constructor SIN TIPO, el tipo se especifica según la animación
 var EsferaVShader = function() {
     // Llamo al constructor del ObjetoBanner
     if (ObjetoCanvas.call(this, { 
@@ -170,6 +167,7 @@ var EsferaVShader = function() {
         'Alto'          : 'Auto',
         'Entorno'       : 'Normal',
         'MostrarFPS'    : true,
+        'Pausar'        : true,
         'ElementoRaiz'  : document.body
     }) === false) { return false; }
 

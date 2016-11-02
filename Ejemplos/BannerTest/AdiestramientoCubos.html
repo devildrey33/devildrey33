@@ -21,8 +21,6 @@
         <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
         <!-- Código javascript --> 
 <script type="text/javascript">
-/* Plantilla para crear banners animados en devildrey33.es */
-var ObjetoCanvas_Depurar = false; // Si es true, no se parará la animación al perder el foco del teclado
 
 var Banner_AdiestramientoCubos3D = function() {
     // Llamo al constructor del ObjetoBanner
@@ -32,6 +30,7 @@ var Banner_AdiestramientoCubos3D = function() {
         'Alto'          : 'Auto',
         'Entorno'       : 'Normal',
         'MostrarFPS'    : true,
+        'Pausar'        : true,
         'ElementoRaiz'  : document.body
     }) === false) { return false; }
 

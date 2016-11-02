@@ -102,7 +102,6 @@ var ObjetoAnimacion = function() {
         // Valores iniciales
         for (var Indice in this._PasoOrig.Paso) {                    
             this[Indice] = this._PasoOrig.Paso[Indice];
-            this._Opciones.FuncionActualizar(Indice, this[Indice]);
         }    
         this._Opciones.FuncionActualizar(this);
         
@@ -137,7 +136,7 @@ var ObjetoAnimacion = function() {
                     this._Avance += (TiempoFrame / this._PasoDest.Tiempo);
                     var FuncionTiempo = this._PasoDest.FuncionTiempo(this._Avance);
 //                    console.log(this._Avance, FuncionTiempo);
-                    if (this._Avance < 1 && this._Avance > 0) {
+                    if (this._Avance < 1 && this._Avance > -1) {
                         for (var Indice in this._PasoDest.Paso) {                    
                             this[Indice] = this._PasoOrig.Paso[Indice] - (this._PasoOrig.Paso[Indice] - this._PasoDest.Paso[Indice]) * FuncionTiempo;
                         }

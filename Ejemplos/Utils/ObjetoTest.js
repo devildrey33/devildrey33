@@ -1,7 +1,7 @@
 /* ObjetoTest creado por Josep Antoni Bover Comas para devildrey33.es el 20/10/2016 
     Este objeto está pensado para facilitarme la vida a la hora de probar código, consiste en un UI con varios controles, que permiten modificar variables y ejecutar funciones.
     Inspirado en dat.GUI 
-    Ultima modificaión 24/10/2016
+    Ultima modificaión 01/11/2016
 */
 
 /* Opciones por defecto
@@ -19,13 +19,17 @@ Opciones {
     },
     AutoActualizar : false // Si es true, se creará un temporizador cada 16ms (1000ms / 60fps) que actualizará todos los valores.
 }*/
+"option strict";
+
 
 var ObjetoTest = function(Opciones) {        
+    // Crea el temporizador de actualización automática
     this.AutoActualizar_Iniciar = function() {
         this.AutoActualizar_Cancelar();
         this.Timer_AutoActualizar = setTimeout(this.ActualizarValores.bind(this), 1000 / 60);
     };
     
+    // Cancela el temporizador de actualización automática
     this.AutoActualizar_Cancelar = function() {
         if (this.Timer_AutoActualizar !== 0) {
             clearInterval(this.Timer_AutoActualizar);
@@ -33,6 +37,7 @@ var ObjetoTest = function(Opciones) {
         }
     };
     
+    // Inicia el ObjetoTest
     this.Iniciar = function(Opciones) {
         this.Variables = [];
         this.MousePresionado = null;
@@ -42,44 +47,76 @@ var ObjetoTest = function(Opciones) {
         this.ControlLista.className = "ObjetoTest";
         if (typeof Opciones !== 'undefined') {
             if (typeof Opciones.css !== 'undefined') {
+                // Creo los estilos del array de estilos
                 for (var Indice in Opciones.css) {
                     this.ControlLista.style[Indice] = Opciones.css[Indice];
                 }
             }
-/*            if (typeof Opciones["top"] !== 'undefined')             { this.ControlLista.style.top = Opciones['top']; }
-            if (typeof Opciones["left"] !== 'undefined')            { this.ControlLista.style.left = Opciones['left']; }
-            if (typeof Opciones["right"] !== 'undefined')           { this.ControlLista.style.right = Opciones['right']; }
-            if (typeof Opciones["bottom"] !== 'undefined')          { this.ControlLista.style.bottom = Opciones['bottom']; }*/
             if (typeof Opciones["AutoActualizar"] !== 'undefined')  { this.AutoActualizar = Opciones["AutoActualizar"]; }
         }
 
-
-        if (document.body.childNodes.length > 0) {
-            document.body.insertBefore(this.ControlLista, document.body.childNodes[0]);
-        }
-        else {
-            document.body.appendChild(this.ControlLista);
-        }
+        // Inserto el control en el body
+        if (document.body.childNodes.length > 0) { document.body.insertBefore(this.ControlLista, document.body.childNodes[0]); }    // Si hay hijos inserto el control al principio
+        else                                     { document.body.appendChild(this.ControlLista); }                                  // Si no hay elementos en el body, añado el control
+        
+/*        this.MouseMovimiento = function(Evento) {
+            if (this.MousePresionado !== null) {
+                if (typeof this.MousePresionado.Barra_MouseMove !== 'undefined') {
+            console.log("ObjetoTest.MouseMovimiento", this.MousePresionado, Evento);
+                    var R = this.MousePresionado.ControlBarra.getBoundingClientRect();
+                    if (Evento.offsetX < R.left || Evento.offsetX > R.right) {
+                        var nEvento = { offsetX : Evento.offsetX - R.left, offsetY : Evento.offsetY - R.top };
+                        console.log(nEvento, R);
+                        this.MousePresionado.Barra_MouseMove(nEvento);
+                    }
+                }
+            }
+        };
+        
+        this.MouseSoltado = function(Evento) {
+            console.log("ObjetoTest.MouseSoltado", this.MousePresionado, Evento);
+            if (this.MousePresionado !== null) {
+                this.MouseMovimiento(Evento);
+                this.MousePresionado.Foco = false;
+                this.MousePresionado = null;
+            }
+        };
+        
+        this.EventoMouseMovimiento  = this.MouseMovimiento.bind(this);
+        this.EventoMouseSoltado     = this.MouseSoltado.bind(this);
+        
+        window.addEventListener('mousemove', this.EventoMouseMovimiento);
+        window.addEventListener('mouseup', this.EventoMouseSoltado);*/
+        
+        // Creo una lista de controles vacia
         this.Lista = new ObjetoTest_Lista(this.ControlLista, this, false);
 
-
+        // Agrega un control básico para (string, números, booleanos, funciones)
         this.Agregar = function(Opciones) {
             return this.Lista.Agregar(Opciones);
         };
-
+        
+        // Agrega una lista dentro de la lista de controles principal
         this.AgregarLista = function(Nombre) {
             return this.Lista.AgregarLista(Nombre);
         };
 
+        // Actualiza todos los controles con los valores actuales
         this.ActualizarValores = function() {
             for (var i = 0; i < this.Variables.length; i++) {
                 this.Variables[i].Actualizar();
             }
         };
-
+        
+        // Si AutoActualizar está activo creo el temporizador que actualizará los valores
         if (this.AutoActualizar === true) {
             this.AutoActualizar_Iniciar();
         }        
+    };
+    
+    this.Terminar = function() {
+/*        window.removeEventListener('mousemove', this.EventoMouseMovimiento);
+        window.removeEventListener('mouseup', this.EventoMouseSoltado);      */  
     };
     
     this.Iniciar(Opciones);
@@ -96,10 +133,7 @@ var ObjetoTest_Lista = function(ControlPadre, ObjetoTestPadre, Visible) {
         "True"          : "Encender",
         "False"         : "Apagar",    
     }*/
-    this.Padre = ObjetoTestPadre;
-/*    this.Variables = Padre.Variables;
-    this.MousePresionado = Padre.MousePresionado;*/
-    
+    this.Padre = ObjetoTestPadre;    
     this.ControlLista = document.createElement('div');
     this.ControlLista.className = "ObjetoTest_Lista";
     ControlPadre.appendChild(this.ControlLista);
@@ -115,7 +149,9 @@ var ObjetoTest_Lista = function(ControlPadre, ObjetoTestPadre, Visible) {
             case "number"   : this.Padre.Variables.push(new this.ControlNum(this, Opciones));                                                     break;
             case "boolean"  : this.Padre.Variables.push(new this.ControlBool(this, Opciones));                                                    break;
             case "function" : this.Padre.Variables.push(new this.ControlFunc(this, Opciones));                                                    break;
-            default         : console.log("ObjetoTest.Agregar : Tipo " + typeof(Opciones.Padre[Opciones.Variable]) + " no está soportado"); break;
+            case "array"    : this.Padre.Variables.push(new this.ControlSelect(this, Opciones));                                                  break;
+            case "object"   : this.Padre.Variables.push(new this.ControlSelect(this, Opciones));                                                  break;
+            default         : console.log("ObjetoTest.Agregar : Tipo " + typeof(Opciones.Padre[Opciones.Variable]) + " no está soportado");       break;
         };
         return this.Padre.Variables[this.Padre.Variables.lenght - 1];
     };
@@ -167,23 +203,6 @@ var ObjetoTest_Lista = function(ControlPadre, ObjetoTestPadre, Visible) {
                     }
                     Nodo = Nodo.parentNode;
                 }
-/*                while (Nodo.className !== "ObjetoTest") {
-                    if (Nodo.className === "ObjetoTest_Lista" && Nodo.getAttribute("abierto") === "true") {
-                        var pNodo = Nodo.parentNode;
-                        var Altos = pNodo.querySelectorAll(".ObjetoTest_Lista[abierto=true]");
-                        var Alto = 22;
-                        for (var i = 0; i < Altos.length; i++) {
-                            if (Altos[i].parentNode === pNodo) { 
-//                                Alto += parseInt(Altos[i].getAttribute("altura")) || 0;
-                                Alto += Altos[i].offsetHeight; 
-                                console.log(Alto);
-                            }
-                        }                            
-//                        console.log(Alto);
-                        pNodo.style.height = Alto + "px";                         
-                    }
-                    Nodo = Nodo.parentNode;
-                }*/
             };
             
             // Contenedor para los controles (ObjetoTest_Contenedor)
@@ -241,7 +260,7 @@ var ObjetoTest_Lista = function(ControlPadre, ObjetoTestPadre, Visible) {
     };
     
     this.CrearControlBarra = function(Contenedor, Valor, Min, Max) {
-        var ControlBarra = document.createElement('button');
+        var ControlBarra = document.createElement('div');
         ControlBarra.className = "ObjetoTest_Barra";
         ControlBarra.setAttribute("min", parseFloat(Min).toFixed(2));
         ControlBarra.setAttribute("max", parseFloat(Max).toFixed(2));
@@ -268,29 +287,47 @@ var ObjetoTest_Lista = function(ControlPadre, ObjetoTestPadre, Visible) {
         return ControlBool;
     };
     
+    this.CrearControlSelect = function(Contenedor, Valores) {
+        var ControlSelect = document.createElement('select');
+        ControlSelect.className = "ObjetoTest_Select";
+//        ControlBool.setAttribute("marcado", Valor);
+        if (Valores instanceof Array) {
+            for (var i = 0; i < Valores.length; i++) {
+                ControlSelect.innerHTML = ControlSelect.innerHTML + "<option value='" + Valores[i] + "'>" + Valores[i] + "</option>";
+            }
+        }
+        else {
+            for (var Indice in Valores) {
+                ControlSelect.innerHTML = ControlSelect.innerHTML + "<option value='" + Valores[Indice] + "'>" + Indice + "</option>";
+            }            
+        }
+        Contenedor.appendChild(ControlSelect);     
+        return ControlSelect;        
+    };
+    
     this.ControlStr = function(Padre, Opciones) {
         this.Opciones   = Opciones;
         this.Padre      = Padre;
         this.Foco       = false;
         
         this.Input_Change = function(e) { 
-            Opciones.Padre[Opciones.Variable] = this.ControlInputString.value;
-            this.Opciones.Actualizar(Opciones.Padre[Opciones.Variable]); 
+            this.Opciones.Padre[this.Opciones.Variable] = this.ControlInputString.value;
+            this.Opciones.Actualizar(this.Opciones.Padre[this.Opciones.Variable]); 
         };
         
         // Contenedor para los controles (ObjetoTest_Contenedor)
         this.ControlContenedor = this.Padre.CrearControlContenedor();
         // Div con el nombre de la variable (ObjetoTest_Nombre)
-        this.ControlTexto = this.Padre.CrearControlTexto(this.ControlContenedor, Opciones.Nombre);
+        this.ControlTexto = this.Padre.CrearControlTexto(this.ControlContenedor, this.Opciones.Nombre);
         // Input box para el string (ObjetoTest_InputString)
-        this.ControlInputString = this.Padre.CrearControlInputString(this.ControlContenedor, Opciones.Padre[Opciones.Variable]);
+        this.ControlInputString = this.Padre.CrearControlInputString(this.ControlContenedor, this.Opciones.Padre[this.Opciones.Variable]);
         this.ControlInputString.addEventListener('change', this.Input_Change.bind(this));
         this.ControlInputString.addEventListener('focus', function() { this.Foco = true; }.bind(this));
         this.ControlInputString.addEventListener('blur', function() { this.Foco = false; }.bind(this));
         
         this.Actualizar = function() {
             if (this.Foco === false) {
-                this.ControlInputString.setAttribute("value", Opciones.Padre[Opciones.Variable]);
+                this.ControlInputString.setAttribute("value", this.Opciones.Padre[this.Opciones.Variable]);
             }
         };
     }; 
@@ -304,43 +341,52 @@ var ObjetoTest_Lista = function(ControlPadre, ObjetoTestPadre, Visible) {
         if (typeof this.Opciones.Min === "undefined") { this.Opciones.Min = 0.0; }
         if (typeof this.Opciones.Max === "undefined") { this.Opciones.Max = 1.0; }
         
-        this.Barra_MouseDown = function(e) { this.Foco = true; this.Barra_MouseMove(e); };
-        this.Barra_MouseUp = function(e)   { this.Foco = false; this.Barra_MouseMove(e); };
+        this.AsignarFoco = function() {
+            this.Foco = true;
+/*            var OT = this.Padre;
+            while (OT.Padre) {
+                OT = OT.Padre;
+            }
+            OT.MousePresionado = this;*/
+        };
+        
+        this.Barra_MouseDown = function(e) { this.AsignarFoco(); this.Barra_MouseMove(e); };
+        this.Barra_MouseUp = function(e)   { this.Barra_MouseMove(e); this.Foco = false; };               
         
         this.Barra_MouseMove = function(e) { 
             if (this.Foco === true) {
-                // offsetX puede ser mas grande que el tamaño del control, o mas pequeño de 0
+                // offsetX puede ser mas grande que el tamaño del control, o mas pequeño que 0
                 var X = e.offsetX;
                 if (X < 0) { X = 0; }
                 if (X > this.ControlBarra.offsetWidth) { X = this.ControlBarra.offsetWidth; }
                 this.ControlBarra.childNodes[0].style.width = ((X / this.ControlBarra.offsetWidth ) * 100) + "%";
-                Opciones.Padre[Opciones.Variable] = ((this.Opciones.Max - this.Opciones.Min) * (X / this.ControlBarra.offsetWidth) + this.Opciones.Min);
-                this.ControlInputNum.setAttribute("value", parseFloat(Opciones.Padre[Opciones.Variable]).toFixed(3));
+                this.Opciones.Padre[this.Opciones.Variable] = ((this.Opciones.Max - this.Opciones.Min) * (X / this.ControlBarra.offsetWidth) + this.Opciones.Min);
+                this.ControlInputNum.setAttribute("value", parseFloat(this.Opciones.Padre[this.Opciones.Variable]).toFixed(3));
                 this.Opciones.Actualizar(Opciones.Padre[Opciones.Variable]); 
             }
         };
         
         this.Input_Change = function(e) { 
-            Opciones.Padre[Opciones.Variable] = parseFloat(this.ControlInputNum.value);
-            this.ControlBarra.childNodes[0].style.width = ((Opciones.Padre[Opciones.Variable] - this.Opciones.Min) / (this.Opciones.Max - this.Opciones.Min)) * 100 + "%";
-            this.Opciones.Actualizar(Opciones.Padre[Opciones.Variable]); 
+            this.Opciones.Padre[this.Opciones.Variable] = parseFloat(this.ControlInputNum.value);
+            this.ControlBarra.childNodes[0].style.width = ((this.Opciones.Padre[this.Opciones.Variable] - this.Opciones.Min) / (this.Opciones.Max - this.Opciones.Min)) * 100 + "%";
+            this.Opciones.Actualizar(this.Opciones.Padre[this.Opciones.Variable]); 
         };
         
         this.Input_MouseMove = function(e) { 
             if (this.Foco === true) {
-                Opciones.Padre[Opciones.Variable] = parseFloat(this.Opciones.Max);
+                this.Opciones.Padre[this.Opciones.Variable] = parseFloat(this.Opciones.Max);
                 this.ControlInputNum.setAttribute("value", this.Opciones.Max);
                 this.ControlBarra.childNodes[0].style.width = "100%";
-                this.Opciones.Actualizar(Opciones.Padre[Opciones.Variable]); 
+                this.Opciones.Actualizar(this.Opciones.Padre[this.Opciones.Variable]); 
             }
         };
         
         this.Texto_MouseMove = function(e) {
             if (this.Foco === true) {
-                Opciones.Padre[Opciones.Variable] = parseFloat(this.Opciones.Min);
+                this.Opciones.Padre[this.Opciones.Variable] = parseFloat(this.Opciones.Min);
                 this.ControlInputNum.setAttribute("value", this.Opciones.Min);
                 this.ControlBarra.childNodes[0].style.width = "0%";
-                this.Opciones.Actualizar(Opciones.Padre[Opciones.Variable]); 
+                this.Opciones.Actualizar(this.Opciones.Padre[this.Opciones.Variable]); 
             }            
         };                    
         
@@ -385,7 +431,7 @@ var ObjetoTest_Lista = function(ControlPadre, ObjetoTestPadre, Visible) {
             this.Opciones.Padre[this.Opciones.Variable] = !this.Opciones.Padre[this.Opciones.Variable];
             this.ControlBoolTrue.setAttribute("marcado", this.Opciones.Padre[this.Opciones.Variable]);
             this.ControlBoolFalse.setAttribute("marcado", !this.Opciones.Padre[this.Opciones.Variable]);
-            this.Opciones.Actualizar(Opciones.Padre[Opciones.Variable]); 
+            this.Opciones.Actualizar(this.Opciones.Padre[this.Opciones.Variable]); 
         };        
         
         // Contenedor para los controles (ObjetoTest_Contenedor)
@@ -424,4 +470,24 @@ var ObjetoTest_Lista = function(ControlPadre, ObjetoTestPadre, Visible) {
         
         this.Actualizar = function() { };
     };    
+    
+    
+    this.ControlSelect = function(Padre, Opciones) {
+        this.Opciones   = Opciones;
+        this.Padre      = Padre;
+        
+        this.Select_Change = function() {
+            this.Opciones.Actualizar(this.ControlSelect.value); 
+        };
+
+        // Contenedor para los controles (ObjetoTest_Contenedor)
+        this.ControlContenedor = this.Padre.CrearControlContenedor();
+        // Div con el nombre de la variable (ObjetoTest_Nombre)
+        this.ControlTexto = this.Padre.CrearControlTexto(this.ControlContenedor, this.Opciones.Nombre);
+        // Control que contiene el combobox con las opciones
+        this.ControlSelect = this.Padre.CrearControlSelect(this.ControlContenedor, this.Opciones.Padre[this.Opciones.Variable]);
+        this.ControlSelect.addEventListener('change', this.Select_Change.bind(this));
+        
+        this.Actualizar = function() { };
+    };
 };
