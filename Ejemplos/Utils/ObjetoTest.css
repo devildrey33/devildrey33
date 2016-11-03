@@ -1,7 +1,7 @@
 /* ObjetoTest creado por Josep Antoni Bover Comas para devildrey33.es el 20/10/2016 
     Este objeto está pensado para facilitarme la vida a la hora de probar código, consiste en un UI con varios controles, que permiten modificar variables y ejecutar funciones.
     Inspirado en dat.GUI pero solo para asignar valores / ejecutar funciones, nada de refrescar valores
-    Ultima modificaión 01/11/2016
+    Ultima modificaión 03/11/2016
 */
 
 /* NOTA no afegir aquest import en la versió de la web */
@@ -15,7 +15,7 @@
     z-index:1000;
 }
 
-.ObjetoTest_Nombre, .ObjetoTest_Barra, .ObjetoTest_Bool, .ObjetoTest_Boton {
+.ObjetoTest, .ObjetoTest_Nombre, .ObjetoTest_Barra, .ObjetoTest_Bool, .ObjetoTest_Boton {
     -webkit-user-select : none;
     -moz-user-select    : none;
     -ms-user-select     : none;
@@ -34,8 +34,7 @@
 }
 
 .ObjetoTest_Nombre, .ObjetoTest_NombreLista {
-    color:#DDDDDD;
-    height:16px;
+    color:#DDDDDD;    
     display:inline-block;
     width:calc(40% - 8px);
     position:relative;
@@ -43,17 +42,22 @@
 .ObjetoTest_Nombre {
     padding:6px 2px 2px 2px;
     top:-2px;
+    height:16px;
     background:rgba(20,20,20,0.9);
 }
 .ObjetoTest_NombreLista {
     padding:4px 2px 2px 4px;
+    height:15px;
     font-weight: bold; 
     font-size:14px; 
-    width:calc(100% - 10px);
+    width:calc(100% - 11px);
     transition:0.4s; 
     background:rgba(30,30,30,0.9);
     border-left:4px solid #ea504e;
     text-shadow:1px 1px 1px #000;
+    border-top: 1px solid rgba(20,20,20,0.9);
+    border-right:1px solid rgba(20,20,20,0.9);
+    
 }
 
 .ObjetoTest_Contenedor[abierto=true] > .ObjetoTest_NombreLista {
@@ -163,7 +167,7 @@
     color:#DDDDDD;
     height:16px;
     padding:5px 2px 3px 2px;
-    background:#222222;
+    background:rgba(20,20,20,0.9);
     display:inline-block;
     cursor:pointer;
     transition:0.4s;
@@ -173,7 +177,8 @@
 
 .ObjetoTest_Boton { width:calc(60% - 2px); }
 .ObjetoTest_Bool {  width:calc(30% - 4px); }
-/*.ObjetoTest_Bool:nth-child(3) {  border-left:2px solid rgba(20,20,20,0.9); }*/
+.ObjetoTest_Bool:nth-child(3) {  width:calc(30% - 3px); border-left:none; }
+
 
 
 .ObjetoTest_Bool[marcado=true] {
@@ -198,3 +203,24 @@
     width:calc(60% + 4px);
 }
 
+
+
+/* Modificable */
+.ObjetoTest_Contenedor[modificable=false] > .ObjetoTest_Barra {
+    cursor:auto !important;
+}
+.ObjetoTest_Contenedor[modificable=false] > .ObjetoTest_Barra:hover {
+    background:rgba(20,20,20,0.9) !important;
+}
+
+.ObjetoTest_Contenedor[modificable=false] > .ObjetoTest_Barra > .ObjetoTest_Barra_Valor, 
+.ObjetoTest_Contenedor[modificable=false] > .ObjetoTest_InputNum,
+.ObjetoTest_Contenedor[modificable=false] > .ObjetoTest_InputString {
+    background:#422 !important;
+}
+
+.ObjetoTest_Contenedor[modificable=false] > .ObjetoTest_Barra:hover > .ObjetoTest_Barra_Valor, 
+.ObjetoTest_Contenedor[modificable=false] > .ObjetoTest_InputNum:hover, 
+.ObjetoTest_Contenedor[modificable=false] > .ObjetoTest_InputString:hover {
+    background:#422 !important;
+}

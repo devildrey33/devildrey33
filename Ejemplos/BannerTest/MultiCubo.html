@@ -4,7 +4,7 @@
         Vista por defecto en el Laboratorio de pruebas  
 		devildrey33_Lab->Opciones->Vista = Preview;
 
-        Ultima modificación el 28/10/2016
+        Ultima modificación el 03/10/2016
 -->
 <!DOCTYPE html>
 <html>
@@ -79,35 +79,27 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     uAniRGC         : 0, // Ultima animación del grupo de cubos
     
     Iniciar         : function() {
-        this.Test = new ObjetoTest({ css : { bottom : "10px", left : "10px" } });
         // Instancia para el objeto encargado de las animaciones de tiempo http://devildrey33.es/Ejemplos/Utils/ObjetoAnimacion.js
         this.Animaciones = new ObjetoAnimacion;
         // Activo el mapeado de sombras
         this.Context.shadowMap.enabled	= true;
-        this.WireCubos = false;                
         
         this.Escena = new THREE.Scene();
         // Creo la cámara
         this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);
-        this.Camara.Rotacion = { Grados : -180 * (Math.PI / 180), Avance : (Math.PI / 180) / 3, Distancia : 50, MirarHacia : new THREE.Vector3(0, 0, 0) };
+        this.Camara.Rotacion = { Grados : -180 * (Math.PI / 180), Avance : (Math.PI / 180) / 3, Distancia : 50, MirarHacia : new THREE.Vector3(0, 0, 0), Animacion : true };
         this.Camara.position.set(0, 0, this.Camara.Rotacion.Distancia);        
         // Función para que la cámara rote alrededor de la escena
         this.Camara.Rotar = function() {
-            this.Rotacion.Grados += this.Rotacion.Avance;
-            this.position.x = this.Rotacion.Distancia * Math.cos(this.Rotacion.Grados);
-            this.position.z = this.Rotacion.Distancia * Math.sin(this.Rotacion.Grados);
-            this.lookAt(this.Rotacion.MirarHacia);            
+            if (this.Rotacion.Animacion === true) {
+                this.Rotacion.Grados += this.Rotacion.Avance;
+                this.position.x = this.Rotacion.Distancia * Math.cos(this.Rotacion.Grados);
+                this.position.z = this.Rotacion.Distancia * Math.sin(this.Rotacion.Grados);
+                this.lookAt(this.Rotacion.MirarHacia); 
+            }
         };
         this.Escena.add(this.Camara);
-        
-        // Valores para el ObjetoTest de la cámara
-        var lCamara = this.Test.AgregarLista("Cámara");
-        lCamara.Agregar({ Padre : this.Camara.position, Variable : "x", Min : -200, Max : 200, Nombre : "position.x"  });
-        lCamara.Agregar({ Padre : this.Camara.position, Variable : "y", Min : -200, Max : 200, Nombre : "position.y" });
-        lCamara.Agregar({ Padre : this.Camara.position, Variable : "z", Min : -200, Max : 200, Nombre : "position.z" });
-        lCamara.Agregar({ Padre : this.Camara.rotation, Variable : "x", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.x" });
-        lCamara.Agregar({ Padre : this.Camara.rotation, Variable : "y", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.y" });
-        lCamara.Agregar({ Padre : this.Camara.rotation, Variable : "z", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.z" });
+       
         
         // Animación inicial de la cámara
         this.AniAvanceCamara = this.Animaciones.Crear([
@@ -118,16 +110,8 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
                 this.Camara.Rotacion.Distancia = Valores.z; 
             }.bind(this) 
         });
+                
         
-        var lObjetos = this.Test.AgregarLista("Objetos");        
-        var lCubos = lObjetos.AgregarLista("Cubos");
-        lCubos.Agregar({ Padre : this, Variable : "WireCubos", Nombre : "wireframe",
-            Actualizar : function(NuevoValor) { 
-                for (var i = 0; i < this.Cubos.length; i++) {
-                    this.Cubos[i].material.wireframe = NuevoValor; 
-                } 
-            }.bind(this)  
-        });
         // Palno para el suelo
         this.Suelo = new THREE.Mesh(    new THREE.PlaneGeometry(1000, 1000), 
                                         new THREE.MeshPhongMaterial({ color: 0xbbbbbb, specular : 0xffffff }));
@@ -137,20 +121,14 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
         this.Suelo.receiveShadow = true;
         this.Escena.add(this.Suelo);
 
-        var lSuelo = lObjetos.AgregarLista("Suelo");
-        lSuelo.Agregar({ Padre : this.Suelo.position, Variable : "x", Min : -200, Max : 200, Nombre : "position.x"  });
-        lSuelo.Agregar({ Padre : this.Suelo.position, Variable : "y", Min : -200, Max : 200, Nombre : "position.x" });
-        lSuelo.Agregar({ Padre : this.Suelo.position, Variable : "z", Min : -200, Max : 200, Nombre : "position.x" });
-        lSuelo.Agregar({ Padre : this.Suelo.rotation, Variable : "x", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.x" });
-        lSuelo.Agregar({ Padre : this.Suelo.rotation, Variable : "y", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.y" });
-        lSuelo.Agregar({ Padre : this.Suelo.rotation, Variable : "z", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.z" });
-        lSuelo.Agregar({ Padre : this.Suelo.material, Variable : "wireframe", Nombre : "wireframe", Actualizar : function(NuevoValor) { this.Suelo.material.wireframe = NuevoValor; }.bind(this)  });
         // Creo varias luces para las sombras y los reflejos
         this.CrearLuces();
         // Creo 27 cubos colocados en forma de cubo
         this.CrearCubos();
         // Animación aleatoria con los cubos
         this.AnimarCubos();
+        // Creo el ObjetoTest y añado todos los valores a testear
+        this.CrearTest();
     },
     
     CrearCubos      : function () {
@@ -184,6 +162,7 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     },
         
     // Al hacer rotaciones de multiples cubos, las posiciones no quedan 100% precisas, y al cabo de muchas iteraciones acaba descuadrandose todo
+    // Por lo que si un valor da 9.999 lo reasignamos a 10, -9.999 = -10, y  0.111 o -0.111 = 0, que son las posiciones fijas iniciales de los cubos (10, 0, -10)
     Aprox : function(Valor) {
         if      (Valor > 5)  { return 10;  } 
         else if (Valor < -5) { return -10; }
@@ -195,116 +174,150 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
         var Pos = RandInt(9, 0);
         // Para no repetir el ultimo tipo de animación
         while (Pos === this.uAniRGC) { Pos = RandInt(9, 0); }
-        this.uAniRGC = Pos;
-        // Calculo la posición de cada cubo dentro del grupo
+//        Pos = 0;
+//        var TipoRotacion = 0;
+//        if (Pos < 6) { TipoRotacion = Rand(); }
+
+        this.uAniRGC = Pos; // Ultima posición de la animación
+        // Calculo la posición final de cada cubo dentro del grupo 
         for (var i = 0; i < this.GrupoCubos.children.length; i++) {                
             var vector = new THREE.Vector3();
             vector.setFromMatrixPosition( this.GrupoCubos.children[i].matrixWorld );
             this.Cubos[this.GrupoCubos.children[i].Numero].position.set(this.Aprox(vector.x), this.Aprox(vector.y), this.Aprox(vector.z));
         }
-//            this.Escena.remove(this.GrupoCubos);
         // Al volver a añadir los cubos a la escena, se eliminan de dentro del grupo de cubos
         for (var i = 0; i < this.Cubos.length; i++) {
             this.Escena.add(this.Cubos[i]);
         }        
-        var RotarCaraX = 0;
-        var RotarCaraY = 0;
-        var RotarCaraZ = 0; 
+        var RotarCaraX = 0, RotarCaraY = 0, RotarCaraZ = 0,
+            PosCaraX   = 0, PosCaraY   = 0, PosCaraZ   = 0;
         var rInt = RandInt(3, 1); // Con valores negativos hace algo raro...
         // Añado 9 cubos según la posición aleatória
         for (var i = 0; i < this.Cubos.length; i++) {
             switch (Pos) {
-                case 0 : // derecha
-                    if (this.Cubos[i].position.x >  5) { this.GrupoCubos.add(this.Cubos[i]); }  
-                    RotarCaraX = rInt; 
-                    break;   
-                case 1 : // izquierda
-                    if (this.Cubos[i].position.x < -5) { this.GrupoCubos.add(this.Cubos[i]); }  
-                    RotarCaraX = rInt; 
-                    break;   
-                case 2 : // arriba
-                    if (this.Cubos[i].position.y >  5) { this.GrupoCubos.add(this.Cubos[i]); }  
-                    RotarCaraY = rInt; 
-                    break;   
-                case 3 : // abajo
-                    if (this.Cubos[i].position.y < -5) { this.GrupoCubos.add(this.Cubos[i]); }  
-                    RotarCaraY = rInt; 
-                    break;   
-                case 4 : // delante
-                    if (this.Cubos[i].position.z >  5) { this.GrupoCubos.add(this.Cubos[i]); } 
-                    RotarCaraZ = rInt; 
-                    break;   
-                case 5 : // atras
-                    if (this.Cubos[i].position.z < -5) { this.GrupoCubos.add(this.Cubos[i]); } 
-                    RotarCaraZ = rInt;
-                    break;   
-                case 6 : // centro x
-                    if (this.Cubos[i].position.x < 5 && this.Cubos[i].position.x > -5) { this.GrupoCubos.add(this.Cubos[i]); } 
-                    RotarCaraX = rInt;
-                    break;   
-                case 7 : // centro y
-                    if (this.Cubos[i].position.y < 5 && this.Cubos[i].position.y > -5) { this.GrupoCubos.add(this.Cubos[i]); } 
-                    RotarCaraY = rInt; 
-                    break;   
-                case 8 : // centro z
-                    if (this.Cubos[i].position.z < 5 && this.Cubos[i].position.z > -5) { this.GrupoCubos.add(this.Cubos[i]); }
-                    RotarCaraZ = rInt; 
-                    break;   
+                case 0 : if (this.Cubos[i].position.x >  5) { this.GrupoCubos.add(this.Cubos[i]); }                                 break;  // derecha
+                case 1 : if (this.Cubos[i].position.x < -5) { this.GrupoCubos.add(this.Cubos[i]); }                                 break;  // izquierda
+                case 2 : if (this.Cubos[i].position.y >  5) { this.GrupoCubos.add(this.Cubos[i]); }                                 break;  // arriba
+                case 3 : if (this.Cubos[i].position.y < -5) { this.GrupoCubos.add(this.Cubos[i]); }                                 break;  // abajo   
+                case 4 : if (this.Cubos[i].position.z >  5) { this.GrupoCubos.add(this.Cubos[i]); }                                 break;  // delante   
+                case 5 : if (this.Cubos[i].position.z < -5) { this.GrupoCubos.add(this.Cubos[i]); }                                 break;  // atras
+                case 6 : if (this.Cubos[i].position.x < 5 && this.Cubos[i].position.x > -5) { this.GrupoCubos.add(this.Cubos[i]); } break;  // centro x
+                case 7 : if (this.Cubos[i].position.y < 5 && this.Cubos[i].position.y > -5) { this.GrupoCubos.add(this.Cubos[i]); } break;  // centro y
+                case 8 : if (this.Cubos[i].position.z < 5 && this.Cubos[i].position.z > -5) { this.GrupoCubos.add(this.Cubos[i]); } break;  // centro z
             }
         }
         this.Escena.add(this.GrupoCubos);
+
+//        if (TipoRotacion < 0.5) { // Rotación normal
+            switch (Pos) {
+                case 0 : RotarCaraX = rInt;     break;   // derecha
+                case 1 : RotarCaraX = rInt;     break;   // izquierda
+                case 2 : RotarCaraY = rInt;     break;   // arriba
+                case 3 : RotarCaraY = rInt;     break;   // abajo
+                case 4 : RotarCaraZ = rInt;     break;   // delante
+                case 5 : RotarCaraZ = rInt;     break;   // atras
+                case 6 : RotarCaraX = rInt;     break;   // centro x
+                case 7 : RotarCaraY = rInt;     break;   // centro y
+                case 8 : RotarCaraZ = rInt;     break;   // centro z
+            }
+            this.AniRotarGrupoCubos = this.Animaciones.Crear(
+                [   // Pasos de la animación
+                    {   Paso : { rX : 0, rY : 0, rZ : 0 }     }, 
+                    {   Paso : { rX : RotarCaraX * (Math.PI / 2), rY : RotarCaraY * (Math.PI / 2), rZ : RotarCaraZ * (Math.PI / 2) }, 
+                        Tiempo : 500 * (RotarCaraX + RotarCaraY + RotarCaraZ), 
+                        FuncionTiempo : FuncionesTiempo.SinOut 
+                    }
+                ], 
+                {   // Opciones de la animación
+                    FuncionActualizar : function(Valores) { 
+                        this.GrupoCubos.rotation.set(Valores.rX , Valores.rY, Valores.rZ);
+                    }.bind(this), 
+                    FuncionTerminado  : this.AnimarCubos.bind(this)
+                }
+            );                                
+/*            
+        }
+        else {              // Rotación eje anormal
+            switch (Pos) {
+                case 0 : 
+                    if (Rand() > 0.5) { RotarCaraY = 2; }
+                    else              { RotarCaraZ = 2; }
+                    PosCaraX = 13;
+                    break; // derecha
+                case 1 : 
+                    if (Rand() > 0.5) { RotarCaraY = 2; }
+                    else              { RotarCaraZ = 2; }
+                    PosCaraX = -13;
+                    break; // izquierda
+                case 2 : 
+                    if (Rand() > 0.5) { RotarCaraX = 2; }
+                    else              { RotarCaraZ = 2; }
+                    PosCaraY = 13;
+                    break;   // arriba
+                case 3 : 
+                    if (Rand() > 0.5) { RotarCaraX = 2; }
+                    else              { RotarCaraZ = 2; }
+                    PosCaraY = -13;
+                    break;   // abajo
+                case 4 : 
+                    if (Rand() > 0.5) { RotarCaraX = 2; }
+                    else              { RotarCaraY = 2; }
+                    PosCaraZ = 13;
+                    break;   // delante
+                case 5 : 
+                    if (Rand() > 0.5) { RotarCaraX = 2; }
+                    else              { RotarCaraY = 2; }
+                    PosCaraZ = -13;
+                    break;   // atras
+            }
         
-        this.AniRotarGrupoCubos = this.Animaciones.Crear([{ 
-                'Paso' : { x : 0, y : 0, z : 0 }
-            }, { 
-                'Paso' : { x : RotarCaraX * (Math.PI / 2), y : RotarCaraY * (Math.PI / 2), z : RotarCaraZ * (Math.PI / 2) }, 
-                Tiempo : 500 * (RotarCaraX + RotarCaraY + RotarCaraZ), 
-                FuncionTiempo : FuncionesTiempo.SinOut}
-            ], {
-                FuncionActualizar : function(Valores) { 
-                    this.GrupoCubos.rotation.x = Valores.x; 
-                    this.GrupoCubos.rotation.y = Valores.y; 
-                    this.GrupoCubos.rotation.z = Valores.z; 
-                }.bind(this), 
-                FuncionTerminado  : this.AnimarCubos.bind(this), 
-                Retraso           : 200
-        });                                
+            this.AniRotarGrupoCubos = this.Animaciones.Crear(
+                [   // Pasos de la animación
+                    {   Paso : { rX : 0, rY : 0, rZ : 0, pX : 0, pY : 0, pZ : 0 }     }, 
+                    {   Paso : { rX : 0, rY : 0, rZ : 0, pX : PosCaraX, pY : PosCaraY, pZ : PosCaraZ }, Tiempo : 300, FuncionTiempo : FuncionesTiempo.SinOut }, 
+                    {   Paso : { rX : RotarCaraX * (Math.PI / 2), rY : RotarCaraY * (Math.PI / 2), rZ : RotarCaraZ * (Math.PI / 2) , pX : PosCaraX, pY : PosCaraY, pZ : PosCaraZ }, 
+                        Tiempo : 500 * (RotarCaraX + RotarCaraY + RotarCaraZ), 
+                        FuncionTiempo : FuncionesTiempo.SinOut 
+                    },
+                    {   Paso : { rX : RotarCaraX * (Math.PI / 2), rY : RotarCaraY * (Math.PI / 2), rZ : RotarCaraZ * (Math.PI / 2), pX : 0, pY : 0, pZ : 0 }, Tiempo : 300, FuncionTiempo : FuncionesTiempo.SinOut }, 
+                ], 
+                {   // Opciones de la animación
+                    FuncionActualizar : function(Valores) { 
+                        this.GrupoCubos.rotation.set(Valores.rX , Valores.rY, Valores.rZ);
+                        this.GrupoCubos.position.set(Valores.pX , Valores.pY, Valores.pZ);
+                    }.bind(this), 
+                    FuncionTerminado  : this.AnimarCubos.bind(this), 
+                }
+            );                                
+        }*/
     },
     
     AnimacionRotarCubo   : function() {
         var Eje = RandInt(3);
         this.CuboAnimado = RandInt(27, 0);        
-        var RotarCara = RandInt(3, 1);
-        if (Eje === 0) {
-            this.AniRotarCubo = this.Animaciones.Crear([
-                { 'Paso' : { x : 0 }},
-                { 'Paso' : { x : RotarCara * (Math.PI / 2) }, Tiempo : 350 * RotarCara, FuncionTiempo : FuncionesTiempo.SinOut}], { FuncionActualizar : function(Valores) { this.Cubos[this.CuboAnimado].rotation.x = Valores.x; }.bind(this), FuncionTerminado : this.AnimarCubos.bind(this), "Retraso" : 200
-            });                        
-        }
-        else if (Eje === 1) {
-            this.AniRotarCubo = this.Animaciones.Crear([
-                { 'Paso' : { y : 0 }},
-                { 'Paso' : { y : RotarCara * (Math.PI / 2) }, Tiempo : 350 * RotarCara, FuncionTiempo : FuncionesTiempo.SinOut}], { FuncionActualizar : function(Valores) { this.Cubos[this.CuboAnimado].rotation.y = Valores.y; }.bind(this), FuncionTerminado : this.AnimarCubos.bind(this), "Retraso" : 200 
-            });                                    
-        }
-        else {
-            this.AniRotarCubo = this.Animaciones.Crear([
-                { 'Paso' : { z : 0 }}, //this.Cubos[this.CuboAnimado].rotation.z
-                { 'Paso' : { z : RotarCara * (Math.PI / 2) }, Tiempo : 350 * RotarCara, FuncionTiempo : FuncionesTiempo.SinOut}], { FuncionActualizar : function(Valores) { this.Cubos[this.CuboAnimado].rotation.z = Valores.z; }.bind(this), FuncionTerminado : this.AnimarCubos.bind(this), "Retraso" : 200
-            });                                                
-        }        
+        var RotarCara = [0 ,0, 0];
+        RotarCara[Eje] = RandInt(3, 1) * (Math.PI / 2);
+        var T = 350 * (RotarCara[0] + RotarCara[1] + RotarCara[2]);
+        this.AniRotarCubo = this.Animaciones.Crear([
+                { Paso : { x : 0,             y : 0,              z : 0 }},
+                { Paso : { x : RotarCara[0],  y : RotarCara[1],   z : RotarCara[2] }, Tiempo : T, FuncionTiempo : FuncionesTiempo.SinOut}
+            ], { 
+                FuncionActualizar : function(Valores) { this.Cubos[this.CuboAnimado].rotation.set(Valores.x, Valores.y, Valores.z); }.bind(this), 
+                FuncionTerminado  : this.AnimarCubos.bind(this)
+            }
+        );         
     },
     
     AnimacionEncenderLuz : function() {
         if (typeof this.AniEncenderLuz !== 'undefined') this.AniEncenderLuz.Terminar();
         this.AniEncenderLuz = this.Animaciones.Crear([
-            { 'Paso' : { Intensidad : 0    }},
-            { 'Paso' : { Intensidad : 0.7, }, 'Tiempo' : 120,   'FuncionTiempo' : FuncionesTiempo.SinInOut, 'Retraso' : 0 },
-            { 'Paso' : { Intensidad : 0,   }, 'Tiempo' : 120,   'FuncionTiempo' : FuncionesTiempo.SinInOut },
-            { 'Paso' : { Intensidad : 0.6, }, 'Tiempo' : 120,   'FuncionTiempo' : FuncionesTiempo.SinInOut },
-            { 'Paso' : { Intensidad : 0.1, }, 'Tiempo' : 120,   'FuncionTiempo' : FuncionesTiempo.SinInOut },
-            { 'Paso' : { Intensidad : 0.5  }, 'Tiempo' : 4850, 'FuncionTiempo' : FuncionesTiempo.SinInOut },
-            { 'Paso' : { Intensidad : 1    }, 'Tiempo' : 2500, 'FuncionTiempo' : FuncionesTiempo.SinInOut }
+            { Paso : { Intensidad : 0   }},
+            { Paso : { Intensidad : 0.7 }, Tiempo : 120,  FuncionTiempo : FuncionesTiempo.SinInOut, Retraso : 0 },
+            { Paso : { Intensidad : 0   }, Tiempo : 120,  FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { Intensidad : 0.6 }, Tiempo : 120,  FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { Intensidad : 0.1 }, Tiempo : 120,  FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { Intensidad : 0.5 }, Tiempo : 4850, FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { Intensidad : 1   }, Tiempo : 2500, FuncionTiempo : FuncionesTiempo.SinInOut }
         ], { FuncionActualizar : function(Valores) { 
                 this.SpotLight.intensity = Valores.Intensidad; 
                 this.DirLight.intensity = Valores.Intensidad * 0.6;
@@ -314,8 +327,7 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     },        
     
     
-    CrearLuces      : function() {
-        var tLuces = this.Test.AgregarLista("Luces");
+    CrearLuces      : function() {        
         // DirectionalLight
         this.DirLight = new THREE.DirectionalLight( 0xffffff, 0 );
         this.DirLight.color.setHSL( 0.1, 1, 0.95 );
@@ -335,13 +347,6 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
         this.Dlhelper = new THREE.CameraHelper(this.DirLight.shadow.camera);
         this.Escena.add(this.Dlhelper);
         this.Dlhelper.visible = false;
-        // ObjetoTest
-        var tDirLight = tLuces.AgregarLista("DirectionalLight");
-        tDirLight.Agregar({ Padre : this.DirLight.position,   Variable : "x",           Min : -100, Max : 100, Nombre : "position.x"});
-        tDirLight.Agregar({ Padre : this.DirLight.position,   Variable : "y",           Min : -100, Max : 100, Nombre : "position.y"});
-        tDirLight.Agregar({ Padre : this.DirLight.position,   Variable : "z",           Min : -200, Max : 200, Nombre : "position.z"});
-        tDirLight.Agregar({ Padre : this.DirLight,            Variable : "intensity",   Min : 0.0,  Max : 1.0});
-        tDirLight.Agregar({ Padre : this.Dlhelper,            Variable : "visible",     Nombre : "helper" });
         
         // SpotLight
 	this.SpotLight	= new THREE.SpotLight( 0xCCFFFF, 0 );
@@ -356,14 +361,6 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
         this.Splhelper = new THREE.CameraHelper(this.SpotLight.shadow.camera);
         this.Splhelper.visible = false; 
         this.Escena.add(this.Splhelper);
-        // ObjetoTest
-        var tSpotLight = tLuces.AgregarLista("SpotLight");
-        tSpotLight.Agregar({ Padre : this.SpotLight.position,   Variable : "x",                     Min : -100, Max : 100 });
-        tSpotLight.Agregar({ Padre : this.SpotLight.position,   Variable : "y",                     Min : -200, Max : 200 });
-        tSpotLight.Agregar({ Padre : this.SpotLight.position,   Variable : "z",                     Min : -750, Max : 750 });
-        tSpotLight.Agregar({ Padre : this.SpotLight,            Variable : "intensity",             Min : 0.0,  Max : 1.0});
-        tSpotLight.Agregar({ Padre : this.Splhelper,            Variable : "visible",               Nombre : "helper"  });
-        tSpotLight.Agregar({ Padre : this,                      Variable : "AnimacionEncenderLuz",  Nombre : "Ani Encender luz"  });        
         
         // HemisphereLight  
         this.HemiLight = new THREE.HemisphereLight( 0xeeeeee, 0xffffff, 0.2 );
@@ -371,14 +368,81 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
         this.HemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
         this.HemiLight.position.set( 0, 0, 0 );
         this.Escena.add( this.HemiLight );        
-        // ObjetoTest
+        
+        this.AnimacionEncenderLuz();
+    },
+    
+    // Función que crea y enlaza todos los controles del ObjetoTest
+    CrearTest : function() {
+        this.Test = new ObjetoTest({ css : { bottom : "10px", right : "10px" } });
+        // Valores para el ObjetoTest de la cámara
+        this.lCamara = this.Test.AgregarLista("Cámara");
+        this.lCamara.Agregar({ Padre : this.Camara.position, Variable : "x", Min : -200, Max : 200, Nombre : "position.x", Modificable : false  });
+        this.lCamara.Agregar({ Padre : this.Camara.position, Variable : "y", Min : -200, Max : 200, Nombre : "position.y" });
+        this.lCamara.Agregar({ Padre : this.Camara.position, Variable : "z", Min : -200, Max : 200, Nombre : "position.z", Modificable : false });
+        this.lCamara.Agregar({ Padre : this.Camara.rotation, Variable : "x", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.x", Modificable : false });
+        this.lCamara.Agregar({ Padre : this.Camara.rotation, Variable : "y", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.y", Modificable : false });
+        this.lCamara.Agregar({ Padre : this.Camara.rotation, Variable : "z", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.z", Modificable : false });
+        this.lCamara.Agregar({ Padre : this.Camara.Rotacion, Variable : "Animacion", Nombre : "Animación", Actualizar : function(NuevoValor) {
+            this.Camara.Rotacion.Animacion = NuevoValor;
+            for (var i = 0; i < this.lCamara.Variables.length; i++) {
+                if (i !== 1 && i !== 6) {
+                    this.lCamara.Variables[i].Modificable(!NuevoValor);
+                }
+            }
+        }.bind(this) });
+        // Objetos
+        var lObjetos = this.Test.AgregarLista("Objetos");        
+        // Cubos
+        var lCubos = lObjetos.AgregarLista("Cubos");
+        this.Cubos_WireFrame = false;                
+        lCubos.Agregar({ Padre : this, Variable : "Cubos_WireFrame", Nombre : "wireframe",
+            Actualizar : function(NuevoValor) { 
+                for (var i = 0; i < this.Cubos.length; i++) {
+                    this.Cubos[i].material.wireframe = NuevoValor; 
+                } 
+            }.bind(this)  
+        });
+        
+        this.Cubos_CastShadow = true;                
+        lCubos.Agregar({ Padre : this, Variable : "Cubos_CastShadow", Nombre : "castShadow",
+            Actualizar : function(NuevoValor) { 
+                for (var i = 0; i < this.Cubos.length; i++) {
+                    this.Cubos[i].castShadow = NuevoValor; 
+                } 
+            }.bind(this)  
+        });
+        // Suelo
+        var lSuelo = lObjetos.AgregarLista("Suelo");
+        lSuelo.Agregar({ Padre : this.Suelo.position, Variable : "x", Min : -200, Max : 200, Nombre : "position.x"  });
+        lSuelo.Agregar({ Padre : this.Suelo.position, Variable : "y", Min : -200, Max : 200, Nombre : "position.x" });
+        lSuelo.Agregar({ Padre : this.Suelo.position, Variable : "z", Min : -200, Max : 200, Nombre : "position.x" });
+        lSuelo.Agregar({ Padre : this.Suelo.rotation, Variable : "x", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.x" });
+        lSuelo.Agregar({ Padre : this.Suelo.rotation, Variable : "y", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.y" });
+        lSuelo.Agregar({ Padre : this.Suelo.rotation, Variable : "z", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.z" });
+        lSuelo.Agregar({ Padre : this.Suelo.material, Variable : "wireframe", Actualizar : function(NuevoValor) { this.Suelo.material.wireframe = NuevoValor; }.bind(this)  });
+        var tLuces = this.Test.AgregarLista("Luces");
+        // DirectionalLight
+        var tDirLight = tLuces.AgregarLista("DirectionalLight");
+        tDirLight.Agregar({ Padre : this.DirLight.position,   Variable : "x",           Min : -100, Max : 100, Nombre : "position.x"});
+        tDirLight.Agregar({ Padre : this.DirLight.position,   Variable : "y",           Min : -100, Max : 100, Nombre : "position.y"});
+        tDirLight.Agregar({ Padre : this.DirLight.position,   Variable : "z",           Min : -200, Max : 200, Nombre : "position.z"});
+        tDirLight.Agregar({ Padre : this.DirLight,            Variable : "intensity",   Min : 0.0,  Max : 1.0});
+        tDirLight.Agregar({ Padre : this.Dlhelper,            Variable : "visible",     Nombre : "helper" });        
+        // SpotLight
+        var tSpotLight = tLuces.AgregarLista("SpotLight");
+        tSpotLight.Agregar({ Padre : this.SpotLight.position,   Variable : "x",                     Min : -100, Max : 100 });
+        tSpotLight.Agregar({ Padre : this.SpotLight.position,   Variable : "y",                     Min : -200, Max : 200 });
+        tSpotLight.Agregar({ Padre : this.SpotLight.position,   Variable : "z",                     Min : -750, Max : 750 });
+        tSpotLight.Agregar({ Padre : this.SpotLight,            Variable : "intensity",             Min : 0.0,  Max : 1.0});
+        tSpotLight.Agregar({ Padre : this.Splhelper,            Variable : "visible",               Nombre : "helper"  });
+        tSpotLight.Agregar({ Padre : this,                      Variable : "AnimacionEncenderLuz",  Nombre : "Ani Encender luz"  });        
+        // HemisphereLight
         var tHemiLight = tLuces.AgregarLista("HemisphereLight"); 
         tHemiLight.Agregar({ Padre : this.HemiLight.position,   Variable : "x",         Min : -100, Max : 100});
         tHemiLight.Agregar({ Padre : this.HemiLight.position,   Variable : "y",         Min : 0,    Max : 500});
         tHemiLight.Agregar({ Padre : this.HemiLight.position,   Variable : "z",         Min : -200, Max : 200});
         tHemiLight.Agregar({ Padre : this.HemiLight,            Variable : "intensity", Min : 0.0,  Max : 1.0});
-        
-        this.AnimacionEncenderLuz();
     },
     
     // Función que pinta cada frame de la animación

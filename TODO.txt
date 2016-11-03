@@ -13,33 +13,14 @@ Millores de la web :
  V      - Afegir els exemples del lab a la BD de paraules... (lo que repetira el solitario...)
             - OJU perque llavors poden haber exemples que ja surten a l'index del blog ( fer el mateix sistema pel Doc/CSS )
  V  - Modificada la visualització d'errors en javascript de forma que ara es mes fácil accedir a la línea afectada desde el log.
-    - Estudiar la posibilitat de moure els comentaris al menu lateral dret (per poder utilitzar comentaris al lab...)
-        - Un exemple clar sería la web de elmundo
-        - Estudiar tambè una forma alternativa de comentaris al lab, sense modificar la estructura dels comentaris del blog.
  V  - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
  V      - Finestra per canviar de banner implementada
             - Afegir opcions especifiques per cada banner amb un sistema chulo dintre de ObjetoBanner (em podria inspirar en algo tipo DAT.GUY)
-                - S'ha dimplementar algo semblant al DAT.GUY però al meu estil ... ...
+ V              - S'ha dimplementar algo semblant al DAT.GUY però al meu estil ... ... (ObjetoTest)
  V      - Exemple en Three.js 'WormHole' (2 cilindres un dintre de l'altre, amb la camara al centre dels dos, i posant una textura que avança i rota.)
  V      - Exemple en Canvas 2D 'Anillos' (Varis cercles rotant al voltant del centre del canvas, amb un efecte de difuminat al borrar el fondo amb un color rgba)
-    - Fer l'error 404 chulo amb three.js (el que tinc es una cosa rara, i ames!!! tira del tween.js, i m'obliga a afegir-lo inicialment.......... !!!!!!!!
- V      - PUES NO, el faig amb 2D, es un space invaders amb un escut que son les lletres del ERROR 404, el tipic tank que dispara (amb la seva barra de poder), i els bichos.
- V          - Buffer per conservar les llestre d'error amb un segon canvas en plan backbuffer
- V          - Les bales tenen angle i no tentn per que anar rectes.
-                - De moment el detector de colisions nomes es mira pel pixel que han avançat (que poden ser 5, 10 , 15) i el problema es que no mira els anteriors, es a dir pot avançar desde Y0 a Y20 i nomes mira el 20, el resto l'ignora i el deixa com atraveçat.
-                    - Encara es pitjor del que m'imaginaba ja que el moveto - lineto fa servir antialias per que no es notin les lineas pixelades, amb lo cual fa inutil utilitzar l'algoritme de bresenham, ja que dona falsos positius en certs angles...
-                    - La unica opcio seria probar l'algoritme : Xiaolin Wu's line algorithm, pero no es segur que sigui el mateix que fa servir el canvas, i no el veig per detectar de 10 a 30 bales a 60 fps...
- V              - Deteccio i eliminació de vida del jugador
-                - Munició :
-                    - Colors diferents per enemics i jugador?, o color diferent per tipus de munició?
- +o-                - Perforant [la primera que he fet].
-                    - Explosiva en plan cercle amb distancia variable, 
-                    - lasers instantanis per l'ufo a varis llocs a l'hora
- V          - El tank del jugador dispara a les coordenades on está situat el mouse.
- V          - Crear imatge bàsica pels enemics, de moment arribo a mostrar els 3 primers, però tinc el ufo sense utilitzar (i aquest pot ser destroyer destroyer jeje)
-            - Implementar vida als bichos? te el seu punt si poso molts Tanque.MaxDisparosPorSegundo (però sense pasarse que gripo la màquina xd)
-            - l'objectiu es clar : ell ha buscat una pagina que no existeix, HA DE SER CASTIGAT AMB TOT EL ARSENAL QUE ES PUGUI IMAGINAR EN 4-5 COLORS. (potser mes si comptem l'opacitat de les explosions)
-                - falten municións i bichos extra (ufo, i altres posibles jefes reproduibles a 2 colors xd.
+ V          - Exemple eliminat de la bateria de banners per ser el mes lleig.
+ V      - Creats varis banners mes : Sinusoidal, Geometría básica, Esfera (Vertex shader), Reunion de circulos, i MultiCubo.
 
     - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
 
@@ -73,9 +54,6 @@ Estils movils :
 Index : 
 
 Lab :
-
-!!! - L'arxiu : http://devildrey33.es/Lab/Ejemplos/BannerTest/WormHole.html no es guarda en le lab, (i no es l'unic) PERQUE?¿ (3:27 despres de 4l)
-
     - Implementar alguna forma d'afegir links al codi.
         - Lo que donaria peu a poguer fer enllaços en els includes / links / scripts externs, i poder-los obrir en una pestanya nova.
             - I si em poso serio, obrir tots els 'includes' de l'arxiu en pestanyes diferents (i internes del propi lab) al obrir arxius que requereixen d'arxius externs.
@@ -118,10 +96,37 @@ Solitario :
     - En el explorer va chungo chungo xd
  ---- SI VULL CONTINUAR AMB EL SOLITARIO S'HA DE REFER EL DRAG & DROP I NO UTILITZAR L'IMPLEMENTACIÓ HTML5 QUE ES UN DESASTRE...
 
-ESPECIFIC NAVEGADORS :    
-    Firefox :         
-    Explorer 11 :
+SpaceInvaders 404 :
+    - Fer l'error 404 chulo amb three.js (el que tinc es una cosa rara, i ames!!! tira del tween.js, i m'obliga a afegir-lo inicialment.......... !!!!!!!!
+ V      - PUES NO, el faig amb 2D, es un space invaders amb un escut que son les lletres del ERROR 404, el tipic tank que dispara (amb la seva barra de poder), i els bichos.
+ V          - Buffer per conservar les llestre d'error amb un segon canvas en plan backbuffer
+ V          - Les bales tenen angle i no tentn per que anar rectes.
+                - De moment el detector de colisions nomes es mira pel pixel que han avançat (que poden ser 5, 10 , 15) i el problema es que no mira els anteriors, es a dir pot avançar desde Y0 a Y20 i nomes mira el 20, el resto l'ignora i el deixa com atraveçat.
+                    - Encara es pitjor del que m'imaginaba ja que el moveto - lineto fa servir antialias per que no es notin les lineas pixelades, amb lo cual fa inutil utilitzar l'algoritme de bresenham, ja que dona falsos positius en certs angles...
+                    - La unica opcio seria probar l'algoritme : Xiaolin Wu's line algorithm, pero no es segur que sigui el mateix que fa servir el canvas, i no el veig per detectar de 10 a 30 bales a 60 fps...
+ V              - Deteccio i eliminació de vida del jugador
+                - Munició :
+                    - Colors diferents per enemics i jugador?, o color diferent per tipus de munició?
+ +o-                - Perforant [la primera que he fet].
+                    - Explosiva en plan cercle amb distancia variable, 
+                    - lasers instantanis per l'ufo a varis llocs a l'hora
+ V          - El tank del jugador dispara a les coordenades on está situat el mouse.
+ V          - Crear imatge bàsica pels enemics, de moment arribo a mostrar els 3 primers, però tinc el ufo sense utilitzar (i aquest pot ser destroyer destroyer jeje)
+            - Implementar vida als bichos? te el seu punt si poso molts Tanque.MaxDisparosPorSegundo (però sense pasarse que gripo la màquina xd)
+            - l'objectiu es clar : ell ha buscat una pagina que no existeix, HA DE SER CASTIGAT AMB TOT EL ARSENAL QUE ES PUGUI IMAGINAR EN 4-5 COLORS. (potser mes si comptem l'opacitat de les explosions)
+                - falten municións i bichos extra (ufo, i altres posibles jefes reproduibles a 2 colors xd.
 
-ESPECIFIC PUTU I-TRASTO DEL TALIBA DELS PEBROTS
-    - Per alguna extranya rao, no s'inicia la transició d'inici en l'index, es veu el combo box de categories en blanc (opacity 0.0), i els articles es veuen al reves perque no es fa la transició.    
-        - PER RE_CONFIRMAR O ELIMINAR
+
+ObjetoAnimacion :
+ V  - Afegides funcions Terminar i Cancelar, Terminar acaba l'animació i deixa els valors en el seu estat final, Cancelar acaba l'animació i deixa els valors tal i com estan.
+ V  - La funció Actualizar ja no es crida per cada valor de l'animació, ara es crida per cada frame, i s'han de calcular tots els valors d'aquell frame.
+ V      - D'aquesta forma puc posar mes valors del compte sense afectar gaire el rendiment, ja que en una animació de 10 valors evito 9 crides a la funció Actualizar.
+ V  - Afegides funcions Pausa i Reanudar, per pausar i rependre l'animació, apart el temps de pausa no es descomptara de l'animació, per lo que es rependra just en el moment que s'ha pausat.
+
+ObjetoTest
+ V  - Implementada opcio 'Modificable' per poder establir si es pot modificar o no la variable.
+ V  - Com no es pot fer un SetCapture... he tingut que fer un listener del mouse a tot el document, per poder controlar la barra un cop el mouse es fora d'ella.
+ V  - Afegida opcio AutoActualizar per actualitzar els valors mitjançant un timer, per defecte es false, i hauras d'actualitzar els valors amb la funció Actualizar.
+ V      - Afegides funcions AutoActualizar_Iniciar i AutoActualizar_Cancelar
+ V  - Recordar Pestanyes obertes... es un lio sobretot pel tema del css transition, es podria calcular a lo bestia (22px * TotalVariables)... I a lo bestia s'ha calculat.
+ V  - Testejat en Firefox i explorer amb resultats positius (he tingut que canviar les variables x i y que agafaba del event mousemove per clientX i clientY
