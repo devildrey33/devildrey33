@@ -1,0 +1,180 @@
+<!-- 
+    Sistema solar en 3D creado por Josep Antoni Bover Comas el 21/11/2016
+
+        Vista por defecto en el Laboratorio de pruebas  
+		devildrey33_Lab->Opciones->Vista = Filas;
+
+        Ultima modificación el 21/11/2016
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <title>Sistema Solar</title>
+        
+        <!-- Estilos CSS para el test -->
+        <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
+        
+        <!-- Estilos CSS para el ObjetoTest -->
+        <!-- <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoTest.css' /> -->
+        
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        <!-- Three.JS -->
+        <script src="/Web/JS/3rdParty/three-0.79.min.js"></script>
+        <!-- Three.JS para depuración -->
+        <!-- <script src="/Web/JS/3rdParty/three-0.79.js"></script> -->
+
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
+        
+        <!-- Objeto para crear animaciones de tiempo -->
+        <!-- <script src="/Ejemplos/Utils/ObjetoAnimacion.js"></script> -->
+        
+        <!-- Objeto para crear tests rápidos -->
+        <!-- <script src="/Ejemplos/Utils/ObjetoTest.js"></script> -->
+        
+        <!-- Código javascript --> 
+<script type="text/javascript">
+/* Plantilla para crear banners animados en devildrey33.es */
+
+// Constructor
+var SistemaSolar = function() {
+    // Llamo al constructor del ObjetoBanner
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : 'THREE',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Normal',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body,
+        'Pausar'        : true             // Pausa el canvas si la pestaña no tiene el foco del teclado
+    }) === false) { return false; }
+    
+    // Se ha creado el canvas, inicio los valores de la animación ... 
+    this.Iniciar();
+    
+    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
+    this.Cargando(false);
+};
+
+SistemaSolar.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor     : SistemaSolar, 
+    // Función que se llama al redimensionar el documento
+    Redimensionar   : function() {    },
+    // Función que se llama al hacer scroll en el documento    
+    Scroll          : function() {    },
+    // Función que se llama al mover el mouse por el canvas
+    MouseMove       : function(Evento) { },
+    // Función que se llama al presionar un botón del mouse por el canvas
+    MousePresionado : function(Evento) { },
+    // Función que se llama al soltar un botón del mouse por el canvas
+    MouseSoltado    : function(Evento) { },
+    // Función que se llama al entrar con el mouse en el canvas
+    MouseEnter      : function(Evento) { },
+    // Función que se llama al salir con el mouse del canvas
+    MouseLeave      : function(Evento) { },
+    // Función que se llama al presionar una tecla
+    TeclaPresionada : function(Evento) { },
+    // Función que se llama al soltar una tecla
+    TeclaSoltada    : function(Evento) { },
+    // Función que se llama al pausar el banner
+    Pausa           : function() { },
+    // Función que se llama al reanudar el banner
+    Reanudar        : function() { },
+    
+    Entidades       : [],
+    // Función que inicia el ejemplo
+    Iniciar         : function() {
+        this.Escena = new THREE.Scene();
+        this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 1, 10000000);
+        this.Camara.position.set(0, 0, 4000);
+        this.Camara.lookAt(new THREE.Vector3(0, 0, 0));
+        this.Escena.add(this.Camara);
+
+        var Lista = [ 
+            { Nombre : 'Sol',       Path : 'sunmap.jpg',     Distancia : 0,          Diametro : 239000,    Rotacion : 12,              Translacion : 1  },
+            { Nombre : 'Mercurio',  Path : 'mercurymap.jpg', Distancia : 58000000,   Diametro : 4880,       Rotacion : (58 * 24) + 16,  Translacion : (87 * 24) + 23  },
+            { Nombre : 'Venus',     Path : 'venusmap.jpg',   Distancia : 108000000,  Diametro : 12100,      Rotacion : 243 * 24,        Translacion : (224 * 24) + 17 },
+            { Nombre : 'Tierra',    Path : 'earthmap.jpg',   Distancia : 150000000,  Diametro : 12800,      Rotacion : 24,              Translacion : (365 * 24) + 6  },
+            { Nombre : 'Marte',     Path : 'marsmap.jpg',    Distancia : 228000000,  Diametro : 6800,       Rotacion : 24,              Translacion : (365 + 321) * 24 },
+//            { Nombre : 'Ceres',     Path : 'sunmap.jpg',   Distancia : 420000000,  Diametro : 1000 },
+            { Nombre : 'Jupiter',   Path : 'jupitermap.jpg', Distancia : 780000000,  Diametro : 143000,     Rotacion : 10,              Translacion : (365 * 12) * 24,      Anillo  : 261000 },
+            { Nombre : 'Saturno',   Path : 'saturnmap.jpg',  Distancia : 1430000000, Diametro : 120000,     Rotacion : 11,              Translacion : (365 * 29.5) * 24,    Anillo  : 273000 },
+            { Nombre : 'Urano',     Path : 'uranusmap.jpg',  Distancia : 2870000000, Diametro : 51000,      Rotacion : 17,              Translacion : (365 * 84) * 24,      Anillo  : 100000 },
+            { Nombre : 'Neptuno',   Path : 'neptunemap.jpg', Distancia : 4500000000, Diametro : 49000,      Rotacion : 16,              Translacion : (365 * 164) * 24,     Anillo  : 106000 },
+            { Nombre : 'Pluton',    Path : 'plutomap.jpg',   Distancia : 4900000000, Diametro : 2300,       Rotacion : 16,              Translacion : (365 * 248) * 24 }
+        ];
+
+        for (var i = 0; i < Lista.length; i++) {
+            this.Entidad_Iniciar(Lista[i]);
+        }
+/*
+        // Sol
+        this.Entidad_Iniciar('/Ejemplos/BannerTest/TexturasPlanetas/sunmap.jpg', 390, 0, new THREE.Vector3(0,0,0));
+        // Mercurio
+        this.Entidad_Iniciar('/Ejemplos/BannerTest/TexturasPlanetas/sunmap.jpg', 48.8, 580, new THREE.Vector3(0,0,0));
+        // Venus
+        this.Entidad_Iniciar('/Ejemplos/BannerTest/TexturasPlanetas/sunmap.jpg', 121, 1080, new THREE.Vector3(0,0,0));
+w        // Tierra
+        this.Entidad_Iniciar('/Ejemplos/BannerTest/TexturasPlanetas/sunmap.jpg', 128, 1500, new THREE.Vector3(0,0,0));
+        // Marte
+        this.Entidad_Iniciar('/Ejemplos/BannerTest/TexturasPlanetas/sunmap.jpg', 228, 2280, new THREE.Vector3(0,0,0));*/
+    },
+    
+    Entidad_TexturaCargada  : function(Datos, Textura) {
+        var Geo = new THREE.SphereGeometry(Datos.Diametro / 100, 64, 64);
+        var Mat = new THREE.MeshBasicMaterial({ 
+            color: 0x666666,
+/*            transparent: true,*/
+            map: Textura,
+            side: THREE.BackSide
+            /*opacity: (Num === 0) ? 0.3 : 1 // El primer tubo es translucido con humo, el segundo es solido con rayos */
+        });
+        var Entidad = new THREE.Mesh(Geo, Mat);
+//        Entidad.position.x = Datos.Distancia / 100000;
+        Entidad.Rotacion = (Math.PI * 2) / (Datos.Rotacion * 60); // Avance para la rotacion
+        Entidad.Translacion = (Math.PI * 2) / (Datos.Translacion * 60); // Avance para la translacion
+        Entidad.Distancia = Datos.Distancia / 50000;
+        Entidad.Rads = 0;
+        Entidad.Rotar = function() {
+            this.rotation.z -= this.Rotacion;
+            this.rotation.x -= this.Rotacion;
+            
+            this.Rads += Entidad.Translacion;
+            this.position.x = this.Distancia * Math.cos(this.Rads);
+            this.position.z = this.Distancia * Math.sin(this.Rads);
+        };
+        
+        this.Escena.add(Entidad);
+        this.Entidades.push(Entidad);
+    },
+    
+    Entidad_Iniciar  : function(Datos) {
+        var Cargador = new THREE.TextureLoader();
+        var Textura = new Cargador.load('/Ejemplos/BannerTest/TexturasPlanetas/' + Datos.Path, this.Entidad_TexturaCargada.bind(this, Datos) );    
+        
+//        Textura = new Cargador.load('/Web/Ejemplos/BannerTest/TexturasPlanetas/sunmap.jpg', this.TexturaCargada.bind(this) );    
+    },
+    
+    
+    
+    // Función que pinta cada frame de la animación
+    Pintar          : function() {  
+        
+        for (var i = 0; i < this.Entidades.length; i++) {
+            this.Entidades[i].Rotar();
+        }
+        
+        this.Context.render(this.Escena, this.Camara);  
+    }
+});
+
+var Canvas = null;
+window.addEventListener('load', function() { Canvas = new SistemaSolar; });
+</script>
+
+    </head>
+    <body>
+    </body>
+</html>

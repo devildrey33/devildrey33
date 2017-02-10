@@ -2,7 +2,7 @@
 /* Clase devildrey33_PintarCodigo creada por Josep Antoni Bover el 09/10/2011 para www.devildrey33.es
    Ultima modificación : 29/01/2016
 
-   Versión             : 2.02
+   Versión             : 2.03
 
    Explicación         : Esta clase consiste en un conjunto de funciones que permiten pintar cadenas de texto, archivos, o partes de archivo XML, PHP, C, C++, HTML, JavaScript, y CSS
                          La idea es parsear una parte de un archivo para introducir en las palabras especificadas etiquetas span con colores especificos.
@@ -25,6 +25,7 @@
                          Creados diccionarios de colores para cada lenguaje, por el momento existen diccionarios que simulan los siguientes IDE : VC, NetBeans, y DreamWeaver.
                          Se puede especificar a la hora de pintar, que diccionario queremos utilizar.
                          La versión 2.01 pintaba ciertas palabras del diccionario HTML si se las encontraba sueltas por el código HTML sin los caracteres <>.
+                         Pequeños retoques en las normas CSS, hace falta re-implementar el parseador para CSS, y añadir normas para las reglas CSS, también hay que pulit la forma de detectar los selectores... de momento solo detecta clases y id's (las etiquetas las pongo desde el diccionaro)
 */
 //    echo "devildrey33_PintarCodigo.php\n";
 
@@ -210,19 +211,19 @@ class devildrey33_PintarCodigo {
         4 - Con todo el código separado por palabras, buscamos coincidencias en el diccionario palabra a palabra (siempre y cuando dicha palabra no sea parte de un estado básico).
         
        Tabla de estados del parsing básico por lenguajes 
-                 ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- --------------
-                | Comentarios | ComentariosML | String1 | String2 | Números | Variables | Directivas | EtiquetaHTML | SelectorCSS | PropiedadCSS |
-     ----------- ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- --------------
-    |   C/C++   |      X      |       X       |    X    |    X    |    X    |           |      X     |              |             |              |
-     ----------- ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- --------------
-    |   PHP     |      X      |       X       |    X    |    X    |    X    |     X     |            |              |             |              |
-     ----------- ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- --------------
-    |   JS      |      X      |       X       |    X    |    X    |    X    |           |            |              |             |              |
-     ----------- ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- --------------
-    |   CSS     |             |       X       |    X    |    X    |         |           |            |              |      X      |       X      |
-     ----------- ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- --------------
-    |   HTML    |             |       X       |    X    |    X    |         |           |            |       X      |             |              |
-     ----------- ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- --------------        
+                 ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- -------------- ----------
+                | Comentarios | ComentariosML | String1 | String2 | Números | Variables | Directivas | EtiquetaHTML | SelectorCSS | PropiedadCSS | ValorCSS |
+     ----------- ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- -------------- ----------
+    |   C/C++   |      X      |       X       |    X    |    X    |    X    |           |      X     |              |             |              |          |
+     ----------- ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- -------------- ----------
+    |   PHP     |      X      |       X       |    X    |    X    |    X    |     X     |            |              |             |              |          |
+     ----------- ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- -------------- ----------
+    |   JS      |      X      |       X       |    X    |    X    |    X    |           |            |              |             |              |          |
+     ----------- ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- -------------- ----------
+    |   CSS     |             |       X       |    X    |    X    |         |           |            |              |      X      |       X      |     X    |
+     ----------- ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- -------------- ----------
+    |   HTML    |             |       X       |    X    |    X    |         |           |            |       X      |             |              |          |
+     ----------- ------------- --------------- --------- --------- --------- ----------- ------------ -------------- ------------- -------------- ----------        
      * Función para parsear un texto con las normas del $Tipo especificado 
      *  $Tipo puede ser : "HTML", "PHP", "CSS", "JS", y "C".
      *  $Tema puede ser : "NetBeans" y "DreamWeaver" para HTML, PHP, CSS, y JS. Para C solo existe el tema "VC"
@@ -247,7 +248,7 @@ class devildrey33_PintarCodigo {
              PHP_Variable,                                                                               (variables PHP)
              C_Directiva, C_DirectivaFin,                                                                (macros / directivas C/C++)
              HTML_FinCSS, HTML_FinJS, HTML_FinPHP, HTML_Etiqueta, HTML_EtiquetaStr1, HML_EtiquetaStr2    (Partes de otro lenguaje y valores de atributos [HTML])
-             CSS_Regla, CSS_Selector                                                                     (Reglas y Selectores CSS) */                 
+             CSS_Regla, CSS_Selector                                                                     (Reglas y Selectores CSS)                  
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
         /* Elección de Diccionario y Delimitadores según el lenguaje */
         switch ($Tipo) {
@@ -348,7 +349,7 @@ class devildrey33_PintarCodigo {
                 $Palabras[$TotalPalabras ++] = $this->_DivInicial($l, $this->_Color($Diccionario, 3), $Estado, $AbrirDivLinea, $Spans);
                 break;
             case "CSS_Regla" :
-                $Palabras[$TotalPalabras ++] = $this->_DivInicial($l, $this->_Color($Diccionario, 5), $Estado, $AbrirDivLinea, $Spans);
+                $Palabras[$TotalPalabras ++] = $this->_DivInicial($l, $this->_Color($Diccionario, 2), $Estado, $AbrirDivLinea, $Spans);
                 break;
             case "CSS_Selector" :
                 $Palabras[$TotalPalabras ++] = $this->_DivInicial($l, $this->_Color($Diccionario, 8), $Estado, $AbrirDivLinea, $Spans);
@@ -364,13 +365,13 @@ class devildrey33_PintarCodigo {
             switch ($Estado) {
                 case "HTML" : case "CSS" : case "PHP" : case "JS" : case "C" : // Sin estado
                     // ComentarioML (JS, CSS, PHP, C)
-                    if (substr($Linea, $i, 2) == "/*") { 
+                    if (substr($Linea, $i, 2) == "/*" && $Tipo !== "HTML") { 
                         $Estado .= "_ComentarioML"; $Spans++; $i++;
                         if ($PalabraActual["Texto"] != "") $Palabras[$TotalPalabras ++] = $PalabraActual;
                         $PalabraActual = array("Texto" => "<span class='".$this->_Color($Diccionario, 4)."'>/*", "Estado" => $Estado);                        
                     }
                     // Comentario (JS, PHP, C)
-                    else if (substr($Linea, $i, 2) == "//") { 
+                    else if (substr($Linea, $i, 2) == "//" && $Tipo !== "HTML" && $Tipo !== "CSS") { 
                         $Estado .= "_Comentario"; $Spans ++; $i++;
                         if ($PalabraActual["Texto"] != "") $Palabras[$TotalPalabras ++] = $PalabraActual;
                         $PalabraActual = array("Texto" => "<span class='".$this->_Color($Diccionario, 4)."'>//", "Estado" => $Estado);                        
@@ -393,20 +394,20 @@ class devildrey33_PintarCodigo {
                         if ($PalabraActual["Texto"] != "") $Palabras[$TotalPalabras ++] = $PalabraActual;
                         $PalabraActual = array("Texto" => "<span class='".$this->_Color($Diccionario, 2)."'>$", "Estado" => $Estado);                        
                     }
-                    // Número
+                    // Número (JS, C, PHP)
                     else if ($this->_EsNumero($Linea[$i]) == true && $this->_BuscarDelimitador($Linea[$i - 1], $Delimitadores) && $Tipo != "CSS" && $Tipo != "HTML") {
                         $Estado .= "_Numero"; $Spans ++;
                         if ($PalabraActual["Texto"] != "") $Palabras[$TotalPalabras ++] = $PalabraActual;
                         $PalabraActual = array("Texto" => "<span class='".$this->_Color($Diccionario, 1)."'>".$Linea[$i], "Estado" => $Estado);
                     }     
-                    // Principio de una directiva C/C++
+                    // Principio de una directiva (C/C++)
                     else if($Linea[$i] == "#" && $Linea[$i + 1] != "#" && $Tipo == "C") { // Directiva (pre-procesador)
                         $Estado .= "_Directiva"; $Spans ++;
                         if ($PalabraActual["Texto"] != "") $Palabras[$TotalPalabras ++] = $PalabraActual;
                         $PalabraActual = array("Texto" => "<span class='".$this->_Color($Diccionario, 2)."'>#", "Estado" => $Estado);                            
                     }
                     // Regla CSS
-                    else if ($Linea[$i] == "@" && substr($Linea, $i, 10) != "@font-face" && $Tipo == "CSS") {
+                    else if ($Linea[$i] == "@"  && $Tipo == "CSS") {
                         $Estado .= "_Regla"; $Spans ++;
                         if ($PalabraActual["Texto"] != "") $Palabras[$TotalPalabras ++] = $PalabraActual;
                         $PalabraActual = array("Texto" => "<span class='".$this->_Color($Diccionario, 2)."'>@", "Estado" => $Estado);                        
@@ -536,6 +537,7 @@ class devildrey33_PintarCodigo {
                 /* Especial CSS */
                 /****************/                    
                 case "CSS_Regla" :
+//                    if ($Linea[$i] === "{" || $Linea[$i] === ";") {
                     if ($this->_BuscarDelimitador($Linea[$i], $Delimitadores) == true) {
                         $PalabraActual["Texto"] .= "</span>".$Linea[$i]; ;
                         $Palabras[$TotalPalabras ++] = $PalabraActual;
@@ -755,7 +757,15 @@ class devildrey33_PintarCodigo {
         }
 
         // Imprime el array para depurar
-        if ($this->_Debug == true) { echo "<pre>"; print_r($Palabras); echo "</pre>"; }
+        if ($this->_Debug == true) { 
+            $i = 0;
+            echo "<table class='PintarCodigo_TablaDebug'>";
+            foreach ($Palabras as $p) {
+                echo "<tr><td>".$i++."</td><td>".$p['Estado']."</td><td>".str_replace("\n", "(INTRO)", $p['Texto'])."</td></tr>";
+            }
+            echo "</table>";
+            //echo "<pre>"; print_r($Palabras); echo "</pre>";             
+        }
 
         return $TextoColoreado;            
     }

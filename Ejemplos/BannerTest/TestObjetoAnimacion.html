@@ -1,0 +1,125 @@
+<!-- 
+    Test para las funciones de tiempo del ObjetoAnimacion creado por Josep Antoni Bover Comas el 14/01/2017
+
+        Vista por defecto en el Laboratorio de pruebas  
+		devildrey33_Lab->Opciones->Vista = Filas;
+
+        Ultima modificación el 14/01/2017
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <!-- Estilos CSS para el test -->
+        <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Ejemplos/Utils/ObjetoAnimacion.js"></script>
+        <!-- Código javascript --> 
+<script type="text/javascript">
+/* Plantilla para crear banners animados en devildrey33.es */
+
+// Constructor 
+var TestObjetoAnimacion = function() {
+    // Llamo al constructor del ObjetoBanner
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : '2d',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Normal',
+        'MostrarFPS'    : true,
+        'Pausar'        : false,             // Pausa el canvas si la pestaña no tiene el foco del teclado
+        'ElementoRaiz'  : document.body
+    }) === false) { return false; }
+    // Se ha creado el canvas, inicio los valores de la animación ... 
+
+    this.Iniciar();
+    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
+    this.Cargando(false);
+};
+
+TestObjetoAnimacion.prototype = Object.assign( Object.create(ObjetoCanvas.prototype), {
+    constructor     : TestObjetoAnimacion, 
+    
+    Animaciones     : new ObjetoAnimacion(),
+    
+    // Función que se llama al redimensionar el documento
+    Redimensionar   : function() {    },
+    // Función que se llama al hacer scroll en el documento    
+    Scroll          : function() {    },
+    // Función que se llama al mover el mouse por el canvas
+    MouseMove       : function(Evento) { },
+    // Función que se llama al presionar un botón del mouse por el canvas
+    MousePresionado : function(Evento) { },
+    // Función que se llama al soltar un botón del mouse por el canvas
+    MouseSoltado    : function(Evento) { this.Ani[6].Transicion(); },
+    // Función que se llama al entrar con el mouse en el canvas
+    MouseEnter      : function(Evento) {  },
+    // Función que se llama al salir con el mouse del canvas
+    MouseLeave      : function(Evento) {  },
+    // Función que se llama al presionar una tecla
+    TeclaPresionada : function(Evento) { },
+    // Función que se llama al soltar una tecla
+    TeclaSoltada    : function(Evento) { },
+    // Función que se llama al pausar el banner
+    Pausa           : function() { },
+    // Función que se llama al reanudar el banner
+    Reanudar        : function() { },
+    
+    Ani             : [],
+    
+    Iniciar         : function() { 
+        var nTiempo = 2000;
+        this.Ani[0] = this.Animaciones.CrearAnimacion([
+            { Paso : { PosX : 0   }},
+            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.Lineal, Retraso : 1000 }
+        ], { Repetir : 1, Invertir : false });            
+        this.Ani[1] = this.Animaciones.CrearAnimacion([
+            { Paso : { PosX : 0   }},
+            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.SinIn, Retraso : 150 }
+        ], { Repetir : 2 });            
+        this.Ani[2] = this.Animaciones.CrearAnimacion([
+            { Paso : { PosX : 0   }},
+            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.SinOut, Retraso : 200 }
+        ], { Repetir : 3, Invertir : false  });            
+        this.Ani[3] = this.Animaciones.CrearAnimacion([
+            { Paso : { PosX : 0   }},
+            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.SinInOut, Retraso : 250 }
+        ], { Repetir : 4 });            
+        this.Ani[4] = this.Animaciones.CrearAnimacion([
+            { Paso : { PosX : 0   }},
+            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.CubicInOut, Retraso : 300 }
+        ], { Repetir : 5, Invertir : false  });            
+        this.Ani[5] = this.Animaciones.CrearAnimacion([
+            { Paso : { PosX : 0   }},
+            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.CircularInOut, Retraso : 350 }
+        ], { Repetir : 6 });            
+        // Transición en el OnClick
+        this.Ani[6] = this.Animaciones.CrearTransicion([
+            { Paso : { PosX : 0   }},
+            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.Lineal, Retraso : 0 }
+        ], { Repetir : 0 });            
+        
+    },
+    // Función que pinta cada frame de la animación
+    Pintar          : function() {
+        this.Context.fillStyle = "rgba(0,0,0,1)";
+        this.Context.fillRect(0, 0, this.Ancho, this.Alto);
+        this.Animaciones.Actualizar(this.Tick);
+        for (var i = 0; i < this.Ani.length; i++) {
+            this.Context.fillStyle = "rgba(255,0,0,1)";
+            this.Context.fillRect(200 + this.Ani[i].PosX, (30 * i) + 10, 20, 20);
+        }
+    }
+});
+
+var Canvas = null;
+window.addEventListener('load', function() { Canvas = new TestObjetoAnimacion; });
+</script>
+    </head>
+    <body>
+    </body>
+</html>

@@ -47,6 +47,8 @@ Millores de la web :
  V  - Reimplementada una pàgina d'error 404 simple, aixi ja no haig de carregar el tween.js per defecte...... ni mai mes xd (ObjetoAnimacion)
  V  - Retocat el sistema que afegia les dades meta per reds socials, ara ja hauria de funcionar amb el lab.
  V  - Els butons de reds socials ara posen bè el texte (dintre del lab)
+ V  - Habilitat Cross Origin Resource Sharing en el htaccess
+ V  - Afegit Sitemap (creat desde el 1and1)
 
 Estils movils :
     - algo raro pasa al mostrar el banner en "portrait "
@@ -130,3 +132,7 @@ ObjetoTest
  V      - Afegides funcions AutoActualizar_Iniciar i AutoActualizar_Cancelar
  V  - Recordar Pestanyes obertes... es un lio sobretot pel tema del css transition, es podria calcular a lo bestia (22px * TotalVariables)... I a lo bestia s'ha calculat.
  V  - Testejat en Firefox i explorer amb resultats positius (he tingut que canviar les variables x i y que agafaba del event mousemove per clientX i clientY
+
+ObjetoComentarios
+    - Habilitar en mode administració el copy/paste d'etiquetes de tot tipus, i fer un editor de codi HTML, per retocar els missatges.
+        - Copy/paste d'etiquetes script y style ha de requerir superadmin. (Deixar que algu sigui capaç d'injectar estils css o pitjor encara scripts es una cosa molt seria, que facilment es podria carregar la web, i que a mes seria dificil/engorros de detectar /eliminar.

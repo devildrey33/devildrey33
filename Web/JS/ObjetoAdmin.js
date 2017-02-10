@@ -68,6 +68,9 @@ ObjetoAdmin = function() {
                 case 'CH_CheckSpelling' :
                     $Base.cmd((Marcado) ? 'DesactivarCheckSpelling' : 'ActivarCheckSpelling' );
                     break;
+                case 'CH_Cors' :
+                    $Base.cmd((Marcado) ? 'DesactivarCors' : 'ActivarCors' );
+                    break;
                 // JavaScript
                 case 'CH_Consola' :
                     $Base.cmd((Marcado) ? 'DesactivarConsola' : 'ActivarConsola' );

@@ -71,6 +71,8 @@
                 case "EditarComentario" :               $this->EditarComentario();                  break;
                 case "LabGuardarEjemplo" :              $this->LabGuardarEjemplo();                 break;
                 // Super admin
+                case "ActivarCors" :                    $this->Cors(TRUE);                          break;
+                case "DesactivarCors" :                 $this->Cors(FALSE);                         break;
                 case "ActivarCheckSpelling" :           $this->CheckSpelling(TRUE);                 break;
                 case "DesactivarCheckSpelling" :        $this->CheckSpelling(FALSE);                break;
                 case "ActivarCompresionGZip" :          $this->CompresionGZip(TRUE);                break;
@@ -321,6 +323,16 @@
         public function CheckSpelling($Num) {            
             if (devildrey33_Opciones::Administrador() === 1) { 
                 devildrey33_htaccess::CheckSpelling($Num);    
+                echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0)); 
+            }            
+            else {
+                $this->Desloguear(1);
+            }
+        }
+        
+        public function Cors($Num) {            
+            if (devildrey33_Opciones::Administrador() === 1) { 
+                devildrey33_htaccess::Cors($Num);    
                 echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0)); 
             }            
             else {

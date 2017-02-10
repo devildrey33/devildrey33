@@ -379,7 +379,7 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     },
 
     CrearExplosion : function(X, Y, Rad) {
-        var Explosion = this.Animacion.Crear([
+        var Explosion = this.Animacion.CrearAnimacion([
             { "Paso" : { R : 255, G : 255, B :   0, A : 1, Radio : 1 }},
             { "Paso" : { R : 233, G :  80, B :  78, A : 0, Radio : 20 }, "Tiempo" : 250 },
         ]);
@@ -419,7 +419,7 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             this.Context.font = nFuente;
             nX = (this.Ancho - this.Context.measureText(nTexto).width) / 2;
         }       
-        var Texto = this.Animacion.Crear([
+        var Texto = this.Animacion.CrearAnimacion([
             { "Paso" : { Y : nY, A : 1 }},
             { "Paso" : { Y : nY - 15, A : 0 }, "Tiempo" : nTiempo, "Retraso" : 1 }
         ], { "FuncionTerminado" :  nFuncionTerminado });
@@ -689,7 +689,7 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             $("#SpaceInvaders404_Info").attr("visible", true);
 
             
-            this.ColorError404 = this.Animacion.Crear([
+            this.ColorError404 = this.Animacion.CrearAnimacion([
                 { 'Paso' : { R : 234, G :  80, B :  78, A : 1 }},
                 { 'Paso' : { R : 255, G : 255, B :   0, A : 1 }, "Tiempo" : 500, "Retraso" : 0},
                 { 'Paso' : { R : 234, G :  80, B :  78, A : 1 }, "Tiempo" : 500, "Retraso" : 250},
@@ -697,7 +697,7 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
                 { 'Paso' : { R : 234, G :  80, B :  78, A : 1 }, "Tiempo" : 500, "Retraso" : 250},
             ]);
             // Vuelvo a poner los colores del hud normales por si avanza de INFO antes de que termine la animación de color del HUD
-            this.ColorTanque = this.Animacion.Crear([
+            this.ColorTanque = this.Animacion.CrearAnimacion([
                 { 'Paso' : { R : 234, G :  80, B :  78, A : 1 }},
                 { 'Paso' : { R : 255, G : 255, B :   0, A : 1 }, "Tiempo" : 500, "Retraso" : 2500},
                 { 'Paso' : { R : 234, G :  80, B :  78, A : 1 }, "Tiempo" : 500, "Retraso" : 0},
@@ -717,7 +717,7 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             this.ColorTanque.Terminar();
             this.ColorError404.Terminar();            
 
-            this.ColorTanque = this.Animacion.Crear([ 
+            this.ColorTanque = this.Animacion.CrearAnimacion([ 
                 { 'Paso' : { R : 234, G :  80, B :  78, A : 1 }},
                 { 'Paso' : { R :   0, G : 255, B :   0, A : 1 }, "Tiempo" : 500},
                 { 'Paso' : { R :  34, G :  68, B :  34, A : 1 }, "Tiempo" : 500},
@@ -728,7 +728,7 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
                 { 'Paso' : { R : 234, G :  80, B :  78, A : 1 }, "Tiempo" : 500}
             ]);
 
-            this.ColorHud = this.Animacion.Crear([
+            this.ColorHud = this.Animacion.CrearAnimacion([
                 { 'Paso' : { R : 240, G :  80, B :  78, A : 0.4 }},
                 { 'Paso' : { R : 255, G : 255, B :   0, A : 1 }, "Tiempo" : 500, "Retraso" : 4000},
                 { 'Paso' : { R : 255, G : 255, B :   0, A : 0 }, "Tiempo" : 500},
@@ -741,7 +741,7 @@ SpaceInvaders404.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
                 { 'Paso' : { R : 240, G :  80, B :  78, A : 0.4 }, "Tiempo" : 500}
             ]);        
     
-            this.AniDisparoTanque = this.Animacion.Crear([
+            this.AniDisparoTanque = this.Animacion.CrearAnimacion([
                 { 'Paso' : { X : 235, XM : this.Mouse.X,  YM : this.Mouse.X,  Disparo : 0 }},
                 { 'Paso' : { X : 157, XM : 202,           YM : 243,           Disparo : 0 }, Tiempo : 250, Retraso : 8000},
                 { 'Paso' : { X : 157, XM : 202,           YM : 243,           Disparo : 1 }, Tiempo : 500},

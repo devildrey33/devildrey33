@@ -18,10 +18,20 @@ this.ColorTanque = new ObjetoAnimacion.Crear(Array(
      **/    
     
 var FuncionesTiempo = {
-    Linear      : function(Tiempo) { return Tiempo; },
-    SinIn       : function(Tiempo) { return 1 - Math.cos(Tiempo * Math.PI / 2); },
-    SinOut      : function(Tiempo) { return Math.sin(Tiempo * Math.PI / 2); },
-    SinInOut    : function(Tiempo) { return -0.5 * (Math.cos(Math.PI * Tiempo) - 1);  }    
+    Linear          : function(Tiempo) { return Tiempo;                                   },
+    SinIn           : function(Tiempo) { return 1 - Math.cos(Tiempo * Math.PI / 2);       },
+    SinOut          : function(Tiempo) { return Math.sin(Tiempo * Math.PI / 2);           },
+    SinInOut        : function(Tiempo) { return -0.5 * (Math.cos(Math.PI * Tiempo) - 1);  },
+    CubicInOut      : function(Tiempo) { 
+        return (Tiempo < 0.5) ? 
+            4.0 * Tiempo * Tiempo * Tiempo : 
+            0.5 * Math.pow(2.0 * Tiempo - 2.0, 3.0) + 1.0; 
+    },
+    CircularInOut   : function(Tiempo) {
+        return (Tiempo < 0.5) ?
+            0.5 * (1.0 - Math.sqrt(1.0 - 4.0 * Tiempo * Tiempo)) :
+            0.5 * (Math.sqrt((3.0 - 2.0 * Tiempo) * (2.0 * Tiempo - 1.0)) + 1.0);
+    }
 };
     
     
@@ -29,14 +39,15 @@ var ObjetoAnimacion = function() {
     // Array de animaciones
     this.Animaciones = [];
     this.EnPausa = false;
+    this.Tick = 0;
     // Actualiza las animaciones
     this.Actualizar = function(nTick) {
         if (this.EnPausa === true) { return; }
-        var Tick;
-        if (typeof(nTick) === 'undefined') { Tick = Date.now(); }
-        else                               { Tick = nTick;}
+//        var Tick;
+        if (typeof(nTick) === 'undefined') { this.Tick = Date.now(); }
+        else                               { this.Tick = nTick;}
         for (var i = this.Animaciones.length - 1; i > -1; i--) {
-            if (this.Animaciones[i].Actualizar(Tick) === true) { // Si ha terminado, elimino la animación del array de animaciones pendientes
+            if (this.Animaciones[i].Actualizar(this.Tick) === true) { // Si ha terminado, elimino la animación del array de animaciones pendientes
                 this.Animaciones.splice(i, 1);
             }
         }
@@ -49,10 +60,10 @@ var ObjetoAnimacion = function() {
     
     // Función que reanuda TODAS las animaciones de este objeto
     this.Reanudar = function() {
-        var Tick = Date.now();
+        this.Tick = Date.now();
         // Actualizo el ultimo tick de todas las animaciones para que no pase nada de tiempo desde que se ha pausado
         for (var i = this.Animaciones.length - 1; i > -1; i--) {
-            this.Animaciones[i]._UltimoTick = Tick - 1;
+            this.Animaciones[i]._UltimoTick = this.Tick - 1;
         }
         this.EnPausa = false;
     };

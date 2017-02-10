@@ -166,6 +166,8 @@ return array(   array("Palabra" => "!important"                 , "Color" => "Tx
                 array("Palabra" => "mask"                       , "Color" => "TxtAzul"),
                 array("Palabra" => "pointer-events"             , "Color" => "TxtAzul"),
                 array("Palabra" => "text-rendering"             , "Color" => "TxtAzul"),
+
+                array("Palabra" => "src"                        , "Color" => "TxtAzul"),
     
 /*              array("Palabra" => "border-collapse"            , "Color" => "TxtAzul"),
                 array("Palabra" => "border-spacing"             , "Color" => "TxtAzul"),
@@ -332,7 +334,7 @@ return array(   array("Palabra" => "!important"                 , "Color" => "Tx
     
                 /* Los estados SIEMPRE deben estar al final del array y con el mismo orden */
                 array("RESERVADO"           => ""               , "Color" => "TxtNegro"),       // count-10
-                array("RESERVADO"           => ""               , "Color" => "TxtNegro"),       // count-9
+                array("RESERVADO"           => ""               , "Color" => "TxtNegro"),       // count-9 
                 array("Estado_Selector"     => ""               , "Color" => "TxtVerde"),       // count-8 (Selector)
                 array("Estado_Valor"        => ""               , "Color" => "TxtNegro"),       // count-7 (Valor)       UNUSED
                 array("Estado_Propiedad"    => ""               , "Color" => "TxtAzul"),        // count-6 (Propiedades) UNUSED

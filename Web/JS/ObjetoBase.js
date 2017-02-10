@@ -350,7 +350,6 @@ $Base = new function() {
         // Desmarco el boton de las votaciones
         $("#BarraNavegacion_Votacion_Estado").removeAttr("checked");
         console.log("Base.VotarWeb", Valor, Pagina);
-        if (Valor <= 2) Valor += 3;
         if (typeof localStorage["Voto_" + Pagina] === "undefined") {
             localStorage["Voto_" + Pagina] = Valor;
             $.post(this.Raiz + "cmd/VotarPagina.cmd", { "Pagina" : Pagina, "Valor" : Valor, "URL" : window.location.href }).done(function(data) {

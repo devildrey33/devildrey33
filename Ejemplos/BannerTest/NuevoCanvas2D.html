@@ -4,7 +4,7 @@
         Vista por defecto en el Laboratorio de pruebas  
 		devildrey33_Lab->Opciones->Vista = Filas;
 
-        Ultima modificación el 03/08/2016
+        Ultima modificación el 05/02/2017
 -->
 <!DOCTYPE html>
 <html>
@@ -51,13 +51,17 @@ NUEVOCANVAS2D.prototype = Object.assign( Object.create(ObjetoCanvas.prototype), 
     // Función que se llama al soltar un botón del mouse por el canvas
     MouseSoltado    : function(Evento) { },
     // Función que se llama al entrar con el mouse en el canvas
-    MouseEnter      : function(Evento) {  },
+    MouseEnter      : function(Evento) { },
     // Función que se llama al salir con el mouse del canvas
-    MouseLeave      : function(Evento) {  },
+    MouseLeave      : function(Evento) { },
     // Función que se llama al presionar una tecla
     TeclaPresionada : function(Evento) { },
     // Función que se llama al soltar una tecla
     TeclaSoltada    : function(Evento) { },
+    // Función que se llama al presionar la pantalla
+    TouchStart      : function(Evento) { },
+    // Función que se llama al soltar el dedo de la pantalla
+    TouchEnd        : function(Evento) { },    
     // Función que se llama al pausar el banner
     Pausa           : function() { },
     // Función que se llama al reanudar el banner

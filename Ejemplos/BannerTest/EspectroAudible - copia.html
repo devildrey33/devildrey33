@@ -1,0 +1,1301 @@
+<!-- 
+    Test para el API de Audio creado por Josep Antoni Bover Comas el 29-10-2016
+
+        Vista por defecto en el Laboratorio de pruebas  
+		devildrey33_Lab->Opciones->Vista = Filas;
+
+        Ultima modificación el 05/08/2016
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <!-- Estilos CSS para el test -->
+        <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
+        
+        <!-- Estilos CSS para el ObjetoTest -->
+        <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoTest.css' />
+        <!-- Objeto para crear tests rápidos -->
+        <script src="/Ejemplos/Utils/ObjetoTest.js"></script>
+        
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        <!-- Three.JS -->
+        <script src="/Web/JS/3rdParty/three-0.79.min.js"></script>
+        <!-- Three.JS para depuración -->
+        <!-- <script src="/Web/JS/3rdParty/three-0.79.js"></script> -->
+
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
+        
+        <!-- Objeto para crear animaciones de tiempo -->
+        <script src="/Ejemplos/Utils/ObjetoAnimacion.js"></script>
+        <!--
+<script id="VertexShader" type="x-shader/x-vertex">
+    // https://gist.github.com/jeanlescure/e27c93b73a10b64e85e4 (translate, rotate, scale)
+    
+    uniform float EscalaY;
+    void main() {
+        // Escala
+        mat4 EscalaPos = mat4(vec4(0.0, 0.0,     0.0, 0.0),
+                              vec4(0.0, EscalaY, 0.0, 0.0),
+                              vec4(0.0, 0.0,     0.0, 0.0),
+                              vec4(0.0, 0.0,     0.0, 1.0));        
+        // Translate
+        mat4 Possicion = mat4(vec4(1.0, 0.0, 0.0, 0.0),
+                              vec4(0.0, 1.0, 0.0, 0.0),
+                              vec4(0.0, 0.0, 1.0, 0.0),
+                              vec4(1.0, EscalaY / 2, 1.0 ,1.0));
+        
+        gl_Position = projectionMatrix *
+                      modelViewMatrix *
+                      vec4(position.x, position.y, position.z ,1.0);
+    }    
+</script>        
+
+<script id="FragmentShader" type="x-shader/x-fragment">
+    uniform float Tiempo;
+    void main() {  // R, G, B, A
+        gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0); 
+    }    
+</script>       -->  
+
+        <!-- Código javascript --> 
+<script type="text/javascript">
+
+var EspectroAudible = function() {
+    // Llamo al constructor del ObjetoBanner
+    if (ObjetoCanvas.call(this, { 
+        Tipo          : 'THREE',
+        Ancho         : 'Auto',
+        Alto          : 'Auto',
+        Entorno       : 'Normal',
+        MostrarFPS    : true,
+        ElementoRaiz  : document.body,
+        Pausar        : false,             // Pausa el canvas si la pestaña no tiene el foco del teclado
+        ColorFondo    : 0x000000
+    }) === false) { return false; }
+    
+    // Se ha creado el canvas, inicio los valores de la animación ... 
+    this.Iniciar();
+    
+    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
+//    this.Cargando(false);
+};
+
+EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor     : EspectroAudible, 
+    // Función que se llama al redimensionar el documento
+    Redimensionar   : function() {    },
+    // Función que se llama al hacer scroll en el documento    
+    Scroll          : function() {    },
+    // Función que se llama al mover el mouse por el canvas
+    MouseMove       : function(Evento) { 
+        this.MouseMovido = true;
+        this.PosMouse.x = ( Evento.clientX / window.innerWidth ) * 2 - 1;
+	this.PosMouse.y = - ( Evento.clientY / window.innerHeight ) * 2 + 1;
+        
+        if (this.Pantalla.Hover === true || this.Pantalla2.Hover === true || this.Pantalla3.Hover === true ||
+            this.C_Atras.Hover === true || this.C_Play.Hover === true || this.C_Stop.Hover === true || this.C_Adelante.Hover === true) { 
+            document.body.style.cursor = "pointer";             
+        }
+        else { 
+            document.body.style.cursor = "default"; 
+        }        
+    },
+    // Función que se llama al presionar un botón del mouse por el canvas
+    MousePresionado : function(Evento) { },
+    // Función que se llama al soltar un botón del mouse por el canvas
+    MouseSoltado    : function(Evento) { 
+//        if (this.EsMovil() === true) { this.PlayPausa(); } 
+        if (this.Pantalla.Hover === true) {
+            this.TipoPantalla ++; 
+            if (this.TipoPantalla > this.FuncionesPintarPantalla.length -1) { this.TipoPantalla = 0 }
+        }
+        if (this.Pantalla2.Hover === true) {
+            this.TipoPantalla2 ++; 
+            if (this.TipoPantalla2 > this.FuncionesPintarPantalla.length -1) { this.TipoPantalla2 = 0 }
+        }
+        if (this.Pantalla3.Hover === true) {
+            this.TipoPantalla3 ++; 
+            if (this.TipoPantalla3 > this.FuncionesPintarPantalla.length -1) { this.TipoPantalla3 = 0 }
+        }
+        
+        if (this.BarrasAnalizador.Hover === true) {
+            this.PrecisionAnalizador ++;
+            if (this.PrecisionAnalizador > 2) this.PrecisionAnalizador = 0;
+            if (this.PrecisionAnalizador === 0) { this.ReIniciarCubos(32); }
+            if (this.PrecisionAnalizador === 1) { this.ReIniciarCubos(16); }
+            if (this.PrecisionAnalizador === 2) { this.ReIniciarCubos(8); }
+        }
+    },
+    // Función que se llama al entrar con el mouse en el canvas
+    MouseEnter      : function(Evento) { },
+    // Función que se llama al salir con el mouse del canvas
+    MouseLeave      : function(Evento) { },
+    // Función que se llama al presionar una tecla
+    TeclaPresionada : function(Evento) { },
+    // Función que se llama al soltar una tecla
+    TeclaSoltada    : function(Evento) { },
+    // Función que se llama al pausar el banner
+    Pausa           : function() { this.Cancion.pause(); },
+    // Función que se llama al reanudar el banner
+    Reanudar        : function() { this.Cancion.play(); },
+    
+    Cubos           : [],    
+    
+    Animaciones     : new ObjetoAnimacion(),
+    
+    Colores         : { 
+        Suelo       : new THREE.Color(0x232323), // 0x718BA4
+        Barras      : new THREE.Color(0x333333), // 0x718395
+        Texto       : new THREE.Color(0xffffff), // 0xffffff
+        SombraTexto : new THREE.Color(0x000000), // 0xffffff
+        Controles   : new THREE.Color(0x313132), // 0x6788A0
+        Icos        : new THREE.Color(0x191900)  // 
+    },
+    
+    Volumen         : 1,
+    RayCaster       : new THREE.Raycaster(),
+    PosMouse        : new THREE.Vector2(),
+    MouseMovido     : false,
+    
+    
+    CancionActual   : [],
+    PlanoTextura    : [],
+    //UltimaCancion   : "",
+    
+    // Función que inicia el ejemplo
+    Iniciar         : function() {   
+        this.IniciarAudio();
+        this.Context.shadowMap.enabled = true;
+        this.Escena = new THREE.Scene();
+        this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 2000);
+        this.Camara.Rotacion = { Grados : 97 * (Math.PI / 180), Avance : (Math.PI / 180) / 5, Distancia : 40, MirarHacia : new THREE.Vector3(0, 5, 0) };
+        this.Camara.position.set(this.Camara.Rotacion.Distancia * Math.cos(this.Camara.Rotacion.Grados), 
+                                 30, 
+                                 this.Camara.Rotacion.Distancia * Math.sin(this.Camara.Rotacion.Grados));        
+        this.Escena.add(this.Camara);
+        this.Camara.lookAt(this.Camara.Rotacion.MirarHacia);
+        
+        this.PrecisionAnalizador = 0;
+        this.IniciarPantalla();
+        
+        this.IniciarDatosCancion();
+                
+        // Creo el suelo 
+        this.Suelo = new THREE.Mesh(new THREE.BoxGeometry(160, 40, 130), new THREE.MeshPhongMaterial({ color: this.Colores.Suelo, specular : 0xeeeeee }) );
+        this.Suelo.position.y = -20;
+        this.Suelo.castShadow = false;
+        this.Suelo.receiveShadow = true;
+        this.Escena.add(this.Suelo);
+        
+        // Grupo para las barras del analizador
+        this.BarrasAnalizador = new THREE.Group(); 
+        this.Escena.add(this.BarrasAnalizador); 
+        
+        // Creo un cubo con el area que pueden ocupar todas las barras del analizador de frequencias
+        // Es necesario para detectar en el hover los espacios vacios entre las barras 
+        this.SueloAnalizador = new THREE.Mesh(new THREE.BoxGeometry(32, 0.6, 32), new THREE.MeshPhongMaterial({ color: this.Colores.Suelo, specular : 0xeeeeee }) );
+        this.BarrasAnalizador.add(this.SueloAnalizador);
+
+        
+        // Controles del reproductor
+        var Geo = new THREE.BoxGeometry(35, 1, 8);
+        Geo.translate(0, 0, -4); // Muevo el eje para la rotación
+        this.Controles = new THREE.Mesh(Geo, new THREE.MeshPhongMaterial({ color: this.Colores.Suelo, specular : 0xeeeeee }) );
+        this.Controles.rotation.x -= Math.PI / 2;
+        this.Controles.position.z = 26;
+        this.Controles.position.y = -0.4;
+        this.Controles.castShadow = true;
+        this.Controles.receiveShadow = true;
+        this.Controles.Angulo = 0;
+               
+        // Controles : Atras, Play / Pausa, Stop, Adelante
+        this.C_Atras = new THREE.Mesh(new THREE.BoxGeometry(3, 1, 3), new THREE.MeshPhongMaterial({ color: this.Colores.Controles, specular : 0xeeeeee }));
+        this.C_Atras.position.set(-14.5, 0.2, -2.5);
+        this.Controles.add(this.C_Atras);
+        this.C_Play = new THREE.Mesh(new THREE.BoxGeometry(3, 1, 3), new THREE.MeshPhongMaterial({ color: this.Colores.Controles, specular : 0xeeeeee }));
+        this.C_Play.position.set(-10.5, 0.2, -2.5);
+        this.Controles.add(this.C_Play);
+        this.C_Stop = new THREE.Mesh(new THREE.BoxGeometry(3, 1, 3), new THREE.MeshPhongMaterial({ color: this.Colores.Controles, specular : 0xeeeeee }));
+        this.C_Stop.position.set(-6.5, 0.2, -2.5);
+        this.Controles.add(this.C_Stop);
+        this.C_Adelante = new THREE.Mesh(new THREE.BoxGeometry(3, 1, 3), new THREE.MeshPhongMaterial({ color: this.Colores.Controles, specular : 0xeeeeee }));
+        this.C_Adelante.position.set(-2.5, 0.2, -2.5);
+        this.Controles.add(this.C_Adelante);
+        // Slider del tiempo (el mismo slider sirve como display para el tiempo
+        this.C_BarraTiempo = new THREE.Mesh(new THREE.BoxGeometry(32, 1, 0.6), new THREE.MeshPhongMaterial({ color: this.Colores.Controles, specular : 0xeeeeee }));
+        this.C_BarraTiempo.position.set(0, 0.2, -6);
+        this.Controles.add(this.C_BarraTiempo);
+        this.C_SliderTiempo = new THREE.Mesh(new THREE.BoxGeometry(4, 1, 2.4), new THREE.MeshPhongMaterial({ color: this.Colores.Controles, specular : 0xeeeeee }));
+        this.C_SliderTiempo.position.set(-14, 0.3, -6);
+        this.Controles.add(this.C_SliderTiempo);
+        
+        this.Escena.add(this.Controles);
+//        this.Controles.rotation.x = (Math.PI / 180) * 15;
+        
+        // Cargo las texturas para los botones
+        this.TexturasCargadas = 0;
+        this.TotalTexturas = 5;
+        var Cargador = new THREE.TextureLoader();
+        Cargador.crossOrigin = '';
+        var T1 = new Cargador.load('/Web/Graficos/EA_Atras.png', this.TexturaCargada.bind(this, 0) );
+        var T2 = new Cargador.load('/Web/Graficos/EA_Play.png', this.TexturaCargada.bind(this, 1) );    
+        var T3 = new Cargador.load('/Web/Graficos/EA_Pausa.png', this.TexturaCargada.bind(this, 2) );
+        var T4 = new Cargador.load('/Web/Graficos/EA_Stop.png', this.TexturaCargada.bind(this, 3) );
+        var T5 = new Cargador.load('/Web/Graficos/EA_Adelante.png', this.TexturaCargada.bind(this, 4) );        
+        
+        // Niebla
+//        this.Escena.fog = new THREE.Fog(0x888888, 10.1, 150);
+        
+        this.IniciarLuces();
+        
+        this.ReIniciarCubos(Math.sqrt(this.Analizador.fftSize / 2));    
+
+        // Array de funciones de pintado para las pantallas
+        this.FuncionesPintarPantalla = [ this.PintarPantalla_OndaSin.bind(this), 
+                                         this.PintarPantalla_Circular.bind(this),
+                                         this.PintarPantalla_Circular8.bind(this), 
+                                         this.PintarPantalla_CirculoOnda.bind(this) ];
+
+        this.IniciarTransiciones();
+
+        this.IniciarTest();                
+    },
+    
+    CrearTexturas : function() {
+        this.BufferIcos = [];
+        this.BufferIcos[0] = BufferCanvas(128, 128);
+//        this.PlanoTextura[0] = 
+    },
+    
+    PintarTrianguloRedondeado : function(x1, y1, x2, y2, x3, y3, Rad) {
+        
+    },
+    
+    PintarRectanguloRedondeado : function(PosX, PosY, Tam) {
+        
+    },
+    
+    TexturaCargada : function(Num, Textura) {
+        this.TexturasCargadas ++;
+        
+        this.PlanoTextura[Num] = new THREE.Mesh(
+            new THREE.PlaneGeometry( 2, 2 ),
+            new THREE.MeshBasicMaterial({ 
+                color: this.Colores.Icos,
+                map: Textura,
+                transparent:true
+            })
+            //new THREE.MeshPhongMaterial({ color: this.Colores.Texto, specular : 0xeeeeee })                
+        );
+        this.PlanoTextura[Num].rotation.x = -Math.PI / 2;
+//        this.Escena.add(this.PlanoTextura[Num]);
+
+        switch (Num) {
+            case 0 : this.C_Atras.add(this.PlanoTextura[Num]);    break;
+            case 1 : this.C_Play.add(this.PlanoTextura[Num]);     break; // play
+            case 2 : this.C_Play.add(this.PlanoTextura[Num]);  this.PlanoTextura[2].visible = false;   break; // pausa
+            case 3 : this.C_Stop.add(this.PlanoTextura[Num]);     break;
+            case 4 : this.C_Adelante.add(this.PlanoTextura[Num]); break;                
+        }
+        this.PlanoTextura[Num].position.y = .55;
+        
+        if (this.TexturasCargadas === this.TotalTexturas && this.CancionCargada === true) { 
+            this.IniciarTransicionesTexturas();
+            this.Cargando(false); 
+        }
+    },
+    
+    ReIniciarCubos    : function(TamLado) {
+//        var TamLado = Math.sqrt(TamBuffer);
+//        console.log (TamLado);
+        this.Analizador.fftSize = (TamLado * TamLado) * 2;
+        this.DatosAnalizador = new Uint8Array(this.Analizador.frequencyBinCount);
+        this.DatosAnalizadorSin = new Uint8Array(this.Analizador.frequencyBinCount);
+                
+        // Elimino los cubos de la escena anterior
+        for (var i = 0; i < this.Cubos.length; i++) { this.BarrasAnalizador.remove(this.Cubos[i]); }
+               
+        this.Cubos = [];
+        var Tam = 0.8;
+        if (TamLado === 32) { Tam = 1;  }
+        if (TamLado === 16) { Tam = 2;  }
+        if (TamLado === 8)  { Tam = 4;  }
+        if (TamLado === 4)  { Tam = 8;  }
+        if (TamLado === 2)  { Tam = 16; }
+        
+        // Creo una parrilla de cubos del tamaño especificado        
+        var CuboGeo = new THREE.BoxGeometry(Tam * 0.7, 1, Tam * 0.7);
+        // 0x553322 0xff9288
+        var CuboMat = new THREE.MeshPhongMaterial({ color: this.Colores.Barras, specular : 0x888888 }); //
+        var Contador = 0;
+//        console.log("-" + Tam + "-----------------------------------------------------------------------------------------");
+        for (var z = 0; z < TamLado; z++) {
+            for (var x = 0; x < TamLado; x++) {
+                this.Cubos[Contador] = new THREE.Mesh(CuboGeo, CuboMat);
+                var nx = (x - (TamLado / 2) + 0.5) * Tam;
+//                var nx = (x * Tam) - ((TamLado / 2) * Tam) + (Tam * 0.5);
+                var nz = (z - (TamLado / 2) + 0.5) * Tam;
+                this.Cubos[Contador].position.set(nx, 0, nz);
+//                console.log(this.Cubos[Contador].position);
+                this.Cubos[Contador].castShadow = true;
+                this.Cubos[Contador].receiveShadow = false;
+                this.BarrasAnalizador.add(this.Cubos[Contador++]);                
+            }
+        }
+    },
+    
+    IniciarAudio    : function() {
+        var Compatibilidad = AudioContext =  window.AudioContext || window.webkitAudioContext;
+        this.AudioContext = new Compatibilidad();        
+        this.Analizador = this.AudioContext.createAnalyser();
+        if (this.EsMovil() === true) { this.Analizador.fftSize = 128;   } // Para movil la verión de 64 columnas
+        else                         { this.Analizador.fftSize = 2048;  } // Para PC la versión de 1024 columnas
+        this.Analizador.smoothingTimeConstant = 0.85; // ?¿?¿?
+                
+        this.Canciones =[{ Grupo : "From Sky to Abyss",   Titulo : "Quantum Ocean",                Año : "2016",    Path : "QuantumOcean.mp3" }, 
+                         { Grupo : "Fallen to Flux",      Titulo : "One Chance",                   Año : "2014",    Path : "OneChance.mp3"},
+//                         { Grupo : "Fallen to Flux",      Titulo : "From the outside looking in",  Año : "2015",    Path : "FromTheOutsideLookingIn.mp3" }, 
+                         { Grupo : "JT Bruce",            Titulo : "Battle Trance",                Año : "2015",    Path : "BattleTrance.mp3" },
+                         { Grupo : "Kamelot",             Titulo : "Karma",                        Año : "",        Path : "06_Karma.mp3" },
+                         { Grupo : "Lost Horizon",        Titulo : "Welcome Back",                 Año : "",        Path : "WelcomeBack.mp3" },
+                         { Grupo : "LevenRain",       Titulo : "ActionMan Versus The CyberParasites",     Año : "2016",        Path : "LevenRain_-_ActionMan_Versus_The_CyberParasites.mp3" },
+                         
+                         { Grupo : "Test",                Titulo : "de 16hz a 256hz",              Año : "",        Path : "SweepTone_16-256hz.ogg" },
+                         { Grupo : "Test",                Titulo : "de 256hz a 2000hz",            Año : "",        Path : "SweepTone_256-2000hz.ogg" },
+                         { Grupo : "Test",                Titulo : "de 20hz a 20000hz",            Año : "",        Path : "SweepTone_20-20000hz.ogg" },
+                         { Grupo : "Test",                Titulo : "de 2000hz a 16000hz",          Año : "",        Path : "SweepTone_2000-16000hz.ogg" }];
+                     
+        
+        this.CargarCancion(this.Canciones[0]);
+        
+        // Enlazo el evento drop del body para poder arrastrar y soltar canciones.
+/*        this.Canvas.addEventListener("dragenter", function(e) { return false; });
+        this.Canvas.addEventListener("dragover", function(e) { return e.preventDefault(); });
+        
+        this.Canvas.addEventListener("drop", function(e) {
+            this.CargarCancionDrop(e.dataTransfer.files);
+            e.stopPropagation();  
+            e.preventDefault();         
+        }.bind(this));        */
+        
+    },    
+    
+    
+/*    CargarCancionDrop : function(Archivos) {
+        this.Cargando(true);
+        if (this.Cancion) { this.Cancion.pause(); }
+        
+        var Archivo = Archivos[0];*/
+//        if (Archivo.type.match(/audio.*/)) {
+  /*          var Lector = new FileReader();
+            Lector.onload = function(Archivo) { 
+                this.Cancion = new Audio();
+                this.Cancion.controls = false;
+                this.Cancion.src = Archivo.target.result;                
+//                this.Cancion.setAttribute("autoplay", true);
+                this.Cancion.addEventListener('canplay', function() {            
+                    this.Cargando(false);
+                    this.AudioSource = this.Audio.createMediaElementSource(this.Cancion);
+                    this.AudioSource.connect(this.Analizador);
+                    this.Analizador.connect(this.Audio.destination);
+                    this.Cancion.play();
+                }.bind(this));
+            }.bind(this);
+            Lector.readAsDataURL(Archivo);
+        }
+                
+    },
+*/
+    
+    CargarCancion : function(Cancion) {
+        
+        if (Cancion === this.UltimaCancion) {
+            this.Cancion.play();
+            return;
+        }
+        this.UltimaCancion = Cancion;
+        this.CancionCargada = false;
+        this.Cargando(true);
+        if (this.Cancion) { this.Cancion.pause(); }
+        this.Cancion = new Audio();
+        this.Cancion.controls = true;
+//        this.Cancion.setAttribute("autoplay", true);
+        this.Cancion.src = "/Ejemplos/BannerTest/Canciones/" + Cancion.Path;
+        this.Cancion.addEventListener('canplay', function() {            
+            if (this.TexturasCargadas === this.TotalTexturas) {
+                this.IniciarTransicionesTexturas();
+                this.Cargando(false);
+            }
+            this.CancionCargada = true;
+            
+            this.AudioSource = this.AudioContext.createMediaElementSource(this.Cancion);
+            this.AudioSource.connect(this.Analizador);
+            this.Analizador.connect(this.AudioContext.destination);
+            this.Cancion.volume = this.Volumen;
+            
+            console.log(this.AudioContext.sampleRate);
+            this.Cancion.play();
+            
+            this.PintarDatosCancion(this.UltimaCancion.Grupo, this.UltimaCancion.Titulo, this.UltimaCancion.Año );
+        }.bind(this));        
+    },
+    
+    
+    IniciarLuces    : function() {
+        this.SpotLight = new THREE.SpotLight( 0xffdddd,0.7);
+        this.SpotLight.position.set(40,20,100);
+  //      this.SpotLight.castShadow = true;
+        this.SpotLight.target.position.set(0, 15, -70); // = this.Pantalla;
+        this.Escena.add(this.SpotLight);
+        this.Splhelper = new THREE.CameraHelper(this.SpotLight.shadow.camera);
+        this.Splhelper.visible = false; 
+        this.Escena.add(this.Splhelper);               
+        
+/*        this.FiguraSpot1 = new THREE.Mesh(new THREE.SphereGeometry(3, 50, 50, 0, Math.PI * 2, 0, Math.PI * 2), new THREE.MeshPhongMaterial({ color: 0xFFFF00, transparent : true, opacity : 0.31 }) );
+        this.FiguraSpot1.position.set(40,20,99);
+        this.Escena.add(this.FiguraSpot1);*/
+                
+        this.SpotLight2 = new THREE.SpotLight( 0xffdddd ,0.7);
+        this.SpotLight2.position.set(-90,20,-100);
+        this.SpotLight2.target.position.set(0, 15, 50); // = this.Pantalla2;
+        this.Escena.add(this.SpotLight2);
+        this.Splhelper2 = new THREE.CameraHelper(this.SpotLight2.shadow.camera);
+        this.Splhelper2.visible = false; 
+        this.Escena.add(this.Splhelper2);
+        
+        this.SpotLight3 = new THREE.SpotLight( 0xffdddd ,0.7);
+        this.SpotLight3.position.set(90,20,-100);
+        this.SpotLight3.target.position.set(0, 15, 50); // = this.Pantalla2;
+        this.Escena.add(this.SpotLight3);
+        this.Splhelper3 = new THREE.CameraHelper(this.SpotLight3.shadow.camera);
+        this.Splhelper3.visible = false; 
+        this.Escena.add(this.Splhelper2);
+        
+/*        this.FiguraSpot2 = new THREE.Mesh(new THREE.SphereGeometry(3, 50, 50, 0, Math.PI * 2, 0, Math.PI * 2), new THREE.MeshPhongMaterial({ color: 0xFFFF00, transparent : true, opacity : 0.31 }) );
+        this.FiguraSpot2.position.set(-40,20,-99);
+        this.Escena.add(this.FiguraSpot2);*/
+        
+        
+        // DirectionalLight
+        this.DirLight = new THREE.DirectionalLight( 0xffdddd, 0 );
+        this.DirLight.color.setHSL( 0.1, 1, 0.95 );
+//        this.DirLight.position.set( 40, 25, 28 );
+        this.DirLight.position.set( 25, 15, 20 ).normalize();
+        this.DirLight.position.multiplyScalar( 50 );
+        this.Escena.add( this.DirLight );
+        this.DirLight.castShadow = true;
+        this.DirLight.shadow.mapSize.width = 2048;
+        this.DirLight.shadow.mapSize.height = 2048;
+        var d = 80;
+        this.DirLight.shadow.camera.left = -d;
+        this.DirLight.shadow.camera.right = d;
+        this.DirLight.shadow.camera.top = d;
+        this.DirLight.shadow.camera.bottom = -d;
+        this.DirLight.shadow.camera.far = 3500;
+//        this.DirLight.target = this.Pantalla;
+        this.Dlhelper = new THREE.CameraHelper(this.DirLight.shadow.camera);
+        this.Escena.add(this.Dlhelper);
+        this.Dlhelper.visible = false;
+        
+        
+        // HemisphereLight  
+        this.HemiLight = new THREE.HemisphereLight( 0xeeeeee, 0xffffff, 0.2 );
+        this.HemiLight.color.setHSL( 0.6, 0.6, 0.6 );
+        this.HemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
+        this.HemiLight.position.set( 0, 0, 0 );
+        this.Escena.add( this.HemiLight );         
+        
+        this.AnimacionEncenderLuz();
+    },        
+
+    AnimacionEncenderLuz : function() {
+        if (typeof this.AniEncenderLuz !== 'undefined') this.AniEncenderLuz.Terminar();
+        this.AniEncenderLuz = this.Animaciones.CrearAnimacion([
+            { Paso : { Intensidad : 0   }},
+            { Paso : { Intensidad : 0.9 }, Tiempo : 60,  FuncionTiempo : FuncionesTiempo.SinInOut, Retraso : 200 },
+            { Paso : { Intensidad : 0   }, Tiempo : 60,  FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { Intensidad : 0.5 }, Tiempo : 60,  FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { Intensidad : 0.4 }, Tiempo : 60,  FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { Intensidad : 0.6 }, Tiempo : 1850, FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { Intensidad : 1   }, Tiempo : 2500, FuncionTiempo : FuncionesTiempo.SinInOut }
+        ], { FuncionActualizar : function(Valores) { 
+                this.SpotLight.intensity = Valores.Intensidad * 1.0;
+                this.SpotLight2.intensity = Valores.Intensidad * 1.0;
+                this.SpotLight3.intensity = Valores.Intensidad * 1.0;
+                this.DirLight.intensity = Valores.Intensidad * 0.9; 
+//                this.DirLight2.intensity = Valores.Intensidad * 0.5;
+                this.HemiLight.intensity = Valores.Intensidad * 0.4;
+//                var Canal = (250 * this.SpotLight.intensity);
+                var Fondo = Math.floor(220 * this.SpotLight.intensity);
+                var Canal = "#" + Fondo.toString(16) + Fondo.toString(16) + Fondo.toString(16);
+                this.Context.setClearColor(Canal);
+        
+            }.bind(this) 
+        });            
+    },        
+           
+    MediaFrequenciasAudio : function() {
+        var TotalFreq = this.Analizador.fftSize / 2;
+        var Total = 0;
+        for (var i = 0; i < TotalFreq; i++) {
+            Total += this.DatosAnalizador[i];
+        }
+        return Total / TotalFreq;
+    },
+           
+    ActualizarCubos : function() {        
+        for (var i = 0; i < this.Cubos.length; i++) {
+            this.Cubos[i].scale.y = 1 + (this.DatosAnalizador[i] / 20);
+            this.Cubos[i].position.y = this.Cubos[i].scale.y / 2;
+        }
+        
+/*        this.SpotLight.intensity = this.DatosAnalizador[4] / 255;
+        this.SpotLight2.intensity = this.DatosAnalizador[5] / 255;*/        
+    },    
+    
+    IniciarTransicionesTexturas : function() {
+        // Transición hover para el boton cancion anterior
+        this.C_Atras.Hover = false;
+        this.C_Atras.Ani = this.Animaciones.CrearTransicion([ 
+            { Paso : { RG : 0.1 }},
+            { Paso : { RG : 1 },  Tiempo : 400 }],
+            { FuncionActualizar : function(Valores) {                     
+                this.PlanoTextura[0].material.color.setRGB(Valores.RG, Valores.RG, 0);
+            }.bind(this) 
+        });        
+        // Transición hover para el boton play / pausa
+        this.C_Play.Hover = false;
+        this.C_Play.Ani = this.Animaciones.CrearTransicion([ 
+            { Paso : { RG : 0.1 }},
+            { Paso : { RG : 1 },  Tiempo : 400 }],
+            { FuncionActualizar : function(Valores) {                     
+                this.PlanoTextura[1].material.color.setRGB(Valores.RG, Valores.RG, 0);
+                this.PlanoTextura[2].material.color.setRGB(Valores.RG, Valores.RG, 0);
+            }.bind(this) 
+        });        
+        // Transición hover para el boton stop
+        this.C_Stop.Hover = false;
+        this.C_Stop.Ani = this.Animaciones.CrearTransicion([ 
+            { Paso : { RG : 0.1 }},
+            { Paso : { RG : 1 },  Tiempo : 400 }],
+            { FuncionActualizar : function(Valores) { 
+                this.PlanoTextura[3].material.color.setRGB(Valores.RG, Valores.RG, 0);
+            }.bind(this) 
+        });        
+        // Transición hover para el boton cancion siguiente
+        this.C_Adelante.Hover = false;
+        this.C_Adelante.Ani = this.Animaciones.CrearTransicion([ 
+            { Paso : { RG : 0.1 }},
+            { Paso : { RG : 1 },  Tiempo : 400 }],
+            { FuncionActualizar : function(Valores) {                     
+                this.PlanoTextura[4].material.color.setRGB(Valores.RG, Valores.RG, 0);
+            }.bind(this) 
+        });            
+    },
+    
+    IniciarTransiciones : function() {
+        // Transición hover del marco para los controles        
+        this.Controles.Hover = false;
+        this.Controles.Ani = this.Animaciones.CrearTransicion([ 
+            { Paso : { Angulo : this.Controles.Angulo }},
+            { Paso : { Angulo : (Math.PI / 180) * 15 },  Tiempo : 300 }],
+            { FuncionActualizar : function(Valores) { 
+                this.Controles.Angulo = Valores.Angulo;
+                this.Controles.rotation.x = Valores.Angulo;
+            }.bind(this) 
+        });        
+        
+        
+        // Transición hover para la pantalla central
+        this.Pantalla.Hover = false;
+        this.Pantalla.Ani = this.Animaciones.CrearTransicion([ 
+            { Paso : { Escala : 1,   Opacidad : 0.7 }},
+            { Paso : { Escala : 1.1, Opacidad : 0.9 }, Tiempo : 300 }],
+            { FuncionActualizar : function(Valores) {
+                this.Pantalla.scale.set(Valores.Escala, Valores.Escala, 1);
+                this.Pantalla.material.opacity = Valores.Opacidad;
+            }.bind(this)
+        });        
+        // Transición hover para la pantalla derecha
+        this.Pantalla2.Hover = false;
+        this.Pantalla2.Ani = this.Animaciones.CrearTransicion([ 
+            { Paso : { Escala : 1,   Opacidad : 0.7 }},
+            { Paso : { Escala : 1.1, Opacidad : 0.9 }, Tiempo : 300 }],
+            { FuncionActualizar : function(Valores) {
+                this.Pantalla2.scale.set(Valores.Escala, Valores.Escala, 1);
+                this.Pantalla2.material.opacity = Valores.Opacidad;
+            }.bind(this)
+        });        
+        // Transición hover para la pantalla izquierda
+        this.Pantalla3.Hover = false;
+        this.Pantalla3.Ani = this.Animaciones.CrearTransicion([ 
+            { Paso : { Escala : 1,   Opacidad : 0.7 }},
+            { Paso : { Escala : 1.1, Opacidad : 0.9 }, Tiempo : 300 }],
+            { FuncionActualizar : function(Valores) {
+                this.Pantalla3.scale.set(Valores.Escala, Valores.Escala, 1);
+                this.Pantalla3.material.opacity = Valores.Opacidad;
+            }.bind(this)
+        });        
+        
+        // Transición hover para las barras del analizador
+        this.BarrasAnalizador.Hover = false;
+        this.BarrasAnalizador.Ani = this.Animaciones.CrearTransicion([ 
+            { Paso : { Escala : 1,   Opacidad : 0.7 }},
+            { Paso : { Escala : 1.1, Opacidad : 0.9 }, Tiempo : 300 }],
+            { FuncionActualizar : function(Valores) {
+                this.BarrasAnalizador.scale.set(Valores.Escala, Valores.Escala, Valores.Escala);
+//                this.Pantalla3.material.opacity = Valores.Opacidad;
+            }.bind(this)
+        });        
+        
+    },
+    
+    
+    IniciarDatosCancion : function() {
+        this.BufferDatosCancion = new BufferCanvas(1024, 512);
+        
+        this.TexturaDatosCancion = new THREE.Texture(this.BufferDatosCancion.Canvas);
+        this.DatosCancion = new THREE.Mesh(  new THREE.PlaneGeometry(64, 32), 
+                                             new THREE.MeshStandardMaterial( { map: this.TexturaDatosCancion, transparent : true, roughness: 0.5  } ));
+        this.DatosCancion.position.set(-29, 0.01, -10);
+//        this.Pantalla.castShadow = true
+        this.DatosCancion.rotation.x = -Math.PI / 2;
+        this.DatosCancion.rotation.z = Math.PI / 2;
+//        this.DatosCancion.rotation.y = Math.PI;
+        this.Escena.add(this.DatosCancion);
+        
+        //this.BufferDatosCancion.Context.fillRect(0, 0, this.BufferDatosCancion.Ancho, this.BufferDatosCancion.Alto);
+    },
+
+    PintarDatosCancion : function(Grupo, Nombre, Año) {
+//        this.BufferDatosCancion.Context.fillStyle = "#" + this.Suelo.Color.getHexString();
+//        this.BufferDatosCancion.Context.fillRect(0, 0, this.BufferDatosCancion.Ancho, this.BufferDatosCancion.Alto);
+        
+        
+        this.BufferDatosCancion.Context.clearRect(0, 0, this.BufferDatosCancion.Ancho, this.BufferDatosCancion.Alto);
+        this.BufferDatosCancion.Context.font = "64px Georgia";
+        this.BufferDatosCancion.Context.fillStyle = "#" + this.Colores.SombraTexto.getHexString();
+        this.BufferDatosCancion.Context.fillText(Grupo, 5, 100);
+        this.BufferDatosCancion.Context.fillText(Nombre, 5, 230);
+        this.BufferDatosCancion.Context.fillText(Año, 5, 340);
+        this.BufferDatosCancion.Context.fillStyle = "#" + this.Colores.Texto.getHexString();
+        this.BufferDatosCancion.Context.fillText(Grupo, 0, 105);
+        this.BufferDatosCancion.Context.fillText(Nombre, 0, 235);
+        this.BufferDatosCancion.Context.fillText(Año, 0, 345);
+//        this.BufferDatosCancion.Context.fillRect(0, 0, this.BufferDatosCancion.Ancho, this.BufferDatosCancion.Alto);
+//        this.BufferDatosCancion.Context.fillText(Año, 10, 340);
+        
+        this.TexturaDatosCancion.needsUpdate = true;        
+    },
+
+    // Inicia las pantallas y el backbuffer que se utilizará para pintar las visualizaciones (onda y circular)
+    IniciarPantalla : function() {
+        this.BufferPantalla = new BufferCanvas(1024,512);
+        this.BufferPantalla.Context.strokeStyle = '#ffffff';
+        this.TipoPantalla = 3; // onda = 0, circular = 1, 8 circulos = 2, solar 3        
+        this.BufferPantalla.Textura = new THREE.Texture(this.BufferPantalla.Canvas);
+
+        this.Pantalla = new THREE.Mesh(  new THREE.PlaneGeometry(64, 32), 
+                                         new THREE.MeshStandardMaterial( { map: this.BufferPantalla.Textura, roughness: .5, metalness: .73, transparent : true, opacity:0.7  } ));
+        this.Pantalla.position.set(0, 20, -45);
+//        this.Pantalla.castShadow = true;
+        this.Escena.add(this.Pantalla);
+                
+
+        this.BufferPantalla2 = new BufferCanvas(1024,512);
+        this.BufferPantalla2.Context.strokeStyle = '#ffffff';
+        this.TipoPantalla2 = 2; // onda = 0, circular = 1, 8 circulos = 2, solar 3        
+        this.BufferPantalla2.Textura = new THREE.Texture(this.BufferPantalla2.Canvas);
+
+        
+        this.Pantalla2 = new THREE.Mesh( new THREE.PlaneGeometry(64, 32), 
+                                         new THREE.MeshStandardMaterial( { map: this.BufferPantalla2.Textura, roughness: 0.5, metalness: 1.0, transparent : true, opacity:0.7  } ));
+        this.Pantalla2.position.set(50, 20, -13);
+//        this.Pantalla2.castShadow = true;
+//        this.Pantalla2.material.side = THREE.DoubleSide;
+        this.Pantalla2.rotation.y -= Math.PI / 2;
+        this.Escena.add(this.Pantalla2);
+
+        
+        this.BufferPantalla3 = new BufferCanvas(1024,512);
+        this.BufferPantalla3.Context.strokeStyle = '#ffffff';
+        this.TipoPantalla3 = 1; // onda = 0, circular = 1, 8 circulos = 2, solar 3        
+        this.BufferPantalla3.Textura = new THREE.Texture(this.BufferPantalla3.Canvas);
+
+        this.Pantalla3 = new THREE.Mesh( new THREE.PlaneGeometry(64, 32), 
+                                         new THREE.MeshStandardMaterial( { map: this.BufferPantalla3.Textura, roughness: 0.5, metalness: 1.0, transparent : true, opacity:0.7  } ));
+        this.Pantalla3.position.set(-50, 20, -13);
+//        this.Pantalla2.castShadow = true;
+//        this.Pantalla2.material.side = THREE.DoubleSide;
+        this.Pantalla3.rotation.y += Math.PI / 2;
+        this.Escena.add(this.Pantalla3);
+        
+/*        this.Topos = [];
+        for (var i = 0; i < 64; i++) {
+            this.Topos.push(new this.PintarPantalla_Topo());
+        }*/
+    },           
+    
+    
+    // Función que pinta en la pantalla la onda
+    PintarPantalla_OndaSin : function(Buffer, Tick) {
+//        console.log(Math.abs(Math.floor((Math.sin(this.Tick / 1000) * 360))));
+        Buffer.Context.fillStyle = 'hsla(' + Math.abs(Math.floor(Math.sin(Tick / 20000) * 360)) + ', 100%, 20%, 0.33)';
+//        Buffer.Context.strokeStyle = 'hsl(' + Math.abs(Math.floor((Math.sin((this.Tick + 1000) / 1000) * 360))) + ', 100%, 50%)';
+//        Buffer.Context.strokeStyle = '#ffffff';       
+        
+        Buffer.Context.fillRect(0, 0, Buffer.Ancho, Buffer.Alto);
+        var Avance = 1024 / (this.Analizador.fftSize / 2);
+//        console.log(Avance);
+        Buffer.Context.beginPath();        
+        Buffer.Context.moveTo(0, Buffer.Alto / 2);
+        var x = 0, y = 0;
+        for (var i = 0; i < this.Analizador.fftSize / 2; i++) {
+//            y = (this.DatosAnalizadorSin[i] / (Buffer.Alto / 2)) * Buffer.Alto / 2;
+            y = (Buffer.Alto / 4) + this.DatosAnalizadorSin[i];
+//            y = ((this.DatosAnalizador[i] / (this.Alto / 2)) * this.Alto / 2) - 256;
+            Buffer.Context.lineTo(x, y);
+            x += Avance;
+        }
+        // Parche para bajas precisiones que no terminan la onda al final del canvas
+        Buffer.Context.lineTo(this.Ancho, y);
+        // Pinto la onda
+        Buffer.Context.stroke();
+        // Actualizo la textura
+        Buffer.Textura.needsUpdate = true;
+    },
+
+
+    // Inspirado en el pen de Noel Delgado : https://codepen.io/noeldelgado/pen/EaNjBy?editors=0010
+    PintarPantalla_CirculoOnda : function(Buffer, Tick) {
+        
+        var mx = (Buffer.Ancho / 2);
+        var my = (Buffer.Alto / 2);
+        
+//        this.BufferPantalla.Context.fillStyle = "#191966";
+        
+        Buffer.Context.fillStyle = 'hsla(' + Math.abs(Math.floor((Math.sin(Tick / 20000) * 360))) + ', 100%, 20%, 0.5)';
+        Buffer.Context.fillRect(0, 0, Buffer.Ancho, Buffer.Alto);
+        
+//        Buffer.Context.save();
+        // Pinto la onda sinusoidal alrededor del circulo con la media
+        var TamBuffer = this.Analizador.fftSize / 2;
+        var Avance = (Math.PI * 2) / TamBuffer;
+        var Angulo = Tick;
+        var Valor = this.DatosAnalizadorSin[0];
+//        var x = mx + (Math.cos(Angulo) * (90 + Valor));
+//        var y = my + (Math.sin(Angulo) * (90 + Valor));
+        Buffer.Context.beginPath();        
+//        Buffer.Context.strokeStyle = '#000000';
+//        Buffer.Context.moveTo(x, y);
+//        Buffer.Context.lineTo(x, y);            
+/*        if (MediaAudio > 100) {
+            Buffer.Context.strokeStyle = '#FF0000';
+        }
+        else {
+            Buffer.Context.strokeStyle = '#00FF00';
+        }*/
+        var i = 0;
+        for (var i = 0; i < TamBuffer; i++) {
+            Valor = this.DatosAnalizadorSin[i] * 0.75;
+            var x = mx + (Math.cos(Angulo) * (90 + Valor));
+            var y = my + (Math.sin(Angulo) * (90 + Valor));
+            
+            Buffer.Context.lineTo(x, y);            
+            Angulo += Avance;
+        }
+        Valor = this.DatosAnalizadorSin[0] * 0.75;
+        Buffer.Context.lineTo(mx + (Math.cos(Tick) * (90 + Valor)), my + (Math.sin(Tick) * (90 + Valor)));            
+        Buffer.Context.closePath();
+        Buffer.Context.stroke();
+        
+        // Pinto el circulo con la media
+        Buffer.Context.beginPath();        
+        Buffer.Context.arc(mx, my, 40 + this.MediaAudio, 0, 2 * Math.PI, false);
+        Buffer.Context.stroke();
+        
+        
+        
+        Buffer.Textura.needsUpdate = true;
+    },
+    
+    
+    
+    PintarPantalla_Circular8 : function(Buffer, Tick) {
+        // this.AudioContext.sampleRate / this.Analizador.fftSize // hz per barra
+        // greus  de 0hz a 250hz
+        // mitjos de 251hz a 2000hz
+        // aguts  de 2001hz a 16000
+        
+        Buffer.Context.fillStyle = 'hsla(' + Math.abs(Math.floor((Math.sin(Tick / 20000) * 360))) + ', 100%, 20%, 0.13)';
+        Buffer.Context.fillRect(0, 0, Buffer.Ancho, Buffer.Alto);
+
+        var TamBuffer = this.Analizador.fftSize / 2;
+        var Porcion = (TamBuffer / 8);
+        var RadAvance = (Math.PI * 2) / Porcion;
+        var Rad = -Math.PI / 2, x = 0, y = 0;
+        var i = 0;
+        for (var p = 0; p < 8; p++) {
+            Buffer.Context.beginPath();
+            var cx = (p > 3) ? (p -3) * 204 : (p + 1) * 204;
+            var cy = (p > 3) ? 356 : 164;
+            var Valor = this.DatosAnalizador[p * Porcion] / 3.5;
+            var ix = cx + (24 + (Valor)) * Math.cos(Rad);
+            var iy = cy + (24 + (Valor)) * Math.sin(Rad);
+            for (; i < (p + 1) * Porcion; i++) {
+                Valor = this.DatosAnalizador[i] / 3.5;
+                x = cx + (24 + (Valor)) * Math.cos(Rad);
+                y = cy + (24 + (Valor)) * Math.sin(Rad);
+                Buffer.Context.lineTo(x, y);
+                Rad += RadAvance;            
+            }
+            Buffer.Context.lineTo(ix, iy);
+            Buffer.Context.stroke();
+            
+        }
+        Buffer.Textura.needsUpdate = true;
+    },
+    
+    PintarPantalla_Circular : function(Buffer, Tick) { 
+        Buffer.Context.fillStyle = 'hsla(' + Math.abs(Math.floor((Math.sin(Tick / 20000) * 360))) + ', 100%, 20%, 0.13)';
+//        Buffer.Context.fillStyle = 'hsl(' + Math.abs(Math.floor((Math.sin(this.Tick / 20000) * 360))) + ', 100%, 20%)';
+        Buffer.Context.fillRect(0, 0, Buffer.Ancho, Buffer.Alto);
+        
+
+        Buffer.Context.fillStyle = 'rgb(255, 255, 255)';
+        
+        var TamBuffer = this.Analizador.fftSize;
+        var RadAvance = (Math.PI * 2) / TamBuffer;
+        var Rad = -Math.PI / 2, x = 0, y = 0;       
+        var mx = (Buffer.Ancho / 2);
+        var my = (Buffer.Alto / 2);
+        var Valor = this.DatosAnalizador[0] / 1.5;
+        Buffer.Context.beginPath();        
+        var ix = mx + (130 + Valor) * Math.cos(Rad);
+        var iy = (my + 70) + (130 + Valor) * Math.sin(Rad);
+        Buffer.Context.moveTo(ix, iy);
+
+        for (var i = 0; i < TamBuffer / 2; i++) {            
+            Valor = this.DatosAnalizador[i] / 1.5;
+            x = mx + (150 + Valor) * Math.cos(Rad);
+            y = (my + 70) + (130 + Valor) * Math.sin(Rad);
+            Buffer.Context.lineTo(x, y);
+            Rad += RadAvance;
+        }
+        
+        for (var i = TamBuffer / 2; i > 0; i--) {
+            Valor = this.DatosAnalizador[i] / 1.5;
+            x = mx + (130 + Valor) * Math.cos(Rad);
+            y = (my + 70) + (130 + Valor) * Math.sin(Rad);
+            Buffer.Context.lineTo(x, y);
+            Rad += RadAvance;
+        }
+
+        Buffer.Context.lineTo(ix, iy);
+
+//        Buffer.Context.stroke();
+//        Buffer.Context.scale(-1, 1);
+        Buffer.Context.stroke();
+        // Actualizo la textura
+        Buffer.Textura.needsUpdate = true;
+    },
+    
+    
+    
+    // Ha quedat un bodrio
+    /*PintarPantalla_Topos : function() {
+        this.BufferPantalla.Context.fillStyle = 'rgb(10, 10, 10)';
+//        this.BufferPantalla.Context.fillStyle = 'hsl(' + Math.abs(Math.floor((Math.sin(this.Tick / 20000) * 360))) + ', 100%, 20%)';
+        this.BufferPantalla.Context.fillRect(0, 0, this.BufferPantalla.Ancho, this.BufferPantalla.Alto);
+//        var h = Math.abs(Math.floor((Math.sin(this.Tick / 20000) * 360)));
+        for (var i = this.Topos.length - 1; i > 0; i--) {
+            this.Topos[i].Avance();
+//            console.log(this.Topos[i]);
+            this.BufferPantalla.Context.fillStyle = 'hsla(' + this.Topos[i].h + ', 100%, 20%, ' + this.Topos[i].Alpha + ')';
+            this.BufferPantalla.Context.beginPath();            
+            this.BufferPantalla.Context.arc(this.Topos[i].x, this.Topos[i].y, this.Topos[i].Radio + (this.DatosAnalizador[i] / 2), 0, 2 * Math.PI);
+            this.BufferPantalla.Context.fill();
+        }
+        
+        // Actualizo la textura
+        this.TexturaPantalla.needsUpdate = true;
+    },
+
+    PintarPantalla_Topo : function() {        
+        this.Reiniciar = function() {
+            this.Radio = Rand(5, 2);
+            this.x = Rand((1024) - this.Radio, this.Radio);
+            this.y = Rand(512 - this.Radio, this.Radio);
+            this.Alpha = 0.7;
+            this.AvanceAlpha = Rand(0.02, 0.005);
+            this.Direccion = Rand(0, Math.PI * 2); // de 0 a 180 grados en (radians)
+//            this.BucleInicial = true;        
+            this.Velocidad = Rand(2, 0.75);            
+            this.h = Rand(360, 0);
+        };
+        
+        this.Avance = function() {
+            this.x = this.x + (this.Velocidad * Math.cos(this.Direccion));
+            this.y = this.y - (this.Velocidad * Math.sin(this.Direccion));
+            if (this.x < -this.Radio || this.y < -this.Radio || this.x > 1024 + this.Radio || this.y > 512 + this.Radio) {
+                this.Direccion += Math.PI;
+            }
+//            this.Alpha += this.AvanceAlpha;
+//            if (this.Alpha >= 1) { this.AvanceAlpha = -this.AvanceAlpha; }
+//            if (this.Alpha <= 0) { this.Reiniciar(); }
+        };        
+        this.Reiniciar();
+    },
+    */
+    ActualizarObjetoHover : function() {
+        if (this.MouseMovido === true) {
+            this.RayCaster.setFromCamera(this.PosMouse, this.Camara);
+
+            // calculate objects intersecting the picking ray
+            var intersects = this.RayCaster.intersectObjects( this.Escena.children, true );        
+
+            var HoverP  = false;        // Pantalla central
+            var HoverP2 = false;        // Pantalla derecha
+            var HoverP3 = false;        // Pantalla izquierda
+            var HoverC  = false;        // Panel de controles
+            
+            var HoverCAtras    = false; // Botón Atras
+            var HoverCPlay     = false; // Botón Play / Pausa
+            var HoverCStop     = false; // Botón Stop
+            var HoverCAdelante = false; // Botón Adelante
+            
+            var HoverBarras    = false; // Barras del analizador de frequencias
+//            var HoverBarrasS   = false; // Suelo de las barras del analizador de frequencias
+
+    /*        if (intersects.length > 0) {
+                if (intersects[0].object === this.Pantalla)  { hover = true; }
+                if (intersects[0].object === this.Pantalla2) { hover2 = true; }                
+                if (intersects[0].object === this.Controles) { hoverC = true; }                            
+            }*/
+            for (var i = 0; i < intersects.length; i++ ) {
+                if (intersects[i].object === this.Pantalla)                { HoverP          = true; break; }
+                if (intersects[i].object === this.Pantalla2)               { HoverP2         = true; break; }                
+                if (intersects[i].object === this.Pantalla3)               { HoverP3         = true; break; }                
+                if (intersects[i].object === this.SueloAnalizador)         { HoverBarras     = true; break; }   
+                if (intersects[i].object.parent === this.BarrasAnalizador) { HoverBarras     = true; break; }   
+                if (intersects[i].object === this.Controles)               { HoverC          = true; } // El panel de controles tiene botones dentro..
+                if (intersects[i].object === this.C_Atras)                 { HoverCAtras     = true; }   
+                if (intersects[i].object === this.C_Play)                  { HoverCPlay      = true; }   
+                if (intersects[i].object === this.C_Stop)                  { HoverCStop      = true; }   
+                if (intersects[i].object === this.C_Adelante)              { HoverCAdelante  = true; }   
+    //            if (intersects[i].object === this.C_Atras)   { HoverH = true; }
+            }        
+
+            if (this.BarrasAnalizador.Hover !== HoverBarras) {
+                this.BarrasAnalizador.Hover = HoverBarras;
+                this.BarrasAnalizador.Ani.Transicion();
+            }
+
+            if (this.Pantalla.Hover !== HoverP) {
+                this.Pantalla.Hover = HoverP;
+                this.Pantalla.Ani.Transicion();
+            }
+
+            if (this.Pantalla2.Hover !== HoverP2) {
+                this.Pantalla2.Hover = HoverP2;
+                this.Pantalla2.Ani.Transicion();
+            }
+
+            if (this.Pantalla3.Hover !== HoverP3) {
+                this.Pantalla3.Hover = HoverP3;
+                this.Pantalla3.Ani.Transicion();
+            }
+
+            if (this.Controles.Hover !== HoverC) {
+                this.Controles.Hover = HoverC;
+                this.Controles.Ani.Transicion();
+            }
+            
+            
+            if (this.C_Atras.Hover !== HoverCAtras) {
+                this.C_Atras.Hover = HoverCAtras;
+                if (this.C_Atras.Ani) { this.C_Atras.Ani.Transicion(); }
+            }
+            
+            if (this.C_Play.Hover !== HoverCPlay) {
+                this.C_Play.Hover = HoverCPlay;
+                if (this.C_Play.Ani) { this.C_Play.Ani.Transicion(); }
+            }
+            
+            if (this.C_Stop.Hover !== HoverCStop) {
+                this.C_Stop.Hover = HoverCStop;
+                if (this.C_Stop.Ani) { this.C_Stop.Ani.Transicion(); }
+            }
+            
+            if (this.C_Adelante.Hover !== HoverCAdelante) {
+                this.C_Adelante.Hover = HoverCAdelante;
+                if (this.C_Adelante.Ani) { this.C_Adelante.Ani.Transicion(); }
+            }
+            
+            this.MouseMovido = false;
+        }
+    },
+
+    // Función que pinta cada frame de la animación
+    Pintar          : function() {          
+        
+        this.ActualizarObjetoHover();
+        
+        this.Animaciones.Actualizar();
+        
+        // Obtengo los bufers con la frequencia y la onda
+        this.Analizador.getByteFrequencyData(this.DatosAnalizador);
+        this.Analizador.getByteTimeDomainData(this.DatosAnalizadorSin);
+        // Obtengo el valor medio dentro del buffer de frequencias
+        this.MediaAudio = this.MediaFrequenciasAudio();
+
+        this.ActualizarCubos();
+        
+        this.FuncionesPintarPantalla[this.TipoPantalla](this.BufferPantalla, this.Tick);
+        this.FuncionesPintarPantalla[this.TipoPantalla2](this.BufferPantalla2, this.Tick + 6000);
+        this.FuncionesPintarPantalla[this.TipoPantalla3](this.BufferPantalla3, this.Tick + 12000);
+
+        this.Context.render(this.Escena, this.Camara);  
+    },
+    
+
+    IniciarTest : function() {        
+        this.Test = new ObjetoTest({ "css" : { bottom : "10px", left : "10px" } });
+
+        if (this.EsMovil() === true) { return; }
+        
+        // Audio        
+        this.lAudio = this.Test.AgregarLista("Audio");        
+        // Analizador
+        this.lAnalizador = this.lAudio.AgregarLista("Analizador");
+        this.lAnalizador.Agregar({ Padre : this.Analizador, Variable : "fftSize", Min : 32, Max : 2048, Modificable : false });
+        this.lAnalizador.Agregar({ Padre : this.Analizador, Variable : "minDecibels", Min : -100, Max : -30.1 });
+        this.lAnalizador.Agregar({ Padre : this.Analizador, Variable : "maxDecibels", Min : -30, Max : 100 });
+        this.Visualizacion = { "Solar" : 3, "Onda" : 0, "Circular" : 1, "Circular 8" : 2 };
+        this.lAnalizador.Agregar( { Padre : this, Variable : "Visualizacion", Nombre : "Visualización", PorDefecto : this.PintarPantalla_OndaSin, Actualizar : function(NuevoValor) {
+            this.TipoPantalla = NuevoValor;
+            if (NuevoValor === "0")      { this.FuncionPintarPantalla = this.PintarPantalla_OndaSin;  }
+            else if (NuevoValor === "1") { this.FuncionPintarPantalla = this.PintarPantalla_Circular; }
+            else if (NuevoValor === "2") { this.FuncionPintarPantalla = this.PintarPantalla_Circular8; }
+            else if (NuevoValor === "3") { this.FuncionPintarPantalla = this.PintarPantalla_CirculoOnda; }
+        }.bind(this) });
+        // Precisión        
+        this.TamBuffer = { "32x32 (1024)" : 32, "16x16 (256)" : 16, "8x8 (64)" :  8, "4x4 (16)" : 4 };
+        this.lAnalizador.Agregar( { Padre : this, Variable : "TamBuffer", Nombre : "Precisión", PorDefecto : Math.sqrt(this.Analizador.fftSize / 2), Actualizar : function(NuevoValor) {
+            this.ReIniciarCubos(parseInt(NuevoValor));             
+        }.bind(this) });        
+        this.PathsCanciones = [];
+        for (var i = 0; i < this.Canciones.length; i++) {
+            this.PathsCanciones.push(this.Canciones[i].Path);
+        }
+
+        // Canciones
+        this.lAudio.Agregar( { Padre : this, Variable : "PathsCanciones", Actualizar : function(NuevoValor) {
+            for (var i = 0; i < this.Canciones.length; i++) {
+                if (this.PathsCanciones[i] === NuevoValor) { this.CargarCancion(this.Canciones[i]); }
+            }
+            
+        }.bind(this) });        
+        // Play / pausa
+        this.PlayPausa = function() { if (this.Cancion.duration > 0 && !this.Cancion.paused) { this.Cancion.pause(); } else { this.Cancion.play(); } };
+        this.lAudio.Agregar( { Padre : this, Variable : "PlayPausa", Nombre : 'Play / Pausa' });
+    
+//        this.lAudio.Agregar( { Padre : this.Cancion, Variable : "currentTime", Modificable : false, Min : 0, Max : this.Cancion.duration });        
+    
+        // Volumen
+//        this.lAudio.Agregar({ Padre : this, Variable : "Volumen", Min : 0, Max : 1, Actualizar : function(NuevoVolumen) { this.Cancion.volume = NuevoVolumen; }.bind(this) });
+        this.lAudio.Agregar({ Padre : this, Variable : "Volumen", Min : 0, Max : 1, Actualizar : function(NuevoVolumen) { this.Cancion.volume = NuevoVolumen; }.bind(this) });
+                        
+    
+        // Objetos
+        var tObjetos = this.Test.AgregarLista("Objetos");
+        // Cámara
+/*        this.lCamara = tObjetos.AgregarLista("Cámara");
+        this.lCamara.Agregar({ Padre : this.Camara.Rotacion, Variable : "Animacion", Nombre : "Animación", Actualizar : function(NuevoValor) {
+            this.Camara.Rotacion.Animacion = NuevoValor;
+            this.lCamaraPos.Variables[0].Modificable(!NuevoValor);
+            this.lCamaraPos.Variables[2].Modificable(!NuevoValor);
+            this.lCamaraRot.Variables[0].Modificable(!NuevoValor);
+            this.lCamaraRot.Variables[1].Modificable(!NuevoValor);
+            this.lCamaraRot.Variables[2].Modificable(!NuevoValor);
+        }.bind(this) });
+        this.lCamaraPos = this.lCamara.AgregarLista("Posición");
+        this.lCamaraPos.Agregar({ Padre : this.Camara.position, Variable : "x", Min : -200, Max : 200, Modificable : false  });
+        this.lCamaraPos.Agregar({ Padre : this.Camara.position, Variable : "y", Min : -200, Max : 200 });
+        this.lCamaraPos.Agregar({ Padre : this.Camara.position, Variable : "z", Min : -200, Max : 200, Modificable : false });
+        this.lCamaraRot = this.lCamara.AgregarLista("Rotación");
+        this.lCamaraRot.Agregar({ Padre : this.Camara.rotation, Variable : "x", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.x", Modificable : false });
+        this.lCamaraRot.Agregar({ Padre : this.Camara.rotation, Variable : "y", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.y", Modificable : false });
+        this.lCamaraRot.Agregar({ Padre : this.Camara.rotation, Variable : "z", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.z", Modificable : false });
+        */
+        
+        // Columnas
+        var tCubos = tObjetos.AgregarLista("Columnas");
+        this.Columnas_WireFrame = this.Cubos[0].material.wireframe;
+        tCubos.Agregar({ Padre : this,  Variable : "Columnas_WireFrame", Nombre : "wireframe", Actualizar : function(NuevoValor) { 
+            this.Cubos[0].material.wireframe = NuevoValor;
+        }.bind(this) });
+        
+        this.Columnas_CastShadow = this.Cubos[0].castShadow;
+        tCubos.Agregar({ Padre : this,  Variable : "Columnas_CastShadow", Nombre : "castShadow", Actualizar : function(NuevoValor) { 
+            for (var i = 0; i < this.Cubos.length; i++) {
+                this.Cubos[i].castShadow = NuevoValor;
+            }
+        }.bind(this) });
+        
+        this.Columnas_ReceiveShadow = this.Cubos[0].receiveShadow;
+        tCubos.Agregar({ Padre : this,  Variable : "Columnas_ReceiveShadow", Nombre : "receiveShadow", Actualizar : function(NuevoValor) { 
+            for (var i = 0; i < this.Cubos.length; i++) {
+                this.Cubos[i].receiveShadow = NuevoValor;
+            }
+        }.bind(this) });
+        
+/*        var tPantalla = tObjetos.AgregarLista("Pantalla");
+        tPantalla.Agregar({   Padre : this.Pantalla.position,      Variable : "x",            Min : -100,     Max : 100,      Nombre : "position.x" });
+        tPantalla.Agregar({   Padre : this.Pantalla.position,      Variable : "y",            Min : -100,     Max : 100,      Nombre : "position.x" });
+        tPantalla.Agregar({   Padre : this.Pantalla.position,      Variable : "z",            Min : -100,     Max : 100,      Nombre : "position.x" });
+        tPantalla.Agregar({   Padre : this.Pantalla.rotation,      Variable : "x",            Min : -Math.PI, Max : Math.PI,  Nombre : "rotation.x" });
+        tPantalla.Agregar({   Padre : this.Pantalla.rotation,      Variable : "y",            Min : -Math.PI, Max : Math.PI,  Nombre : "rotation.y" });
+        tPantalla.Agregar({   Padre : this.Pantalla.rotation,      Variable : "z",            Min : -Math.PI, Max : Math.PI,  Nombre : "rotation.z" });*/
+//        tPantalla.Agregar({   Padre : this.Pantalla,               Variable : "castShadow",                                   Nombre : "castShadow" });
+
+        // Luces
+        var tLuces = tObjetos.AgregarLista("Luces");
+        // DirectionalLight
+        var tDirLight = tLuces.AgregarLista("DirectionalLight");
+        tDirLight.Agregar({ Padre : this.DirLight.position,   Variable : "x",           Min : -100, Max : 100, Nombre : "position.x"});
+        tDirLight.Agregar({ Padre : this.DirLight.position,   Variable : "y",           Min : -100, Max : 100, Nombre : "position.y"});
+        tDirLight.Agregar({ Padre : this.DirLight.position,   Variable : "z",           Min : -200, Max : 200, Nombre : "position.z"});
+        tDirLight.Agregar({ Padre : this.DirLight,            Variable : "intensity",   Min : 0.0,  Max : 1.0});
+        tDirLight.Agregar({ Padre : this.DirLight,            Variable : "visible" });
+        tDirLight.Agregar({ Padre : this.Dlhelper,            Variable : "visible",     Nombre : "helper" });        
+        // SpotLight
+        var tSpotLight = tLuces.AgregarLista("SpotLight");
+        tSpotLight.Agregar({ Padre : this.SpotLight.position,   Variable : "x",                     Min : -100, Max : 100 });
+        tSpotLight.Agregar({ Padre : this.SpotLight.position,   Variable : "y",                     Min : -200, Max : 200 });
+        tSpotLight.Agregar({ Padre : this.SpotLight.position,   Variable : "z",                     Min : -750, Max : 750 });
+        tSpotLight.Agregar({ Padre : this.SpotLight,            Variable : "intensity",             Min : 0.0,  Max : 1.0 });
+        tSpotLight.Agregar({ Padre : this.SpotLight,            Variable : "visible" });
+        tSpotLight.Agregar({ Padre : this.Splhelper,            Variable : "visible",               Nombre : "helper"  });
+        var tSpotLight2 = tLuces.AgregarLista("SpotLight2");
+        tSpotLight2.Agregar({ Padre : this.SpotLight2.position,   Variable : "x",                     Min : -100, Max : 100 });
+        tSpotLight2.Agregar({ Padre : this.SpotLight2.position,   Variable : "y",                     Min : -200, Max : 200 });
+        tSpotLight2.Agregar({ Padre : this.SpotLight2.position,   Variable : "z",                     Min : -750, Max : 750 });
+        tSpotLight2.Agregar({ Padre : this.SpotLight2,            Variable : "intensity",             Min : 0.0,  Max : 1.0 });
+        tSpotLight2.Agregar({ Padre : this.SpotLight2,            Variable : "visible" });
+        tSpotLight2.Agregar({ Padre : this.Splhelper2,            Variable : "visible",               Nombre : "helper"  });
+        var tSpotLight3 = tLuces.AgregarLista("SpotLight2");
+        tSpotLight3.Agregar({ Padre : this.SpotLight3.position,   Variable : "x",                     Min : -100, Max : 100 });
+        tSpotLight3.Agregar({ Padre : this.SpotLight3.position,   Variable : "y",                     Min : -200, Max : 200 });
+        tSpotLight3.Agregar({ Padre : this.SpotLight3.position,   Variable : "z",                     Min : -750, Max : 750 });
+        tSpotLight3.Agregar({ Padre : this.SpotLight3,            Variable : "intensity",             Min : 0.0,  Max : 1.0});
+        tSpotLight3.Agregar({ Padre : this.SpotLight3,            Variable : "visible" });
+        tSpotLight3.Agregar({ Padre : this.Splhelper3,            Variable : "visible",               Nombre : "helper"  });
+        // HemisphereLight
+        var tHemiLight = tLuces.AgregarLista("HemisphereLight"); 
+        tHemiLight.Agregar({ Padre : this.HemiLight.position,   Variable : "x",         Min : -100, Max : 100});
+        tHemiLight.Agregar({ Padre : this.HemiLight.position,   Variable : "y",         Min : 0,    Max : 500});
+        tHemiLight.Agregar({ Padre : this.HemiLight.position,   Variable : "z",         Min : -200, Max : 200});
+        tHemiLight.Agregar({ Padre : this.HemiLight,            Variable : "intensity", Min : 0.0,  Max : 1.0});        
+        tHemiLight.Agregar({ Padre : this.HemiLight,            Variable : "visible" });
+
+        tLuces.Agregar({      Padre : this,                       Variable : "AnimacionEncenderLuz",                          Nombre : "Ani Encender luz"  });
+
+
+        var tSuelo = tObjetos.AgregarLista("Suelo");
+        tSuelo.Agregar({ Padre : this.Suelo.material, Variable : "wireframe", Actualizar : function(NuevoValor) { this.Suelo.material.wireframe = NuevoValor; }.bind(this)  });
+        
+//        this.Test.Agregar( { Padre : this, Variable : "Pausa" });        
+    }    
+});
+
+
+
+
+
+var EspectroAudible_Audio = function(EsMovil) {
+    this.Iniciar = function() {
+        var Compatibilidad = AudioContext =  window.AudioContext || window.webkitAudioContext;
+        this.AudioContext = new Compatibilidad();        
+        this.Analizador = this.AudioContext.createAnalyser();
+        if (EsMovil === true) { this.Analizador.fftSize = 128;   } // Para movil la verión de 64 columnas
+        else                  { this.Analizador.fftSize = 2048;  } // Para PC la versión de 1024 columnas
+        this.Analizador.smoothingTimeConstant = 0.85; // ?¿?¿?
+                
+        this.Canciones =[
+                         { Grupo : "LevenRain",           Titulo : "ActionMan Versus The CyberParasites",   Año : "2016",        Path : "LevenRain_-_ActionMan_Versus_The_CyberParasites.mp3" },
+                         { Grupo : "From Sky to Abyss",   Titulo : "Quantum Ocean",                         Año : "2016",    Path : "QuantumOcean.mp3" }, 
+                         { Grupo : "Fallen to Flux",      Titulo : "One Chance",                            Año : "2014",    Path : "OneChance.mp3"},
+//                         { Grupo : "Fallen to Flux",      Titulo : "From the outside looking in",  Año : "2015",    Path : "FromTheOutsideLookingIn.mp3" }, 
+                         { Grupo : "JT Bruce",            Titulo : "Battle Trance",                         Año : "2015",    Path : "BattleTrance.mp3" },
+                         { Grupo : "Kamelot ",            Titulo : "Karma",                                 Año : "",        Path : "06_Karma.mp3" },
+                         { Grupo : "Lost Horizon ",       Titulo : "Welcome Back",                          Año : "",        Path : "WelcomeBack.mp3" },
+                         
+                         { Grupo : "Test",                Titulo : "de 16hz a 256hz",                       Año : "",        Path : "SweepTone_16-256hz.ogg" },
+                         { Grupo : "Test",                Titulo : "de 256hz a 2000hz",                     Año : "",        Path : "SweepTone_256-2000hz.ogg" },
+                         { Grupo : "Test",                Titulo : "de 20hz a 20000hz",                     Año : "",        Path : "SweepTone_20-20000hz.ogg" },
+                         { Grupo : "Test",                Titulo : "de 2000hz a 16000hz",                   Año : "",        Path : "SweepTone_2000-16000hz.ogg" }];
+        
+        this.CargarCancion(this.Canciones[0]);
+        
+    };
+    
+
+    this.CargarCancion = function(Cancion) {
+        
+        if (Cancion === this.UltimaCancion) {
+//            this.Cancion.play();
+            return;
+        }
+        this.UltimaCancion = Cancion;
+        this.CancionCargada = false;
+        this.Cargando(true);
+        if (this.Cancion) { this.Cancion.pause(); }
+        this.Cancion = new Audio();
+        this.Cancion.controls = true;
+        this.Cancion.src = "/Ejemplos/BannerTest/Canciones/" + Cancion.Path;
+        this.Cancion.addEventListener('canplay', function() {            
+            if (this.TexturasCargadas === this.TotalTexturas) {
+                this.IniciarTransicionesTexturas();
+                this.Cargando(false);
+            }
+            this.CancionCargada = true;
+            
+            this.AudioSource = this.AudioContext.createMediaElementSource(this.Cancion);
+            this.AudioSource.connect(this.Analizador);
+            this.Analizador.connect(this.AudioContext.destination);
+            this.Cancion.volume = this.Volumen;
+            
+//            console.log(this.AudioContext.sampleRate);
+//            this.Cancion.play();
+            
+            this.PintarDatosCancion(this.UltimaCancion.Grupo, this.UltimaCancion.Titulo, this.UltimaCancion.Año );
+        }.bind(this));        
+    };
+    
+    this.PlayPausa = function() {
+//            this.Cancion.play();        
+    };
+    this.Stop = function() {
+        
+    };
+    this.Adelante = function() {
+        
+    };
+    this.Atras = function() {
+        
+    };
+        
+};
+
+var Canvas = null;
+window.addEventListener('load', function() { Canvas = new EspectroAudible; });
+</script>
+    </head>
+    <body>
+        
+    </body>
+</html>

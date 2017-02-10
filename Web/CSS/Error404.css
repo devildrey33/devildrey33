@@ -17,15 +17,27 @@ and open the template in the editor.
     display   : inline-block;
     transform : translateX(-50%) translateY(-50%);
     left      : 50%;
-    top       : 50%;
+    top       : calc(50% - 40px);
+}
+
+#Error404_Contenedor::before {
+    content:'';
+    position:absolute;
+    width:766px;
+    height:768px;
+/*    background:url('/Web/Graficos/fondo404.png');*/
 }
 
 #Error404_404 {
-    font-size:35rem;
-    font-family: Inconsolata,monospace !important;
-    text-shadow:1px 1px 1px #000;
+    font-size   : 35rem;
+    font-family : Inconsolata,monospace !important;
+    text-shadow : 1px 1px 1px #000;
 }
 
 #Error404_Texto {
-    font-size:1.6rem;
+    font-size    : 1.6rem;
+    display      : table;
+    margin-left  : auto;
+    margin-right : auto;
+    position     : relative;
 }

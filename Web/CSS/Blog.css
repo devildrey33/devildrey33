@@ -166,6 +166,10 @@ h2:before {
     text-shadow:1px 1px 1px #000;
     position:absolute;
     border:1px solid #353338;
+    -webkit-user-select : none;
+    -moz-user-select    : none;
+    -ms-user-select     : none;
+    user-select         : none;        
 }
 
 #Cabecera > #Cabecera_AutorAni {

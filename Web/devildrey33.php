@@ -98,7 +98,8 @@ class devildrey33 {
     "<head>".Intro().
         "<title>".$Titulo."</title>".Intro().
         "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />".Intro();
-        "<meta name='viewport' content='width=device-width, initial scale=1'>".Intro();
+//        "<meta name='viewport' content='width=device-width, initial scale=1'>".Intro().
+        
         if ($this->EntradaBlog !== false) {
             echo "<meta name='author' content='".$this->EntradaBlog["Autor"]."' />".Intro().
             
@@ -120,6 +121,9 @@ class devildrey33 {
     //        "<meta property='og:description' content='Description Here' />".Intro().        
             "<meta property='og:site_name' content='devildrey33' />".Intro();
     //        "<meta property='fb:admins' content='Facebook numeric ID' />".Intro().        
+        }
+        else {
+            echo '<meta name="description" content="Página web dedicada al mundo de la programación, donde puedes encontrar información sobre HTML, CSS, JS, Ajax, jQuery, PHP, MySql, C/C++, Three.js, etc...." />'.Intro();
         }
                 
         echo $Meta.Intro().    
@@ -162,7 +166,7 @@ class devildrey33 {
             "<input id='BarraPrincipal_Boton_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
             "<label class='Menu_Boton_Label' for='BarraPrincipal_Boton_Estado' tooltip-es='Menú principal' tooltip-en='Main menu' tooltip-pos='L'></label>".Intro().
             "<div class='Menu_Boton'>".Intro().
-                "<div id='BarraPrincipal_Boton_Icono'></div>".Intro().
+                "<div id='BarraPrincipal_Boton_Burguer'></div>".Intro().
             "</div>".Intro().
             "<div id='BarraPrincipal_Submenus'>".Intro().
                 "<div id='BarraPrincipal_Fondo'></div>".Intro().
@@ -565,12 +569,18 @@ class devildrey33 {
                                 "<tr>".Intro().
                                     "<td>Cache Imagenes</td>".Intro().
                                     "<td>"."<div id='CH_CacheImagenes' class='CheckBox' marcado='".$ValHT["CacheImagenes"]."' title='Indica al navegador que puede cachear las imagenes durante un mes'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                                "</tr>".Intro().
                                 "<tr>".Intro().
                                     "<td>Mantenimiento</td>".Intro().
                                     "<td>"."<div id='CH_Mantenimiento' class='CheckBox' marcado='".$ValHT["Mantenimiento"]."' title='Anula todas las urls y muestra un mensaje de mantenimiento.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                                "</tr>".Intro().
                                 "<tr>".Intro().
                                     "<td>CheckSpelling</td>".Intro().
                                     "<td>"."<div id='CH_CheckSpelling' class='CheckBox' marcado='".$ValHT["CheckSpelling"]."' title='Redirige una petición no encontrada a una url similar. \nPor ejemplo si vamos a /index2.php se redirige a /index.php automáticamente.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                                "</tr>".Intro().
+                                "<tr>".Intro().
+                                    "<td>Cors</td>".Intro().
+                                    "<td>"."<div id='CH_Cors' class='CheckBox' marcado='".$ValHT["Cors"]."' title='Habilita / des-habilita el Cross Origin Resource Sharing.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
                                 "</tr>".Intro().
                             "</table>".Intro().
                             "<button class='Boton-Normal' id='CH_IPSBan' title='Elimina todas las ips baneadas de la lista'>Limpiar ips baneadas</button>".Intro().
@@ -643,9 +653,9 @@ class devildrey33 {
         $this->LeerDatosPathFalso($this->_NombreDocumento, $Titulo);
             echo        "</div>".Intro();
             echo        "<div id='Cabecera_AutorAni' class='SinSeleccion'>".Intro().
-                            "<div class='BotonVentana'><img class='' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-prev'></div>".Intro().
+                            "<div class='BotonVentana' onclick='\$Base.Banner(-1);'><img class='' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-prev'></div>".Intro().
                             "<div id='CabeceraAutorAni_HTML'></div>".Intro().
-                            "<div class='BotonVentana'><img class='' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-next'></div>".Intro().
+                            "<div class='BotonVentana' onclick='\$Base.Banner(-2);'><img class='' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-next'></div>".Intro().
                         "</div>".Intro();
             echo        "<div id='Cabecera_PausaAni'>La web está en segundo plano, animación en pausa.</div>";
             echo        "<div id='Cabecera_Cargando'>Cargando animación...</div>";

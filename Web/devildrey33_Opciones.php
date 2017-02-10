@@ -19,16 +19,16 @@ if (!isset($_SESSION["Opciones"]['PaginasVistas'])) {    $_SESSION["Opciones"]['
 else                                                {    $_SESSION["Opciones"]['PaginasVistas'] ++;      }       
 
 // Disposición de las opciones según si el servidor es local o de internet
-if (strpos($_SERVER["SERVER_NAME"], "devildrey33.esy.es") !== false)  {  devildrey33_Opciones::$ServidorLocal = FALSE; }
-else if (strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false) {  devildrey33_Opciones::$ServidorLocal = FALSE; }
-else                                                                  {  devildrey33_Opciones::$ServidorLocal = TRUE;  }
+//if (strpos($_SERVER["SERVER_NAME"], "devildrey33.esy.es") !== false)  {  devildrey33_Opciones::$ServidorLocal = FALSE; }
+if (strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false) {  devildrey33_Opciones::$ServidorLocal = FALSE; }
+else                                                             {  devildrey33_Opciones::$ServidorLocal = TRUE;  }
 
 
 /* Esta clase contiene todas las variables que pueda necesitar de la variable $_SESSION de forma que si no estan definidas devuelve su valor por defecto sin necesidad de crearla en la cookie.
         En definitiva solo se reservara espacio para la cookie si la variable en concreto no tiene su valor por defecto.
         Por otra parte tambien controla los timeouts de ciertas variables que no deben ser guardadas durante mucho tiempo.           */
 class devildrey33_Opciones {
-    // Variable que determina las opciones predeterminadas segun si es el servidor local o de internet
+    // Variable que determina las opciones predeterminadas según si es el servidor local o de internet
     public static $ServidorLocal = FALSE;    
            
     /* Función interna utilizada por las funciones "pseudo variable por referencia" para asignar y obtener los valores */
@@ -288,8 +288,8 @@ class Base {
 
    static function var_export($Objeto, $Opciones = []) {
        // Espacios al principio
-       if (!isset($Opciones["EspaciosInicio"]))        $Opciones["EspaciosInicio"] = 2;
-       if (!isset($Opciones["Ret"]))                   $Opciones["Ret"] = "";
+       if (!isset($Opciones["EspaciosInicio"])) { $Opciones["EspaciosInicio"] = 2;  }
+       if (!isset($Opciones["Ret"]))            { $Opciones["Ret"] = "";            }
        $EspaciosNombre = 0;
        $UltimoHijo = true;
        $IndiceNumerico = true;

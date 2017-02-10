@@ -82,19 +82,19 @@ and open the template in the editor.
 
 
 /* Transición de burguer a cruz */
-.Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > #BarraPrincipal_Boton_Icono {
+.Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > #BarraPrincipal_Boton_Burguer {
     width:0px;
     left:30px;
     transform:rotateZ(180deg);
 }
-.Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > #BarraPrincipal_Boton_Icono:before,
-.Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > #BarraPrincipal_Boton_Icono::before {
+
+.Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > #BarraPrincipal_Boton_Burguer::before {
     top:0px;
     left:-10px;
     transform:rotateZ(45deg);
 }
-.Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > #BarraPrincipal_Boton_Icono:after,
-.Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > #BarraPrincipal_Boton_Icono::after {
+
+.Menu_Boton_Input:checked + .Menu_Boton_Label + .Menu_Boton > #BarraPrincipal_Boton_Burguer::after {
     top:0px;
     left:-10px;
     transform:rotateZ(-45deg);
@@ -201,6 +201,7 @@ body[administrador33=true] #Marco33 {
 
 .MarcoOpciones2C tr > td:nth-child(1) {
     min-width:135px;
+    position:relative;
 }
 
 /* marco para separar las secciones */
@@ -334,7 +335,7 @@ body[administrador33=true] #Marco33 {
 
 
 
-#BarraPrincipal_Boton_Icono {
+#BarraPrincipal_Boton_Burguer {
     position:absolute;
     background:#FFFFFF;
     width:20px;
@@ -347,8 +348,7 @@ body[administrador33=true] #Marco33 {
     cursor:pointer;
 }
 
-#BarraPrincipal_Boton_Icono:before, #BarraPrincipal_Boton_Icono:after,
-#BarraPrincipal_Boton_Icono::before, #BarraPrincipal_Boton_Icono::after {
+#BarraPrincipal_Boton_Burguer::before, #BarraPrincipal_Boton_Burguer::after {
     content:'';
     position:absolute;
     background:#FFFFFF;
@@ -357,8 +357,8 @@ body[administrador33=true] #Marco33 {
     transition:0.4s;
     left:0px;
 }
-#BarraPrincipal_Boton_Icono::before, #BarraPrincipal_Boton_Icono:before {    top:7px;   }
-#BarraPrincipal_Boton_Icono::after,  #BarraPrincipal_Boton_Icono::after {    top:-7px;  }
+#BarraPrincipal_Boton_Burguer::before  {    top:7px;   }
+#BarraPrincipal_Boton_Burguer::after   {    top:-7px;  }
 /* Todos los botones EXCEPTO el burguer del menu lateral izquierdo*/
 /*.BarraPrincipal_Boton_Input:not(#BarraPrincipal_Boton_Estado):checked + label {
     border:1px solid red !important;

@@ -92,9 +92,8 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
         this.X = 0;
         this.Y = 0;
         this.Color = Color;
-        this.ColorPunto = ColorPunto;
-        
-        
+        this.ColorPunto = ColorPunto;        
+        // Función que calcula la posición del circulo basandose en el circulo padre
         this.Avance = function(Avance, CirculoPadre) {
             this.X = CirculoPadre.X + (Math.cos(Avance) * (CirculoPadre.Tam));
             this.Y = CirculoPadre.Y + (Math.sin(Avance) * (CirculoPadre.Tam));            
@@ -145,6 +144,7 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
     
     // Función que pinta cada frame de la animación
     Pintar          : function() {    
+        // El fondo
         this.Context.fillStyle = "rgba(49, 46, 53, 0.95)";
         this.Context.fillRect(0, 0, this.Ancho, this.Alto);
         // Pinto las líneas grises que determinan el centro del primer circulo
@@ -160,7 +160,7 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
         this.Context.stroke();
         this.Context.setLineDash([1, 0]);        
         
-        // Avance para el backbufer
+        // Avance para el backbufer (en pixeles)
         this.Avance +=1;
         if (this.Avance >= 360) { this.Avance = 0; }
         this.Context.drawImage(this.ImgOnda.Canvas, this.Avance, 0, this.AnchoGrafico, this.Alto, 0, 0, this.AnchoGrafico, this.Alto);
@@ -179,7 +179,7 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
                 this.Context.arc(this.Circulos[i].X, this.Circulos[i].Y, 2, 0, 2 * Math.PI);
                 this.Context.fill();            
             }
-            if (i !== this.Circulos.length - 1) { // En la ultima posición no se pinta el circulo
+            if (i !== this.Circulos.length - 1) { // En la ultima posición no se pinta el circulo (pertenece al ultimo eje de la barra que une los ciculos con el gráfico)
                 this.Context.beginPath();
                 this.Context.arc(this.Circulos[i].X, this.Circulos[i].Y, this.Circulos[i].Tam, 0, 2 * Math.PI);
                 this.Context.stroke();

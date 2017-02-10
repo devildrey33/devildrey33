@@ -4,7 +4,7 @@
         Vista por defecto en el Laboratorio de pruebas  
 		devildrey33_Lab->Opciones->Vista = Preview;
 
-        Ultima modificación el 03/10/2016
+        Ultima modificación el 05/10/2016
 -->
 <!DOCTYPE html>
 <html>
@@ -102,7 +102,7 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
        
         
         // Animación inicial de la cámara
-        this.AniAvanceCamara = this.Animaciones.Crear([
+        this.AniAvanceCamara = this.Animaciones.CrearAnimacion([
             { 'Paso' : { z : 500, y: 150 }},
             { 'Paso' : { z :  50, y:  0 }, 'Tiempo' : 1250, 'FuncionTiempo' : FuncionesTiempo.SinInOut }
         ], { "Repetir" : 0, FuncionActualizar : function(Valores) { 
@@ -220,7 +220,7 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
                 case 7 : RotarCaraY = rInt;     break;   // centro y
                 case 8 : RotarCaraZ = rInt;     break;   // centro z
             }
-            this.AniRotarGrupoCubos = this.Animaciones.Crear(
+            this.AniRotarGrupoCubos = this.Animaciones.CrearAnimacion(
                 [   // Pasos de la animación
                     {   Paso : { rX : 0, rY : 0, rZ : 0 }     }, 
                     {   Paso : { rX : RotarCaraX * (Math.PI / 2), rY : RotarCaraY * (Math.PI / 2), rZ : RotarCaraZ * (Math.PI / 2) }, 
@@ -271,7 +271,7 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
                     break;   // atras
             }
         
-            this.AniRotarGrupoCubos = this.Animaciones.Crear(
+            this.AniRotarGrupoCubos = this.Animaciones.CrearAnimacion(
                 [   // Pasos de la animación
                     {   Paso : { rX : 0, rY : 0, rZ : 0, pX : 0, pY : 0, pZ : 0 }     }, 
                     {   Paso : { rX : 0, rY : 0, rZ : 0, pX : PosCaraX, pY : PosCaraY, pZ : PosCaraZ }, Tiempo : 300, FuncionTiempo : FuncionesTiempo.SinOut }, 
@@ -298,7 +298,7 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
         var RotarCara = [0 ,0, 0];
         RotarCara[Eje] = RandInt(3, 1) * (Math.PI / 2);
         var T = 350 * (RotarCara[0] + RotarCara[1] + RotarCara[2]);
-        this.AniRotarCubo = this.Animaciones.Crear([
+        this.AniRotarCubo = this.Animaciones.CrearAnimacion([
                 { Paso : { x : 0,             y : 0,              z : 0 }},
                 { Paso : { x : RotarCara[0],  y : RotarCara[1],   z : RotarCara[2] }, Tiempo : T, FuncionTiempo : FuncionesTiempo.SinOut}
             ], { 
@@ -310,7 +310,7 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     
     AnimacionEncenderLuz : function() {
         if (typeof this.AniEncenderLuz !== 'undefined') this.AniEncenderLuz.Terminar();
-        this.AniEncenderLuz = this.Animaciones.Crear([
+        this.AniEncenderLuz = this.Animaciones.CrearAnimacion([
             { Paso : { Intensidad : 0   }},
             { Paso : { Intensidad : 0.7 }, Tiempo : 120,  FuncionTiempo : FuncionesTiempo.SinInOut, Retraso : 0 },
             { Paso : { Intensidad : 0   }, Tiempo : 120,  FuncionTiempo : FuncionesTiempo.SinInOut },
@@ -436,13 +436,14 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
         tSpotLight.Agregar({ Padre : this.SpotLight.position,   Variable : "z",                     Min : -750, Max : 750 });
         tSpotLight.Agregar({ Padre : this.SpotLight,            Variable : "intensity",             Min : 0.0,  Max : 1.0});
         tSpotLight.Agregar({ Padre : this.Splhelper,            Variable : "visible",               Nombre : "helper"  });
-        tSpotLight.Agregar({ Padre : this,                      Variable : "AnimacionEncenderLuz",  Nombre : "Ani Encender luz"  });        
         // HemisphereLight
         var tHemiLight = tLuces.AgregarLista("HemisphereLight"); 
         tHemiLight.Agregar({ Padre : this.HemiLight.position,   Variable : "x",         Min : -100, Max : 100});
         tHemiLight.Agregar({ Padre : this.HemiLight.position,   Variable : "y",         Min : 0,    Max : 500});
         tHemiLight.Agregar({ Padre : this.HemiLight.position,   Variable : "z",         Min : -200, Max : 200});
         tHemiLight.Agregar({ Padre : this.HemiLight,            Variable : "intensity", Min : 0.0,  Max : 1.0});
+        
+        tLuces.Agregar({ Padre : this, Variable : "AnimacionEncenderLuz",  Nombre : "Ani Encender luz"  });        
     },
     
     // Función que pinta cada frame de la animación

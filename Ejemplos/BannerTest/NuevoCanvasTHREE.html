@@ -1,15 +1,16 @@
 <!-- 
-    Plantilla para test de canvas creado por Josep Antoni Bover Comas el 05-07-2016
+    Plantilla para test de canvas creado por Josep Antoni Bover Comas el 05/07/2016
 
         Vista por defecto en el Laboratorio de pruebas  
 		devildrey33_Lab->Opciones->Vista = Filas;
 
-        Ultima modificación el 03/08/2016
+        Ultima modificación el 05/02/2017
 -->
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <title>Experimento Three.js</title>
         <!-- Estilos CSS para el test -->
         <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
         
@@ -77,6 +78,10 @@ NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     TeclaPresionada : function(Evento) { },
     // Función que se llama al soltar una tecla
     TeclaSoltada    : function(Evento) { },
+    // Función que se llama al presionar la pantalla
+    TouchStart      : function(Evento) { },
+    // Función que se llama al soltar el dedo de la pantalla
+    TouchEnd        : function(Evento) { },    
     // Función que se llama al pausar el banner
     Pausa           : function() { },
     // Función que se llama al reanudar el banner
@@ -85,7 +90,17 @@ NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     Iniciar         : function() {
         this.Escena = new THREE.Scene();
         this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);
-        this.Camara.position.set(0, 0, 20);
+        this.Camara.Rotacion = { Grados : -180 * (Math.PI / 180), Avance : (Math.PI / 180) / 3, Distancia : 50, MirarHacia : new THREE.Vector3(0, 0, 0), Animacion : true };
+        this.Camara.position.set(0, 0, this.Camara.Rotacion.Distancia);        
+        // Función para que la cámara rote alrededor de la escena
+        this.Camara.Rotar = function() {
+            if (this.Rotacion.Animacion === true) {
+                this.Rotacion.Grados += this.Rotacion.Avance;
+                this.position.x = this.Rotacion.Distancia * Math.cos(this.Rotacion.Grados);
+                this.position.z = this.Rotacion.Distancia * Math.sin(this.Rotacion.Grados);
+                this.lookAt(this.Rotacion.MirarHacia); 
+            }
+        };
         this.Escena.add(this.Camara);
 
         // Parrilla para iniciar la plantilla (se puede eliminar)
@@ -103,14 +118,12 @@ NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     
     // Función que pinta cada frame de la animación
     Pintar          : function() {  
-        this.Rotacion_Grados += this.Rotacion_Avance;
-        this.Camara.position.x = this.Rotacion_Distancia * Math.cos(this.Rotacion_Grados);
-        this.Camara.position.z = this.Rotacion_Distancia * Math.sin(this.Rotacion_Grados);
-        this.Camara.lookAt(this.Escena.position);
+        this.Camara.Rotar();
         this.Context.render(this.Escena, this.Camara);  
     }
 });
 
+// Inicialización del canvas en el Load de la página
 var Canvas = null;
 window.addEventListener('load', function() { Canvas = new NUEVOCANVASTHREE; });
 </script>

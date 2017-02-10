@@ -149,6 +149,7 @@ var ObjetoTest_Lista = function(ControlPadre, ObjetoTestPadre, Visible) {
         Modificable   : true,                       // Establece si se puede modificar la propiedad o es de solo lectura (funciona para todos los tipos excepto para funciones)
         TextoTrue     : "Encender",                 // Texto para el true (Solo se usa para los controles bool)
         TextoFalse    : "Apagar",                   // Texto para el fase (Solo se usa para los controles bool)
+        PorDefecto    : Valores[Indice][0]          // Valor por defecto (Solo se usa para los controles select con arrays y objetos)
     }*/
     this.Padre = ObjetoTestPadre;    
     this.Variables = [];
@@ -222,7 +223,6 @@ var ObjetoTest_Lista = function(ControlPadre, ObjetoTestPadre, Visible) {
                         }*/
                     }                            
                 }
-                console.log(Alto);
                 this.ControlContenedor.style.height = Alto + "px";                    
                 
                 var Diferencia = Alto - AlturaInicial;
@@ -324,18 +324,23 @@ var ObjetoTest_Lista = function(ControlPadre, ObjetoTestPadre, Visible) {
         return ControlBool;
     };
     
-    this.CrearControlSelect = function(Contenedor, Valores) {
+    this.CrearControlSelect = function(Contenedor, Valores, PorDefecto) {
         var ControlSelect = document.createElement('select');
         ControlSelect.className = "ObjetoTest_Select";
 //        ControlBool.setAttribute("marcado", Valor);
+        var Selected = "";
         if (Valores instanceof Array) {
             for (var i = 0; i < Valores.length; i++) {
-                ControlSelect.innerHTML = ControlSelect.innerHTML + "<option value='" + Valores[i] + "'>" + Valores[i] + "</option>";
+                if (PorDefecto === Valores[i]) { Selected = " selected='selected'"; }
+                else                           { Selected = ""; }
+                ControlSelect.innerHTML = ControlSelect.innerHTML + "<option value='" + Valores[i] + "'" + Selected +">" + Valores[i] + "</option>";
             }
         }
         else {
             for (var Indice in Valores) {
-                ControlSelect.innerHTML = ControlSelect.innerHTML + "<option value='" + Valores[Indice] + "'>" + Indice + "</option>";
+                if (PorDefecto === Valores[Indice]) { Selected = " selected='selected'"; }
+                else                                { Selected = ""; }
+                ControlSelect.innerHTML = ControlSelect.innerHTML + "<option value='" + Valores[Indice] + "'" + Selected +">" + Indice + "</option>";
             }            
         }
         Contenedor.appendChild(ControlSelect);     
@@ -487,6 +492,8 @@ var ObjetoTest_Lista = function(ControlPadre, ObjetoTestPadre, Visible) {
     this.ControlSelect = function(Padre, Opciones) {
         this.Opciones   = Opciones;
         this.Padre      = Padre;
+        this.Opciones.PorDefecto = this.Opciones.PorDefecto || this.Opciones.Padre[this.Opciones.Variable][0];
+        //if (typeof  === "undefined") { this.Opciones.Min = 0.0; }
         
         this.Select_Change = function() {
             this.Opciones.Actualizar(this.ControlSelect.value); 
@@ -497,7 +504,7 @@ var ObjetoTest_Lista = function(ControlPadre, ObjetoTestPadre, Visible) {
         // Div con el nombre de la variable (ObjetoTest_Nombre)
         this.ControlTexto = this.Padre.CrearControlTexto(this.ControlContenedor, this.Opciones.Nombre);
         // Control que contiene el combobox con las opciones
-        this.ControlSelect = this.Padre.CrearControlSelect(this.ControlContenedor, this.Opciones.Padre[this.Opciones.Variable]);
+        this.ControlSelect = this.Padre.CrearControlSelect(this.ControlContenedor, this.Opciones.Padre[this.Opciones.Variable], this.Opciones.PorDefecto);
         this.ControlSelect.addEventListener('change', this.Select_Change.bind(this));
         
         this.Actualizar = function() { };

@@ -22,6 +22,7 @@ $Comentarios = new function() {
         $("#Comentarios_Comentario").on('blur keyup paste copy cut mouseup', function() {
             $Comentarios.AsignarEstadosBotones();
         });
+        /* * TODO habilitar etiquetes especials per administradors, s'hauria de re-escriure la funcio on paste al loguejar en el ObjetoAdministrador */
         /* Pegar datos en el comentario, hay que limpiar todas las etiquetas y dejar solo el texto plano 
          * Esto evita que me hagan un Control + C de toda la pagina y me peguen todo el contenido en el mensaje (incluidos controles...) */
         $('#Comentarios_Comentario').on('paste', function(e) {

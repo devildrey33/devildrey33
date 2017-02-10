@@ -59,11 +59,16 @@ class devildrey33_htaccess {
 /*        $Archivo = fopen("../.htaccess", "r");
         $Datos = fread($Archivo, filesize("../.htaccess"));
         fclose($Archivo);                */
-        $Ret = array("CheckSpelling" => "false", "CompresionGZip" => "false", "Mantenimiento" => "false", "CacheImagenes" => "false");
-        if (strpos($Datos, "#INICIO CheckSpelling activado") !== false)  {     $Ret["CheckSpelling"]  = "true";      }
-        if (strpos($Datos, "#INICIO CompresionGZip activado") !== false) {     $Ret["CompresionGZip"] = "true";      }
-        if (strpos($Datos, "#INICIO Mantenimiento activado") !== false)  {     $Ret["Mantenimiento"]  = "true";      }
-        if (strpos($Datos, "#INICIO CacheImagenes activado") !== false)  {     $Ret["CacheImagenes"]  = "true";      }       
+        $Ret = array("CheckSpelling"  => "false", 
+                     "CompresionGZip" => "false", 
+                     "Mantenimiento"  => "false", 
+                     "CacheImagenes"  => "false", 
+                     "Cors"           => "false");
+        if (strpos($Datos, "#INICIO CheckSpelling activado")  !== false)  {     $Ret["CheckSpelling"]  = "true";      }
+        if (strpos($Datos, "#INICIO CompresionGZip activado") !== false)  {     $Ret["CompresionGZip"] = "true";      }
+        if (strpos($Datos, "#INICIO Mantenimiento activado")  !== false)  {     $Ret["Mantenimiento"]  = "true";      }
+        if (strpos($Datos, "#INICIO CacheImagenes activado")  !== false)  {     $Ret["CacheImagenes"]  = "true";      }       
+        if (strpos($Datos, "#INICIO Cors activado")           !== false)  {     $Ret["Cors"]           = "true";      }
         
         $InicioRewrite = strpos($Datos, "#INICIO Paths ") + strlen("#INICIO Paths ");
         $FinRewrite = strpos($Datos, "\r\n", $InicioRewrite);
@@ -71,6 +76,23 @@ class devildrey33_htaccess {
         return $Ret;
     }
 
+    static public function Cors($Valor) {
+        if (devildrey33_Opciones::Administrador() === 0) return FALSE;
+        $Datos       = file_get_contents(Base::Path_Raiz().".htaccess");
+        $PosInicio   = strpos($Datos, "#INICIO Cors");
+        $PosFin      = strpos($Datos, "#FIN Cors");
+        $DatosNuevos = substr($Datos, 0, $PosInicio);
+        if ($Valor == TRUE) {
+            $DatosNuevos .= "#INICIO Cors activado\r\n".
+                            "Header set Access-Control-Allow-Origin \"*\"\r\n";            
+        }
+        else {
+            $DatosNuevos .= "#INICIO Cors desactivado\r\n";
+        }
+        $DatosNuevos .= substr($Datos, $PosFin, strlen($Datos) - $PosFin);
+        file_put_contents(Base::Path_Raiz().".htaccess", $DatosNuevos);
+    }
+    
     /* Función para activar / desactivar el modulo checkspelling (redireccion a nombres similares) */
     static public function CheckSpelling($Valor) {
         if (devildrey33_Opciones::Administrador() === 0) return FALSE;
@@ -80,15 +102,15 @@ class devildrey33_htaccess {
         $DatosNuevos = substr($Datos, 0, $PosInicio);
         if ($Valor == TRUE) {
             $DatosNuevos .= "#INICIO CheckSpelling activado\r\n".
-                    "<IfModule mod_speling.c>\r\n".
-                    "CheckSpelling On\r\n".
-                    "</IfModule>\r\n";
+                            "<IfModule mod_speling.c>\r\n".
+                            "CheckSpelling On\r\n". 
+                            "</IfModule>\r\n";
         }        
         else {
             $DatosNuevos .= "#INICIO CheckSpelling desactivado\r\n".
-                    "<IfModule mod_speling.c>\r\n".
-                    "CheckSpelling Off\r\n".
-                    "</IfModule>\r\n";
+                            "<IfModule mod_speling.c>\r\n".
+                            "CheckSpelling Off\r\n".
+                            "</IfModule>\r\n";
         }
         $DatosNuevos .= substr($Datos, $PosFin, strlen($Datos) - $PosFin);
         file_put_contents(Base::Path_Raiz().".htaccess", $DatosNuevos);

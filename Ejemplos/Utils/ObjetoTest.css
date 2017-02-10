@@ -1,7 +1,7 @@
 /* ObjetoTest creado por Josep Antoni Bover Comas para devildrey33.es el 20/10/2016 
     Este objeto está pensado para facilitarme la vida a la hora de probar código, consiste en un UI con varios controles, que permiten modificar variables y ejecutar funciones.
     Inspirado en dat.GUI pero solo para asignar valores / ejecutar funciones, nada de refrescar valores
-    Ultima modificaión 03/11/2016
+    Ultima modificaión 05/11/2016
 */
 
 /* NOTA no afegir aquest import en la versió de la web */
@@ -36,11 +36,11 @@
 .ObjetoTest_Nombre, .ObjetoTest_NombreLista {
     color:#DDDDDD;    
     display:inline-block;
-    width:calc(40% - 8px);
+    width:calc(40% - 12px);
     position:relative;
 }
 .ObjetoTest_Nombre {
-    padding:6px 2px 2px 2px;
+    padding:6px 2px 2px 6px;
     top:-2px;
     height:16px;
     background:rgba(20,20,20,0.9);
@@ -56,8 +56,7 @@
     border-left:4px solid #ea504e;
     text-shadow:1px 1px 1px #000;
     border-top: 1px solid rgba(20,20,20,0.9);
-    border-right:1px solid rgba(20,20,20,0.9);
-    
+    border-right:1px solid rgba(20,20,20,0.9);    
 }
 
 .ObjetoTest_Contenedor[abierto=true] > .ObjetoTest_NombreLista {

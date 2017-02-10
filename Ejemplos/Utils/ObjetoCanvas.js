@@ -1,6 +1,6 @@
 /* Fusión del ObjetoCanvas (originalmente destinado a tests de banners) con el ObjetoBanner 
     Creado el 14/10/2016 por Josep Antoni Bover Comas para devildrey33.es 
-    Ultima modificación :  28/10/2016 
+    Ultima modificación :  05/11/2016 
  */
 
 /*  Opciones['Tipo']            puede ser : 
@@ -19,14 +19,14 @@
 ObjetoCanvas = function(Opciones) {
     // Opciones por defecto
     this.OpcionesCanvas  = { 
-        'Tipo'          : '2d',
-        'Ancho'         : 'Auto',
-        'Alto'          : 'Auto',
-        'Entorno'       : 'Normal',
-        'MostrarFPS'    : true,
-        'ElementoRaiz'  : document.body,
-        'Pausar'        : true,             // Pausar si el canvas está en segundo plano
-        'ColorFondo'    : 0x312E35          // Color del fondo por defecto (solo si usas THREE.js)
+        Tipo          : '2d',
+        Ancho         : 'Auto',
+        Alto          : 'Auto',
+        Entorno       : 'Normal',
+        MostrarFPS    : true,
+        ElementoRaiz  : document.body,
+        Pausar        : true,             // Pausar si el canvas está en segundo plano
+        ColorFondo    : 0x312E35          // Color del fondo por defecto (solo si usas THREE.js)
     };
     // Copio las nuevas opciones encima de las opciones por defecto
     if (typeof Opciones === 'object') {
@@ -73,6 +73,8 @@ ObjetoCanvas = function(Opciones) {
     // Obtengo la etiqueta canvas    
     this.Canvas = document.getElementById("Cabecera_Canvas");        
     
+    this._EsMovil = -1; // no se ha hecho la detección de dispositivos moviles
+
     // Tamaño del canvas
     this.Ancho          = 0;                                                // Ancho del canvas
     this.Alto           = 0;                                                // Altura del canvas
@@ -92,7 +94,7 @@ ObjetoCanvas = function(Opciones) {
             console.log("ObjetoCanvas iniciado en modo 2d");
         }
         else if (this.OpcionesCanvas.Tipo.toLowerCase() === 'three') {
-            if (this.PixelRatio() > 1) { // El antialias no va con el samsung galaxy alpha...
+            if (this.EsMovil() === true) { // El antialias no va con el samsung galaxy alpha...
                this.Context = new THREE.WebGLRenderer({ canvas : this.Canvas });    // Contexto THREE.JS
                 console.log("ObjetoCanvas iniciado en modo THREE sin antialias");
             }
@@ -138,6 +140,8 @@ ObjetoCanvas.prototype.Terminar = function() {
     }
     
     if (this.OpcionesCanvas.Entorno === "Normal") {
+        this.Cabecera.removeEventListener('touchstar', this.hEventoToucStart);
+        this.Cabecera.removeEventListener('touchend', this.hEventoToucEnd);
         this.Cabecera.removeEventListener('mousedown', this.hEventoMousePresionado);
         this.Cabecera.removeEventListener('mouseup', this.hEventoMouseSoltado);
         window.removeEventListener('keydown', this.hEventoTeclaPresionada);
@@ -156,11 +160,15 @@ ObjetoCanvas.prototype.Terminar = function() {
 
 ObjetoCanvas.prototype.EnlazarEventos = function() {
     // Necesito guardar una variable con cada evento reconvertido con bind, para poder hacer mas tarde el removeEventListener
-    if (this.OpcionesCanvas.Entorno === "Normal") {
+    if (this.OpcionesCanvas.Entorno === "Normal") { // Canvas que puede recibir eventos
+        this.hEventoToucStart       = this.EventoTouchStart.bind(this);
+        this.hEventoTouchEnd        = this.EventoTouchEnd.bind(this);
         this.hEventoMousePresionado = this.EventoMousePresionado.bind(this);
         this.hEventoMouseSoltado    = this.EventoMouseSoltado.bind(this);
         this.hEventoTeclaPresionada = this.EventoTeclaPresionada.bind(this);
         this.hEventoTeclaSoltada    = this.EventoTeclaSoltada.bind(this);
+        this.Cabecera.addEventListener('touchstart', this.hEventoToucStart);
+        this.Cabecera.addEventListener('touchend', this.hEventoTouchEnd);
         this.Cabecera.addEventListener('mousedown', this.hEventoMousePresionado);
         this.Cabecera.addEventListener('mouseup', this.hEventoMouseSoltado);
         window.addEventListener('keydown', this.hEventoTeclaPresionada);
@@ -207,7 +215,7 @@ ObjetoCanvas.prototype.EventoFocoPerdido = function() {
 };
     
 // Función que devuelve el pixel ratio del dispositivo actual
-ObjetoCanvas.prototype.PixelRatio = function() {
+/*ObjetoCanvas.prototype.PixelRatio = function() {
     var ratio = 1;
     // To account for zoom, change to use deviceXDPI instead of systemXDPI
     if (window.screen.systemXDPI !== undefined && window.screen.logicalXDPI !== undefined && window.screen.systemXDPI > window.screen.logicalXDPI) {
@@ -218,11 +226,39 @@ ObjetoCanvas.prototype.PixelRatio = function() {
         ratio = window.devicePixelRatio;
     }
     return ratio;    
+};*/
+
+ObjetoCanvas.prototype.EsMovil = function() {
+    if (this._EsMovil === -1) {
+        if( navigator.userAgent.match(/Android/i)       ||
+            navigator.userAgent.match(/webOS/i)         ||
+            navigator.userAgent.match(/iPhone/i)        ||
+            navigator.userAgent.match(/iPad/i)          ||
+            navigator.userAgent.match(/iPod/i)          ||
+            navigator.userAgent.match(/BlackBerry/i)    ||
+            navigator.userAgent.match(/Windows Phone/i) ) {
+            console.log("ObjetoCanvas.EsMovil : true");
+            this._EsMovil = true;
+            return true;
+        }
+        else {
+            console.log("ObjetoCanvas.EsMovil : false");
+            this._EsMovil = false;
+            return false;
+        }
+    }
+    return this._EsMovil;
 };
 
 // Función que determina el estado de carga (cargando/completo) true/false
 ObjetoCanvas.prototype.Cargando = function(carga) {
     document.getElementById("Cabecera").setAttribute("cargando", carga);
+};
+
+// Función que obtiene el estado de carga
+ObjetoCanvas.prototype.EstaCargando = function() {
+    var Ret = document.getElementById("Cabecera").getAttribute("cargando");
+    return (Ret === "true" || Ret === true);
 };
 
 // Función interna utilizada por requestAnimationFrame para actualizar y pintar la animación
@@ -267,6 +303,16 @@ ObjetoCanvas.prototype.EventoMouseLeave = function(event) {
     console.log("ObjetoCanvas.EventoMouseLeave");
     if (typeof(this.MouseLeave) !== "undefined") { this.MouseLeave.apply(this, [ event ]); }
 };
+
+// Función que procesa el evento mousedown
+ObjetoCanvas.prototype.EventoTouchStart = function(event) {    
+    if (typeof(this.TouchStart) !== "undefined") { this.TouchStart.apply(this, [ event ]); }
+};
+// Función que procesa el evento mouseup
+ObjetoCanvas.prototype.EventoTouchEnd = function(event) {    
+    if (typeof(this.TouchEnd) !== "undefined") {  this.TouchEnd.apply(this, [ event ]);   }
+};
+
 
 // Función que obtiene el tamaño del canvas una vez redimensionado.
 ObjetoCanvas.prototype.EventoRedimensionar = function() {

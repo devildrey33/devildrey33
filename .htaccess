@@ -15,7 +15,9 @@ deny from 213.5.64.19 		#spamer conocido
 allow from all
 </Limit> 
 
-
+#INICIO Cors activado
+Header set Access-Control-Allow-Origin "*"
+#FIN Cors
 
 #INICIO CacheImagenes desactivado
 #FIN CacheImagenes
@@ -89,6 +91,7 @@ RewriteRule ^Graficos/([^/]+) 			Web/Graficos/$1 [NC]
 RewriteRule ^Descargas/([^/]+) 			Web/devildrey33_Descargar.php?Nombre=$1 [NC]
 RewriteRule ^Lab/([^/]+)                        Web/Lab.php?Archivo=$1 [NC]
 RewriteRule ^cmd/([^/]+)                        Web/cmd.php?cmd=$1 [NC]
+RewriteRule ^Cors/([^/]+)                       Web/Cors.php?Path=$1 [NC]
 
 #Redirigir TOT a un php (no puc fer-ho servir)
 #RewriteRule ^(.*)$ url.php?URL=$1 [L,QSA]
@@ -101,7 +104,7 @@ RewriteRule ^cmd/([^/]+)                        Web/cmd.php?cmd=$1 [NC]
 RewriteCond %{ENV:REDIRECT_STATUS} 200
 RewriteRule .* - [L]
 
-# Anti hotlink (en localhost s'ha de comentar)
+# Anti hotlink (en localhost s'ha de comentar) DEPRECATED
 #RewriteEngine On
 #RewriteCond %{HTTP_REFERER} !^$
 #RewriteCond %{HTTP_REFERER} !^http://(www\.)?devildrey33\.es/ [NC]
@@ -162,6 +165,8 @@ Redirect 301 /wp-content/plugins/revslider/temp/update_extract/7951425.php  /cmd
 Redirect 301 /administrator/index.php                                       /cmd/BanearIP.php
 Redirect 301 /wp/                                                           /cmd/BanearIP.php
 Redirect 301 /wordpress/                                                    /cmd/BanearIP.php
+Redirect 301 /joomla/administrator/index.php                                /cmd/BanearIP.php
+Redirect 301 /bitrix/admin/                                                 /cmd/BanearIP.php
 
 #INICIO redirecciones Blog
 Redirect 301 /AnimacionesCSS3.php									/Blog/AnimacionesCSS3
