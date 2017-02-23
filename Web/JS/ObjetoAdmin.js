@@ -126,6 +126,9 @@ ObjetoAdmin = function() {
         
         $Base.ResetearTimerTiempoSesion();
         
+        // cambio el tipo del input password para que en el chrome no muestre "No es seguro" en la URL
+        document.getElementById('devildrey33_Password').setAttribute('type', 'text');
+        
         //$Lab.ResaltarArchivoActual(Archivo, true);
     };
     

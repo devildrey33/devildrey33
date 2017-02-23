@@ -16,14 +16,15 @@ body { margin:0px; padding:0px; }
     height:100%;
     border-top:none;
     color:#FFFFFF;
-/*    background:rgba(49,46,53, 1);*/
+    /*    background:rgba(49,46,53, 1);*/
     z-index:10;
-/*    position:absolute;*/
+    /*    position:absolute;*/
     width:100%;
     overflow:hidden;
     position:fixed;
     top:0px;
     bottom:0px;
+    left: 0px;
 }        
 
 #Cabecera > #Cabecera_Canvas {
@@ -39,7 +40,7 @@ body { margin:0px; padding:0px; }
 #Cabecera > #Cabecera_Cargando,
 #Cabecera > #Cabecera_PausaAni,
 #Cabecera > #Cabecera_Stats {
-    transition:0.3s cubic-bezier(.33,.05,.69,1.59);
+/*    transition:0.3s cubic-bezier(.33,.05,.69,1.59);
     z-index:13;
     padding:10px;
     margin:5px;    
@@ -51,13 +52,16 @@ body { margin:0px; padding:0px; }
     -webkit-user-select : none;
     -moz-user-select    : none;
     -ms-user-select     : none;
-    user-select         : none;    
+    user-select         : none;    */
 }
 
 #Cabecera > #Cabecera_Cargando {
-    top:0px;
-    left:50%;
-    transform:perspective(600px) rotateX(-90deg) translateX(-50%);    
+    bottom: 50%;
+    right: calc(50% - 222px);
+    width: 200px;
+    height: 50px;
+    font-size: 42px;
+    transform:perspective(600px) rotateX(-90deg) translateX(-50%);
 }        
             
 #Cabecera > #Cabecera_Stats {
@@ -85,4 +89,20 @@ body { margin:0px; padding:0px; }
 /* Solo se muestra el texto cargando mientras el atributo cargando sea true (necesario para advertir de la carga de texturas) */
 #Cabecera[cargando=true] > #Cabecera_Cargando {
     transform:perspective(600px) rotateX(0deg) translateX(-50%);        
+}
+
+.MarcoCanvas {
+    transition:0.3s cubic-bezier(.33,.05,.69,1.59);
+    z-index:13;
+    padding:10px;
+    margin:5px;    
+    background-color: rgba(37,35,40, 0.6);
+    color:#FFF;
+    text-shadow:1px 1px 1px #000;
+    position:fixed;
+    border:1px solid #353338;
+    -webkit-user-select : none;
+    -moz-user-select    : none;
+    -ms-user-select     : none;
+    user-select         : none;    
 }

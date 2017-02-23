@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
         <!-- Estilos CSS para el test -->
-        <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
+        <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoCanvas.css' />        
         <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
 <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
         <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
@@ -76,38 +76,52 @@ TestObjetoAnimacion.prototype = Object.assign( Object.create(ObjetoCanvas.protot
         this.Ani[0] = this.Animaciones.CrearAnimacion([
             { Paso : { PosX : 0   }},
             { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.Lineal, Retraso : 1000 }
-        ], { Repetir : 1, Invertir : false });            
+        ], { Repetir : -1, Invertir : false });
         this.Ani[1] = this.Animaciones.CrearAnimacion([
             { Paso : { PosX : 0   }},
-            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.SinIn, Retraso : 150 }
-        ], { Repetir : 2 });            
+            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.SinIn, Retraso : 1000 }
+        ], { Repetir : -1 });
         this.Ani[2] = this.Animaciones.CrearAnimacion([
             { Paso : { PosX : 0   }},
-            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.SinOut, Retraso : 200 }
-        ], { Repetir : 3, Invertir : false  });            
+            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.SinOut, Retraso : 1000 }
+        ], { Repetir : -1, Invertir : false  });            
         this.Ani[3] = this.Animaciones.CrearAnimacion([
             { Paso : { PosX : 0   }},
-            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.SinInOut, Retraso : 250 }
-        ], { Repetir : 4 });            
+            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.SinInOut, Retraso : 1000 }
+        ], { Repetir : -1 });
         this.Ani[4] = this.Animaciones.CrearAnimacion([
             { Paso : { PosX : 0   }},
-            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.CubicInOut, Retraso : 300 }
-        ], { Repetir : 5, Invertir : false  });            
+            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.CubicInOut, Retraso : 1000 }
+        ], { Repetir : -1, Invertir : false  });            
         this.Ani[5] = this.Animaciones.CrearAnimacion([
             { Paso : { PosX : 0   }},
-            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.CircularInOut, Retraso : 350 }
-        ], { Repetir : 6 });            
+            { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.CircularInOut, Retraso : 1000 }
+        ], { Repetir : -1 });            
         // Transición en el OnClick
         this.Ani[6] = this.Animaciones.CrearTransicion([
             { Paso : { PosX : 0   }},
             { Paso : { PosX : 600 }, Tiempo : nTiempo,  FuncionTiempo : FuncionesTiempo.Lineal, Retraso : 0 }
-        ], { Repetir : 0 });            
+        ], { Repetir : 0 });
         
+        for (var i = 0; i < this.Ani.length; i++) {
+            this.Ani[i].Iniciar();
+        }
+
+        this.Context.font="16px monospace";
+        this.Context.fillStyle = "rgba(0,0,0,1)";
+        this.Context.fillRect(0, 0, this.Ancho, this.Alto);
+        this.Context.fillStyle = "rgba(255,255,255,1)";
+        
+        var Valores = ["Lineal", "SinIn", "SinOut", "SinInOut", "CubicInOut", "CircularInOut", "[Transition] Lineal"];
+        
+        for (var i = 0; i < this.Ani.length; i++) {
+            this.Context.fillText(Valores[i], 10, (30 * (i + 1)));
+        }
     },
     // Función que pinta cada frame de la animación
     Pintar          : function() {
         this.Context.fillStyle = "rgba(0,0,0,1)";
-        this.Context.fillRect(0, 0, this.Ancho, this.Alto);
+        this.Context.fillRect(200, 0, this.Ancho, this.Alto);
         this.Animaciones.Actualizar(this.Tick);
         for (var i = 0; i < this.Ani.length; i++) {
             this.Context.fillStyle = "rgba(255,0,0,1)";

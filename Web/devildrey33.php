@@ -157,7 +157,7 @@ class devildrey33 {
         "<div id='VentanaLogin' class='MarcoVentana-250'>".Intro().
             "<table>".Intro().
               "<tr>"."<td>Usuario</td>"."<td>"."<input name='Usuario' type='text' id='devildrey33_Usuario' spellcheck='false' />"."</td>"."</tr>".Intro().
-              "<tr>"."<td>Password</td>"."<td>"."<input name='Password' type='password' id='devildrey33_Password' />"."</td>"."</tr>".Intro().
+              "<tr>"."<td>Password</td>"."<td>"."<input name='Password' type='text' id='devildrey33_Password' />"."</td>"."</tr>".Intro().
             "</table>".Intro().
         "</div>".Intro().                
                 
@@ -941,10 +941,10 @@ class devildrey33 {
         echo "<script src='".Base::URL_JS()."3rdParty/codemirror.min.js'></script>".Intro();
         /* Three js */
         if (devildrey33_Opciones::Minificar_JS() == 0) { // Three.js sin minificar
-            echo "<script src='".Base::URL_JS()."3rdParty/three-0.79.js'></script>".Intro();
+            echo "<script src='".Base::URL_JS()."3rdParty/three-0.84.js'></script>".Intro();
         }
         else {
-            echo "<script src='".Base::URL_JS()."3rdParty/three-0.79.min.js'></script>".Intro();            
+            echo "<script src='".Base::URL_JS()."3rdParty/three-0.84.min.js'></script>".Intro();            
         }
 //        echo "<script src='".Base::URL_JS()."3rdParty/tweenjs-0.6.2.min.js'></script>".Intro();
 //        echo "<script src='".Base::URL_JS()."3rdParty/stats.min.js'></script>".Intro();

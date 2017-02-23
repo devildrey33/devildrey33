@@ -1,0 +1,612 @@
+<!-- 
+    Plantilla para test de canvas creado por Josep Antoni Bover Comas el 05/07/2016
+
+        Vista por defecto en el Laboratorio de pruebas  
+		devildrey33_Lab->Opciones->Vista = Filas;
+
+        Ultima modificación el 05/02/2017
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <title>CyberParasit</title>
+        <!-- Estilos CSS para el test -->
+        <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoCanvas.css' />        
+        
+        <!-- Estilos CSS para el ObjetoTest -->
+        <!-- <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoTest.css' /> -->
+        
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        <!-- Three.JS -->
+<!--        <script src="/Web/JS/3rdParty/three-0.84.min.js"></script> -->
+        <script src="/Web/JS/3rdParty/three-0.84.js"></script>
+        <script src="/Web/JS/3rdParty/OrbitControls.js"></script>
+<!--        <script src="/Web/JS/3rdParty/three-0.79.min.js"></script> -->
+        <!-- Three.JS para depuración -->
+        <!-- <script src="/Web/JS/3rdParty/three-0.79.js"></script> -->
+
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
+        
+        <!-- Objeto para crear animaciones de tiempo -->
+        <script src="/Ejemplos/Utils/ObjetoAnimacion.js"></script>
+        
+        <!-- Objeto para crear tests rápidos -->
+        <!-- <script src="/Ejemplos/Utils/ObjetoTest.js"></script> -->
+        
+        <!-- Código CSS -->
+        <style> 
+            #Empezar {
+                bottom: 50%;
+                right: calc(50% - 210px);
+                width: 200px; 
+                height: 50px; 
+                font-size: 42px; 
+                text-align:center; 
+                cursor:pointer;
+                transform:perspective(600px) rotateX(-90deg) translateX(-50%);
+
+            }
+            
+            #Empezar:hover {
+                color:#FF0;
+            }
+            
+            #Empezar[visible=true] {
+                transform:perspective(600px) rotateX(0deg) translateX(-50%);                     
+            }
+        </style>
+        
+        <!-- Código javascript --> 
+<script type="text/javascript">
+/* Plantilla para crear banners animados en devildrey33.es */
+
+// Constructor
+var CyberParasit = function() {
+    // Llamo al constructor del ObjetoBanner
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'          : 'THREE',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Normal',
+        'MostrarFPS'    : true,
+        'ElementoRaiz'  : document.body,
+        'Pausar'        : false,             // Pausa el canvas si la pestaña no tiene el foco del teclado
+        'ColorFondo'    : 0xFFFFFF
+    }) === false) { return false; }
+    
+    // Se ha creado el canvas, inicio los valores de la animación ... 
+    this.Iniciar();
+    
+    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
+//    this.Cargando(false);
+};
+
+CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor     : CyberParasit, 
+    // Función que se llama al redimensionar el documento
+    Redimensionar   : function() {    },
+    // Función que se llama al hacer scroll en el documento    
+    Scroll          : function() {    },
+    // Función que se llama al mover el mouse por el canvas
+    MouseMove       : function(Evento) { },
+    // Función que se llama al presionar un botón del mouse por el canvas
+    MousePresionado : function(Evento) { },
+    // Función que se llama al soltar un botón del mouse por el canvas
+    MouseSoltado    : function(Evento) { },
+    // Función que se llama al entrar con el mouse en el canvas
+    MouseEnter      : function(Evento) { },
+    // Función que se llama al salir con el mouse del canvas
+    MouseLeave      : function(Evento) { },
+    // Función que se llama al presionar una tecla
+    TeclaPresionada : function(Evento) { },
+    // Función que se llama al soltar una tecla
+    TeclaSoltada    : function(Evento) { },
+    // Función que se llama al presionar la pantalla
+    TouchStart      : function(Evento) { },
+    // Función que se llama al soltar el dedo de la pantalla
+    TouchEnd        : function(Evento) { },    
+    // Función que se llama al pausar el banner
+    Pausa           : function() { },
+    // Función que se llama al reanudar el banner
+    Reanudar        : function() { },
+    // Tiempo en el que se inicia el show (para depuración)
+    IniciarDesde    : 0,            // Tiempo en milisegundos
+    // Función que inicia el ejemplo
+    Iniciar         : function() {
+        // Activo el mapeado de sombras
+        this.Context.shadowMap.enabled	= true;
+        
+        this.Escena = new THREE.Scene();
+        this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 2000);
+//        this.Camara.position.z = 10;
+        window.scene = this.Escena;
+//        this.Camara.Rotacion = { Grados : 93 * this.Constantes.Radiant, Distancia : 40, MirarHacia : new THREE.Vector3(0, 0, 0) };
+        this.Camara.position.set(0, 8, 10);
+        this.Camara.name = "Camara";
+        this.Escena.add(this.Camara);
+        this.Camara.lookAt(new THREE.Vector3(0, 4, 0));
+        
+//        this.Orbit = new THREE.OrbitControls( this.Camara );
+//        this.Orbit.addEventListener( 'change', this.Pintar.bind(this) );
+
+        // Parrilla para iniciar la plantilla (se puede eliminar)
+        // Palno para el suelo
+        this.Suelo = new THREE.Mesh(    new THREE.PlaneGeometry(100, 100), 
+                                        new THREE.MeshPhongMaterial({ color: 0x999999, specular : 0xcccccc }));
+        this.Suelo.name = "Suelo";
+        this.Suelo.rotation.x = -Math.PI / 2;
+        this.Suelo.position.y = -2;
+        this.Suelo.castShadow = false;
+        this.Suelo.receiveShadow = true;
+        this.Escena.add(this.Suelo);
+
+        this.Robot = new THREE.Group();
+        this.Robot.rotation.y = 90 * this.Constantes.Radiant;
+        this.Escena.add(this.Robot);
+
+        this.Rueda = new THREE.Mesh(new THREE.CylinderGeometry(2, 2, .5, 32, 1), new THREE.MeshPhongMaterial({ color: 0xbbbbbb, specular : 0xffffff }));
+        this.Rueda.name = "Robot_Rueda";
+        this.Rueda.rotation.x = -Math.PI / 2;
+        this.Rueda.castShadow = true;
+        this.Robot.add(this.Rueda);
+
+        this.SuspensionInf = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 2, 16, 1), new THREE.MeshPhongMaterial({ color: 0xbbbbbb, specular : 0xffffff }));
+        this.SuspensionInf.position.set(0, .5, -0.64);
+        this.SuspensionInf.name = "Robot_SuspensionInferior";
+        this.SuspensionInf.castShadow = true;
+        this.Robot.add(this.SuspensionInf);
+
+        this.SuspensionSup = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.25, 2, 16, 1), new THREE.MeshPhongMaterial({ color: 0xbbbbbb, specular : 0xffffff }));
+        this.SuspensionSup.position.set(0, 2, 0);
+        this.SuspensionSup.name = "Robot_SuspensionSuperior";
+        this.SuspensionSup.castShadow = true;
+        this.SuspensionInf.add(this.SuspensionSup);
+        
+        
+        var loader = new THREE.JSONLoader();        
+        loader.load(
+            // resource URL
+            '/Ejemplos/BannerTest/Modelos/CuerpoCyberParasit2.json',
+            // Function when resource is loaded
+            function ( geometry ) {
+//                var material = new THREE.MultiMaterial( materials);
+                this.RobotCuerpo = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ color: 0xbbbbbb, specular : 0xffffff }));
+                this.RobotCuerpo.name = "Robot_Cuerpo";
+                this.RobotCuerpo.castShadow = true;
+                this.RobotCuerpo.receiveShadow = false;
+                this.RobotCuerpo.scale.set(2.1, 2.1, 2.1);
+                this.RobotCuerpo.position.set(0, -2.7, 0.42);
+//                this.Robot.rotation.y = 111 * this.Constantes.Radiant;
+                this.SuspensionSup.add(this.RobotCuerpo);
+//                this.Camara.lookAt(this.RobotCuerpo);
+//                this.DirLight.target = this.Robot;
+
+                this.RobotOjo = new THREE.Mesh(  new THREE.PlaneGeometry(1.5, 1.5), 
+                                                 new THREE.MeshStandardMaterial( { map: this.BufferOjo.Textura, roughness: .5, metalness: .73, transparent : true, opacity:1  } ));
+                this.RobotOjo.name = "Robot_Ojo";
+                this.RobotOjo.position.set(-.94, 3.43, 0);
+                this.RobotOjo.rotation.y -= Math.PI / 2;
+                this.RobotOjo.rotation.x += Math.PI / 2;
+                this.RobotOjo.rotation.y += 17.5 * this.Constantes.Radiant ;
+                this.RobotCuerpo.add(this.RobotOjo);        
+                
+                
+                this.RobotAntenas = new THREE.Mesh(  new THREE.PlaneGeometry(1.5, .75), 
+                                                     new THREE.MeshStandardMaterial( { map: this.BufferAntena.Textura, roughness: .5, metalness: .73, transparent : true, opacity:1  } ));
+                
+                this.RobotAntenas.name = "Robot_Antenas";
+                this.RobotAntenas.castShadow = true;
+                this.RobotAntenas.position.set(0.02, 5.06, 0.03);
+                this.RobotAntenas.rotation.y -= Math.PI / 2;
+                this.RobotCuerpo.add(this.RobotAntenas);        
+                
+                
+                this.RobotAntenasP1 = new THREE.Mesh(  new THREE.SphereGeometry(0.07, 16, 16), 
+                                                       new THREE.MeshPhongMaterial({ color: 0x00bb00, specular : 0x00ff00, transparent : true, opacity:0.3  } ));
+                this.RobotAntenasP1.name = "Robot_PuntaAntena1";
+                this.RobotAntenasP1.position.set(0.02, 5.04, 0.82);
+                this.RobotCuerpo.add(this.RobotAntenasP1); 
+
+                this.RobotAntenasP2 = new THREE.Mesh(  new THREE.SphereGeometry(0.07, 16, 16), 
+                                                       new THREE.MeshPhongMaterial({ color: 0x0000bb, specular : 0x00ffff, transparent : true, opacity:0.3  } ));
+                this.RobotAntenasP2.name = "Robot_PuntaAntena2";
+                this.RobotAntenasP2.position.set(0.02, 5.04, -0.78);
+                this.RobotCuerpo.add(this.RobotAntenasP2); 
+                                                       
+                this.RobotLuz1 = new THREE.PointLight( 0x00aa00, 0, 45);
+//                this.RobotLuz1.castShadow = true;
+                this.RobotLuz1.name = "Robot_LuzAntenas1";
+//                this.RobotLuz1.position.set(0.02, 5, 0.75);
+                this.RobotAntenasP1.add(this.RobotLuz1);        
+                this.RobotLuz2 = new THREE.PointLight( 0x0000aa, 0, 45);
+//                this.RobotLuz2.castShadow = true;
+                this.RobotLuz2.name = "Robot_LuzAntenas2";
+//                this.RobotLuz2.position.set(0.02, 5, -0.75);
+                this.RobotAntenasP2.add(this.RobotLuz2);        
+            }.bind(this)
+        );
+        // Luz direccional
+        this.DirLight = new THREE.DirectionalLight( 0xffffff, 0.7 );
+        this.DirLight.color.setHSL( 0.1, 1, 0.95 );
+        this.DirLight.position.set( 1, 1, 2 ).normalize();
+        this.DirLight.position.multiplyScalar( 50 );
+        this.Escena.add( this.DirLight );
+        this.DirLight.castShadow = true;
+        this.DirLight.shadow.mapSize.width = 2048;
+        this.DirLight.shadow.mapSize.height = 2048;
+        var d = 80;
+        this.DirLight.shadow.camera.left = -d;
+        this.DirLight.shadow.camera.right = d;
+        this.DirLight.shadow.camera.top = d;
+        this.DirLight.shadow.camera.bottom = -d;
+        this.DirLight.shadow.camera.far = 3500;
+        this.DirLight.target = this.Suelo;
+        this.DirLight.shadow.target = this.Suelo;
+        this.DirLight.name = "Luz_Direccional";
+
+/*        this.Dlhelper = new THREE.CameraHelper(this.DirLight.shadow.camera);
+        this.Escena.add(this.Dlhelper);
+        this.Dlhelper.visible = true;*/
+
+        // Inicio el API del audio y cargo la canción
+        this.Audio = new CyberParasit_Audio();
+        this.Audio.Iniciar(this);
+        
+        // Arrays para el analizador de barras y onda sinusoidal
+        this.TamDatos = this.Audio.Analizador.fftSize / 2;
+        this.DatosAnalizador = new Uint8Array(this.TamDatos);
+        this.DatosAnalizadorSin = new Uint8Array(this.TamDatos);        
+        
+        // Inicio el plano 2D para el Ojo del robot
+        this.BufferOjo = new BufferCanvas(512, 512);
+        this.BufferOjo.Textura = new THREE.Texture(this.BufferOjo.Canvas);
+        this.BufferOjo.Context.lineWidth = 4;
+
+        this.BufferAntena = new BufferCanvas(1024, 512);
+        this.BufferAntena.Textura = new THREE.Texture(this.BufferAntena.Canvas);
+        this.BufferAntena.Context.lineWidth = 4;
+        this.BufferAntena.Context.strokeStyle = "rgb(0, 0, 255)";
+        
+        this.Animaciones = new ObjetoAnimacion();
+/*        this.AniSuspension = this.Animaciones.CrearAnimacion([
+            { Paso : { y : 2   }},
+            { Paso : { y : 1.5 }, Tiempo : 200, Retraso : 1000, FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { y : 1.9 }, Tiempo : 150,  FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { y : 1.4 }, Tiempo : 200,  FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { y : 2 }, Tiempo : 150,  FuncionTiempo : FuncionesTiempo.SinInOut }
+        ], { FuncionActualizar : function(Valores) { 
+              this.SuspensionSup.position.y = Valores['y'];        
+            }.bind(this) 
+        });  */          
+
+/*
+        this.AniMovimiento =  this.Animaciones.CrearAnimacion([
+            { Paso : { posZ : 0, rotZ : 0   }},
+            { Paso : { posZ : -2.5, rotZ : -0.14 }, Tiempo : 1000, FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { posZ : 2.5, rotZ : 0.14 }, Tiempo : 2000, FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { posZ : 0, rotZ : 0 }, Tiempo : 1000, FuncionTiempo : FuncionesTiempo.SinInOut }
+        ], { Repetir : 7, FuncionActualizar : function(Valores) { 
+              this.Robot.position.z = Valores['posZ'];        
+              this.Robot.rotation.z = Valores['rotZ'];        
+            }.bind(this) 
+        });            */
+         
+        this.AniMovimiento = this.Animaciones.CrearAnimacion([
+            { Paso : { posZ : 0, rotZ : 0.14   }},
+            { Paso : { posZ : -5, rotZ : -0.14 }, Tiempo : 2000, FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { posZ : 0, rotZ : 0.14 }, Tiempo : 2000, FuncionTiempo : FuncionesTiempo.SinInOut } /*,
+            { Paso : { posZ : -5, rotZ : -0.14 }, Tiempo : 2000, FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { posZ : 0, rotZ : 0.14 }, Tiempo : 2000, FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { posZ : -5, rotZ : -0.14 }, Tiempo : 2000, FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { posZ : 0, rotZ : 0.14 }, Tiempo : 2000, FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { posZ : -5, rotZ : -0.14 }, Tiempo : 2000, FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { posZ : 0, rotZ : 0.14 }, Tiempo : 2000, FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { posZ : -5, rotZ : -0.14 }, Tiempo : 2000, FuncionTiempo : FuncionesTiempo.SinInOut },
+            { Paso : { posZ : 0, rotZ : 0 }, Tiempo : 2000, FuncionTiempo : FuncionesTiempo.SinInOut }*/
+        ], { Repetir : -1, FuncionActualizar : function(Valores) { 
+              this.Robot.position.z = Valores['posZ'];        
+              this.Robot.rotation.z = Valores['rotZ'];        
+            }.bind(this) 
+        });            
+        
+        this.AniBeng = this.Animaciones.CrearAnimacion([
+            { Paso : { Escala : 1 }},
+            { Paso : { Escala : 0.95 }, Tiempo : 80, FuncionTiempo : FuncionesTiempo.Linear },
+            { Paso : { Escala : 1.05 }, Tiempo : 80, FuncionTiempo : FuncionesTiempo.Linear },
+            { Paso : { Escala : 0.92 }, Tiempo : 80, FuncionTiempo : FuncionesTiempo.Linear },
+            { Paso : { Escala : 1.1 }, Tiempo : 80, FuncionTiempo : FuncionesTiempo.Linear },
+            { Paso : { Escala : 0.97 }, Tiempo : 80, FuncionTiempo : FuncionesTiempo.Linear },
+            { Paso : { Escala : 1.03 }, Tiempo : 80, FuncionTiempo : FuncionesTiempo.Linear },
+            { Paso : { Escala : 0.98 }, Tiempo : 80, FuncionTiempo : FuncionesTiempo.Linear },
+            { Paso : { Escala : 1.02 }, Tiempo : 80, FuncionTiempo : FuncionesTiempo.Linear },
+            { Paso : { Escala : 0.99 }, Tiempo : 80, FuncionTiempo : FuncionesTiempo.Linear },
+            { Paso : { Escala : 1 }, Tiempo : 80, FuncionTiempo : FuncionesTiempo.Linear }
+        ], { Repetir : 0, FuncionActualizar : function(Valores) { 
+              this.Robot.scale.set(Valores['Escala'], Valores['Escala'], Valores['Escala']);
+            }.bind(this) 
+        });            
+        
+        /*
+        this.AniBoom =  this.Animaciones.CrearAnimacion([
+            { Paso : { EjeY : 2, PosY : 0, Escala : 1 }},
+            { Paso : { EjeY : 1.5, PosY : 0, Escala : 1  }, Tiempo : 500, Retraso : 41000, FuncionTiempo : FuncionesTiempo.Linear },
+            { Paso : { EjeY : 2, PosY : 2, Escala : 1.2  }, Tiempo : 100, FuncionTiempo : FuncionesTiempo.Linear },
+            { Paso : { EjeY : 2, PosY : 1, Escala : 1  }, Tiempo : 150, FuncionTiempo : FuncionesTiempo.Linear },
+            { Paso : { EjeY : 2, PosY : 0, Escala : 1  }, Tiempo : 150, FuncionTiempo : FuncionesTiempo.Linear }
+        ], { Repetir : 0, FuncionActualizar : function(Valores) { 
+              this.Robot.position.y = Valores['PosY'];        
+              this.SuspensionSup.position.y = Valores['EjeY'];              
+              this.Robot.scale.set(Valores['Escala'], Valores['Escala'], Valores['Escala']);
+            }.bind(this) 
+        });    */        
+         
+        this.Pasos_Actual = 0;
+        this.Pasos_Animacion = [
+            { Tiempo : 0, Funcion : this.AniMovimiento.Iniciar.bind(this.AniMovimiento) },     
+            { Tiempo : 41350, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 41.35
+            { Tiempo : 51600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 51.6
+            { Tiempo : 103600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
+            { Tiempo : 108500, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
+            { Tiempo : 113600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
+            { Tiempo : 118600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
+            { Tiempo : 123600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
+            { Tiempo : 132600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
+            { Tiempo : 144600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
+            { Tiempo : 154600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
+            { Tiempo : 164600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
+            { Tiempo : 175600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
+            //101 108.5 114, 118, 124, 134, 144, 155, 165, 175, 
+//            { Tiempo : 51900, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 41.5
+        ]
+    },
+    
+    
+    IniciarShow : function() {
+        this.TickInicio = this.Tick - this.IniciarDesde;
+        document.getElementById("Empezar").setAttribute("visible", false);
+//        this.AniMovimiento.Iniciar();
+        this.Audio.Cancion.currentTime = this.IniciarDesde / 1000;
+        this.Audio.Cancion.play();
+        this.Pasos_Actual = 0;
+        for (var i = 0; i < this.Pasos_Animacion.length; i++) {
+            if (this.Pasos_Animacion[i].Tiempo < this.IniciarDesde) {
+                this.Pasos_Actual++;
+            }
+        }
+        console.log(this.Pasos_Actual);
+    },
+
+    ActivarAnimacion : function(Tick) {
+        var t = Tick - this.TickInicio;
+        if (this.Pasos_Actual >= this.Pasos_Animacion.length) { return; }
+        if (t > (this.Pasos_Animacion[this.Pasos_Actual].Tiempo)) {
+            this.Pasos_Animacion[this.Pasos_Actual++].Funcion();
+            console.log(t);
+        }
+    },
+        
+    EventoAudioCanPlay : function() {
+        document.getElementById("Empezar").setAttribute("visible", true);
+    },
+    
+    EventoAudioEnded : function() { },
+    
+    MediaFrequenciasAudio : function() {
+        // greus  de 0hz a 256hz
+        // mitjos de 257hz a 2000hz
+        // aguts  de 2001hz a 16000hz
+        var HzPorBarra = this.Audio.AudioContext.sampleRate / this.Audio.Analizador.fftSize;
+        var Divisiones = [ 256, 2000, 16000, 50000 ];
+        var Total      = [ 0, 0, 0, 0, 0 ];// Graves, Medios, Agudos, Agudos inaudibles, Media de todo
+        var Valores    = [ 0, 0, 0, 0, 0 ];// Graves, Medios, Agudos, Agudos inaudibles, Media de todo
+        var Pos        = 0;        
+        var TotalFreq = this.TamDatos;
+        for (var i = 0; i < TotalFreq; i++) {
+            if (i * HzPorBarra > Divisiones[Pos]) {
+                Pos++;
+            }
+            Total[Pos] ++;
+            Valores[Pos] += this.DatosAnalizador[i];
+            
+//            Valores[4] += this.DatosAnalizador[i];
+        }
+        
+        return [ Valores[0] / Total[0], Valores[1] / Total[1], Valores[2] / Total[2], Valores[3] / Total[3], (Valores[0] + Valores[1] + Valores[2] + Valores[3]) / TotalFreq ];
+    },
+    
+    
+    PintarOjo : function(Tick) {
+
+        var mx = (this.BufferOjo.Ancho / 2);
+        var my = (this.BufferOjo.Alto / 2);
+        
+//        this.BufferOjo.Context.fillStyle = "rgba(0, 0, 0, 0.5)";
+//        this.BufferOjo.Context.fillRect(0, 0, this.BufferOjo.Ancho, this.BufferOjo.Alto);
+        this.BufferOjo.Context.clearRect(0, 0, this.BufferOjo.Ancho, this.BufferOjo.Alto);
+        
+                
+//        Buffer.Context.save();
+        // Pinto la onda sinusoidal alrededor del circulo con la media
+        var Avance = this.Constantes.PIx2 / this.TamDatos;
+        var Angulo = Tick;
+        var Valor = this.DatosAnalizadorSin[0];
+//        var x = mx + (Math.cos(Angulo) * (90 + Valor));
+//        var y = my + (Math.sin(Angulo) * (90 + Valor));
+        this.BufferOjo.Context.strokeStyle = "rgb(0,0,0)";
+        
+        // Pinto el circulo con la media de los graves
+//        var ColG = 'rgb(' + Math.round(120 + this.MediaAudio[0]) + ',' + Math.round(255 - this.MediaAudio[0]) +  ', 0)';
+        this.BufferOjo.Context.fillStyle = 'rgba(255, 255, 255, 0.2)';
+        this.BufferOjo.Context.beginPath();        
+        this.BufferOjo.Context.arc(mx, my, 20 + (this.MediaAudio[0]) * 0.9, 0, this.Constantes.PIx2, false);
+        this.BufferOjo.Context.stroke();
+        this.BufferOjo.Context.fill();
+
+        // Pinto el circulo con la media de los medios        
+//        var Gris = 32 + Math.round(this.MediaAudio[1]);
+//        var ColM = 'rgb(' + Gris + ',' + Gris + ',' + Gris + ')';
+//        this.BufferOjo.Context.strokeStyle = ColM;
+//        this.BufferOjo.Context.fillStyle = 'rgba(' + Math.round(120 + this.MediaAudio[1]) + ',' + Math.round(255 - this.MediaAudio[1]) +  ', 0, 0.5)';;
+        this.BufferOjo.Context.fillStyle = 'rgba(0, 255, 0, 0.4)';
+        this.BufferOjo.Context.beginPath();        
+        this.BufferOjo.Context.arc(mx, my, 26 + (this.MediaAudio[1]) * 0.8, 0, this.Constantes.PIx2, false);
+        this.BufferOjo.Context.stroke();
+        this.BufferOjo.Context.fill();
+        
+        // Pinto el circulo con la media de los agudos        
+//        var ColA = 'rgb(0, ' + Math.round(120 + this.MediaAudio[2]) + ',' + Math.round(128 - this.MediaAudio[2]) +  ')';
+//        this.BufferOjo.Context.strokeStyle = ColA;
+//        this.BufferOjo.Context.fillStyle = 'rgba(' + Math.round(120 + this.MediaAudio[2]) + ',' + Math.round(128 - this.MediaAudio[2]) +  ',0 , 0.9)';
+        this.BufferOjo.Context.fillStyle = 'rgba(255, 0, 0, 0.8)';
+        this.BufferOjo.Context.beginPath();        
+        this.BufferOjo.Context.arc(mx, my, (32 + this.MediaAudio[2]) * 0.7, 0, this.Constantes.PIx2, false);
+        this.BufferOjo.Context.stroke();
+        this.BufferOjo.Context.fill();
+        
+        // Onda circular
+
+        this.BufferOjo.Context.strokeStyle = "rgb(0,0,255)";
+        this.BufferOjo.Context.beginPath();        
+//        var ColT = 'rgb(' + Math.round(128 + this.MediaAudio[4]) + ',' + Math.round(255 - this.MediaAudio[4]) +  ', 0)';
+
+        var i = 0;
+        for (var i = 0; i < this.TamDatos; i++) {
+            Valor = this.DatosAnalizadorSin[i] * 0.7;
+            var x = mx + (Math.cos(Angulo) * (90 + Valor));
+            var y = my + (Math.sin(Angulo) * (90 + Valor));
+            
+            this.BufferOjo.Context.lineTo(x, y);            
+            Angulo += Avance;
+        }
+        Valor = this.DatosAnalizadorSin[0] * 0.7;
+        this.BufferOjo.Context.lineTo(mx + (Math.cos(Tick) * (90 + Valor)), my + (Math.sin(Tick) * (90 + Valor)));            
+        this.BufferOjo.Context.closePath();
+        this.BufferOjo.Context.stroke();
+        this.BufferOjo.Textura.needsUpdate = true;
+    },
+    
+    PintarAntena : function() {
+//        this.BufferAntena.Context.fillStyle = "rgba(0, 0, 0, 0.5)";
+//        this.BufferAntena.Context.fillRect(0, 0, this.BufferAntena.Ancho, this.BufferAntena.Alto);
+        this.BufferAntena.Context.clearRect(0, 0, this.BufferAntena.Ancho, this.BufferAntena.Alto);
+        var Avance = this.BufferAntena.Ancho / this.TamDatos;
+//        console.log(Avance);
+        this.BufferAntena.Context.beginPath();        
+        this.BufferAntena.Context.moveTo(0, this.BufferAntena.Alto / 2);
+        var x = 0, y = 0;
+        for (var i = 0; i < this.TamDatos; i++) {
+//            y = (this.DatosAnalizadorSin[i] / (Buffer.Alto / 2)) * Buffer.Alto / 2;
+            y = (this.BufferAntena.Alto / 4) + this.DatosAnalizadorSin[i];
+//            y = ((this.DatosAnalizador[i] / (this.Alto / 2)) * this.Alto / 2) - 256;
+            this.BufferAntena.Context.lineTo(x, y);
+            x += Avance;
+        }
+        // Parche para bajas precisiones que no terminan la onda al final del canvas
+        this.BufferAntena.Context.lineTo(this.Ancho, y);
+        // Pinto la onda
+        this.BufferAntena.Context.stroke();
+        // Actualizo la textura
+        this.BufferAntena.Textura.needsUpdate = true;        
+    },
+        
+    // Función que pinta cada frame de la animación
+    Pintar          : function() {  
+        // Obtengo los bufers con la frequencia y la onda
+        this.Audio.Analizador.getByteFrequencyData(this.DatosAnalizador);
+        this.Audio.Analizador.getByteTimeDomainData(this.DatosAnalizadorSin);
+        
+        this.ActivarAnimacion(this.Tick);
+        
+        // Obtengo el valor medio dentro del buffer de frequencias
+        this.MediaAudio = this.MediaFrequenciasAudio();
+        this.PintarOjo(this.Tick);
+        this.PintarAntena();
+        if (this.RobotLuz1) {
+            var m4 = this.MediaAudio[4] / 128;
+            this.RobotLuz1.intensity = m4;
+            this.RobotLuz2.intensity = this.MediaAudio[2] / 128;
+            
+            this.RobotAntenasP1.material.opacity = 0.1 + m4;
+            this.RobotAntenasP2.material.opacity = 0.1 + m4;
+//            console.log(m4);
+        }
+//        this.Orbit.update();
+        this.Animaciones.Actualizar(this.Tick);
+        
+        document.getElementById("DatosDebug").innerHTML = Math.round(this.Audio.Cancion.currentTime * 100) / 100;
+        
+        this.Context.render(this.Escena, this.Camara);  
+    }
+});
+
+
+
+
+var CyberParasit_Audio = function() {
+    this.Iniciar = function(Padre) {
+        this.CancionCargada = true;
+        var Compatibilidad = window.AudioContext || window.webkitAudioContext;
+        this.AudioContext = new Compatibilidad();        
+        this.Analizador = this.AudioContext.createAnalyser();
+        this.Analizador.fftSize = 1024;
+//        if (Padre.EsMovil === true) { this.Analizador.fftSize = 512;   } // Para movil la verión de 256 columnas
+//        else                        { this.Analizador.fftSize = 2048;  } // Para PC la versión de 1024 columnas
+        this.Analizador.smoothingTimeConstant = 0.8; // 
+        this.Padre = Padre;
+        this.CargarCancion();        
+    };
+    
+
+    this.CargarCancion = function() {        
+        this.Padre.Cargando(true);
+        this.CancionCargada = false;
+        this.Cancion = new Audio();
+        this.Cancion.controls = true;
+        this.Cancion.crossOrigin = "anonymous";
+        this.Cancion.src = "/Ejemplos/BannerTest/Canciones/LevenRain_-_ActionMan_Versus_The_CyberParasites.mp3";
+        this.Cancion.addEventListener('canplay', this.CanPlay.bind(this));        
+        this.Cancion.addEventListener('ended', function() { 
+            this.Padre.EventoAudioEnded();
+        }.bind(this) );        
+    };    
+    
+    
+    this.CanPlay = function() {
+        if (this.CancionCargada !== true) {
+            this.CancionCargada = true;
+            this.AudioSource = this.AudioContext.createMediaElementSource(this.Cancion);
+            this.AudioSource.connect(this.Analizador);
+            this.Analizador.connect(this.AudioContext.destination);
+            this.Padre.EventoAudioCanPlay();
+            this.Padre.Cargando(false);
+        }        
+    };
+    
+    // devuelve true si se ha hecho play, false si se ha hecho pausa
+    this.PlayPausa = function() {
+       if (this.Cancion.duration > 0 && !this.Cancion.paused) {
+           this.Cancion.pause(); 
+           return false;
+       } 
+       else { 
+           this.Cancion.play();
+           return true;
+       } 
+    };
+        
+};
+
+
+// Inicialización del canvas en el Load de la página
+var Canvas = null;
+window.addEventListener('load', function() { Canvas = new CyberParasit; });
+</script>
+    </head>
+    <body>
+        <div id="DatosDebug" class='MarcoCanvas' style="top:0px; left:0px; width:60px">Datos</div> 
+        <div id="Empezar" class='MarcoCanvas' onclick="Canvas.IniciarShow();">Empezar</div>
+    </body>
+</html>

@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
         <!-- Estilos CSS para el test -->
-        <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
+        <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoCanvas.css' />        
         
         <!-- Estilos CSS para el ObjetoTest -->
         <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoTest.css' />
@@ -362,7 +362,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         this.Cancion = new Audio();
         this.Cancion.controls = true;
 //        this.Cancion.setAttribute("autoplay", true);
-        this.Cancion.src = "/Ejemplos/BannerTest/" + Nombre;
+        this.Cancion.src = "/Ejemplos/BannerTest/Canciones/" + Nombre;
         this.Cancion.addEventListener('canplay', function() {            
             this.Cargando(false);
             this.AudioSource = this.AudioContext.createMediaElementSource(this.Cancion);
@@ -458,7 +458,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
 
     AnimacionEncenderLuz : function() {
         if (typeof this.AniEncenderLuz !== 'undefined') this.AniEncenderLuz.Terminar();
-        this.AniEncenderLuz = this.Animaciones.Crear([
+        this.AniEncenderLuz = this.Animaciones.CrearAnimacion([
             { Paso : { Intensidad : 0   }},
             { Paso : { Intensidad : 0.9 }, Tiempo : 60,  FuncionTiempo : FuncionesTiempo.SinInOut, Retraso : 200 },
             { Paso : { Intensidad : 0   }, Tiempo : 60,  FuncionTiempo : FuncionesTiempo.SinInOut },

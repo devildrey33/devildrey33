@@ -11,12 +11,13 @@
     <head>
         <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
         <!-- Estilos CSS para el test -->
-        <link rel='stylesheet' href='/Ejemplos/BannerTest/BannerTest.css' />        
+        <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoCanvas.css' />        
         <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoTest.css' />        
         <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
 <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
         <!-- Three.JS -->
-        <script src="/Web/JS/3rdParty/three-0.79.min.js"></script>
+        <script src="/Web/JS/3rdParty/three-0.84.min.js"></script>
+<!--        <script src="/Web/JS/3rdParty/three-0.79.min.js"></script> -->
         <!-- Three.JS para depuración -->
         <!-- <script src="/Web/JS/3rdParty/three-0.79.js"></script> -->
         <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
@@ -110,7 +111,7 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
                 this.Camara.Rotacion.Distancia = Valores.z; 
             }.bind(this) 
         });
-                
+        this.AniAvanceCamara.Iniciar();        
         
         // Palno para el suelo
         this.Suelo = new THREE.Mesh(    new THREE.PlaneGeometry(1000, 1000), 
@@ -234,7 +235,8 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
                     }.bind(this), 
                     FuncionTerminado  : this.AnimarCubos.bind(this)
                 }
-            );                                
+            );
+            this.AniRotarGrupoCubos.Iniciar();
 /*            
         }
         else {              // Rotación eje anormal
@@ -306,6 +308,7 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
                 FuncionTerminado  : this.AnimarCubos.bind(this)
             }
         );         
+        this.AniRotarCubo.Iniciar();
     },
     
     AnimacionEncenderLuz : function() {
@@ -324,6 +327,7 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
                 this.HemiLight.intensity = 0.4 + (Valores.Intensidad * 0.4);
             }.bind(this) 
         });            
+        this.AniEncenderLuz.Iniciar();
     },        
     
     

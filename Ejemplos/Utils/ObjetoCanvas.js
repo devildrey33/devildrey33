@@ -1,6 +1,6 @@
 /* Fusión del ObjetoCanvas (originalmente destinado a tests de banners) con el ObjetoBanner 
     Creado el 14/10/2016 por Josep Antoni Bover Comas para devildrey33.es 
-    Ultima modificación :  05/11/2016 
+    Ultima modificación :  14/02/2017 
  */
 
 /*  Opciones['Tipo']            puede ser : 
@@ -11,6 +11,7 @@
     Opciones['Entorno']         puede ser :
                                     - Normal   , Canvas para crear tests rapidos.               (POR DEFECTO)
                                     - Banner   , Canvas diseñado para el Banner de devildrey33.
+    Opciones['Idioma']          puede ser : 'es'pañol o 'en'glish.                              ('es' POR DEFECTO)
     Opciones['MostrarFPS']      puede ser : true o false.                                       (TRUE POR DEFECTO)
     Opciones['ElementoRaiz']    elemento del HTML donde se creará el canvas                     (POR DEFECTO es 'document.body')
     Opciones['ColorFondo']      color del fondo en HEX (SOLO para THREE.js)                     (POR DEFECTO es '0x312E35' gris oscuro) 
@@ -23,6 +24,7 @@ ObjetoCanvas = function(Opciones) {
         Ancho         : 'Auto',
         Alto          : 'Auto',
         Entorno       : 'Normal',
+        Idioma        : 'es',             
         MostrarFPS    : true,
         ElementoRaiz  : document.body,
         Pausar        : true,             // Pausar si el canvas está en segundo plano
@@ -48,10 +50,18 @@ ObjetoCanvas = function(Opciones) {
 
         // Creo las etiquetas que contienen información adicional sobre la animación
         this.Cabecera = document.getElementById("Cabecera");
-        this.Cabecera.innerHTML =   '<div id="Cabecera_Cargando">Cargando animación...</div>' +
-                                    "<div id='Cabecera_Stats'>0 FPS</div>" +
-                                    "<canvas id='Cabecera_Canvas'></canvas>" +
-                                    '<div id="Cabecera_PausaAni">El canvas está en segundo plano, animación en pausa.</div>';
+        if (this.OpcionesCanvas.Idioma === 'es') {
+            this.Cabecera.innerHTML =   '<div id="Cabecera_Cargando" class="MarcoCanvas"><span>Cargando...</span></div>' +
+                                        "<div id='Cabecera_Stats' class='MarcoCanvas'>0 FPS</div>" +
+                                        "<canvas id='Cabecera_Canvas'></canvas>" +
+                                        '<div id="Cabecera_PausaAni"  class="MarcoCanvas">Pausa.</div>';
+        }
+        else {
+            this.Cabecera.innerHTML =   '<div id="Cabecera_Cargando" class="MarcoCanvas">Loading...</div>' +
+                                        "<div id='Cabecera_Stats' class='MarcoCanvas'>0 FPS</div>" +
+                                        "<canvas id='Cabecera_Canvas'></canvas>" +
+                                        '<div id="Cabecera_PausaAni" class="MarcoCanvas">Paused.</div>';
+        }
     }
     // En el entorno Banner las etiquetas ya estan creadas, pero hay que eliminar y volver a crear el canvas
     if (this.OpcionesCanvas['Entorno'] === 'Banner') {
@@ -130,6 +140,8 @@ ObjetoCanvas = function(Opciones) {
         // Escondo el marco de los FPS
         document.getElementById("Cabecera_Stats").style.display = "none";
     }
+    
+    this.Constantes = { Radiant : Math.PI / 180, PIx2 : Math.PI * 2 };
     
     return true;
 };

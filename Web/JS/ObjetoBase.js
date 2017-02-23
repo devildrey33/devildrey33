@@ -123,14 +123,14 @@ $Base = new function() {
         // Teclado del login
         $("#devildrey33_Usuario").keyup(function(e) { 
             switch (e.keyCode) {
-                case 27 : $("#VentanaLogin").attr({ "Visible" : "false" });     break;
-                case 13 : $("#devildrey33_Password").focus();                   break;
+                case 27 : $Base.MostrarLoginEsc();              break; // Esc
+                case 13 : $("#devildrey33_Password").focus();   break; // Intro
             } 
         });
         $("#devildrey33_Password").keyup(function(e) { 
             switch (e.keyCode) {
-                case 27 : $("#VentanaLogin").attr({ "Visible" : "false" });     break;
-                case 13 : $Base.Loguear();                                      break;
+                case 27 : $Base.MostrarLoginEsc();              break;  // Esc
+                case 13 : $Base.Loguear();                      break;  // Intro
             } 
         });               
 
@@ -144,10 +144,20 @@ $Base = new function() {
         if (typeof localStorage["Comentarios_Usuario"] !== 'undefined') { $("#devildrey33_Usuario").val(localStorage["Comentarios_Usuario"]); }
     };
     
+    // Cancelación de la ventana de login/password
+    this.MostrarLoginEsc = function() {    
+        $("#VentanaLogin").attr({ "Visible" : "false" });
+        document.getElementById('devildrey33_Password').setAttribute('type', 'text');
+    };
     
+    // Muestra la pantalla para loguear como administrador
     this.MostrarLogin = function(FuncionPostLogin) {
         // Asigno el callback post login
         if (typeof(FuncionPostLogin) !== "undefined") this.FPL = FuncionPostLogin;
+        
+        document.getElementById('devildrey33_Password').setAttribute('type', 'password');
+//        $("#devildrey33_Password").attr('type', 'password');
+        
         // Muestro la ventana de login
         $("#VentanaLogin").attr({ "Visible" : "true" }); 
         // Paso el foco al primer textbox vacio
@@ -683,7 +693,7 @@ $Base = new function() {
             $("body, html").stop().animate({ scrollTop : PosAncla - 25 });
         }
         this.Ancla.attr({ "resaltado" : "true" });
-        if (this.TemporizadorAncla != 0) { clearTimeout(this.TemporizadorAncla); }
+        if (this.TemporizadorAncla !== 0) { clearTimeout(this.TemporizadorAncla); }
         this.TemporizadorAncla = setTimeout(function() { $Base.Ancla.removeAttr("resaltado"); $Base.TemporizadorAncla = 0; }, 1000);
     };
     
@@ -695,7 +705,7 @@ $Base = new function() {
                 
         $("#MarcoNavegacion h2").each(function(index) { 
             var Texto = $(this).html();
-            if (Texto == "") { // No tiene texto en el HTML, está en el content del after.
+            if (Texto === "") { // No tiene texto en el HTML, está en el content del after.
                 Texto = window.getComputedStyle(this, ':after').getPropertyValue('content');
                 Texto = Texto.replace('"', '').replace('"', '');
             }
@@ -720,7 +730,7 @@ $Base = new function() {
         this.Cargando(Valor);
         if (Valor === "TRUE") {
             // Si hay una petición ajax pendiente, la cancelo.
-            if (this.PeticionAjax != 0) { this.PeticionAjax.abort(); }
+            if (this.PeticionAjax !== 0) { this.PeticionAjax.abort(); }
             /* Escondo y elimino todas las ventanas de mensaje */
             $(".VentanaMensaje").attr("Visible", false).each( function() { 
                 setTimeout(function(Ventana) { Ventana.remove(); }, 500, $(this));

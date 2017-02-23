@@ -81,17 +81,13 @@ var ObjetoAnimacion = function() {
     };
 
     this.CrearAnimacion = function(Pasos, Opciones) {
-        var Ani = new ObjetoAnimacion_Animacion(Pasos, Opciones, this, false);
-        this.Animaciones.push(Ani);
-        return Ani;
+        return new ObjetoAnimacion_Animacion(Pasos, Opciones, this, false);;
     };    
     
     // NOTA las transiciones y las repeticiones no se llevan muy bien...
     // no se puede utilizar la opción Invertir
     this.CrearTransicion = function(Pasos, Opciones) {
-        var Ani = new ObjetoAnimacion_Animacion(Pasos, Opciones, this, true);
-//        this.Animaciones.push(Ani);
-        return Ani;
+        return new ObjetoAnimacion_Animacion(Pasos, Opciones, this, true);;
     };    
 
 };
@@ -129,6 +125,26 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
         this[Indice] = this._PasoOrig.Paso[Indice];
     }    
     this._Opciones.FuncionActualizar(this);
+    
+    this.Iniciar = function() {
+        var AniCreada = false;
+        // Agrego la animacion al array de animaciones del padre (si no existe)
+        for (var i = 0; i < this._Padre.Animaciones.length; i++) {
+            if (this._Padre.Animaciones[i] === this) {
+                AniCreada = true;
+                break;
+            }
+        }        
+        if (AniCreada === false) { // No se está animando
+            this._Padre.Animaciones.push(this);
+            this._PosPasos = 1;
+            this._PasoOrig           = this._Pasos[this._PosPasos - 1]; 
+            this._PasoDest           = this._Pasos[this._PosPasos];
+            this._Retraso            = this._PasoDest.Retraso;
+        }        
+        this._Terminado = false;
+    };
+    
     
     // Inicia la transición (de principio a fin, o del final al principio
     this.Transicion = function() {
