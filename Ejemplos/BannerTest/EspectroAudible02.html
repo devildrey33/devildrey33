@@ -2,9 +2,9 @@
     Test para el API de Audio creado por Josep Antoni Bover Comas el 29-10-2016
 
         Vista por defecto en el Laboratorio de pruebas  
-		devildrey33_Lab->Opciones->Vista = Filas;
+		devildrey33_Lab->Opciones->Vista = Preview;
 
-        Ultima modificación el 05/08/2016
+        Ultima modificación el 05/11/2016
 -->
 <!DOCTYPE html>
 <html>
@@ -222,13 +222,13 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         
         // Creo una parrilla de cubos del tamaño especificado        
         var CuboGeo = new THREE.BoxBufferGeometry(Tam * 0.7, 1, Tam * 0.7);
-//        var CuboMat = new THREE.MeshPhongMaterial({ color: 0x553322 , specular : 0xff9288, wireframe : false, transparent : false, opacity: 0.8 }); //
+        var CuboMat = new THREE.MeshPhongMaterial({ color: 0x553322 , specular : 0xff9288, wireframe : false, transparent : false, opacity: 0.8 }); //
         var Contador = 0;
 //        console.log("-" + Tam + "-----------------------------------------------------------------------------------------");
         for (var z = 0; z < TamLado; z++) {
             for (var x = 0; x < TamLado; x++) {
                 
-                this.Uniforms[Contador] = THREE.UniformsUtils.merge([
+/*                this.Uniforms[Contador] = THREE.UniformsUtils.merge([
                     THREE.UniformsLib['lights'],
                     { EscalaY : { type : "1f", value : 1.0 } }
                 ]);
@@ -239,10 +239,10 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
                     fragmentShader : document.getElementById('FragmentShader').innerHTML,
                     transparent    : true,
                     lights         : true
-                });
+                });*/
                 
                 
-                this.Cubos[Contador] = new THREE.Mesh(CuboGeo, MaterialShader);
+                this.Cubos[Contador] = new THREE.Mesh(CuboGeo, CuboMat);
                 var nx = (x - (TamLado / 2) + 0.5) * Tam;
 //                var nx = (x * Tam) - ((TamLado / 2) * Tam) + (Tam * 0.5);
                 var nz = (z - (TamLado / 2) + 0.5) * Tam;
@@ -361,6 +361,8 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         if (this.Cancion) { this.Cancion.pause(); }
         this.Cancion = new Audio();
         this.Cancion.controls = true;
+        this.Cancion.crossOrigin = "anonymous";
+
 //        this.Cancion.setAttribute("autoplay", true);
         this.Cancion.src = "/Ejemplos/BannerTest/Canciones/" + Nombre;
         this.Cancion.addEventListener('canplay', function() {            
@@ -454,6 +456,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         this.Escena.add( this.HemiLight );         
         
         this.AnimacionEncenderLuz();
+        this.AniEncenderLuz.Iniciar();
     },        
 
     AnimacionEncenderLuz : function() {
@@ -480,9 +483,9 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
     ActualizarCubos : function() {        
         this.Analizador.getByteFrequencyData(this.DatosAnalizador);
         for (var i = 0; i < this.Cubos.length; i++) {
-            this.Uniforms[i].EscalaY.value = 1 + (this.DatosAnalizador[i] / 20);
-//            this.Cubos[i].scale.y = 1 + (this.DatosAnalizador[i] / 20);
-//            this.Cubos[i].position.y = this.Cubos[i].scale.y / 2;
+//            this.Uniforms[i].EscalaY.value = 1 + (this.DatosAnalizador[i] / 20);
+            this.Cubos[i].scale.y = 1 + (this.DatosAnalizador[i] / 20);
+            this.Cubos[i].position.y = this.Cubos[i].scale.y / 2;
         }
         
 /*        this.SpotLight.intensity = this.DatosAnalizador[4] / 255;

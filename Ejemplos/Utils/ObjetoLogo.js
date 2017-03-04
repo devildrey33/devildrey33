@@ -19,7 +19,7 @@ var Logo_devildrey33 = function() {
                             "<span>3</span>" + 
                             "<span>3</span>" +
                         "</div>" +
-                        "<img src='http://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-logo' />";
+                        "<img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-logo' />";
     document.body.appendChild(PreLogo);                
 };            
 

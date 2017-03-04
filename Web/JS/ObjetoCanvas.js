@@ -139,8 +139,8 @@ ObjetoCanvas.prototype.Terminar = function() {
     }
     
     if (this.OpcionesCanvas.Entorno === "Normal") {
-        this.Cabecera.removeEventListener('touchstar', this.hEventoToucStart);
-        this.Cabecera.removeEventListener('touchend', this.hEventoToucEnd);
+        this.Cabecera.removeEventListener('touchstart', this.hEventoTouchStart);
+        this.Cabecera.removeEventListener('touchend', this.hEventoTouchEnd);
         this.Cabecera.removeEventListener('mousedown', this.hEventoMousePresionado);
         this.Cabecera.removeEventListener('mouseup', this.hEventoMouseSoltado);
         window.removeEventListener('keydown', this.hEventoTeclaPresionada);
@@ -160,7 +160,7 @@ ObjetoCanvas.prototype.Terminar = function() {
 ObjetoCanvas.prototype.EnlazarEventos = function() {
     // Necesito guardar una variable con cada evento reconvertido con bind, para poder hacer mas tarde el removeEventListener
     if (this.OpcionesCanvas.Entorno === "Normal") { // Canvas que puede recibir eventos
-        this.hEventoToucStart       = this.EventoTouchStart.bind(this);
+        this.hEventoTouchStart      = this.EventoTouchStart.bind(this);
         this.hEventoTouchEnd        = this.EventoTouchEnd.bind(this);
         this.hEventoMousePresionado = this.EventoMousePresionado.bind(this);
         this.hEventoMouseSoltado    = this.EventoMouseSoltado.bind(this);

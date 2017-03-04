@@ -26,7 +26,7 @@ Banner_Espacio2D.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     // Datos de la animación [requerido]
     Nombre          : "Espacio 2D",
     IdeaOriginal    : "devildrey33",
-    URL             : "http://devildrey33.es/Blog/Canvas2D_1",
+    URL             : "https://devildrey33.es/Blog/Canvas2D_1",
     NombreURL       : "Tutorial HTML5 Canvas2D parte 1",    
     
     Iniciar         : function() { 

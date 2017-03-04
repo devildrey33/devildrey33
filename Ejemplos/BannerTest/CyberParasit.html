@@ -124,10 +124,10 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
 //        this.Camara.position.z = 10;
         window.scene = this.Escena;
 //        this.Camara.Rotacion = { Grados : 93 * this.Constantes.Radiant, Distancia : 40, MirarHacia : new THREE.Vector3(0, 0, 0) };
-        this.Camara.position.set(0, 8, 10);
+        this.Camara.position.set(0, 3, 10);
         this.Camara.name = "Camara";
         this.Escena.add(this.Camara);
-        this.Camara.lookAt(new THREE.Vector3(0, 4, 0));
+        this.Camara.lookAt(new THREE.Vector3(0, 2, 0));
         
 //        this.Orbit = new THREE.OrbitControls( this.Camara );
 //        this.Orbit.addEventListener( 'change', this.Pintar.bind(this) );
@@ -146,7 +146,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         this.Robot = new THREE.Group();
         this.Robot.rotation.y = 90 * this.Constantes.Radiant;
         this.Escena.add(this.Robot);
-
+/*
         this.Rueda = new THREE.Mesh(new THREE.CylinderGeometry(2, 2, .5, 32, 1), new THREE.MeshPhongMaterial({ color: 0xbbbbbb, specular : 0xffffff }));
         this.Rueda.name = "Robot_Rueda";
         this.Rueda.rotation.x = -Math.PI / 2;
@@ -163,13 +163,13 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         this.SuspensionSup.position.set(0, 2, 0);
         this.SuspensionSup.name = "Robot_SuspensionSuperior";
         this.SuspensionSup.castShadow = true;
-        this.SuspensionInf.add(this.SuspensionSup);
+        this.SuspensionInf.add(this.SuspensionSup);*/
         
         
         var loader = new THREE.JSONLoader();        
         loader.load(
             // resource URL
-            '/Ejemplos/BannerTest/Modelos/CuerpoCyberParasit2.json',
+            '/Ejemplos/BannerTest/Modelos/CuerpoCyberParasit.json',
             // Function when resource is loaded
             function ( geometry ) {
 //                var material = new THREE.MultiMaterial( materials);
@@ -180,14 +180,15 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
                 this.RobotCuerpo.scale.set(2.1, 2.1, 2.1);
                 this.RobotCuerpo.position.set(0, -2.7, 0.42);
 //                this.Robot.rotation.y = 111 * this.Constantes.Radiant;
-                this.SuspensionSup.add(this.RobotCuerpo);
+                this.Robot.add(this.RobotCuerpo);
 //                this.Camara.lookAt(this.RobotCuerpo);
 //                this.DirLight.target = this.Robot;
 
-                this.RobotOjo = new THREE.Mesh(  new THREE.PlaneGeometry(1.5, 1.5), 
+                this.RobotOjo = new THREE.Mesh(  new THREE.PlaneGeometry(1.3, 1.3), 
                                                  new THREE.MeshStandardMaterial( { map: this.BufferOjo.Textura, roughness: .5, metalness: .73, transparent : true, opacity:1  } ));
                 this.RobotOjo.name = "Robot_Ojo";
-                this.RobotOjo.position.set(-.94, 3.43, 0);
+//                this.RobotOjo.position.set(-.94, 3.43, 0);
+                this.RobotOjo.position.set(-0.82, 2.89, 0);
                 this.RobotOjo.rotation.y -= Math.PI / 2;
                 this.RobotOjo.rotation.x += Math.PI / 2;
                 this.RobotOjo.rotation.y += 17.5 * this.Constantes.Radiant ;
@@ -199,7 +200,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
                 
                 this.RobotAntenas.name = "Robot_Antenas";
                 this.RobotAntenas.castShadow = true;
-                this.RobotAntenas.position.set(0.02, 5.06, 0.03);
+                this.RobotAntenas.position.set(0.02, 4.06, 0.03);
                 this.RobotAntenas.rotation.y -= Math.PI / 2;
                 this.RobotCuerpo.add(this.RobotAntenas);        
                 
@@ -207,13 +208,13 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
                 this.RobotAntenasP1 = new THREE.Mesh(  new THREE.SphereGeometry(0.07, 16, 16), 
                                                        new THREE.MeshPhongMaterial({ color: 0x00bb00, specular : 0x00ff00, transparent : true, opacity:0.3  } ));
                 this.RobotAntenasP1.name = "Robot_PuntaAntena1";
-                this.RobotAntenasP1.position.set(0.02, 5.04, 0.82);
+                this.RobotAntenasP1.position.set(0.02, 4.04, 0.82);
                 this.RobotCuerpo.add(this.RobotAntenasP1); 
 
                 this.RobotAntenasP2 = new THREE.Mesh(  new THREE.SphereGeometry(0.07, 16, 16), 
                                                        new THREE.MeshPhongMaterial({ color: 0x0000bb, specular : 0x00ffff, transparent : true, opacity:0.3  } ));
                 this.RobotAntenasP2.name = "Robot_PuntaAntena2";
-                this.RobotAntenasP2.position.set(0.02, 5.04, -0.78);
+                this.RobotAntenasP2.position.set(0.02, 4.04, -0.78);
                 this.RobotCuerpo.add(this.RobotAntenasP2); 
                                                        
                 this.RobotLuz1 = new THREE.PointLight( 0x00aa00, 0, 45);

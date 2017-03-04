@@ -2,9 +2,9 @@
 @charset "UTF-8"; /* Especificar el charset SOLO en este archivo, que es el primero a minificar */
 
 /* Fuente del logo vertical del menú de la izquierda */
-@import url('http://fonts.googleapis.com/css?family=Architects+Daughter|Orbitron');
+@import url('https://fonts.googleapis.com/css?family=Architects+Daughter|Orbitron');
 /* Fuente para las etiquetas h1, h2, h3, h4, h5*/
-@import url('http://fonts.googleapis.com/css?family=Karla');
+@import url('https://fonts.googleapis.com/css?family=Karla');
 /* Fuente para las etiquetas pre, code, y otyras que necesiten una fuente monoespaciada */
 /*@import url('http://fonts.googleapis.com/css?family=Nova+Mono');*/
 @import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext');

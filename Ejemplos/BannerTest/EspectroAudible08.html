@@ -2,9 +2,9 @@
     Test para el API de Audio creado por Josep Antoni Bover Comas el 29-10-2016
 
         Vista por defecto en el Laboratorio de pruebas  
-		devildrey33_Lab->Opciones->Vista = Filas;
+		devildrey33_Lab->Opciones->Vista = Preview;
 
-        Ultima modificación el 05/08/2016
+        Ultima modificación el 19/01/2017
 -->
 <!DOCTYPE html>
 <html>
@@ -238,13 +238,13 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         // Cargo las texturas para los botones
         this.TexturasCargadas = 0;
         this.TotalTexturas = 5;
-        var Cargador = new THREE.TextureLoader();
+/*        var Cargador = new THREE.TextureLoader();
         Cargador.crossOrigin = '';
         var T1 = new Cargador.load('/Web/Graficos/EA_Atras.png', this.TexturaCargada.bind(this, 0) );
         var T2 = new Cargador.load('/Web/Graficos/EA_Play.png', this.TexturaCargada.bind(this, 1) );    
         var T3 = new Cargador.load('/Web/Graficos/EA_Pausa.png', this.TexturaCargada.bind(this, 2) );
         var T4 = new Cargador.load('/Web/Graficos/EA_Stop.png', this.TexturaCargada.bind(this, 3) );
-        var T5 = new Cargador.load('/Web/Graficos/EA_Adelante.png', this.TexturaCargada.bind(this, 4) );        
+        var T5 = new Cargador.load('/Web/Graficos/EA_Adelante.png', this.TexturaCargada.bind(this, 4) );        */
         
         // Niebla
 //        this.Escena.fog = new THREE.Fog(0x888888, 10.1, 150);
@@ -425,10 +425,10 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
 //        this.Cancion.setAttribute("autoplay", true);
         this.Cancion.src = "/Ejemplos/BannerTest/Canciones/" + Cancion.Path;
         this.Cancion.addEventListener('canplay', function() {            
-            if (this.TexturasCargadas === this.TotalTexturas) {
-                this.IniciarTransicionesTexturas();
+//            if (this.TexturasCargadas === this.TotalTexturas) {
+//                this.IniciarTransicionesTexturas();
                 this.Cargando(false);
-            }
+//            }
             this.CancionCargada = true;
             
             this.AudioSource = this.AudioContext.createMediaElementSource(this.Cancion);
@@ -509,6 +509,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         this.Escena.add( this.HemiLight );         
         
         this.AnimacionEncenderLuz();
+        this.AniEncenderLuz.Iniciar();
     },        
 
     AnimacionEncenderLuz : function() {
@@ -1256,6 +1257,7 @@ var EspectroAudible_Audio = function(EsMovil) {
         if (this.Cancion) { this.Cancion.pause(); }
         this.Cancion = new Audio();
         this.Cancion.controls = true;
+        this.Cancion.crossOrigin = "anonymous";
         this.Cancion.src = "/Ejemplos/BannerTest/Canciones/" + Cancion.Path;
         this.Cancion.addEventListener('canplay', function() {            
             if (this.TexturasCargadas === this.TotalTexturas) {

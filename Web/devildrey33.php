@@ -111,13 +111,13 @@ class devildrey33 {
     //        "<meta name='twitter:description' content='Page description less than 200 characters'>".Intro().        
             "<meta name='twitter:creator' content='@author_handle' />".Intro().        
             /* Twitter Summary card images must be at least 200x200px */
-            "<meta name='twitter:image' content='http://".$_SERVER["SERVER_NAME"]."/Web/Graficos/250x200_".$this->EntradaBlog["Imagen"]."' />".Intro().        
+            "<meta name='twitter:image' content='".Base::URL_Raiz()."/Web/Graficos/250x200_".$this->EntradaBlog["Imagen"]."' />".Intro().        
 
             /* Open Graph data */
             "<meta property='og:title' content='".$Titulo."' />".Intro().        
             "<meta property='og:type' content='article' />".Intro().        
-            "<meta property='og:url' content=' http://".$_SERVER["SERVER_NAME"]."/Blog/".$this->EntradaBlog["URL"]."' />".Intro().        
-            "<meta property='og:image' content='http://".$_SERVER["SERVER_NAME"]."/Web/Graficos/250x200_".$this->EntradaBlog["Imagen"]."' />".Intro().        
+            "<meta property='og:url' content='".Base::URL_Raiz().$_SERVER["SERVER_NAME"]."/Blog/".$this->EntradaBlog["URL"]."' />".Intro().        
+            "<meta property='og:image' content='".Base::URL_Raiz().$_SERVER["SERVER_NAME"]."/Web/Graficos/250x200_".$this->EntradaBlog["Imagen"]."' />".Intro().        
     //        "<meta property='og:description' content='Description Here' />".Intro().        
             "<meta property='og:site_name' content='devildrey33' />".Intro();
     //        "<meta property='fb:admins' content='Facebook numeric ID' />".Intro().        
@@ -130,7 +130,7 @@ class devildrey33 {
         '<meta name="msapplication-config" content="none"/>'.Intro(). // Para que el explorer no busque el archivo BrowserConfig.xml de las pelotas.
         /* Manifest per android (https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android) */
 //        '<link rel="manifest" href="/manifest.json">'.Intro().
-        "<link rel='shortcut icon' href='http://".$_SERVER["SERVER_NAME"]."/Web/Graficos/devildrey33.ico' />".Intro();
+        "<link rel='shortcut icon' href='".Base::URL_Raiz()."/Web/Graficos/devildrey33.ico' />".Intro();
 //        "<link rel='alternate' type='application/rss+xml' title='RSS 2.0' href='http://devildrey33.es/rss.xml' />".Intro();
         $this->Head_CSS();      // Enlace/s de los estilos CSS
         $this->Head_JS();	// Enlace/s de los archivos JavaScript

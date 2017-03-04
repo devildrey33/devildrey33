@@ -31,7 +31,7 @@ $Base = new function() {
     /* Función post logueado */
     this.FPL                = function() { };
     /* URL absoluta y relativa de la web */
-    this.Raiz               = "";   // http://devildrey33.es 
+    this.Raiz               = "";   // https://devildrey33.es 
     this.RaizRelativa       = "";   // Path relativo de la raíz (puede ser "")
     
     this.PosBanner          = 0;
@@ -232,7 +232,7 @@ $Base = new function() {
 //        if (typeof $(".Cabecera > .Cabecera_Datos > h1") === 'undefined') { Texto = $(".Cabecera > .Cabecera_Datos > h1").html();                     }
 //        else                                                              { Texto = "" + window.location.href.replace(/^.*[\\\/]/, ''); }
         console.log("Base.BotonTwitter", Texto, window.location.href);
-        window.open("http://twitter.com/home?status=" + Texto + ": " + window.location.href, "Twitter", "toolbar=no,width=550,height=255");
+        window.open("https://twitter.com/home?status=" + Texto + ": " + window.location.href, "Twitter", "toolbar=no,width=550,height=255");
     };
     
     /* Función que muestra una ventana para el facebook */
@@ -242,7 +242,7 @@ $Base = new function() {
         //if (typeof $(".Cabecera > .Cabecera_Datos > h1") === 'undefined') { Texto = $(".Cabecera > .Cabecera_Datos > h1").html();                     }
         //else                                                              { Texto = "Experimento : " + window.location.href.replace(/^.*[\\\/]/, ''); }
         console.log("Base.BotonFacebook", Texto, window.location.href);
-        window.open("http://www.facebook.com/share.php?u=" + window.location.href + "&t=" + Texto, "Facebook", "toolbar=no,width=550,height=355");
+        window.open("https://www.facebook.com/share.php?u=" + window.location.href + "&t=" + Texto, "Facebook", "toolbar=no,width=550,height=355");
     };
 
     /* Función que muestra una ventana para el google+ */

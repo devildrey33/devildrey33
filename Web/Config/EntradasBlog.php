@@ -5,6 +5,15 @@
 
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(
+array(	"Titulo" 	=> "Experimento con Three.js 'EspectroAudible'", 
+        "Fecha" 	=> "23/02/2017",
+        "URL" 		=> "Ejemplos/BannerTest/EspectroAudible.html", 
+        "Tags" 		=> array("Three.js", "JavaScript", "CSS", "HTML", "Programación" ),
+        "Idioma"        => "es",
+        "Autor"         => "Josep Antoni Bover",
+        "Tipo"		=> "Lab",
+        "Imagen"	=> "EspectroAudible.png"),
+        
 array(	"Titulo" 	=> "Experimento con Three.js 'MultiCubo'", 
         "Fecha" 	=> "26/10/2016",
         "URL" 		=> "Ejemplos/BannerTest/MultiCubo.html", 

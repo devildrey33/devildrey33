@@ -68,15 +68,33 @@
 </div>
 </div>
 <div class='Lab_Item'>
-<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/BannerTest.css'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/CyberParasit.html'>
 <div class='Lab_IcoArchivo'></div>
-<a href='/Lab/Ejemplos/BannerTest/BannerTest.css'>BannerTest.css</a>
+<a href='/Lab/Ejemplos/BannerTest/CyberParasit.html'>CyberParasit.html</a>
 </div>
 </div>
 <div class='Lab_Item'>
 <div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/EsferaVShader.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/BannerTest/EsferaVShader.html'>EsferaVShader.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/EspectroAudible.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/EspectroAudible.html'>EspectroAudible.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/EspectroAudible02.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/EspectroAudible02.html'>EspectroAudible02.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/EspectroAudible08.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/EspectroAudible08.html'>EspectroAudible08.html</a>
 </div>
 </div>
 <div class='Lab_Item'>

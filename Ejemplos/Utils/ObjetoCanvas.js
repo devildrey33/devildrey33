@@ -54,13 +54,15 @@ ObjetoCanvas = function(Opciones) {
             this.Cabecera.innerHTML =   '<div id="Cabecera_Cargando" class="MarcoCanvas"><span>Cargando...</span></div>' +
                                         "<div id='Cabecera_Stats' class='MarcoCanvas'>0 FPS</div>" +
                                         "<canvas id='Cabecera_Canvas'></canvas>" +
-                                        '<div id="Cabecera_PausaAni"  class="MarcoCanvas">Pausa.</div>';
+                                        '<div id="Cabecera_PausaAni"  class="MarcoCanvas">Pausa.</div>' + 
+                                        '<div id="Cabecera_Error" class="MarcoCanvas visible="false">Error :</div>';
         }
         else {
             this.Cabecera.innerHTML =   '<div id="Cabecera_Cargando" class="MarcoCanvas">Loading...</div>' +
                                         "<div id='Cabecera_Stats' class='MarcoCanvas'>0 FPS</div>" +
                                         "<canvas id='Cabecera_Canvas'></canvas>" +
                                         '<div id="Cabecera_PausaAni" class="MarcoCanvas">Paused.</div>';
+                                        '<div id="Cabecera_Error" class="MarcoCanvas" visible="false">Error :</div>';
         }
     }
     // En el entorno Banner las etiquetas ya estan creadas, pero hay que eliminar y volver a crear el canvas
@@ -116,7 +118,9 @@ ObjetoCanvas = function(Opciones) {
         }
     }
     catch ( error ) {
-        document.getElementById("Cabecera_Cargando").innerHTML = "Error iniciando WebGL : " + error;                                                                 
+        var VentanaError = document.getElementById("Cabecera_Error");
+        VentanaError.setAttribute("visible", "true");
+        VentanaError.innerHTML = "Error iniciando WebGL : " + error;                                                                 
         return false;
     }    
     
@@ -152,15 +156,21 @@ ObjetoCanvas.prototype.Terminar = function() {
     }
     
     if (this.OpcionesCanvas.Entorno === "Normal") {
-        this.Cabecera.removeEventListener('touchstar', this.hEventoToucStart);
-        this.Cabecera.removeEventListener('touchend', this.hEventoToucEnd);
-        this.Cabecera.removeEventListener('mousedown', this.hEventoMousePresionado);
-        this.Cabecera.removeEventListener('mouseup', this.hEventoMouseSoltado);
+        if (this._EsMovil === true) {
+            this.Cabecera.removeEventListener('touchstart', this.hEventoTouchStart);
+            this.Cabecera.removeEventListener('touchmove', this.hEventoTouchMove);
+            this.Cabecera.removeEventListener('touchend', this.hEventoTouchEnd);
+        }
+        else {
+            this.Cabecera.removeEventListener('mousedown', this.hEventoMousePresionado);
+            this.Cabecera.removeEventListener('mouseup', this.hEventoMouseSoltado);
+        }
         window.removeEventListener('keydown', this.hEventoTeclaPresionada);
         window.removeEventListener('keyup', this.hEventoTeclaSoltada);    
     }
-    
-    this.Cabecera.removeEventListener('mousemove', this.hEventoMouseMove);
+    if (this._EsMovil === false) {
+        this.Cabecera.removeEventListener('mousemove', this.hEventoMouseMove);
+    }
     this.Cabecera.removeEventListener('mouseenter', this.hEventoMouseEnter);
     this.Cabecera.removeEventListener('mouseleave', this.hEventoMouseLeave);        
     window.removeEventListener('resize', this.hEventoRedimensionar);
@@ -173,28 +183,36 @@ ObjetoCanvas.prototype.Terminar = function() {
 ObjetoCanvas.prototype.EnlazarEventos = function() {
     // Necesito guardar una variable con cada evento reconvertido con bind, para poder hacer mas tarde el removeEventListener
     if (this.OpcionesCanvas.Entorno === "Normal") { // Canvas que puede recibir eventos
-        this.hEventoToucStart       = this.EventoTouchStart.bind(this);
-        this.hEventoTouchEnd        = this.EventoTouchEnd.bind(this);
-        this.hEventoMousePresionado = this.EventoMousePresionado.bind(this);
-        this.hEventoMouseSoltado    = this.EventoMouseSoltado.bind(this);
+        if (this.EsMovil() === true) {
+            this.hEventoTouchStart       = this.EventoTouchStart.bind(this);
+            this.hEventoTouchMove        = this.EventoTouchMove.bind(this);
+            this.hEventoTouchEnd         = this.EventoTouchEnd.bind(this);        
+            this.Cabecera.addEventListener('touchstart', this.hEventoTouchStart);
+            this.Cabecera.addEventListener('touchmove', this.hEventoTouchMove);
+            this.Cabecera.addEventListener('touchend', this.hEventoTouchEnd);
+        }
+        else {
+            this.hEventoMousePresionado = this.EventoMousePresionado.bind(this);
+            this.hEventoMouseSoltado    = this.EventoMouseSoltado.bind(this);
+            this.Cabecera.addEventListener('mousedown', this.hEventoMousePresionado);
+            this.Cabecera.addEventListener('mouseup', this.hEventoMouseSoltado);
+        }
         this.hEventoTeclaPresionada = this.EventoTeclaPresionada.bind(this);
         this.hEventoTeclaSoltada    = this.EventoTeclaSoltada.bind(this);
-        this.Cabecera.addEventListener('touchstart', this.hEventoToucStart);
-        this.Cabecera.addEventListener('touchend', this.hEventoTouchEnd);
-        this.Cabecera.addEventListener('mousedown', this.hEventoMousePresionado);
-        this.Cabecera.addEventListener('mouseup', this.hEventoMouseSoltado);
         window.addEventListener('keydown', this.hEventoTeclaPresionada);
         window.addEventListener('keyup', this.hEventoTeclaSoltada);
     }
-    this.hEventoMouseMove       = this.EventoMouseMove.bind(this);
     this.hEventoMouseEnter      = this.EventoMouseEnter.bind(this);
     this.hEventoMouseLeave      = this.EventoMouseLeave.bind(this);
     this.hEventoRedimensionar   = this.EventoRedimensionar.bind(this);
     this.hEventoScroll          = this.EventoScroll.bind(this);
     this.hEventoFocoPerdido     = this.EventoFocoPerdido.bind(this);
     this.hEventoFocoRecibido    = this.EventoFocoRecibido.bind(this);
+    if (this.EsMovil() === false) {
+        this.hEventoMouseMove       = this.EventoMouseMove.bind(this);
+        this.Cabecera.addEventListener('mousemove', this.hEventoMouseMove);
+    }
     
-    this.Cabecera.addEventListener('mousemove', this.hEventoMouseMove);
     this.Cabecera.addEventListener('mouseenter', this.hEventoMouseEnter);
     this.Cabecera.addEventListener('mouseleave', this.hEventoMouseLeave);
     
@@ -316,11 +334,15 @@ ObjetoCanvas.prototype.EventoMouseLeave = function(event) {
     if (typeof(this.MouseLeave) !== "undefined") { this.MouseLeave.apply(this, [ event ]); }
 };
 
-// Función que procesa el evento mousedown
+// Función que procesa el evento touchstart
 ObjetoCanvas.prototype.EventoTouchStart = function(event) {    
     if (typeof(this.TouchStart) !== "undefined") { this.TouchStart.apply(this, [ event ]); }
 };
-// Función que procesa el evento mouseup
+// Función que procesa el evento touchmove
+ObjetoCanvas.prototype.EventoTouchMove = function(event) {    
+    if (typeof(this.TouchMove) !== "undefined") {  this.TouchMove.apply(this, [ event ]);   }
+};
+// Función que procesa el evento touchend
 ObjetoCanvas.prototype.EventoTouchEnd = function(event) {    
     if (typeof(this.TouchEnd) !== "undefined") {  this.TouchEnd.apply(this, [ event ]);   }
 };

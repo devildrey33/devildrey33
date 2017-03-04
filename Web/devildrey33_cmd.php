@@ -126,7 +126,7 @@
         
         public function VotarPagina() {
             $BD = new devildrey33_BD();
-            echo $BD->VotarWeb($_POST["Pagina"], $_POST["Valor"], str_replace("http://www.", "http://", $_POST["URL"]));            
+            echo $BD->VotarWeb($_POST["Pagina"], $_POST["Valor"], str_replace( array("http://www.", "https://www."), "https://", $_POST["URL"]));            
         }
         
         public function LabAbrirEjemplo() {

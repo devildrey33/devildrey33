@@ -106,3 +106,14 @@ body { margin:0px; padding:0px; }
     -ms-user-select     : none;
     user-select         : none;    
 }
+
+#Cabecera_Error {
+    background-color: rgba(187,35,40, 0.9) !important;    
+    min-width:200px;    
+    z-index:1000;
+    opacity:0;
+}
+
+#Cabecera_Error[visible=true] {
+    opacity:1;
+}

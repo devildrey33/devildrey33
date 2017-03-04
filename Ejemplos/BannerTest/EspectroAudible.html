@@ -5,6 +5,16 @@
 		devildrey33_Lab->Opciones->Vista = Preview;
 
         Ultima modificación el 23/02/2017
+
+    En este ejemplo se han utilizado las siguientes canciones :
+
+    [Grupo]             [Titulo]                               [Url jamendo]
+    LevenRain           ActionMan Versus The CyberParasites    https://www.jamendo.com/track/1349290/actionman-versus-the-cyberparasites
+    Fallen to Flux      One Chance                             https://www.jamendo.com/track/1155241/one-chance
+    From Sky to Abyss   Quantum Ocean                          https://www.jamendo.com/track/1284951/quantum-ocean
+    In Camera           Nothing's Over                         https://www.jamendo.com/track/1397271/nothing-s-over
+    Convergence         Six Feet Under                         https://www.jamendo.com/track/80122/six-feet-under
+    JT Bruce            Battle Trance                          https://www.jamendo.com/track/1237162/battle-trance 
 -->
 
 <!DOCTYPE html>
@@ -134,9 +144,22 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
     // Función que se llama al soltar una tecla
     TeclaSoltada    : function(Evento) { },
     // Función que se llama al presionar la pantalla
-    TouchStart      : function(Evento) { },
+    TouchStart      : function(Evento) { 
+        this.MouseMovido = true;
+        this.PosMouse.x = ( Evento.touches[0].clientX / window.innerWidth ) * 2 - 1;
+	this.PosMouse.y = - ( Evento.touches[0].clientY / window.innerHeight ) * 2 + 1;        
+        this.ActualizarObjetoHover();
+    },
+    // Función que se llama al mover la presión sobre la pantalla
+    TouchMove      : function(Evento) { 
+        this.MouseMovido = true;
+        this.PosMouse.x = ( Evento.touches[0].clientX / window.innerWidth ) * 2 - 1;
+	this.PosMouse.y = - ( Evento.touches[0].clientY / window.innerHeight ) * 2 + 1;        
+    },
     // Función que se llama al soltar el dedo de la pantalla
-    TouchEnd        : function(Evento) { },    
+    TouchEnd        : function(Evento) { 
+        this.MouseSoltado();
+    },    
     // Función que se llama al pausar el banner
     Pausa           : function() { this.Cancion.pause(); },
     // Función que se llama al reanudar el banner
@@ -247,20 +270,21 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
 
         this.IniciarTransiciones();
         
+        var fftSize = (this._EsMovil === false) ? 2048 : 512;
+        this.PrecisionAnalizador = (fftSize === 2048) ? 0 : 1;
+        
         this.Audio = new EspectroAudible_Audio();
-        this.PrecisionAnalizador = this.Audio.Iniciar(this.EsMovil(), this, 
-                                    function() { this.CancionCargada(); this.PlayPausa(); }.bind(this), // Función CanPlay
-                                    this.CancionTerminada.bind(this) );                                 // Función Ended
+        this.Audio.Iniciar(fftSize, this, 
+                            function() { this.CancionCargada(); this.PlayPausa(); }.bind(this), // Función CanPlay
+                            this.CancionTerminada.bind(this) );                                 // Función Ended
         
         this.Audio.CargarCancion(RandInt(6));
         
-        this.ReIniciarCubos(Math.sqrt(this.Audio.Analizador.fftSize / 2));    
+        this.ReIniciarCubos(Math.sqrt(fftSize / 2));    
 
     },
     
     CancionCargada : function() {
-        this.Cargando(false);
-
         if (this.Audio.CancionActual !== -1) {
             var c = this.Audio.Canciones[this.Audio.CancionActual];
             this.PintarDatosCancion(c.Grupo, c.Titulo, c.Año );        
@@ -276,15 +300,9 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
     },
     
     PlayPausa : function() {
-        var p = this.Audio.PlayPausa();
-        if (p === false) { // pausa
-            this.PlanoTextura[1].visible = true;
-            this.PlanoTextura[2].visible = false;
-        }
-        else { // play
-            this.PlanoTextura[1].visible = false;
-            this.PlanoTextura[2].visible = true;            
-        }
+        var p = this.Audio.PlayPausa(); // play : true, pausa : false
+        this.PlanoTextura[1].visible = !p;
+        this.PlanoTextura[2].visible = p;
     },
     
     Adelante : function() {
@@ -527,7 +545,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         // greus  de 0hz a 256hz
         // mitjos de 257hz a 2000hz
         // aguts  de 2001hz a 16000hz
-        var HzPorBarra = this.Audio.AudioContext.sampleRate / this.Audio.Analizador.fftSize;
+        var HzPorBarra = this.Audio.Context.sampleRate / this.Audio.Analizador.fftSize;
         var Divisiones = [ 256, 2000, 16000, 50000 ];
         var Total      = [ 0, 0, 0, 0, 0 ];// Graves, Medios, Agudos, Agudos inaudibles, Media de todo
         var Valores    = [ 0, 0, 0, 0, 0 ];// Graves, Medios, Agudos, Agudos inaudibles, Media de todo
@@ -892,101 +910,101 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
     
     // Actualiza las transiciones para los objetos que pueden ser resaltados
     ActualizarObjetoHover : function() {
-        if (this.MouseMovido === true) {
-            this.RayCaster.setFromCamera(this.PosMouse, this.Camara);
+        if (this.MouseMovido === false) { return; }
+        
+        this.RayCaster.setFromCamera(this.PosMouse, this.Camara);
 
-            // Calculo los objetos que hacen intersección desde el punto de la camara al punto donde está el mouse
-            var intersects = this.RayCaster.intersectObjects( this.Escena.children, true );        
+        // Calculo los objetos que hacen intersección desde el punto de la camara al punto donde está el mouse
+        var intersects = this.RayCaster.intersectObjects( this.Escena.children, true );        
 
-            var HoverP  = false;        // Pantalla central
-            var HoverP2 = false;        // Pantalla derecha
-            var HoverP3 = false;        // Pantalla izquierda
-            var HoverC  = false;        // Panel de controles
-            
-            var HoverCAtras    = false; // Botón Atras
-            var HoverCPlay     = false; // Botón Play / Pausa
-            var HoverCStop     = false; // Botón Stop
-            var HoverCAdelante = false; // Botón Adelante
-            
-            var HoverBarraTiempo = false;
-            var HoverSliderTiempo = false;
-            
-            var HoverDatosCancion = false; 
-           
-            var HoverBarras    = false; // Barras del analizador de frequencias
+        var HoverP  = false;        // Pantalla central
+        var HoverP2 = false;        // Pantalla derecha
+        var HoverP3 = false;        // Pantalla izquierda
+        var HoverC  = false;        // Panel de controles
 
-            for (var i = 0; i < intersects.length; i++ ) {
+        var HoverCAtras    = false; // Botón Atras
+        var HoverCPlay     = false; // Botón Play / Pausa
+        var HoverCStop     = false; // Botón Stop
+        var HoverCAdelante = false; // Botón Adelante
+
+        var HoverBarraTiempo = false;
+        var HoverSliderTiempo = false;
+
+        var HoverDatosCancion = false; 
+
+        var HoverBarras    = false; // Barras del analizador de frequencias
+
+        for (var i = 0; i < intersects.length; i++ ) {
 //                console.log(intersects[i].point);
-                if (intersects[i].object === this.Pantalla)                { HoverP            = true; break; }
-                if (intersects[i].object === this.Pantalla2)               { HoverP2           = true; break; }                
-                if (intersects[i].object === this.Pantalla3)               { HoverP3           = true; break; }                
-                if (intersects[i].object === this.SueloAnalizador)         { HoverBarras       = true; break; }   
-                if (intersects[i].object.parent === this.BarrasAnalizador) { HoverBarras       = true; break; }   
-                if (intersects[i].object === this.Controles)               { HoverC            = true; } // El panel de controles tiene botones dentro..
-                if (intersects[i].object === this.C_Atras)                 { HoverCAtras       = true; }   
-                if (intersects[i].object === this.C_Play)                  { HoverCPlay        = true; }   
-                if (intersects[i].object === this.C_Adelante)              { HoverCAdelante    = true; }   
-                if (intersects[i].object === this.DatosCancion)            { HoverDatosCancion = true; }
-                
-                if (intersects[i].object === this.C_BarraTiempo)           { 
-                    HoverBarraTiempo  = true; 
+            if (intersects[i].object === this.Pantalla)                { HoverP            = true; break; }
+            if (intersects[i].object === this.Pantalla2)               { HoverP2           = true; break; }                
+            if (intersects[i].object === this.Pantalla3)               { HoverP3           = true; break; }                
+            if (intersects[i].object === this.SueloAnalizador)         { HoverBarras       = true; break; }   
+            if (intersects[i].object.parent === this.BarrasAnalizador) { HoverBarras       = true; break; }   
+            if (intersects[i].object === this.Controles)               { HoverC            = true; } // El panel de controles tiene botones dentro..
+            if (intersects[i].object === this.C_Atras)                 { HoverCAtras       = true; }   
+            if (intersects[i].object === this.C_Play)                  { HoverCPlay        = true; }   
+            if (intersects[i].object === this.C_Adelante)              { HoverCAdelante    = true; }   
+            if (intersects[i].object === this.DatosCancion)            { HoverDatosCancion = true; }
+
+            if (intersects[i].object === this.C_BarraTiempo)           { 
+                HoverBarraTiempo  = true; 
 //                    console.log(intersects[i].point);
-                    this.C_BarraTiempo.PosHover = intersects[i].point.x + (this.AnchoBarraTiempo / 2);
-                }   
-            }        
+                this.C_BarraTiempo.PosHover = intersects[i].point.x + (this.AnchoBarraTiempo / 2);
+            }   
+        }        
 
-            // Transiciones si hay un cambio de estado
-            if (this.BarrasAnalizador.Hover !== HoverBarras) {
-                this.BarrasAnalizador.Hover = HoverBarras;
-                this.BarrasAnalizador.Ani.Transicion();
-            }
-
-            if (this.Pantalla.Hover !== HoverP) {
-                this.Pantalla.Hover = HoverP;
-                this.Pantalla.Ani.Transicion();
-            }
-
-            if (this.Pantalla2.Hover !== HoverP2) {
-                this.Pantalla2.Hover = HoverP2;
-                this.Pantalla2.Ani.Transicion();
-            }
-
-            if (this.Pantalla3.Hover !== HoverP3) {
-                this.Pantalla3.Hover = HoverP3;
-                this.Pantalla3.Ani.Transicion();
-            }
-
-            if (this.Controles.Hover !== HoverC) {
-                this.Controles.Hover = HoverC;
-                this.Controles.Ani.Transicion();
-            }
-                        
-            if (this.C_Atras.Hover !== HoverCAtras) {
-                this.C_Atras.Hover = HoverCAtras;
-                if (this.C_Atras.Ani) { this.C_Atras.Ani.Transicion(); }
-            }
-            
-            if (this.C_Play.Hover !== HoverCPlay) {
-                this.C_Play.Hover = HoverCPlay;
-                if (this.C_Play.Ani) { this.C_Play.Ani.Transicion(); }
-            }
-            
-            if (this.C_Adelante.Hover !== HoverCAdelante) {
-                this.C_Adelante.Hover = HoverCAdelante;
-                if (this.C_Adelante.Ani) { this.C_Adelante.Ani.Transicion(); }
-            }
-            
-            if (this.C_BarraTiempo.Hover !== HoverBarraTiempo) {
-                this.C_BarraTiempo.Hover = HoverBarraTiempo;
-            }
-            
-            if (this.DatosCancion.Hover !== HoverDatosCancion) {
-                this.DatosCancion.Hover = HoverDatosCancion;
-                this.DatosCancion.Ani.Transicion();
-            }            
-            
-            this.MouseMovido = false;
+        // Transiciones si hay un cambio de estado
+        if (this.BarrasAnalizador.Hover !== HoverBarras) {
+            this.BarrasAnalizador.Hover = HoverBarras;
+            this.BarrasAnalizador.Ani.Transicion();
         }
+
+        if (this.Pantalla.Hover !== HoverP) {
+            this.Pantalla.Hover = HoverP;
+            this.Pantalla.Ani.Transicion();
+        }
+
+        if (this.Pantalla2.Hover !== HoverP2) {
+            this.Pantalla2.Hover = HoverP2;
+            this.Pantalla2.Ani.Transicion();
+        }
+
+        if (this.Pantalla3.Hover !== HoverP3) {
+            this.Pantalla3.Hover = HoverP3;
+            this.Pantalla3.Ani.Transicion();
+        }
+
+        if (this.Controles.Hover !== HoverC) {
+            this.Controles.Hover = HoverC;
+            this.Controles.Ani.Transicion();
+        }
+
+        if (this.C_Atras.Hover !== HoverCAtras) {
+            this.C_Atras.Hover = HoverCAtras;
+            if (this.C_Atras.Ani) { this.C_Atras.Ani.Transicion(); }
+        }
+
+        if (this.C_Play.Hover !== HoverCPlay) {
+            this.C_Play.Hover = HoverCPlay;
+            if (this.C_Play.Ani) { this.C_Play.Ani.Transicion(); }
+        }
+
+        if (this.C_Adelante.Hover !== HoverCAdelante) {
+            this.C_Adelante.Hover = HoverCAdelante;
+            if (this.C_Adelante.Ani) { this.C_Adelante.Ani.Transicion(); }
+        }
+
+        if (this.C_BarraTiempo.Hover !== HoverBarraTiempo) {
+            this.C_BarraTiempo.Hover = HoverBarraTiempo;
+        }
+
+        if (this.DatosCancion.Hover !== HoverDatosCancion) {
+            this.DatosCancion.Hover = HoverDatosCancion;
+            this.DatosCancion.Ani.Transicion();
+        }            
+
+        this.MouseMovido = false;        
     },
 
     // Función que pinta cada frame de la animación
@@ -1015,18 +1033,14 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
 
 
 var EspectroAudible_Audio = function() {
-    this.Iniciar = function(EsMovil, Padre, FuncionCanPlay, FuncionEnded) {
-        this.CancionCargada = true;
-        var Compatibilidad = window.AudioContext || window.webkitAudioContext;
-        this.AudioContext = new Compatibilidad();        
-        this.Analizador = this.AudioContext.createAnalyser();
-        var R = 0; // this.PrecisionAnalizador
-        if (EsMovil === true) { this.Analizador.fftSize = 512;   R = 1; } // Para movil la verión de 256 columnas
-        else                  { this.Analizador.fftSize = 2048;  R = 0; } // Para PC la versión de 1024 columnas
+    this.Context = new AudioContext();
+    this.Iniciar = function(fftSize, Padre, FuncionCanPlay, FuncionEnded) {
+        this.Analizador = this.Context.createAnalyser();
+        this.Analizador.fftSize = fftSize;
         this.Analizador.smoothingTimeConstant = 0.8; // 
         this.FuncionCanPlay = FuncionCanPlay;
         this.FuncionEnded = FuncionEnded;
-        this.Padre = Padre;
+
         this.Canciones =[            
             { Grupo : "LevenRain",           Titulo : "ActionMan Versus The CyberParasites",   Año : "2016",    Path : "LevenRain_-_ActionMan_Versus_The_CyberParasites.mp3",   Web : "https://www.jamendo.com/track/1349290/actionman-versus-the-cyberparasites" },
             { Grupo : "Fallen to Flux",      Titulo : "One Chance",                            Año : "2014",    Path : "OneChance.mp3",                                         Web : "https://www.jamendo.com/track/1155241/one-chance" },
@@ -1035,10 +1049,10 @@ var EspectroAudible_Audio = function() {
             { Grupo : "Convergence",         Titulo : "Six Feet Under",                        Año : "2007",    Path : "Convergence_-_Six_feet_under.mp3",                      Web : "https://www.jamendo.com/track/80122/six-feet-under" },
             { Grupo : "JT Bruce",            Titulo : "Battle Trance",                         Año : "2015",    Path : "BattleTrance.mp3",                                      Web : "https://www.jamendo.com/track/1237162/battle-trance" }
         ];
+        this.Padre = Padre;
         
-        // Enlazo el evento drop del body para poder arrastrar y soltar canciones.
         Padre.Canvas.addEventListener("dragenter", function(e) { return false; });
-        Padre.Canvas.addEventListener("dragover", function(e) { return e.preventDefault(); });
+        Padre.Canvas.addEventListener("dragover",  function(e) { return e.preventDefault(); });
         
         Padre.Canvas.addEventListener("drop", function(e) {
             this.CargarCancionDrop(e.dataTransfer.files);
@@ -1046,16 +1060,15 @@ var EspectroAudible_Audio = function() {
             e.preventDefault();         
         }.bind(this));        
         
-        return R;
+        //return R;
     };
     
-
     this.CargarCancion = function(PosCancion) {        
         if (PosCancion === this.CancionActual && this.CancionCargada === true) {
             return;
         }
         this.CancionActual = PosCancion;
-        this.Padre.Cargando(true);
+        this.Padre.Cargando(true);        
         this.CancionCargada = false;
         if (this.Cancion) { this.Cancion.pause(); }
         this.Cancion = new Audio();
@@ -1068,49 +1081,26 @@ var EspectroAudible_Audio = function() {
         }.bind(this) );        
     };    
     
-    // BUG BUG BUG... en chrome cuelga la ventana de debug.. xd
-    this.CargarCancionDrop = function(Archivos) {
-        if (this.CancionCargada === false) { return; }
-        this.Padre.Cargando(true);
-        this.CancionCargada = false;
-        this.CancionActual = -1;
-        if (this.Cancion) { this.Cancion.pause(); }
-        var Lector = new FileReader();
-        Lector.onload = function(Archivo) { 
-            var Buffer = Archivo.target.result;
-            this.Cancion = new Audio();
-            this.Cancion.controls = false;
-            this.Cancion.src = Archivo.target.result;                
-            this.Cancion.addEventListener('canplaythrough', this.CanPlay.bind(this));            
-            this.Cancion.addEventListener('ended', function() { 
-                this.FuncionEnded();
-            }.bind(this));
-            
-        }.bind(this);
-        Lector.readAsDataURL(Archivos[0]);
-    }; 
     
     this.CanPlay = function() {
         if (this.CancionCargada !== true) {
+            this.Padre.Cargando(false);
             this.CancionCargada = true;
 
-            this.AudioSource = this.AudioContext.createMediaElementSource(this.Cancion);
+            this.AudioSource = this.Context.createMediaElementSource(this.Cancion);
             this.AudioSource.connect(this.Analizador);
-            this.Analizador.connect(this.AudioContext.destination);
+            this.Analizador.connect(this.Context.destination);
             this.FuncionCanPlay();
         }        
     };
     
     // devuelve true si se ha hecho play, false si se ha hecho pausa
     this.PlayPausa = function() {
-       if (this.Cancion.duration > 0 && !this.Cancion.paused) {
-           this.Cancion.pause(); 
-           return false;
-       } 
-       else { 
-           this.Cancion.play();
-           return true;
-       } 
+       if (this.Cancion.duration > 0 && !this.Cancion.paused) { this.Cancion.pause(); } 
+       else                                                   { this.Cancion.play();  }
+       // El autoplay en dispositivos moviles no funciona, por lo que hay que comprobar si está realmente en play o en pausa.
+       if (this.Cancion.duration > 0 && !this.Cancion.paused) { return true;  }
+       else                                                   { return false; }
     };
     
     this.Adelante = function() {
@@ -1126,7 +1116,29 @@ var EspectroAudible_Audio = function() {
         (this.CancionActual - 1 > -1)                       ? p = this.CancionActual - 1 :      p = this.Canciones.length - 1;
         this.CargarCancion(p);        
     };
-        
+    
+    this.CargarCancionDrop = function(Archivos) {    
+        if (this.CancionCargada === false) { return; }
+        this.Padre.Cargando(true);
+        this.CancionCargada = false;
+        this.CancionActual = -1;
+        if (this.Cancion) { this.Cancion.pause(); }    
+        this.Cancion = { };
+        var Reader = new FileReader();
+        Reader.addEventListener('load', function(e) {
+            this.Context.decodeAudioData(e.target.result, function(Buffer) {
+                this.Padre.Cargando(false);
+                this.CancionCargada = true;
+                this.AudioSource = this.Context.createBufferSource();
+                this.AudioSource.buffer = Buffer;
+                this.AudioSource.connect(this.Analizador);
+                this.Analizador.connect(this.Context.destination);
+                this.AudioSource.start(0);                
+                this.FuncionCanPlay();
+            }.bind(this));
+        }.bind(this));
+        Reader.readAsArrayBuffer(Archivos[0]);
+    };
 };
 
 var Canvas = null;

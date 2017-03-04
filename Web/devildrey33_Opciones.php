@@ -117,7 +117,9 @@ class Base {
    static public function URL_Lab() {           return Base::URL_Raiz()."Lab/";          }
    static public function URL_Descargas() {     return Base::URL_Raiz()."Descargas/";          }
    static public function URL_Raiz() {
-       return "http://".$_SERVER["SERVER_NAME"]."/".Base::PathRelativo_Raiz();
+       $Protocolo = "http://";
+       if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] === 443) { $Protocolo = "https://"; }
+       return $Protocolo.$_SERVER["SERVER_NAME"]."/".Base::PathRelativo_Raiz();
    }
    // devuelve el Path completo del directorio web
    static public function Path_Web() {          return Base::Path_Raiz()."Web/";   }
