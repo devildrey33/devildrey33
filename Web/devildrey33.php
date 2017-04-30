@@ -99,32 +99,26 @@ class devildrey33 {
         "<title>".$Titulo."</title>".Intro().
         "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />".Intro();
 //        "<meta name='viewport' content='width=device-width, initial scale=1'>".Intro().
-        
-        if ($this->EntradaBlog !== false) {
-            echo "<meta name='author' content='".$this->EntradaBlog["Autor"]."' />".Intro().
-            
-                    
-            /* Twitter Card data */
+
+            echo "<meta name='author' content='devildrey33' />".Intro().
+//            echo '<meta name="description" content="Página web dedicada al mundo de la programación, donde puedes encontrar información sobre HTML, CSS, JS, Ajax, jQuery, PHP, MySql, C/C++, Three.js, etc...." />'.Intro();
             "<meta name='twitter:card' content='summary' />".Intro().        
             "<meta name='twitter:site' content='@publisher_handle' />".Intro().        
-            "<meta name='twitter:title' content='".$Titulo."' />".Intro().        
+            "<meta name='twitter:title' content='devildrey33.es' />".Intro().        
     //        "<meta name='twitter:description' content='Page description less than 200 characters'>".Intro().        
             "<meta name='twitter:creator' content='@author_handle' />".Intro().        
             /* Twitter Summary card images must be at least 200x200px */
-            "<meta name='twitter:image' content='".Base::URL_Raiz()."/Web/Graficos/250x200_".$this->EntradaBlog["Imagen"]."' />".Intro().        
+            "<meta name='twitter:image' content='".Base::URL_Raiz()."' />".Intro().        
 
             /* Open Graph data */
-            "<meta property='og:title' content='".$Titulo."' />".Intro().        
+            "<meta property='og:title' content='devildrey33.es' />".Intro().        
             "<meta property='og:type' content='article' />".Intro().        
-            "<meta property='og:url' content='".Base::URL_Raiz().$_SERVER["SERVER_NAME"]."/Blog/".$this->EntradaBlog["URL"]."' />".Intro().        
-            "<meta property='og:image' content='".Base::URL_Raiz().$_SERVER["SERVER_NAME"]."/Web/Graficos/250x200_".$this->EntradaBlog["Imagen"]."' />".Intro().        
+            "<meta property='og:url' content='".Base::URL_Raiz()."' />".Intro().        
+            "<meta property='og:image' content='".Base::URL_Raiz()."Web/Graficos/logo400.png' />".Intro().        
     //        "<meta property='og:description' content='Description Here' />".Intro().        
             "<meta property='og:site_name' content='devildrey33' />".Intro();
-    //        "<meta property='fb:admins' content='Facebook numeric ID' />".Intro().        
-        }
-        else {
-            echo '<meta name="description" content="Página web dedicada al mundo de la programación, donde puedes encontrar información sobre HTML, CSS, JS, Ajax, jQuery, PHP, MySql, C/C++, Three.js, etc...." />'.Intro();
-        }
+
+//        }
                 
         echo $Meta.Intro().    
         '<meta name="msapplication-config" content="none"/>'.Intro(). // Para que el explorer no busque el archivo BrowserConfig.xml de las pelotas.

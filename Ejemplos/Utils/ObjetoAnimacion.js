@@ -17,6 +17,7 @@
             "Repetir"           : 2,                               // Repetir 2 veces
             "FuncionActualizar" : function(Valores) { },           // Función que se llama cada vez que se actualizan los valores
             "FuncionTerminado"  : function() { }                   // Función que se llama al terminar la animación
+            "Const"             : { ... }                          // Array de variables constantes que podrás utilizar desde Valores.Const
         });*/
  
      
@@ -50,6 +51,7 @@ var ObjetoAnimacion = function() {
 //        var Tick;
         if (typeof(nTick) === 'undefined') { this.Tick = Date.now(); }
         else                               { this.Tick = nTick;}
+        
         for (var i = this.Animaciones.length - 1; i > -1; i--) {
             if (this.Animaciones[i].Actualizar(this.Tick) === true) { // Si ha terminado, elimino la animación del array de animaciones pendientes
                 this.Animaciones.splice(i, 1);
@@ -112,6 +114,7 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
         if (typeof Opciones.Invertir !== "undefined")          { this._Opciones.Invertir = Opciones.Invertir;                   }
         if (typeof Opciones.FuncionActualizar !== "undefined") { this._Opciones.FuncionActualizar = Opciones.FuncionActualizar; }
         if (typeof Opciones.FuncionTerminado !== "undefined")  { this._Opciones.FuncionTerminado = Opciones.FuncionTerminado;   }
+        if (typeof Opciones.Const !== "undefined")             { this.Const = Opciones.Const;   }
     }
     // Completo los datos de cada paso
     for (var Paso in this._Pasos) {
@@ -149,9 +152,7 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
     // Inicia la transición (de principio a fin, o del final al principio
     this.Transicion = function() {
         this._Invertido = !this._Invertido;
-        
-//        console.log(this._PasoOrig, this._PasoDest);
-        
+
         var AniCreada = false;
         // Agrego la animacion al array de animaciones del padre (si no existe)
         for (var i = 0; i < this._Padre.Animaciones.length; i++) {
@@ -170,7 +171,6 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
                 this._Retraso            = this._PasoDest.Retraso;
             }
             else {
-    //            this._Avance = 1;            
                 // Si está en el paso inicial, asigno el paso actual al ultimo paso
                 this._PosPasos = this._Pasos.length - 1;
                 this._PasoOrig           = this._Pasos[this._PosPasos]; 
@@ -201,14 +201,12 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
 
     // Función que termina la animación y la deja tal y como está
     this.Cancelar = function() {
-//        console.log("ObjetoAnimacion.Cancelar");
         this._Opciones.FuncionTerminado();
-        this.Terminado = true;                        
+        this._Terminado = true;                       
     };
 
     // Función que termina la animación y deja los valores en su estado final
     this.Terminar = function() {
-//        console.log("ObjetoAnimacion.Terminar");
         this._Opciones.FuncionTerminado();
         this._Terminado = true;            
         for (var Indice in this._Pasos[this._Pasos.length - 1].Paso) {                    
@@ -229,7 +227,7 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
 
     // Actualiza la animación
     this.ActualizarNormal = function(t) {
-            // Tiempo desde el ultimo frame a este frame
+        // Tiempo desde el ultimo frame a este frame
         var TiempoFrame = t - this._UltimoTick;
         // Aplico el retraso si existe
         if (this._Retraso > 0) {

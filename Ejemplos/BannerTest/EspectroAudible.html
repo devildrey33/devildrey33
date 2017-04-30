@@ -55,6 +55,7 @@ var EspectroAudible = function() {
         Alto          : 'Auto',
         Entorno       : 'Normal',
         Idioma        : 'es',
+        BotonLogo     : false,
         MostrarFPS    : true,
         ElementoRaiz  : document.body,
         Pausar        : false,             // Pausa el canvas si la pestaña no tiene el foco del teclado
@@ -127,8 +128,8 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         }
         
         if (this.C_BarraTiempo.Hover === true) {
-            var ct = (this.Audio.Cancion.duration / this.AnchoBarraTiempo) * this.C_BarraTiempo.PosHover;
-            this.Audio.Cancion.currentTime = ct;             
+            var ct = (this.Audio.TiempoTotal() / this.AnchoBarraTiempo) * this.C_BarraTiempo.PosHover;
+            this.Audio.NuevoTiempoActual(ct);             
         }
         
         if (this.DatosCancion.Hover === true) {
@@ -259,7 +260,6 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         
         this.IniciarLuces();
         
-
         // Array de funciones de pintado para las pantallas
         this.FuncionesPintarPantalla = [ 
             this.PintarPantalla_OndaSin.bind(this), 
@@ -278,7 +278,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
                             function() { this.CancionCargada(); this.PlayPausa(); }.bind(this), // Función CanPlay
                             this.CancionTerminada.bind(this) );                                 // Función Ended
         
-        this.Audio.CargarCancion(RandInt(6));
+        this.Audio.CargarCancion(RandInt(this.Audio.Canciones.length));
         
         this.ReIniciarCubos(Math.sqrt(fftSize / 2));    
 
@@ -389,20 +389,22 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
     },
     
     ActualizarTiempoSlider : function() {
-        var TMins = Math.round(Math.floor(this.Audio.Cancion.duration / 60));
-        var TSecs = (this.Audio.Cancion.duration - (TMins * 60)).toFixed(0);
+        var TA = this.Audio.TiempoActual();
+        var TT = this.Audio.TiempoTotal();
+        var TMins = Math.round(Math.floor(TT) / 60);
+        var TSecs = (TT - (TMins * 60)).toFixed(0);
         var T = TMins + ((TSecs < 10) ? ':0' : ':') + TSecs;
-        var AMins = Math.round(Math.floor(this.Audio.Cancion.currentTime / 60));
-        var ASecs = Math.round(this.Audio.Cancion.currentTime - (AMins * 60));
+        var AMins = Math.round(Math.floor(TA / 60));
+        var ASecs = Math.round(TA - (AMins * 60));
         var A = AMins + ((ASecs < 10) ? ':0' : ':') + ASecs;
         if (this.ActualizarTiempoSlider_T < 100) {
             this.ActualizarTiempoSlider_T += this.Tick;
             return;
         }
         this.ActualizarTiempoSlider_T = 0;
-        var Parte = this.AnchoBarraTiempo / this.Audio.Cancion.duration;
+        var Parte = this.AnchoBarraTiempo / TT;
         // Posición del slider
-        this.C_SliderTiempo.position.x = -(this.AnchoBarraTiempo / 2) + (this.Audio.Cancion.currentTime * Parte);
+        this.C_SliderTiempo.position.x = -(this.AnchoBarraTiempo / 2) + (TA * Parte);
               
         this.BufferSlider.Context.clearRect(0, 0, this.BufferSlider.Ancho, this.BufferSlider.Alto);
         this.BufferSlider.Context.fillText(A, 71, 110);
@@ -1033,6 +1035,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
 
 
 var EspectroAudible_Audio = function() {
+    this.AudioSourceDD = { context : { currentTime : 0 } };
     this.Context = new AudioContext();
     this.Iniciar = function(fftSize, Padre, FuncionCanPlay, FuncionEnded) {
         this.Analizador = this.Context.createAnalyser();
@@ -1042,12 +1045,12 @@ var EspectroAudible_Audio = function() {
         this.FuncionEnded = FuncionEnded;
 
         this.Canciones =[            
-            { Grupo : "LevenRain",           Titulo : "ActionMan Versus The CyberParasites",   Año : "2016",    Path : "LevenRain_-_ActionMan_Versus_The_CyberParasites.mp3",   Web : "https://www.jamendo.com/track/1349290/actionman-versus-the-cyberparasites" },
-            { Grupo : "Fallen to Flux",      Titulo : "One Chance",                            Año : "2014",    Path : "OneChance.mp3",                                         Web : "https://www.jamendo.com/track/1155241/one-chance" },
+//            { Grupo : "LevenRain",           Titulo : "ActionMan Versus The CyberParasites",   Año : "2016",    Path : "LevenRain_-_ActionMan_Versus_The_CyberParasites.mp3",   Web : "https://www.jamendo.com/track/1349290/actionman-versus-the-cyberparasites" },
+//            { Grupo : "Fallen to Flux",      Titulo : "One Chance",                            Año : "2014",    Path : "OneChance.mp3",                                         Web : "https://www.jamendo.com/track/1155241/one-chance" },
             { Grupo : "From Sky to Abyss",   Titulo : "Quantum Ocean",                         Año : "2016",    Path : "QuantumOcean.mp3",                                      Web : "https://www.jamendo.com/track/1284951/quantum-ocean" }, 
             { Grupo : "In Camera",           Titulo : "Nothing's Over",                        Año : "2016",    Path : "In_Camera_-_Nothing_s_Over.mp3",                        Web : "https://www.jamendo.com/track/1397271/nothing-s-over" },
-            { Grupo : "Convergence",         Titulo : "Six Feet Under",                        Año : "2007",    Path : "Convergence_-_Six_feet_under.mp3",                      Web : "https://www.jamendo.com/track/80122/six-feet-under" },
-            { Grupo : "JT Bruce",            Titulo : "Battle Trance",                         Año : "2015",    Path : "BattleTrance.mp3",                                      Web : "https://www.jamendo.com/track/1237162/battle-trance" }
+//            { Grupo : "Convergence",         Titulo : "Six Feet Under",                        Año : "2007",    Path : "Convergence_-_Six_feet_under.mp3",                      Web : "https://www.jamendo.com/track/80122/six-feet-under" },
+//            { Grupo : "JT Bruce",            Titulo : "Battle Trance",                         Año : "2015",    Path : "BattleTrance.mp3",                                      Web : "https://www.jamendo.com/track/1237162/battle-trance" }
         ];
         this.Padre = Padre;
         
@@ -1067,10 +1070,12 @@ var EspectroAudible_Audio = function() {
         if (PosCancion === this.CancionActual && this.CancionCargada === true) {
             return;
         }
-        this.CancionActual = PosCancion;
+        
         this.Padre.Cargando(true);        
         this.CancionCargada = false;
-        if (this.Cancion) { this.Cancion.pause(); }
+        if (this.CancionActual !== -1) { if (this.Cancion) { this.Cancion.pause(); } }
+        else                           { this.AudioSourceDD.stop(0); }
+        this.CancionActual = PosCancion;
         this.Cancion = new Audio();
         this.Cancion.controls = true;
         this.Cancion.crossOrigin = "anonymous";
@@ -1086,35 +1091,57 @@ var EspectroAudible_Audio = function() {
         if (this.CancionCargada !== true) {
             this.Padre.Cargando(false);
             this.CancionCargada = true;
-
-            this.AudioSource = this.Context.createMediaElementSource(this.Cancion);
-            this.AudioSource.connect(this.Analizador);
-            this.Analizador.connect(this.Context.destination);
-            this.FuncionCanPlay();
+            if (this.CancionActual !== -1) {
+                this.AudioSource = this.Context.createMediaElementSource(this.Cancion);
+                this.AudioSource.connect(this.Analizador);
+                this.Analizador.connect(this.Context.destination);
+                this.FuncionCanPlay();
+            }
         }        
     };
     
     // devuelve true si se ha hecho play, false si se ha hecho pausa
     this.PlayPausa = function() {
-       if (this.Cancion.duration > 0 && !this.Cancion.paused) { this.Cancion.pause(); } 
-       else                                                   { this.Cancion.play();  }
-       // El autoplay en dispositivos moviles no funciona, por lo que hay que comprobar si está realmente en play o en pausa.
-       if (this.Cancion.duration > 0 && !this.Cancion.paused) { return true;  }
-       else                                                   { return false; }
+        if (this.CancionActual !== -1) {
+            // El autoplay en dispositivos moviles no funciona, por lo que hay que comprobar si está realmente en play o en pausa.
+            if (this.Cancion.duration > 0 && !this.Cancion.paused) { this.Cancion.pause();  return false;  } 
+            else                                                   { this.Cancion.play();   return true; }
+        }
+        else { // Drag & drop
+            return false;
+        }
     };
     
     this.Adelante = function() {
-        this.Cancion.pause(); 
+        if (this.CancionActual !== -1) {  this.Cancion.pause(); }
         var p = 0;
         (this.CancionActual + 1 < this.Canciones.length)    ? p = this.CancionActual + 1 :      p = 0;
         this.CargarCancion(p);
     };
     
     this.Atras = function(FuncionCanPlay, FuncionEnded) {
-        this.Cancion.pause(); 
+        if (this.CancionActual !== -1) {  this.Cancion.pause(); }
         var p = 0;
         (this.CancionActual - 1 > -1)                       ? p = this.CancionActual - 1 :      p = this.Canciones.length - 1;
         this.CargarCancion(p);        
+    };
+
+    this.NuevoTiempoActual = function(NuevoTiempo) {
+        if (this.CancionActual !== -1) { this.Cancion.currentTime = NuevoTiempo; }
+        else                           { this.AudioSourceDD.context.currentTime = NuevoTiempo; }        
+    };
+    
+    this.TiempoActual = function() {
+        if (this.CancionActual !== -1) { return this.Cancion.currentTime; }
+        else                           { return this.AudioSourceDD.context.currentTime; }
+    };
+    
+    this.TiempoTotal = function() {
+        if (this.CancionActual !== -1) { return this.Cancion.duration; }
+        else {
+            if (this.AudioSourceDD.buffer) { return this.AudioSourceDD.buffer.duration; }
+            else                         { return 0; }
+        }
     };
     
     this.CargarCancionDrop = function(Archivos) {    
@@ -1122,18 +1149,21 @@ var EspectroAudible_Audio = function() {
         this.Padre.Cargando(true);
         this.CancionCargada = false;
         this.CancionActual = -1;
-        if (this.Cancion) { this.Cancion.pause(); }    
+        if (this.Cancion) { 
+            this.Cancion.pause(); 
+            this.Cancion.currentTime = 0;
+        }    
         this.Cancion = { };
         var Reader = new FileReader();
         Reader.addEventListener('load', function(e) {
             this.Context.decodeAudioData(e.target.result, function(Buffer) {
                 this.Padre.Cargando(false);
                 this.CancionCargada = true;
-                this.AudioSource = this.Context.createBufferSource();
-                this.AudioSource.buffer = Buffer;
-                this.AudioSource.connect(this.Analizador);
+                this.AudioSourceDD = this.Context.createBufferSource();
+                this.AudioSourceDD.buffer = Buffer;
+                this.AudioSourceDD.connect(this.Analizador);
                 this.Analizador.connect(this.Context.destination);
-                this.AudioSource.start(0);                
+                this.AudioSourceDD.start(0);                
                 this.FuncionCanPlay();
             }.bind(this));
         }.bind(this));

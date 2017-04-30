@@ -150,7 +150,7 @@
         </li>
     </ul>        
     <?php $Base->PintarCodigo->PintarArchivoCSS("efecto3d", "Clases Boton-3D", "../Ejemplos/Transition/Botones.html", "efecto3d"); ?>    
-    <p>En primer lugar hay que aplicar el <code><a href='/Doc/CSS/PropiedadesCSS/transform-origin' cid='efecto3d' l='7,8,13,14'>transform-origin</a></code> para cada lateral, y luego hay que utilizar la propiedad <code><a href='/Doc/CSS/Propiedades/transform' cid='efecto3d' l='7,8,13,14'>transform</a></code> para rotar el eje X (para los laterales superior e inferior), y para rotar el eje Y (para los laterales derecho e izquierdo).</p>
+    <p>En primer lugar hay que aplicar el <code><a href='/Doc/CSS/Propiedades/transform-origin' cid='efecto3d' l='7,8,13,14'>transform-origin</a></code> para cada lateral, y luego hay que utilizar la propiedad <code><a href='/Doc/CSS/Propiedades/transform' cid='efecto3d' l='7,8,13,14'>transform</a></code> para rotar el eje X (para los laterales superior e inferior), y para rotar el eje Y (para los laterales derecho e izquierdo).</p>
     <p>Por último en el <code><a href='/Doc/CSS/Selectores/:hover' cid='efecto3d' l='10,11,16,17'>:hover</a></code> devolvemos la rotación del eje X/Y a 0.</p>
     
     <div class='Centrado'>

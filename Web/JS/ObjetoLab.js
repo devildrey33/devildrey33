@@ -293,6 +293,8 @@ $Lab = new function() {
                     $("body").attr({ "modificado" : "false" });
                     $Base.ComprobarScrollVotacion();
                     $Lab.ActualizarResultado(); 
+//                            $Base.RenovarMeta();
+
                     
                     $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
                     if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
@@ -410,6 +412,9 @@ $Lab = new function() {
                 $("#Lab_Preview").focus();      // Asigno el foco al iframe del resultado, especialmente por los ejempls con canvas
                 break;
         }
+        
+        $Base.RenovarMeta();
+
     };
     
     /* Función que controla cuando se arrastra el separador de la vista de filas */
@@ -463,7 +468,7 @@ $Lab = new function() {
         // Para eliminar todos los temporizadores que pueda haber cargados en el ejemplo elimino la etiqueta iframe y la vuelvo a crear.                
         var Estilos = $("#Lab_Preview").attr( "style" );
         $("#Lab_Preview").remove();
-        $("<iframe id='Lab_Preview' style='" + Estilos +"'></iframe>").insertBefore($( "#Lab_Barra1" ));
+        $("<iframe id='Lab_Preview' allowfullscreen=true style='" + Estilos +"'></iframe>").insertBefore($( "#Lab_Barra1" ));
         // Actualizo el ejemplo
         var previewFrame = document.getElementById('Lab_Preview');
         var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;

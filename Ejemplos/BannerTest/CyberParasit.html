@@ -2,7 +2,7 @@
     Plantilla para test de canvas creado por Josep Antoni Bover Comas el 05/07/2016
 
         Vista por defecto en el Laboratorio de pruebas  
-		devildrey33_Lab->Opciones->Vista = Filas;
+		devildrey33_Lab->Opciones->Vista = Preview;
 
         Ultima modificación el 05/02/2017
 -->
@@ -33,6 +33,7 @@
         <!-- Objeto para crear animaciones de tiempo -->
         <script src="/Ejemplos/Utils/ObjetoAnimacion.js"></script>
         
+        <script src="/Web/JS/3rdParty/modifier.js"></script>
         <!-- Objeto para crear tests rápidos -->
         <!-- <script src="/Ejemplos/Utils/ObjetoTest.js"></script> -->
         
@@ -72,6 +73,7 @@ var CyberParasit = function() {
         'Alto'          : 'Auto',
         'Entorno'       : 'Normal',
         'MostrarFPS'    : true,
+        'BotonLogo'     : true,
         'ElementoRaiz'  : document.body,
         'Pausar'        : false,             // Pausa el canvas si la pestaña no tiene el foco del teclado
         'ColorFondo'    : 0xFFFFFF
@@ -124,7 +126,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
 //        this.Camara.position.z = 10;
         window.scene = this.Escena;
 //        this.Camara.Rotacion = { Grados : 93 * this.Constantes.Radiant, Distancia : 40, MirarHacia : new THREE.Vector3(0, 0, 0) };
-        this.Camara.position.set(0, 3, 10);
+        this.Camara.position.set(0, 4, 10);
         this.Camara.name = "Camara";
         this.Escena.add(this.Camara);
         this.Camara.lookAt(new THREE.Vector3(0, 2, 0));
@@ -132,6 +134,9 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
 //        this.Orbit = new THREE.OrbitControls( this.Camara );
 //        this.Orbit.addEventListener( 'change', this.Pintar.bind(this) );
 
+        this.Escenario = new THREE.Group();
+        this.Escenario.name = "Escenario";
+        this.Escena.add(this.Escenario);
         // Parrilla para iniciar la plantilla (se puede eliminar)
         // Palno para el suelo
         this.Suelo = new THREE.Mesh(    new THREE.PlaneGeometry(100, 100), 
@@ -141,11 +146,48 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         this.Suelo.position.y = -2;
         this.Suelo.castShadow = false;
         this.Suelo.receiveShadow = true;
-        this.Escena.add(this.Suelo);
+        this.Escenario.add(this.Suelo);
 
-        this.Robot = new THREE.Group();
-        this.Robot.rotation.y = 90 * this.Constantes.Radiant;
-        this.Escena.add(this.Robot);
+        this.Paredes = [];
+        this.Paredes[0] = new THREE.Mesh(    new THREE.PlaneGeometry(100, 100), 
+                                             new THREE.MeshPhongMaterial({ color: 0x999999, specular : 0xcccccc }));
+        this.Paredes[0].name = "Pared central";
+        this.Paredes[0].castShadow = false;
+        this.Paredes[0].receiveShadow = true;
+        this.Paredes[0].position.z = -25;
+        this.Escenario.add(this.Paredes[0]);
+        
+        this.Paredes[1] = new THREE.Mesh(    new THREE.PlaneGeometry(100, 100), 
+                                             new THREE.MeshPhongMaterial({ color: 0x999999, specular : 0xcccccc }));
+        this.Paredes[1].name = "Pared izquierda";
+        this.Paredes[1].castShadow = false;
+        this.Paredes[1].receiveShadow = true;
+        this.Paredes[1].position.x = -50;
+        this.Paredes[1].rotation.y = Math.PI / 2;
+        this.Escenario.add(this.Paredes[1]);
+        
+        this.Paredes[2] = new THREE.Mesh(    new THREE.PlaneGeometry(100, 100), 
+                                             new THREE.MeshPhongMaterial({ color: 0x999999, specular : 0xcccccc }));
+        this.Paredes[2].name = "Pared izquierda";
+        this.Paredes[2].castShadow = false;
+        this.Paredes[2].receiveShadow = true;
+        this.Paredes[2].position.x = 50;
+        this.Paredes[2].rotation.y = -Math.PI / 2;
+        this.Escenario.add(this.Paredes[2]);
+        
+        
+        this.Robot = [];
+        this.RobotCuerpo = [];
+        this.RobotOjo = [];
+        this.RobotAntenas = [];
+        this.RobotAntenasP1 = [];
+        this.RobotAntenasP2 = [];
+        this.RobotLuz = [];
+//        this.RobotLuz2 = [];
+
+        
+        this.CrearDatosDebug();
+        
 /*
         this.Rueda = new THREE.Mesh(new THREE.CylinderGeometry(2, 2, .5, 32, 1), new THREE.MeshPhongMaterial({ color: 0xbbbbbb, specular : 0xffffff }));
         this.Rueda.name = "Robot_Rueda";
@@ -171,82 +213,60 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
             // resource URL
             '/Ejemplos/BannerTest/Modelos/CuerpoCyberParasit.json',
             // Function when resource is loaded
-            function ( geometry ) {
-//                var material = new THREE.MultiMaterial( materials);
-                this.RobotCuerpo = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ color: 0xbbbbbb, specular : 0xffffff }));
-                this.RobotCuerpo.name = "Robot_Cuerpo";
-                this.RobotCuerpo.castShadow = true;
-                this.RobotCuerpo.receiveShadow = false;
-                this.RobotCuerpo.scale.set(2.1, 2.1, 2.1);
-                this.RobotCuerpo.position.set(0, -2.7, 0.42);
-//                this.Robot.rotation.y = 111 * this.Constantes.Radiant;
-                this.Robot.add(this.RobotCuerpo);
-//                this.Camara.lookAt(this.RobotCuerpo);
-//                this.DirLight.target = this.Robot;
-
-                this.RobotOjo = new THREE.Mesh(  new THREE.PlaneGeometry(1.3, 1.3), 
-                                                 new THREE.MeshStandardMaterial( { map: this.BufferOjo.Textura, roughness: .5, metalness: .73, transparent : true, opacity:1  } ));
-                this.RobotOjo.name = "Robot_Ojo";
-//                this.RobotOjo.position.set(-.94, 3.43, 0);
-                this.RobotOjo.position.set(-0.82, 2.89, 0);
-                this.RobotOjo.rotation.y -= Math.PI / 2;
-                this.RobotOjo.rotation.x += Math.PI / 2;
-                this.RobotOjo.rotation.y += 17.5 * this.Constantes.Radiant ;
-                this.RobotCuerpo.add(this.RobotOjo);        
-                
-                
-                this.RobotAntenas = new THREE.Mesh(  new THREE.PlaneGeometry(1.5, .75), 
-                                                     new THREE.MeshStandardMaterial( { map: this.BufferAntena.Textura, roughness: .5, metalness: .73, transparent : true, opacity:1  } ));
-                
-                this.RobotAntenas.name = "Robot_Antenas";
-                this.RobotAntenas.castShadow = true;
-                this.RobotAntenas.position.set(0.02, 4.06, 0.03);
-                this.RobotAntenas.rotation.y -= Math.PI / 2;
-                this.RobotCuerpo.add(this.RobotAntenas);        
-                
-                
-                this.RobotAntenasP1 = new THREE.Mesh(  new THREE.SphereGeometry(0.07, 16, 16), 
-                                                       new THREE.MeshPhongMaterial({ color: 0x00bb00, specular : 0x00ff00, transparent : true, opacity:0.3  } ));
-                this.RobotAntenasP1.name = "Robot_PuntaAntena1";
-                this.RobotAntenasP1.position.set(0.02, 4.04, 0.82);
-                this.RobotCuerpo.add(this.RobotAntenasP1); 
-
-                this.RobotAntenasP2 = new THREE.Mesh(  new THREE.SphereGeometry(0.07, 16, 16), 
-                                                       new THREE.MeshPhongMaterial({ color: 0x0000bb, specular : 0x00ffff, transparent : true, opacity:0.3  } ));
-                this.RobotAntenasP2.name = "Robot_PuntaAntena2";
-                this.RobotAntenasP2.position.set(0.02, 4.04, -0.78);
-                this.RobotCuerpo.add(this.RobotAntenasP2); 
-                                                       
-                this.RobotLuz1 = new THREE.PointLight( 0x00aa00, 0, 45);
-//                this.RobotLuz1.castShadow = true;
-                this.RobotLuz1.name = "Robot_LuzAntenas1";
-//                this.RobotLuz1.position.set(0.02, 5, 0.75);
-                this.RobotAntenasP1.add(this.RobotLuz1);        
-                this.RobotLuz2 = new THREE.PointLight( 0x0000aa, 0, 45);
-//                this.RobotLuz2.castShadow = true;
-                this.RobotLuz2.name = "Robot_LuzAntenas2";
-//                this.RobotLuz2.position.set(0.02, 5, -0.75);
-                this.RobotAntenasP2.add(this.RobotLuz2);        
+            function ( Geometria ) {
+                this.CrearRobot(Geometria, 0, 1, 0, 0x0000aa);
+                this.CrearRobot(Geometria, 1, -10, -10, 0x00aa00);
+                this.CrearRobot(Geometria, 2, -10, 10, 0xaa0000);    
             }.bind(this)
         );
         // Luz direccional
-        this.DirLight = new THREE.DirectionalLight( 0xffffff, 0.7 );
+        this.DirLight = new THREE.DirectionalLight( 0xdddddd, 0.3 );
         this.DirLight.color.setHSL( 0.1, 1, 0.95 );
-        this.DirLight.position.set( 1, 1, 2 ).normalize();
-        this.DirLight.position.multiplyScalar( 50 );
+        this.DirLight.position.multiplyScalar( 8 );
+        this.DirLight.position.set( 1, 0.36, 4 ); //.normalize();
         this.Escena.add( this.DirLight );
         this.DirLight.castShadow = true;
         this.DirLight.shadow.mapSize.width = 2048;
         this.DirLight.shadow.mapSize.height = 2048;
-        var d = 80;
+        var d = 40;
         this.DirLight.shadow.camera.left = -d;
         this.DirLight.shadow.camera.right = d;
         this.DirLight.shadow.camera.top = d;
         this.DirLight.shadow.camera.bottom = -d;
-        this.DirLight.shadow.camera.far = 3500;
-        this.DirLight.target = this.Suelo;
+        this.DirLight.shadow.camera.far = 450;
+//        this.DirLight.target = new THREE.Vector3(0, 2, 0);
+//        this.DirLight.target = this.Suelo;
         this.DirLight.shadow.target = this.Suelo;
         this.DirLight.name = "Luz_Direccional";
+
+        // Luz direccional
+        this.DirLight2 = new THREE.DirectionalLight( 0xdddddd, 0.3 );
+        this.DirLight2.color.setHSL( 0.1, 1, 0.95 );
+        this.DirLight2.position.multiplyScalar( 8 );
+        this.DirLight2.position.set( 13.82, 8.82, -4.34 ); //.normalize();
+        this.Escena.add( this.DirLight2 );
+        this.DirLight2.castShadow = true;
+        this.DirLight2.shadow.mapSize.width = 2048;
+        this.DirLight2.shadow.mapSize.height = 2048;
+        var d = 40;
+        this.DirLight2.shadow.camera.left = -d;
+        this.DirLight2.shadow.camera.right = d;
+        this.DirLight2.shadow.camera.top = d;
+        this.DirLight2.shadow.camera.bottom = -d;
+        this.DirLight2.shadow.camera.far = 450;
+//        this.DirLight.target = new THREE.Vector3(0, 2, 0);
+//        this.DirLight.target = this.Suelo;
+        this.DirLight2.shadow.target = this.Suelo;
+        this.DirLight2.name = "Luz_Direccional2";
+
+        // HemisphereLight  
+        this.HemiLight = new THREE.HemisphereLight( 0xeeeeee, 0xffffff, 0.1 );
+        this.HemiLight.color.setHSL( 0.6, 0.6, 0.6 );
+        this.HemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
+        this.HemiLight.position.set( 0, 0, 0 );
+        this.HemiLight.name = "Luz_Ambiente";
+        this.Escena.add( this.HemiLight );         
+
 
 /*        this.Dlhelper = new THREE.CameraHelper(this.DirLight.shadow.camera);
         this.Escena.add(this.Dlhelper);
@@ -264,7 +284,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         // Inicio el plano 2D para el Ojo del robot
         this.BufferOjo = new BufferCanvas(512, 512);
         this.BufferOjo.Textura = new THREE.Texture(this.BufferOjo.Canvas);
-        this.BufferOjo.Context.lineWidth = 4;
+        this.BufferOjo.Context.lineWidth = 6;
 
         this.BufferAntena = new BufferCanvas(1024, 512);
         this.BufferAntena.Textura = new THREE.Texture(this.BufferAntena.Canvas);
@@ -308,8 +328,10 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
             { Paso : { posZ : -5, rotZ : -0.14 }, Tiempo : 2000, FuncionTiempo : FuncionesTiempo.SinInOut },
             { Paso : { posZ : 0, rotZ : 0 }, Tiempo : 2000, FuncionTiempo : FuncionesTiempo.SinInOut }*/
         ], { Repetir : -1, FuncionActualizar : function(Valores) { 
-              this.Robot.position.z = Valores['posZ'];        
-              this.Robot.rotation.z = Valores['rotZ'];        
+                for (var i = 0; i < this.Robot.length; i++) {
+                    this.Robot[i].position.z = this.Robot[i].Z + Valores['posZ'];        
+                    this.Robot[i].rotation.z = Valores['rotZ'];       
+                }
             }.bind(this) 
         });            
         
@@ -326,7 +348,9 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
             { Paso : { Escala : 0.99 }, Tiempo : 80, FuncionTiempo : FuncionesTiempo.Linear },
             { Paso : { Escala : 1 }, Tiempo : 80, FuncionTiempo : FuncionesTiempo.Linear }
         ], { Repetir : 0, FuncionActualizar : function(Valores) { 
-              this.Robot.scale.set(Valores['Escala'], Valores['Escala'], Valores['Escala']);
+                for (var i = 0; i < this.Robot.length; i++) {
+                    this.Robot[i].scale.set(Valores['Escala'], Valores['Escala'], Valores['Escala']);
+                }
             }.bind(this) 
         });            
         
@@ -348,24 +372,108 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         this.Pasos_Animacion = [
             { Tiempo : 0, Funcion : this.AniMovimiento.Iniciar.bind(this.AniMovimiento) },     
             { Tiempo : 41350, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 41.35
+//            { Tiempo : 50400, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // TanTanTan
+//            { Tiempo : 50800, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // TanTanTan
+//            { Tiempo : 51200, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // TanTanTan
             { Tiempo : 51600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 51.6
             { Tiempo : 103600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
-            { Tiempo : 108500, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
-            { Tiempo : 113600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
-            { Tiempo : 118600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
-            { Tiempo : 123600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
-            { Tiempo : 132600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
-            { Tiempo : 144600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
-            { Tiempo : 154600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
-            { Tiempo : 164600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
-            { Tiempo : 175600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 101.6
+            { Tiempo : 108500, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 108.6
+            { Tiempo : 113600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 113.6
+            { Tiempo : 118600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 118.6
+            { Tiempo : 123600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 123.6
+            { Tiempo : 134000, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 134.6
+            { Tiempo : 144350, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 144.35
+            { Tiempo : 154600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 154.6
+            { Tiempo : 164600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 164.6
+            { Tiempo : 175600, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 175.6
             //101 108.5 114, 118, 124, 134, 144, 155, 165, 175, 
 //            { Tiempo : 51900, Funcion : this.AniBeng.Iniciar.bind(this.AniBeng) },     // Bing 41.5
-        ]
+        ];
+    },
+    
+    CrearRobot : function(Geometria, Pos, Z, X, ColLuz) {
+        this.Robot[Pos] = new THREE.Group();
+        this.Robot[Pos].rotation.y = 90 * this.Constantes.Radiant;
+        this.Escena.add(this.Robot[Pos]);
+        this.Robot[Pos].position.set(X, 0, Z);
+        this.Robot[Pos].X = X;
+        this.Robot[Pos].Z = Z;
+
+//                var material = new THREE.MultiMaterial( materials);
+        this.RobotCuerpo[Pos] = new THREE.Mesh(Geometria, new THREE.MeshPhongMaterial({ color: 0xbbbbbb, specular : 0xffffff }));
+        this.RobotCuerpo[Pos].name = "Robot_Cuerpo" + Pos;
+        this.RobotCuerpo[Pos].castShadow = true;
+        this.RobotCuerpo[Pos].receiveShadow = false;
+        this.RobotCuerpo[Pos].scale.set(2.1, 2.1, 2.1);
+        this.RobotCuerpo[Pos].position.set(0, -2.1, 0.42);
+//                this.Robot.rotation.y = 111 * this.Constantes.Radiant;
+        this.Robot[Pos].add(this.RobotCuerpo[Pos]);
+//                this.Camara.lookAt(this.RobotCuerpo);
+//                this.DirLight.target = this.Robot;
+
+        this.RobotOjo[Pos] = new THREE.Mesh(  new THREE.PlaneGeometry(1.3, 1.3), 
+                                              new THREE.MeshPhongMaterial( { map: this.BufferOjo.Textura, specular : 0xffffff, transparent : true, opacity:1  } ));
+        this.RobotOjo[Pos].name = "Robot_Ojo" + Pos;
+//                this.RobotOjo.position.set(-.94, 3.43, 0);
+        this.RobotOjo[Pos].position.set(-0.82, 2.89, 0);
+        this.RobotOjo[Pos].rotation.y -= Math.PI / 2;
+        this.RobotOjo[Pos].rotation.x += Math.PI / 2;
+        this.RobotOjo[Pos].rotation.y += 17.5 * this.Constantes.Radiant ;
+        this.RobotCuerpo[Pos].add(this.RobotOjo[Pos]);        
+
+
+        this.RobotLuz[Pos] = new THREE.PointLight( ColLuz, 0, 65);
+//        this.RobotLuz[Pos].castShadow = true;
+        this.RobotLuz[Pos].name = "Robot_Luz";
+        this.Robot[Pos].add(this.RobotLuz[Pos]);        
+
+        this.Robot[Pos].Modificador = new ModifierStack(this.RobotCuerpo[Pos]);
+        this.Robot[Pos].ModificadorBloat = new Bloat();
+        this.Robot[Pos].ModificadorBloat.center = this.RobotCuerpo[Pos].position.clone();
+//        this.Robot[Pos].ModificadorBloat.center.y -= 600;
+        this.Robot[Pos].ModificadorBloat.radius = 0.01;
+        this.Robot[Pos].Modificador.addModifier(this.Robot[Pos].ModificadorBloat);
+
+/*
+        this.RobotAntenas[Pos] = new THREE.Mesh(  new THREE.PlaneGeometry(1.5, .75), 
+                                                  new THREE.MeshStandardMaterial( { map: this.BufferAntena.Textura, roughness: .5, metalness: .73, transparent : true, opacity:1  } ));
+
+        this.RobotAntenas[Pos].name = "Robot_Antenas" + Pos;
+//        this.RobotAntenas[Pos].castShadow = true;
+        this.RobotAntenas[Pos].position.set(0.02, 4.06, 0.03);
+        this.RobotAntenas[Pos].rotation.y -= Math.PI / 2;
+        this.RobotCuerpo[Pos].add(this.RobotAntenas[Pos]);        
+
+
+        this.RobotAntenasP1[Pos] = new THREE.Mesh(  new THREE.SphereGeometry(0.07, 16, 16), 
+                                                    new THREE.MeshPhongMaterial({ color: 0x00bb00, specular : 0x00ff00, transparent : true, opacity:0.3  } ));
+        this.RobotAntenasP1[Pos].name = "Robot_PuntaAntena1_"+ Pos;
+        this.RobotAntenasP1[Pos].position.set(0.02, 4.04, 0.82);
+        this.RobotCuerpo[Pos].add(this.RobotAntenasP1[Pos]); 
+
+        this.RobotAntenasP2[Pos] = new THREE.Mesh(  new THREE.SphereGeometry(0.07, 16, 16), 
+                                                    new THREE.MeshPhongMaterial({ color: 0x0000bb, specular : 0x00ffff, transparent : true, opacity:0.3  } ));
+        this.RobotAntenasP2[Pos].name = "Robot_PuntaAntena2_" + Pos;
+        this.RobotAntenasP2[Pos].position.set(0.02, 4.04, -0.78);
+        this.RobotCuerpo[Pos].add(this.RobotAntenasP2[Pos]); 
+
+        this.RobotLuz1[Pos] = new THREE.PointLight( 0x00aa00, 0, 85);
+//        this.RobotLuz1[Pos].castShadow = true;
+        this.RobotLuz1[Pos].name = "Robot_LuzAntenas1";
+//                this.RobotLuz1.position.set(0.02, 5, 0.75);
+        this.RobotAntenasP1[Pos].add(this.RobotLuz1[Pos]);        
+        this.RobotLuz2[Pos] = new THREE.PointLight( 0x0000aa, 0, 85);
+//        this.RobotLuz2[Pos].castShadow = true;
+        this.RobotLuz2[Pos].name = "Robot_LuzAntenas2";
+//                this.RobotLuz2.position.set(0.02, 5, -0.75);
+        this.RobotAntenasP2[Pos].add(this.RobotLuz2[Pos]);      */      
     },
     
     
     IniciarShow : function() {
+        this.PantallaCompleta();
+        
+
         this.TickInicio = this.Tick - this.IniciarDesde;
         document.getElementById("Empezar").setAttribute("visible", false);
 //        this.AniMovimiento.Iniciar();
@@ -440,7 +548,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         
         // Pinto el circulo con la media de los graves
 //        var ColG = 'rgb(' + Math.round(120 + this.MediaAudio[0]) + ',' + Math.round(255 - this.MediaAudio[0]) +  ', 0)';
-        this.BufferOjo.Context.fillStyle = 'rgba(255, 255, 255, 0.2)';
+        this.BufferOjo.Context.fillStyle = 'rgba(0, 0, 255, 1)';
         this.BufferOjo.Context.beginPath();        
         this.BufferOjo.Context.arc(mx, my, 20 + (this.MediaAudio[0]) * 0.9, 0, this.Constantes.PIx2, false);
         this.BufferOjo.Context.stroke();
@@ -451,7 +559,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
 //        var ColM = 'rgb(' + Gris + ',' + Gris + ',' + Gris + ')';
 //        this.BufferOjo.Context.strokeStyle = ColM;
 //        this.BufferOjo.Context.fillStyle = 'rgba(' + Math.round(120 + this.MediaAudio[1]) + ',' + Math.round(255 - this.MediaAudio[1]) +  ', 0, 0.5)';;
-        this.BufferOjo.Context.fillStyle = 'rgba(0, 255, 0, 0.4)';
+        this.BufferOjo.Context.fillStyle = 'rgba(0, 255, 0, 1)';
         this.BufferOjo.Context.beginPath();        
         this.BufferOjo.Context.arc(mx, my, 26 + (this.MediaAudio[1]) * 0.8, 0, this.Constantes.PIx2, false);
         this.BufferOjo.Context.stroke();
@@ -461,7 +569,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
 //        var ColA = 'rgb(0, ' + Math.round(120 + this.MediaAudio[2]) + ',' + Math.round(128 - this.MediaAudio[2]) +  ')';
 //        this.BufferOjo.Context.strokeStyle = ColA;
 //        this.BufferOjo.Context.fillStyle = 'rgba(' + Math.round(120 + this.MediaAudio[2]) + ',' + Math.round(128 - this.MediaAudio[2]) +  ',0 , 0.9)';
-        this.BufferOjo.Context.fillStyle = 'rgba(255, 0, 0, 0.8)';
+        this.BufferOjo.Context.fillStyle = 'rgba(255, 0, 0, 1)';
         this.BufferOjo.Context.beginPath();        
         this.BufferOjo.Context.arc(mx, my, (32 + this.MediaAudio[2]) * 0.7, 0, this.Constantes.PIx2, false);
         this.BufferOjo.Context.stroke();
@@ -469,7 +577,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         
         // Onda circular
 
-        this.BufferOjo.Context.strokeStyle = "rgb(0,0,255)";
+        this.BufferOjo.Context.strokeStyle = "rgb(255, 255 ,255)";
         this.BufferOjo.Context.beginPath();        
 //        var ColT = 'rgb(' + Math.round(128 + this.MediaAudio[4]) + ',' + Math.round(255 - this.MediaAudio[4]) +  ', 0)';
 
@@ -512,6 +620,32 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         // Actualizo la textura
         this.BufferAntena.Textura.needsUpdate = true;        
     },
+    
+    CrearDatosDebug : function() {
+        this.DatosDebug = document.createElement("div");
+        this.DatosDebug.id = "DatosDebug";
+        this.DatosDebug.className = "MarcoCanvas";
+        this.DatosDebug.style = "top:0px; left:0px; width:60px";
+        
+        this.DatosDebug.innerHTML =
+            "<div id='DatosDebug_Tiempo'></div>" + 
+            "<div id='DatosDebug_Graves' style='color:#0000aa;'></div>" + 
+            "<div id='DatosDebug_Medios' style='color:#00aa00;'></div>" + 
+            "<div id='DatosDebug_Agudos' style='color:#aa0000;'></div>" + 
+            "<div id='DatosDebug_Inaudibles'></div>" + 
+            "<div id='DatosDebug_Media'></div>";
+            
+            this.Cabecera.insertBefore(this.DatosDebug, document.getElementById("Cabecera_Error"));
+    },
+    
+    ActualizarDatosDebug : function() {
+        document.getElementById("DatosDebug_Tiempo").innerHTML     = Math.round(this.Audio.Cancion.currentTime * 100) / 100;
+        document.getElementById("DatosDebug_Graves").innerHTML     = this.MediaAudio[0];
+        document.getElementById("DatosDebug_Medios").innerHTML     = this.MediaAudio[1];
+        document.getElementById("DatosDebug_Agudos").innerHTML     = this.MediaAudio[2];
+        document.getElementById("DatosDebug_Inaudibles").innerHTML = this.MediaAudio[3];
+        document.getElementById("DatosDebug_Media").innerHTML      = this.MediaAudio[4];
+    },
         
     // Función que pinta cada frame de la animación
     Pintar          : function() {  
@@ -525,19 +659,32 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         this.MediaAudio = this.MediaFrequenciasAudio();
         this.PintarOjo(this.Tick);
         this.PintarAntena();
-        if (this.RobotLuz1) {
-            var m4 = this.MediaAudio[4] / 128;
-            this.RobotLuz1.intensity = m4;
-            this.RobotLuz2.intensity = this.MediaAudio[2] / 128;
-            
-            this.RobotAntenasP1.material.opacity = 0.1 + m4;
-            this.RobotAntenasP2.material.opacity = 0.1 + m4;
+        if (this.RobotLuz[0]) {
+            this.RobotLuz[0].intensity = this.MediaAudio[0] / 128;
+            this.RobotLuz[1].intensity = this.MediaAudio[1] / 128;
+            this.RobotLuz[2].intensity = this.MediaAudio[2] / 128;
+//            var m4 = this.MediaAudio[4] / 128;
+//            for (var i = 0; i < this.Robot.length; i++) {
+//                this.RobotLuz[i].intensity = m4;
+//                this.RobotLuz[i].intensity = this.MediaAudio[2] / 128;
+
+//                this.RobotAntenasP1[i].material.opacity = 0.1 + m4;
+//                this.RobotAntenasP2[i].material.opacity = 0.1 + m4;
+//            }
 //            console.log(m4);
         }
+        
+        if (this.Robot[0]) {
+//            this.Robot[0].ModificadorBloat.radius += 0.01;
+            this.Robot[0].Modificador.apply();
+        }
+
+        
 //        this.Orbit.update();
         this.Animaciones.Actualizar(this.Tick);
         
-        document.getElementById("DatosDebug").innerHTML = Math.round(this.Audio.Cancion.currentTime * 100) / 100;
+        this.ActualizarDatosDebug();
+        //document.getElementById("DatosDebug").innerHTML = Math.round(this.Audio.Cancion.currentTime * 100) / 100;
         
         this.Context.render(this.Escena, this.Camara);  
     }
@@ -607,7 +754,7 @@ window.addEventListener('load', function() { Canvas = new CyberParasit; });
 </script>
     </head>
     <body>
-        <div id="DatosDebug" class='MarcoCanvas' style="top:0px; left:0px; width:60px">Datos</div> 
+<!--        <div id="DatosDebug" class='MarcoCanvas' style="top:0px; left:0px; width:60px">Datos</div>  -->
         <div id="Empezar" class='MarcoCanvas' onclick="Canvas.IniciarShow();">Empezar</div>
     </body>
 </html>

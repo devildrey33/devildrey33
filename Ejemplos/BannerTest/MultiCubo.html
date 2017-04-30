@@ -36,6 +36,7 @@ var MultiCubo = function() {
         'Alto'          : 'Auto',
         'Entorno'       : 'Normal',
         'MostrarFPS'    : true,
+        'BotonLogo'     : false,
         'ElementoRaiz'  : document.body,
         'Pausar'        : true,             // Pausa el canvas si la pestaña no tiene el foco del teclado
         'ColorFondo'    : 0xeeeeee
@@ -378,7 +379,7 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     
     // Función que crea y enlaza todos los controles del ObjetoTest
     CrearTest : function() {
-        this.Test = new ObjetoTest({ css : { bottom : "10px", right : "10px" } });
+        this.Test = new ObjetoTest({ css : { bottom : "10px", left : "10px" } });
         // Valores para el ObjetoTest de la cámara
         this.lCamara = this.Test.AgregarLista("Cámara");
         this.lCamara.Agregar({ Padre : this.Camara.position, Variable : "x", Min : -200, Max : 200, Nombre : "position.x", Modificable : false  });

@@ -5,6 +5,15 @@
 
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(
+array(	"Titulo" 	=> "Experimento con Three.js 'Espiral RGB'", 
+        "Fecha" 	=> "28/04/2017",
+        "URL" 		=> "Ejemplos/BannerTest/EspiralRGB.html", 
+        "Tags" 		=> array("Three.js", "JavaScript", "CSS", "HTML", "Programación", "Shaders" ),
+        "Idioma"        => "es",
+        "Autor"         => "Josep Antoni Bover",
+        "Tipo"		=> "Lab",
+        "Imagen"	=> "EspiralRGB.png"),
+        
 array(	"Titulo" 	=> "Experimento con Three.js 'EspectroAudible'", 
         "Fecha" 	=> "23/02/2017",
         "URL" 		=> "Ejemplos/BannerTest/EspectroAudible.html", 
@@ -35,7 +44,7 @@ array(	"Titulo" 	=> "Experimento con Canvas 2D 'Reunion de circulos'",
 array(	"Titulo" 	=> "Experimento con Three.js 'Esfera (Vertex Shader)'", 
         "Fecha" 	=> "07/10/2016",
         "URL" 		=> "Ejemplos/BannerTest/EsferaVShader.html", 
-        "Tags" 		=> array("Three.js", "JavaScript", "CSS", "HTML", "Programación" ),
+        "Tags" 		=> array("Three.js", "JavaScript", "CSS", "HTML", "Programación", "Shaders" ),
         "Idioma"        => "es",
         "Autor"         => "Josep Antoni Bover",
         "Tipo"		=> "Lab",

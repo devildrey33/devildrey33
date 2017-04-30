@@ -235,7 +235,7 @@
                 
                 echo "<div class='MiniLab' oculto='$Oculto' archivo='$Archivo' ver='mixto' id='MiniLab_$ID'>".Intro().
                         "<textarea class='MiniLab_Codigo'></textarea>".Intro().
-                        "<iframe class='MiniLab_Preview'></iframe>".Intro().
+                        "<iframe class='MiniLab_Preview' allowfullscreen='true'></iframe>".Intro().
                         "<div class='MiniLab_VerPreview'></div>".Intro().
                         
                         "<div class='Menu'>".Intro().

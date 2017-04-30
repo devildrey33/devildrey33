@@ -33,6 +33,7 @@ var Banner_WormHole = function() {
         'Alto'          : 'Auto',
         'Entorno'       : 'Normal',
         'MostrarFPS'    : true,
+        'BotonLogo'     : false,
         'Pausar'        : true,             // Pausa el canvas si la pestaña no tiene el foco del teclado
         'ElementoRaiz'  : document.body
     }) === false) { return false; }
@@ -105,12 +106,14 @@ Banner_WormHole.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
             // La textura se ha cargado, retiro la ventana que avisa al usuario de la carga.
             if (this.TexturasCargadas === this.TotalTexturas) { this.Cargando(false); }
         };
+        
         var Cargador = new THREE.TextureLoader();
-        Cargador.crossOrigin = '';
+        Cargador.crossOrigin = "";
+        Cargador.load('/Web/Graficos/Banner_WormHole11.jpg', this.TexturaCargada.bind(this, 0) );    
+        var Cargador2 = new THREE.TextureLoader();
+        Cargador2.crossOrigin = "";
+        Cargador2.load('/Web/Graficos/Banner_WormHole1.2.jpg', this.TexturaCargada.bind(this, 1) );
 
-        var T1 = new Cargador.load('/Web/Graficos/Banner_WormHole11.jpg', this.TexturaCargada.bind(this, 0) );    
-        var T2 = new Cargador.load('/Web/Graficos/Banner_WormHole1.2.jpg', this.TexturaCargada.bind(this, 1) );
-      //  T2.setCrossOrigin('');
 
         this.Camara.lookAt(this.Escena.position);    
     },

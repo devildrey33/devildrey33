@@ -18,7 +18,7 @@ html, button, .boton {
    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
 }
 html {
-   font-size  : 62.5%;
+   font-size  : 62.5%; /* Conversión para que el rem valga 10 pixeles por defecto en la web */
    min-width  : 600px;
    height     : 100%;    
    transition : 0.4s;
@@ -172,7 +172,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
 
 #VentanaLogin {
     height  : 125px;
-    z-index : 101;
+/*    z-index : 101;  ha de ser 3001 */
 }
 
 .VentanaMensaje { z-index : 102; }
@@ -192,8 +192,8 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
 @keyframes Ani_VentanaLogin_Error {
     0%   { transform  : perspective(600px) rotateZ(0deg) rotateY(0deg);     background : #1D1A21; }
     30%  { transform  : perspective(600px) rotateZ(3deg) rotateY(75deg) translateZ(-20px);        }
-    35%  { background : rgb(234, 80, 78);                                                                  }
-    55%  { background : rgb(234, 80, 78);                                                                  }
+    35%  { background : rgb(234, 80, 78);                                                         }
+    55%  { background : rgb(234, 80, 78);                                                         }
     70%  { transform  : perspective(600px) rotateZ(-3deg) rotateY(-75deg) translateZ(20px);       }
     100% { transform  : perspective(600px) rotateZ(0deg) rotateY(0deg);     background : #1D1A21; }
 }

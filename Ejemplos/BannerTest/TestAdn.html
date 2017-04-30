@@ -1,0 +1,205 @@
+<!-- 
+    Plantilla para test de shaders en Three.js creado por Josep Antoni Bover Comas el 06-10-2016 para http://devildrey33.es
+
+        Vista por defecto en el Laboratorio de pruebas  
+		devildrey33_Lab->Opciones->Vista = Filas;
+
+        Ultima modificación el 06/10/2016
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <!-- Estilos CSS para el test -->
+        <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoCanvas.css' />        
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        <!-- Three.JS -->
+        <script src="/Web/JS/3rdParty/three-0.84.min.js"></script>
+<!--        <script src="/Web/JS/3rdParty/three-0.79.min.js"></script> -->
+        <!-- Three.JS para depuración -->
+        <!-- <script src="/Web/JS/3rdParty/three-0.79.js"></script> -->
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
+   
+<!-- Código javascript --> 
+<script type="text/javascript">
+/* Plantilla para crear banners animados en devildrey33.es */
+
+// Constructor
+var ADN = function() {
+    // Llamo al constructor del ObjetoBanner
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'                      : 'THREE',
+        'Ancho'                     : 'Auto',
+        'Alto'                      : 'Auto',
+        'Entorno'                   : 'Normal',
+        'MostrarFPS'                : true,
+        'BotonLogo'                 : false,
+        'BotonPantallaCompleta'     : true,
+        'ElementoRaiz'              : document.body,
+        'Pausar'                    : false,             // Pausa el canvas si la pestaña no tiene el foco del teclado
+        'ColorFondo'                : 0xFFFFFF
+    }) === false) { return false; }
+
+    this.Iniciar();    
+    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
+    this.Cargando(false);
+};
+
+
+ADN.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor     : ADN, 
+    // Función que se llama al redimensionar el documento
+    Redimensionar   : function() {    
+        
+    },
+    // Función que se llama al hacer scroll en el documento    
+    Scroll          : function() {    },
+    // Función que se llama al mover el mouse por el canvas
+    MouseMove       : function(Evento) { },
+    // Función que se llama al presionar un botón del mouse por el canvas
+    MousePresionado : function(Evento) { },
+    // Función que se llama al soltar un botón del mouse por el canvas
+    MouseSoltado    : function(Evento) { },
+    // Función que se llama al entrar con el mouse en el canvas
+    MouseEnter      : function(Evento) { },
+    // Función que se llama al salir con el mouse del canvas
+    MouseLeave      : function(Evento) { },
+    // Función que se llama al presionar una tecla
+    TeclaPresionada : function(Evento) { },
+    // Función que se llama al soltar una tecla
+    TeclaSoltada    : function(Evento) { },
+    // Función que se llama al presionar la pantalla
+    TouchStart      : function(Evento) { },
+    // Función que se llama al soltar el dedo de la pantalla
+    TouchEnd        : function(Evento) { },    
+    // Función que se llama al pausar el banner
+    Pausa           : function() { },
+    // Función que se llama al reanudar el banner
+    Reanudar        : function() { },
+    // Función que se llama al redimensionar el documento
+    Iniciar         : function() {
+        this.Context.shadowMap.enabled = true;
+        this.Escena = new THREE.Scene();
+        window.scene = this.Escena; // Three.js inspector plugin for chrome
+        this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);
+        this.Camara.position.set(0, 0, 20);
+        this.Escena.add(this.Camara);
+
+        // Creo el suelo 
+        this.Suelo = new THREE.Mesh(new THREE.BoxGeometry(500, 1, 500), new THREE.MeshPhongMaterial({ color: 0x434343, specular : 0xeeeeee }) );
+        this.Suelo.position.y = -10;
+        this.Suelo.castShadow = false;
+        this.Suelo.receiveShadow = true;
+        this.Escena.add(this.Suelo);
+        
+        this.CrearLuces();
+
+//        var PhongShader = THREE.ShaderLib['phong'];
+        
+
+        this.Cubos = [];
+        this.Particulas = 1000;
+        
+        var Mat1 = new THREE.MeshPhongMaterial({ color: 0xE34343, specular : 0xeeeeee, transparent : true, opacity : 0.8 });
+        var Mat2 = new THREE.MeshPhongMaterial({ color: 0x43E3E3, specular : 0xeeeeee, transparent : true, opacity : 0.8 });
+        // Creo los cubos con los datos del shader
+        for (var i = 0; i < this.Particulas; i++) {
+            var Tam = Rand(0.5, 0.1);
+            var CuboGeo = new THREE.BoxBufferGeometry( Tam, Tam, Tam );            
+/*            var Uniforms = THREE.UniformsUtils.clone(PhongShader.uniforms);
+            Uniforms.Tiempo = { "type" : "1f", value : -25 + ((50 / this.Particulas) * i) };
+            
+
+            var MaterialShader = new THREE.ShaderMaterial({
+                uniforms       : Uniforms,
+                vertexShader   : document.getElementById('VertexShader').innerHTML,
+                fragmentShader : /*document.getElementById('FragmentShader').innerHTML,  PhongShader.fragmentShader,
+                transparent    : true
+            });*/
+            var Tipo = RandInt(1, 0);
+            var Mat = (Tipo === 0) ? Mat1 : Mat2;
+            var Cubo = new THREE.Mesh(CuboGeo, Mat);
+            Cubo.castShadow = true;
+
+            this.Escena.add(Cubo);
+            Cubo.Tiempo =-50 + ((100 / this.Particulas) * i);
+            Cubo.PosRnd = { x : Rand(0.3, -0.3), y : Rand(0.3, -0.3), z : Rand(0.3, -0.3) };
+            Cubo.Velocidad = Rand(0.02, 0.001);
+            Cubo.Tipo = Tipo;
+            this.Cubos.push(Cubo);
+        }
+        
+    },
+
+
+    CrearLuces : function() {
+        // Luz direccional
+        this.DirLight = new THREE.DirectionalLight( 0xffffff, 0.81 );
+        this.DirLight.position.set( 30, 60, 25 ); //.normalize();
+        this.DirLight.position.multiplyScalar( 20 );
+        this.DirLight.castShadow = true;
+        this.DirLight.shadow.mapSize.width = 2048;
+        this.DirLight.shadow.mapSize.height = 2048;
+        var d = 40;
+        this.DirLight.shadow.camera.left = -d;
+        this.DirLight.shadow.camera.right = d;
+        this.DirLight.shadow.camera.top = d;
+        this.DirLight.shadow.camera.bottom = -d;
+        this.DirLight.shadow.camera.far = 3500;
+        this.DirLight.target = this.Suelo;
+        this.Escena.add( this.DirLight );
+        
+        // Luz de ambiente  
+        this.HemiLight = new THREE.HemisphereLight( 0xeeeeee, 0xffffff, 0.4 );
+        this.HemiLight.color.setHSL( 0.6, 0.6, 0.6 );
+        this.HemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
+        this.HemiLight.position.set( 0, 0, 0 );
+        this.Escena.add( this.HemiLight );         
+        
+    },
+    
+    // Función que pinta cada frame de la animación
+    Pintar          : function() {  
+        
+/*        this.shaderTime += 0.1;
+        this.badTVPass.uniforms[ 'time' ].value =  this.shaderTime;
+        this.filmPass.uniforms[ 'time' ].value =  this.shaderTime;
+        this.staticPass.uniforms[ 'time' ].value =  this.shaderTime;        */
+        
+        // Amplio el valor del tiempo que le paso al shader en este frame.
+        for (var i = 0; i < this.Particulas; i++) {
+            this.Cubos[i].Tiempo += (this.Cubos[i].Velocidad * 2.5);
+            if (this.Cubos[i].Tiempo > 50) { this.Cubos[i].Tiempo = -50; }
+            if (this.Cubos[i].Tipo === 0) {
+                this.Cubos[i].position.set(
+                    this.Cubos[i].Tiempo * 2 + this.Cubos[i].PosRnd.x , 
+                    this.Cubos[i].PosRnd.y + Math.sin(this.Cubos[i].Tiempo) * 4 ,  
+                    this.Cubos[i].PosRnd.z + Math.sin(this.Cubos[i].Tiempo) * 4);
+            }
+            else {
+                this.Cubos[i].position.set(
+                    this.Cubos[i].Tiempo * 2 + this.Cubos[i].PosRnd.x , 
+                    this.Cubos[i].PosRnd.y + Math.sin(this.Cubos[i].Tiempo) * 2 ,  
+                    this.Cubos[i].PosRnd.z + Math.sin(this.Cubos[i].Tiempo) * 2);                
+            }
+        }
+        
+        // Rotación de la cámara
+/*        this.Rotacion_Grados += this.Rotacion_Avance;
+        this.Camara.position.x = this.Rotacion_Distancia * Math.cos(this.Rotacion_Grados);
+        this.Camara.position.z = this.Rotacion_Distancia * Math.sin(this.Rotacion_Grados);
+        this.Camara.lookAt(this.Escena.position);*/
+        this.Context.render(this.Escena, this.Camara);  
+//        this.composer.render(0.1);  
+    }
+});
+
+var Canvas = null;
+window.addEventListener('load', function() { Canvas = new ADN; });
+</script>
+    </head>
+    <body>
+    </body>
+</html>

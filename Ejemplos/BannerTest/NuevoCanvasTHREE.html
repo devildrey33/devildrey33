@@ -4,7 +4,7 @@
         Vista por defecto en el Laboratorio de pruebas  
 		devildrey33_Lab->Opciones->Vista = Filas;
 
-        Ultima modificación el 05/02/2017
+        Ultima modificación el 07/04/2017
 -->
 <!DOCTYPE html>
 <html>
@@ -27,7 +27,7 @@
 
         <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
         <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
-        
+                
         <!-- Objeto para crear animaciones de tiempo -->
         <!-- <script src="/Ejemplos/Utils/ObjetoAnimacion.js"></script> -->
         
@@ -42,14 +42,16 @@
 var NUEVOCANVASTHREE = function() {
     // Llamo al constructor del ObjetoBanner
     if (ObjetoCanvas.call(this, { 
-        'Tipo'          : 'THREE',
-        'Ancho'         : 'Auto',
-        'Alto'          : 'Auto',
-        'Entorno'       : 'Normal',
-        'MostrarFPS'    : true,
-        'ElementoRaiz'  : document.body,
-        'Pausar'        : true,             // Pausa el canvas si la pestaña no tiene el foco del teclado
-        'ColorFondo'    : 0xFFFFFF
+        'Tipo'                      : 'THREE',
+        'Ancho'                     : 'Auto',
+        'Alto'                      : 'Auto',
+        'Entorno'                   : 'Normal',
+        'MostrarFPS'                : true,
+        'BotonLogo'                 : false,
+        'BotonPantallaCompleta'     : true,
+        'ElementoRaiz'              : document.body,
+        'Pausar'                    : true,             // Pausa el canvas si la pestaña no tiene el foco del teclado
+        'ColorFondo'                : 0xFFFFFF
     }) === false) { return false; }
     
     // Se ha creado el canvas, inicio los valores de la animación ... 
@@ -89,9 +91,13 @@ NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     Reanudar        : function() { },
     // Función que inicia el ejemplo
     Iniciar         : function() {
+        // Activo el mapeado de sombras
+        this.Context.shadowMap.enabled	= true;
+        // Creo la escena
         this.Escena = new THREE.Scene();
+        // Creo la camara
         this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 1000);
-        this.Camara.Rotacion = { Grados : -180 * (Math.PI / 180), Avance : (Math.PI / 180) / 3, Distancia : 50, MirarHacia : new THREE.Vector3(0, 0, 0), Animacion : true };
+        this.Camara.Rotacion = { Grados : 0, Avance : (Math.PI / 180) / 3, Distancia : 20, MirarHacia : new THREE.Vector3(0, 0, 0), Animacion : true };
         this.Camara.position.set(0, 0, this.Camara.Rotacion.Distancia);        
         // Función para que la cámara rote alrededor de la escena
         this.Camara.Rotar = function() {
@@ -104,17 +110,48 @@ NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         };
         this.Escena.add(this.Camara);
 
-        // Parrilla para iniciar la plantilla (se puede eliminar)
-        this.Parrilla = new THREE.GridHelper(10, 10, new THREE.Color(0xcccccc), new THREE.Color(0x999999));
-        this.Parrilla.position.y = -4;
-        this.Escena.add(this.Parrilla);
+        // Plano para el suelo
+        this.Suelo = new THREE.Mesh(    new THREE.PlaneGeometry(1000, 1000), 
+                                        new THREE.MeshPhongMaterial({ color: 0xbbbbbb, specular : 0xffffff }));
+        this.Suelo.rotation.x = -Math.PI / 2;
+        this.Suelo.position.y = -5;
+        this.Suelo.castShadow = false;
+        this.Suelo.receiveShadow = true;
+        this.Escena.add(this.Suelo);
 
-        this.Cubo = new THREE.Mesh(new THREE.BoxGeometry( 4, 4, 4 ), new THREE.MeshBasicMaterial( { color: "rgb(150,0,0)", wireframe : true } ));
-        this.Escena.add(this.Cubo);
-        this.Rotacion_Grados    = 0;
-        this.Rotacion_Avance    = 0.005;
-        this.Rotacion_Distancia = 20;
-        this.Camara.position.set(0, 0, this.Rotacion_Distancia);        
+        // Esfera
+        this.Esfera = new THREE.Mesh(new THREE.SphereGeometry( 5, 32, 32 ), new THREE.MeshPhongMaterial( { color: "rgb(0,0, 210)", specular : 0xccccff, transparent : false, opacity: 0.9 } ));
+        this.Esfera.castShadow = true;
+        this.Escena.add(this.Esfera);
+
+        this.CrearLuces();
+//        this.Camara.Rotar();
+    },
+    
+    CrearLuces : function() {
+        // Luz direccional
+        this.DirLight = new THREE.DirectionalLight( 0xffffff, 0.41 );
+        this.DirLight.position.set( 30, 60, 20 ); //.normalize();
+        this.DirLight.position.multiplyScalar( 20 );
+        this.DirLight.castShadow = true;
+        this.DirLight.shadow.mapSize.width = 2048;
+        this.DirLight.shadow.mapSize.height = 2048;
+        var d = 40;
+        this.DirLight.shadow.camera.left = -d;
+        this.DirLight.shadow.camera.right = d;
+        this.DirLight.shadow.camera.top = d;
+        this.DirLight.shadow.camera.bottom = -d;
+        this.DirLight.shadow.camera.far = 3500;
+        this.DirLight.target = this.Suelo;
+        this.Escena.add( this.DirLight );
+        
+        // Luz de ambiente  
+        this.HemiLight = new THREE.HemisphereLight( 0xeeeeee, 0xffffff, 0.4 );
+        this.HemiLight.color.setHSL( 0.6, 0.6, 0.6 );
+        this.HemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
+        this.HemiLight.position.set( 0, 0, 0 );
+        this.Escena.add( this.HemiLight );         
+        
     },
     
     // Función que pinta cada frame de la animación

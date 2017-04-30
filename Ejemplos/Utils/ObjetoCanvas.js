@@ -3,41 +3,53 @@
     Ultima modificación :  14/02/2017 
  */
 
-/*  Opciones['Tipo']            puede ser : 
-                                    - 2d       , Canvas con funciones 2D.                       (POR DEFECTO)
-                                    - THREE    , Canvas utilizando la API del Three.js
-    Opciones['Ancho']           por defecto el ancho se adapta al contenedor, establece un ancho en pixeles para que sea fijo.
-    Opciones['Alto']            por defecto la altura se adapta al contenedor, establece una altura en pixeles para que sea fija.
-    Opciones['Entorno']         puede ser :
-                                    - Normal   , Canvas para crear tests rapidos.               (POR DEFECTO)
-                                    - Banner   , Canvas diseñado para el Banner de devildrey33.
-    Opciones['Idioma']          puede ser : 'es'pañol o 'en'glish.                              ('es' POR DEFECTO)
-    Opciones['MostrarFPS']      puede ser : true o false.                                       (TRUE POR DEFECTO)
-    Opciones['ElementoRaiz']    elemento del HTML donde se creará el canvas                     (POR DEFECTO es 'document.body')
-    Opciones['ColorFondo']      color del fondo en HEX (SOLO para THREE.js)                     (POR DEFECTO es '0x312E35' gris oscuro) 
+/* NOTA Importante, inicialmente este objeto se creo con la finalidad de probar banners para mi web, pero con el tiempo lo he estado enriqueciendo y adaptando para poder crear
+ * presentaciones 2D o 3D, y ahora este objeto conserva el modo banner de mi web por compatibilidad y tambien por la pereza de tener que mantener 2 objetos distintos que en esencia hacen lo mismo. 
+ * La estructura HTML puede que sea excesiva, para una demostración 2d/3d pero ofrece ciertas ventajas, de las que en teoría ya no me tengo que preocupar, por ejemplo :
+ *  Muestra los frames por segundo si no se desactiva en las opciones 
+ *  Muestra si se está cargando algun archivo externo (texturas/modelos/audio/video/etc..) basta con utilizar ObjetoCanvas.Cargando(BOOL) 
+ *  Permite pausar el canvas si este se encuentra en segundo plano, y nos muestra un mensaje si está pausado.
+ *  (SOLO EN Entorno:'Normal') Muestra un boton iniciar animación, que además pone el canvas a pantalla completa. */
+ 
+
+/*  Opciones['Tipo']                    puede ser : 
+                                           - 2d       , Canvas con funciones 2D.                       (POR DEFECTO)
+                                          - THREE    , Canvas utilizando la API del Three.js
+    Opciones['Ancho']                   por defecto el ancho se adapta al contenedor, establece un ancho en pixeles para que sea fijo.
+    Opciones['Alto']                    por defecto la altura se adapta al contenedor, establece una altura en pixeles para que sea fija.
+    Opciones['Entorno']                 puede ser :
+                                            - Normal   , Canvas para crear tests rapidos.               (POR DEFECTO)
+                                            - Banner   , Canvas diseñado para el Banner de devildrey33.
+    Opciones['Idioma']                  puede ser : 'es'pañol o 'en'glish.                              ('es' POR DEFECTO)
+    Opciones['MostrarFPS']              puede ser : true o false.                                       (TRUE POR DEFECTO)
+    Opciones['BotonPantallaCompleta']   puede ser : true o false.                                       (TRUE POR DEFECTO)
+    Opciones['BotonLogo']               puede ser : true o false.                                       (TRUE POR DEFECTO)
+    Opciones['ElementoRaiz']            elemento del HTML donde se creará el canvas                     (POR DEFECTO es 'document.body')
+    Opciones['ColorFondo']              color del fondo en HEX (SOLO para THREE.js)                     (POR DEFECTO es '0x312E35' gris oscuro) 
  */
 
 ObjetoCanvas = function(Opciones) {
-    // Opciones por defecto
+    // Opciones por defecto, puedes modificar las opciones creando un objeto que contenga una o mas opciones a modificar, y pasando el array en el constructor del ObjetoCanvas
     this.OpcionesCanvas  = { 
-        Tipo          : '2d',
-        Ancho         : 'Auto',
-        Alto          : 'Auto',
-        Entorno       : 'Normal',
-        Idioma        : 'es',             
-        MostrarFPS    : true,
-        ElementoRaiz  : document.body,
-        Pausar        : true,             // Pausar si el canvas está en segundo plano
-        ColorFondo    : 0x312E35          // Color del fondo por defecto (solo si usas THREE.js)
+        Tipo                    : '2d',
+        Ancho                   : 'Auto',
+        Alto                    : 'Auto',
+        Entorno                 : 'Normal',
+        Idioma                  : 'es',             
+        MostrarFPS              : true,
+        BotonesPosicion         : "derecha",        // Puede ser 'derecha' o 'izquierda'
+        BotonPantallaCompleta   : true,
+        BotonLogo               : true,
+        BotonExtraHTML          : "",               // Contenido extra para los botones del lateral inferior izquierdo (solo se usa en el ejemplo sinusoidal)
+        ElementoRaiz            : document.body,
+        Pausar                  : true,             // Pausar si el canvas está en segundo plano
+        ColorFondo              : 0x312E35          // Color del fondo por defecto (solo si usas THREE.js)
     };
     // Copio las nuevas opciones encima de las opciones por defecto
     if (typeof Opciones === 'object') {
         for (var Indice in Opciones) {
             this.OpcionesCanvas[Indice] = Opciones[Indice];
         }
-/*        Opciones.forEach(function(Elemento, Indice, Array) { 
-            this.Opciones[Indice] = Elemento;
-        }.bind(this));*/
     }
             
     // En el entorno Normal hay que crear todas las etiquetas
@@ -47,26 +59,72 @@ ObjetoCanvas = function(Opciones) {
         PreCabecera.id = "Cabecera";
         this.OpcionesCanvas['ElementoRaiz'].appendChild(PreCabecera);
 
-
         // Creo las etiquetas que contienen información adicional sobre la animación
         this.Cabecera = document.getElementById("Cabecera");
-        if (this.OpcionesCanvas.Idioma === 'es') {
-            this.Cabecera.innerHTML =   '<div id="Cabecera_Cargando" class="MarcoCanvas"><span>Cargando...</span></div>' +
-                                        "<div id='Cabecera_Stats' class='MarcoCanvas'>0 FPS</div>" +
-                                        "<canvas id='Cabecera_Canvas'></canvas>" +
-                                        '<div id="Cabecera_PausaAni"  class="MarcoCanvas">Pausa.</div>' + 
-                                        '<div id="Cabecera_Error" class="MarcoCanvas visible="false">Error :</div>';
+        var Textos = { 
+            en : ["Loading..." , "Paused"  , "Start"  , "Frames per second" , "Full Screen"      , "Restore Screen"    , "devildrey33 home page" ],
+            es : ["Cargando...", "En Pausa", "Iniciar", "Frames por segundo", "Pantalla Completa", "Restaurar Pantalla", "Página de devildrey33" ] 
+        };
+        var StrHtml = '<div id="Cabecera_Cargando" class="MarcoCanvas"><span>' + Textos[this.OpcionesCanvas.Idioma][0] + '</span></div>' +
+            "<canvas id='Cabecera_Canvas'></canvas>" +
+            '<div id="Cabecera_PausaAni" class="MarcoCanvas">' + Textos[this.OpcionesCanvas.Idioma][1] + '</div>' + 
+            '<div id="Cabecera_Iniciar" class="MarcoCanvas">' + Textos[this.OpcionesCanvas.Idioma][2] + '</div>' + 
+            '<div id="Cabecera_Error" class="MarcoCanvas visible="false">Error :</div>';
+        // Etiqueta para el marco de los botones
+        StrHtml += "<div id='ObjetoCanvas_Controles' alinear='" + this.OpcionesCanvas.BotonesPosicion + "'>";
+        // Marco FPS
+        if (this.OpcionesCanvas.MostrarFPS === true) {
+            StrHtml += "<div class='ObjetoCanvas_Marco' title='" + Textos[this.OpcionesCanvas.Idioma][3] + "'>" +
+                    "<span id='ObjetoCanvas_FPS'>60</span>" +
+                    "<span id='ObjetoCanvas_TxtFPS'>fps</span>" +
+                "</div>";
         }
-        else {
-            this.Cabecera.innerHTML =   '<div id="Cabecera_Cargando" class="MarcoCanvas">Loading...</div>' +
-                                        "<div id='Cabecera_Stats' class='MarcoCanvas'>0 FPS</div>" +
-                                        "<canvas id='Cabecera_Canvas'></canvas>" +
-                                        '<div id="Cabecera_PausaAni" class="MarcoCanvas">Paused.</div>';
-                                        '<div id="Cabecera_Error" class="MarcoCanvas" visible="false">Error :</div>';
+        // Boton / botones extra
+        if (this.OpcionesCanvas.BotonExtraHTML !== "") { StrHtml += this.OpcionesCanvas.BotonExtraHTML; }
+        // Boton pantalla completa / restaurar pantalla
+        if (this.OpcionesCanvas.BotonPantallaCompleta === true) {
+            StrHtml += "<div class='ObjetoCanvas_Boton' id='ObjetoCanvas_PantallaCompleta' title='" + Textos[this.OpcionesCanvas.Idioma][4] + "'>" +
+                    "<img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-pantalla-completa' />" +
+                "</div>" +
+                "<div class='ObjetoCanvas_Boton' id='ObjetoCanvas_RestaurarPantalla' title='" + Textos[this.OpcionesCanvas.Idioma][5] +"'>" +
+                    "<img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-restaurar-pantalla' />" +
+                "</div>";
         }
+        // Boton con el logo
+        if (this.OpcionesCanvas.BotonLogo === true) {
+            StrHtml +=  "<a href='https://devildrey33.es' class='ObjetoCanvas_Boton' target='_blank' title='"+ Textos[this.OpcionesCanvas.Idioma][6] +"' id='ObjetoCavas_Logo'>" +
+                    "<img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-logo' />" +
+                    "<div id='ObjetoCavas_TextoLogo'>" +
+                        "<span>D</span>" + "<span>E</span>" + "<span>V</span>" + "<span>I</span>" + "<span>L</span>" + "<span>D</span>" + "<span>R</span>" + "<span>E</span>" + "<span>Y</span>" + "<span>&nbsp;</span>" + "<span>3</span>" + "<span>3</span>" +
+                    "</div>" +
+                "</a>";
+        }        
+        StrHtml += "</div>";
+
+        this.Cabecera.innerHTML = StrHtml;
+        
+        if (this.OpcionesCanvas.BotonPantallaCompleta === true) {
+            // Botones restaurar y pantalla completa
+            var bPantallaCompleta = document.getElementById("ObjetoCanvas_PantallaCompleta");
+            var bRestaurarPantalla = document.getElementById("ObjetoCanvas_RestaurarPantalla");
+//            if (this.OpcionesCanvas.BotonPantallaCompleta === true) { bPantallaCompleta.style.display = "block"; }
+//            else                                                    { bPantallaCompleta.style.display = "none"; }
+            bRestaurarPantalla.style.display = "none";
+            // Eventos para los botones pantalla completa y restaurar pantalla
+            bPantallaCompleta.addEventListener("click", function() { this.PantallaCompleta(); }.bind(this));
+            bRestaurarPantalla.addEventListener("click", function() { this.RestaurarPantalla(); }.bind(this));
+        
+            // Eventos para determinar si está en pantalla completa
+            document.addEventListener('webkitfullscreenchange', this.EventoPantallaCompleta.bind(this), false);
+            document.addEventListener('mozfullscreenchange', this.EventoPantallaCompleta.bind(this), false);
+            document.addEventListener('msfullscreenchange', this.EventoPantallaCompleta.bind(this), false);
+            document.addEventListener('fullscreenchange', this.EventoPantallaCompleta.bind(this), false);
+        }
+    
+//        if (this.OpcionesCanvas.BotonLogo === false) { document.getElementById("ObjetoCavas_Logo").style.display = "none"; }                       
     }
     // En el entorno Banner las etiquetas ya estan creadas, pero hay que eliminar y volver a crear el canvas
-    if (this.OpcionesCanvas['Entorno'] === 'Banner') {
+    else if (this.OpcionesCanvas['Entorno'] === 'Banner') {
         this.Cabecera = document.getElementById("Cabecera");
         // Hay que eliminar la etiqueta canvas por que al crear un 2d context encima de un webgl context y viceversa produce error.
         if (document.getElementById('Cabecera_Canvas')) { this.Cabecera.removeChild(document.getElementById('Cabecera_Canvas')); }
@@ -80,6 +138,7 @@ ObjetoCanvas = function(Opciones) {
     // Asigno el estado cargando, que muestra una ventana que avisa al usuario.
     this.Cabecera.setAttribute("cargando", true);
     this.Cabecera.setAttribute("animar", true);
+//    this.Cabecera.setAttribute("iniciado", false);
     
     
     // Obtengo la etiqueta canvas    
@@ -131,8 +190,6 @@ ObjetoCanvas = function(Opciones) {
     this.Tick           = 0;                                                // Date.now actualizado en cada frame
     // Calculo el tamaño del canvas
     this.EventoRedimensionar();
-    // Temporizador para la animación
-    this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this));           
     
     // Evento mouse movimiento
     this.EnlazarEventos();
@@ -140,12 +197,22 @@ ObjetoCanvas = function(Opciones) {
     // Estado cargando
     this.Cargando(true);
     
-    if (this.OpcionesCanvas.MostrarFPS === false) {
+/*    if (this.OpcionesCanvas.MostrarFPS === false) {
         // Escondo el marco de los FPS
-        document.getElementById("Cabecera_Stats").style.display = "none";
-    }
+        document.getElementById("ObjetoCanvas_FPS").style.display = "none";
+    }*/
     
     this.Constantes = { Radiant : Math.PI / 180, PIx2 : Math.PI * 2 };
+
+    
+    // En modo normal se pinta el primer frame, y se muestra el boton iniciar
+/*    if (this.OpcionesCanvas['Entorno'] === 'Normal') {
+        this.Actualizar();
+    }
+    else if (this.OpcionesCanvas['Entorno'] === 'Banner') {
+        // El banner se inicia automáticamente*/
+        this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this));           
+//    }
     
     return true;
 };
@@ -168,6 +235,9 @@ ObjetoCanvas.prototype.Terminar = function() {
         window.removeEventListener('keydown', this.hEventoTeclaPresionada);
         window.removeEventListener('keyup', this.hEventoTeclaSoltada);    
     }
+    
+//    if (this.Animaciones) { this.Animaciones.Limpiar(); }
+    
     if (this._EsMovil === false) {
         this.Cabecera.removeEventListener('mousemove', this.hEventoMouseMove);
     }
@@ -219,14 +289,14 @@ ObjetoCanvas.prototype.EnlazarEventos = function() {
     window.addEventListener('resize', this.hEventoRedimensionar);
     window.addEventListener('scroll', this.hEventoScroll);
     window.addEventListener('blur', this.hEventoFocoPerdido);
-    window.addEventListener('focus', this.hEventoFocoRecibido);
+    window.addEventListener('focus', this.hEventoFocoRecibido);        
 };
 
 
 
 // Evento que salta cuando se obtiene el foco de la ventana
 ObjetoCanvas.prototype.EventoFocoRecibido = function() {
-    console.log("Foco de la ventana recibido");
+//    console.log("Foco de la ventana recibido");
     this.FocoWeb = true;
     if (this.OpcionesCanvas.Entorno === "Normal") {
         this.EventoReanudar();
@@ -239,11 +309,18 @@ ObjetoCanvas.prototype.EventoFocoRecibido = function() {
     
 // Evento que salta cuando se pierde el foco de la ventana
 ObjetoCanvas.prototype.EventoFocoPerdido = function() {
-    console.log("Foco de la ventana perdido");
+//    console.log("Foco de la ventana perdido");
     this.FocoWeb = false;
     this.EventoPausa();
 };
-    
+  
+// Evento que avisa si se ha pasado a pantalla completa, o se ha restaurado  
+ObjetoCanvas.prototype.EventoPantallaCompleta = function(Evento) {    
+    console.log("ObjetoCanvas.EventoPantallaCompleta (ScreenTop)" + window.screenTop );
+    // Si screenTop es 0 es que está en modo pantalla completa.
+    document.getElementById("ObjetoCanvas_PantallaCompleta").style.display = (window.screenTop === 0) ? "block" : "none";
+    document.getElementById("ObjetoCanvas_RestaurarPantalla").style.display = (window.screenTop === 0) ? "none" : "block";
+};
 // Función que devuelve el pixel ratio del dispositivo actual
 /*ObjetoCanvas.prototype.PixelRatio = function() {
     var ratio = 1;
@@ -294,7 +371,7 @@ ObjetoCanvas.prototype.EstaCargando = function() {
 // Función interna utilizada por requestAnimationFrame para actualizar y pintar la animación
 ObjetoCanvas.prototype.Actualizar = function() {
     this.Tick = Date.now();
-    this.FPS(); 
+    if (this.OpcionesCanvas.MostrarFPS === true) { this.FPS(); }
     this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this));
     this.Pintar.apply(this); 
 };
@@ -324,13 +401,11 @@ ObjetoCanvas.prototype.EventoMouseSoltado = function(event) {
 
 // Función que procesa el evento mousemove
 ObjetoCanvas.prototype.EventoMouseEnter = function(event) {
-    console.log("ObjetoCanvas.EventoMouseEnter");
     if (typeof(this.MouseEnter) !== "undefined") { this.MouseEnter.apply(this, [ event ]); }
 };
 
 // Función que procesa el evento mousemove
 ObjetoCanvas.prototype.EventoMouseLeave = function(event) { 
-    console.log("ObjetoCanvas.EventoMouseLeave");
     if (typeof(this.MouseLeave) !== "undefined") { this.MouseLeave.apply(this, [ event ]); }
 };
 
@@ -396,7 +471,6 @@ ObjetoCanvas.prototype.EventoReanudar = function() {
 ObjetoCanvas.prototype.EventoScroll = function() {
     // Llamo a la función Scroll del NuevoObjeto (si existe)
     if (this.OpcionesCanvas.Entorno === "Banner") {
-//        if (this.Cabecera.length > 0) { // Hay páginas que no tienen la cabecera
         var PS = $(window).scrollTop();
         var Altura = this.Cabecera.offsetHeight;
         if (PS > Altura) {
@@ -406,8 +480,7 @@ ObjetoCanvas.prototype.EventoScroll = function() {
             this.EventoReanudar();
         }
     }
-
-    
+    // Llamo a la función Scroll si existe en la clase heredada.
     if (typeof(this.Scroll) !== "undefined") {
         this.Scroll.apply(this);
     }            
@@ -417,12 +490,26 @@ ObjetoCanvas.prototype.EventoScroll = function() {
 ObjetoCanvas.prototype.FPS = function() {
     if (this.Tick > this.FPS_UltimoTick) {
         this.FPS_UltimoTick = this.Tick + 1000;
-        document.getElementById("Cabecera_Stats").innerHTML = this.FPS_Contador + " FPS";
+        var SpanFPS = document.getElementById("ObjetoCanvas_FPS");
+        SpanFPS.innerHTML = this.FPS_Contador;
+        var Parte = 256 / 60;
+        SpanFPS.style.color = "rgb(" + Math.round(255 - (this.FPS_Contador * Parte)) + "," + Math.round(this.FPS_Contador * Parte) + ", 0)";
         this.FPS_Contador = 0;
     }
     else {
         this.FPS_Contador ++;
     }
+};
+// Modo pantalla completa
+ObjetoCanvas.prototype.PantallaCompleta = function() {    
+    var RFS = this.Cabecera.requestFullscreen || this.Cabecera.msRequestFullscreen || this.Cabecera.mozRequestFullScreen || this.Cabecera.webkitRequestFullscreen;
+    RFS.call(this.Cabecera);
+};
+
+// Restaurar pantalla completa
+ObjetoCanvas.prototype.RestaurarPantalla = function() {    
+    var EFS = document.exitFullscreen || document.msExitFullscreen || document.mozCancelFullScreen || document.webkitExitFullscreen;
+    EFS.call(document);
 };
 
 ////////////////////////////////////////////////////////////////////////////

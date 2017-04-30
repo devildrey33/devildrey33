@@ -33,9 +33,6 @@ ObjetoCanvas = function(Opciones) {
         for (var Indice in Opciones) {
             this.OpcionesCanvas[Indice] = Opciones[Indice];
         }
-/*        Opciones.forEach(function(Elemento, Indice, Array) { 
-            this.Opciones[Indice] = Elemento;
-        }.bind(this));*/
     }
             
     // En el entorno Normal hay que crear todas las etiquetas
@@ -53,7 +50,7 @@ ObjetoCanvas = function(Opciones) {
                                     "<canvas id='Cabecera_Canvas'></canvas>" +
                                     '<div id="Cabecera_PausaAni">El canvas está en segundo plano, animación en pausa.</div>';
     }
-    // En el entorno Banner las etiquetas ya estan creadas, pero hay que eliminar y volver a crear el canvas
+    // En el entorno Banner las etiquetas ya estan creadas, pero hay que eliminar y volver a crear la etiqueta del canvas (para poder cargar varios canvas a petición del usuario)
     if (this.OpcionesCanvas['Entorno'] === 'Banner') {
         this.Cabecera = document.getElementById("Cabecera");
         // Hay que eliminar la etiqueta canvas por que al crear un 2d context encima de un webgl context y viceversa produce error.
@@ -136,6 +133,7 @@ ObjetoCanvas = function(Opciones) {
 ObjetoCanvas.prototype.Terminar = function() {
     if (this.RAFID !== 0) {
         window.cancelAnimationFrame(this.RAFID); 
+        this.RAFID = 0;  
     }
     
     if (this.OpcionesCanvas.Entorno === "Normal") {
@@ -147,6 +145,8 @@ ObjetoCanvas.prototype.Terminar = function() {
         window.removeEventListener('keyup', this.hEventoTeclaSoltada);    
     }
     
+//    if (this.Animaciones) { this.Animaciones.Limpiar(); }
+    
     this.Cabecera.removeEventListener('mousemove', this.hEventoMouseMove);
     this.Cabecera.removeEventListener('mouseenter', this.hEventoMouseEnter);
     this.Cabecera.removeEventListener('mouseleave', this.hEventoMouseLeave);        
@@ -154,6 +154,11 @@ ObjetoCanvas.prototype.Terminar = function() {
     window.removeEventListener('scroll', this.hEventoScroll);
     window.removeEventListener('blur', this.hEventoFocoPerdido);
     window.removeEventListener('focus', this.hEventoFocoRecibido);
+    
+    this.Tick = 0;
+    
+    if (typeof(this.Terminado) !== "undefined") { this.Terminado.apply(this); }        
+    
     console.log("ObjetoCanvas.Terminar");
 };
 

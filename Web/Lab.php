@@ -45,7 +45,7 @@
     
     echo "<article id='MarcoNavegacionLab' pagina='".$Archivo."'>".Intro();
     echo '<textarea id="Lab_Codigo" name="code" style="display:none">'.$CArchivo["Datos"].'</textarea>'.Intro().
-         '<iframe id="Lab_Preview"></iframe>'.Intro().
+         '<iframe id="Lab_Preview" allowfullscreen="true"></iframe>'.Intro().
 /*         "<div id='Lab_Explorador_Buscar'>".Intro().
          '<input type="text" placeholder="Texto a buscar.." />'.Intro().
          "</div>".Intro().*/

@@ -48,8 +48,9 @@ class devildrey33_BD {
 
         if (is_numeric($Valor) && $this->_mysqli !== false) {
             //$URL = str_replace("http://www.", "http://", $URL);
-            if ($Valor > 5) $Valor = 5;
-            if ($Valor < 1) $Valor = 1;            
+            if ($Valor > 5) { $Valor = 5; }
+            if ($Valor < 3) $Valor += 3;            
+            
             $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina = '".$this->_mysqli->real_escape_string($Archivo)."'");
             if ($Resultado) {
                 Base::EnviarEmail("Se ha votado en $URL ($Valor/5)", 

@@ -98,9 +98,21 @@
 </div>
 </div>
 <div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/EspiralRGB.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/EspiralRGB.html'>EspiralRGB.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
 <div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/GeometriaBasica.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/BannerTest/GeometriaBasica.html'>GeometriaBasica.html</a>
+</div>
+</div>
+<div class='Lab_Item'>
+<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/HexTunnel.html'>
+<div class='Lab_IcoArchivo'></div>
+<a href='/Lab/Ejemplos/BannerTest/HexTunnel.html'>HexTunnel.html</a>
 </div>
 </div>
 <div class='Lab_Item'>
@@ -119,12 +131,6 @@
 <div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/NuevoCanvasTHREE.html'>
 <div class='Lab_IcoArchivo'></div>
 <a href='/Lab/Ejemplos/BannerTest/NuevoCanvasTHREE.html'>NuevoCanvasTHREE.html</a>
-</div>
-</div>
-<div class='Lab_Item'>
-<div class='Lab_Archivo' path='/Lab/Ejemplos/BannerTest/NuevoCanvasThreeShader.html'>
-<div class='Lab_IcoArchivo'></div>
-<a href='/Lab/Ejemplos/BannerTest/NuevoCanvasThreeShader.html'>NuevoCanvasThreeShader.html</a>
 </div>
 </div>
 <div class='Lab_Item'>

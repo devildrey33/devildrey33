@@ -63,7 +63,7 @@ RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 # Treure les "www" de la URL
 RewriteCond %{http_host} ^www\.devildrey33\.es [NC]
-RewriteRule ^(/*)$ http://devildrey33.es/$1 [R=301,NC]
+RewriteRule ^(/*)$ https://devildrey33.es/$1 [R=301,NC]
 
 #URLS antigues
 RewriteRule ^PropiedadCSS/([^/]+) 		Doc/CSS/Propiedades/$1 [R]
@@ -107,9 +107,9 @@ RewriteRule .* - [L]
 # Anti hotlink (en localhost s'ha de comentar) DEPRECATED
 #RewriteEngine On
 #RewriteCond %{HTTP_REFERER} !^$
-#RewriteCond %{HTTP_REFERER} !^http://(www\.)?devildrey33\.es/ [NC]
+#RewriteCond %{HTTP_REFERER} !^https://(www\.)?devildrey33\.es/ [NC]
 #RewriteCond %{REQUEST_URI} !Hotlink\.(gif|png) [NC]
-#RewriteRule .*\.(gif|jpg|png)$ http://devildrey33.es/Graficos/Hotlink.png [NC]
+#RewriteRule .*\.(gif|jpg|png)$ https://devildrey33.es/Graficos/Hotlink.png [NC]
 
 
 

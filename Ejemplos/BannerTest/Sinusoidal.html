@@ -23,13 +23,16 @@
 var Banner_Sinusoidal = function() {    
     // Llamo al constructor del ObjetoBanner
     if (ObjetoCanvas.call(this, { 
-        'Tipo'          : '2d',
-        'Ancho'         : 'Auto',
-        'Alto'          : 'Auto',
-        'Entorno'       : 'Normal',
-        'MostrarFPS'    : true,
-        'Pausar'        : true,             // Pausa el canvas si la pestaña no tiene el foco del teclado        
-        'ElementoRaiz'  : document.body
+        'Tipo'              : '2d',
+        'Ancho'             : 'Auto',
+        'Alto'              : 'Auto',
+        'Entorno'           : 'Normal',
+        'MostrarFPS'        : true,
+        'BotonLogo'         : false,
+        'BotonesPosicion'   : "left:10px; bottom:10px;",  // alineado al borde inferior izquierda
+        'BotonExtraHTML'    : '<div class="ObjetoCanvas_Boton" title="Nuevos valores aleatórios" onclick="Canvas.Reiniciar()"><span style="display:table; margin-top:19px; margin-left:auto; margin-right:auto">Rand</span></div>',
+        'Pausar'            : true,             // Pausa el canvas si la pestaña no tiene el foco del teclado        
+        'ElementoRaiz'      : document.body
     }) === false) { return false; }
     // Se ha creado el canvas, inicio los valores de la animación ...         
     this.Reiniciar();
@@ -212,6 +215,6 @@ window.addEventListener('load', function() { Canvas = new Banner_Sinusoidal; });
 </script>
     </head>
     <body>        
-        <button onclick="Canvas.Reiniciar()">Rand</button>
+        
     </body>
 </html>

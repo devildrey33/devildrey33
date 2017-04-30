@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--
+    Diseño CSS para los controles del ObjetoCanvas
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style>
+            /* Fuente del logo */
+            @import url('http://fonts.googleapis.com/css?family=Architects+Daughter|Orbitron');
+            /* Contenedor para los controles del canvas */
+            #ObjetoCanvas_Controles {
+                position:fixed;
+                right:10px;
+                bottom:10px;
+                z-index:1000;
+                -webkit-user-select : none;
+                -moz-user-select    : none;
+                -ms-user-select     : none;
+                user-select         : none;    
+                display:flex;
+                flex-direction: column;
+                justify-content:space-between;
+                font-family:'Orbitron',sans-serif;
+                text-shadow:1px 1px 1px #000;
+            }
+            
+            .ObjetoCanvas_Boton, .ObjetoCanvas_Marco {
+                width:58px;
+                height:58px;
+                /*padding:10px;*/
+                border-radius:4px;
+                border:2px solid #000;
+                background-image:radial-gradient(rgba(35, 35, 35, 0.5), rgba(0, 0, 0, 0.95));
+                /*cursor:pointer;*/
+                color:#FFF;                
+                overflow:hidden;
+                margin-left:auto;
+                margin-top:10px;
+                position:relative;
+                transition:0.4s;
+            }
+            
+            .ObjetoCanvas_Boton:hover {
+                border:2px solid rgb(234, 80, 78);
+            }
+            
+            .ObjetoCanvas_Marco > #ObjetoCanvas_FPS,
+            .ObjetoCanvas_Marco > #ObjetoCanvas_TxtFPS {                
+                display:table;
+                margin-left:auto;
+                margin-right:auto;
+                cursor: default;
+            }
+            
+            .ObjetoCanvas_Marco > #ObjetoCanvas_FPS    { font-size:26px; }
+            .ObjetoCanvas_Marco > #ObjetoCanvas_TxtFPS { font-size:16px; }
+            
+            .ObjetoCanvas_Boton > img {
+                transition:0.4s;
+                width:48px;
+                height:48px;
+                position:absolute;
+                top:5px;
+                right:5px;
+            }
+            
+            .ObjetoCanvas_Boton:hover > img {
+                transform: scale(1.5, 1.5);
+            }
+            
+            
+            #ObjetoCavas_Logo:hover {
+                width:280px;
+                border:2px solid rgb(234, 80, 78);
+            }
+            
+            
+            #ObjetoCavas_Logo > #ObjetoCavas_TextoLogo {
+                position:absolute;
+                bottom:14px;
+                margin-top:3px;
+                transition:0.4s;
+                width:4800px; /* 12 caracters * 400px */                 
+                font-size:24px;
+                letter-spacing:-3px;
+            }
+            
+            
+            #ObjetoCavas_Logo:hover > #ObjetoCavas_TextoLogo > span {                
+                position:relative;
+                opacity:1;
+                left:400px;
+                animation: AnimacionLogo 0.5s 1 cubic-bezier(.17,-0.42,0,1.15);
+                animation-fill-mode:forwards;
+                
+            }
+            
+            #ObjetoCavas_Logo > #ObjetoCavas_TextoLogo > span {
+                transition:0.5s cubic-bezier(.17,-0.42,0,1.15);
+                opacity:0;
+                position: relative;
+                display: inline-block;
+                color:#FFF;
+            }            
+            /* Color rojo del 33 */
+            #ObjetoCavas_Logo > #ObjetoCavas_TextoLogo > span:nth-child(11), #ObjetoCavas_Logo > #ObjetoCavas_TextoLogo > span:nth-child(12) {
+                color: rgb(234, 80, 78);
+            }            
+            
+            
+            #ObjetoCavas_Logo:hover > #ObjetoCavas_TextoLogo > span:nth-child(1)  {    animation-delay: 0.55s;     }
+            #ObjetoCavas_Logo:hover > #ObjetoCavas_TextoLogo > span:nth-child(2)  {    animation-delay: 0.50s;     }
+            #ObjetoCavas_Logo:hover > #ObjetoCavas_TextoLogo > span:nth-child(3)  {    animation-delay: 0.45s;     }
+            #ObjetoCavas_Logo:hover > #ObjetoCavas_TextoLogo > span:nth-child(4)  {    animation-delay: 0.40s;     }
+            #ObjetoCavas_Logo:hover > #ObjetoCavas_TextoLogo > span:nth-child(5)  {    animation-delay: 0.35s;     }
+            #ObjetoCavas_Logo:hover > #ObjetoCavas_TextoLogo > span:nth-child(6)  {    animation-delay: 0.30s;     }
+            #ObjetoCavas_Logo:hover > #ObjetoCavas_TextoLogo > span:nth-child(7)  {    animation-delay: 0.25s;     }
+            #ObjetoCavas_Logo:hover > #ObjetoCavas_TextoLogo > span:nth-child(8)  {    animation-delay: 0.20s;     }
+            #ObjetoCavas_Logo:hover > #ObjetoCavas_TextoLogo > span:nth-child(9)  {    animation-delay: 0.15s;     }
+            #ObjetoCavas_Logo:hover > #ObjetoCavas_TextoLogo > span:nth-child(10) {    animation-delay: 0.10s;     }
+            #ObjetoCavas_Logo:hover > #ObjetoCavas_TextoLogo > span:nth-child(11) {    animation-delay: 0.05s;     }
+            #ObjetoCavas_Logo:hover > #ObjetoCavas_TextoLogo > span:nth-child(12) {    animation-delay: 0.0s;     }
+            
+            @keyframes AnimacionLogo {
+                0%   { left:500px;  }
+                100% { left:10px;  }
+            }            
+            
+            
+                     
+        </style>
+        
+        <script>
+            
+            /*var Logo_devildrey33 = function() {
+                var PreLogo = document.createElement('a');
+                PreLogo.setAttribute("href", "http://devildrey33.es");
+                PreLogo.setAttribute("target", "_blank");
+                PreLogo.id = "Logo_devildrey33";
+                PreLogo.innerHTML = "<div>" +
+                                        "<span>D</span>" + 
+                                        "<span>E</span>" + 
+                                        "<span>V</span>" + 
+                                        "<span>I</span>" + 
+                                        "<span>L</span>" + 
+                                        "<span>D</span>" + 
+                                        "<span>R</span>" + 
+                                        "<span>E</span>" + 
+                                        "<span>Y</span>" + 
+                                        "<span>&nbsp;</span>" + 
+                                        "<span>3</span>" + 
+                                        "<span>3</span>" +
+                                    "</div>" +
+                                    "<img src='http://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-logo' />";
+                document.body.appendChild(PreLogo);                
+            };            
+            
+
+            
+            var Logo = null;*/
+            //window.addEventListener('load', function() { Logo = new Logo_devildrey33; });
+
+        </script>
+        
+    </head>
+    <body>
+        <div id='ObjetoCanvas_Controles'>
+            <div class='ObjetoCanvas_Marco' title='Frames por segundo'>
+                <span id='ObjetoCanvas_FPS'>60</span>
+                <span id='ObjetoCanvas_TxtFPS'>fps</span>
+            </div>
+            <div class='ObjetoCanvas_Boton' title='Pantalla completa'>
+                <img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-pantalla-completa' />
+            </div>
+            <div class='ObjetoCanvas_Boton' title='Restaurar pantalla'>
+                <img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-restaurar-pantalla' />
+            </div>
+            <a href='https://devildrey33.es' class='ObjetoCanvas_Boton' title='devildrey33 home page' id='ObjetoCavas_Logo'>
+                <img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-logo' />
+                <div id='ObjetoCavas_TextoLogo'>
+                    <span>D</span>
+                    <span>E</span>
+                    <span>V</span>
+                    <span>I</span>
+                    <span>L</span>
+                    <span>D</span>
+                    <span>R</span>
+                    <span>E</span>
+                    <span>Y</span>
+                    <span>&nbsp;</span>
+                    <span>3</span>
+                    <span>3</span>
+                </div>
+            </a>
+        </div>
+    </body>
+</html>

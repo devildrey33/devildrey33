@@ -49,6 +49,7 @@ Millores de la web :
  V  - Els butons de reds socials ara posen bè el texte (dintre del lab)
  V  - Habilitat Cross Origin Resource Sharing en el htaccess
  V  - Afegit Sitemap (creat desde el 1and1)
+ V  - Solucionat problema amb els meta tags de facebook i twitter amb articles del lab... ara tots els metas es re-escriuen amb java script al carregar la pagina.
 
 Estils movils :
     - algo raro pasa al mostrar el banner en "portrait "
@@ -83,6 +84,10 @@ Blog :
     - Actualitzar Tutorial Canvas2D 1 i 2 : l'animació la faig amb un setInterval a saco, i s'hauria d'utilitzar la funció requestAnimationFrame.
     - Tutorial sobre herencia en javascript i que doni solució al problema de les funcións virtuals amb el model prototype.
     - Separar conceptes básics del THREE.js i fer varis tutos
+        - Malla
+        - Llums
+        - Textures
+        - Shaders
 
 Doc/CSS :
     - cubic-bezier chulo al estil de http://cubic-bezier.com/
@@ -136,3 +141,4 @@ ObjetoTest
 ObjetoComentarios
     - Habilitar en mode administració el copy/paste d'etiquetes de tot tipus, i fer un editor de codi HTML, per retocar els missatges.
         - Copy/paste d'etiquetes script y style ha de requerir superadmin. (Deixar que algu sigui capaç d'injectar estils css o pitjor encara scripts es una cosa molt seria, que facilment es podria carregar la web, i que a mes seria dificil/engorros de detectar /eliminar.
+    - Hi ha algo raro al editar missatges... desapareixen lineas al guardar l'edició, però al recarregar tornen a sortir...

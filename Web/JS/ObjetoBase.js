@@ -184,9 +184,10 @@ $Base = new function() {
 //                                Banner_Anillos,
                                 Banner_Sinusoidal,
                                 Banner_GeometriaBasica,
-                                Banner_EsferaVShader,
                                 Banner_ReunionDeCirculos,
-                                Banner_MultiCubo
+//                                Banner_HexTunnel,
+                                Banner_MultiCubo,
+                                Banner_EsferaVShader
                             ];                
                             
         var fPos = 0;
@@ -209,7 +210,7 @@ $Base = new function() {
         console.log("Base.Banner(Pos = " + Pos + ")", fPos);
         this.PosBanner = fPos;
         
-//        $Banner = new Banner_Sinusoidal();
+//        $Banner = new Banner_HexTunnel();
         $Banner = new Banner_Lista[fPos];
     };
     
@@ -510,7 +511,7 @@ $Base = new function() {
             Ret["Titulo"] = EntradasBlog[p]["Titulo"];
         }
         
-
+        this.RenovarMeta();
 //        this.BuscarEntradaActual(URL, $(".Cabecera > .Cabecera_Datos > h1").html());
 
         console.log("Base.IdentificarEntrada : " + Ret["TipoPagina"], Ret);
@@ -878,6 +879,33 @@ $Base = new function() {
         // Oculto la ventana de error
         $("#VentanaError").attr({"visible" : "false" });  
     };  
+    
+    this.RenovarMeta = function() {
+        var p = $(".Blog").attr('pagina') || $("#MarcoNavegacionLab").attr('pagina');
+        
+        for (var i = 0; i < EntradasBlog.length; i++) {
+            //console.log($(".Blog").attr('pagina'), EntradasBlog[i].URL);
+            if (EntradasBlog[i].URL === p || EntradasBlog[i].URL + ".php"  === p) {
+                $("meta[name='twitter:title']").attr({ "content" : EntradasBlog[i].Titulo });
+                $("meta[name='twitter:image']").attr({ "content" : $Base.Raiz + "Web/Graficos/250x200_" + EntradasBlog[i].Imagen });
+
+                $("meta[property='og:title']").attr({ "content" : EntradasBlog[i].Titulo });
+                $("meta[property='og:image']").attr({ "content" : $Base.Raiz + "Web/Graficos/250x200_" + EntradasBlog[i].Imagen });
+                var URL = $Base.Raiz + EntradasBlog[i].URL;
+                if (EntradasBlog[i].URL.indexOf("Ejemplos/") === -1) {
+                    URL = $Base.Raiz + "Blog/" + EntradasBlog[i].URL; 
+                }
+                $("meta[property='og:url']").attr({ "content" : URL });                
+                return;
+            }
+        }
+        // Si no se enceuntra la entrada pongo la información por defecto
+        $("meta[name='twitter:title']").attr({ "content" : "devildrey33.es" });
+        $("meta[name='twitter:image']").attr({ "content" : "https://devildrey33.es/Web/Graficos/logo400.png" });
+        $("meta[property='og:title']").attr({ "content" : "devildrey33.es" });
+        $("meta[property='og:image']").attr({ "content" : "https://devildrey33.es/Web/Graficos/logo400.png" });
+        $("meta[property='og:url']").attr({ "content" : "https://devildrey33.es" });                
+    },
     
     
     /* Función que consulta al servidor el usuario y el password introducidos, en caso de ser válidos, carga las herramientas de administrador */

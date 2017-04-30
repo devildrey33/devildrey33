@@ -16,7 +16,8 @@
         "Google app scripts", 
         "Google api",
         "Three js",
-        "Canvas 2D"
+        "Canvas 2D",
+        "Shaders"
     );
 
 ?>
