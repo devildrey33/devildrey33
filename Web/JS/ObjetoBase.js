@@ -880,7 +880,7 @@ $Base = new function() {
         $("#VentanaError").attr({"visible" : "false" });  
     };  
     
-    this.RenovarMeta = function() {
+    this.RenovarMeta = function() {        
         var p = $(".Blog").attr('pagina') || $("#MarcoNavegacionLab").attr('pagina');
         
         for (var i = 0; i < EntradasBlog.length; i++) {

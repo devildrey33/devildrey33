@@ -39,31 +39,6 @@
     }    
 </script>        
  
-<script id="VertexShader2" type="x-shader/x-vertex">
-    /* Tiempo = 1000
-       Avance = 0.1 
-     */
-    
-    // 1000 ms = 1s 
-    // 360º / 1000
-    // Avance / 1000
-    
-    uniform int Tiempo;
-//    varying float PosZ;
-    void main() {
-        float Divisor = float(Tiempo) / 1000.0;
-        
-        PosZ = Pos[2] + position.z + 2.0 * sin(Tiempo + Posicion) + (2.0 * cos(Tiempo + Posicion));
-        
-        gl_Position = projectionMatrix *
-                      modelViewMatrix *
-                      vec4( Pos[0] + Avance + position.x + 2.0 * sin(Tiempo + Posicion),   
-                            Pos[1] + position.y + 2.0 * sin(Tiempo + Posicion) - (2.0 * cos(Tiempo + Posicion)),   
-                            PosZ,
-                            1.0);
-    }    
-</script>        
- 
 
 <script id="FragmentShader" type="x-shader/x-fragment">
     uniform float Tiempo;

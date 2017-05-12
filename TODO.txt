@@ -50,6 +50,8 @@ Millores de la web :
  V  - Habilitat Cross Origin Resource Sharing en el htaccess
  V  - Afegit Sitemap (creat desde el 1and1)
  V  - Solucionat problema amb els meta tags de facebook i twitter amb articles del lab... ara tots els metas es re-escriuen amb java script al carregar la pagina.
+    - Hi ha un bon lio amb la variable EntradasBlog en JavaScript... s'hauria de mirar de posar el path sencer i la extensio a tot al crear la variable en php (en principi vaig elimiar troços del path quan nomes podia enllaçar al blog [i no al lab, ni als docs] per estalviar espai... i m'ha sortit malament no, lo següent), i aixi m'estalviaria varies comprobacións en javascript
+        - Però s'ha de fer amb calma, perque aquesta variable la faig servir per identificar en varis moments la entrada actual en llocs no gaire critics, i s'hauria de enumerar TOTS els cops que la faig servir....
 
 Estils movils :
     - algo raro pasa al mostrar el banner en "portrait "

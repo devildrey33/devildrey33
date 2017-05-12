@@ -88,35 +88,41 @@ class devildrey33 {
         $this->_NombreDocumento = $NombreDocumento;
         
         $Idioma = 'es';
+        $Imagen = Base::URL_Raiz()."Web/Graficos/logo400.png";
+        $Autor  = "Josep Antoni Bover";
+        $URL    = Base::URL_Raiz();
         if ($this->EntradaBlog !== false) { 
             $Idioma = $this->EntradaBlog["Idioma"];
             $Titulo = $this->EntradaBlog["Titulo"];
+            $Autor  = $this->EntradaBlog["Autor"];
+            if ($this->EntradaBlog["Tipo"] === "Blog") { $URL    = Base::URL_Raiz()."Blog/".$this->EntradaBlog["URL"];     }
+            else                                       { $URL    = Base::URL_Raiz().$this->EntradaBlog["URL"];             }
+            $Imagen = Base::URL_Raiz().$this->EntradaBlog["Imagen"];
         }
         
         echo "<!DOCTYPE HTML>".Intro().
 "<html lang='".$Idioma."'>".Intro().
     "<head>".Intro().
         "<title>".$Titulo."</title>".Intro().
-        "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />".Intro();
+        "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />".Intro().
 //        "<meta name='viewport' content='width=device-width, initial scale=1'>".Intro().
-
-            echo "<meta name='author' content='devildrey33' />".Intro().
+        "<meta name='author' content='".$Autor."' />".Intro().
 //            echo '<meta name="description" content="Página web dedicada al mundo de la programación, donde puedes encontrar información sobre HTML, CSS, JS, Ajax, jQuery, PHP, MySql, C/C++, Three.js, etc...." />'.Intro();
-            "<meta name='twitter:card' content='summary' />".Intro().        
-            "<meta name='twitter:site' content='@publisher_handle' />".Intro().        
-            "<meta name='twitter:title' content='devildrey33.es' />".Intro().        
-    //        "<meta name='twitter:description' content='Page description less than 200 characters'>".Intro().        
-            "<meta name='twitter:creator' content='@author_handle' />".Intro().        
-            /* Twitter Summary card images must be at least 200x200px */
-            "<meta name='twitter:image' content='".Base::URL_Raiz()."' />".Intro().        
+        "<meta name='twitter:card' content='summary' />".Intro().        
+        "<meta name='twitter:site' content='@publisher_handle' />".Intro().        
+        "<meta name='twitter:title' content='".$Titulo."' />".Intro().        
+//        "<meta name='twitter:description' content='Page description less than 200 characters'>".Intro().        
+        "<meta name='twitter:creator' content='@author_handle' />".Intro().        
+        /* Twitter Summary card images must be at least 200x200px */
+        "<meta name='twitter:image' content='".$Imagen."' />".Intro().        
 
-            /* Open Graph data */
-            "<meta property='og:title' content='devildrey33.es' />".Intro().        
-            "<meta property='og:type' content='article' />".Intro().        
-            "<meta property='og:url' content='".Base::URL_Raiz()."' />".Intro().        
-            "<meta property='og:image' content='".Base::URL_Raiz()."Web/Graficos/logo400.png' />".Intro().        
-    //        "<meta property='og:description' content='Description Here' />".Intro().        
-            "<meta property='og:site_name' content='devildrey33' />".Intro();
+        /* Open Graph data */
+        "<meta property='og:title' content='".$Titulo."' />".Intro().        
+        "<meta property='og:type' content='article' />".Intro().        
+        "<meta property='og:url' content='".$URL."' />".Intro().        
+        "<meta property='og:image' content='".$Imagen."' />".Intro().        
+//        "<meta property='og:description' content='Description Here' />".Intro().        
+        "<meta property='og:site_name' content='devildrey33' />".Intro();
 
 //        }
                 
