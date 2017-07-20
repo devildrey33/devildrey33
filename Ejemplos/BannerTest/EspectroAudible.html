@@ -50,16 +50,17 @@
 var EspectroAudible = function() {
     // Llamo al constructor del ObjetoBanner
     if (ObjetoCanvas.call(this, { 
-        Tipo          : 'THREE',
-        Ancho         : 'Auto',
-        Alto          : 'Auto',
-        Entorno       : 'Normal',
-        Idioma        : 'es',
-        BotonLogo     : false,
-        MostrarFPS    : true,
-        ElementoRaiz  : document.body,
-        Pausar        : false,             // Pausa el canvas si la pestaña no tiene el foco del teclado
-        ColorFondo    : 0x000000
+        Tipo                : 'THREE',
+        Ancho               : 'Auto',
+        Alto                : 'Auto',
+        Entorno             : 'Normal',
+        Idioma              : 'es',
+        BotonLogo           : false,
+        MostrarFPS          : true,
+        ElementoRaiz        : document.body,
+        Pausar              : false,             // Pausa el canvas si la pestaña no tiene el foco del teclado
+        ColorFondo          : 0x000000,
+        CapturaEjemplo      : "EspectroAudible.png"
     }) === false) { return false; }
     
     // Se ha creado el canvas, inicio los valores de la animación ... 
@@ -1045,12 +1046,12 @@ var EspectroAudible_Audio = function() {
         this.FuncionEnded = FuncionEnded;
 
         this.Canciones =[            
-//            { Grupo : "LevenRain",           Titulo : "ActionMan Versus The CyberParasites",   Año : "2016",    Path : "LevenRain_-_ActionMan_Versus_The_CyberParasites.mp3",   Web : "https://www.jamendo.com/track/1349290/actionman-versus-the-cyberparasites" },
-//            { Grupo : "Fallen to Flux",      Titulo : "One Chance",                            Año : "2014",    Path : "OneChance.mp3",                                         Web : "https://www.jamendo.com/track/1155241/one-chance" },
+            { Grupo : "LevenRain",           Titulo : "ActionMan Versus The CyberParasites",   Año : "2016",    Path : "LevenRain_-_ActionMan_Versus_The_CyberParasites.mp3",   Web : "https://www.jamendo.com/track/1349290/actionman-versus-the-cyberparasites" },
+            { Grupo : "Fallen to Flux",      Titulo : "One Chance",                            Año : "2014",    Path : "OneChance.mp3",                                         Web : "https://www.jamendo.com/track/1155241/one-chance" },
             { Grupo : "From Sky to Abyss",   Titulo : "Quantum Ocean",                         Año : "2016",    Path : "QuantumOcean.mp3",                                      Web : "https://www.jamendo.com/track/1284951/quantum-ocean" }, 
             { Grupo : "In Camera",           Titulo : "Nothing's Over",                        Año : "2016",    Path : "In_Camera_-_Nothing_s_Over.mp3",                        Web : "https://www.jamendo.com/track/1397271/nothing-s-over" },
-//            { Grupo : "Convergence",         Titulo : "Six Feet Under",                        Año : "2007",    Path : "Convergence_-_Six_feet_under.mp3",                      Web : "https://www.jamendo.com/track/80122/six-feet-under" },
-//            { Grupo : "JT Bruce",            Titulo : "Battle Trance",                         Año : "2015",    Path : "BattleTrance.mp3",                                      Web : "https://www.jamendo.com/track/1237162/battle-trance" }
+            { Grupo : "Convergence",         Titulo : "Six Feet Under",                        Año : "2007",    Path : "Convergence_-_Six_feet_under.mp3",                      Web : "https://www.jamendo.com/track/80122/six-feet-under" },
+            { Grupo : "JT Bruce",            Titulo : "Battle Trance",                         Año : "2015",    Path : "BattleTrance.mp3",                                      Web : "https://www.jamendo.com/track/1237162/battle-trance" }
         ];
         this.Padre = Padre;
         

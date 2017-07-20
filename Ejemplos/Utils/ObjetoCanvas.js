@@ -26,6 +26,7 @@
     Opciones['BotonLogo']               puede ser : true o false.                                       (TRUE POR DEFECTO)
     Opciones['ElementoRaiz']            elemento del HTML donde se creará el canvas                     (POR DEFECTO es 'document.body')
     Opciones['ColorFondo']              color del fondo en HEX (SOLO para THREE.js)                     (POR DEFECTO es '0x312E35' gris oscuro) 
+    Opciones['CapturaEjemplo']          nombre del archivo que contiene la captura de pantalla          (Enlazará a '/Web/Graficos/250x200_')
  */
 
 ObjetoCanvas = function(Opciones) {
@@ -43,7 +44,8 @@ ObjetoCanvas = function(Opciones) {
         BotonExtraHTML          : "",               // Contenido extra para los botones del lateral inferior izquierdo (solo se usa en el ejemplo sinusoidal)
         ElementoRaiz            : document.body,
         Pausar                  : true,             // Pausar si el canvas está en segundo plano
-        ColorFondo              : 0x312E35          // Color del fondo por defecto (solo si usas THREE.js)
+        ColorFondo              : 0x312E35,         // Color del fondo por defecto (solo si usas THREE.js)
+        CapturaEjemplo          : ""
     };
     // Copio las nuevas opciones encima de las opciones por defecto
     if (typeof Opciones === 'object') {
@@ -61,20 +63,20 @@ ObjetoCanvas = function(Opciones) {
 
         // Creo las etiquetas que contienen información adicional sobre la animación
         this.Cabecera = document.getElementById("Cabecera");
-        var Textos = { 
-            en : ["Loading..." , "Paused"  , "Start"  , "Frames per second" , "Full Screen"      , "Restore Screen"    , "devildrey33 home page" ],
-            es : ["Cargando...", "En Pausa", "Iniciar", "Frames por segundo", "Pantalla Completa", "Restaurar Pantalla", "Página de devildrey33" ] 
+        this.Textos = { 
+            en : ["Loading..." , "Paused"  , "Start"  , "Frames per second" , "Full Screen"      , "Restore Screen"    , "devildrey33 home page", "Error loading WebGL" ],
+            es : ["Cargando...", "En Pausa", "Iniciar", "Frames por segundo", "Pantalla Completa", "Restaurar Pantalla", "Página de devildrey33", "Error iniciando WebGL" ] 
         };
-        var StrHtml = '<div id="Cabecera_Cargando" class="MarcoCanvas"><span>' + Textos[this.OpcionesCanvas.Idioma][0] + '</span></div>' +
+        var StrHtml = '<div id="Cabecera_Cargando" class="MarcoCanvas"><span>' + this.Textos[this.OpcionesCanvas.Idioma][0] + '</span></div>' +
             "<canvas id='Cabecera_Canvas'></canvas>" +
-            '<div id="Cabecera_PausaAni" class="MarcoCanvas">' + Textos[this.OpcionesCanvas.Idioma][1] + '</div>' + 
-            '<div id="Cabecera_Iniciar" class="MarcoCanvas">' + Textos[this.OpcionesCanvas.Idioma][2] + '</div>' + 
-            '<div id="Cabecera_Error" class="MarcoCanvas visible="false">Error :</div>';
+            '<div id="Cabecera_PausaAni" class="MarcoCanvas">' + this.Textos[this.OpcionesCanvas.Idioma][1] + '</div>' + 
+            '<div id="Cabecera_Iniciar" class="MarcoCanvas">' + this.Textos[this.OpcionesCanvas.Idioma][2] + '</div>' + 
+            '<div id="Cabecera_Error" class="MarcoCanvas" visible="false">Error :</div>';
         // Etiqueta para el marco de los botones
         StrHtml += "<div id='ObjetoCanvas_Controles' alinear='" + this.OpcionesCanvas.BotonesPosicion + "'>";
         // Marco FPS
         if (this.OpcionesCanvas.MostrarFPS === true) {
-            StrHtml += "<div class='ObjetoCanvas_Marco' title='" + Textos[this.OpcionesCanvas.Idioma][3] + "'>" +
+            StrHtml += "<div class='ObjetoCanvas_Marco' title='" + this.Textos[this.OpcionesCanvas.Idioma][3] + "'>" +
                     "<span id='ObjetoCanvas_FPS'>60</span>" +
                     "<span id='ObjetoCanvas_TxtFPS'>fps</span>" +
                 "</div>";
@@ -83,16 +85,16 @@ ObjetoCanvas = function(Opciones) {
         if (this.OpcionesCanvas.BotonExtraHTML !== "") { StrHtml += this.OpcionesCanvas.BotonExtraHTML; }
         // Boton pantalla completa / restaurar pantalla
         if (this.OpcionesCanvas.BotonPantallaCompleta === true) {
-            StrHtml += "<div class='ObjetoCanvas_Boton' id='ObjetoCanvas_PantallaCompleta' title='" + Textos[this.OpcionesCanvas.Idioma][4] + "'>" +
+            StrHtml += "<div class='ObjetoCanvas_Boton' id='ObjetoCanvas_PantallaCompleta' title='" + this.Textos[this.OpcionesCanvas.Idioma][4] + "'>" +
                     "<img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-pantalla-completa' />" +
                 "</div>" +
-                "<div class='ObjetoCanvas_Boton' id='ObjetoCanvas_RestaurarPantalla' title='" + Textos[this.OpcionesCanvas.Idioma][5] +"'>" +
+                "<div class='ObjetoCanvas_Boton' id='ObjetoCanvas_RestaurarPantalla' title='" + this.Textos[this.OpcionesCanvas.Idioma][5] +"'>" +
                     "<img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-restaurar-pantalla' />" +
                 "</div>";
         }
         // Boton con el logo
         if (this.OpcionesCanvas.BotonLogo === true) {
-            StrHtml +=  "<a href='https://devildrey33.es' class='ObjetoCanvas_Boton' target='_blank' title='"+ Textos[this.OpcionesCanvas.Idioma][6] +"' id='ObjetoCavas_Logo'>" +
+            StrHtml +=  "<a href='https://devildrey33.es' class='ObjetoCanvas_Boton' target='_blank' title='"+ this.Textos[this.OpcionesCanvas.Idioma][6] +"' id='ObjetoCavas_Logo'>" +
                     "<img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-logo' />" +
                     "<div id='ObjetoCavas_TextoLogo'>" +
                         "<span>D</span>" + "<span>E</span>" + "<span>V</span>" + "<span>I</span>" + "<span>L</span>" + "<span>D</span>" + "<span>R</span>" + "<span>E</span>" + "<span>Y</span>" + "<span>&nbsp;</span>" + "<span>3</span>" + "<span>3</span>" +
@@ -177,11 +179,12 @@ ObjetoCanvas = function(Opciones) {
         }
     }
     catch ( error ) {
-        var VentanaError = document.getElementById("Cabecera_Error");
-        VentanaError.setAttribute("visible", "true");
-        VentanaError.innerHTML = "Error iniciando WebGL : " + error;                                                                 
+        this.MostrarErrorIniciarWebGL(error);
         return false;
     }    
+    
+//    this.MostrarErrorIniciarWebGL("Test error iniciando WebGL");
+//    return false;
     
     this.RAFID          = 0;                                                // Request Animation Frame ID
     this.FPS_UltimoTick = Date.now() + 1000;                                // Ultimo Tick del sistema + 1000ms
@@ -202,7 +205,7 @@ ObjetoCanvas = function(Opciones) {
         document.getElementById("ObjetoCanvas_FPS").style.display = "none";
     }*/
     
-    this.Constantes = { Radiant : Math.PI / 180, PIx2 : Math.PI * 2 };
+    this.Constantes = { Radiant : Math.PI / 180, PIx2 : Math.PI * 2, TAU : Math.PI * 2 };
 
     
     // En modo normal se pinta el primer frame, y se muestra el boton iniciar
@@ -215,6 +218,17 @@ ObjetoCanvas = function(Opciones) {
 //    }
     
     return true;
+};
+
+ObjetoCanvas.prototype.MostrarErrorIniciarWebGL = function(error) {
+    // Escondo los controles
+    document.getElementById("ObjetoCanvas_Controles").style.display = "none";
+    // Muestro la ventana con el error y una captura del ejemplo
+    var VentanaError = document.getElementById("Cabecera_Error");
+    VentanaError.setAttribute("visible", "true");
+    var Captura = (this.OpcionesCanvas["CapturaEjemplo"] === "") ? "" : "<br />" + "<img src='https://devildrey33.es/Web/Graficos/250x200_" + this.OpcionesCanvas["CapturaEjemplo"] + "'>";
+    VentanaError.innerHTML = "<span>" + this.Textos[this.OpcionesCanvas.Idioma][7] + " : " + error + "</span>" + Captura;
+    this.Cargando(false);
 };
 
 ObjetoCanvas.prototype.Terminar = function() {
@@ -336,24 +350,7 @@ ObjetoCanvas.prototype.EventoPantallaCompleta = function(Evento) {
 };*/
 
 ObjetoCanvas.prototype.EsMovil = function() {
-    if (this._EsMovil === -1) {
-        if( navigator.userAgent.match(/Android/i)       ||
-            navigator.userAgent.match(/webOS/i)         ||
-            navigator.userAgent.match(/iPhone/i)        ||
-            navigator.userAgent.match(/iPad/i)          ||
-            navigator.userAgent.match(/iPod/i)          ||
-            navigator.userAgent.match(/BlackBerry/i)    ||
-            navigator.userAgent.match(/Windows Phone/i) ) {
-            console.log("ObjetoCanvas.EsMovil : true");
-            this._EsMovil = true;
-            return true;
-        }
-        else {
-            console.log("ObjetoCanvas.EsMovil : false");
-            this._EsMovil = false;
-            return false;
-        }
-    }
+    this._EsMovil = ObjetoNavegador.EsMovil();
     return this._EsMovil;
 };
 
@@ -537,7 +534,7 @@ var BufferCanvas = function(Ancho, Alto) {
 /* Si solo se especifica un parámetro, el primer parámetro será el máximo, y el mínimo será 0 */
 /* Si se especifican dos parámetros, el primero es el máximo, y el segundo es el mínimo. */
 function RandInt(Max, Min) {
-    return Math.floor(Rand(Max, Min));
+    return Math.round(Rand(Max, Min));
 }
 
 
@@ -548,3 +545,41 @@ function Rand(Max, Min) {
     var max = (typeof(Max) !== "undefined") ? Max : 1; // Si no se especifica el máximo por defecto es 1
     return min + Math.random() * (max - min);    
 }      
+
+
+
+
+// Objeto para detectar el navegador actual
+ObjetoNavegador = new function() {
+    this._EsMovil = -1;
+    // Devuelve true si es un dispositivo movil
+    this.EsMovil = function() {
+        if (this._EsMovil === -1) {
+            if( navigator.userAgent.match(/Android/i)       ||
+                navigator.userAgent.match(/webOS/i)         ||
+                navigator.userAgent.match(/iPhone/i)        ||
+                navigator.userAgent.match(/iPad/i)          ||
+                navigator.userAgent.match(/iPod/i)          ||
+                navigator.userAgent.match(/BlackBerry/i)    ||
+                navigator.userAgent.match(/Windows Phone/i) ) {
+                this._EsMovil = true;
+                return true;
+            }
+            else {
+                console.log("ObjetoCanvas.EsMovil : false");
+                this._EsMovil = false;
+                return false;
+            }
+        }
+        return this._EsMovil;
+    };
+    
+    this._EsFirefox = -1;
+    // Devuelve true si es un navegador firefox
+    this.EsFirefox = function() {
+        if (this._EsFirefox === -1) {
+            (navigator.userAgent.toLowerCase().indexOf('firefox') === -1) ? this._EsFirefox = false : this._EsFirefox = true;
+        }
+        return this._EsFirefox;
+    };
+};

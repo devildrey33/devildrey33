@@ -1,0 +1,72 @@
+<!-- 
+   Traductor PutaPuta pels PUTUS que jo se..
+    Creat per Josep Antoni Bover Comas el 31/05/2017, per que els putaputa poguem tenir un putu llenguatge com cal i sense limitacions, tot i que sigui 8 cops mes gros
+    - NOTA si comprimeixes el texte amb zip/rar, es comprimeix de PUTA mare... xd
+   Ultima modificació el : 07/06/2017
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <title>Traductor ASCII / PUTAPUTA</title>
+<!-- Release -->
+        <link rel='stylesheet' href='/index.css' />
+        <script src='/index.js'></script>
+
+<!-- Debug 
+        <link rel='stylesheet' href='/Ejemplos/TraductorPutaPuta/index.css' />
+        <script src='/Ejemplos/TraductorPutaPuta/index.js'></script>
+-->
+    </head>
+    <body>
+        
+        <div id='Inici'>
+            <ul>
+                <li id='Inici_Codificar'>
+                    <h1>Codificar</h1>
+                    <p>Introdueix un text, i guarda el resultat codificat al portapapers.</p>
+                </li>
+                <li id='Inici_DesCodificar'>
+                    <h1>Descodificar</h1>
+                    <p>Descodifica el texte putaputa, i mostra el resultat.</p>
+                </li>
+                <li id='Inici_Test'>
+                    <h1>Test</h1>
+                    <p>Versió cutre de PC per depurar el codi / fer tests</p>
+                </li>
+            </ul>
+        </div>        
+        
+        <div id='Codificar'>
+            <textarea id='Input_Cristia2' placeholder="Escriu el missatge que vols codificar"></textarea>
+            <button id='Buto_Codificar' onclick='puta.Codificar()'>Codificar</button>
+<!--            <div id='CodificarOk'>S'ha codificat el texte, el resultat ha quedat guardat al portapapers.</div> -->
+        </div>
+        
+        <div id='DesCodificar'>
+            <textarea id='Input_Descodificar' placeholder="Enganxa el texte a descodificar"></textarea>
+<!--            <div id='CodificarOk'>Hi han caracters no com<b>PUTA</b>bles en el texte del portapapers.</div> -->
+        </div>
+        
+        <div id='Test'>
+            <div id='Titul'>Traductor ASCII / PUTAPUTA</div><br />
+            <span>ASCII</span>
+            <textarea id='Input_Cristia'></textarea>
+            <span>PUTAPUTA</span>
+            <textarea id='Input_Putificacio'></textarea>
+            <div id='Butons'>
+                <button onclick='puta.ASCIIaPUTA("Input_Cristia", "Input_Putificacio");'>Codificar</button>
+                <button onclick='puta.PUTAaASCII("Input_Putificacio", "Input_Cristia");'>DesCodificar</button>
+            </div>
+        </div>
+        
+        <!-- Buto per tornar al principi -->
+        <div id="TornarInici"></div>
+        <!-- Input ocult per copiar el texte del portapapers -->
+<!--         -->
+        <div id='Finestra_Missatge'>
+            <div id='Missatge'></div>
+            <div id='Buto_Missatge'></div>
+        </div>
+    </body>
+</html>

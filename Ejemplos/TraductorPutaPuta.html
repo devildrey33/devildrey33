@@ -1,0 +1,243 @@
+<!-- 
+   Traductor PutaPuta pels PUTUS que jo se..
+    Creat per Josep Antoni Bover Comas el 31/05/2017, per que els putaputa poguem tenir un putu llenguatge com cal i sense limitacions, tot i que sigui 8 cops mes gros
+    - NOTA si comprimeixes el texte amb zip/rar, es comprimeix de PUTA mare... xd
+   Ultima modificació el : 07/06/2017
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <title>Traductor ASCII / PUTAPUTA</title>
+        
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            html, body, textarea {
+                box-sizing: border-box;
+                padding:5px;
+            }
+
+            html, body {
+                margin: 0px;
+                height: 100%;
+            }
+            #Titul { font-size:24px; font-weight:bold; display:inline-table; }
+            #Input_Cristia, #Input_Putificacio {
+                display:table;
+                width:100%;
+                height: 40vh;
+                border:3px solid #999;
+            }
+            #Butons {
+                display:table;
+                margin-left: auto;
+                margin-right: auto;
+                
+            }
+            button {
+                margin:10px;
+                padding:5px;
+                font-size:21px;
+            }
+        </style>
+        
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+
+        <!-- Si deseas utilizar Three 3D lib descomenta la siguiente línea -->
+        <!-- <script src="/Web/JS/3rdParty/three-0.74.min.js"></script> -->
+
+        <!-- Si deseas utilizar Tween (animaciones para Three) descomenta la siguiente línea -->
+        <!-- <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script> -->
+        
+        <!-- Si deseas utilizar stats (framerate para Three) descomenta la siguiente línea -->
+        <!-- <script src="https://code.createjs.com/stats.min.js"></script> -->
+
+        <!-- Si deseas utilizar DAT.GUY (Marco de opciones configurable) descomenta la siguiente línea -->
+        <!-- <script src="https://code.createjs.com/DAT.GUY.js"></script> -->
+        
+        <!-- Código javascript --> 
+        <script type="text/javascript">
+            var CaractersASCII = [
+                // Caracters
+                'a', 'à', 'á', 'ä', 'A', 'À', 'Á', 'Ä', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'è', 'é', 'E', 'È', 'É', 'f', 'F', 'g', 'G', 'h', 'H', 'i', 'ì', 'í', 'ï', 'I', 'Ì', 'Í', 'Ï',
+                'j', 'J', 'k', 'K', 'm', 'M', 'n', 'N', 'l', 'L', 'o', 'ò', 'ó', 'ö', 'O', 'Ò', 'Ó', 'Ö', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 'T', 'u', 'ù', 'ú', 'ü', 'U', 'Ù',
+                'Ú', 'Ü', 'v', 'V', 'w', 'W', 'x', 'X', 'y', 'Y', 'z', 'Z', 'ç', 'Ç', 'ñ', 'Ñ', ' ', 
+                // Numeros
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                // Simbols
+                'º', 'ª', '!', '¡', '"', '@', '·', '#', '$', '%', '&', '/', '(', ')', '=', '?', '¿', '<', '>', '`', '^', '[', ']', '+', '*', '´', '¨', '{', '}', "'", ',', ';', ':', '.', '-', '_', '\\',
+                '\n'
+                // TOTAL 132
+            ];
+            
+//            var CaractersPUTA = [ 'p', 'u', 't', 'a', 'P', 'U', 'T', 'A', ' ' ];
+            
+            function Rand(Max, Min) {
+                var min = (typeof(Min) !== "undefined") ? Min : 0; // Si no se especifica el mínimo por defecto es 0
+                var max = (typeof(Max) !== "undefined") ? Max : 1; // Si no se especifica el máximo por defecto es 1
+                return min + Math.random() * (max - min);    
+            };
+            
+            function RandInt(Max, Min) {
+                return Math.round(Rand(Max, Min));
+            };
+
+            function BuscarCaracter(Caracter, Array) {
+                for (var i = 0; i < Array.length; i++) {
+                    if (Array[i] === Caracter) { 
+                        return i;
+                    }
+                }
+                return -1;
+            };
+            
+            // Converteix un valor decimal a un array de 8 bits
+            function DECaBIN(Valor) {
+                var Ret = [ 0, 0, 0, 0, 0, 0, 0, 0 ];
+                var Val = Valor.toString(2);
+                var Contador = 7;
+                for (var i = Val.length - 1; i > -1; i--) {
+                    Ret[Contador --] = (Val.charAt(i) === '0') ? 0 : 1;
+                }
+                return Ret;
+            };
+            
+            // Converteix un string binari a un valor enter
+            function BINaDEC(Valor) {
+                return parseInt(Valor, 2);
+            };
+            
+            
+            // Codifica un texte ASCII a PUTA
+            function ASCIIaPUTA() {
+                var Texte = document.getElementById('Input_Cristia').value;
+                var Resultat = "";
+                var Bin = [];
+                
+                for (var i = 0; i < Texte.length; i++) {
+                    var char = BuscarCaracter(Texte.charAt(i), CaractersASCII);
+                    if (char > -1) {
+                        Bin.push.apply(Bin, DECaBIN(char));
+                    }
+                }
+                
+/*                console.log(Bin);
+                var NumPutas = RandInt(Math.floor(Bin.length / 4), 1);
+                console.log(NumPutas);
+                // El texte 'prova' son 40 caracters en puta
+                // Cada puta te 2 consonants fixes (P, T) i 2 vocals (U, A) de longitud variable
+                // Si NumPutas es 1, s'ha de restar dels 40 caracters els 2 fixes, i els 38 restants es reparteixen entre U's i A's
+                
+                // Bin.length - (NumPutas * 2) son el total de caracters variables
+                // (NumPutas * 2) son el total de vocals que poden anar de 1 al total caracters variables
+                
+                var Contador = 0;
+                for (var i = 0; i < Bin.length; i++) {
+                    pos = ((Bin[i] === 0) ? 0 : 4);
+                    Resultat += CaractersPUTA[Contador + ((Bin[i] === 0) ? 0 : 4)];
+                    
+                    Contador ++;
+                    if (Contador === 4 && i < Bin.length -1) { 
+                        Resultat += " ";
+                        Contador = 0;
+                    }
+                }*/
+                
+                
+                var TARet = document.getElementById('Input_Putificacio');
+                // La idea es enviar el link per descodificar, peró puc fer que s'envï la frase codificada amb el mateix link, o haig de fer que facin un paste? (desde perspectiva watsupp
+                //      - Si es pogues fer em temo que sortiria la variable a pasar que seria iguual o mes llarga que el missatge encriptat (una cosa es facilitat, i unaltre spam, que a mes m'haure de currar una frase curta... no sigui que el missatge tingui limit de caracters...)
+                TARet.value = TxtPuta(Bin);
+                TARet.select();
+                try {
+                    document.execCommand('copy');
+                }
+                catch(err) {
+                    console.log("error en el Control+C", err);
+                }
+                
+            };
+            
+            function TxtPuta(ArrayBinario) {
+                // Total caracteres a codificar sin contar espacios extra entre puta y puta
+                var TotalCaracteres = ArrayBinario.length;
+                // Total de palabras puta en el texto
+                var NumPutas = RandInt(Math.floor(TotalCaracteres / 4), 1);
+                // Contador de caracteres variables restantes
+                var CaracteresRestantes = TotalCaracteres - (NumPutas * 4);
+                
+                var Resultado = "";
+                var Pos = 0;
+                for (var p = 0; p < NumPutas; p++) {
+                    Resultado += ((ArrayBinario[Pos++] === 0) ? 'p' : 'P');
+                    var Rnd = RandInt(Math.floor(CaracteresRestantes / NumPutas), 0);
+                    CaracteresRestantes -= Rnd;
+                    for (var i = 0; i < Rnd + 1; i++) {
+                        Resultado += ((ArrayBinario[Pos++] === 0) ? 'u' : 'U');
+                    }
+                    Resultado += ((ArrayBinario[Pos++] === 0) ? 't' : 'T');
+                    Rnd = RandInt(Math.floor(CaracteresRestantes / NumPutas), 0);
+                    CaracteresRestantes -= Rnd;
+                    for (var i = 0; i < Rnd + 1; i++) {
+                        Resultado += ((ArrayBinario[Pos++] === 0) ? 'a' : 'A');
+                    }
+                    
+                    if (p < NumPutas - 1) {
+                        Resultado += ' ';
+                    }
+                }
+                // Sempre queda minim un caracter restant... raro raro... sembla cosa de fer RandInt(1,0) que sempre dona 0...
+                for (var i = 0; i < CaracteresRestantes; i++) {
+                    Resultado += ((ArrayBinario[Pos++] === 0) ? 'a' : 'A');
+                }
+                
+                //console.log(CaracteresRestantes);
+                return Resultado;
+            };
+
+            
+            // Descodifica un texte PUTA i mostra el ASCII
+            function PUTAaASCII() {
+                var Texte = document.getElementById('Input_Putificacio').value;
+                var Resultat = "";
+                var Bin = "";
+                for (var i = 0; i < Texte.length; i++) {
+                    var char = Texte.charAt(i);
+                    if (char === 'p' || char === 'u' || char === 't' || char === 'a') {
+                        Bin += "0";
+                    }
+                    else if (char === 'P' || char === 'U' || char === 'T' || char === 'A') {
+                        Bin += "1";
+                    }
+                    
+                    if (Bin.length > 7) {
+                        Resultat += CaractersASCII[BINaDEC(Bin)];
+                        Bin = "";
+                    }
+                }
+                var TARet = document.getElementById('Input_Cristia');
+                TARet.value = Resultat;
+                TARet.select();
+                try {
+                    document.execCommand('copy');
+                }
+                catch(err) {
+                    console.log("error en el Control+C", err);
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <div id='Titul'>Traductor ASCII / PUTAPUTA</div><br />
+        <span>ASCII</span>
+        <textarea id='Input_Cristia'></textarea>
+        <span>PUTAPUTA</span>
+        <textarea id='Input_Putificacio'></textarea>
+        <div id='Butons'>
+            <button onclick='ASCIIaPUTA();'>Codificar</button>
+            <button onclick='PUTAaASCII();'>DesCodificar</button>
+        </div>
+        <!-- <span>La teva frase te caracters <b>NO</b> Com<b>PUTA</b>bles</span> -->
+    </body>
+</html>

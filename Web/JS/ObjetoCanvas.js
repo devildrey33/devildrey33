@@ -413,7 +413,7 @@ var BufferCanvas = function(Ancho, Alto) {
 /* Si solo se especifica un parámetro, el primer parámetro será el máximo, y el mínimo será 0 */
 /* Si se especifican dos parámetros, el primero es el máximo, y el segundo es el mínimo. */
 function RandInt(Max, Min) {
-    return Math.floor(Rand(Max, Min));
+    return Math.round(Rand(Max, Min));
 }
 
 

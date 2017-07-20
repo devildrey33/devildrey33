@@ -70,6 +70,7 @@
                 case "EliminarComentario" :             $this->EliminarComentario();                break;
                 case "EditarComentario" :               $this->EditarComentario();                  break;
                 case "LabGuardarEjemplo" :              $this->LabGuardarEjemplo();                 break;
+                case "ObtenerLog" :                     $this->LogObtener();                        break;
                 // Super admin
                 case "ActivarCors" :                    $this->Cors(TRUE);                          break;
                 case "DesactivarCors" :                 $this->Cors(FALSE);                         break;
@@ -320,6 +321,16 @@
             }
         }
         
+        
+        public function LogObtener() {
+            if (devildrey33_Opciones::Administrador() > 0) { 
+                echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0, "DatosLog" => devildrey33_Log::ObtenerLog($_POST["Archivo"]))); 
+            }                        
+            else {
+                $this->Desloguear(1);
+            }
+        }
+        
         public function CheckSpelling($Num) {            
             if (devildrey33_Opciones::Administrador() === 1) { 
                 devildrey33_htaccess::CheckSpelling($Num);    
@@ -378,6 +389,7 @@
                 $this->Desloguear(1);
             }
         }
+        
     };
     
     

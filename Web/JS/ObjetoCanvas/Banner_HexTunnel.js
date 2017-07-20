@@ -9,7 +9,7 @@ var Banner_HexTunnel = function() {
         'Ancho'         : 'Auto',
         'Alto'          : 'Auto',
         'Entorno'       : 'Banner',
-        'MostrarFPS'    : true,
+        'MostrarFPS'    : false,
         'ElementoRaiz'  : document.body
     }) === false) { return false; }
     
@@ -23,6 +23,20 @@ var Banner_HexTunnel = function() {
     return true;
 };
 
+
+// Función para obtener un valor hexadecimal aleatório.
+var RandHex = function() {
+    return '0x' + Math.random().toString(16).slice(2, 8).toUpperCase();
+};
+
+var Constantes = {
+    Texturas           : 8,   // Numero de texturas distintas
+    Filas              : 48,  // 48 filas de 2 columnas
+    TamFuente          : 30,  // Tamaño en pixeles de la fuente
+    Lineas             : 26,  // realmente es una menos
+    CaracteresPorLinea : 28,  // 8 + 2 + 8 + 2 + 8    
+    MaxAnimaciones     : 25   // 25 valores hexadecimales animandose como máximo
+};
 
 Banner_HexTunnel.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     constructor     : Banner_HexTunnel, 
@@ -56,15 +70,13 @@ Banner_HexTunnel.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     // Función que se llama al soltar el dedo de la pantalla
     TouchEnd        : function(Evento) { },    
     // Función que se llama al pausar el banner
-    Pausa           : function() {  this.Animaciones.Pausa(); },
+    Pausa           : function() { },
     // Función que se llama al reanudar el banner
-    Reanudar        : function() {  this.Animaciones.Reanudar(); },
-    // Función que se llama al justo despues de terminar el banner
-    Terminado       : function() {  this.Animaciones.Limpiar(); },
+    Reanudar        : function() { },
     // Función que inicia el ejemplo
     Iniciar         : function() {
         // Instancia para el objeto encargado de las animaciones de tiempo http://devildrey33.es/Ejemplos/Utils/ObjetoAnimacion.js
-        this.Animaciones = new ObjetoAnimacion;        
+//        this.Animaciones = new ObjetoAnimacion;        
         // Activo el mapeado de sombras
         this.Context.shadowMap.enabled	= true;
         // Creo la escena
@@ -91,102 +103,52 @@ Banner_HexTunnel.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         this.CrearBloques();
 
         this.CrearLuces();
+        
+        this.CrearAnimaciones();
     },
-       
+    
+    Bloques     : [], // Objeto que contiene un bloque
+    Texturas    : [], // Objeto que contiene una testura para varios bloques
+    Animaciones : [], // Array de datos para las animaciones
+    
     CrearBloques : function() {        
-//        this.Animaciones.Limpiar();
-        this.Filas = 48; // 48 filas de 2 columnas
-        // 8 Texturas que se repiten
         this.Texturas = [];
-        for (var t = 0; t < 8; t++) {
-            this.Texturas[t] =  new this.TexturaBloque(this.Animaciones);            
-        } 
-        
-        this.Bloques  = [];
-        var TA = 0; // TexturaActual
-        for (var i = 0; i < this.Filas ; i++) {
-            this.Bloques.push(new this.Bloque(this.Escena, -24, 0, i * -20, 0, 0, 0, this.Texturas[TA++]));
-            this.Bloques.push(new this.Bloque(this.Escena, 24, 0, i * -20, 0, 0, 0, this.Texturas[TA++]));
-            if (TA > 7) { TA = 0; }
+        for (var t = 0; t < Constantes.Texturas; t++) {
+            this.Texturas[t] = new this.TexturaBloque();
         }
-        
+        this.Bloques = [];
+        // Creo 96 bloques 
+        var TA = 0; // TexturaActual
+        for (var i = 0; i < Constantes.Filas ; i++) {
+            this.Bloques.push(new this.Bloque(this.Escena, -24, i * -20, this.Texturas[TA++]));
+            this.Bloques.push(new this.Bloque(this.Escena, 24, i * -20, this.Texturas[TA++]));
+            if (TA > Constantes.Texturas - 1) { TA = 0; }
+        }        
     },
 
-    TexturaBloque : function(ObjAnimacion) {
+    TexturaBloque : function() {
         this.Buffer  = new BufferCanvas(512, 1024);
         this.Textura = new THREE.Texture(this.Buffer.Canvas);
-        // Guardo el objeto animación global
-        this.Animaciones = ObjAnimacion;
-
+        
+        this.Buffer.Context.font = Constantes.TamFuente + "px nova mono";
         this.Buffer.Context.fillStyle = "rgb(0, 0, 120)";
         this.Buffer.Context.fillRect(0, 0, this.Buffer.Ancho, this.Buffer.Alto);
-        this.Buffer.Context.font = "32px monospace";
-
-        // 512 - 60 / 26 (Ancho - Margen / Caracteres por linea)
-        this.Buffer.Context.fillStyle = "rgb(95, 95, 95)";
-
-        // Función para obtener un valor hexadecimal aleatório.
-        this.RandHex = function() {
-            return '0x' + Math.random().toString(16).slice(2, 8).toUpperCase();
-        };
-        // Creo la textura con 26 lineas que contienen 3 valores hex de 32 bits cada una.
-        this.Lineas = 26;
-        this.CaracteresPorLinea = 26;
-        for (var i = 1; i < this.Lineas; i++) {
-            var HexStr = this.RandHex() + ' ' + this.RandHex() + ' ' + this.RandHex();
-            this.Buffer.Context.fillText(HexStr, 30, i * 40);
+        this.Buffer.Context.fillStyle = "rgb(95, 95, 95)";            
+        for (var l = 1; l < Constantes.Lineas; l++) {
+            var HexStr = RandHex() + '  ' + RandHex() + '  ' + RandHex();
+            this.Buffer.Context.fillText(HexStr, 20, l * 40);
         }
-        this.Textura.needsUpdate = true;          
-
-        // Animación que sobre-escribe un valor Hex y lo resalta
-        this.CrearAni = function() {
-            var Ani = this.Animaciones.CrearAnimacion(
-                [   // Pasos de la animación
-                    {   Paso : { R :  255, G : 255, B : 0 }     }, 
-                    {   Paso : { R :  95,  G : 95,  B : 95 }, Tiempo : RandInt(2000, 750), FuncionTiempo : FuncionesTiempo.SinOut }
-                ], 
-                {   // Opciones de la animación
-                    FuncionActualizar : function(Valores) { 
-                        var CharTam = this.Buffer.Ancho / this.CaracteresPorLinea;
-                        // TMB Transports Municipals de Barcelona !!
-                        var x1 = 30 + (Valores.Const.X * (CharTam * 8));
-                        var x2 = CharTam * 8;
-                        var y1 = (Valores.Const.Y) * 40;
-                        var y2 = ((Valores.Const.Y) * 40) - 30;
-                        this.Buffer.Context.fillStyle = "rgb(0, 0, 120)";
-                        this.Buffer.Context.fillRect(x1, y2, x2, 40);
-                        
-                        this.Buffer.Context.fillStyle = "rgb(" + Math.floor(Valores.R) + "," + Math.floor(Valores.G) + "," + Math.floor(Valores.B) + ")";
-                        
-                        this.Buffer.Context.fillText(Valores.Const.HexStr, x1, y1);
-                        this.Textura.needsUpdate = true;
-                    }.bind(this),
-                    Const : { 
-                        'X' : RandInt(3, 0), 
-                        'Y' : RandInt(this.Lineas, 1),
-                        Texto : this.RandHex(), 
-                        HexStr : this.RandHex() 
-                    },
-                    FuncionTerminado  : this.CrearAni.bind(this)
-                }
-            ).Iniciar();            
-        };
-        
-        this.CrearAni();
+        this.Textura.needsUpdate = true;        
     },
         
-    Bloque : function(Escena, X, Y, Z, RotacionX, RotacionY, RotacionZ, TB) {       
-        this.Buffer  = new BufferCanvas(512, 1024);
-        this.Textura = TB;
+    Bloque : function(Escena, X, Z, Textura) {       
+        this.Buffer  = Textura.Buffer;
+        this.Textura = Textura.Textura;
         this.Figura  = new THREE.Mesh(  new THREE.BoxGeometry( 20, 40, 10 ), 
-                                        new THREE.MeshStandardMaterial( { map: this.Textura.Textura, transparent : true, roughness: 0.5, opacity: 0.75  } ));
+                                        new THREE.MeshStandardMaterial( { map: this.Textura, transparent : true, roughness: 0.5, opacity: 0.75  } ));
         Escena.add(this.Figura);
-        this.Figura.position.set(X, Y, Z);
-        this.Figura.rotation.set(RotacionX, RotacionY, RotacionZ);
+        this.Figura.position.set(X, 0, Z);
         this.Figura.castShadow = true;
-        this.Buffer.Context.fillStyle = "rgb(0, 0, 120)";
-        this.Buffer.Context.fillRect(0, 0, this.Buffer.Ancho, this.Buffer.Alto);
-        this.Buffer.Context.font = "32px monospace";                       
         this.Figura.name = "Bloque";        
     },
     
@@ -237,21 +199,76 @@ Banner_HexTunnel.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         this.HemiLight.position.set( 0, 0, 0 );
         this.Escena.add( this.HemiLight );                 
     },
-
     
-    Avanzar : function() { 
-//        this.Avance -= 0.25;
-/*        this.Camara.position.z = this.Avance;
+    CrearAnimaciones : function() {
+        this.Animaciones = [];
+        for (var i = 0; i < Constantes.MaxAnimaciones; i++) {
+            this.Animaciones.push(new this.Animacion(this.Tick));
+        }
+    },
+    // Objeto que contiene los valores de una animación del texto hexadecimal
+    Animacion : function(Tick) {
+        this.Textura    = RandInt(Constantes.Texturas, 0);  // Número de textura
+        this.Linea      = RandInt(Constantes.Lineas, 1);    // Línea
+        this.Columna    = RandInt(3, 0);                    // Columna
+        this.Retraso    = RandInt(900, 0);                  // añado un retraso aleatório al inicio
+        this.Tiempo     = RandInt(2000, 450);               // Duración
+        this.TickInicio = Tick + this.Retraso;
+        this.R          = 95; // 255 - 95 = 145             // Canal R y G
+//        this.G          = 95;
+        this.B          = 95;                               // Canal B
+        this.Texto      = RandHex();                        // Nuevo valor hexadecimal
+        this.Terminado  = false;
+        this.Porcentaje = 0;
+        this.Tipo       = Rand(1, 0);
+        this.Calcular   = function(Tick, Buffer) {
+            if (this.TickInicio < Tick) {
+                var ta = Tick - this.TickInicio;                
+                if (ta < this.Tiempo) {
+                    this.Porcentaje =  ((ta * 100) / this.Tiempo) / 100;
+                }
+                else {
+                    this.Porcentaje = 1;
+                    this.Terminado = true;
+                }
+                this.R = 255 - Math.floor(this.Porcentaje * 160);
+                this.B = Math.floor(this.Porcentaje * 95);
+                this.PintarHex(Buffer);
+            }
+        },
+                
+        this.PintarHex  = function(Buffer) {
+            var x2 = 16.8 * 10;
+            var x1 = 20 + (this.Columna * x2);
+            var y1 = this.Linea * 40;
+            var y2 = y1 -Constantes.TamFuente;
+            Buffer.Context.fillStyle = "rgb(0, 0, 120)";
+            Buffer.Context.fillRect(x1, y2, x2, 40);
+            if (this.Tipo < 0.05) {                           Buffer.Context.fillStyle = "rgb(" + this.R + "," + this.B + "," + this.B + ")";   }
+            else if (this.Tipo > 0.05 && this.Tipo < 0.15) {  Buffer.Context.fillStyle = "rgb(" + this.B + "," + this.R + "," + this.B + ")";   }
+            else                                           {  Buffer.Context.fillStyle = "rgb(" + this.R + "," + this.R + "," + this.B + ")";   }
+            Buffer.Context.fillText(this.Texto, x1, y1);
+        };
+    },
+    // Función que anima los textos hexadecimales
+    AnimarHex : function() {
+        for (var i = 0; i < Constantes.MaxAnimaciones; i++) {
+            this.Animaciones[i].Calcular(this.Tick, this.Texturas[this.Animaciones[i].Textura].Buffer);
+//            this.Animaciones[i].PintarHex(this.Texturas[this.Animaciones[i].Textura].Buffer);
+            if (this.Animaciones[i].Terminado === true) {
+                this.Animaciones[i] = new this.Animacion(this.Tick);
+            }                                    
+        }
+        for (var i = 0; i < Constantes.Texturas; i++) {
+            this.Texturas[i].Textura.needsUpdate = true;
+        }
+
+    },    
         
-        this.DirLight.position.set( 12, 40, -120 - this.Avance );
-        
-        this.DirLight2.position.set( 3, 10, 20 - this.Avance );
-        
-        this.Suelo.position.z = this.Avance;*/
-        
-        for (var i = 0; i < this.Filas * 2; i++) {
+    AvanzarBloques : function() {         
+        for (var i = 0; i < Constantes.Filas * 2; i++) {
            if (this.Bloques[i].Figura.position.z > this.Camara.position.z + 100) {
-               this.Bloques[i].Figura.position.z = this.Bloques[i].Figura.position.z - (20 * this.Filas);
+               this.Bloques[i].Figura.position.z = this.Bloques[i].Figura.position.z - (20 * Constantes.Filas);
            }
            else {
                this.Bloques[i].Figura.position.z += 0.07;
@@ -261,13 +278,12 @@ Banner_HexTunnel.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     
     // Función que pinta cada frame de la animación
     Pintar          : function() {  
-        console.log(this.Filas, this.Texturas.length, this.Bloques.length);
-        this.Avanzar();
+        this.AvanzarBloques();
+        this.AnimarHex();
         // Actualizo las animaciones de tiempo
-        this.Animaciones.Actualizar(this.Tick);
+//        this.Animaciones.Actualizar(this.Tick);
         
         this.Context.render(this.Escena, this.Camara);  
     }
 });
-
 

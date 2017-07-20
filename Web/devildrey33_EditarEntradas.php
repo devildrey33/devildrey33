@@ -14,6 +14,7 @@
 
 //    echo "devildrey33_EditarEntradas\n";
 
+// DEPRECATED???? NO... lo que no edita entrades.. nomes les obte..
 
 include_once "devildrey33_Opciones.php";
 

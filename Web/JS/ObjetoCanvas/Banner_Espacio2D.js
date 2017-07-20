@@ -13,7 +13,8 @@ var Banner_Espacio2D = function() {
         'Alto'          : 'Auto',
         'Entorno'       : 'Banner',
         'MostrarFPS'    : true,
-        'ElementoRaiz'  : document.body
+        'ElementoRaiz'  : document.body,
+        'CapturaEjemplo': "Canvas2D_1.png"
     }) === false) { return false; }
 
     this.Iniciar();

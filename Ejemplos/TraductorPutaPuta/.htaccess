@@ -1,0 +1,13 @@
+# Prevenir que puguin mirar el htaccess
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+RewriteEngine on
+
+# Base arrel del servidor
+RewriteBase /Ejemplos/TraductorPutaPuta/
+
+
+#RewriteRule ^$ /index.html [L]

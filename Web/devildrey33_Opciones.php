@@ -214,8 +214,8 @@ class Base {
        $version= "";
 
        // Plataforma
-       if 	(stripos($u_agent, "linux") !== FALSE)			{ $platformcorto = 'Linux';	$platform = 'Linux'; }
-       elseif 	(stripos($u_agent, "android") !== FALSE)		{ $platformcorto = 'Android'; 	$platform = 'Android'; } 
+       if 	(stripos($u_agent, "android") !== FALSE)		{ $platformcorto = 'Android'; 	$platform = 'Android'; } 
+       elseif 	(stripos($u_agent, "linux") !== FALSE)			{ $platformcorto = 'Linux';	$platform = 'Linux'; }
        elseif 	(stripos($u_agent, "iPhone") !== FALSE)			{ $platformcorto = 'iPhone';	$platform = 'iPhone'; }
        elseif 	(stripos($u_agent, "iPad") !== FALSE)			{ $platformcorto = 'iPad';	$platform = 'iPad'; }
        elseif 	(stripos($u_agent, "macintosh") !== FALSE)		{ $platformcorto = 'Mac';	$platform = 'Macintosh'; }
@@ -270,7 +270,7 @@ class Base {
                //we will have two since we are not using 'other' argument yet
                //see if version is before or after the name
                if (strripos($u_agent,"Version") < strripos($u_agent,$ub))	if (isset($matches['version'][0])) $version= $matches['version'][0];
-               else 							if (isset($matches['version'][1])) $version= $matches['version'][1];
+               else                                                             if (isset($matches['version'][1])) $version= $matches['version'][1];
            }
            else {
                $version= $matches['version'][0];

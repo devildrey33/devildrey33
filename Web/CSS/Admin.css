@@ -9,6 +9,7 @@ and open the template in the editor.
 */
 
 /* Log.php */
+/*
 #Log_Contenedor {
     width : 100%;
 }
@@ -45,7 +46,6 @@ and open the template in the editor.
 
 .Log_TdURL {
     display:table-cell; 
-/*		width:70%;*/
     min-width:660px;
     max-width:660px; 
     overflow:hidden;
@@ -56,7 +56,7 @@ and open the template in the editor.
 /*	.Log_TdURL span {
     white-space:nowrap;
 }*/
-
+/*
 .Log_TdPlataforma {
     display:table-cell; 
     width:160px;
@@ -69,15 +69,11 @@ and open the template in the editor.
     direction:rtl;
     color:rgb(70, 70, 70);
 }
-
-.Log_Entradas {
-/*				border:1px dashed #CCC; */
+*/
+/*.Log_Entradas {
     display:none; 
     padding-top:4px;
-/*		padding:4px;
-    margin:2px;
-    width:100%;*/
-}
+}*/
 
 .Log_Entrada_Ataque 		{	color:red;		}
 .Log_Entrada_Advertencia 	{	color:orange;	}
@@ -89,10 +85,10 @@ and open the template in the editor.
 .Log_Entrada_Imagen 		{	color:gray;		}
 .Log_Entrada_Otros 		{	color:black;	}
 
-.Log_Cerrar {
+/*.Log_Cerrar {
     position:relative;
     display:table;
-    width:16px; /* + 5 del padding = 21 */
+    width:16px;
     height:16px;
     padding-top:1px;
     padding-left:6px;
@@ -117,7 +113,7 @@ and open the template in the editor.
 .Log_Cerrar:hover {
     background-color:#ea504e;
 }
-
+*/
 
 
 
@@ -270,4 +266,302 @@ and open the template in the editor.
     margin-left:1%;
     width:30%;
     display:inline-block;
+}
+
+
+
+
+
+
+
+
+
+/* Log2.php */
+.EntradaLog {   /* Contenedor con todos los datos de una IP */
+    /* width: calc(100% - 1px); */
+    position:relative;
+    display:table;
+/*    border-left:1px solid transparent; */
+    transition:0.4s;
+    overflow:hidden;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+}
+
+.EntradaLog[abierto=true] {   /* Contenedor con todos los datos de una IP */
+    /* border-left:1px solid #000; */
+    /* border-top:1px solid #000; */
+    border: 1px solid #000;
+    background-color:#CCC;
+}
+
+.EntradaLog:hover {   /* Contenedor con todos los datos de una IP */
+    background-color:#DDD;
+}
+
+
+.EntradaLog_Fila {
+    display:table-row;
+    width:100%;
+    height:20px;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+.EntradaLog_Fila:hover {   /* Contenedor con todos los datos de una IP */
+    background-color:#BBB;
+}
+
+.EntradaLog_TablaFila {
+    display:table;
+    table-layout:fixed;
+    width: 100%;
+    white-space:nowrap;      /* Impide los saltos de línea automáticos */
+}
+
+.EntradaLog_TablaFila[ataque=true] {
+    background-color:rgba(255,0,0, 0.1);
+}
+
+.EntradaLog > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_Ip,  
+.EntradaLog > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_Url, 
+.EntradaLog > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_Peticiones, 
+.EntradaLog > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_TiempoInicio, 
+.EntradaLog > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_TiempoFin, 
+.EntradaLog > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_InfoClienteWeb {
+    display:table-cell;
+    overflow:hidden;
+    height:20px;
+    padding:0px 4px 0px 4px;
+    border-left: 1px solid #666;
+    color: #444;
+}
+
+#Log_Lista > .EntradaLog:nth-last-child {
+    border-bottom:1px solid #666;
+}
+
+.EntradaLog_Url {  overflow:hidden; text-overflow:ellipsis; }
+.EntradaLog > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_Ip               { width : 120px; text-align:left; transition:0.4s; }
+.EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_Ip { color:transparent; }
+.EntradaLog_Ip              { width : 120px; text-align:left; }
+.EntradaLog_Peticiones      {width: 32px;text-align:right;}
+.EntradaLog_TiempoInicio    { width : 75px; text-align:center;  }
+.EntradaLog_TiempoFin       { width : 75px; text-align:center; }
+.EntradaLog > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_InfoClienteWeb  { width : 140px; text-align:right; border-right:1px solid #666; }
+.EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_InfoClienteWeb  { border-right:1px solid transparent; }
+
+.EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_Ip, 
+.EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_Url, 
+.EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_Peticiones, 
+.EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_TiempoInicio, 
+.EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_TiempoFin, 
+.EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_InfoClienteWeb {
+    border-left:1px solid transparent;
+}
+
+.EntradaLog_Datos {
+    /* position:relative; */
+    width:100%;
+    display: table-row;
+}
+
+#Log_Opciones {
+    padding:0px;
+    /* min-height: 60px; */
+    position: fixed;
+    border-bottom:1px solid #000;
+    /* margin-bottom:10px; */
+    display: flex;
+    /* background-color: #EEE; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    z-index: 1000;
+    width: calc(100% - 160px);
+    left:auto;
+    right:auto;
+    top:0px;
+    background-color: #DDD;
+    box-shadow: 3px 3px 3px rgba(90, 90, 90, 0.5);
+}
+
+/*#OpcionesLog > div > label {
+    display:block;
+    width:100%;
+    text-align:center;
+}*/
+
+#Log_Lista {
+    margin-top: 80px;
+    border-bottom: 1px solid #666;
+    border-top: 1px solid #666;
+}
+
+#Log_Opciones > div > select {
+    font-size:1.7rem;
+    height: 24px;
+    margin: 0px 20px;
+}
+
+#Log_Opciones > div > label, #Log_Opciones > div > label > span {
+    white-space:nowrap;
+}
+
+#Log_Contenedor_Navegadores {
+    display: flex;
+    flex-direction:row-reverse;
+    position: relative;
+    /* right:10px; */
+    /* top:15px; */
+    border-left:1px solid #000;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#Log_Contenedor_Tipo {
+    display: flex;
+    flex-direction:row;
+    position: relative;
+    /* left:220px; */
+    /* top:15px; */
+    border-left:1px solid #000;
+    border-right: 1px solid #000;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+/*
+#Log_Contenedor_Buscar {
+    display: flex;
+    flex-direction:row;
+    position: relative;
+    border-left:1px solid #000;
+    border-right: 1px solid #000;
+    align-items: center;
+    justify-content:center;
+}
+#Log_Contenedor_Buscar > * {
+    margin:0px 10px;
+}
+
+#Log_Contenedor_Buscar > input {
+    
+}*/
+
+#Log_Contenedor_Archivos {
+    position: relative;
+    /* left:10px; */
+    /* top:15px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #EEE; */
+    border-left: 1px solid #000;
+}
+
+#Log_Contenedor_Navegadores > label, #Log_Contenedor_Tipo > label {
+    margin:5px;
+}
+
+#Log_Datos {
+    display:none;
+}
+
+.Log_Titulo1 {
+    margin:10px 0px 0px 20px;
+    display: block;
+}
+.Log_TituloTabla {
+    /* min-width: 300%; */
+    position: relative;
+    margin-left:20px;
+    display: inline-block;
+}
+
+/*.Log_TituloTabla td:nth-child(1) {
+    width:140px;
+}*/
+
+.Log_UserAgent {
+    margin: 0px;
+    position:absolute;
+    top: 105px;
+}
+
+.Log_TablaEntrada {
+    margin-left:20px;
+    position:relative;
+    max-width: calc(100% - 40px);
+    display: table;
+    table-layout:fixed;
+    background:rgba(255, 255, 255, 0.2);
+    transition:0.4s;
+    margin-bottom: 20px;
+    white-space:nowrap;      /* Impide los saltos de línea automáticos */
+}
+
+.Log_TablaEntradaFila:hover {
+    background-color:#CCC;
+}
+
+.Log_TablaEntradaFila > div {
+    padding-left:5px;
+}
+
+.Log_TablaEntrada > .Log_TablaEntradaFila > div:nth-child(1) { width: 70px;}
+.Log_TablaEntrada > .Log_TablaEntradaFila > div:nth-child(2) { width: 40px;}
+.Log_TablaEntrada > .Log_TablaEntradaFila > div:nth-child(3) {overflow:hidden;text-overflow:ellipsis;min-width: 250px;} 
+.Log_TablaEntrada > .Log_TablaEntradaFila > div:nth-child(4) {max-width: 140px;text-align:right;}
+.Log_TablaEntrada > .Log_TablaEntradaFila > div:nth-child(5) { width:40px;  text-align:right;}
+.Log_TablaEntrada > .Log_TablaEntradaFila > div:nth-child(6) { width:70px;  text-align:right; color:gray; }
+/*.Log_TablaEntrada:nth-child-last > .Log_TablaEntradaFila > div:nth-child(6) { width:70px;  text-align:right; color:white; } */
+/*
+.Log_TablaEntrada > .Log_TablaEntradaFila > div:nth-last-child {
+    color:darkgray;
+}*/
+
+.Log_TablaEntradaFila {
+    display:table-row;
+}
+
+.Log_TablaEntradaFila > div {
+    display:table-cell;
+    padding-right:10px;
+}
+
+/*
+.Log_TablaTitulo {
+    display:table;
+    width: 100%;
+}
+
+.Log_Titulo2 {width:125px;display: inline-block;position: relative;}
+.Log_Titulo2::after { content:':'; position:absolute; right:0px; }
+
+
+.Log_Titulo3 {width:225px;display: inline-block;position: relative;}
+*/
+
+#Log_Cargando {
+    position:fixed;
+    width:310px;
+    height:70px;
+    background:rgba(20, 20, 20, 0.9);
+    border:1px solid #000;
+    display:none;
+    z-index:1000;
+    left:50%;
+    top:50%;
+    transform:translateX(-50%) translateY(-50%);
+    font-size:1.7rem;
+    box-shadow: 3px 3px 3px rgba(90, 90, 90, 0.7);
+}
+
+#Log_Cargando[visible=true] {
+    display:table;
+}
+
+#Log_Cargando li {
+    color:#999;
 }

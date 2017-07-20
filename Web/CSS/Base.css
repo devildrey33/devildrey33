@@ -6,8 +6,11 @@
 /* Fuente para las etiquetas h1, h2, h3, h4, h5*/
 @import url('https://fonts.googleapis.com/css?family=Karla');
 /* Fuente para las etiquetas pre, code, y otyras que necesiten una fuente monoespaciada */
-/*@import url('http://fonts.googleapis.com/css?family=Nova+Mono');*/
+@import url('https://fonts.googleapis.com/css?family=Nova+Mono');
 @import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext');
+
+/* Fix para mostrar la fuente Nova Mono */
+.NovaMono { font-family: "Nova Mono";  display:none;  }
 
 ::selection {
     background: rgb(234, 80, 78);

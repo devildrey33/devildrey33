@@ -96,17 +96,37 @@ body { margin:0px; padding:0px; }
 }
 
 #Cabecera_Error {
-    background-color: rgba(187,35,40, 0.9) !important;    
-    min-width:200px;    
+    position:fixed;
+    background-color: rgb(128, 128, 128) !important;    
+    min-width:100%;    
+    min-height:100%;    
     z-index:1000;
-    opacity:0;
+    display:none;
+    margin:0px;
+    padding:20px;
+    font-size:20px;
 }
 
 #Cabecera_Error[visible=true] {
-    opacity:1;
+    display:block;
 }
 
+#Cabecera_Error > span {
+    background-color: rgb(187,35,40) !important; 
+    padding:5px;
+    margin-left:auto;
+    margin-right:auto;
+    display:table;
+}
 
+#Cabecera_Error > img {
+    width:650px; 
+    height:500px;
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+    display:table;
+}
 
 
 

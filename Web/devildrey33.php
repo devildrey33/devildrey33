@@ -14,6 +14,7 @@ include("devildrey33_Comentarios.php");
 include("devildrey33_htaccess.php");
 include("devildrey33_EditarEntradas.php");
 include("devildrey33_Buscador.php");
+include("devildrey33_Log.php");
 
 
 /* Examinar un exemple de cada plantilla i fer un estudi detallat de les diferencies i similituds, lo cual requerira en primera instancia evaluar i enumerar totes les etiquetes que intervenen en cada cas. */
@@ -95,9 +96,10 @@ class devildrey33 {
             $Idioma = $this->EntradaBlog["Idioma"];
             $Titulo = $this->EntradaBlog["Titulo"];
             $Autor  = $this->EntradaBlog["Autor"];
-            if ($this->EntradaBlog["Tipo"] === "Blog") { $URL    = Base::URL_Raiz()."Blog/".$this->EntradaBlog["URL"];     }
-            else                                       { $URL    = Base::URL_Raiz().$this->EntradaBlog["URL"];             }
-            $Imagen = Base::URL_Raiz().$this->EntradaBlog["Imagen"];
+            if ($this->EntradaBlog["Tipo"] === "Blog")    { $URL    = Base::URL_Raiz()."Blog/".$this->EntradaBlog["URL"];     }
+            elseif ($this->EntradaBlog["Tipo"] === "Lab") { $URL    = Base::URL_Raiz()."Lab/".$this->EntradaBlog["URL"];      }
+            else                                          { $URL    = Base::URL_Raiz().$this->EntradaBlog["URL"];             }
+            $Imagen = Base::URL_Raiz()."Web/Graficos/250x200_".$this->EntradaBlog["Imagen"];
         }
         
         echo "<!DOCTYPE HTML>".Intro().
@@ -110,14 +112,14 @@ class devildrey33 {
 //            echo '<meta name="description" content="Página web dedicada al mundo de la programación, donde puedes encontrar información sobre HTML, CSS, JS, Ajax, jQuery, PHP, MySql, C/C++, Three.js, etc...." />'.Intro();
         "<meta name='twitter:card' content='summary' />".Intro().        
         "<meta name='twitter:site' content='@publisher_handle' />".Intro().        
-        "<meta name='twitter:title' content='".$Titulo."' />".Intro().        
+        "<meta name='twitter:title' content=\"".$Titulo."\" />".Intro().        
 //        "<meta name='twitter:description' content='Page description less than 200 characters'>".Intro().        
         "<meta name='twitter:creator' content='@author_handle' />".Intro().        
         /* Twitter Summary card images must be at least 200x200px */
         "<meta name='twitter:image' content='".$Imagen."' />".Intro().        
 
         /* Open Graph data */
-        "<meta property='og:title' content='".$Titulo."' />".Intro().        
+        "<meta property='og:title' content=\"".$Titulo."\" />".Intro().        
         "<meta property='og:type' content='article' />".Intro().        
         "<meta property='og:url' content='".$URL."' />".Intro().        
         "<meta property='og:image' content='".$Imagen."' />".Intro().        
@@ -130,7 +132,7 @@ class devildrey33 {
         '<meta name="msapplication-config" content="none"/>'.Intro(). // Para que el explorer no busque el archivo BrowserConfig.xml de las pelotas.
         /* Manifest per android (https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android) */
 //        '<link rel="manifest" href="/manifest.json">'.Intro().
-        "<link rel='shortcut icon' href='".Base::URL_Raiz()."/Web/Graficos/devildrey33.ico' />".Intro();
+        "<link rel='shortcut icon' href='".Base::URL_Raiz()."Web/Graficos/devildrey33.ico' />".Intro();
 //        "<link rel='alternate' type='application/rss+xml' title='RSS 2.0' href='http://devildrey33.es/rss.xml' />".Intro();
         $this->Head_CSS();      // Enlace/s de los estilos CSS
         $this->Head_JS();	// Enlace/s de los archivos JavaScript
@@ -146,6 +148,9 @@ class devildrey33 {
         
         if (devildrey33_Opciones::Administrador() > 0)     echo "<body administrador33=true>".Intro();
         else                                               echo "<body>".Intro();
+        // Fix per mostrar la font Nova Mono correctament en el banner HexTunnel
+        echo "<div style='font-family:Nova Mono; position:fixed; top:-100px'>NovaMonoFix</div>".Intro();
+        
 //        echo file_get_contents(Base::Path_Web()."SVG/Iconos50x50.svg");
         echo "<div id='ErroresPHP' mostrar='false'>".Intro().
             "<div id='ErroresPHP_Titulo'>Errores PHP</div>".Intro().

@@ -5,6 +5,15 @@
 
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(
+array(	"Titulo" 	=> "Experimento con Three.js 'Hex Tunnel'", 
+        "Fecha" 	=> "15/05/2017",
+        "URL" 		=> "Ejemplos/BannerTest/HexTunnel.html", 
+        "Tags" 		=> array("Three.js", "JavaScript", "CSS", "HTML", "Programación" ),
+        "Idioma"        => "es",
+        "Autor"         => "Josep Antoni Bover",
+        "Tipo"		=> "Lab",
+        "Imagen"	=> "HexTunnel.png"),
+        
 array(	"Titulo" 	=> "Experimento con Three.js 'Espiral RGB'", 
         "Fecha" 	=> "28/04/2017",
         "URL" 		=> "Ejemplos/BannerTest/EspiralRGB.html", 

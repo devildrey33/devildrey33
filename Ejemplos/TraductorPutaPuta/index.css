@@ -1,0 +1,127 @@
+html, body, textarea {
+    box-sizing: border-box;
+    padding:5px;
+}
+
+html, body {
+    margin: 0px;
+    height: 100%;
+    background:#ccc;
+}
+
+#Titul { font-size:24px; font-weight:bold; display:inline-table; }
+#Input_Cristia, #Input_Putificacio {
+    display:table;
+    width:100%;
+    height: 40vh;
+    border:3px solid #999;
+}
+#Butons {
+    display:table;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+button {
+    margin:10px;
+    padding:5px;
+    font-size:21px;
+}
+
+
+
+
+
+
+
+#Inici {
+    position: relative;
+    top: 25%;
+    transform: translateY(-25%);
+}
+
+#Inici > ul {
+    list-style:none;
+    display:table;
+    margin-left:auto;
+    margin-right:auto;
+    padding:0px;
+}
+
+#Inici > ul > li {
+    border:2px solid #000;
+    margin:20px;
+    padding:10px;
+    cursor:pointer;
+}
+
+#Inici > ul > li:nth-child(1) {    background-color:#fd8192;    }
+#Inici > ul > li:nth-child(2) {    background-color:#c6fe91;    }
+#Inici > ul > li:nth-child(3) {    background-color:#bb6afe;    }
+
+#Inici > ul > li > h1 {
+    font-size:6em;
+    margin:10px 0px 0px 0px;
+    display:table;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#Inici > ul > li > p {
+    font-size:2.4em;
+    margin:10px 0px 10px 0px;
+    padding:0px 10px 0px 10px;
+    display: table;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+}
+
+#Inici, #Codificar, #DesCodificar, #Test {
+    display:none;
+}
+
+#Inici[visible], #Codificar[visible], #DesCodificar[visible], #Test[visible] {
+    display:block;
+}
+
+
+#TornarInici {
+    position:fixed;
+    bottom:40px;
+    right:40px;
+    width:120px;
+    height:120px;
+    background:black;
+    border-radius:100px;
+    display:none;   
+    color:#FFF;
+    cursor:pointer;
+}
+
+#TornarInici[visible] {
+    display:block;
+}
+
+/*#Input_Portapapers {
+    top:-1000px;
+    left:-1000px;
+    position:relative;
+}*/
+
+
+#Input_Cristia2, #Input_Descodificar {
+   width:100%;
+   height:90vh;
+   font-size:3em;
+   margin:20px;
+}
+
+#Buto_Codificar {
+    position:fixed;
+    bottom:40px;
+    margin-left:20px;
+    margin-right:auto;
+    font-size:3em;
+    padding:2vh;
+}

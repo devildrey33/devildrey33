@@ -185,7 +185,7 @@ $Base = new function() {
                                 Banner_Sinusoidal,
                                 Banner_GeometriaBasica,
                                 Banner_ReunionDeCirculos,
-//                                Banner_HexTunnel,
+                                Banner_HexTunnel,
                                 Banner_MultiCubo,
                                 Banner_EsferaVShader
                             ];                
@@ -880,7 +880,8 @@ $Base = new function() {
         $("#VentanaError").attr({"visible" : "false" });  
     };  
     
-    this.RenovarMeta = function() {        
+    this.RenovarMeta = function() { 
+//        return;
         var p = $(".Blog").attr('pagina') || $("#MarcoNavegacionLab").attr('pagina');
         
         for (var i = 0; i < EntradasBlog.length; i++) {
@@ -892,9 +893,9 @@ $Base = new function() {
                 $("meta[property='og:title']").attr({ "content" : EntradasBlog[i].Titulo });
                 $("meta[property='og:image']").attr({ "content" : $Base.Raiz + "Web/Graficos/250x200_" + EntradasBlog[i].Imagen });
                 var URL = $Base.Raiz + EntradasBlog[i].URL;
-                if (EntradasBlog[i].URL.indexOf("Ejemplos/") === -1) {
-                    URL = $Base.Raiz + "Blog/" + EntradasBlog[i].URL; 
-                }
+                if (EntradasBlog[i]["Tipo"] === "Blog")     { URL = $Base.Raiz + "Blog/" + EntradasBlog[i].URL; }
+                else if (EntradasBlog[i]["Tipo"] === "Lab") { URL = $Base.Raiz + "Lab/" + EntradasBlog[i].URL;  }
+//                else                                        { URL = $Base.Raiz + EntradasBlog[i].URL;           }
                 $("meta[property='og:url']").attr({ "content" : URL });                
                 return;
             }

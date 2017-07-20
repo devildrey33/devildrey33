@@ -15,7 +15,8 @@ var Banner_GeometriaBasica = function() {
         'Alto'          : 'Auto',
         'Entorno'       : 'Banner',
         'MostrarFPS'    : true,
-        'ElementoRaiz'  : document.body
+        'ElementoRaiz'  : document.body,
+        'CapturaEjemplo': "GeometriaBasica.png"
     }) === false) { return false; }
     // Se ha creado el canvas, inicio los valores de la animación ... 
     this.Iniciar();

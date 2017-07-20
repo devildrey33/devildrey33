@@ -11,6 +11,7 @@ and open the template in the editor.
 .Blog {
     margin: 0px 75px 0px 25px;
     padding : 0px 0px 25px 0px;
+    /* border-bottom: 1px solid #000; */
 }
 
 .Blog li { margin-bottom: 10px; }
@@ -22,10 +23,12 @@ and open the template in the editor.
 .ImagenPortada, .ImagenPortada2 {
     margin-top:1em;
     background:rgb(255,255,255);
+    float:right;  
+    margin-left:15px;
 }
-
-.ImagenPortada  { float:left;   margin-right:15px;  }
-.ImagenPortada2 { float:right;  margin-left:15px;   }
+/*
+.ImagenPortada  { float:right;  margin-left:15px;  }
+.ImagenPortada2 { float:right;  margin-left:15px;   } */
 /*
 .ImagenPortada:hover  { outline:1px solid #999; }
 .ImagenPortada2:hover { outline:1px solid #999; }
