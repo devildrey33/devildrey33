@@ -14,18 +14,24 @@
                 "<ul>".
                     "<li id='Log_CargandoF1'>Obteniendo datos del servidor</li>".
                     "<li id='Log_CargandoF2'>Ordenando datos por ip</li>".
-                    "<li id='Log_CargandoF3'>Generando la tabla...</li>".
+                    "<li id='Log_CargandoF3'>Creando estadisticas</li>".
+                    "<li id='Log_CargandoF4'>Generando la tabla...</li>".
                 "</ul>".
-             "</div>";
-        
+                "<div>NOTA : Este proceso puede llevar varios minutos</div>".
+             "</div>".              
+             
         
         $Log->EnumLogs();
 //        $Log->LeerLogAccesos("current");
         echo "<textarea id='Log_Datos'></textarea>";
         
+        echo "<div id='Log_Stats'></div>";
         echo "<div id='Log_Lista'></div>";
         echo "</article>";
-        echo "<script>\$Admin.Log_CargarArchivo('access.log.current');</script>";
+        echo "<script>".
+                "\$Admin.Log_IpAdmin = '".$_SERVER["REMOTE_ADDR"]."';".
+                "\$Admin.Log_CargarArchivo('access.log.current');".
+            "</script>";
     }
     else {
         echo "<script>\$Base.MostrarErrorAjax(404, true);</script>";

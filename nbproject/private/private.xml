@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4">
         <file>
-            <url>Web/JS/ObjetoBase.js</url>
-            <bookmark id="4">
-                <name/>
-                <line>333</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
             <url>Web/JS/ObjetoAdmin.js</url>
             <bookmark id="1">
                 <name/>
@@ -30,87 +22,24 @@
                 <key/>
             </bookmark>
         </file>
+        <file>
+            <url>Web/JS/ObjetoBase.js</url>
+            <bookmark id="4">
+                <name/>
+                <line>333</line>
+                <key/>
+            </bookmark>
+        </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_cmd.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/TraductorPutaPuta/.htaccess</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Log2.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/NuevoCanvas2D.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/EntradasTags.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/Banner_Anillos.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/GeometriaBasica.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/EntradasBlog.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/Banner_MultiCubo.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/Banner_AdiestramientoCubos3D.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/TestAdn.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/ReunionDeCirculos.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoAnimacion.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/TestObjetoAnimacion.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/ArchivosMinify.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoComentarios.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_BD.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/Banner_EsferaVShader.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/AdiestramientoCubos.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/EspiralRGB_1.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Lab.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_EditarEntradas.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/MultiCubo.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/EspectroAudible02.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/CyberParasit.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoBase.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/TODO.txt</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Utils/ObjetoAnimacion.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/Glitch.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/.htaccess</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/EspectroAudible08.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Lab.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/Banner_GeometriaBasica.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Log.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/Sinusoidal.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Utils/ObjetoCanvas.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/NuevoCanvasTHREE.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/3rdParty/modifier.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/Banner_Espacio2D.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Opciones.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Admin.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Utils/ObjetoCanvas.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Log.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoAdmin.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/walkingtest.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/working-with-google-apis.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/Banner_MatrixLluviaHexadecimal.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/3rdParty/three-0.79.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/EspectroAudible.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Base.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/3rdParty/codemirror.min.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/TraductorPutaPuta/index.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoLab.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/Banner_HexTunnel.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/WormHole.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/SVG/Iconos50x50.svg</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/TraductorPutaPuta/index.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Utils/ControlesObjetoCanvas.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/Anillos.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/Banner_Colisiones.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/Banner_WormHole.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/SistemaSolar.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Utils/ObjetoLogo.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/TestShaderFragment.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/EspiralRGB.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/CyberParasit.0.1.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/SpaceInvaders404/SpaceInvaders404.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Utils/ObjetoLogo.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/EsferaVShader.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_2_6.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/CSS3_BolaExpandible.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/PlantillaBanner.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/TraductorPutaPuta.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/HexTunnel.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Utils/ObjetoTest.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/SobreDevildrey33.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/TraductorPutaPuta/index.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Cache/EntradasBlog.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Log.php</file>
         </group>
     </open-files>
 </project-private>

@@ -296,7 +296,7 @@ and open the template in the editor.
 }
 
 .EntradaLog:hover {   /* Contenedor con todos los datos de una IP */
-    background-color:#DDD;
+    background-color:rgb(222, 222, 222);
 }
 
 
@@ -309,7 +309,7 @@ and open the template in the editor.
 }
 
 .EntradaLog_Fila:hover {   /* Contenedor con todos los datos de una IP */
-    background-color:#BBB;
+    background-color:rgb(210, 210, 210);
 }
 
 .EntradaLog_TablaFila {
@@ -321,6 +321,10 @@ and open the template in the editor.
 
 .EntradaLog_TablaFila[ataque=true] {
     background-color:rgba(255,0,0, 0.1);
+}
+
+.EntradaLog_TablaFila[ataque=admin] {
+    background-color:rgba(0,255,0, 0.1);
 }
 
 .EntradaLog > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_Ip,  
@@ -337,7 +341,7 @@ and open the template in the editor.
     color: #444;
 }
 
-#Log_Lista > .EntradaLog:nth-last-child {
+.Log_Lista > .EntradaLog:nth-last-child {
     border-bottom:1px solid #666;
 }
 
@@ -349,7 +353,7 @@ and open the template in the editor.
 .EntradaLog_TiempoInicio    { width : 75px; text-align:center;  }
 .EntradaLog_TiempoFin       { width : 75px; text-align:center; }
 .EntradaLog > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_InfoClienteWeb  { width : 140px; text-align:right; border-right:1px solid #666; }
-.EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_InfoClienteWeb  { border-right:1px solid transparent; }
+.EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_InfoClienteWeb  { border-right:1px dashed #999; }
 
 .EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_Ip, 
 .EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_Url, 
@@ -357,7 +361,8 @@ and open the template in the editor.
 .EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_TiempoInicio, 
 .EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_TiempoFin, 
 .EntradaLog[abierto=true] > .EntradaLog_TablaFila > .EntradaLog_Fila > .EntradaLog_InfoClienteWeb {
-    border-left:1px solid transparent;
+/*    border-left:1px solid transparent;*/
+    border-left:1px dashed #999
 }
 
 .EntradaLog_Datos {
@@ -370,12 +375,12 @@ and open the template in the editor.
     padding:0px;
     /* min-height: 60px; */
     position: fixed;
-    border-bottom:1px solid #000;
-    /* margin-bottom:10px; */
+    border: 1px solid #444;
+    border-top: 0px solid transparent;
     display: flex;
     /* background-color: #EEE; */
     /* align-items: center; */
-    /* justify-content: center; */
+    justify-content: space-around;
     z-index: 1000;
     width: calc(100% - 160px);
     left:auto;
@@ -391,10 +396,61 @@ and open the template in the editor.
     text-align:center;
 }*/
 
-#Log_Lista {
-    margin-top: 80px;
+#Log_Stats {
+    margin-top: 100px;
+    margin-bottom: 30px;
+    display:flex;
+    flex-flow: row wrap;
+    align-content: stretch;
+    /* justify-content: center; */
+}
+
+#Log_Stats h2 {
+    margin:10px 0px 0px 0px;
+}
+
+.Log_Lista {
     border-bottom: 1px solid #666;
     border-top: 1px solid #666;
+    display:none;
+}
+
+.Log_Stat {
+    margin: 10px 10px 0px 0px;
+}
+
+.Log_StatsTabla {
+    table-layout: fixed;
+    /*    width:100%; */
+    max-width: 45%;
+    position: relative;
+}
+
+.Log_StatsTabla td {
+    padding:0px 20px 0px 0px;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    width:20%;
+    white-space:nowrap;
+}
+/*
+.Log_StatsTabla td > span {
+    width:0px;
+    transition:0.4s;
+}*/
+
+.Log_StatsMarco {
+    border:1px solid #666;
+    display:table;
+    background-color: #FFF;
+}
+
+.Log_StatBarra {
+    display:inline-table;
+    background-color:blue;
+    color:white;
+    /* box-shadow: 2px 2px 2px rgba(90, 90, 90, 0.7); */
+    padding-left: 5px;
 }
 
 #Log_Opciones > div > select {
@@ -426,7 +482,7 @@ and open the template in the editor.
     /* left:220px; */
     /* top:15px; */
     border-left:1px solid #000;
-    border-right: 1px solid #000;
+    /* border-right: 1px solid #000; */
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
@@ -457,7 +513,7 @@ and open the template in the editor.
     align-items: center;
     justify-content: center;
     /* background-color: #EEE; */
-    border-left: 1px solid #000;
+    /* border-left: 1px solid #000; */
 }
 
 #Log_Contenedor_Navegadores > label, #Log_Contenedor_Tipo > label {
@@ -485,8 +541,8 @@ and open the template in the editor.
 
 .Log_UserAgent {
     margin: 0px;
-    position:absolute;
-    top: 105px;
+    position:relative;
+/*    top: 105px; */
 }
 
 .Log_TablaEntrada {
@@ -545,7 +601,7 @@ and open the template in the editor.
 
 #Log_Cargando {
     position:fixed;
-    width:310px;
+    width:370px;
     height:70px;
     background:rgba(20, 20, 20, 0.9);
     border:1px solid #000;
@@ -554,7 +610,6 @@ and open the template in the editor.
     left:50%;
     top:50%;
     transform:translateX(-50%) translateY(-50%);
-    font-size:1.7rem;
     box-shadow: 3px 3px 3px rgba(90, 90, 90, 0.7);
 }
 
@@ -563,5 +618,29 @@ and open the template in the editor.
 }
 
 #Log_Cargando li {
+    font-size:1.7rem;
     color:#999;
+}
+
+#Log_Cargando > div {
+    color:#DDD;
+    text-align:center;
+    margin:10px;
+}
+
+.Log_ListaBotones input {
+    display:none;
+}
+
+.Log_ListaBotones input + label {
+    display:inline-block;
+    margin:0px 10px 10px 0px;
+    padding:10px;
+    background:#555;
+    color:#FFF;
+    cursor:pointer;
+}
+
+.Log_ListaBotones input:checked + label {
+    background:#111;
 }

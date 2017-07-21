@@ -295,6 +295,8 @@ ObjetoAdmin = function() {
     /********/
     /* Log2 */ 
     /********/
+    this.Log_IpAdmin = "0.0.0.0";
+    
     this.Log_ArchivoChange = function() {
         var Combo = document.getElementById("Log_ArchivoActual");
         
@@ -304,7 +306,8 @@ ObjetoAdmin = function() {
     
     this.Log_CargarArchivo = function(Archivo) {
         $Base.Cargando("TRUE");
-        console.log(Archivo);
+        $("#Log_Lista").html("").css({ display : "none" });
+        $("#Log_Stats").html("");
         $("#MarcoNavegacion").css({ cursor : 'progress' });
         $("#Log_Cargando").attr("visible", true);
         $("#Log_CargandoF1").css({ color : "#fff" });
@@ -316,7 +319,7 @@ ObjetoAdmin = function() {
             if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }            
             $("#Log_CargandoF1").css({ color : "#999" });
             $("#Log_CargandoF2").css({ color : "#FFF" });
-            setTimeout(function() { $Admin.Log_Actualizar2() }, 200);
+            setTimeout(function() { $Admin.Log_Actualizar2() }, 500);
             
         }).fail(function(jqXHR, textStatus, tError) { 
             console.log("Admin.Log_CargarArchivos Error ajax", jqXHR, textStatus, tError);
@@ -331,7 +334,7 @@ ObjetoAdmin = function() {
         
         // Separo el archivo de log en lineas para poder obtener la información de cada una de ellas.
         var Texto = document.getElementById("Log_Datos").value;
-        var Lineas = Texto.split("\n");
+        this.Log_Lineas = Texto.split("\n");
         // Borro la lista de ips (si existe)
         this.Log_Ips = [];
         this.Log_TotalTipos = { 
@@ -347,8 +350,8 @@ ObjetoAdmin = function() {
         };
         
         // Extraigo los datos de cada linea y los ordeno por ip
-        for (var i = 0; i < Lineas.length; i++) {
-            this.Log_AgregarLinea(Lineas[i]);
+        for (var i = 0; i < this.Log_Lineas.length; i++) {
+            this.Log_AgregarLinea(this.Log_Lineas[i], i);
         }
         
         // Actualizo los labels con los totates de los tipos
@@ -370,7 +373,7 @@ ObjetoAdmin = function() {
         var Checks = this.Log_ObtenerChecks();
 
         // Enumero por cada ip los navegadores/bots y su sistema operativo 
-        if (this.Log_Ips[0]["Info"] === undefined) {
+        if (this.Log_Ips.length > 0) {
             for (var i = 0; i < this.Log_Ips.length; i++) {
                 var Info = this.Log_ObtenerNavegador2(this.Log_Ips[i]["Ua"][0]);            
                 this.Log_Ips[i]["Info"] = Info;            
@@ -407,26 +410,7 @@ ObjetoAdmin = function() {
         $("#Log_CargandoF3").css({ color : "#FFF" });
         
         
-        setTimeout( function() { $Admin.Log_CrearTablaDatos(); }, 300);
-        
-    };
-    
-    this.Log_ObtenerRelevancia = function(nUrl, Ret) {
-        var Url = nUrl.toLowerCase();        
-        if      (Url.indexOf("banearip.php") !== -1)                { return 9; }
-        else if (Url.indexOf("?") !== -1)                           { return 8; }
-        else if (Url.indexOf("error404") !== -1 || Ret === 404)     { return 7; }
-        else if (Url.indexOf(".zip") !== -1)                        { return 6; }
-        else if (Url.indexOf(".php") !== -1)                        { return 5; }
-        else if (Url.indexOf(".html") !== -1)                       { return 5; }
-        else if (Url.indexOf(".htm") !== -1)                        { return 5; }
-        else if (Url.indexOf(".cmd") !== -1)                        { return 5; }
-        else if (Url.indexOf(".css") !== -1)                        { return 4; }
-        else if (Url.indexOf(".js") !== -1)                         { return 3; }
-        else if (Url.indexOf(".ico") !== -1)                        { return 2; }
-        else if (Url.indexOf(".png") !== -1)                        { return 2; }
-        else if (Url.indexOf(".jpg") !== -1)                        { return 2; }
-        else if (Url.indexOf(".") === -1)                           { return 5; }        
+        setTimeout( function() { $Admin.Log_CrearStats(); }, 500);        
     };
     
     this.Log_ParsearRespuesta2 = function(Respuesta) {        
@@ -438,12 +422,14 @@ ObjetoAdmin = function() {
             case "302" : Str = "<span class='Log_Entrada_Documento'>Found</span>"; 			break;
             case "304" : Str = "<span class='Log_Entrada_Documento'>Not Modified</span>"; 		break;
             case "403" : Str = "<span class='Log_Entrada_Ataque'>Forbidden</span>";                     break;
+            case "404" : Str = "<span class='Log_Entrada_Error'>Not Found</span>";                      break;
         }
         return Str;
     };
     
     // relevancia de la url definida por colores del 9 al 1
-    this.Log_ColorRelevancia = function(Relevancia) {
+    this.Log_ColorRelevancia = function(Relevancia, Ret = 0) {
+        if (Ret === 404) return "purple";
         switch (Relevancia) {
             case 9 : return "red";      break;// Ataque
             case 8 : return "orange";   break;// Advertencia
@@ -472,15 +458,26 @@ ObjetoAdmin = function() {
         };
     };
     
-    this.Log_CrearTablaDatos = function() {
-        $Base.Cargando("TRUE");
-        
-        $("#Log_Lista").html("");
-        var Fila = "";
+    this.Log_CrearTablaDatos = function() {        
+        var Pagina = -1;
+        var Filas = "";
+        var Fecha = "";
         var Checks = this.Log_ObtenerChecks();
+        var Botones = "<div class='Log_ListaBotones'>";
+                            
         for (var i = 0; i < this.Log_Ips.length; i++) {
             // Si hay datos destacados
             if (this.Log_Ips[i]["Destacados"].length > 0) {                
+                // Nueva página
+                if (Fecha !== this.Log_Ips[i]["Fecha"]) {
+                    Fecha = this.Log_Ips[i]["Fecha"];                    
+                    Filas += "</div><div class='Log_Lista' id='Log_ListaP" + (++Pagina) + "'" + ((Pagina === 0) ? " style='display:block'" : "") + ">";
+                    Botones += "<input class='Log_ListaBoton' id='Log_ListaBoton" + Pagina + "' type='radio' name='Log_ListaBoton'" + ((Pagina === 0) ? " checked='checked'" : "") + ">" +
+                               "<label for='Log_ListaBoton" + Pagina + "'>" + Fecha + "</label>";
+                               
+                }
+                
+                
                 // Color de la url
                 var ColorNavegador = "black";
                 var ColorPeticiones = " style='color:#444'";
@@ -500,6 +497,9 @@ ObjetoAdmin = function() {
                 if (this.Log_Ips[i]["Destacados"][0]["Relevancia"] === 9) {
                     Ataque = " ataque='true'";
                 }
+                if (this.Log_IpAdmin === this.Log_Ips[i]["Ip"]) {
+                    Ataque = " ataque='admin'";
+                }
                 
                 var Destacados = -1;
                 for (var e = 0; e < this.Log_Ips[i]["Destacados"].length; e++) {
@@ -512,7 +512,7 @@ ObjetoAdmin = function() {
                 var ColorUrl = (Destacados > -1) ? this.Log_ColorRelevancia(this.Log_Ips[i]["Destacados"][Destacados]["Relevancia"]) : "black";
                 
                 // La cabecera lleva la IP, la url mas relevante, el tiempo de inicio y final, numero de requests, y el user agent simplificado (SO, NAVEGADOR) o Tipo de BOT
-                Fila +=  "<div class='EntradaLog' id='EntradaLog" + i + "' style='display:" + ((Destacados > -1) ? "table" : 'none') + "'>" + // Contenedor para una Ip del log con todas sus peticiones
+                Filas +=  "<div class='EntradaLog' id='EntradaLog" + i + "' style='display:" + ((Destacados > -1) ? "table" : 'none') + "'>" + // Contenedor para una Ip del log con todas sus peticiones
                         "<div class='EntradaLog_TablaFila'" + Ataque + ">" +
                             "<div class='EntradaLog_Fila' tipo='" + this.Log_Ips[i]["Info"]["Tipo"] + "'>" +
                                 "<div class='EntradaLog_Ip'>" + this.Log_Ips[i]["Ip"] + "</div>" +
@@ -527,8 +527,10 @@ ObjetoAdmin = function() {
                         "</div>" +
                     "</div>";
             }
-            $("#Log_Lista").html(Fila);
         }
+        Filas += "</div>";
+        Botones += "</div>";
+        $("#Log_Lista").html(Botones + Filas);
         
         
         $(".EntradaLog_Fila").off("click").on("click", function(e) {             
@@ -541,10 +543,154 @@ ObjetoAdmin = function() {
             $Admin.Log_ExpandirIp(parent.id);
         });
         
-        $("#Log_CargandoF3").css({ color : "#999" });
+        $(".Log_ListaBoton").on("change", function(e) {
+            var Id = e.target.id.slice(14);
+            $(".Log_Lista").css({ display : "none" });
+            $("#Log_ListaP" + Id).css({ display : "block" });
+        });
+        
+        $("#Log_CargandoF4").css({ color : "#999" });
         $("#Log_Cargando").attr("visible", false);
         $("#MarcoNavegacion").css({ cursor : 'auto' });
-        $Base.Cargando("FALSE");
+        $("#Log_Lista").css({ display : "block" });
+
+        $Base.Cargando("FALSE");        
+    };
+    
+    this.Log_CrearStats = function() {
+        this.Log_ArrayDocumentos = [];
+        this.Log_ArrayErrores = [];
+        this.Log_ArrayImagenes = [];
+        this.Log_ArrayObjetos = [];
+        for (var i = 0; i < this.Log_Ips.length; i++) {
+            for (var e = 0; e < this.Log_Ips[i]["Datos"].length; e++) {
+                switch (this.Log_Ips[i]["Datos"][e]["Relevancia"]) {
+                    case 2  : this.Log_AgregarImagen(this.Log_Ips[i]["Datos"][e]["Url"]);   break;
+                    case 5  : this.Log_AgregarDocumento(this.Log_Ips[i]["Datos"][e]["Url"]); break;
+                    case 7  : this.Log_AgregarError(this.Log_Ips[i]["Datos"][e]["Url"]);     break;
+                    default : this.Log_AgregarObjeto(this.Log_Ips[i]["Datos"][e]["Url"], this.Log_Ips[i]["Datos"][e]["Relevancia"]);    break;
+                }
+            }
+        }        
+        
+        this.Log_ArrayDocumentos.sort(function(a, b) { return (b["Contador"] - a["Contador"]); });
+        this.Log_ArrayErrores.sort(function(a, b) { return (b["Contador"] - a["Contador"]); });
+        this.Log_ArrayImagenes.sort(function(a, b) { return (b["Contador"] - a["Contador"]); });
+        this.Log_ArrayObjetos.sort(function(a, b) { return (b["Contador"] - a["Contador"]); });
+        
+        var TotalEntradas = 20;
+        
+        // Imprimo la tabla de los documentos
+        var Codigo = "<div class='Log_Stat'>" + 
+            "<h2>Documentos más solicitados</h2>" +
+            "<div class='Log_StatsMarco'>" +
+                "<table class='Log_StatsTabla'>";
+//        var Uno = this.Log_ArrayDocumentos[this.Log_ArrayDocumentos.length - 1]["Contador"] / 100;
+        for (var i = 0; i < TotalEntradas; i++) {
+            if (i === this.Log_ArrayDocumentos.length) { break; }
+            Codigo += "<tr>" + 
+                        "<td style='color:green'>" + this.Log_ArrayDocumentos[i]["Url"] + "</td>" + 
+                        "<td>" + "<span class='Log_StatBarra' style='background-color:green; width:" + (300 * this.Log_ArrayDocumentos[i]["Contador"] / this.Log_ArrayDocumentos[0]["Contador"]) + "px'>" +this.Log_ArrayDocumentos[i]["Contador"] +"</span></td>" + 
+                    "</tr>";
+        }
+        Codigo += "</table></div></div>";
+
+        // Imprimo la tabla de los Errores
+        Codigo += "<div class='Log_Stat'>" + 
+            "<h2>Documentos de Error</h2>" +
+            "<div class='Log_StatsMarco'>" +
+                "<table class='Log_StatsTabla'>";
+//        var Uno = this.Log_ArrayDocumentos[this.Log_ArrayDocumentos.length - 1]["Contador"] / 100;
+        for (var i = 0; i < TotalEntradas; i++) {
+            if (i === this.Log_ArrayErrores.length) { break; }
+            Codigo += "<tr>" + 
+                        "<td style='color:purple'>" + this.Log_ArrayErrores[i]["Url"] + "</td>" + 
+                        "<td>" + "<span class='Log_StatBarra' style='background-color:purple; width:" + (300 * this.Log_ArrayErrores[i]["Contador"] / this.Log_ArrayErrores[0]["Contador"]) + "px'>" +this.Log_ArrayErrores[i]["Contador"] +"</span></td>" + 
+                    "</tr>";
+        }
+        Codigo += "</table></div></div>";
+        
+        // Imprimo la tabla de las imagenes
+        Codigo += "<div class='Log_Stat'>" + 
+            "<h2>Imagenes más solicitadas</h2>" +
+            "<div class='Log_StatsMarco'>" +
+                "<table class='Log_StatsTabla'>";
+//        var Uno = this.Log_ArrayDocumentos[this.Log_ArrayDocumentos.length - 1]["Contador"] / 100;
+        for (var i = 0; i < TotalEntradas; i++) {
+            if (i === this.Log_ArrayImagenes.length) { break; }
+            Codigo += "<tr>" + 
+                        "<td style='color:grey'>" + this.Log_ArrayImagenes[i]["Url"] + "</td>" + 
+                        "<td>" + "<span class='Log_StatBarra' style='background-color:grey; width:" + (300 * this.Log_ArrayImagenes[i]["Contador"] / this.Log_ArrayImagenes[0]["Contador"]) + "px'>" +this.Log_ArrayImagenes[i]["Contador"] +"</span></td>" + 
+                    "</tr>";
+        }
+        Codigo += "</table></div></div>";
+        
+        // Imprimo la tabla de los Objetos
+        Codigo += "<div class='Log_Stat'>" + 
+            "<h2>Objetos más solicitados</h2>" +
+            "<div class='Log_StatsMarco'>" +
+                "<table class='Log_StatsTabla'>";
+//        var Uno = this.Log_ArrayDocumentos[this.Log_ArrayDocumentos.length - 1]["Contador"] / 100;
+        for (var i = 0; i < TotalEntradas; i++) {
+            if (i === this.Log_ArrayObjetos.length) { break; }
+            Codigo += "<tr>" + 
+                        "<td style='color:" + this.Log_ColorRelevancia(this.Log_ArrayObjetos[i]["Tipo"]) + "'>" + this.Log_ArrayObjetos[i]["Url"] + "</td>" + 
+                        "<td>" + "<span class='Log_StatBarra' style='width:" + (300 * this.Log_ArrayObjetos[i]["Contador"] / this.Log_ArrayObjetos[0]["Contador"]) + "px'>" +this.Log_ArrayObjetos[i]["Contador"] +"</span></td>" + 
+                    "</tr>";
+        }
+        Codigo += "</table></div></div>";
+        
+        
+        document.getElementById("Log_Stats").innerHTML = Codigo;
+        
+        $("#Log_CargandoF3").css({ color : "#999" });
+        $("#Log_CargandoF4").css({ color : "#FFF" });
+        setTimeout(function() { $Admin.Log_CrearTablaDatos(); }, 500);
+        
+    };
+    
+    this.Log_AgregarDocumento = function(Url) {
+        for (var i = 0; i < this.Log_ArrayDocumentos.length; i++) {
+            if (this.Log_ArrayDocumentos[i]["Url"] === Url) {
+                this.Log_ArrayDocumentos[i]["Contador"] ++;
+                return;
+            }
+        }
+        var Ret = { "Url" : Url, "Contador" : 1 };
+        this.Log_ArrayDocumentos.push(Ret);
+    };
+    
+    this.Log_AgregarError = function(Url) {
+        for (var i = 0; i < this.Log_ArrayErrores.length; i++) {
+            if (this.Log_ArrayErrores[i]["Url"] === Url) {
+                this.Log_ArrayErrores[i]["Contador"] ++;
+                return;
+            }
+        }
+        var Ret = { "Url" : Url, "Contador" : 1 };
+        this.Log_ArrayErrores.push(Ret);        
+    };
+    
+    this.Log_AgregarImagen = function(Url) {
+        for (var i = 0; i < this.Log_ArrayImagenes.length; i++) {
+            if (this.Log_ArrayImagenes[i]["Url"] === Url) {
+                this.Log_ArrayImagenes[i]["Contador"] ++;
+                return;
+            }
+        }
+        var Ret = { "Url" : Url, "Contador" : 1 };
+        this.Log_ArrayImagenes.push(Ret);        
+    };
+    
+    this.Log_AgregarObjeto = function(Url, Tipo) {
+        for (var i = 0; i < this.Log_ArrayObjetos.length; i++) {
+            if (this.Log_ArrayObjetos[i]["Url"] === Url) {
+                this.Log_ArrayObjetos[i]["Contador"] ++;
+                return;
+            }
+        }
+        var Ret = { "Url" : Url, "Contador" : 1, "Tipo" : Tipo };
+        this.Log_ArrayObjetos.push(Ret);        
     };
     
     this.Log_ExpandirIp = function(Id, MostrarTodo = false) {
@@ -560,10 +706,14 @@ ObjetoAdmin = function() {
             "<table class='Log_TituloTabla'>" +
                 "<tr>" + "<td>Sistema</td>"         + "<td>:</td>" + "<td>" + this.Log_Ips[PosIp]["Info"]["Plataforma"]                                     + "</td>" + "</tr>" +
                 "<tr>" + "<td>Navegador</td>"       + "<td>:</td>" + "<td>" + this.Log_Ips[PosIp]["Info"]["Nombre"]                                         + "</td>" + "</tr>" +
+                "<tr>" + "<td>Fecha</td>"           + "<td>:</td>" + "<td>" + this.Log_Ips[PosIp]["Fecha"]                                                  + "</td>" + "</tr>" +
                 "<tr>" + "<td>Conectado desde</td>" + "<td>:</td>" + "<td>" + this.Log_Ips[PosIp]["Datos"][0]["Hora"]                                       + "</td>" + "</tr>" +
                 "<tr>" + "<td>Conectado hasta</td>" + "<td>:</td>" + "<td>" + this.Log_Ips[PosIp]["Datos"][this.Log_Ips[PosIp]["Datos"].length - 1]["Hora"] + "</td>" + "</tr>" +            
-                "<tr>" + "<td>User Agent</td>"      + "<td>:</td>" + "<td>" + "<pre class='Log_UserAgent' title='" + this.Log_Ips[PosIp]["Ua"][0] + "'>" + this.Log_Ips[PosIp]["Ua"][0] + "</pre>" + "</td>" + "</tr>" +            
-            "</table>";
+                "<tr>" + "<td>User Agent</td>"      + "<td>:</td>" + "<td>";
+                for (var i = 0; i < this.Log_Ips[PosIp]["Ua"].length; i++) {
+                    Codigo += "<pre class='Log_UserAgent' title='" + this.Log_Ips[PosIp]["Ua"][i] + "'>" + this.Log_Ips[PosIp]["Ua"][i] + "</pre>";
+                }
+            Codigo += "</td>" + "</tr>" + "</table>";
 /*            for (var i = 0; i < this.Log_Ips[PosIp]["Ua"].length; i++) {
                 Codigo += "<pre class='Log_UserAgent' title='" + this.Log_Ips[PosIp]["Ua"][i] + "'>" + this.Log_Ips[PosIp]["Ua"][i] + "</pre>";
             }*/
@@ -602,59 +752,74 @@ ObjetoAdmin = function() {
         this.Log_Ips[PosIp]["Abierto"] = !this.Log_Ips[PosIp]["Abierto"];
     };
 
-    this.Log_TipoUrl = function(Url, Sumar) {
+    this.Log_TipoUrl = function(Url, Ret = 0) {
         var nUrl = Url.toLowerCase();
-        if (nUrl.indexOf("banearip.php") !== -1)               	{	if (Sumar === true) { this.Log_TotalTipos["Ataques"]++;         }       return 9; 	}
-        else if (nUrl.indexOf("?") !== -1)               	{	if (Sumar === true) { this.Log_TotalTipos["Advertencias"]++; 	}	return 8; 	}
-        else if (nUrl.indexOf("error404") !== -1)               {	if (Sumar === true) { this.Log_TotalTipos["Errores404"]++; 	}	return 7; 	}
-        else if (nUrl.indexOf(".zip") !== -1)               	{	if (Sumar === true) { this.Log_TotalTipos["Zips"]++;            }       return 6; 	}
-        else if (nUrl.indexOf(".php") !== -1)               	{	if (Sumar === true) { this.Log_TotalTipos["Documentos"]++; 	}	return 5; 	}
-        else if (nUrl.indexOf(".html") !== -1)               	{	if (Sumar === true) { this.Log_TotalTipos["Documentos"]++; 	}	return 5; 	}
-        else if (nUrl.indexOf(".cmd") !== -1)               	{	if (Sumar === true) { this.Log_TotalTipos["Documentos"]++; 	}	return 5; 	}
-        else if (nUrl.indexOf(".css") !== -1)               	{	if (Sumar === true) { this.Log_TotalTipos["CSS"]++;             }       return 4; 	}
-        else if (nUrl.indexOf(".js") !== -1)               	{	if (Sumar === true) { this.Log_TotalTipos["JS"]++;              }       return 3; 	}
-        else if (nUrl.indexOf(".ico") !== -1)               	{	if (Sumar === true) { this.Log_TotalTipos["Imagenes"]++; 	}	return 2; 	}
-        else if (nUrl.indexOf(".png") !== -1)               	{	if (Sumar === true) { this.Log_TotalTipos["Imagenes"]++; 	}	return 2; 	}
-        else if (nUrl.indexOf(".jpg") !== -1)               	{	if (Sumar === true) { this.Log_TotalTipos["Imagenes"]++; 	}	return 2; 	}
-        else if (nUrl.indexOf(".gif") !== -1)               	{	if (Sumar === true) { this.Log_TotalTipos["Imagenes"]++; 	}	return 2; 	}
-        else if (nUrl.indexOf(".") === -1)               	{	if (Sumar === true) { this.Log_TotalTipos["Documentos"]++; 	}	return 5; 	}
-        else                                                    {       if (Sumar === true) { this.Log_TotalTipos["Otros"]++; 		}       return 1; 	}
-    };
-
-    this.Log_AgregarLinea = function(Linea) {
+        if (nUrl.indexOf("banearip.php") !== -1)        {	this.Log_TotalTipos["Ataques"]++;               return 9; 	}
+        if (nUrl.indexOf("?") !== -1)               	{	this.Log_TotalTipos["Advertencias"]++; 		return 8; 	}
+        if (Ret === "404")                              {       this.Log_TotalTipos["Errores404"]++;            return 7;       }
+        if (nUrl.indexOf("error404") !== -1)            {	this.Log_TotalTipos["Errores404"]++; 		return 7; 	}
+        if (nUrl.indexOf(".zip") !== -1)               	{	this.Log_TotalTipos["Zips"]++;                  return 6; 	}
+        if (nUrl.indexOf(".php") !== -1)               	{	this.Log_TotalTipos["Documentos"]++; 		return 5; 	}
+        if (nUrl.indexOf(".html") !== -1)               {	this.Log_TotalTipos["Documentos"]++; 		return 5; 	}
+        if (nUrl.indexOf(".cmd") !== -1)               	{	this.Log_TotalTipos["Documentos"]++; 		return 5; 	}
+        if (nUrl.indexOf(".css") !== -1)               	{	this.Log_TotalTipos["CSS"]++;                   return 4; 	}
+        if (nUrl.indexOf(".js") !== -1)               	{	this.Log_TotalTipos["JS"]++;                    return 3; 	}
+        if (nUrl.indexOf(".svg") !== -1)               	{	this.Log_TotalTipos["Imagenes"]++; 		return 2; 	}
+        if (nUrl.indexOf(".ico") !== -1)               	{	this.Log_TotalTipos["Imagenes"]++; 		return 2; 	}
+        if (nUrl.indexOf(".png") !== -1)               	{	this.Log_TotalTipos["Imagenes"]++; 		return 2; 	}
+        if (nUrl.indexOf(".jpg") !== -1)               	{	this.Log_TotalTipos["Imagenes"]++; 		return 2; 	}
+        if (nUrl.indexOf(".gif") !== -1)               	{	this.Log_TotalTipos["Imagenes"]++; 		return 2; 	}
+        if (nUrl.indexOf(".") === -1)               	{	this.Log_TotalTipos["Documentos"]++; 		return 5; 	}
+        this.Log_TotalTipos["Otros"]++;
+        return 1;    
+   };
+    
+    
+    /* Ejemplo */
+    /*	94.194.34.14 - - [03/Jul/2013:00:00:14 +0200] "GET /Graficos/devildrey33.ico HTTP/1.1" 200 3606 devildrey33.es "-" "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)" "-"
+        201.134.42.53 - - [03/Jul/2013:00:00:19 +0200] "GET /Tutorial_HTML5_8.php HTTP/1.1" 200 122235 devildrey33.es "http://www.google.com.mx/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&ved=0CDAQFjAB&url=http%3A%2F%2Fdevildrey33.es%2FTutorial_HTML5_8.php&ei=bE3TUY3jJOSMyAGwjIGQDA&usg=AFQjCNHe90T-d6n5n_EgTirFKAwwET4dGA&bvm=bv.48705608,d.aWc" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0" "-"
+        201.134.42.53 - - [03/Jul/2013:00:00:24 +0200] "GET /js/devildrey33.js HTTP/1.1" 304 - devildrey33.es "http://devildrey33.es/Tutorial_HTML5_8.php" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0" "-"
+        201.134.42.53 - - [03/Jul/2013:00:00:24 +0200] "GET /js/devildrey33_Comentarios.js HTTP/1.1" 304 - devildrey33.es "http://devildrey33.es/Tutorial_HTML5_8.php" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0" "-"
+        201.134.42.53 - - [03/Jul/2013:00:00:24 +0200] "GET /css/devildrey33.css HTTP/1.1" 304 - devildrey33.es "http://devildrey33.es/Tutorial_HTML5_8.php" "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0" "-"
+        188.165.195.156 - - [03/Jul/2013:16:14:35 +0200] "HEAD / HTTP/1.1" 200 - devildrey33.es "-" "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0) */
+    this.Log_AgregarLinea = function(Linea, NumLinea) {
         // Extraigo los valores de esta linea
         var Datos = Linea.split(" ");
         var TotalDatos = Datos.length;
-        var Ret = { Ip : "0.0.0.0", Datos : [ {} ], Ua : [ "" ], Abierto : false, Destacados : [] };
+        var Ret = { Ip : "0.0.0.0", Datos : [ {} ], Ua : [ "" ], Abierto : false, Destacados : [], Fecha : "" };
         var Ua = "";
         for (var i = 12; i < Datos.length - 1; i++) {
             Ua += Datos[i] + " ";
         }
-        // Organizo los datos de esta línea
-        if (TotalDatos > 0) {    Ret["Ip"] = Datos[0];        }
-        if (TotalDatos > 3) { 
-            var FH = Datos[3].split(":");
-            Ret["Datos"][0]["Fecha"] = FH[0].slice(1);        
-            Ret["Datos"][0]["Hora"] = FH[1] + ":" + FH[2] + ":" + FH[3];        
-        }
-        if (TotalDatos > 5)  {    Ret["Datos"][0]["Peticion"] = Datos[5].slice(1);        }
-        if (TotalDatos > 6)  {    // URL 
-            Ret["Datos"][0]["Url"] = Datos[6];        
-            Ret["Datos"][0]["Relevancia"] = this.Log_TipoUrl(Ret["Datos"][0]["Url"], true);
-        }
-        if (TotalDatos > 7)  {    Ret["Datos"][0]["Http"]     = Datos[7].slice(0, -1);        }
-        if (TotalDatos > 8)  {    Ret["Datos"][0]["Ret"]      = Datos[8];        }
-        if (TotalDatos > 9)  {    Ret["Datos"][0]["Tam"]      = Datos[9];        }
-        if (TotalDatos > 10) {    Ret["Datos"][0]["Server"]   = Datos[10];       }
-        // 
+
         if (TotalDatos < 10) { return; }
+
+        // Organizo los datos de esta línea
+        Ret["Ip"] = Datos[0];
+        Ret["Datos"][0]["Linea"] = NumLinea;
+        
+        var FH = Datos[3].split(":");
+        Ret["Fecha"] = FH[0].slice(1);
+        Ret["Datos"][0]["Hora"] = FH[1] + ":" + FH[2] + ":" + FH[3];        
+
+        Ret["Datos"][0]["Peticion"] = Datos[5].slice(1);      
+
+        Ret["Datos"][0]["Url"]  = Datos[6];        
+        Ret["Datos"][0]["Http"] = Datos[7].slice(0, -1);
+        Ret["Datos"][0]["Ret"]  = Datos[8];
+        Ret["Datos"][0]["Relevancia"] = this.Log_TipoUrl(Ret["Datos"][0]["Url"], Ret["Datos"][0]["Ret"]);
+        
+        Ret["Datos"][0]["Tam"]      = Datos[9];        
+        Ret["Datos"][0]["Server"]   = Datos[10];       
+        // 
         // Busco si hay otra IP igual en el array de ips para añadirla o expandirla con mas datos
         for (var i = 0; i < this.Log_Ips.length; i++) {
-            if (this.Log_Ips[i]["Ip"] === Ret["Ip"]) {
+            // Si coinciden la ip y la fecha
+            if (this.Log_Ips[i]["Ip"] === Ret["Ip"] && this.Log_Ips[i]["Fecha"] === Ret["Fecha"]) {
                 this.Log_Ips[i]["Datos"].push(Ret["Datos"][0]);                
                 // Compruebo si existe el user agent
                 for (var u = 0; u < this.Log_Ips[i]["Ua"].length; u++) {
-                    if (this.Log_Ips[i]["Ua"][u].toLowerCase() === Ua.toLowerCase()) {
+                    if (this.Log_Ips[i]["Ua"][u].toLowerCase().trim() === Ua.toLowerCase().trim()) {
                         return; // El user agent ya existe en la lista, salgo de la función
                     }
                 }
@@ -663,7 +828,7 @@ ObjetoAdmin = function() {
                 return;
             }
         }
-        // No existe la ip
+        // No existe la ip o tiene una fecha distinta
         Ret["Ua"][0] = Ua;
         this.Log_Ips.push( Ret );
     };
@@ -697,32 +862,35 @@ ObjetoAdmin = function() {
         else if	(UserAgent.indexOf("win32") !== -1)		 { PlataformaCorto = 'Win';          Plataforma = 'Microsoft Windows'; }
 
         /* Navegadores */
-        if	(UserAgent.indexOf("opera mini") !== -1)  	 { NombreCorto = 'Opera Mini';       Nombre = 'Opera Mini'; 		Tipo = 0; } 
-        else if	(UserAgent.indexOf("opera") !== -1)  		 { NombreCorto = 'Opera';            Nombre = 'Opera'; 			Tipo = 0; } 
-        else if	(UserAgent.indexOf("edge") !== -1)  		 { NombreCorto = 'Edge';             Nombre = 'Microsoft Edge';		Tipo = 0; } 
-        else if	(UserAgent.indexOf("firefox") !== -1)		 { NombreCorto = 'Firefox';          Nombre = 'Mozilla Firefox'; 	Tipo = 0; } 
-        else if	(UserAgent.indexOf("chrome") !== -1) 		 { NombreCorto = 'Chrome';           Nombre = 'Google Chrome'; 		Tipo = 0; }
-        else if	(UserAgent.indexOf("safari") !== -1)		 { NombreCorto = 'Safari';           Nombre = 'Apple Safari';		Tipo = 0; }
-        else if	(UserAgent.indexOf("netscape") !== -1) 		 { NombreCorto = 'Netscape';         Nombre = 'Netscape'; 		Tipo = 0; } 
+        if	(UserAgent.indexOf("opera mini") !== -1)  	 { NombreCorto = 'Opera Mini';       Nombre = 'Opera Mini';                 Tipo = 0; } 
+        else if	(UserAgent.indexOf("opera") !== -1)  		 { NombreCorto = 'Opera';            Nombre = 'Opera';                      Tipo = 0; } 
+        else if	(UserAgent.indexOf("edge") !== -1)  		 { NombreCorto = 'Edge';             Nombre = 'Microsoft Edge';             Tipo = 0; } 
+        else if	(UserAgent.indexOf("firefox") !== -1)		 { NombreCorto = 'Firefox';          Nombre = 'Mozilla Firefox';            Tipo = 0; } 
+        else if	(UserAgent.indexOf("chrome") !== -1) 		 { NombreCorto = 'Chrome';           Nombre = 'Google Chrome';              Tipo = 0; }
+        else if (UserAgent.indexOf("ucbrowser") !== -1)          { NombreCorto = 'UCBrowser';        Nombre = 'UCBrowser';                  Tipo = 0; }
+        else if	(UserAgent.indexOf("safari") !== -1)		 { NombreCorto = 'Safari';           Nombre = 'Apple Safari';               Tipo = 0; }
+        else if	(UserAgent.indexOf("netscape") !== -1) 		 { NombreCorto = 'Netscape';         Nombre = 'Netscape';                   Tipo = 0; } 
         /* Lectores de feeds */
-        else if	(UserAgent.indexOf("feedly") !== -1) 		 { NombreCorto = 'Feedly';           Nombre = 'Feedly RSS Reader';  	Tipo = 1; } 
-        else if	(UserAgent.indexOf("inoreader") !== -1) 	 { NombreCorto = 'InoReader';        Nombre = 'InoReader Crawler';  	Tipo = 1; } 
-        else if	(UserAgent.indexOf("feedfetcher-google") !== -1) { NombreCorto = 'Google Reader';    Nombre = 'Google Reader';  	Tipo = 1; } 
+        else if	(UserAgent.indexOf("feedly") !== -1) 		 { NombreCorto = 'Feedly';           Nombre = 'Feedly RSS Reader';          Tipo = 1; } 
+        else if	(UserAgent.indexOf("inoreader") !== -1) 	 { NombreCorto = 'InoReader';        Nombre = 'InoReader Crawler';          Tipo = 1; } 
+        else if	(UserAgent.indexOf("feedfetcher-google") !== -1) { NombreCorto = 'Google Reader';    Nombre = 'Google Reader';              Tipo = 1; } 
         /* Bots generales */
-        else if	(UserAgent.indexOf("baiduspider") !== -1)	 { NombreCorto = 'Baiduspider';      Nombre = 'Baiduspider'; 		Tipo = 1; } 
-        else if	(UserAgent.indexOf("ezooms") !== -1) 		 { NombreCorto = 'Ezooms Bot';       Nombre = 'Ezooms'; 		Tipo = 1; } 
-        else if	(UserAgent.indexOf("yandexbot") !== -1) 	 { NombreCorto = 'YandexBot';        Nombre = 'YandexBot'; 		Tipo = 1; }
-        else if	(UserAgent.indexOf("yandeximages") !== -1) 	 { NombreCorto = 'YandexImages';     Nombre = 'YandexImages'; 		Tipo = 1; }
-        else if	(UserAgent.indexOf("exabot") !== -1) 		 { NombreCorto = 'Exabot';           Nombre = 'Exabot'; 		Tipo = 1; } 
-        else if	(UserAgent.indexOf("alexa") !== -1) 		 { NombreCorto = 'Alexa';            Nombre = 'Alexa Web Crawler'; 	Tipo = 1; } 
-        else if	(UserAgent.indexOf("bingbot") !== -1) 		 { NombreCorto = 'Bing';             Nombre = 'Bing Bot';		Tipo = 1; } 
-        else if	(UserAgent.indexOf("msnbot") !== -1) 		 { NombreCorto = 'MSNBot';           Nombre = 'MSN Bot';		Tipo = 1; } 
-        else if	(UserAgent.indexOf("majestic") !== -1) 		 { NombreCorto = 'Majestic';         Nombre = 'Majestic Bot';		Tipo = 1; } 
-        else if	(UserAgent.indexOf("googlebot") !== -1) 	 { NombreCorto = 'Googlebot';        Nombre = 'Googlebot'; 		Tipo = 1; } 
-        else if	(UserAgent.indexOf("googlebot-mobile") !== -1) 	 { NombreCorto = 'Googlebot';        Nombre = 'Googlebot Mobile'; 	Tipo = 1; } 
-        else if	(UserAgent.indexOf("facebook") !== -1) 		 { NombreCorto = 'FaceeBook';        Nombre = 'FaceBook Bot'; 		Tipo = 1; } 
-        else if	(UserAgent.indexOf("ahrefsBot") !== -1)   	 { NombreCorto = 'AhrefsBot';        Nombre = 'AhrefsBot'; 		Tipo = 1; } 
-        else if	(UserAgent.indexOf("bot") !== -1)		 { NombreCorto = 'Bot';              Nombre = 'Bot genérico'; 		Tipo = 2; } 
+        else if	(UserAgent.indexOf("baiduspider") !== -1)	 { NombreCorto = 'Baiduspider';      Nombre = 'Baiduspider';                Tipo = 1; } 
+        else if	(UserAgent.indexOf("ezooms") !== -1) 		 { NombreCorto = 'Ezooms Bot';       Nombre = 'Ezooms';                     Tipo = 1; } 
+        else if	(UserAgent.indexOf("yandexbot") !== -1) 	 { NombreCorto = 'YandexBot';        Nombre = 'YandexBot';                  Tipo = 1; }
+        else if	(UserAgent.indexOf("yandeximages") !== -1) 	 { NombreCorto = 'YandexImages';     Nombre = 'YandexImages';               Tipo = 1; }
+        else if	(UserAgent.indexOf("exabot") !== -1) 		 { NombreCorto = 'Exabot';           Nombre = 'Exabot';                     Tipo = 1; } 
+        else if	(UserAgent.indexOf("alexa") !== -1) 		 { NombreCorto = 'Alexa';            Nombre = 'Alexa Web Crawler';          Tipo = 1; } 
+        else if	(UserAgent.indexOf("bingbot") !== -1) 		 { NombreCorto = 'Bing';             Nombre = 'Bing Bot';                   Tipo = 1; } 
+        else if	(UserAgent.indexOf("msnbot") !== -1) 		 { NombreCorto = 'MSNBot';           Nombre = 'MSN Bot';                    Tipo = 1; } 
+        else if	(UserAgent.indexOf("majestic") !== -1) 		 { NombreCorto = 'Majestic';         Nombre = 'Majestic Bot';               Tipo = 1; } 
+        else if	(UserAgent.indexOf("googlebot") !== -1) 	 { NombreCorto = 'Googlebot';        Nombre = 'Googlebot';                  Tipo = 1; } 
+        else if	(UserAgent.indexOf("googlebot-mobile") !== -1) 	 { NombreCorto = 'Googlebot';        Nombre = 'Googlebot Mobile';           Tipo = 1; } 
+        else if	(UserAgent.indexOf("facebook") !== -1) 		 { NombreCorto = 'FaceeBook';        Nombre = 'FaceBook Bot';               Tipo = 1; } 
+        else if	(UserAgent.indexOf("ahrefsbot") !== -1)   	 { NombreCorto = 'AhrefsBot';        Nombre = 'AhrefsBot';                  Tipo = 1; } 
+        else if	(UserAgent.indexOf("google-site-verifi") !== -1) { NombreCorto = 'Googlebot';        Nombre = 'Google-Site-Verification';   Tipo = 1; } 
+        
+        else if	(UserAgent.indexOf("bot") !== -1)		 { NombreCorto = 'Bot';              Nombre = 'Bot genérico';               Tipo = 2; } 
         /* Internet explorer al final porque muchos llevan msie sin ser IE en el user agent */
         else if	(UserAgent.indexOf("msie 11.0") !== -1) 	 { NombreCorto = 'IE11';             Nombre = 'Internet Explorer';	Version = 11.0; 	Tipo = 0; }
         else if	(UserAgent.indexOf("msie 10.0") !== -1)		 { NombreCorto = 'IE10';             Nombre = 'Internet Explorer';	Version = 10.0; 	Tipo = 0; }
@@ -732,11 +900,6 @@ ObjetoAdmin = function() {
         else if	(UserAgent.indexOf("msie 6.0") !== -1)		 { NombreCorto = 'IE6';              Nombre = 'Internet Explorer';	Version = 6.0; 		Tipo = 0; }
         else if	(UserAgent.indexOf("msie")  !== -1)		 { NombreCorto = 'IE';               Nombre = 'Internet Explorer'; 				Tipo = 0; }
 
-/*        switch (Tipo) {
-            case 0 : Color = 'darkgreen';   break;
-            case 1 : Color = 'grey';        break;
-            case 2 : Color = 'orange';      break;
-        }*/
 
         return { 
             "Nombre" 		: Nombre, 
@@ -748,50 +911,17 @@ ObjetoAdmin = function() {
         };
     };    
     
-    
-    this.Log_ClickCheckNavegadores = function() {
-/*        var Checks = this.Log_ObtenerChecks();
-        var Checks2 = { 
-            0     : document.getElementById('ChNavegadores').checked,
-            1     : document.getElementById('ChBots').checked,
-            2     : document.getElementById('ChDesconocido').checked
-        };
-        for (var i = 0; i < this.Log_Ips.length; i++) {
-            if (Checks2[this.Log_Ips[i]["Info"]["Tipo"]] === true) {
-                var Destacado = -1;
-                for (var e = 0; e < this.Log_Ips[i]["Destacados"].length; e++) {
-                    if (Checks[this.Log_Ips[i]["Destacados"][e]["Relevancia"]] === true) {
-                        Destacado = e;
-                        break;
-                    }
-                }
-                if (Destacado > -1) {
-                    document.getElementById("EntradaLog" + i).style.display = "table";
-                }
-                else {
-                    document.getElementById("EntradaLog" + i).style.display = "none";                    
-                }
-            }
-            else {
-                document.getElementById("EntradaLog" + i).style.display = "none";                
-            }
-        }*/
-        this.Log_ClickCheckRelevancia();
-    };
-    
+        
     this.Log_ClickCheckOpciones = function() {
-/*        
-        for (var i = 1; i < 10; i++) {
-            $(".Log_TablaEntradaFila[tipo='" + i + "']").css({ "display" : (Checks[i] === true) ? "table" : "none" }); 
-        }*/
         var Checks = this.Log_ObtenerChecks();
         var Checks2 = { 
-            0     : document.getElementById('ChNavegadores').checked,
-            1     : document.getElementById('ChBots').checked,
-            2     : document.getElementById('ChDesconocido').checked
+            0 : document.getElementById('ChNavegadores').checked,
+            1 : document.getElementById('ChBots').checked,
+            2 : document.getElementById('ChDesconocido').checked
         };
         
         for (var i = 0; i < this.Log_Ips.length; i++) {
+            // Busco la primera entrada destacada (si existe)
             var Pos = -1;
             for (var e = 0; e < this.Log_Ips[i]["Destacados"].length; e++) {
                 if (Checks[this.Log_Ips[i]["Destacados"][e]["Relevancia"]] === true) {
@@ -799,7 +929,7 @@ ObjetoAdmin = function() {
                     break;
                 }
             }
-            
+            // Si hay destacados y el check del navegador está marcado
             if (Pos > -1 && Checks2[this.Log_Ips[i]["Info"]["Tipo"]] === true) {
                 document.getElementById("EntradaLog" + i).style.display = "table";
                 var Url = $("#EntradaLog" + i + " .EntradaLog_Url");
