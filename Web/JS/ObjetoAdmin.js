@@ -295,6 +295,14 @@ ObjetoAdmin = function() {
     /********/
     /* Log2 */ 
     /********/
+    
+    /* TODO :
+     *  Al expandir una fila s'ha de posar un buto per mostrar totes les dades (inclus si no están marcades) 
+     *  Butons per tancar les divs expandits 
+     *  Duplicar els butons de les dates i posar els segons a sota de tot de la taula 
+     *  Començar a pensar en el buscador de texte... s'ha de tenir en compte que ara tambè hi han pagines per cada dia que poden estar ocultes 
+     *  Crear stats dels navegadors i els sistemas operatius */
+    
     this.Log_IpAdmin = "0.0.0.0";
     
     this.Log_ArchivoChange = function() {
@@ -431,15 +439,24 @@ ObjetoAdmin = function() {
     this.Log_ColorRelevancia = function(Relevancia, Ret = 0) {
         if (Ret === 404) return "purple";
         switch (Relevancia) {
-            case 9 : return "red";      break;// Ataque
-            case 8 : return "orange";   break;// Advertencia
+/*            case 9 : return "red";      break;// Ataque
+            case 8 : return "darkcyan"; break;// Advertencia
             case 7 : return "purple";   break;// error 404
             case 6 : return "olive";    break;// zips
             case 5 : return "green";    break;// documento
             case 4 : return "blue";     break;// css
             case 3 : return "brown";    break;// js
             case 2 : return "grey";     break;// imagen
-            case 1 : return "black";    break;// normal
+            case 1 : return "black";    break;// normal*/
+            case 9 : return "Log_Entrada_Ataque";      break;// Ataque
+            case 8 : return "Log_Entrada_Advertencia"; break;// Advertencia
+            case 7 : return "Log_Entrada_Error";       break;// error 404
+            case 6 : return "Log_Entrada_Zip";         break;// zips
+            case 5 : return "Log_Entrada_Documento";   break;// documento
+            case 4 : return "Log_Entrada_CSS";         break;// css
+            case 3 : return "Log_Entrada_JS";          break;// js
+            case 2 : return "Log_Entrada_Imagen";      break;// imagen
+            case 1 : return "Log_Entrada_Otros";       break;// normal
         }
         return "black";
     };
@@ -472,7 +489,7 @@ ObjetoAdmin = function() {
                 if (Fecha !== this.Log_Ips[i]["Fecha"]) {
                     Fecha = this.Log_Ips[i]["Fecha"];                    
                     Filas += "</div><div class='Log_Lista' id='Log_ListaP" + (++Pagina) + "'" + ((Pagina === 0) ? " style='display:block'" : "") + ">";
-                    Botones += "<input class='Log_ListaBoton' id='Log_ListaBoton" + Pagina + "' type='radio' name='Log_ListaBoton'" + ((Pagina === 0) ? " checked='checked'" : "") + ">" +
+                    Botones += "<input class='Log_ListaBoton' id='Log_ListaBotonaa" + Pagina + "' type='radio' name='Log_ListaBoton'" + ((Pagina === 0) ? " checked='checked'" : "") + ">" +
                                "<label for='Log_ListaBoton" + Pagina + "'>" + Fecha + "</label>";
                                
                 }
@@ -484,9 +501,9 @@ ObjetoAdmin = function() {
 
                 // Color del navegador
                 switch (this.Log_Ips[i]["Info"]["Tipo"]) {
-                    case 0 : ColorNavegador = 'darkgreen';   break;
-                    case 1 : ColorNavegador = 'grey';        break;
-                    case 2 : ColorNavegador = 'orange';      break;
+                    case 0 : ColorNavegador = 'Log_Cliente_Navegador';   break;
+                    case 1 : ColorNavegador = 'Log_Cliente_Bot';         break;
+                    case 2 : ColorNavegador = 'Log_Cliente_Desconocido'; break;
                 }            
                 // Color para el número de peticiones
                 if (this.Log_Ips[i]["Datos"].length > 200) { ColorPeticiones = " style='color:orange'"; }
@@ -509,18 +526,18 @@ ObjetoAdmin = function() {
                     }
                 }
 
-                var ColorUrl = (Destacados > -1) ? this.Log_ColorRelevancia(this.Log_Ips[i]["Destacados"][Destacados]["Relevancia"]) : "black";
+                var ColorUrl = (Destacados > -1) ? this.Log_ColorRelevancia(this.Log_Ips[i]["Destacados"][Destacados]["Relevancia"]) : "Log_Entrada_Otros";
                 
                 // La cabecera lleva la IP, la url mas relevante, el tiempo de inicio y final, numero de requests, y el user agent simplificado (SO, NAVEGADOR) o Tipo de BOT
                 Filas +=  "<div class='EntradaLog' id='EntradaLog" + i + "' style='display:" + ((Destacados > -1) ? "table" : 'none') + "'>" + // Contenedor para una Ip del log con todas sus peticiones
                         "<div class='EntradaLog_TablaFila'" + Ataque + ">" +
                             "<div class='EntradaLog_Fila' tipo='" + this.Log_Ips[i]["Info"]["Tipo"] + "'>" +
                                 "<div class='EntradaLog_Ip'>" + this.Log_Ips[i]["Ip"] + "</div>" +
-                                "<div class='EntradaLog_Url' style='color:" + ColorUrl + "'>" + ((Destacados > -1) ? this.Log_Ips[i]["Destacados"][Destacados]["Url"] : "") + "</div>" +
+                                "<div class='EntradaLog_Url " + ColorUrl + "'>" + ((Destacados > -1) ? this.Log_Ips[i]["Destacados"][Destacados]["Url"] : "") + "</div>" +
                                 "<div class='EntradaLog_Peticiones'" + ColorPeticiones + ">" + this.Log_Ips[i]["Destacados"].length + "</div>" + // Peticiones
                                 "<div class='EntradaLog_TiempoInicio'>" + this.Log_Ips[i]["Datos"][0]["Hora"] + "</div>" +
                                 "<div class='EntradaLog_TiempoFin'>" + this.Log_Ips[i]["Datos"][this.Log_Ips[i]["Datos"].length - 1]["Hora"] + "</div>" +
-                                "<div class='EntradaLog_InfoClienteWeb' style='color:" + ColorNavegador + "'>" + this.Log_Ips[i]["Info"]["NombreCorto"] + " " + this.Log_Ips[i]["Info"]["PlataformaCorto"] + "</div>" +
+                                "<div class='EntradaLog_InfoClienteWeb " + ColorNavegador + "'>" + this.Log_Ips[i]["Info"]["NombreCorto"] + " " + this.Log_Ips[i]["Info"]["PlataformaCorto"] + "</div>" +
                             "</div>" +
                         "</div>" +
                         "<div class='EntradaLog_Datos'>" +
@@ -634,7 +651,7 @@ ObjetoAdmin = function() {
         for (var i = 0; i < TotalEntradas; i++) {
             if (i === this.Log_ArrayObjetos.length) { break; }
             Codigo += "<tr>" + 
-                        "<td style='color:" + this.Log_ColorRelevancia(this.Log_ArrayObjetos[i]["Tipo"]) + "'>" + this.Log_ArrayObjetos[i]["Url"] + "</td>" + 
+                        "<td class='" + this.Log_ColorRelevancia(this.Log_ArrayObjetos[i]["Tipo"]) + "'>" + this.Log_ArrayObjetos[i]["Url"] + "</td>" + 
                         "<td>" + "<span class='Log_StatBarra' style='width:" + (300 * this.Log_ArrayObjetos[i]["Contador"] / this.Log_ArrayObjetos[0]["Contador"]) + "px'>" +this.Log_ArrayObjetos[i]["Contador"] +"</span></td>" + 
                     "</tr>";
         }
@@ -701,11 +718,21 @@ ObjetoAdmin = function() {
             $("#" + Id).attr("abierto", true);
 //            var PosIp = Id.slice(10); // EntradaLog ocupa 10 caracteres (me quedo solo con el número)
 
+            var ColorNavegador = "black";
+
+            // Color del navegador
+            switch (this.Log_Ips[PosIp]["Info"]["Tipo"]) {
+                case 0 : ColorNavegador = 'Log_Cliente_Navegador';   break;
+                case 1 : ColorNavegador = 'Log_Cliente_Bot';         break;
+                case 2 : ColorNavegador = 'Log_Cliente_Desconocido'; break;
+            }            
+
+
             // Codigo para el titulo y la tabla con la información básica
             var Codigo = "<h1 class='Log_Titulo1'>" + this.Log_Ips[PosIp]["Ip"] + "</h1>" +
             "<table class='Log_TituloTabla'>" +
-                "<tr>" + "<td>Sistema</td>"         + "<td>:</td>" + "<td>" + this.Log_Ips[PosIp]["Info"]["Plataforma"]                                     + "</td>" + "</tr>" +
-                "<tr>" + "<td>Navegador</td>"       + "<td>:</td>" + "<td>" + this.Log_Ips[PosIp]["Info"]["Nombre"]                                         + "</td>" + "</tr>" +
+                "<tr>" + "<td>Sistema</td>"         + "<td>:</td>" + "<td class='" + ColorNavegador + "'>" + this.Log_Ips[PosIp]["Info"]["Plataforma"]                                     + "</td>" + "</tr>" +
+                "<tr>" + "<td>Navegador</td>"       + "<td>:</td>" + "<td class='" + ColorNavegador + "'>" + this.Log_Ips[PosIp]["Info"]["Nombre"]                                         + "</td>" + "</tr>" +
                 "<tr>" + "<td>Fecha</td>"           + "<td>:</td>" + "<td>" + this.Log_Ips[PosIp]["Fecha"]                                                  + "</td>" + "</tr>" +
                 "<tr>" + "<td>Conectado desde</td>" + "<td>:</td>" + "<td>" + this.Log_Ips[PosIp]["Datos"][0]["Hora"]                                       + "</td>" + "</tr>" +
                 "<tr>" + "<td>Conectado hasta</td>" + "<td>:</td>" + "<td>" + this.Log_Ips[PosIp]["Datos"][this.Log_Ips[PosIp]["Datos"].length - 1]["Hora"] + "</td>" + "</tr>" +            
@@ -733,14 +760,15 @@ ObjetoAdmin = function() {
                     Codigo += "<div class='Log_TablaEntradaFila' tipo='" + this.Log_Ips[PosIp]["Datos"][i]["Relevancia"] + "'>" +
                             "<div>" + this.Log_Ips[PosIp]["Datos"][i]["Hora"] + "</div>" +
                             "<div>" + this.Log_Ips[PosIp]["Datos"][i]["Peticion"] + "</div>" +
-                            "<div style='color:" + this.Log_ColorRelevancia(this.Log_Ips[PosIp]["Datos"][i]["Relevancia"]) + "'>" + this.Log_Ips[PosIp]["Datos"][i]["Url"] + "</div>" +
+                            "<div class='" + this.Log_ColorRelevancia(this.Log_Ips[PosIp]["Datos"][i]["Relevancia"]) + "'>" + this.Log_Ips[PosIp]["Datos"][i]["Url"] + "</div>" +
                             "<div>" + this.Log_ParsearRespuesta2(this.Log_Ips[PosIp]["Datos"][i]["Ret"]) + "</div>" +
                             "<div>" + this.Log_Ips[PosIp]["Datos"][i]["Ret"] + "</div>" +
                             "<div>" + this.Log_Ips[PosIp]["Datos"][i]["Tam"]  + "</div>" +
                         "</div>";
                 }
             }
-            Codigo += "</div>";
+            Codigo += "</div>" + 
+            "<div class='Log_ContenidoOculto'>Mostrar contenido oculto.</div>";
 
 
             $("#" + Id + " > .EntradaLog_Datos").html(Codigo);
@@ -933,7 +961,8 @@ ObjetoAdmin = function() {
             if (Pos > -1 && Checks2[this.Log_Ips[i]["Info"]["Tipo"]] === true) {
                 document.getElementById("EntradaLog" + i).style.display = "table";
                 var Url = $("#EntradaLog" + i + " .EntradaLog_Url");
-                Url.css({ color : this.Log_ColorRelevancia(this.Log_Ips[i]["Destacados"][Pos]["Relevancia"]) });
+//                Url.css({ color : this.Log_ColorRelevancia(this.Log_Ips[i]["Destacados"][Pos]["Relevancia"]) });
+                Url.attr('class', this.Log_ColorRelevancia(this.Log_Ips[i]["Destacados"][Pos]["Relevancia"]));
                 Url.html(this.Log_Ips[i]["Destacados"][Pos]["Url"]);
                 if (this.Log_Ips[i]["Abierto"] === true) {
                     this.Log_Ips[i]["Abierto"] = false;

@@ -8,8 +8,6 @@ Millores de la web :
  V      - Enllaçar enllaços href al $Base.CargarURL     
  V      - Retocar CSS
  V      - Probar de llegir els arxius directament amb include : $foo = include 'return.php';
-            http://php.net/manual/es/function.include.php
-        - S'ha d'ordenar el resultat ni que sigui per la data, i fins i tot mirar de donar prioritat al blog abans que al Doc/CSS i al Lab
  V      - Afegir els exemples del lab a la BD de paraules... (lo que repetira el solitario...)
             - OJU perque llavors poden haber exemples que ja surten a l'index del blog ( fer el mateix sistema pel Doc/CSS )
  V  - Modificada la visualització d'errors en javascript de forma que ara es mes fácil accedir a la línea afectada desde el log.
@@ -144,3 +142,9 @@ ObjetoComentarios
     - Habilitar en mode administració el copy/paste d'etiquetes de tot tipus, i fer un editor de codi HTML, per retocar els missatges.
         - Copy/paste d'etiquetes script y style ha de requerir superadmin. (Deixar que algu sigui capaç d'injectar estils css o pitjor encara scripts es una cosa molt seria, que facilment es podria carregar la web, i que a mes seria dificil/engorros de detectar /eliminar.
     - Hi ha algo raro al editar missatges... desapareixen lineas al guardar l'edició, però al recarregar tornen a sortir...
+
+Log 
+ V  - Crear nou log que pugui llegir arxius log que estan comprimits
+ V      - Crear estadistiques
+ V      - Evitar limitacions de memoria del servidor utilitzant nomes javascript per ordenar el log per ips
+ 

@@ -141,7 +141,7 @@ Banner_HexTunnel.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         this.Textura.needsUpdate = true;        
     },
         
-    Bloque : function(Escena, X, Z, Textura) {       
+    Bloque : function(Escena, X, Z, Textura) {    
         this.Buffer  = Textura.Buffer;
         this.Textura = Textura.Textura;
         this.Figura  = new THREE.Mesh(  new THREE.BoxGeometry( 20, 40, 10 ), 
@@ -208,16 +208,16 @@ Banner_HexTunnel.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     },
     // Objeto que contiene los valores de una animación del texto hexadecimal
     Animacion : function(Tick) {
-        this.Textura    = RandInt(Constantes.Texturas, 0);  // Número de textura
-        this.Linea      = RandInt(Constantes.Lineas, 1);    // Línea
-        this.Columna    = RandInt(3, 0);                    // Columna
-        this.Retraso    = RandInt(900, 0);                  // añado un retraso aleatório al inicio
-        this.Tiempo     = RandInt(2000, 450);               // Duración
+        this.Textura    = RandInt(Constantes.Texturas -1, 0);   // Número de textura
+        this.Linea      = RandInt(Constantes.Lineas, 1);        // Línea
+        this.Columna    = RandInt(3, 0);                        // Columna
+        this.Retraso    = RandInt(900, 0);                      // añado un retraso aleatório al inicio
+        this.Tiempo     = RandInt(2000, 450);                   // Duración
         this.TickInicio = Tick + this.Retraso;
-        this.R          = 95; // 255 - 95 = 145             // Canal R y G
+        this.R          = 95; // 255 - 95 = 145                 // Canal R y G
 //        this.G          = 95;
-        this.B          = 95;                               // Canal B
-        this.Texto      = RandHex();                        // Nuevo valor hexadecimal
+        this.B          = 95;                                   // Canal B
+        this.Texto      = RandHex();                            // Nuevo valor hexadecimal
         this.Terminado  = false;
         this.Porcentaje = 0;
         this.Tipo       = Rand(1, 0);

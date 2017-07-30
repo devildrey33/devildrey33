@@ -81,57 +81,57 @@
             
             
             echo    "<div id='Log_Contenedor_Navegadores'>".
-                        "<label id='LabelNavegadores' style='color:darkgreen'>".Intro().
+                        "<label id='LabelNavegadores' class='Log_Cliente_Navegador'>".Intro().
                             "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChNavegadores'>".Intro().
                             "<span>Navegadores</span>".Intro().
                         "</label>".Intro().                    
-                        "<label id='LabelBots' style='color:grey'>".Intro().
+                        "<label id='LabelBots' class='Log_Cliente_Bot'>".Intro().
                             "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChBots'>".Intro().
                             "<span>Bots</span>".Intro().
                         "</label>".Intro().
-                        "<label id='LabelDesconocido' style='color:orange'>".Intro().
+                        "<label id='LabelDesconocido' class='Log_Cliente_Desconocido'>".Intro().
                             "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChDesconocido'>".Intro().
                             "<span>Desconocido</span>".Intro().
                         "</label>".Intro().
                     "</div>";
             
             echo    "<div id='Log_Contenedor_Tipo'>".
-                        "<label id='LabelAtaques' style='color:red'>".Intro().
+                        "<label id='LabelAtaques' class='Log_Entrada_Ataque'>".Intro().
                             "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChAtaques'>".Intro().
                             "<span>Ataques</span>".Intro().
                         "</label>".Intro().
-                        "<label id='LabelAdvertencias' style='color:orange'>".Intro().
+                        "<label id='LabelAdvertencias' class='Log_Entrada_Advertencia'>".Intro().
                             "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChAdvertencias'>".Intro().
                             "<span>Advertencias</span>".Intro().
                         "</label>".Intro().
-                        "<label id='LabelZips' style='color:olive'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChZip'>".Intro().
-                            "<span>Archivos Zip</span>".Intro().
-                        "</label>".Intro().
-                        "<label id='LabelDocumentos' style='color:green'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChDocumentos'>".Intro().
-                            "<span>Documentos PHP y HTML</span>".Intro().
-                        "</label>".Intro().
-                        "<label id='LabelOtros'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChOtros'>".Intro().
-                            "<span>Otros</span>".Intro().
-                        "</label>".Intro().
-                        "<label id='LabelErrores404' style='color:purple'>".Intro().
+                        "<label id='LabelErrores404' class='Log_Entrada_Error'>".Intro().
                             "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChErrores404'>".Intro().
                             "<span>Errores 404</span>".Intro().
                         "</label>".Intro().
-                        "<label id='LabelCSS' style='color:blue'>".Intro().
+                        "<label id='LabelZips' class='Log_Entrada_Zip'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChZip'>".Intro().
+                            "<span>Archivos Zip</span>".Intro().
+                        "</label>".Intro().
+                        "<label id='LabelDocumentos' class='Log_Entrada_Documento'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChDocumentos'>".Intro().
+                            "<span>Documentos PHP y HTML</span>".Intro().
+                        "</label>".Intro().
+                        "<label id='LabelCSS' class='Log_Entrada_CSS'>".Intro().
                             "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChCSS'>".Intro().
                             "<span>CSS</span>".Intro().
                         "</label>".Intro().
-                        "<label id='LabelJS' style='color:brown'>".Intro().
+                        "<label id='LabelJS' class='Log_Entrada_JS'>".Intro().
                             "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChJS'>".Intro().
                             "<span>JavaScript</span>".Intro().
                         "</label>". Intro().
-                        "<label id='LabelImagenes' style='color:grey'>".Intro().
+                        "<label id='LabelImagenes' class='Log_Entrada_Imagen'>".Intro().
                             "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChImagenes'>".Intro().
                             "<span>Imagenes</span>".Intro().
                         "</label>".Intro().                    
+                        "<label id='LabelOtros' class='Log_Entrada_Otros'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChOtros'>".Intro().
+                            "<span>Otros</span>".Intro().
+                        "</label>".Intro().
                     "</div>";
 /*            echo    "<div id='Log_Contenedor_Buscar'>".
                         "<label id='LabelUrl'>".Intro().

@@ -75,15 +75,19 @@ and open the template in the editor.
     padding-top:4px;
 }*/
 
-.Log_Entrada_Ataque 		{	color:red;		}
-.Log_Entrada_Advertencia 	{	color:orange;	}
-.Log_Entrada_Error 		{	color:purple;	}
-.Log_Entrada_Zip 		{	color:olive;	}
-.Log_Entrada_Documento 		{	color:green;	}
-.Log_Entrada_CSS 		{	color:blue;		}
-.Log_Entrada_JS 		{	color:brown;	}
-.Log_Entrada_Imagen 		{	color:gray;		}
-.Log_Entrada_Otros 		{	color:black;	}
+.Log_Entrada_Ataque 		                        { color:red       !important; }
+.Log_Entrada_Advertencia  .Log_Cliente_Desconocido	{ color:darkcyan  !important; }
+.Log_Entrada_Error                                      { color:purple    !important; }
+.Log_Entrada_Zip                                        { color:olive     !important; }
+.Log_Entrada_Documento                                 	{ color:darkgreen !important; }
+.Log_Entrada_CSS                                        { color:blue      !important; }
+.Log_Entrada_JS                                         { color:brown     !important; }
+.Log_Entrada_Imagen,      .Log_Cliente_Bot 		{ color:gray      !important; }
+.Log_Entrada_Otros                                      { color:black     !important; }
+.Log_Cliente_Navegador                                  { color:green     !important; }/*
+.Log_Cliente_Bot                                        { }
+.Log_Cliente_Desconocido                                { } */
+
 
 /*.Log_Cerrar {
     position:relative;
@@ -643,4 +647,8 @@ and open the template in the editor.
 
 .Log_ListaBotones input:checked + label {
     background:#111;
+}
+
+.Log_ContenidoOculto { 
+    display:none; 
 }
