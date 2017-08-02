@@ -3,7 +3,7 @@ $Base = new function() {
     // Variable que contiene la animación de Sobre el autor ...
     this.SobreElAutor       = null;
     this.CanvasError404     = null;
-    this.ObjetoCanvas_Depurar = false; // necesaria para poder controlar la depuración desde el panel de administración
+//    this.ObjetoCanvas_Depurar = false; // necesaria para poder controlar la depuración desde el panel de administración
     /* Entrada actual */
     this.Entrada            = [];
     /* Estado del login */
@@ -212,7 +212,8 @@ $Base = new function() {
         
 //        $Banner = new Banner_HexTunnel();
         $Banner = new Banner_Lista[fPos];
-        $Banner.OpcionesCanvas.MostrarFPS = (typeof(document.getElementById("CH_MostrarFPS")) !== 'undefined') ? ((document.getElementById("CH_MostrarFPS").value === "true") ? true : false ) : false;
+        // Muestro / oculto el div de los frames por segundo según el checkbox del panel de administración
+        $Banner.OpcionesCanvas.MostrarFPS = ($("#CH_MostrarFPS").attr("marcado") === "true") ? true : false;
         document.getElementById("Cabecera_Stats").style.display = ($Banner.OpcionesCanvas.MostrarFPS) ? "block" : "none";
     };
     

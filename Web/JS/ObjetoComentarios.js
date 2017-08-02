@@ -44,19 +44,19 @@ $Comentarios = new function() {
         });        
         
         /* Botones con comandos para la edición */
-        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(1)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("bold");                   });
-        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(2)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("underline");              });
-        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(3)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("italic");                 });
-        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(4)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("strikethrough");          });
-        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(5)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("undo");                   });
-        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(6)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("redo");                   });
-        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(7)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("insertunorderedlist");    });
-        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(8)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("insertorderedlist");      });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(1)").off("click").on("click",  function() { $Comentarios.ComandoEdicion("bold");                   });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(2)").off("click").on("click",  function() { $Comentarios.ComandoEdicion("underline");              });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(3)").off("click").on("click",  function() { $Comentarios.ComandoEdicion("italic");                 });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(4)").off("click").on("click",  function() { $Comentarios.ComandoEdicion("strikethrough");          });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(5)").off("click").on("click",  function() { $Comentarios.ComandoEdicion("undo");                   });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(6)").off("click").on("click",  function() { $Comentarios.ComandoEdicion("redo");                   });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(7)").off("click").on("click",  function() { $Comentarios.ComandoEdicion("insertunorderedlist");    });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(8)").off("click").on("click",  function() { $Comentarios.ComandoEdicion("insertorderedlist");      });
 //        $("#Comentarios_BarraControles > button:nth-child(9)").off("click").on("click",  function() { $Comentarios.InsertarHTML("<pre>Código</pre>", true);              });
-        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(9)").off("mouseup").on("mouseup",  function() { $Comentarios.ComandoEdicion("removeFormat");           });
-        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(10)").off("mouseup").on("mouseup", function() { $Comentarios.ComandoEdicion("justifyLeft");            });
-        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(11)").off("mouseup").on("mouseup", function() { $Comentarios.ComandoEdicion("justifyCenter");          });
-        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(12)").off("mouseup").on("mouseup", function() { $Comentarios.ComandoEdicion("justifyRight");           });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(9)").off("click").on("click",  function() { $Comentarios.ComandoEdicion("removeFormat");           });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(10)").off("click").on("click", function() { $Comentarios.ComandoEdicion("justifyLeft");            });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(11)").off("click").on("click", function() { $Comentarios.ComandoEdicion("justifyCenter");          });
+        $("#Comentarios_BarraControles > .BotonEdicion:nth-child(12)").off("click").on("click", function() { $Comentarios.ComandoEdicion("justifyRight");           });
         /* Boton enviar */
         $("#Comentarios > .Centrado > button").off("click").on("click", function() { $Comentarios.BotonEnviarComentario(); });
         
@@ -350,11 +350,13 @@ $Comentarios = new function() {
     this.ComandoEdicion = function(Comando, Param) {
         if (typeof Param === 'undefined') Param = null;
         console.log("Comentarios.ComandoEdicion", Comando);
-        $("#Comentarios_Comentario").focus();
-//        $("#Comentarios_Comentario").focus();
-        document.execCommand(Comando, false, Param);
-        
         this.AsignarEstadosBotones();
+
+//        setTimeout(function(Comando, Param) { 
+        $("#Comentarios_Comentario").focus();
+        document.execCommand(Comando, false, Param);
+//        }, 1000, Comando, Param);
+        
 //        setTimeout(function() { $("#Comentarios_Comentario").focus(); }, 1);
     };
     

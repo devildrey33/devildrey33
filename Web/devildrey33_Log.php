@@ -82,64 +82,64 @@
             
             echo    "<div id='Log_Contenedor_Navegadores'>".
                         "<label id='LabelNavegadores' class='Log_Cliente_Navegador'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChNavegadores'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChNavegadores'>".Intro().
                             "<span>Navegadores</span>".Intro().
                         "</label>".Intro().                    
                         "<label id='LabelBots' class='Log_Cliente_Bot'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChBots'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChBots'>".Intro().
                             "<span>Bots</span>".Intro().
                         "</label>".Intro().
                         "<label id='LabelDesconocido' class='Log_Cliente_Desconocido'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChDesconocido'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChDesconocido'>".Intro().
                             "<span>Desconocido</span>".Intro().
                         "</label>".Intro().
                     "</div>";
             
             echo    "<div id='Log_Contenedor_Tipo'>".
                         "<label id='LabelAtaques' class='Log_Entrada_Ataque'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChAtaques'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChAtaques'>".Intro().
                             "<span>Ataques</span>".Intro().
                         "</label>".Intro().
                         "<label id='LabelAdvertencias' class='Log_Entrada_Advertencia'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChAdvertencias'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChAdvertencias'>".Intro().
                             "<span>Advertencias</span>".Intro().
                         "</label>".Intro().
                         "<label id='LabelErrores404' class='Log_Entrada_Error'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChErrores404'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChErrores404'>".Intro().
                             "<span>Errores 404</span>".Intro().
                         "</label>".Intro().
                         "<label id='LabelZips' class='Log_Entrada_Zip'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChZip'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChZip'>".Intro().
                             "<span>Archivos Zip</span>".Intro().
                         "</label>".Intro().
                         "<label id='LabelDocumentos' class='Log_Entrada_Documento'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChDocumentos'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChDocumentos'>".Intro().
                             "<span>Documentos PHP y HTML</span>".Intro().
                         "</label>".Intro().
                         "<label id='LabelCSS' class='Log_Entrada_CSS'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChCSS'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChCSS'>".Intro().
                             "<span>CSS</span>".Intro().
                         "</label>".Intro().
                         "<label id='LabelJS' class='Log_Entrada_JS'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChJS'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChJS'>".Intro().
                             "<span>JavaScript</span>".Intro().
                         "</label>". Intro().
                         "<label id='LabelImagenes' class='Log_Entrada_Imagen'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChImagenes'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChImagenes'>".Intro().
                             "<span>Imagenes</span>".Intro().
                         "</label>".Intro().                    
                         "<label id='LabelOtros' class='Log_Entrada_Otros'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_ClickCheckOpciones()' id='ChOtros'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChOtros'>".Intro().
                             "<span>Otros</span>".Intro().
                         "</label>".Intro().
                     "</div>";
 /*            echo    "<div id='Log_Contenedor_Buscar'>".
                         "<label id='LabelUrl'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_CrearTablaDatos()' id='ChUrl'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.CrearTablaDatos()' id='ChUrl'>".Intro().
                             "<span>Url</span>".Intro().
                         "</label>".Intro().                    
                         "<label id='LabelUa'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log_CrearTablaDatos()' id='ChUa'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.CrearTablaDatos()' id='ChUa'>".Intro().
                             "<span>UserAgent</span>".Intro().
                         "</label>".Intro().                    
                     

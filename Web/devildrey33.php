@@ -136,13 +136,30 @@ class devildrey33 {
 //        "<link rel='alternate' type='application/rss+xml' title='RSS 2.0' href='http://devildrey33.es/rss.xml' />".Intro();
         $this->Head_CSS();      // Enlace/s de los estilos CSS
         $this->Head_JS();	// Enlace/s de los archivos JavaScript
-        echo "<script>";
-        echo "\$Base.Raiz = '".Base::URL_Raiz()."'; ";
-        echo "\$Base.RaizRelativa = '".Base::PathRelativo_Raiz()."'; ";
-        if (devildrey33_Opciones::Banner_Pausar() == 0)  {  echo "\$Base.ObjetoCanvas_Depurar = true;";  }
-        else                                             {  echo "\$Base.ObjetoCanvas_Depurar = false;"; }
-        if (devildrey33_Opciones::MostrarConsola() == 0) {  echo "\$Base.Debug(false);";   }
-        else                                             {  echo "\$Base.Debug(true);";    } 
+        
+        // Paso varios datos necesarios al JavaScript
+        echo "<script>".Intro();
+        echo "\$Base.Raiz = '".Base::URL_Raiz()."'; ".Intro();
+        echo "\$Base.RaizRelativa = '".Base::PathRelativo_Raiz()."'; ".Intro();
+        // Evito que se carguen dinámicamente archivos CSS y JS del modo administrador
+        if (devildrey33_Opciones::Administrador() > 0) {
+            if (devildrey33_Opciones::Minificar_CSS() === 0) { // sin comprimir
+                if (file_exists(dirname(__FILE__).'/Config/ArchivosMinify.php')) {
+                    $ArrayCSS = (require dirname(__FILE__).'/Config/ArchivosMinify.php');
+                    foreach ($ArrayCSS["css-admin"] as $Archivo) {
+                        echo "\$Base.CSSDinamico.push('".substr($Archivo, 5)."');".Intro();
+                    }
+                    foreach ($ArrayCSS["js-admin"] as $Archivo) {
+                        echo "\$Base.JSDinamico.push('".substr($Archivo, 5)."');".Intro();
+                    }
+                }
+//                echo "\$Base.CSSDinamico.push('Admin.css');".Intro();
+            }
+            echo "\$Base.CSSDinamico.push('devildrey33.admin.min.css');".Intro();                
+            echo "\$Base.JSDinamico.push('devildrey33.admin.min.js');".Intro();                
+        }
+        if (devildrey33_Opciones::MostrarConsola() === 0) {  echo "\$Base.Debug(false);".Intro();   }
+        else                                             {  echo "\$Base.Debug(true);".Intro();    } 
         echo "</script>".Intro().
     "</head>".Intro();
         
@@ -610,11 +627,11 @@ class devildrey33 {
                     "<div class='MarcoOpcionesBorde_Botones' titulo='Varios PHP'>".Intro().
 //                        "<button class='Boton' id='CH_Entradas'>Editar Entradas</button>".Intro().
 //                        "<button class='Boton' id='CH_Lab'>Explorar Lab</button>".Intro().
-                        "<button class='Boton-Normal' id='CH_Logs' "             . "title='Log de visitas del servidor'>Log</button>".Intro().
-                        "<button class='Boton-Normal' id='CH_Minificar' "        . "title='Comprime los archivos css y js para la versión release de la web'>Minificar</button>".Intro().
-                        "<button class='Boton-Normal' id='CH_Stats' "            . "title='Estadisticas de la base de datos'>Stats BD</button>".Intro().
-                        "<button class='Boton-Normal' id='CH_PhpInfo' "          . "title='Información de la versión PHP del servidor actual'>PHP Info</button>".Intro().
-                        "<button class='Boton-Normal' id='CH_GenCacheBuscador' " . "title='Generar array de palabras cache para el buscador de la web'>Gen Cache Buscador</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_Logs' "             . "title='Log de visitas del servidor'>Log de visitas</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_Minificar' "        . "title='Comprime los archivos css y js para la versión release de la web'>Minificar JS y CSS</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_Stats' "            . "title='Estadisticas de la base de datos'>Stats de la BD</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_PhpInfo' "          . "title='Información de la versión PHP del servidor actual'>Info servidor PHP</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_GenCacheBuscador' " . "title='Generar array de palabras cache para el buscador de la web'>Generar cache para el Buscador</button>".Intro().
                     "</div>".Intro().
                 "</div>".Intro(); // #BarraPrincipal_Marco33
             

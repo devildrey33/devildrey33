@@ -30,7 +30,7 @@ ObjetoAdmin = function() {
         $('#CH_IPSBan').click(function(e){ $Base.cmd("LimpiarBaneados"); });  
         /* CheckBox del marco de administración */
         $('#BarraPrincipal_Marco33 .CheckBox').off("click").on("click", function(e){ 
-            var Marcado = ($(this).attr('marcado') === 'false') ? false : true;
+            var Marcado = ($(this).attr('marcado') === 'true') ? true : false;
             $(this).attr({ 'marcado' : !Marcado });
             switch ($(this).attr('id')) {
                 // Session
@@ -79,16 +79,12 @@ ObjetoAdmin = function() {
                     break;
                 case 'CH_PausarBanner' :
                     $Base.cmd((Marcado) ? 'DesactivarPausarBanner' : 'ActivarPausarBanner' );
-                    $Base.ObjetoCanvas_Depurar = (Marcado) ? true : false;
-/*                    if (Marcado)  { Banner_Depurar = true;  }
-                    else                                      { Banner_Depurar = false; }*/
+                    $Banner.OpcionesCanvas.Pausar = (Marcado) ? false : true;
                     break;
                 case 'CH_MostrarFPS' :
                     $Base.cmd((Marcado) ? 'DesactivarFPSBanner' : 'ActivarFPSBanner' );
-                    $Banner.OpcionesCanvas["MostrarFPS"] = (Marcado) ? true : false;
+                    $Banner.OpcionesCanvas.MostrarFPS = !Marcado;
                     document.getElementById("Cabecera_Stats").style.display = (!Marcado) ? "block" : "none";
-/*                    if (Marcado)  { Banner_Depurar = true;  }
-                    else                                      { Banner_Depurar = false; }*/
                     break;
             }
         });
@@ -120,7 +116,7 @@ ObjetoAdmin = function() {
         };
         
         // Marco/desmarco el checkbox de las opciones administrativas (pausar banner)
-        $("#CH_PausarBanner").attr({ "marcado" : !$Base.ObjetoCanvas_Depurar });
+//        $("#CH_PausarBanner").attr({ "marcado" : $Banner.OpcionesCanvas["Pausar"] });
         
         
         /* Re-emplazo la función $Base.ResetearTimerTiempoSesion por una versión para administradores */

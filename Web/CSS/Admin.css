@@ -22,13 +22,15 @@
 }
 
 .MarcoOpcionesBorde_Botones {
-    /* display: flex; */
-    /* flex-flow: row wrap; */
+    display: flex;
+    flex-flow: row wrap;
+    padding: 0px 0px !important;
     /* align-items: center; */
     /* align-content: center; */
 }
 .MarcoOpcionesBorde_Botones > button {
-    flex:1 1 100px;
+    flex: 1 1 150px;
+    margin: 4px;
 }
 
 .MarcoOpcionesBorde::before, .MarcoOpcionesBorde_Botones::before {
@@ -39,4 +41,5 @@
     display:table;
     font-size:1.2rem;
     color:#cccccc;
+    font-style: italic;
 }

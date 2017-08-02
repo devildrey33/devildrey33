@@ -35,7 +35,9 @@ return array(
     ),				  
     /* Archivos CSS administrador */
     'css-admin' => array(
-        "/CSS/Admin.css"
+        "/CSS/Admin.css",
+        "/CSS/Admin.Log.css",
+        "/CSS/Admin.EditarEntradas.css"
     ),
     
 
