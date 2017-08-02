@@ -29,8 +29,8 @@
         echo "<div id='Log_Lista'></div>";
         echo "</article>";
         echo "<script>".
-                "\$Admin.Log_IpAdmin = '".$_SERVER["REMOTE_ADDR"]."';".
-                "\$Admin.Log_CargarArchivo('access.log.current');".
+                "\$Admin.Log.IpAdmin = '".$_SERVER["REMOTE_ADDR"]."';".
+                "\$Admin.Log.CargarArchivo('access.log.current');".
             "</script>";
     }
     else {

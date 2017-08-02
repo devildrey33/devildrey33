@@ -223,7 +223,7 @@ Banner_MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     
     AnimacionRotarCubo   : function() {
         var Eje = RandInt(3);
-        this.CuboAnimado = RandInt(27, 0);        
+        this.CuboAnimado = RandInt(26, 0);        
         var RotarCara = RandInt(3, 1);
         if (Eje === 0) {
             this.AniRotarCubo = this.Animaciones.CrearAnimacion([

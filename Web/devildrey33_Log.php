@@ -48,7 +48,7 @@
             echo "<div id='Log_Opciones'>".
                     "<div id='Log_Contenedor_Archivos'>".
 //                        "<label>Archivo Log</label>".
-                        "<select name='NombreLog' id='Log_ArchivoActual' onchange='\$Admin.Log_ArchivoChange()'>";
+                        "<select name='NombreLog' id='Log_ArchivoActual' onchange='\$Admin.Log.ArchivoChange()'>";
             
             
             foreach($Archivos as $Archivo) {

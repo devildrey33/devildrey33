@@ -86,11 +86,11 @@ $Comentarios = new function() {
         /* Boton -1 */
         $("div[comentario] > .Comentarios_ControlesMensaje > button:nth-child(3)").off("click").on("click", function(evento) { $Comentarios.VotarComentario(this, 0); }); 
         /* Editar mensaje (SOLO ADMIN) */
-        $("div[comentario] > .Comentarios_ControlesMensaje > button:nth-child(4)").off("click").on("click", function(evento) { $Admin.Comentarios_BotonEditarComentario(this); }); 
+        $("div[comentario] > .Comentarios_ControlesMensaje > button:nth-child(4)").off("click").on("click", function(evento) { $Admin.Comentarios.BotonEditarComentario(this); }); 
         /* Eliminar mensaje (SOLO ADMIN) */
-        $("div[comentario] > .Comentarios_ControlesMensaje > button:nth-child(5)").off("click").on("click", function(evento) { $Admin.Comentarios_BotonEliminarComentario(this); });         
+        $("div[comentario] > .Comentarios_ControlesMensaje > button:nth-child(5)").off("click").on("click", function(evento) { $Admin.Comentarios.BotonEliminarComentario(this); });         
         /* Ver email (SOLO ADMIN) */
-        $("div[comentario] > .Comentarios_ControlesMensaje > button:nth-child(6)").off("click").on("click", function(evento) { $Admin.Comentarios_VerEmail(this); });         
+        $("div[comentario] > .Comentarios_ControlesMensaje > button:nth-child(6)").off("click").on("click", function(evento) { $Admin.Comentarios.VerEmail(this); });         
     };
     
     /* Botones responder de los mensajes existentes 

@@ -192,7 +192,7 @@ $Base = new function() {
                             
         var fPos = 0;
         // Si no se ha especificado ninguna posición generamos una aleatória
-        if (typeof (Pos === "undefined")) { fPos = RandInt(Banner_Lista.length); }
+        if (typeof (Pos === "undefined")) { fPos = RandInt(Banner_Lista.length - 1); }
         else                              { fPos = Pos }
         // Si es -1 es el botón Prev y si es -2 es el botón Next (de los controles del canvas)
         if (Pos === -1) { // Prev
@@ -212,6 +212,8 @@ $Base = new function() {
         
 //        $Banner = new Banner_HexTunnel();
         $Banner = new Banner_Lista[fPos];
+        $Banner.OpcionesCanvas.MostrarFPS = (typeof(document.getElementById("CH_MostrarFPS")) !== 'undefined') ? ((document.getElementById("CH_MostrarFPS").value === "true") ? true : false ) : false;
+        document.getElementById("Cabecera_Stats").style.display = ($Banner.OpcionesCanvas.MostrarFPS) ? "block" : "none";
     };
     
     /* Función para mostrar la ventana con los errores php */
@@ -936,7 +938,8 @@ $Base = new function() {
                 // Añado el html para administrador
                 $("#Marco33").html(Datos.HTMLAdmin);
                 // Cargo el JavaScript para el administrador
-                $Base.CargarJS("ObjetoAdmin.js", function() { $Admin.Iniciar(); });
+//                $Base.CargarJS("ObjetoAdmin.js", function() { $Admin.Iniciar(); });
+                $Base.CargarJS("devildrey33.admin.min.js", function() { $Admin.Iniciar(); }, true);
 
                 // Carpeta ejemplos completa con checkboxes para añadir / eliminar de la versión de usuario.
                 $("#BarraNavegacion_Explorador").html(Datos.ExplorarLab);
@@ -1018,8 +1021,9 @@ $Base = new function() {
     
     /* Carga un archivo JS dinamicamente 
        - Nombre  : Nombre del archivo JS sin ningun path
-       - Funcion : Función a ejecutar una vez cargado el JS (puede ser NULL) */
-    this.CargarJS = function(Nombre, Funcion) {
+       - Funcion : Función a ejecutar una vez cargado el JS (puede ser NULL) 
+       - Cache   : parámetro indica si se trata de un archivo css de la cache */
+    this.CargarJS = function(Nombre, Funcion, Cache = false) {
         if (typeof(Funcion) !== "undefined") {  this.FuncionCargarJS = Funcion;        }
         else                                 {  this.FuncionCargarJS = function() { }; }
         
@@ -1037,7 +1041,7 @@ $Base = new function() {
         Script.setAttribute("src", "/Web/JS/" + Nombre);
         // No se puede hacer un try / catch con el append child :(, por lo que los errores 404 no se pueden detectar...
         if (typeof Script !== "undefined") document.getElementsByTagName("head")[0].appendChild(Script);*/
-        $.getScript("/" + this.RaizRelativa + "Web/JS/" + Nombre, function(data, textStatus, jqxhr) {
+        $.getScript("/" + this.RaizRelativa + ((Cache === false) ? "Web/JS/" : "Web/Cache/") + Nombre, function(data, textStatus, jqxhr) {
             console.log("Base.CargarJS(" + Nombre + ")");    
             $Base.FuncionCargarJS();            
         }).fail(function(jqxhr, settings, exception) { 
@@ -1049,19 +1053,22 @@ $Base = new function() {
     
 
     /* Carga un archivo CSS dinamicamente  */
-    this.CargarCSS = function(Nombre) {
+    /* El segundo parámetro indica si se trata de un archivo css de la cache */
+    this.CargarCSS = function(Nombre, Cache = false) {
+        // Mira si está cargado
         for (var i = 0; i < this.CSSDinamico.length; i++) {
             if (this.CSSDinamico[i] === Nombre) {
                 console.log("Base.CargarCSS(" + Nombre + ") ya se había cargado...");
-                return;
+                return; // El archivo ya está cargado
             }
         }
+        // Si no está cargado
         this.CSSDinamico.push(Nombre);
         var Script = document.createElement("link");
         Script.setAttribute("rel", "stylesheet");
         Script.setAttribute("type", "text/css");
         
-        Script.setAttribute("href", "/" + this.RaizRelativa + "Web/CSS/" + Nombre);
+        Script.setAttribute("href", "/" + this.RaizRelativa + ((Cache === false) ? "Web/CSS/" : "Web/Cache/") + Nombre);
         // No se puede hacer un try / catch con el append child :(, por lo que los errores 404 no se pueden detectar...
         if (typeof Script !== "undefined") document.getElementsByTagName("head")[0].appendChild(Script);
         

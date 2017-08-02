@@ -59,12 +59,15 @@
                 case "DesactivarMinificarCSS" :         $this->MinificarCSS(0);                     break;
                 case "ActivarMinificarJS" :             $this->MinificarJS(1);                      break;
                 case "DesactivarMinificarJS" :          $this->MinificarJS(0);                      break;
-                case "ActivarActualizarCache" :         $this->ActualizarCache(1);                  break;
-                case "DesactivarActualizarCache" :      $this->ActualizarCache(0);                  break;
+                case "Minificar-JS-CSS" :               $this->ActualizarCache();                   break;
+//                case "ActivarActualizarCache" :         $this->ActualizarCache(1);                  break;
+//                case "DesactivarActualizarCache" :      $this->ActualizarCache(0);                  break;
                 case "ActivarConsola" :                 $this->Consola(1);                          break;
                 case "DesactivarConsola" :              $this->Consola(0);                          break;
                 case "ActivarPausarBanner" :            $this->PausarBanner(1);                     break;
                 case "DesactivarPausarBanner" :         $this->PausarBanner(0);                     break;
+                case "ActivarFPSBanner" :               $this->FPSBanner(1);                        break;
+                case "DesactivarFPSBanner" :            $this->FPSBanner(0);                        break;
                 case "Lab_GenerarCache" :               $this->Lab_GenerarCache();                  break;
                 case "VerEmailComentario" :             $this->VerEmailComentario();                break;
                 case "EliminarComentario" :             $this->EliminarComentario();                break;
@@ -235,7 +238,17 @@
                 $this->Desloguear(1);
             }
         }
-        
+
+        public function ActualizarCache() {            
+            if (devildrey33_Opciones::Administrador() > 0) { 
+                devildrey33::Minificar_JS_CSS();    
+                echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0, "Mensaje" => "Cache Generada!"));
+            }
+            else {
+                $this->Desloguear(1);
+            }
+        }
+        /*
         public function ActualizarCache($Num) {            
             if (devildrey33_Opciones::Administrador() > 0) { 
                 devildrey33_Opciones::ActualizarCache($Num);           
@@ -250,7 +263,7 @@
             else {
                 $this->Desloguear(1);
             }
-        }
+        }*/
         
         public function Consola($Num) {            
             if (devildrey33_Opciones::Administrador() > 0) { 
@@ -264,7 +277,17 @@
 
         public function PausarBanner($Num) {            
             if (devildrey33_Opciones::Administrador() > 0) { 
-                devildrey33_Opciones::PausarBannerJS($Num);            
+                devildrey33_Opciones::Banner_Pausar($Num);            
+                echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
+            }            
+            else {
+                $this->Desloguear(1);
+            }
+        }
+
+        public function FPSBanner($Num) {            
+            if (devildrey33_Opciones::Administrador() > 0) { 
+                devildrey33_Opciones::Banner_MostrarFPS($Num);            
                 echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
             }            
             else {

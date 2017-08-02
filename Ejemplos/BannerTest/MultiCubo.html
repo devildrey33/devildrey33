@@ -299,7 +299,7 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     
     AnimacionRotarCubo   : function() {
         var Eje = RandInt(3);
-        this.CuboAnimado = RandInt(27, 0);        
+        this.CuboAnimado = RandInt(26, 0);        
         var RotarCara = [0 ,0, 0];
         RotarCara[Eje] = RandInt(3, 1) * (Math.PI / 2);
         var T = 350 * (RotarCara[0] + RotarCara[1] + RotarCara[2]);

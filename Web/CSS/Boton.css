@@ -70,11 +70,11 @@ and open the template in the editor.
     text-decoration     : none;                                /* Sin decoraciones para el texto (por defecto viene con underline)        */
     padding             : 10px;                                /* Un poco de padding para que se vea bien el botón                        */
     /* La transición en el click (:active) tiene que ser rápida 150ms (transform y color), la transición para cambiar de foco en 150ms */
-    transition          : transform 0.15s ease-in-out, color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;   
-/*    font-family         : Karla, sans-serif;                   /* Fuente de google                                                        */
-    font-size           : 1.7rem;                              /* Tamaño de la fuente                                                     */
+    transition          : transform 0.15s ease-in-out, color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    /*    font-family         : Karla, sans-serif;                   /* Fuente de google                                                        */
+    font-size: 1.7rem;                              /* Tamaño de la fuente                                                     */
     color               : #FFF;                                /* Color del texto en blanco                                               */
-    margin              : 10px;                                /* 10 pixeles de margen para separar los botones entre si.                 */
+    margin: 10px;                                /* 10 pixeles de margen para separar los botones entre si.                 */
     position            : relative;                            /* Posición relativa para que sus hijos partan desde él                    */
     overflow            : hidden;                              /* Todo lo que sobresalga del botón no se verá                             */
     cursor              : pointer;                             /* Puntero del mouse que muestre una mano                                  */
@@ -83,7 +83,7 @@ and open the template in the editor.
     -webkit-user-select : none;
     -moz-user-select    : none;
     -ms-user-select     : none;
-    user-select         : none;    
+    user-select         : none;
     display             : inline-block;
 }
 /* Elimino el outline del botón por una transición con la sombra */

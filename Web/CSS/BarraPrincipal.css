@@ -46,7 +46,6 @@ and open the template in the editor.
     background-color:rgba(37,35,40, 0.95);
     border:1px solid #353338;
     z-index:100000;
-
     transition:0.5s cubic-bezier(.17,-0.42,0,1.35);
     box-shadow:2px 2px 2px rgba(50,50,50,0.7);
     opacity:0;
@@ -133,8 +132,7 @@ body[administrador33=true] #Marco33 {
 #CH_IPSBan {
     margin:4px !important;
 }
-
-/*#CH_Entradas, #CH_Lab,*/ #CH_Logs, #CH_Stats, #CH_PhpInfo, #CH_GenCacheBuscador  {
+.MarcoOpcionesBorde > button {
     display:inline-block;
     margin:4px;
     margin:auto;
@@ -193,35 +191,6 @@ body[administrador33=true] #Marco33 {
     width:60px;
 }*/
 
-/* tabla de dos columnas para contener descrición y un control check*/
-.MarcoOpciones2C {
-    border-spacing: 2px;
-    border-collapse: separate;
-}
-
-.MarcoOpciones2C tr > td:nth-child(1) {
-    min-width:135px;
-    position:relative;
-}
-
-/* marco para separar las secciones */
-.MarcoOpcionesBorde {
-    border:1px solid #353338;
-    border-radius:3px; 
-    margin:20px 5px 5px 5px;
-    padding:0px 5px;
-    position:relative;
-}
-
-.MarcoOpcionesBorde::before {
-    content:attr(titulo);
-    position:absolute;
-    top:-15px;
-    left:0px;
-    display:table;
-    font-size:1.2rem;
-    color:#cccccc;
-}
 
 
 .TablaGeneral {

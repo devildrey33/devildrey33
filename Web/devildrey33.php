@@ -139,7 +139,7 @@ class devildrey33 {
         echo "<script>";
         echo "\$Base.Raiz = '".Base::URL_Raiz()."'; ";
         echo "\$Base.RaizRelativa = '".Base::PathRelativo_Raiz()."'; ";
-        if (devildrey33_Opciones::PausarBannerJS() == 0) {  echo "\$Base.ObjetoCanvas_Depurar = true;";  }
+        if (devildrey33_Opciones::Banner_Pausar() == 0)  {  echo "\$Base.ObjetoCanvas_Depurar = true;";  }
         else                                             {  echo "\$Base.ObjetoCanvas_Depurar = false;"; }
         if (devildrey33_Opciones::MostrarConsola() == 0) {  echo "\$Base.Debug(false);";   }
         else                                             {  echo "\$Base.Debug(true);";    } 
@@ -503,14 +503,15 @@ class devildrey33 {
         if ($Loguear === TRUE) $EstadoLogin = devildrey33_Opciones::Login($Login, $Pass);
         
         if (devildrey33_Opciones::Administrador() > 0) {            
-            $MinHTML        = (devildrey33_Opciones::Minificar_HTML()    === 1) ? "true" : "false";
-            $MinCSS         = (devildrey33_Opciones::Minificar_CSS()     === 1) ? "true" : "false";
-            $MinJS          = (devildrey33_Opciones::Minificar_JS()      === 1) ? "true" : "false";
-            $Consola        = (devildrey33_Opciones::MostrarConsola()    === 1) ? "true" : "false";
-            $PHPDebug       = (devildrey33_Opciones::MostrarErroresPHP() === 1) ? "true" : "false";
-            $BorrarPHP      = (devildrey33_Opciones::BorrarLogPHP()      === 1) ? "true" : "false";
-            $Cache          = (devildrey33_Opciones::ActualizarCache()   === 1) ? "true" : "false";
-            $PausarBanner   = (devildrey33_Opciones::PausarBannerJS()    === 1) ? "true" : "false";
+            $MinHTML        = (devildrey33_Opciones::Minificar_HTML()     === 1) ? "true" : "false";
+            $MinCSS         = (devildrey33_Opciones::Minificar_CSS()      === 1) ? "true" : "false";
+            $MinJS          = (devildrey33_Opciones::Minificar_JS()       === 1) ? "true" : "false";
+            $Consola        = (devildrey33_Opciones::MostrarConsola()     === 1) ? "true" : "false";
+            $PHPDebug       = (devildrey33_Opciones::MostrarErroresPHP()  === 1) ? "true" : "false";
+            $BorrarPHP      = (devildrey33_Opciones::BorrarLogPHP()       === 1) ? "true" : "false";
+            $Cache          = (devildrey33_Opciones::ActualizarCache()    === 1) ? "true" : "false";
+            $PausarBanner   = (devildrey33_Opciones::Banner_Pausar()      === 1) ? "true" : "false";
+            $MostrarFPS     = (devildrey33_Opciones::Banner_MostrarFPS()  === 1) ? "true" : "false";
             $ValHT = devildrey33_htaccess::ObtenerValores();
             $HTMLAdmin = "<input id='BarraPrincipal_Boton33_Estado' class='Menu_Boton_Input' type='checkbox' />".Intro().
                 "<label class='Menu_Boton_Label' for='BarraPrincipal_Boton33_Estado' tooltip-es='Administración' tooltip-en='Administration' tooltip-pos='L'></label>".Intro().
@@ -537,10 +538,10 @@ class devildrey33 {
                             "<td>Comprimir JS</td>".Intro().
                             "<td>"."<div id='CH_JS' class='CheckBox' marcado='".$MinJS."' title='Comprime el JS eliminando comentarios, espacios, tabulaciones, y saltos de línea.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
                         "</tr>".Intro().
-                        "<tr>".Intro().
+/*                        "<tr>".Intro().
                             "<td>Actualizar Cache</td>".Intro().
                             "<td>"."<div id='CH_Actualizar' class='CheckBox' marcado='".$Cache."' title='Comprime los archivos JS y CSS para crear su version minificada.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
-                        "</tr>".Intro().
+                        "</tr>".Intro().*/
                         "<tr>".Intro().
                             "<td>Mostrar Debug PHP</td>".Intro().
                             "<td>"."<div id='CH_DebugPHP' class='CheckBox' marcado='".$PHPDebug."' title='Muestra las advertencias y errores php en el mismo output'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
@@ -549,57 +550,71 @@ class devildrey33 {
                             "<td>Borrar Debug PHP</td>".Intro().
                             "<td>"."<div id='CH_BorrarPHP' class='CheckBox' marcado='".$BorrarPHP."' title='Elimina el archivo log con los errores PHP antes de ejecutar código'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
                         "</tr>".Intro().
-                    "</table>".Intro().
+                    "</table>".Intro();
                     
-                    "<div>".Intro().
-                        "<table class='MarcoOpciones2C MarcoOpcionesBorde' titulo='JavaScript'>".Intro().
-                            "<tr>".Intro().
-                                "<td>Mostrar Debug JS</td>".Intro().
-                                "<td>"."<div id='CH_Consola' class='CheckBox' marcado='".$Consola."' title='Muestra datos de depuración por la consola'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
-                            "</tr>".Intro().
-                            "<tr>".Intro().
-                                "<td>Pausar banner</td>".
-                                "<td>"."<div id='CH_PausarBanner' class='CheckBox' marcado='".$PausarBanner."' title='Desactiva el banner cuando no está visible o cuando la pestaña pierde el foco.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
-                            "</tr>".Intro().
-                        "</table>".Intro();
+//                    "<div>".Intro().
             
 
             if (devildrey33_Opciones::Administrador() === 1) {
-                $HTMLAdmin .= "<div class='MarcoOpcionesBorde' titulo='.htaccess'>".Intro().
-                            "<table class='MarcoOpciones2C'>".Intro().
-                                "<tr>".Intro().
-                                    "<td>Compresion gzip</td>".Intro().
-                                    "<td>"."<div id='CH_CompresionGZip' class='CheckBox' marcado='".$ValHT["CompresionGZip"]."' title='Todos los datos son comprimidos con gzip antes de ser enviados.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
-                                "</tr>".Intro().
-                                "<tr>".Intro().
-                                    "<td>Cache Imagenes</td>".Intro().
-                                    "<td>"."<div id='CH_CacheImagenes' class='CheckBox' marcado='".$ValHT["CacheImagenes"]."' title='Indica al navegador que puede cachear las imagenes durante un mes'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
-                                "</tr>".Intro().
-                                "<tr>".Intro().
-                                    "<td>Mantenimiento</td>".Intro().
-                                    "<td>"."<div id='CH_Mantenimiento' class='CheckBox' marcado='".$ValHT["Mantenimiento"]."' title='Anula todas las urls y muestra un mensaje de mantenimiento.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
-                                "</tr>".Intro().
-                                "<tr>".Intro().
-                                    "<td>CheckSpelling</td>".Intro().
-                                    "<td>"."<div id='CH_CheckSpelling' class='CheckBox' marcado='".$ValHT["CheckSpelling"]."' title='Redirige una petición no encontrada a una url similar. \nPor ejemplo si vamos a /index2.php se redirige a /index.php automáticamente.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
-                                "</tr>".Intro().
-                                "<tr>".Intro().
-                                    "<td>Cors</td>".Intro().
-                                    "<td>"."<div id='CH_Cors' class='CheckBox' marcado='".$ValHT["Cors"]."' title='Habilita / des-habilita el Cross Origin Resource Sharing.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
-                                "</tr>".Intro().
-                            "</table>".Intro().
-                            "<button class='Boton-Normal' id='CH_IPSBan' title='Elimina todas las ips baneadas de la lista'>Limpiar ips baneadas</button>".Intro().
-                        "</div>".Intro().
+                $HTMLAdmin .= 
+                    "<div class='MarcoOpcionesBorde' titulo='.htaccess'>".Intro().
+                        "<table class='MarcoOpciones2C'>".Intro().
+                            "<tr>".Intro().
+                                "<td>Compresion gzip</td>".Intro().
+                                "<td>"."<div id='CH_CompresionGZip' class='CheckBox' marcado='".$ValHT["CompresionGZip"]."' title='Todos los datos son comprimidos con gzip antes de ser enviados.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                            "</tr>".Intro().
+                            "<tr>".Intro().
+                                "<td>Cache Imagenes</td>".Intro().
+                                "<td>"."<div id='CH_CacheImagenes' class='CheckBox' marcado='".$ValHT["CacheImagenes"]."' title='Indica al navegador que puede cachear las imagenes durante un mes'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                            "</tr>".Intro().
+                            "<tr>".Intro().
+                                "<td>Mantenimiento</td>".Intro().
+                                "<td>"."<div id='CH_Mantenimiento' class='CheckBox' marcado='".$ValHT["Mantenimiento"]."' title='Anula todas las urls y muestra un mensaje de mantenimiento.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                            "</tr>".Intro().
+                            "<tr>".Intro().
+                                "<td>CheckSpelling</td>".Intro().
+                                "<td>"."<div id='CH_CheckSpelling' class='CheckBox' marcado='".$ValHT["CheckSpelling"]."' title='Redirige una petición no encontrada a una url similar. \nPor ejemplo si vamos a /index2.php se redirige a /index.php automáticamente.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                            "</tr>".Intro().
+                            "<tr>".Intro().
+                                "<td>Cors</td>".Intro().
+                                "<td>"."<div id='CH_Cors' class='CheckBox' marcado='".$ValHT["Cors"]."' title='Habilita / des-habilita el Cross Origin Resource Sharing.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                            "</tr>".Intro().
+                        "</table>".Intro().
+                        "<button class='Boton-Normal' id='CH_IPSBan' title='Elimina todas las ips baneadas de la lista'>Limpiar ips baneadas</button>".Intro().
                     "</div>".Intro();
             }
+            
+            $HTMLAdmin.= 
+                    "<table class='MarcoOpciones2C MarcoOpcionesBorde' titulo='JavaScript'>".Intro().
+                        "<tr>".Intro().
+                            "<td>Mostrar Debug JS</td>".Intro().
+                            "<td>"."<div id='CH_Consola' class='CheckBox' marcado='".$Consola."' title='Muestra datos de depuración por la consola'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                        "</tr>".Intro().
+                    "</table>".Intro();
+            
+            $HTMLAdmin.= 
+                    "<table class='MarcoOpciones2C MarcoOpcionesBorde' titulo='Banners JS'>".Intro().
+                        "<tr>".Intro().
+                            "<td>Pausar</td>".
+                            "<td>"."<div id='CH_PausarBanner' class='CheckBox' marcado='".$PausarBanner."' title='Desactiva el banner cuando no está visible o cuando la pestaña pierde el foco.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                        "</tr>".Intro().
+                        "<tr>".Intro().
+                            "<td>Mostrar FPS</td>".
+                            "<td>"."<div id='CH_MostrarFPS' class='CheckBox' marcado='".$MostrarFPS."' title='Desactiva el banner cuando no está visible o cuando la pestaña pierde el foco.'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                        "</tr>".Intro().
+                    "</table>".Intro();
+            
+//                    "</div>".Intro();
                     
-            $HTMLAdmin .= "<div class='MarcoOpcionesBorde' titulo='Varios PHP'>".Intro().
+            $HTMLAdmin .= 
+                    "<div class='MarcoOpcionesBorde_Botones' titulo='Varios PHP'>".Intro().
 //                        "<button class='Boton' id='CH_Entradas'>Editar Entradas</button>".Intro().
 //                        "<button class='Boton' id='CH_Lab'>Explorar Lab</button>".Intro().
-                        "<button class='Boton-Normal' id='CH_Logs'>Log</button>".Intro().
-                        "<button class='Boton-Normal' id='CH_Stats'>Stats</button>".Intro().
-                        "<button class='Boton-Normal' id='CH_PhpInfo'>PHP Info</button>".Intro().
-                        "<button class='Boton-Normal' id='CH_GenCacheBuscador'>Gen Cache Buscador</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_Logs' "             . "title='Log de visitas del servidor'>Log</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_Minificar' "        . "title='Comprime los archivos css y js para la versión release de la web'>Minificar</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_Stats' "            . "title='Estadisticas de la base de datos'>Stats BD</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_PhpInfo' "          . "title='Información de la versión PHP del servidor actual'>PHP Info</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_GenCacheBuscador' " . "title='Generar array de palabras cache para el buscador de la web'>Gen Cache Buscador</button>".Intro().
                     "</div>".Intro().
                 "</div>".Intro(); // #BarraPrincipal_Marco33
             
@@ -831,11 +846,13 @@ class devildrey33 {
             if (file_exists(dirname(__FILE__).'/Config/ArchivosMinify.php')) {
                 $ArrayCSS = (require dirname(__FILE__).'/Config/ArchivosMinify.php');
                 $Raiz = "/".str_replace("\\", "/", substr(dirname(__FILE__), strlen($_SERVER["DOCUMENT_ROOT"])));
-            // dirname(__FILE__)         = "c:\devildrey33\webs\devildrey33\Web"
-            // $_SERVER["DOCUMENT_ROOT"] = "c:\devildrey33\webs" o "c:\devildrey33\webs\devildrey33"
                 foreach ($ArrayCSS["css"] as $Archivo) {
-                    echo "<link rel='stylesheet' href='".Base::URL_Web().substr($Archivo, 1)."' />".Intro();
-                
+                    echo "<link rel='stylesheet' href='".Base::URL_Web().substr($Archivo, 1)."' />".Intro();                
+                }
+                if (devildrey33_Opciones::Administrador() > 0) {                                        
+                    foreach ($ArrayCSS["css-admin"] as $Archivo) {
+                        echo "<link rel='stylesheet' href='".Base::URL_Web().substr($Archivo, 1)."' />".Intro();                
+                    }                    
                 }
             }
             else {
@@ -844,6 +861,9 @@ class devildrey33 {
         }
         else {
             echo "<link rel='stylesheet' href='".Base::URL_Cache()."devildrey33.min.css' />".Intro();
+            if (devildrey33_Opciones::Administrador() > 0) {                                        
+                echo "<link rel='stylesheet' href='".Base::URL_Cache()."devildrey33.admin.min.css' />".Intro();
+            }
         }
     }
 
@@ -962,6 +982,12 @@ class devildrey33 {
                 foreach ($ArrayCSS["js"] as $Archivo) {
                     echo "<script src='".Base::URL_Web().substr($Archivo, 1)."'></script>".Intro();
                 }            
+                
+                if (devildrey33_Opciones::Administrador() > 0) {                        
+                    foreach ($ArrayCSS["js-admin"] as $Archivo) {
+                        echo "<script src='".Base::URL_Web().substr($Archivo, 1)."'></script>".Intro();
+                    }            
+                }                
             }
             else { 
                 error_log("<span style='color:red'>Error!</span> devildrey33::Head_JS -> el archivo '/Config/ArchivosMinify.php' no existe.");
@@ -969,13 +995,11 @@ class devildrey33 {
         }
         else {
             echo "<script src='".Base::URL_Cache()."devildrey33.min.js'></script>".Intro();
-        }
-        
-        if (devildrey33_Opciones::Administrador() > 0) {
-            echo "<script src='".Base::URL_JS()."ObjetoAdmin.js'></script>".Intro().
-                 "<script>\$Base.JSDinamico.push('ObjetoAdmin.js');</script>".Intro(); // Para que no lo cargue dinamicamente
-        }
-            
+            if (devildrey33_Opciones::Administrador() > 0) {                        
+                echo "<script src='".Base::URL_Cache()."devildrey33.admin.min.js'></script>".Intro().
+                     "<script>\$Base.JSDinamico.push('devildrey33.admin.min.js');</script>".Intro(); // Añado el admin a la lista de archivos javascript dinámicos, para que nadie añada luego el objeto admin desde javascript                
+            }
+        }            
     }    
     
     /* Comprime los archivos JS y CSS */
@@ -985,22 +1009,39 @@ class devildrey33 {
             include("JSMin.php");
 
             $MinDebug = "\n";
-            //$MinDebug = "";
-
             $ArrayMin = (require dirname(__FILE__).'/Config/ArchivosMinify.php');
+            /* Archivo JS minificado */
             $StringJS = "";
             foreach ($ArrayMin["js"] as $Archivo) {
                 $JSMin = new JSMin(file_get_contents(dirname(__FILE__).$Archivo));
                 $StringJS .= $JSMin->min().$MinDebug;
             }
             file_put_contents(dirname(__FILE__)."/Cache/devildrey33.min.js", $StringJS);
+            
+            /* Archivo JS minificado para administradores */
+            $StringJS = "";
+            foreach ($ArrayMin["js-admin"] as $Archivo) {
+                $JSMin = new JSMin(file_get_contents(dirname(__FILE__).$Archivo));
+                $StringJS .= $JSMin->min().$MinDebug;
+            }
+            file_put_contents(dirname(__FILE__)."/Cache/devildrey33.admin.min.js", $StringJS);
 
+            
+            /* Archivo CSSS minificado */
             $StringCSS = "";
             $CSSMin = new CSSmin;
             foreach ($ArrayMin["css"] as $Archivo) {
                 $StringCSS .= $CSSMin->run(file_get_contents(dirname(__FILE__).$Archivo));            
             }
             file_put_contents(dirname(__FILE__)."/Cache/devildrey33.min.css", $StringCSS);
+            
+            /* Archivo JS minificado para administradores */
+            $StringCSS = "";
+            $CSSMin = new CSSmin;
+            foreach ($ArrayMin["css-admin"] as $Archivo) {
+                $StringCSS .= $CSSMin->run(file_get_contents(dirname(__FILE__).$Archivo));            
+            }
+            file_put_contents(dirname(__FILE__)."/Cache/devildrey33.admin.min.css", $StringCSS);
 
             return "Cache actualizada!";
         }

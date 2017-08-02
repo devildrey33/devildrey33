@@ -32,7 +32,13 @@ return array(
         "/CSS/Tablas.css",
         "/CSS/ObjetoTest.css",
         "/CSS/Error404.css"
-                ),				  
+    ),				  
+    /* Archivos CSS administrador */
+    'css-admin' => array(
+        "/CSS/Admin.css"
+    ),
+    
+
     /* Archivos JS */
     'js' => array(
         "/JS/FuncionesGlobales.js", // Funciones simplificadas básicas (Randoms, etc...)
@@ -59,7 +65,16 @@ return array(
         "/JS/ObjetoCanvas/Banner_HexTunnel.js",
         "/JS/ObjetoCanvas/SobreDevildrey33.js",
         "/JS/ObjetoTest.js"
-                )				  				  
+    ),
+    /* Archivos CSS administrador */    
+    'js-admin' => array(
+        "/JS/ObjetoAdmin.js",
+        "/JS/ObjetoAdmin.Lab.js",
+        "/JS/ObjetoAdmin.Comentarios.js",
+        "/JS/ObjetoAdmin.EditarEntradas.js",
+        "/JS/ObjetoAdmin.Log.js"
+    )
+    
 );
 
 ?>

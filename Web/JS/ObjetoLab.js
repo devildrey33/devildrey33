@@ -40,7 +40,7 @@ $Lab = new function() {
             matchTags           : { bothTags : true },
             
             extraKeys           : { "Ctrl-S" : function(instance) { 
-                                    if (typeof $Admin !== "undefined") { $Admin.Lab_Guardar();                                             }
+                                    if (typeof $Admin !== "undefined") { $Admin.Lab.Guardar();                                             }
                                     else                               { $Base.MostrarMensaje("No tienes permiso para guardar archivos."); }
                                   }}
             /*theme : "monokay",
@@ -488,7 +488,7 @@ $Lab = new function() {
         if ($("body").attr("tipo") === "Lab" && $("body").attr("modificado") === "true" && $("body").attr("administrador33") !== "undefined") { 
             if ($Lab.Guardando === false) {
                 if (confirm("No has guardado el archivo, deseas guardarlo antes de continuar?") === true) { 
-                    $Admin.Lab_Guardar(); 
+                    $Admin.Lab.Guardar(); 
                     return true; 
                 }
                 else { // cancelar guardar lab
