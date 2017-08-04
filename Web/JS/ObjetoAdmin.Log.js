@@ -67,6 +67,7 @@ $Admin.Log = new function() {
             "Advertencias" : 0,
             "Errores404"   : 0,
             "Zips"         : 0,
+            "Cmd"          : 0,
             "Documentos"   : 0,
             "CSS"          : 0,
             "JS"           : 0,
@@ -86,6 +87,7 @@ $Admin.Log = new function() {
         $("#LabelErrores404 span").html(    "Errores 404 ("    + this.TotalTipos["Errores404"]   + ")");
         $("#LabelZips span").html(          "Zips ("           + this.TotalTipos["Zips"]         + ")");
         $("#LabelErrores404 span").html(    "Errores 404 ("    + this.TotalTipos["Errores404"]   + ")");
+        $("#LabelCmd span").html(           "Ajax ("           + this.TotalTipos["Cmd"]          + ")");
         $("#LabelDocumentos span").html(    "Documentos ("     + this.TotalTipos["Documentos"]   + ")");
         $("#LabelCSS span").html(           "CSS ("            + this.TotalTipos["CSS"]          + ")");
         $("#LabelJS span").html(            "JavaScript ("     + this.TotalTipos["JS"]           + ")");
@@ -97,8 +99,9 @@ $Admin.Log = new function() {
         var TotalDesconocido = 0;
         var Checks = this.ObtenerChecks();
 
-        // Enumero por cada ip los navegadores/bots y su sistema operativo 
+        // Si hay ips
         if (this.Ips.length > 0) {
+            // Enumero por cada ip los navegadores/bots y su sistema operativo 
             for (var i = 0; i < this.Ips.length; i++) {
                 var Info = this.ObtenerNavegador2(this.Ips[i]["Ua"][0]);            
                 this.Ips[i]["Info"] = Info;            
@@ -156,24 +159,16 @@ $Admin.Log = new function() {
     this.ColorRelevancia = function(Relevancia, Ret = 0) {
         if (Ret === 404) return "purple";
         switch (Relevancia) {
-/*            case 9 : return "red";      break;// Ataque
-            case 8 : return "darkcyan"; break;// Advertencia
-            case 7 : return "purple";   break;// error 404
-            case 6 : return "olive";    break;// zips
-            case 5 : return "green";    break;// documento
-            case 4 : return "blue";     break;// css
-            case 3 : return "brown";    break;// js
-            case 2 : return "grey";     break;// imagen
-            case 1 : return "black";    break;// normal*/
             case 9 : return "Log_Entrada_Ataque";      break;// Ataque
             case 8 : return "Log_Entrada_Advertencia"; break;// Advertencia
             case 7 : return "Log_Entrada_Error";       break;// error 404
             case 6 : return "Log_Entrada_Zip";         break;// zips
-            case 5 : return "Log_Entrada_Documento";   break;// documento
-            case 4 : return "Log_Entrada_CSS";         break;// css
-            case 3 : return "Log_Entrada_JS";          break;// js
-            case 2 : return "Log_Entrada_Imagen";      break;// imagen
-            case 1 : return "Log_Entrada_Otros";       break;// normal
+            case 5 : return "Log_Entrada_Cmd";         break;// zips
+            case 4 : return "Log_Entrada_Documento";   break;// documento
+            case 3 : return "Log_Entrada_CSS";         break;// css
+            case 2 : return "Log_Entrada_JS";          break;// js
+            case 1 : return "Log_Entrada_Imagen";      break;// imagen
+            case 0 : return "Log_Entrada_Otros";       break;// normal
         }
         return "black";
     };
@@ -184,11 +179,12 @@ $Admin.Log = new function() {
             8 : document.getElementById('ChAdvertencias').checked,
             7 : document.getElementById('ChErrores404').checked,
             6 : document.getElementById('ChZip').checked,
-            5 : document.getElementById('ChDocumentos').checked,
-            4 : document.getElementById('ChCSS').checked,
-            3 : document.getElementById('ChJS').checked,
-            2 : document.getElementById('ChImagenes').checked,
-            1 : document.getElementById('ChOtros').checked
+            5 : document.getElementById('ChCmd').checked,
+            4 : document.getElementById('ChDocumentos').checked,
+            3 : document.getElementById('ChCSS').checked,
+            2 : document.getElementById('ChJS').checked,
+            1 : document.getElementById('ChImagenes').checked,
+            0 : document.getElementById('ChOtros').checked
         };
     };
     
@@ -268,7 +264,6 @@ $Admin.Log = new function() {
         
         
         $(".EntradaLog_Fila").off("click").on("click", function(e) {             
-            //var tn = (e.target.parentNode.id !== "") ? e.target.parentNode.parentNode.id : e.target.parentNode.parentNode.id;
             var parent = e.target;
             while (parent.id === "") {
                 parent = parent.parentNode;
@@ -293,15 +288,15 @@ $Admin.Log = new function() {
     
     this.CrearStats = function() {
         this.ArrayDocumentos = [];
-        this.ArrayErrores = [];
-        this.ArrayImagenes = [];
-        this.ArrayObjetos = [];
+        this.ArrayErrores    = [];
+        this.ArrayImagenes   = [];
+        this.ArrayObjetos    = [];
         for (var i = 0; i < this.Ips.length; i++) {
             for (var e = 0; e < this.Ips[i]["Datos"].length; e++) {
                 switch (this.Ips[i]["Datos"][e]["Relevancia"]) {
-                    case 2  : this.AgregarImagen(this.Ips[i]["Datos"][e]["Url"]);   break;
-                    case 5  : this.AgregarDocumento(this.Ips[i]["Datos"][e]["Url"]); break;
-                    case 7  : this.AgregarError(this.Ips[i]["Datos"][e]["Url"]);     break;
+                    case 2  : this.AgregarImagen(this.Ips[i]["Datos"][e]["Url"]);                                           break;
+                    case 4  : this.AgregarDocumento(this.Ips[i]["Datos"][e]["Url"]);                                        break;
+                    case 7  : this.AgregarError(this.Ips[i]["Datos"][e]["Url"]);                                            break;
                     default : this.AgregarObjeto(this.Ips[i]["Datos"][e]["Url"], this.Ips[i]["Datos"][e]["Relevancia"]);    break;
                 }
             }
@@ -322,7 +317,7 @@ $Admin.Log = new function() {
         for (var i = 0; i < TotalEntradas; i++) {
             if (i === this.ArrayDocumentos.length) { break; }
             Codigo += "<tr>" + 
-                        "<td style='color:green'>" + this.ArrayDocumentos[i]["Url"] + "</td>" + 
+                        "<td style='color:green' title='" + this.ArrayDocumentos[i]["Url"] + "'>" + this.ArrayDocumentos[i]["Url"] + "</td>" + 
                         "<td>" + "<span class='Log_StatBarra' style='background-color:green; width:" + (300 * this.ArrayDocumentos[i]["Contador"] / this.ArrayDocumentos[0]["Contador"]) + "px'>" + this.ArrayDocumentos[i]["Contador"] +"</span></td>" + 
                     "</tr>";
         }
@@ -337,7 +332,7 @@ $Admin.Log = new function() {
         for (var i = 0; i < TotalEntradas; i++) {
             if (i === this.ArrayErrores.length) { break; }
             Codigo += "<tr>" + 
-                        "<td style='color:purple'>" + this.ArrayErrores[i]["Url"] + "</td>" + 
+                        "<td style='color:purple' title='" + this.ArrayErrores[i]["Url"] + "'>" + this.ArrayErrores[i]["Url"] + "</td>" + 
                         "<td>" + "<span class='Log_StatBarra' style='background-color:purple; width:" + (300 * this.ArrayErrores[i]["Contador"] / this.ArrayErrores[0]["Contador"]) + "px'>" +this.ArrayErrores[i]["Contador"] +"</span></td>" + 
                     "</tr>";
         }
@@ -352,7 +347,7 @@ $Admin.Log = new function() {
         for (var i = 0; i < TotalEntradas; i++) {
             if (i === this.ArrayImagenes.length) { break; }
             Codigo += "<tr>" + 
-                        "<td style='color:grey'>" + this.ArrayImagenes[i]["Url"] + "</td>" + 
+                        "<td style='color:grey' title='" + this.ArrayImagenes[i]["Url"] + "'>" + this.ArrayImagenes[i]["Url"] + "</td>" + 
                         "<td>" + "<span class='Log_StatBarra' style='background-color:grey; width:" + (300 * this.ArrayImagenes[i]["Contador"] / this.ArrayImagenes[0]["Contador"]) + "px'>" +this.ArrayImagenes[i]["Contador"] +"</span></td>" + 
                     "</tr>";
         }
@@ -367,15 +362,17 @@ $Admin.Log = new function() {
         for (var i = 0; i < TotalEntradas; i++) {
             if (i === this.ArrayObjetos.length) { break; }
             Codigo += "<tr>" + 
-                        "<td class='" + this.ColorRelevancia(this.ArrayObjetos[i]["Tipo"]) + "'>" + this.ArrayObjetos[i]["Url"] + "</td>" + 
+                        "<td class='" + this.ColorRelevancia(this.ArrayObjetos[i]["Tipo"]) + "' title='" + this.ArrayObjetos[i]["Url"] + "'>" + this.ArrayObjetos[i]["Url"] + "</td>" + 
                         "<td>" + "<span class='Log_StatBarra' style='width:" + (300 * this.ArrayObjetos[i]["Contador"] / this.ArrayObjetos[0]["Contador"]) + "px'>" +this.ArrayObjetos[i]["Contador"] +"</span></td>" + 
                     "</tr>";
         }
         Codigo += "</table></div></div>";
-        
-        
+        // Asigno el código de los stats al div contenedor       
         document.getElementById("Log_Stats").innerHTML = Codigo;
         
+        // Cambio los tamaños de las barras acorde a su porcentaje para que se vea la transición del ancho
+        
+        // Siguiente fase de carga
         $("#Log_CargandoF3").css({ color : "#999" });
         $("#Log_CargandoF4").css({ color : "#FFF" });
         setTimeout(function() { $Admin.Log.CrearTablaDatos(); }, 500);
@@ -495,24 +492,24 @@ $Admin.Log = new function() {
 
     this.TipoUrl = function(Url, Ret = 0) {
         var nUrl = Url.toLowerCase();
-        if (nUrl.indexOf("banearip.php") !== -1)        {	this.TotalTipos["Ataques"]++;               return 9; 	}
-        if (nUrl.indexOf("?") !== -1)               	{	this.TotalTipos["Advertencias"]++; 		return 8; 	}
-        if (Ret === "404")                              {       this.TotalTipos["Errores404"]++;            return 7;       }
-        if (nUrl.indexOf("error404") !== -1)            {	this.TotalTipos["Errores404"]++; 		return 7; 	}
-        if (nUrl.indexOf(".zip") !== -1)               	{	this.TotalTipos["Zips"]++;                  return 6; 	}
-        if (nUrl.indexOf(".php") !== -1)               	{	this.TotalTipos["Documentos"]++; 		return 5; 	}
-        if (nUrl.indexOf(".html") !== -1)               {	this.TotalTipos["Documentos"]++; 		return 5; 	}
-        if (nUrl.indexOf(".cmd") !== -1)               	{	this.TotalTipos["Documentos"]++; 		return 5; 	}
-        if (nUrl.indexOf(".css") !== -1)               	{	this.TotalTipos["CSS"]++;                   return 4; 	}
-        if (nUrl.indexOf(".js") !== -1)               	{	this.TotalTipos["JS"]++;                    return 3; 	}
-        if (nUrl.indexOf(".svg") !== -1)               	{	this.TotalTipos["Imagenes"]++; 		return 2; 	}
-        if (nUrl.indexOf(".ico") !== -1)               	{	this.TotalTipos["Imagenes"]++; 		return 2; 	}
-        if (nUrl.indexOf(".png") !== -1)               	{	this.TotalTipos["Imagenes"]++; 		return 2; 	}
-        if (nUrl.indexOf(".jpg") !== -1)               	{	this.TotalTipos["Imagenes"]++; 		return 2; 	}
-        if (nUrl.indexOf(".gif") !== -1)               	{	this.TotalTipos["Imagenes"]++; 		return 2; 	}
-        if (nUrl.indexOf(".") === -1)               	{	this.TotalTipos["Documentos"]++; 		return 5; 	}
+        if (nUrl.indexOf("banearip.php") !== -1)        {	this.TotalTipos["Ataques"]++;           return 9; 	}
+        if (nUrl.indexOf("?") !== -1)               	{	this.TotalTipos["Advertencias"]++; 	return 8; 	}
+        if (Ret === "404")                              {       this.TotalTipos["Errores404"]++;        return 7;       }
+        if (nUrl.indexOf("error404") !== -1)            {	this.TotalTipos["Errores404"]++; 	return 7; 	}
+        if (nUrl.indexOf(".zip") !== -1)               	{	this.TotalTipos["Zips"]++;              return 6; 	}
+        if (nUrl.indexOf(".cmd") !== -1)               	{	this.TotalTipos["Cmd"]++;               return 5; 	}
+        if (nUrl.indexOf(".php") !== -1)               	{	this.TotalTipos["Documentos"]++; 	return 4; 	}
+        if (nUrl.indexOf(".html") !== -1)               {	this.TotalTipos["Documentos"]++; 	return 4; 	}
+        if (nUrl.indexOf(".css") !== -1)               	{	this.TotalTipos["CSS"]++;               return 3; 	}
+        if (nUrl.indexOf(".js") !== -1)               	{	this.TotalTipos["JS"]++;                return 2; 	}
+        if (nUrl.indexOf(".svg") !== -1)               	{	this.TotalTipos["Imagenes"]++; 		return 1; 	}
+        if (nUrl.indexOf(".ico") !== -1)               	{	this.TotalTipos["Imagenes"]++; 		return 1; 	}
+        if (nUrl.indexOf(".png") !== -1)               	{	this.TotalTipos["Imagenes"]++; 		return 1; 	}
+        if (nUrl.indexOf(".jpg") !== -1)               	{	this.TotalTipos["Imagenes"]++; 		return 1; 	}
+        if (nUrl.indexOf(".gif") !== -1)               	{	this.TotalTipos["Imagenes"]++; 		return 1; 	}
+        if (nUrl.indexOf(".") === -1)               	{	this.TotalTipos["Documentos"]++; 	return 4; 	} // algo sin extensión debe ser un documento
         this.TotalTipos["Otros"]++;
-        return 1;    
+        return 0;    
    };
     
     
@@ -660,25 +657,31 @@ $Admin.Log = new function() {
             1 : document.getElementById('ChBots').checked,
             2 : document.getElementById('ChDesconocido').checked
         };
-        
+        // Miro todas las ips
         for (var i = 0; i < this.Ips.length; i++) {
-            // Busco la primera entrada destacada (si existe)
+            // Busco la primera entrada destacada y marcada (si existe)
             var Pos = -1;
-            for (var e = 0; e < this.Ips[i]["Destacados"].length; e++) {
-                if (Checks[this.Ips[i]["Destacados"][e]["Relevancia"]] === true) {
-                    Pos = e;
-                    break;
+            if (Checks2[this.Ips[i]["Info"]["Tipo"]] === true) {
+                for (var e = 0; e < this.Ips[i]["Destacados"].length; e++) {
+                    if (Checks[this.Ips[i]["Destacados"][e]["Relevancia"]] === true) {
+                        Pos = e;
+                        break;
+                    }
                 }
-            }
-            // Si hay destacados y el check del navegador está marcado
-            if (Pos > -1 && Checks2[this.Ips[i]["Info"]["Tipo"]] === true) {
-                document.getElementById("EntradaLog" + i).style.display = "table";
-                var Url = $("#EntradaLog" + i + " .EntradaLog_Url");
-                Url.attr('class', this.ColorRelevancia(this.Ips[i]["Destacados"][Pos]["Relevancia"]));
-                Url.html(this.Ips[i]["Destacados"][Pos]["Url"]);
-                if (this.Ips[i]["Abierto"] === true) {
-                    this.Ips[i]["Abierto"] = false;
-                    this.ExpandirIp("EntradaLog" + i);
+                // Si hay destacados y el check del navegador está marcado
+                if (Pos > -1) {
+                    document.getElementById("EntradaLog" + i).style.display = "table";
+                    var Url = $("#EntradaLog" + i + " .EntradaLog_Url");
+                    Url.attr('class', "EntradaLog_Url " + this.ColorRelevancia(this.Ips[i]["Destacados"][Pos]["Relevancia"]));
+                    Url.html(this.Ips[i]["Destacados"][Pos]["Url"]);
+                    // Si está abierto tengo que volver a recargar los datos interiores
+                    if (this.Ips[i]["Abierto"] === true) {
+                        this.Ips[i]["Abierto"] = false;
+                        this.ExpandirIp("EntradaLog" + i);
+                    }
+                }
+                else {
+                    document.getElementById("EntradaLog" + i).style.display = "none";                
                 }
             }
             else {

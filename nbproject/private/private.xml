@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4">
         <file>
+            <url>Web/JS/ObjetoBase.js</url>
+            <bookmark id="4">
+                <name/>
+                <line>336</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
             <url>Web/JS/ObjetoAdmin.js</url>
             <bookmark id="1">
                 <name/>
@@ -22,18 +30,9 @@
                 <key/>
             </bookmark>
         </file>
-        <file>
-            <url>Web/JS/ObjetoBase.js</url>
-            <bookmark id="4">
-                <name/>
-                <line>335</line>
-                <key/>
-            </bookmark>
-        </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_cmd.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoBase.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Blog.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSSMin.php</file>
@@ -43,6 +42,7 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Log.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/Banner_MultiCubo.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/Banner_AdiestramientoCubos3D.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Admin.Log.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/ArchivosMinify.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoComentarios.js</file>

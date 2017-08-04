@@ -10,9 +10,10 @@ and open the template in the editor.
 
 
 .Log_Entrada_Ataque 		                        { color:red       !important; }
-.Log_Entrada_Advertencia  .Log_Cliente_Desconocido	{ color:darkcyan  !important; }
+.Log_Entrada_Advertencia,  .Log_Cliente_Desconocido	{ color:rgb(230, 74, 25)  !important; }
 .Log_Entrada_Error                                      { color:purple    !important; }
 .Log_Entrada_Zip                                        { color:olive     !important; }
+.Log_Entrada_Cmd                                        { color:rgb(0, 188, 212)     !important; }
 .Log_Entrada_Documento                                 	{ color:darkgreen !important; }
 .Log_Entrada_CSS                                        { color:blue      !important; }
 .Log_Entrada_JS                                         { color:brown     !important; }
@@ -162,22 +163,37 @@ and open the template in the editor.
 }
 
 .Log_Stat {
-    margin: 10px 10px 0px 0px;
+    /* margin: 10px 10px 0px 0px; */
+    flex: 1 1 calc(50% - 5px);
+    /* max-width: 49%; */
+    height: 313px;
+    position: relative;
 }
 
 .Log_StatsTabla {
     table-layout: fixed;
-    /*    width:100%; */
-    max-width: 45%;
-    position: relative;
+    width: 100%;
+    /* max-width: 45%; */
+    position: relative;    
+    /* height: 275px; */
 }
 
-.Log_StatsTabla td {
+.Log_StatsTabla tr > td:nth-child(1) { text-shadow:1px 1px 1px #777; }
+.Log_StatsTabla tr > td:nth-child(2) { text-shadow:1px 1px 1px #000; }
+.Log_StatsTabla tr:hover { background-color:#EEE; }
+
+
+.Log_StatsTabla tr > td {
     padding:0px 20px 0px 0px;
     text-overflow: ellipsis;
     overflow:hidden;
-    width:20%;
+    /* width: 300px; */
     white-space:nowrap;
+    position: relative;
+}
+
+.Log_StatsTabla tr > td:nth-child(2) {
+    width:300px;
 }
 /*
 .Log_StatsTabla td > span {
@@ -187,9 +203,34 @@ and open the template in the editor.
 
 .Log_StatsMarco {
     border:1px solid #666;
-    display:table;
-    background-color: #FFF;
+    /* display: inline-table; */
+    background-color: #DDD;
+    /* width: 45%; */
+    transition: 0.4s;
+    z-index:100;
+    position:relative;
+    height: 272px;
+    overflow: hidden;
 }
+
+.Log_Stat:nth-child(odd) {
+    margin-right:10px;
+}
+
+.Log_StatsMarco:hover {
+    background-color: #FFF;
+    z-index:101;    
+    height: 542px;
+    box-shadow:3px 3px 3px rgba(90, 90, 90, 0.5);
+}
+/*
+.Log_StatsMarco tr:nth-child(1n+11) {
+    display:none;
+}
+
+.Log_StatsMarco:hover tr:nth-child(1n+11) {
+    display:table-row;
+}*/
 
 .Log_StatBarra {
     display:inline-table;
@@ -197,6 +238,9 @@ and open the template in the editor.
     color:white;
     /* box-shadow: 2px 2px 2px rgba(90, 90, 90, 0.7); */
     padding-left: 5px;
+    /* margin-top: 2px; */
+    width:0px;
+    /* text-shadow: 1px 1px 1px #000; */
 }
 
 #Log_Opciones > div > select {
