@@ -151,7 +151,7 @@ class devildrey33_BD {
 
     // Función que obtiene los valores de una entrada (numero de comentarios, visitas, votos, fecha, etc..)
     public function ObtenerValoresEntrada($Archivo, $SumarVisita = false) {        
-        if ($this->_BDFuncional === false) return ", 0 visitas, 0 comentarios, 0 votaciones.";
+        if ($this->_BDFuncional === false) return "0 visitas, 0 comentarios, 0 votaciones.";
 
         $Votos       = 0;
         $Visitas     = 0;
@@ -183,8 +183,8 @@ class devildrey33_BD {
         $StrCom = "comentarios";
         if ($Comentarios == 1) $StrCom = "comentario";
         if ($Votaciones->TotalVotaciones == 1) $StrVotos = "voto";
-        if ($Votaciones->TotalEstrellas == 0) 	return ", $Visitas visitas, ".$Comentarios." ".$StrCom.", ".$Votaciones->TotalVotaciones." ".$StrVotos.".";
-        else					return ", $Visitas visitas, ".$Comentarios." ".$StrCom.", ".$Votaciones->TotalVotaciones." ".$StrVotos." con una media de ".round($Votaciones->TotalEstrellas / $Votaciones->TotalVotaciones, 2)." sobre 5.";
+        if ($Votaciones->TotalEstrellas == 0) 	return "<b>$Visitas</b> visitas, <b>".$Comentarios."</b> ".$StrCom.", <b>".$Votaciones->TotalVotaciones."</b> ".$StrVotos.".";
+        else					return "<b>$Visitas</b> visitas, <b>".$Comentarios."</b> ".$StrCom.", <b>".$Votaciones->TotalVotaciones."</b> ".$StrVotos." con una media de <b>".round($Votaciones->TotalEstrellas / $Votaciones->TotalVotaciones, 2)."</b> sobre <b>5</b>.";
     }
 
 

@@ -139,6 +139,7 @@ class devildrey33 {
         
         // Paso varios datos necesarios al JavaScript
         echo "<script>".Intro();
+//        echo "try {".Intro();
         echo "\$Base.Raiz = '".Base::URL_Raiz()."'; ".Intro();
         echo "\$Base.RaizRelativa = '".Base::PathRelativo_Raiz()."'; ".Intro();
         // Evito que se carguen dinámicamente archivos CSS y JS del modo administrador

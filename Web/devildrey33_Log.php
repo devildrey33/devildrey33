@@ -112,13 +112,13 @@
                             "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChZip'>".Intro().
                             "<span>Archivos Zip</span>".Intro().
                         "</label>".Intro().
-                        "<label id='LabelCmd' class='Log_Entrada_Cmd'>".Intro().
-                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChCmd'>".Intro().
-                            "<span>Ajax</span>".Intro().
-                        "</label>".Intro().
                         "<label id='LabelDocumentos' class='Log_Entrada_Documento'>".Intro().
                             "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChDocumentos'>".Intro().
                             "<span>Documentos PHP y HTML</span>".Intro().
+                        "</label>".Intro().
+                        "<label id='LabelCmd' class='Log_Entrada_Cmd'>".Intro().
+                            "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChCmd'>".Intro().
+                            "<span>Ajax</span>".Intro().
                         "</label>".Intro().
                         "<label id='LabelCSS' class='Log_Entrada_CSS'>".Intro().
                             "<input type='checkbox' checked='checked' OnChange='\$Admin.Log.ClickCheckOpciones()' id='ChCSS'>".Intro().

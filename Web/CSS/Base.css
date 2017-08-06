@@ -1,7 +1,7 @@
 /* Base para el tema de devildrey33.es */
 @charset "UTF-8"; /* Especificar el charset SOLO en este archivo, que es el primero a minificar */
 
-/* Fuente del logo vertical del menú de la izquierda */
+/* Fuente del logo vertical del menÃº de la izquierda */
 @import url('https://fonts.googleapis.com/css?family=Architects+Daughter|Orbitron');
 /* Fuente para las etiquetas h1, h2, h3, h4, h5*/
 @import url('https://fonts.googleapis.com/css?family=Karla');
@@ -21,15 +21,15 @@ html, button, .boton {
    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
 }
 html {
-   font-size  : 62.5%; /* Conversión para que el rem valga 10 pixeles por defecto en la web */
+   font-size  : 62.5%; /* ConversiÃ³n para que el rem valga 10 pixeles por defecto en la web */
    min-width  : 600px;
    height     : 100%;    
    transition : 0.4s;
 }
 h1, h2, h3, h4, h5 { font-family : 'Karla', sans-serif; }
 h2, h3, h4, h5 { margin : 0px; }       
-h1 { font-size : 2.5rem; }             
-h2 { font-size : 2.5rem;    display : table;   transition : 0.5s ease-in-out; } /* transición para la el resaltado de color de texto del ancla */
+h1 {font-size: 2.5rem;}             
+h2 { font-size : 2.5rem;    display : table;   transition : 0.5s ease-in-out; } /* transiciÃ³n para la el resaltado de color de texto del ancla */
 h3 { font-size : 2.0rem;    display : table; }
 h2[resaltado] { color : rgb(234, 80, 78); }
 
@@ -47,7 +47,7 @@ body {
 
 i { background-color: rgba(255,255,255,0.8); }
 a { 
-    cursor          : pointer; /* las etiquetas a sin href no tienen el cursor:pointer (necesario para etiquetas a con código javascript en el onclick)*/
+    cursor          : pointer; /* las etiquetas a sin href no tienen el cursor:pointer (necesario para etiquetas a con cÃ³digo javascript en el onclick)*/
     color           : rgb(234,80,78); 
     text-decoration : none; 
     text-shadow     : 0px 0px 1px rgba(234,80,78, 0.6); 
@@ -145,7 +145,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
     background : rgb(75,0,0);
 }
 
-/* Animación para la alerta de la ventana mensaje */
+/* AnimaciÃ³n para la alerta de la ventana mensaje */
 @keyframes Ani_VentanaMensaje_Alerta {
     0%   { background : rgb(75,0,0); }
     25%  { background : rgb(175,0,0); }
@@ -191,7 +191,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
 .VentanaError_AnimacionError {
     animation : Ani_VentanaLogin_Error 0.5s ease-in-out 0s;
 }
-/* Animación para el error en la ventana del login */
+/* AnimaciÃ³n para el error en la ventana del login */
 @keyframes Ani_VentanaLogin_Error {
     0%   { transform  : perspective(600px) rotateZ(0deg) rotateY(0deg);     background : #1D1A21; }
     30%  { transform  : perspective(600px) rotateZ(3deg) rotateY(75deg) translateZ(-20px);        }

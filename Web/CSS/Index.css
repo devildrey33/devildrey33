@@ -94,8 +94,10 @@
     color:#FFFFFF;
     transition:0.5s cubic-bezier(0.17, -0.42, 0.63, 1.44);
     position:relative;
-    border:1px solid #353338;
-    margin-bottom:-1px;
+    border-bottom: 1px solid #353338;
+    border-left: 1px solid #353338;
+    border-right: 1px solid #353338;
+    margin-right:-5px;
     transform:perspective(600px) rotateX(180deg);
     backface-visibility:hidden;
 }
@@ -103,14 +105,12 @@
 .Articulo_Portada:hover {
     background:#1D1A21;
 }
-.Articulo_Portada > h1 {                
-/*                font-family: 'Orbitron', sans-serif;*/
-    margin:0px 0px 4px 0px;
-}
+.Articulo_Portada > h1 {/*                font-family: 'Orbitron', sans-serif;*/margin:0px 0px 4px 0px;/* font-size: 2.2rem; */}
 
-.Articulo_Portada > span {
+.Articulo_Portada > div {
     font-size:1.2rem;
     color:#999;
+    margin-left: 10px;
 }
 .Articulo_Portada > a > .Articulo_Portada_Imagen {
     position:absolute;

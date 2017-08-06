@@ -63,13 +63,14 @@
                                     "<img src='".Base::URL_Graficos()."155x125_".$EntradasPC[$i]["Imagen"]."' class='Articulo_Portada_Imagen' alt='".$EntradasPC[$i]["Titulo"]."' />".Intro().
                                   "</a>".Intro();
                     $Codigo .=    "<h1><a href='".$URL."'>".$EntradasPC[$i]["Titulo"]."</a></h1>".Intro();
-                    $Codigo .=    "<span>".substr($EntradasPC[$i]["Fecha"], 0, 2)." de ".Indice::ObtenerMesStr(substr($EntradasPC[$i]["Fecha"], 3, 2))." del ".substr($EntradasPC[$i]["Fecha"], 6, 4)." por <b>".$EntradasPC[$i]["Autor"]."</b>".Intro();
-                    $Codigo .=    $BD->ObtenerValoresEntrada($EntradasPC[$i]["URL"], $EntradasPC[$i]["Titulo"], false).Intro();
-    //                echo    ", 894 visitas, 0 comentarios, 0 votos.</span><br />";
-                    $Codigo .=      "<span><br />".Intro();
+                    $Codigo .=    "<div>".Intro();
+                    $Codigo .=    "<div>".$BD->ObtenerValoresEntrada($EntradasPC[$i]["URL"], $EntradasPC[$i]["Titulo"], false)."</div>".Intro();
+                    $Codigo .=    "<div>".substr($EntradasPC[$i]["Fecha"], 0, 2)." de ".Indice::ObtenerMesStr(substr($EntradasPC[$i]["Fecha"], 3, 2))." del ".substr($EntradasPC[$i]["Fecha"], 6, 4)." por <b>".$EntradasPC[$i]["Autor"]."</b></siv>".Intro();
+//$Codigo .= "<span><b>190</b> visitas, <b>0</b> comentarios, <b>120</b> votos con una media de <b>10</b> sobre <b>5</b><br />07 septiembre del 2025 <b>- Josep Antoni Bover</b>";
+                    $Codigo .=      "<div>".Intro();
                     $Codigo .=      Indice::EnlazarTags($EntradasPC[$i]["Tags"]).Intro();
-                    $Codigo .=      "</span>".Intro();
-                    $Codigo .=  "</span>".Intro();
+                    $Codigo .=      "</div>".Intro();
+                    $Codigo .=  "</div>".Intro();
                     $Codigo .= "</article>".Intro();                
                     // Ultimo articulo de la lista
                     $Contador ++;
@@ -110,7 +111,7 @@
         }
 
         static function EnlazarTags($Tags) {
-            $Ret = "Categorías : ";
+            $Ret = "<b>Categorías</b> : ";
             $Total = count($Tags);
             for ($i = 0; $i < $Total; $i++) {
                 $URL = str_replace(" ", "-", trim($Tags[$i]));

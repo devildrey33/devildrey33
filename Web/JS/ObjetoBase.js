@@ -1024,9 +1024,11 @@ $Base = new function() {
        - Nombre  : Nombre del archivo JS sin ningun path
        - Funcion : Función a ejecutar una vez cargado el JS (puede ser NULL) 
        - Cache   : parámetro indica si se trata de un archivo css de la cache */
-    this.CargarJS = function(Nombre, Funcion, Cache = false) {
+    this.CargarJS = function(Nombre, Funcion, Cache) {
         if (typeof(Funcion) !== "undefined") {  this.FuncionCargarJS = Funcion;        }
         else                                 {  this.FuncionCargarJS = function() { }; }
+
+        if (typeof(Cache) === "undefined")   {  Cache = false;        }
         
         for (var i = 0; i < this.JSDinamico.length; i++) {
             if (this.JSDinamico[i] === Nombre) {
@@ -1055,7 +1057,10 @@ $Base = new function() {
 
     /* Carga un archivo CSS dinamicamente  */
     /* El segundo parámetro indica si se trata de un archivo css de la cache */
-    this.CargarCSS = function(Nombre, Cache = false) {
+    this.CargarCSS = function(Nombre, Cache) {
+        
+        if (typeof(Cache) === "undefined")   {  Cache = false;        }
+        
         // Mira si está cargado
         for (var i = 0; i < this.CSSDinamico.length; i++) {
             if (this.CSSDinamico[i] === Nombre) {

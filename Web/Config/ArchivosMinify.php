@@ -30,7 +30,7 @@ return array(
         "/CSS/Codemirror.css",
         "/CSS/Codemirror-SimpleScrollbar.css",
         "/CSS/Tablas.css",
-        "/CSS/ObjetoTest.css",
+//        "/CSS/ObjetoTest.css",
         "/CSS/Error404.css"
     ),				  
     /* Archivos CSS administrador */
@@ -65,8 +65,8 @@ return array(
         "/JS/ObjetoCanvas/Banner_ReunionDeCirculos.js",
         "/JS/ObjetoCanvas/Banner_MultiCubo.js",
         "/JS/ObjetoCanvas/Banner_HexTunnel.js",
-        "/JS/ObjetoCanvas/SobreDevildrey33.js",
-        "/JS/ObjetoTest.js"
+        "/JS/ObjetoCanvas/SobreDevildrey33.js"
+//        "/JS/ObjetoTest.js"
     ),
     /* Archivos CSS administrador */    
     'js-admin' => array(

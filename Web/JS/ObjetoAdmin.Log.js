@@ -163,8 +163,8 @@ $Admin.Log = new function() {
             case 8 : return "Log_Entrada_Advertencia"; break;// Advertencia
             case 7 : return "Log_Entrada_Error";       break;// error 404
             case 6 : return "Log_Entrada_Zip";         break;// zips
-            case 5 : return "Log_Entrada_Cmd";         break;// zips
-            case 4 : return "Log_Entrada_Documento";   break;// documento
+            case 5 : return "Log_Entrada_Documento";   break;// documento
+            case 4 : return "Log_Entrada_Cmd";         break;// zips
             case 3 : return "Log_Entrada_CSS";         break;// css
             case 2 : return "Log_Entrada_JS";          break;// js
             case 1 : return "Log_Entrada_Imagen";      break;// imagen
@@ -179,8 +179,8 @@ $Admin.Log = new function() {
             8 : document.getElementById('ChAdvertencias').checked,
             7 : document.getElementById('ChErrores404').checked,
             6 : document.getElementById('ChZip').checked,
-            5 : document.getElementById('ChCmd').checked,
-            4 : document.getElementById('ChDocumentos').checked,
+            5 : document.getElementById('ChDocumentos').checked,
+            4 : document.getElementById('ChCmd').checked,
             3 : document.getElementById('ChCSS').checked,
             2 : document.getElementById('ChJS').checked,
             1 : document.getElementById('ChImagenes').checked,
@@ -205,8 +205,7 @@ $Admin.Log = new function() {
                     Botones += "<input class='Log_ListaBoton' id='Log_ListaBotonaa" + Pagina + "' type='radio' name='Log_ListaBoton'" + ((Pagina === 0) ? " checked='checked'" : "") + ">" +
                                "<label for='Log_ListaBoton" + Pagina + "'>" + Fecha + "</label>";
                                
-                }
-                
+                }                
                 
                 // Color de la url
                 var ColorNavegador = "black";
@@ -218,19 +217,22 @@ $Admin.Log = new function() {
                     case 1 : ColorNavegador = 'Log_Cliente_Bot';         break;
                     case 2 : ColorNavegador = 'Log_Cliente_Desconocido'; break;
                 }            
+                
                 // Color para el número de peticiones
                 if (this.Ips[i]["Datos"].length > 200) { ColorPeticiones = " style='color:orange'"; }
                 if (this.Ips[i]["Datos"].length > 500) { ColorPeticiones = " style='color:red'";    }
 
-                // Color identificativo para los ataques
+                // Color identificativo para los ataques (fondo rojo)
                 var Ataque = "";
                 if (this.Ips[i]["Destacados"][0]["Relevancia"] === 9) {
                     Ataque = " ataque='true'";
                 }
+                // Para la ip del administrador mostraremos un fondo verde
                 if (this.IpAdmin === this.Ips[i]["Ip"]) {
                     Ataque = " ataque='admin'";
                 }
                 
+                // Obtengo la posición del primer destacado marcado
                 var Destacados = -1;
                 for (var e = 0; e < this.Ips[i]["Destacados"].length; e++) {
                     if (Checks[this.Ips[i]["Destacados"][e]["Relevancia"]] === true) {
@@ -295,7 +297,7 @@ $Admin.Log = new function() {
             for (var e = 0; e < this.Ips[i]["Datos"].length; e++) {
                 switch (this.Ips[i]["Datos"][e]["Relevancia"]) {
                     case 2  : this.AgregarImagen(this.Ips[i]["Datos"][e]["Url"]);                                           break;
-                    case 4  : this.AgregarDocumento(this.Ips[i]["Datos"][e]["Url"]);                                        break;
+                    case 5  : this.AgregarDocumento(this.Ips[i]["Datos"][e]["Url"]);                                        break;
                     case 7  : this.AgregarError(this.Ips[i]["Datos"][e]["Url"]);                                            break;
                     default : this.AgregarObjeto(this.Ips[i]["Datos"][e]["Url"], this.Ips[i]["Datos"][e]["Relevancia"]);    break;
                 }
@@ -497,9 +499,9 @@ $Admin.Log = new function() {
         if (Ret === "404")                              {       this.TotalTipos["Errores404"]++;        return 7;       }
         if (nUrl.indexOf("error404") !== -1)            {	this.TotalTipos["Errores404"]++; 	return 7; 	}
         if (nUrl.indexOf(".zip") !== -1)               	{	this.TotalTipos["Zips"]++;              return 6; 	}
-        if (nUrl.indexOf(".cmd") !== -1)               	{	this.TotalTipos["Cmd"]++;               return 5; 	}
-        if (nUrl.indexOf(".php") !== -1)               	{	this.TotalTipos["Documentos"]++; 	return 4; 	}
-        if (nUrl.indexOf(".html") !== -1)               {	this.TotalTipos["Documentos"]++; 	return 4; 	}
+        if (nUrl.indexOf(".php") !== -1)               	{	this.TotalTipos["Documentos"]++; 	return 5; 	}
+        if (nUrl.indexOf(".html") !== -1)               {	this.TotalTipos["Documentos"]++; 	return 5; 	}
+        if (nUrl.indexOf(".cmd") !== -1)               	{	this.TotalTipos["Cmd"]++;               return 4; 	}
         if (nUrl.indexOf(".css") !== -1)               	{	this.TotalTipos["CSS"]++;               return 3; 	}
         if (nUrl.indexOf(".js") !== -1)               	{	this.TotalTipos["JS"]++;                return 2; 	}
         if (nUrl.indexOf(".svg") !== -1)               	{	this.TotalTipos["Imagenes"]++; 		return 1; 	}
@@ -507,7 +509,7 @@ $Admin.Log = new function() {
         if (nUrl.indexOf(".png") !== -1)               	{	this.TotalTipos["Imagenes"]++; 		return 1; 	}
         if (nUrl.indexOf(".jpg") !== -1)               	{	this.TotalTipos["Imagenes"]++; 		return 1; 	}
         if (nUrl.indexOf(".gif") !== -1)               	{	this.TotalTipos["Imagenes"]++; 		return 1; 	}
-        if (nUrl.indexOf(".") === -1)               	{	this.TotalTipos["Documentos"]++; 	return 4; 	} // algo sin extensión debe ser un documento
+        if (nUrl.indexOf(".") === -1)               	{	this.TotalTipos["Documentos"]++; 	return 5; 	} // algo sin extensión debe ser un documento
         this.TotalTipos["Otros"]++;
         return 0;    
    };
@@ -672,6 +674,7 @@ $Admin.Log = new function() {
                 if (Pos > -1) {
                     document.getElementById("EntradaLog" + i).style.display = "table";
                     var Url = $("#EntradaLog" + i + " .EntradaLog_Url");
+                    // Tengo que conservar la clase "EntradaLog_Url" para poder encontrar el label con la Url de la entrada actual
                     Url.attr('class', "EntradaLog_Url " + this.ColorRelevancia(this.Ips[i]["Destacados"][Pos]["Relevancia"]));
                     Url.html(this.Ips[i]["Destacados"][Pos]["Url"]);
                     // Si está abierto tengo que volver a recargar los datos interiores
