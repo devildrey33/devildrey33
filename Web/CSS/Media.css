@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 
-/* Escondo el logo si la altura es menor que 670 pixeles y solo lo muestro durante la animación de carga */
+/* Escondo el logo si la altura es menor que 670 pixeles y solo lo muestro durante la animaciÃ³n de carga */
 @media only screen and (max-height: 550px) {
     #Logo           {    left:-200px;     }
     .AnimacionLogo  {    display:block;   }
@@ -28,7 +28,7 @@ and open the template in the editor.
     #Logo, #BarraPrincipal, #BarraNavegacion,                       /* Barres laterals  */
     #Categorias, #Categorias_Estado + #Categorias_Label,            /* Marco categorias y label para expandir / contraer las categorias */
     #Cabecera, #Comentarios_MarcoDatos,                             /* Cabecera del blog, marco unicamente con los comentarios posteados */
-    #Comentarios_Comentario, .devildrey33_Marco, .Codigo_Marco      /* Marco con los controles de los comentarios, marco estandar (se mantiene por compatibilidad), marco para código */
+    #Comentarios_Comentario, .devildrey33_Marco, .Codigo_Marco      /* Marco con los controles de los comentarios, marco estandar (se mantiene por compatibilidad), marco para cÃ³digo */
                         { zoom:1.5 !important; }
     body                { margin-left:90px; }  
     #MarcoNavegacion    { left:-10px;}
@@ -37,7 +37,7 @@ and open the template in the editor.
 }
 
 /* En l'index si es un movil en portrait no hi ha ample suficient per posar el titul i els spans informatius, OJU perque nomes ha de ser en movils, en tables NO */
-/* El movil amb resolució mes ample que he vist es el iphone 6p(atata) amb 414px */
+/* El movil amb resoluciÃ³ mes ample que he vist es el iphone 6p(atata) amb 414px */
 @media  only screen and (max-device-width:420px) and (orientation:portrait) {
     body { font-size:1.1rem !important; }
     .Articulo_Portada > div, #Comentarios_BarraControles { display:none !important; }
@@ -48,7 +48,7 @@ and open the template in the editor.
     /* Articles amb el 50% d'ample (menys 300 pixels de padding) */
     #MarcoIndice > .Articulo_Portada {
         display: inline-block;
-        width: calc(50% - 300px);
+        width: calc(50% - 301px);
     }    
     /* Faig la font del titul un pel mes petita */
     .Articulo_Portada > h1 {

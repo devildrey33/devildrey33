@@ -238,7 +238,7 @@
                 $this->Desloguear(1);
             }
         }
-
+/*
         public function ActualizarCache() {            
             if (devildrey33_Opciones::Administrador() > 0) { 
                 devildrey33::Minificar_JS_CSS();    

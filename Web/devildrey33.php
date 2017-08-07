@@ -44,8 +44,8 @@ class devildrey33 {
             Esto agilizara consultas ajax y de mensajeria que pasan por este constructor sin necesitar la mitad de cosas que se cargan.
     */
     public function __construct() {			
-        // Actualizo la cache de los archivos JS y CSS si hay datos nuevos.
-        if (devildrey33_Opciones::ActualizarCache() === 1) { $this->Minificar_JS_CSS (); }
+        // Actualizo la cache de los archivos JS y CSS si estoy en el servidor local.
+        if (devildrey33_Opciones::$ServidorLocal === true) { $this->Minificar_JS_CSS (); }
         
         // Establezco si se mostraran o no los errores php en el mismo documento (por defecto se mostraran en un marco a parte de la web)
         ini_set("display_errors", devildrey33_Opciones::MostrarErroresPHP());
@@ -652,7 +652,7 @@ class devildrey33 {
         }
                         
         echo "</div>".Intro();
-        echo "</body>".Intro()."</html>".Intro();        
+        echo "</body>".Intro()."</html>";        
     }
     
     public function InicioBlog($NombreDocumento, $Titulo, $AlinearImagenDerecha = FALSE) {
