@@ -1,5 +1,5 @@
 /* Objeto para crear animaciones de tiempo creado por Josep Antoni Bover Creado el 25/08/2016
- *  Ultima modificación el 02/02/2017
+ *  Ultima modificación el 26/08/2017
  * */
 
 
@@ -16,10 +16,15 @@
             "Invertir"          : true,                            // Invertir la animación al terminar los pasos
             "Repetir"           : 2,                               // Repetir 2 veces
             "FuncionActualizar" : function(Valores) { },           // Función que se llama cada vez que se actualizan los valores
+            "FuncionIniciado"   : function() { }                   // Función que se llama al iniciar la animación
             "FuncionTerminado"  : function() { }                   // Función que se llama al terminar la animación
             "Const"             : { ... }                          // Array de variables constantes que podrás utilizar desde Valores.Const
         });*/
  
+ // Añadido 26/08/2017 : 
+ // - Solucionado bug al utilizar mas de una vez la funcion ObjetoAnimacion_Animacion.Iniciar() que des-ajustaba los tiempos (no se reiniciaba this._Avance a 0...)
+ // - Creado el objeto ObjetoAnimacion_Rand para usarse con los valores de los pasos, de esta forma cada vez que llames a ObjetoAnimacion_Animacion.Iniciar() utilizará la función rand
+ //   con los valores min/max especificados inicialmente. (1 preset de animación con valores aleatórios :O)
      
     
 var FuncionesTiempo = {
@@ -61,11 +66,13 @@ var ObjetoAnimacion = function() {
     
     // Función que pausa TODAS las animaciones de este objeto
     this.Pausa = function() {
+        console.log("ObjetoAnimacion::Pausa");
         this.EnPausa = true;
     };
     
     // Función que reanuda TODAS las animaciones de este objeto
     this.Reanudar = function() {
+        console.log("ObjetoAnimacion::Reanudar");
         this.Tick = Date.now();
         // Actualizo el ultimo tick de todas las animaciones para que no pase nada de tiempo desde que se ha pausado
         for (var i = this.Animaciones.length - 1; i > -1; i--) {
@@ -83,51 +90,78 @@ var ObjetoAnimacion = function() {
     };
 
     this.CrearAnimacion = function(Pasos, Opciones) {
-        return new ObjetoAnimacion_Animacion(Pasos, Opciones, this, false);;
+        return new ObjetoAnimacion_Animacion(Pasos, Opciones, this, false);
     };    
     
     // NOTA las transiciones y las repeticiones no se llevan muy bien...
     // no se puede utilizar la opción Invertir
     this.CrearTransicion = function(Pasos, Opciones) {
-        return new ObjetoAnimacion_Animacion(Pasos, Opciones, this, true);;
+        return new ObjetoAnimacion_Animacion(Pasos, Opciones, this, true);
     };    
-
 };
 
 
 // Función que contiene los datos de una animación
-var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicion) {
-//        this._Invertido          = false;        // Invertir animación
-    this._Padre              = Padre;        // ObjetoAnimacion padre
-    this._UltimoTick         = 0;            // Ultimo date.now que se ha obtenido con la función Actualizar
-    this._Pasos              = ArrayPasos;   // Array con los parámetros
-    this._PosPasos           = 1;            // Posición dentro del array de datos
-    this._PasoOrig           = this._Pasos[this._PosPasos - 1]; 
-    this._PasoDest           = this._Pasos[this._PosPasos];
-    this._Avance             = 0;            // Avance puede ser de 0 a 1
-    this._Invertido          = nTransicion;  // Invertir animación (para las transiciones empieza en true)
-    this._Terminado          = false;        // Animación terminada
-    this._Retraso            = this._PasoDest.Retraso;
-    this._Opciones           = { Repetir : 0, Invertir : false, FuncionActualizar : function(Valores) { }, FuncionTerminado : function() { } };
+var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicion) {    
+    this._Padre              = Padre;                           // ObjetoAnimacion padre
+    this._UltimoTick         = 0;                               // Ultimo date.now que se ha obtenido con la función Actualizar
+    this._PasosIniciales     = ArrayPasos;                      // Array con los parámetros    
+    this._Pasos              = [];                              // Array con los parámetros    
+    this._PosPasos           = 1;                               // Posición dentro del array de datos
+    this._Avance             = 0;                               // Avance puede ser de 0 a 1
+    this._Invertido          = nTransicion;                     // Invertir animación (para las transiciones empieza en true)
+    this._Terminado          = false;                           // Animación terminada
+    this._Opciones           = { Repetir : 0, Invertir : false, FuncionActualizar : function(Valores) { }, FuncionIniciado : function() { }, FuncionTerminado : function() { } };
     if (typeof (Opciones) !== 'undefined') { 
         if (typeof Opciones.Repetir !== "undefined")           { this._Opciones.Repetir = Opciones.Repetir;                     }
         if (typeof Opciones.Invertir !== "undefined")          { this._Opciones.Invertir = Opciones.Invertir;                   }
         if (typeof Opciones.FuncionActualizar !== "undefined") { this._Opciones.FuncionActualizar = Opciones.FuncionActualizar; }
+        if (typeof Opciones.FuncionIniciado !== "undefined")   { this._Opciones.FuncionIniciado = Opciones.FuncionIniciado;     }
         if (typeof Opciones.FuncionTerminado !== "undefined")  { this._Opciones.FuncionTerminado = Opciones.FuncionTerminado;   }
-        if (typeof Opciones.Const !== "undefined")             { this.Const = Opciones.Const;   }
+        if (typeof Opciones.Const !== "undefined")             { this.Const = Opciones.Const;                                   }
     }
     // Completo los datos de cada paso
-    for (var Paso in this._Pasos) {
+/*    for (var Paso in this._Pasos) {
         if (typeof this._Pasos[Paso].Tiempo === "undefined")         { this._Pasos[Paso].Tiempo = 1; }
         if (typeof this._Pasos[Paso].Retraso === "undefined")        { this._Pasos[Paso].Retraso = 0; }
         if (typeof this._Pasos[Paso].FuncionTiempo === "undefined")  { this._Pasos[Paso].FuncionTiempo = FuncionesTiempo.Linear; }
+    }*/
+
+    // Miro si hay valores aleatorios los inicio 
+    for (var i = 0; i < this._PasosIniciales.length; i++) {        
+        var nPaso = { };
+        for (var Indice in this._PasosIniciales[i]) {   
+            nPaso[Indice] = { };
+            for (var Indice2 in this._PasosIniciales[i][Indice]) {   
+                if (this._PasosIniciales[i][Indice][Indice2] instanceof ObjetoAnimacion_Rand) { 
+                    nPaso[Indice][Indice2] = this._PasosIniciales[i][Indice][Indice2].Iniciar();
+                }
+                else {
+                    nPaso[Indice][Indice2] = this._PasosIniciales[i][Indice][Indice2];
+                }
+            }
+        }
+        if (typeof this._PasosIniciales[i].Retraso !== "undefined")       { nPaso.Retraso = this._PasosIniciales[i].Retraso;             }
+        else                                                              { nPaso.Retraso = 0; }
+        if (typeof this._PasosIniciales[i].Tiempo !== "undefined")        { nPaso.Tiempo = this._PasosIniciales[i].Tiempo;               }
+        else                                                              { nPaso.Tiempo = 1; }
+        if (typeof this._PasosIniciales[i].FuncionTiempo !== "undefined") { nPaso.FuncionTiempo = this._PasosIniciales[i].FuncionTiempo; }
+        else                                                              { nPaso.FuncionTiempo = FuncionesTiempo.Linear; }
+        this._Pasos.push( nPaso );
     }
+    
+    this._PasoOrig           = this._Pasos[this._PosPasos - 1]; // Array de pasos inicial
+    this._PasoDest           = this._Pasos[this._PosPasos];     // Siguiente array de pasos
+    this._Retraso            = this._PasoDest.Retraso;
+    
+    
 
     // Valores iniciales
-    for (var Indice in this._PasoOrig.Paso) {                    
+    for (var Indice in this._PasoOrig.Paso) {                            
         this[Indice] = this._PasoOrig.Paso[Indice];
-    }    
-    this._Opciones.FuncionActualizar(this);
+    }
+    // usar ObjetoAnimacion_Animacion.AsignarValoresIniciales
+    // this._Opciones.FuncionActualizar(this);
     
     this.Iniciar = function() {
         var AniCreada = false;
@@ -140,12 +174,34 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
         }        
         if (AniCreada === false) { // No se está animando
             this._Padre.Animaciones.push(this);
+            
+//            this._Pasos = this._PasosIniciales;
+            
             this._PosPasos = 1;
             this._PasoOrig           = this._Pasos[this._PosPasos - 1]; 
             this._PasoDest           = this._Pasos[this._PosPasos];
             this._Retraso            = this._PasoDest.Retraso;
-        }        
+            this._UltimoTick         = 0;
+            this._Avance             = 0;
+            // TODO : s'ha de copiar el array de pasos per executar els ObjetoAnimacion_Rand, i recarregar-lo despres cada cop al iniciar...
+            
+            // Busco las variables que sean una instancia de ObjetoAnimacion_Rand y ejecuto el rand
+            for (var i = 0; i < this._PasosIniciales.length; i++) {
+                for (var Valor in this._PasosIniciales[i].Paso) {
+                    if (this._PasosIniciales[i].Paso[Valor] instanceof ObjetoAnimacion_Rand) { 
+                        this._Pasos[i].Paso[Valor] = this._PasosIniciales[i].Paso[Valor].Iniciar();
+                    }
+                }
+            }
+            
+            this._Opciones.FuncionIniciado();
+        }
         this._Terminado = false;
+    };
+    
+    /* Asigna los valores iniciales de la animación a las variables y ejecuta la primera FuncionActualizar */
+    this.AsignarValoresIniciales = function() {
+        this._Opciones.FuncionActualizar(this);
     };
     
     
@@ -191,8 +247,7 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
             var FuncionTiempo = this._PasoDest.FuncionTiempo(this._Avance);            
             for (var Indice in this._PasoOrig.Paso) {                    
                 this[Indice] = PasoO[Indice] - (PasoO[Indice] - PasoD[Indice]) * FuncionTiempo;
-            }
-            
+            }            
         }
         
         this._Terminado = false;
@@ -201,12 +256,24 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
 
     // Función que termina la animación y la deja tal y como está
     this.Cancelar = function() {
+        this._Opciones.FuncionIniciado();
         this._Opciones.FuncionTerminado();
         this._Terminado = true;                       
     };
 
     // Función que termina la animación y deja los valores en su estado final
     this.Terminar = function() {
+        // Busco las variables que sean una instancia de ObjetoAnimacion_Rand y pongo el valor máximo para tener algun valor de referencia en las futuras funciones Iniciado y Terminado
+            for (var i = 0; i < this._Pasos.length; i++) {
+                this._Pasos.forEach(function(Valor, Indice, Array) {
+                if (Valor instanceof ObjetoAnimacion_Rand) { 
+                    this._Pasos[Indice] = Valor.Max;
+                }
+            });
+        }
+        
+        
+        this._Opciones.FuncionIniciado();
         this._Opciones.FuncionTerminado();
         this._Terminado = true;            
         for (var Indice in this._Pasos[this._Pasos.length - 1].Paso) {                    
@@ -237,6 +304,7 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
         else {
             // Sumo o resto el avance de la animación
             this._Avance += (TiempoFrame / this._PasoDest.Tiempo);
+//            console.log(this._Avance);
             var FuncionTiempo = this._PasoDest.FuncionTiempo(this._Avance);
             // Paso por completar
             if (this._Avance < 1 && this._Avance > -1) {
@@ -263,9 +331,10 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
                 // No hay mas pasos
                 else {
                     if (this._Opciones.Invertir === false) {
-                        if (this._Opciones.Repetir === 0) {
+                        if (this._Opciones.Repetir <= 0) {
                             this._Opciones.FuncionTerminado();
                             this._Terminado = true;
+//                            console.log("--------------");
                         }
                         else {
                             this._Opciones.Repetir --;
@@ -352,3 +421,16 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
         return this._Terminado;
     };    
 };
+
+
+
+// Objeto que servira de enlace para hacer un rand a un valor cada vez que se ejecute la funcion iniciar del ObjetoAnimacion_Animacion
+var ObjetoAnimacion_Rand = function(Max, Min) {
+    this.Min = Min;
+    this.Max = Max;
+    this.Iniciar = function() {
+        this.Valor = Rand(Max, Min);
+        return this.Valor;        
+    };
+};
+

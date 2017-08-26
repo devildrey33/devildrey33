@@ -30,6 +30,12 @@
  */
 
 ObjetoCanvas = function(Opciones) {
+    // Constantes
+    this.Constantes = { 
+        Radiant : Math.PI / 180, // 360 deg = Math.PI * 2
+        TAU     : Math.PI * 2 
+    };
+    
     // Opciones por defecto, puedes modificar las opciones creando un objeto que contenga una o mas opciones a modificar, y pasando el array en el constructor del ObjetoCanvas
     this.OpcionesCanvas  = { 
         Tipo                    : '2d',
@@ -204,9 +210,6 @@ ObjetoCanvas = function(Opciones) {
         // Escondo el marco de los FPS
         document.getElementById("ObjetoCanvas_FPS").style.display = "none";
     }*/
-    
-    this.Constantes = { Radiant : Math.PI / 180, PIx2 : Math.PI * 2, TAU : Math.PI * 2 };
-
     
     // En modo normal se pinta el primer frame, y se muestra el boton iniciar
 /*    if (this.OpcionesCanvas['Entorno'] === 'Normal') {
@@ -450,6 +453,7 @@ ObjetoCanvas.prototype.EventoPausa = function() {
         console.log("ObjetoCanvas.Pausa");
         window.cancelAnimationFrame(this.RAFID); 
         this.RAFID = 0;
+//        this.TickPausa = this.Tick;
         if (typeof this.Pausa !== 'undefined') {  this.Pausa();   }
     }
 };
@@ -460,6 +464,7 @@ ObjetoCanvas.prototype.EventoReanudar = function() {
         document.getElementById("Cabecera").setAttribute("animar", true);
         this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this)); 
         console.log("ObjetoCanvas.Reanudar RAFID = " + this.RAFID);
+//        this.TickInicio = (this.Tick - this.TickPausa);
         if (typeof this.Pausa !== 'undefined') {  this.Reanudar();   }
     }
 };

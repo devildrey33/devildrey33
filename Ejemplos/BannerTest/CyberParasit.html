@@ -131,6 +131,8 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         this.Escena.add(this.Camara);
         this.Camara.lookAt(new THREE.Vector3(0, 2, 0));
         
+        
+        
 //        this.Orbit = new THREE.OrbitControls( this.Camara );
 //        this.Orbit.addEventListener( 'change', this.Pintar.bind(this) );
 
@@ -367,7 +369,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
               this.Robot.scale.set(Valores['Escala'], Valores['Escala'], Valores['Escala']);
             }.bind(this) 
         });    */        
-         
+        
         this.Pasos_Actual = 0;
         this.Pasos_Animacion = [
             { Tiempo : 0, Funcion : this.AniMovimiento.Iniciar.bind(this.AniMovimiento) },     
@@ -539,7 +541,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
                 
 //        Buffer.Context.save();
         // Pinto la onda sinusoidal alrededor del circulo con la media
-        var Avance = this.Constantes.PIx2 / this.TamDatos;
+        var Avance = this.Constantes.TAU / this.TamDatos;
         var Angulo = Tick;
         var Valor = this.DatosAnalizadorSin[0];
 //        var x = mx + (Math.cos(Angulo) * (90 + Valor));
@@ -550,7 +552,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
 //        var ColG = 'rgb(' + Math.round(120 + this.MediaAudio[0]) + ',' + Math.round(255 - this.MediaAudio[0]) +  ', 0)';
         this.BufferOjo.Context.fillStyle = 'rgba(0, 0, 255, 1)';
         this.BufferOjo.Context.beginPath();        
-        this.BufferOjo.Context.arc(mx, my, 20 + (this.MediaAudio[0]) * 0.9, 0, this.Constantes.PIx2, false);
+        this.BufferOjo.Context.arc(mx, my, 20 + (this.MediaAudio[0]) * 0.9, 0, this.Constantes.TAU, false);
         this.BufferOjo.Context.stroke();
         this.BufferOjo.Context.fill();
 
@@ -561,7 +563,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
 //        this.BufferOjo.Context.fillStyle = 'rgba(' + Math.round(120 + this.MediaAudio[1]) + ',' + Math.round(255 - this.MediaAudio[1]) +  ', 0, 0.5)';;
         this.BufferOjo.Context.fillStyle = 'rgba(0, 255, 0, 1)';
         this.BufferOjo.Context.beginPath();        
-        this.BufferOjo.Context.arc(mx, my, 26 + (this.MediaAudio[1]) * 0.8, 0, this.Constantes.PIx2, false);
+        this.BufferOjo.Context.arc(mx, my, 26 + (this.MediaAudio[1]) * 0.8, 0, this.Constantes.TAU, false);
         this.BufferOjo.Context.stroke();
         this.BufferOjo.Context.fill();
         
@@ -571,7 +573,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
 //        this.BufferOjo.Context.fillStyle = 'rgba(' + Math.round(120 + this.MediaAudio[2]) + ',' + Math.round(128 - this.MediaAudio[2]) +  ',0 , 0.9)';
         this.BufferOjo.Context.fillStyle = 'rgba(255, 0, 0, 1)';
         this.BufferOjo.Context.beginPath();        
-        this.BufferOjo.Context.arc(mx, my, (32 + this.MediaAudio[2]) * 0.7, 0, this.Constantes.PIx2, false);
+        this.BufferOjo.Context.arc(mx, my, (32 + this.MediaAudio[2]) * 0.7, 0, this.Constantes.TAU, false);
         this.BufferOjo.Context.stroke();
         this.BufferOjo.Context.fill();
         

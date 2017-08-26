@@ -766,7 +766,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         Buffer.Context.fillStyle = "rgba(0, 0, 0, 0.5)";
         Buffer.Context.fillRect(0, 0, Buffer.Ancho, Buffer.Alto);
         var TamBuffer = this.Audio.Analizador.fftSize / 2;
-        var Avance = this.Constantes.PIx2 / TamBuffer;
+        var Avance = this.Constantes.TAU / TamBuffer;
         var Angulo = Tick;
         var Valor = this.DatosAnalizadorSin[0];
         
@@ -774,7 +774,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         var ColG = 'rgb(' + Math.round(120 + this.MediaAudio[0]) + ',' + Math.round(255 - this.MediaAudio[0]) +  ', 0)';
         Buffer.Context.strokeStyle = ColG;
         Buffer.Context.beginPath();        
-        Buffer.Context.arc(mx, my, 30 + this.MediaAudio[0], 0, this.Constantes.PIx2, false);
+        Buffer.Context.arc(mx, my, 30 + this.MediaAudio[0], 0, this.Constantes.TAU, false);
         Buffer.Context.stroke();
 
         // Pinto el circulo con la media de los medios        
@@ -782,14 +782,14 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         var ColM = 'rgb(' + Gris + ',' + Gris + ',' + Gris + ')';
         Buffer.Context.strokeStyle = ColM;
         Buffer.Context.beginPath();        
-        Buffer.Context.arc(mx, my, 38 + this.MediaAudio[1], 0, this.Constantes.PIx2, false);
+        Buffer.Context.arc(mx, my, 38 + this.MediaAudio[1], 0, this.Constantes.TAU, false);
         Buffer.Context.stroke();
         
         // Pinto el circulo con la media de los agudos        
         var ColA = 'rgb(0, ' + Math.round(120 + this.MediaAudio[2]) + ',' + Math.round(128 - this.MediaAudio[2]) +  ')';
         Buffer.Context.strokeStyle = ColA;
         Buffer.Context.beginPath();        
-        Buffer.Context.arc(mx, my, 46 + this.MediaAudio[2], 0, this.Constantes.PIx2, false);
+        Buffer.Context.arc(mx, my, 46 + this.MediaAudio[2], 0, this.Constantes.TAU, false);
         Buffer.Context.stroke();
         
         // Pinto la onda sinusoidal alrededor del circulo con la media total
@@ -847,7 +847,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
 
         var TamBuffer = this.Audio.Analizador.fftSize / 2;
         var Porcion = (TamBuffer / 8);
-        var RadAvance = (this.Constantes.PIx2) / Porcion;
+        var RadAvance = (this.Constantes.TAU) / Porcion;
         var Rad = -Math.PI / 2, x = 0, y = 0;
         var i = 0;
         for (var p = 0; p < 8; p++) {
@@ -879,7 +879,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         Buffer.Context.strokeStyle = 'rgb(' + Math.round(128 + this.MediaAudio[4]) + ',' + Math.round(255 - this.MediaAudio[4]) +  ', 0)';
         Buffer.Context.fillRect(0, 0, Buffer.Ancho, Buffer.Alto);
         var TamBuffer = this.Audio.Analizador.fftSize / 2;
-        var RadAvance = this.Constantes.PIx2 / this.Audio.Analizador.fftSize;
+        var RadAvance = this.Constantes.TAU / this.Audio.Analizador.fftSize;
         var Rad = -Math.PI / 2, x = 0, y = 0;       
         var mx = (Buffer.Ancho / 2);
         var my = (Buffer.Alto / 2);

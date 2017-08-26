@@ -218,7 +218,9 @@ Banner_MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
                 }.bind(this), 
                 FuncionTerminado  : this.AnimarCubos.bind(this), 
                 Retraso           : 200
-        }).Iniciar();                                
+        });
+        this.AniRotarGrupoCubos.AsignarValoresIniciales();
+        this.AniRotarGrupoCubos.Iniciar();                                
     },
     
     AnimacionRotarCubo   : function() {
@@ -229,19 +231,25 @@ Banner_MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             this.AniRotarCubo = this.Animaciones.CrearAnimacion([
                 { 'Paso' : { x : 0 }},
                 { 'Paso' : { x : RotarCara * (Math.PI / 2) }, Tiempo : 350 * RotarCara, FuncionTiempo : FuncionesTiempo.SinOut}], { FuncionActualizar : function(Valores) { this.Cubos[this.CuboAnimado].rotation.x = Valores.x; }.bind(this), FuncionTerminado : this.AnimarCubos.bind(this), "Retraso" : 200
-            }).Iniciar();                        
+            });
+            this.AniRotarCubo.AsignarValoresIniciales();                                                
+            this.AniRotarCubo.Iniciar();                        
         }
         else if (Eje === 1) {
             this.AniRotarCubo = this.Animaciones.CrearAnimacion([
                 { 'Paso' : { y : 0 }},
                 { 'Paso' : { y : RotarCara * (Math.PI / 2) }, Tiempo : 350 * RotarCara, FuncionTiempo : FuncionesTiempo.SinOut}], { FuncionActualizar : function(Valores) { this.Cubos[this.CuboAnimado].rotation.y = Valores.y; }.bind(this), FuncionTerminado : this.AnimarCubos.bind(this), "Retraso" : 200 
-            }).Iniciar();                                    
+            });
+            this.AniRotarCubo.AsignarValoresIniciales();                                                
+            this.AniRotarCubo.Iniciar();                                    
         }
         else {
             this.AniRotarCubo = this.Animaciones.CrearAnimacion([
                 { 'Paso' : { z : 0 }}, //this.Cubos[this.CuboAnimado].rotation.z
                 { 'Paso' : { z : RotarCara * (Math.PI / 2) }, Tiempo : 350 * RotarCara, FuncionTiempo : FuncionesTiempo.SinOut}], { FuncionActualizar : function(Valores) { this.Cubos[this.CuboAnimado].rotation.z = Valores.z; }.bind(this), FuncionTerminado : this.AnimarCubos.bind(this), "Retraso" : 200
-            }).Iniciar();                                                
+            });
+            this.AniRotarCubo.AsignarValoresIniciales();                                                
+            this.AniRotarCubo.Iniciar();                                                
         }        
     },
     
@@ -285,9 +293,9 @@ Banner_MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
                 this.SpotLight.intensity = Valores.Intensidad; 
                 this.dirLight.intensity = Valores.Intensidad * 0.6; 
             }.bind(this) 
-        }).Iniciar();            
-        
-        
+        });
+        this.AniEncenderLuz.AsignarValoresIniciales();                                                
+        this.AniEncenderLuz.Iniciar();                            
                 
         this.HemiLight = new THREE.HemisphereLight( 0xeeeeee, 0xffffff, 0.8 );
         this.HemiLight.color.setHSL( 0.6, 0.6, 0.6 );

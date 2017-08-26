@@ -13,8 +13,7 @@ Millores de la web :
  V  - Modificada la visualització d'errors en javascript de forma que ara es mes fácil accedir a la línea afectada desde el log.
  V  - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
  V      - Finestra per canviar de banner implementada
-            - Afegir opcions especifiques per cada banner amb un sistema chulo dintre de ObjetoBanner (em podria inspirar en algo tipo DAT.GUY)
- V              - S'ha dimplementar algo semblant al DAT.GUY però al meu estil ... ... (ObjetoTest)
+ V          - S'ha dimplementar algo semblant al DAT.GUY però al meu estil ... ... (ObjetoTest)
  V      - Exemple en Three.js 'WormHole' (2 cilindres un dintre de l'altre, amb la camara al centre dels dos, i posant una textura que avança i rota.)
  V      - Exemple en Canvas 2D 'Anillos' (Varis cercles rotant al voltant del centre del canvas, amb un efecte de difuminat al borrar el fondo amb un color rgba)
  V          - Exemple eliminat de la bateria de banners per ser el mes lleig.
@@ -48,13 +47,12 @@ Millores de la web :
  V  - Habilitat Cross Origin Resource Sharing en el htaccess
  V  - Afegit Sitemap (creat desde el 1and1)
  V  - Solucionat problema amb els meta tags de facebook i twitter amb articles del lab... ara tots els metas es re-escriuen amb java script al carregar la pagina.
-    - Hi ha un bon lio amb la variable EntradasBlog en JavaScript... s'hauria de mirar de posar el path sencer i la extensio a tot al crear la variable en php (en principi vaig elimiar troços del path quan nomes podia enllaçar al blog [i no al lab, ni als docs] per estalviar espai... i m'ha sortit malament no, lo següent), i aixi m'estalviaria varies comprobacións en javascript
-        - Però s'ha de fer amb calma, perque aquesta variable la faig servir per identificar en varis moments la entrada actual en llocs no gaire critics, i s'hauria de enumerar TOTS els cops que la faig servir....
+ V  - Hi ha un bon lio amb la variable EntradasBlog en JavaScript... s'hauria de mirar de posar el path sencer i la extensio a tot al crear la variable en php (en principi vaig elimiar troços del path quan nomes podia enllaçar al blog [i no al lab, ni als docs] per estalviar espai... i m'ha sortit malament no, lo següent), i aixi m'estalviaria varies comprobacións en javascript
+ V      - Però s'ha de fer amb calma, perque aquesta variable la faig servir per identificar en varis moments la entrada actual en llocs no gaire critics, i s'hauria de enumerar TOTS els cops que la faig servir....
 
-Estils movils :
-    - algo raro pasa al mostrar el banner en "portrait "
     
 Index : 
+ V  - Mostrar dues columnes de articles en resolucións de pantalla grans.
 
 Lab :
     - Implementar alguna forma d'afegir links al codi.

@@ -518,7 +518,7 @@ class devildrey33 {
     static public function HerramientasAdmin($Login, $Pass, $Loguear = TRUE) {
         $EstadoLogin = "No eres administrador";
         $HTMLAdmin = "";
-        if ($Loguear === TRUE) $EstadoLogin = devildrey33_Opciones::Login($Login, $Pass);
+        if ($Loguear === TRUE) { $EstadoLogin = devildrey33_Opciones::Login($Login, $Pass); }
         
         if (devildrey33_Opciones::Administrador() > 0) {            
             $MinHTML        = (devildrey33_Opciones::Minificar_HTML()     === 1) ? "true" : "false";
@@ -527,7 +527,7 @@ class devildrey33 {
             $Consola        = (devildrey33_Opciones::MostrarConsola()     === 1) ? "true" : "false";
             $PHPDebug       = (devildrey33_Opciones::MostrarErroresPHP()  === 1) ? "true" : "false";
             $BorrarPHP      = (devildrey33_Opciones::BorrarLogPHP()       === 1) ? "true" : "false";
-            $Cache          = (devildrey33_Opciones::ActualizarCache()    === 1) ? "true" : "false";
+            //$Cache          = (devildrey33_Opciones::ActualizarCache()    === 1) ? "true" : "false";
             $PausarBanner   = (devildrey33_Opciones::Banner_Pausar()      === 1) ? "true" : "false";
             $MostrarFPS     = (devildrey33_Opciones::Banner_MostrarFPS()  === 1) ? "true" : "false";
             $ValHT = devildrey33_htaccess::ObtenerValores();

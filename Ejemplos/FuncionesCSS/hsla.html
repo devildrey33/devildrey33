@@ -1,53 +1,53 @@
 <!-- Ejemplo creado por Josep Antoni Bover el [11/01/2014] para devildrey33.es 
 		Ultima modificación el [22/01/2014] -->
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
-	<head>
-		<style>
-			/* Fondo blanco*/
+    <head>
+        <style>
+            /* Fondo blanco*/
             body { background:url('/Web/Graficos/logo400.png') no-repeat center; }
-			/* Controles del tipo slider */
-			#Rango_H, #Rango_S, #Rango_L, #Rango_A { height:10px; }
-			/* Marco donde se ubican los controles */
-			#Controles {
-				display:inline-block;
-				background-color:hsla(0, 0%, 96%, 0.9); 
-				border:1px dashed hsl(0, 0%, 50%);
-			}
-			/* Etiquetas para mostrar los valores RGB */
-			#Valor_H, #Valor_S, #Valor_L, #Valor_A { display:inline-block; width:45px; }
-			#Valor_S, #Valor_L, #Valor_A { margin-left:212px; }
-			/* Marco centrado con posición fija y margen automático */
-			#Marco {
-				position:fixed;
-				margin:auto;
-				top:0px;
-				left:0px;
-				right:0px;
-				bottom:0px;
-				width:400px;
-				height:400px;
-				border:1px solid hsla(228, 100%, 50%, 0.9);
-				background-color:hsla(0, 0%, 100%, 0.8);
-				z-index:-1;
-			}
+            /* Controles del tipo slider */
+            #Rango_H, #Rango_S, #Rango_L, #Rango_A { height:10px; }
+            /* Marco donde se ubican los controles */
+            #Controles {
+                display:inline-block;
+                background-color:hsla(0, 0%, 96%, 0.9); 
+                border:1px dashed hsl(0, 0%, 50%);
+            }
+            /* Etiquetas para mostrar los valores RGB */
+            #Valor_H, #Valor_S, #Valor_L, #Valor_A { display:inline-block; width:45px; }
+            #Valor_S, #Valor_L, #Valor_A { margin-left:212px; }
+            /* Marco centrado con posición fija y margen automático */
+            #Marco {
+                position:fixed;
+                margin:auto;
+                top:0px;
+                left:0px;
+                right:0px;
+                bottom:0px;
+                width:400px;
+                height:400px;
+                border:1px solid hsla(228, 100%, 50%, 0.9);
+                background-color:hsla(0, 0%, 100%, 0.8);
+                z-index:-1;
+            }
     	</style>
-	    <script type="text/javascript">
-			function ActualizarColor() {
-				/* Obtengo los valores */
-				var H = document.getElementById("Rango_H").value;
-				var S = document.getElementById("Rango_S").value;
-				var L = document.getElementById("Rango_L").value;
-				var A = document.getElementById("Rango_A").value;
-				/* Asigno los valores a las etiquetas */
-				document.getElementById("Valor_H").innerHTML = H;
-				document.getElementById("Valor_S").innerHTML = S + " %";
-				document.getElementById("Valor_L").innerHTML = L + " %";				
-				document.getElementById("Valor_A").innerHTML = A;				
-				/* Asigno el color del fondo utilizando los valores */
-				document.getElementById("Marco").style.backgroundColor = "hsla(" + H + "," + S + "%," + L + "%," + A + ")";
-			}
-		</script>
+        <script type="text/javascript">
+            function ActualizarColor() {
+                /* Obtengo los valores */
+                var H = document.getElementById("Rango_H").value;
+                var S = document.getElementById("Rango_S").value;
+                var L = document.getElementById("Rango_L").value;
+                var A = document.getElementById("Rango_A").value;
+                /* Asigno los valores a las etiquetas */
+                document.getElementById("Valor_H").innerHTML = H;
+                document.getElementById("Valor_S").innerHTML = S + " %";
+                document.getElementById("Valor_L").innerHTML = L + " %";				
+                document.getElementById("Valor_A").innerHTML = A;				
+                /* Asigno el color del fondo utilizando los valores */
+                document.getElementById("Marco").style.backgroundColor = "hsla(" + H + "," + S + "%," + L + "%," + A + ")";
+            }
+        </script>
     </head>
 	<body>
     	<div id='Controles'>

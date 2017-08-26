@@ -239,6 +239,7 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
                     FuncionTerminado  : this.AnimarCubos.bind(this)
                 }
             );
+            this.AniRotarGrupoCubos.AsignarValoresIniciales();
             this.AniRotarGrupoCubos.Iniciar();
 /*            
         }
@@ -311,6 +312,7 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
                 FuncionTerminado  : this.AnimarCubos.bind(this)
             }
         );         
+        this.AniRotarCubo.AsignarValoresIniciales();
         this.AniRotarCubo.Iniciar();
     },
     
@@ -330,7 +332,8 @@ MultiCubo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
                 this.HemiLight.intensity = 0.4 + (Valores.Intensidad * 0.4);
             }.bind(this) 
         });            
-        this.AniEncenderLuz.Iniciar();
+        this.AniEncenderLuz.AsignarValoresIniciales();
+        this.AniEncenderLuz.Iniciar();        
     },        
     
     

@@ -1,0 +1,48 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15-ago-2017, 20:25:41
+    Author     : devildrey33
+*/
+#Empezar, #Repetir {
+    bottom: 50%;
+    right: calc(50% - 210px);
+    width: 200px;
+    height: 50px;
+    font-size: 42px;
+    text-align:center;
+    cursor:pointer;
+    transform:perspective(600px) rotateX(-90deg) translateX(-50%);
+    z-index: 1000;
+}
+
+#Empezar:hover, #Repetir:hover {
+    color:#FF0;
+}
+
+#Empezar[visible=true], #Repetir[visible=true] {
+    transform:perspective(600px) rotateX(0deg) translateX(-50%);                     
+}
+/*
+#Metronomo > div {
+    margin: 3.5px 4.5px;
+    display:inline-block;
+    width:20px;
+    height:20px;
+    border-radius:20px;
+    background:rgb(40,40,40);
+}
+
+#Metronomo > div[tick=true] {
+    background:rgb(255,0,0);
+    transition:0.15s;
+}*/
+
+#Metronomo > div {
+    margin: 17px auto 0px auto;
+    text-align: center;
+    /* display: inline-block; */
+}

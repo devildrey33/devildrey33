@@ -2,35 +2,35 @@
 		Ultima modificación el [22/01/2014] -->
 <!DOCTYPE>
 <html>
-	<head>
-		<style>
-			/* Fondo blanco */
+    <head>
+        <style>
+            /* Fondo blanco */
             body { background-color:hsl(0, 0%, 100%); }
-			/* Controles del tipo slider */
-			#Rango_H, #Rango_S, #Rango_L { height:10px; }
-			/* Marco donde se ubican los controles */
-			div {
-				display:inline-block;
-				background-color:hsl(0, 0%, 90%); 
-				border:1px dashed hsl(0, 0%, 50%);
-			}
-			/* Etiquetas para mostrar los valores RGB */
-			#Valor_H, #Valor_S, #Valor_L {	display:inline-block; width:50px;	}
+            /* Controles del tipo slider */
+            #Rango_H, #Rango_S, #Rango_L { height:10px; }
+            /* Marco donde se ubican los controles */
+            div {
+                display:inline-block;
+                background-color:hsl(0, 0%, 90%); 
+                border:1px dashed hsl(0, 0%, 50%);
+            }
+            /* Etiquetas para mostrar los valores RGB */
+            #Valor_H, #Valor_S, #Valor_L {	display:inline-block; width:50px;	}
     	</style>
-	    <script type="text/javascript">
-			function ActualizarColor() {
-				/* Obtengo los valores */
-				var H = document.getElementById("Rango_H").value;
-				var S = document.getElementById("Rango_S").value;
-				var L = document.getElementById("Rango_L").value;
-				/* Asigno los valores a las etiquetas */
-				document.getElementById("Valor_H").innerHTML = H;
-				document.getElementById("Valor_S").innerHTML = S + " %";
-				document.getElementById("Valor_L").innerHTML = L + " %";				
-				/* Asigno el color del fondo utilizando los valores */
-				document.body.style.backgroundColor = "hsl(" + H + "," + S + "% ," + L + "%)";
-			}
-		</script>
+        <script type="text/javascript">
+            function ActualizarColor() {
+                /* Obtengo los valores */
+                var H = document.getElementById("Rango_H").value;
+                var S = document.getElementById("Rango_S").value;
+                var L = document.getElementById("Rango_L").value;
+                /* Asigno los valores a las etiquetas */
+                document.getElementById("Valor_H").innerHTML = H;
+                document.getElementById("Valor_S").innerHTML = S + " %";
+                document.getElementById("Valor_L").innerHTML = L + " %";				
+                /* Asigno el color del fondo utilizando los valores */
+                document.body.style.backgroundColor = "hsl(" + H + "," + S + "% ," + L + "%)";
+            }
+        </script>
     </head>
 	<body>
     	<div>

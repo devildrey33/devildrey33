@@ -17,6 +17,7 @@
         <script>
             window.addEventListener('load', function() {
                 var Test = new ObjetoTest({ right : "10px" });
+                // Variables para el test
                 window.texto = "mi texto";
                 window.numero = 0.5;
                 window.numerolargolargo = 10000.33;
@@ -24,7 +25,7 @@
                 window.funcion = function() { alert("funcion"); };
                 window.select = [ "uno", "dos", "tres"];
                 window.select2 = { uno : 1, dos : 2, tres : 3 };
-                
+                // Lista de valores principal
                 Test.Agregar({  Padre : window, "Variable" : "texto" });
                 Test.Agregar({  Padre : window, "Variable" : "funcion" });
                 Test.Agregar({  Padre : window, "Variable" : "texto" });
@@ -33,14 +34,17 @@
                 Test.Agregar({  Padre : window, "Variable" : "funcion" });
                 Test.Agregar({  Padre : window, "Variable" : "numerolargolargo", "Min" : 0, "Max" : 10000.33  });
                 Test.Agregar({  Padre : window, "Variable" : "texto" });
+                // Creo una nueva lista de valores que se puede expandir y contraer
                 var l = Test.AgregarLista("Nueva lista");
                 l.Agregar({    Padre : window, "Variable" : "texto" });
                 l.Agregar({    Padre : window, "Variable" : "funcion" });                
+                // Creo una nueva sub-lista de valores que se puede expandir y contraer
                 var l2 = l.AgregarLista("Nueva sublista");
                 l2.Agregar({   Padre  : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
                 l2.Agregar({   Padre  : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
                 l2.Agregar({   Padre  : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
                 l2.Agregar({   Padre  : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
+                // Creo una nueva sub-lista de valores que se puede expandir y contraer
                 var l3 = l.AgregarLista("Nueva sublista");
                 l3.Agregar({   Padre  : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
                 l3.Agregar({   Padre  : window, "Variable" : "numero", "Min" : -20.0, "Max" : 10.0 });
