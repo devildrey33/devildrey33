@@ -1,24 +1,26 @@
+/* Three.js CyberParasit creado por Josep Antoni Bover Comas el 08/08/2017 para devildrey33.es
+        Ultima modificación el 30/08/2017  */
+"use strict";
+
 // Constructor
 var CyberParasit = function() {
     // Llamo al constructor del ObjetoBanner
     if (ObjetoCanvas.call(this, { 
-        'Tipo'              : 'THREE',
-        'Ancho'             : 'Auto',
-        'Alto'              : 'Auto',
-        'Entorno'           : 'Normal',
-        'MostrarFPS'        : true,
-        'BotonLogo'         : true,
-        'BotonExtraHTML'    : '<div class="ObjetoCanvas_Marco" id="Metronomo" title="Beats transcurridos"><div>0</div></div>',
-        'ElementoRaiz'      : document.body,
-        'Pausar'            : false,             // Pausa el canvas si la pestaña no tiene el foco del teclado
-        'ColorFondo'        : 0xCCCCCC
+        Tipo              : 'THREE',
+        Ancho             : 'Auto',
+        Alto              : 'Auto',
+        Entorno           : 'Normal',
+        MostrarFPS        : !ObjetoNavegador.EsMovil(),
+        BotonLogo         : true,
+        BotonExtraHTML    : '<div class="ObjetoCanvas_Marco" id="BeatActual" title="Beats transcurridos"><div>0</div></div>',
+        ElementoRaiz      : document.body,
+        Pausar            : false,             // Pausa el canvas si la pestaña no tiene el foco del teclado
+        ColorFondo        : 0x999999,
+        ForzarLandscape   : true
     }) === false) { return false; }
     
     // Se ha creado el canvas, inicio los valores de la animación ... 
     this.Iniciar();
-    
-    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
-//    this.Cargando(false);
 };
 
 CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
@@ -58,18 +60,12 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
     TouchStart      : function(Evento) { },
     // Función que se llama al soltar el dedo de la pantalla
     TouchEnd        : function(Evento) { },    
-    // Función que se llama al pausar el banner
-/*    Pausa           : function() { 
-        this.Animaciones.OA.Pausa();
-        this.Audio.PlayPausa();
-    },
-    // Función que se llama al reanudar el banner
-    Reanudar        : function() { 
-        this.Animaciones.OA.Reanudar();
-        this.Audio.PlayPausa();
-    },*/
     // Variable que indica si se ha terminado la canción
     Terminado       : false,
+    // Muestra / oculta el marco que cuenta los beats
+    MostrarBeats    : false,
+    // Utilizar desde CyberParasit_Animacion
+    Debug_IniciarDesdeBeat : 0, 
     
     Parasito_Colores : [
         new THREE.Color('rgb(  0,   0, 128)'), // 0 - Pluma para los bordes de los circulos
@@ -77,32 +73,58 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         new THREE.Color('rgb(119, 136, 153)'), // 2 - Fondo medios (circulo del mig)
         new THREE.Color('rgb(176, 196, 222)'), // 3 - Fondo agudos (circulo interior)
         new THREE.Color('rgb(254, 255, 255)'), // 4 - Onda circular
-        new THREE.Color('rgb( 65, 105, 255)'), // 5 - Color cubo
-        new THREE.Color('rgb(  0, 255,   0)'), // 6 - Verde para cambiar el color del circulo de los agudos
-        new THREE.Color('rgb(255,   0,   0)'), // 7 - Rojo para cambiar el color del circulo de los agudos
-        
-        
+        new THREE.Color('rgb( 65, 105, 255)'), // 5 - Color cubo        
     ],
     
+    Parasito_PresetAzul : [
+        new THREE.Color('rgb(  0,   0, 128)'), // 0 - Pluma para los bordes de los circulos
+        new THREE.Color('rgb(  0,   0, 128)'), // 1 - Fondo graves (circulo exterior)
+        new THREE.Color('rgb(119, 136, 153)'), // 2 - Fondo medios (circulo del mig)
+        new THREE.Color('rgb(176, 196, 222)'), // 3 - Fondo agudos (circulo interior)
+        new THREE.Color('rgb(254, 255, 255)'), // 4 - Onda circular
+        new THREE.Color('rgb( 65, 105, 255)'), // 5 - Color cubo        
+    ],
     
-    Debug_IniciarDesdeBeat : 0, 
+    Parasito_PresetVerde : [
+        new THREE.Color('rgb(  0,  64,   0)'), // 0 - Pluma para los bordes de los circulos
+        new THREE.Color('rgb(  0, 128,   0)'), // 1 - Fondo graves (circulo exterior)
+        new THREE.Color('rgb(229, 231, 233)'), // 2 - Fondo medios (circulo del mig)
+//        new THREE.Color('rgb(  0, 255,   0)'), // 3 - Fondo agudos (circulo interior)
+        new THREE.Color('rgb(125, 206, 160)'), // 3 - Fondo agudos (circulo interior)
+        new THREE.Color('rgb(254, 255, 255)'), // 4 - Onda circular
+        new THREE.Color('rgb( 40, 180,  99)'), // 5 - Color cubo        
+    ],
+    
+    Parasito_PresetRojo : [
+        new THREE.Color('rgb( 64,   0,   0)'), // 0 - Pluma para los bordes de los circulos
+        new THREE.Color('rgb(148,  49,  38)'), // 1 - Fondo graves (circulo exterior)
+        new THREE.Color('rgb(223, 221, 219)'), // 2 - Fondo medios (circulo del mig)
+        new THREE.Color('rgb(255,   0,   0)'), // 3 - Fondo agudos (circulo interior)
+        new THREE.Color('rgb(254, 255, 255)'), // 4 - Onda circular
+        new THREE.Color('rgb(203,  67,  53)'), // 5 - Color cubo        
+    ],
     // Función que inicia el ejemplo
     Iniciar         : function() {
+        // Oculto el marco de los beats 
+        if (this.MostrarBeats === false || ObjetoNavegador.EsMovil() === true) {
+            document.getElementById("BeatActual").style.display = "none";
+        }
+                
         // Activo el mapeado de sombras
         this.Context.shadowMap.enabled	= true;        
         
         // Creo la escena y la cámara
-        this.Escena = new THREE.Scene();
-        
-        window.scene = this.Escena;
-        
+        this.Escena = new THREE.Scene();        
+        window.scene = this.Escena;         // Three.js inspector
         this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.5, 2000);
         this.Camara.position.set(0, 10, 30);
         this.Camara.name = "Camara";
         this.Escena.add(this.Camara);
-        this.Camara.lookAt(new THREE.Vector3(0, 2, 0));
-
-//        this.Escena.fog = new THREE.Fog(0xaaaaaa, 0, 350);
+        this.Camara.lookAt(new THREE.Vector3(0, 0, 0));
+        // Creo niebla si no es un dispositivo movil o el firefox
+        if (ObjetoNavegador.EsMovil() === false) {
+            this.Escena.fog = new THREE.Fog(0xaaaaaa, 0, 350);
+        }
 
 
         // Inicio el API del audio y cargo la canción
@@ -110,22 +132,15 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         this.Audio.Iniciar(this);        
         this.Audio.CargarCancion();
 
-        this.CrearEscenario();        
-        
-        this.CrearLuces();
-        
+        // Creacion de los objetos de la escena
+        this.CrearEscenario();                
+        this.CrearLuces();        
         this.CrearParasitos();
-        
-
-//        this.CrearPantallas();
-        
-        // Inicio los datos del test
+                
         // Datos relacionados con los Beats Per Minute
         this.BPM = 93.02;
-        //console.log(60000 / this.BPM);
         this.BeatMS = 60000 / this.BPM;
         this.Beats = 0;
-//        this.BeatsMax = 306;
         this.UltimoBeat = 0;
         
         // Instancia para el objeto encargado de las animaciones de tiempo http://devildrey33.es/Ejemplos/Utils/ObjetoAnimacion.js
@@ -138,9 +153,9 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
             this.Test.Iniciar(this);
         }
         // Si no estoy depurando a partir del Beat X, asigno los valores iniciales del cubo para la animación inicial.
-        if (this.Debug_IniciarDesdeBeat === 0) {
+/*        if (this.Debug_IniciarDesdeBeat === 0) {
             this.Animaciones.Ani_Inicial.AsignarValoresIniciales();
-        }
+        }*/
     },
     
     
@@ -177,10 +192,17 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         this.Cubo_Material = new THREE.MultiMaterial(Cubo_Materiales);
         // Creo 13 cubos
         for (var i = 0; i < 13; i++) {
-            this.Parasito[i] = new THREE.Mesh(  Cubo_Geometria, this.Cubo_Material );
-            this.Parasito[i].castShadow = true;
-            this.Parasito[i].receiveShadow = true;                                            
+            this.Parasito[i] = new THREE.Group();
+            var Cubo = new THREE.Mesh(  Cubo_Geometria, this.Cubo_Material );
+            Cubo.castShadow = true;
+            Cubo.receiveShadow = true;                                            
+            this.Parasito[i].add(Cubo);
+            if (ObjetoNavegador.EsMovil() === false) {
+                var CuboWire = new THREE.Mesh(  Cubo_Geometria, new THREE.MeshStandardMaterial({ color : 0x555555, metalness: 0.1, roughness: 0.4, transparent : true, opacity : 0.5, wireframe:true }) );
+                this.Parasito[i].add(CuboWire);
+            }
             this.Parasitos.add(this.Parasito[i]);
+            
             if (i > 0) { this.Parasito[i].scale.set(0.01); }
         }
         
@@ -192,58 +214,91 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         this.Escenario.name = "Escenario";
         this.Escena.add(this.Escenario);
         
-        var Color = 0x555555;
+        var Color = 0x002200;
         
         // Palno para el suelo
-        this.Suelo = new THREE.Mesh(    new THREE.PlaneGeometry(700, 700), 
+        this.Suelo = new THREE.Mesh(    new THREE.PlaneGeometry(260, 260), 
                                         new THREE.MeshPhongMaterial({ color: Color, specular : 0xcccccc }));
         this.Suelo.name = "Suelo";
         this.Suelo.rotation.x = -Math.PI / 2;
-        this.Suelo.position.y = -25;
+        this.Suelo.position.y = -44;
 //        this.Suelo.position.z = -110;
         this.Suelo.castShadow = false;
         this.Suelo.receiveShadow = true;
         this.Escenario.add(this.Suelo);
-        
+      
+        var loader = new THREE.JSONLoader();        
+        loader.load(
+            // resource URL
+            '/Ejemplos/CyberParasit/CyberParasit_ModeloPlacaMadre.json',
+            // Function when resource is loaded
+            function ( Geometria ) {
+                this.CrearPlacaMadre(Geometria);
+            }.bind(this)
+        );        
     },
     
+    CrearPlacaMadre : function(Geometria) {
+        this.Cargando(false);
+        if (ObjetoNavegador.EsMovil() === false) {
+            this.PlacaMadre2 = new THREE.Mesh( Geometria, new THREE.MeshPhongMaterial({ color: 0x333333, specular : 0xbbbbbb, wireframe : true }) );
+            this.PlacaMadre2.scale.set(100, 100, 100);
+            this.PlacaMadre2.position.y = -45;
+            this.PlacaMadre2.position.z = -40;
+            this.Escenario.add(this.PlacaMadre2);
+        }
+                
+        this.PlacaMadre = new THREE.Mesh( Geometria, new THREE.MeshStandardMaterial({ color: 0x888888, metalness: 0.4, roughness: 0.4 }));
+        this.PlacaMadre.scale.set(100, 100, 100);
+        this.PlacaMadre.position.y = -44.95;
+        this.PlacaMadre.position.z = -40;
+        this.PlacaMadre.castShadow = false;
+        this.PlacaMadre.receiveShadow = true;
+        this.Escenario.add(this.PlacaMadre);
+    },
 
     
     CrearLuces      : function() {        
-        this.PointLight = new THREE.PointLight( 0xaaaaaa, 0.6, 200 );
+        this.PointLight = new THREE.PointLight( 0xaaaaaa, 0.6, 300 );
         this.PointLight.position.set(20, 55.5, 20); // No es pot tocar la altura (o s'ha de modificar de la animació beeeng)
         this.PointLight.castShadow = true;
         this.PointLight.name = "PointLight";
-        this.PointLight.shadow.mapSize.width = 2048;
-        this.PointLight.shadow.mapSize.height = 2048;
+        this.PointLight.shadow.mapSize.width = 512;
+        this.PointLight.shadow.mapSize.height = 512;
         this.Escena.add(this.PointLight);
-//        this.Escena.add(new THREE.PointLightHelper(this.PointLight, 1));
+        this.Escena.add(new THREE.PointLightHelper(this.PointLight, 1));
 
-        this.PointLight2 = new THREE.PointLight( 0xaaaaaa, 0.1, 200 );
-        this.PointLight2.position.set(5, 0, 50);
+/*        this.PointLight2 = new THREE.PointLight( this.Parasito_Colores[3], 0.2, 200 );
+        this.PointLight2.position.set(5, 1, 20);
         this.PointLight2.castShadow = true;
         this.PointLight2.name = "PointLight2";
+        this.PointLight2.shadow.mapSize.width = 512;
+        this.PointLight2.shadow.mapSize.height = 512;
         this.Escena.add(this.PointLight2);
+        this.Escena.add(new THREE.PointLightHelper(this.PointLight, 1));*/
+        if (ObjetoNavegador.EsMovil() === false) {
+            this.PointLight3 = new THREE.PointLight( this.Parasito_Colores[3], 0.4, 100 );
+            this.PointLight3.position.set(-90, 5, -95);
+            this.PointLight3.castShadow = true;
+            this.PointLight3.name = "PointLight3";
+            this.PointLight3.shadow.mapSize.width = 512;
+            this.PointLight3.shadow.mapSize.height = 512;
+            this.Escena.add(this.PointLight3);
+        }
+//         this.Escena.add(new THREE.PointLightHelper(this.PointLight3, 1));/*
         
-        this.PointLight3 = new THREE.PointLight( 0xaaaaaa, 0.4, 100 );
-        this.PointLight3.position.set(0, 10, 0);
-        this.PointLight3.castShadow = true;
-        this.Escena.add(this.PointLight3);
-/*
-        this.PointLight4 = new THREE.PointLight( 0xaaaaaa, 0.3, 100 );
-        this.PointLight4.position.set(0, -5.5, -5);
+        this.PointLight4 = new THREE.PointLight( this.Parasito_Colores[3], 0.3, 300 );
+        this.PointLight4.position.set(90, 15, -175);
         this.PointLight4.castShadow = true;
-        this.Escena.add(this.PointLight3);
-
-        this.PointLight5 = new THREE.PointLight( 0xaaaaaa, 0.3, 100 );
-        this.PointLight5.position.set(-2, 1, 2);
-        this.PointLight5.castShadow = true;
-        this.Escena.add(this.PointLight5);*/
-        
+        this.PointLight4.name = "PointLight4";
+        this.PointLight4.shadow.mapSize.width = 512;
+        this.PointLight4.shadow.mapSize.height = 512;
+        this.Escena.add(this.PointLight4);
+//         this.Escena.add(new THREE.PointLightHelper(this.PointLight4, 1));*/
         //        this.Escena.add(new THREE.PointLightHelper(this.PointLight3, 1));
 
         // HemisphereLight  
-        this.HemiLight = new THREE.HemisphereLight( 0xeeeeee, 0xffffff, 0.7 );
+        this.HemiLight = new THREE.HemisphereLight( 0xeeeeee, 0xffffff, 1 );
         this.HemiLight.color.setHSL( 0.6, 0.6, 0.6 );
         this.HemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
         this.HemiLight.position.set( 0, 0, 0 );
@@ -265,15 +320,21 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
     
     Audio_EventoTerminado : function() {
         this.Terminado = true;
-        document.getElementById("Repetir").setAttribute("visible", true);
+        document.getElementById("Repetir").setAttribute("visible", true);        
+        document.getElementById("Creditos").setAttribute("visible", true);
+
+        this.RestaurarPantalla();
     },
     
     IniciarShow : function() {
+        this.PantallaCompleta();
+        
         this.Animaciones.Iniciar(this);
         // Si estoy depurando en un beat especifico, asigno a 0 la rotación de los parasitos
         if (this.Debug_IniciarDesdeBeat > 0) {
             this.Parasito[0].rotation.set(0, 0, 0);
         }
+        
         this.TickInicio = this.Tick - (this.Debug_IniciarDesdeBeat * Math.floor(this.BeatMS));
         this.Beats = this.Debug_IniciarDesdeBeat;
         this.Audio.Cancion.currentTime = (this.Debug_IniciarDesdeBeat * this.BeatMS)  / 1000;
@@ -286,6 +347,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         this.Terminado = false;
         document.getElementById("Empezar").setAttribute("visible", false);
         document.getElementById("Repetir").setAttribute("visible", false);
+        document.getElementById("Creditos").setAttribute("visible", false);
         
         this.Animaciones.Pasos_Actual = 0;
         for (var i = 0; i < this.Animaciones.Pasos_Animacion.length; i++) {
@@ -361,9 +423,10 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         
         
     MostrarBPM : function() {        
-        if (!this.TickInicio || this.Terminado === true) return;
+        if (!this.TickInicio || this.Terminado === true) { return; }
         this.Beats = Math.floor((this.Audio.Cancion.currentTime * 1000) / this.BeatMS);
-        document.querySelector("#Metronomo > div").innerHTML = this.Beats;
+        if (this.MostrarBeats === false) { return; }
+        document.querySelector("#BeatActual > div").innerHTML = this.Beats;
     },
     
     // Función que pinta cada frame de la animación

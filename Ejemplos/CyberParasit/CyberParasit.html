@@ -1,10 +1,10 @@
 <!-- 
-    Plantilla para test de canvas creado por Josep Antoni Bover Comas el 05/07/2016
+    Three.js CyberParasit creado por Josep Antoni Bover Comas el 08/08/2017
 
         Vista por defecto en el Laboratorio de pruebas  
 		devildrey33_Lab->Opciones->Vista = Preview;
 
-        Ultima modificación el 05/02/2017
+        Ultima modificación el 27/08/2017
 -->
 <!DOCTYPE html>
 <html>
@@ -29,7 +29,6 @@
         <!-- Three.JS -->
 <!--        <script src="/Web/JS/3rdParty/three-0.84.min.js"></script> -->
         <script src="/Web/JS/3rdParty/three-0.84.js"></script>
-        <script src="/Web/JS/3rdParty/OrbitControls.js"></script>
 
         <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
         <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
@@ -37,12 +36,15 @@
         <!-- Objeto para crear animaciones de tiempo -->
         <script src="/Ejemplos/Utils/ObjetoAnimacion.js"></script>
         
-        <!-- Objeto para crear tests rápidos -->
-        <script src="/Ejemplos/Utils/ObjetoTest.js"></script>
         
+        <!-- Objeto que controla el sonido -->
         <script src="/Ejemplos/CyberParasit/CyberParasit_Audio.js"></script>
+        <!-- Objeto que controla las animaciones -->
         <script src="/Ejemplos/CyberParasit/CyberParasit_Animaciones.js"></script>
-        <script src="/Ejemplos/CyberParasit/CyberParasit_Test.js"></script>
+        <!-- Tests de las animaciones (descomentar para mostrar los menús -->
+<!--    <script src="/Ejemplos/Utils/ObjetoTest.js"></script>
+        <script src="/Ejemplos/CyberParasit/CyberParasit_Test.js"></script> --
+        <!-- Objeto CyberParasit principal -->
         <script src="/Ejemplos/CyberParasit/CyberParasit.js"></script>
         
         <!-- Código javascript --> 
@@ -50,7 +52,37 @@
         </script>
     </head>
     <body>
-        <div id="Empezar" class='MarcoCanvas' onclick="CP.IniciarShow();">Empezar</div>
-        <div id="Repetir" class='MarcoCanvas' onclick="CP.IniciarShow();">Repetir</div>
+        <div id='ObjetoCanvas'>
+            <!-- Botones para iniciar y repetir el show -->
+            <div id="Empezar" class='MarcoCanvas' onclick="CP.IniciarShow();">Empezar</div>
+            <div id="Repetir" class='MarcoCanvas' onclick="CP.IniciarShow();">Repetir</div>
+            <div id="Creditos" class='MarcoCanvas' visible='true'>
+                <!--<table>
+                    <tr>
+                        <td>Programación</td>
+                        <td>:</td>
+                        <td><a href ='https://devildrey33.es' target='_blank'>Josep Antoni Bover Comas</a></td>
+                    </tr>                
+                    <tr>
+                        <td>Canción</td>
+                        <td>:</td>
+                        <td><a href ='https://www.jamendo.com/track/1349290/actionman-versus-the-cyberparasites' target='_blank'>ActionMan Versus The CyberParasites</a></td>
+                    </tr>                
+                    <tr>
+                        <td>Malla placa madre</td>
+                        <td>:</td>
+                        <td><a href ='https://www.turbosquid.com/Search/Artists/nobicasa' target='_blank'>Nobicasa</a></td>
+                    </tr>                
+                </table> -->            
+                <span>Programación / Animación : </span>
+                <div><a href='https://devildrey33.es' target='_blank'>Josep Antoni Bover Comas</a></div><br />
+                <span>Artista y canción :</span>
+                <div><a href='https://www.jamendo.com/artist/480345/levenrain' target='_blank'>LevenRain</a></div>
+                <div><a href='https://www.jamendo.com/track/1349290/actionman-versus-the-cyberparasites' target='_blank'>ActionMan Versus The CyberParasites</a></div><br />
+                <span>Malla de la placa madre : </span>
+                <div><a href='https://www.turbosquid.com/Search/Artists/nobicasa' target='_blank'>Nobicasa</a></div>
+
+            </div>
+        </div>
     </body>
 </html>        

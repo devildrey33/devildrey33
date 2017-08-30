@@ -1,5 +1,5 @@
 /* Objeto para crear animaciones de tiempo creado por Josep Antoni Bover Creado el 25/08/2016
- *  Ultima modificación el 26/08/2017
+ *  Ultima modificación el 27/08/2017
  * */
 
 
@@ -25,7 +25,7 @@
  // - Solucionado bug al utilizar mas de una vez la funcion ObjetoAnimacion_Animacion.Iniciar() que des-ajustaba los tiempos (no se reiniciaba this._Avance a 0...)
  // - Creado el objeto ObjetoAnimacion_Rand para usarse con los valores de los pasos, de esta forma cada vez que llames a ObjetoAnimacion_Animacion.Iniciar() utilizará la función rand
  //   con los valores min/max especificados inicialmente. (1 preset de animación con valores aleatórios :O)
-     
+"use strict";     
     
 var FuncionesTiempo = {
     Linear          : function(Tiempo) { return Tiempo;                                   },
@@ -106,7 +106,7 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
     this._Padre              = Padre;                           // ObjetoAnimacion padre
     this._UltimoTick         = 0;                               // Ultimo date.now que se ha obtenido con la función Actualizar
     this._PasosIniciales     = ArrayPasos;                      // Array con los parámetros    
-    this._Pasos              = [];                              // Array con los parámetros    
+    this.Pasos               = [];                              // Array con los parámetros    
     this._PosPasos           = 1;                               // Posición dentro del array de datos
     this._Avance             = 0;                               // Avance puede ser de 0 a 1
     this._Invertido          = nTransicion;                     // Invertir animación (para las transiciones empieza en true)
@@ -121,10 +121,10 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
         if (typeof Opciones.Const !== "undefined")             { this.Const = Opciones.Const;                                   }
     }
     // Completo los datos de cada paso
-/*    for (var Paso in this._Pasos) {
-        if (typeof this._Pasos[Paso].Tiempo === "undefined")         { this._Pasos[Paso].Tiempo = 1; }
-        if (typeof this._Pasos[Paso].Retraso === "undefined")        { this._Pasos[Paso].Retraso = 0; }
-        if (typeof this._Pasos[Paso].FuncionTiempo === "undefined")  { this._Pasos[Paso].FuncionTiempo = FuncionesTiempo.Linear; }
+/*    for (var Paso in this.Pasos) {
+        if (typeof this.Pasos[Paso].Tiempo === "undefined")         { this.Pasos[Paso].Tiempo = 1; }
+        if (typeof this.Pasos[Paso].Retraso === "undefined")        { this.Pasos[Paso].Retraso = 0; }
+        if (typeof this.Pasos[Paso].FuncionTiempo === "undefined")  { this.Pasos[Paso].FuncionTiempo = FuncionesTiempo.Linear; }
     }*/
 
     // Miro si hay valores aleatorios los inicio 
@@ -147,11 +147,11 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
         else                                                              { nPaso.Tiempo = 1; }
         if (typeof this._PasosIniciales[i].FuncionTiempo !== "undefined") { nPaso.FuncionTiempo = this._PasosIniciales[i].FuncionTiempo; }
         else                                                              { nPaso.FuncionTiempo = FuncionesTiempo.Linear; }
-        this._Pasos.push( nPaso );
+        this.Pasos.push( nPaso );
     }
     
-    this._PasoOrig           = this._Pasos[this._PosPasos - 1]; // Array de pasos inicial
-    this._PasoDest           = this._Pasos[this._PosPasos];     // Siguiente array de pasos
+    this._PasoOrig           = this.Pasos[this._PosPasos - 1]; // Array de pasos inicial
+    this._PasoDest           = this.Pasos[this._PosPasos];     // Siguiente array de pasos
     this._Retraso            = this._PasoDest.Retraso;
     
     
@@ -175,11 +175,11 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
         if (AniCreada === false) { // No se está animando
             this._Padre.Animaciones.push(this);
             
-//            this._Pasos = this._PasosIniciales;
+//            this.Pasos = this._PasosIniciales;
             
             this._PosPasos = 1;
-            this._PasoOrig           = this._Pasos[this._PosPasos - 1]; 
-            this._PasoDest           = this._Pasos[this._PosPasos];
+            this._PasoOrig           = this.Pasos[this._PosPasos - 1]; 
+            this._PasoDest           = this.Pasos[this._PosPasos];
             this._Retraso            = this._PasoDest.Retraso;
             this._UltimoTick         = 0;
             this._Avance             = 0;
@@ -189,7 +189,7 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
             for (var i = 0; i < this._PasosIniciales.length; i++) {
                 for (var Valor in this._PasosIniciales[i].Paso) {
                     if (this._PasosIniciales[i].Paso[Valor] instanceof ObjetoAnimacion_Rand) { 
-                        this._Pasos[i].Paso[Valor] = this._PasosIniciales[i].Paso[Valor].Iniciar();
+                        this.Pasos[i].Paso[Valor] = this._PasosIniciales[i].Paso[Valor].Iniciar();
                     }
                 }
             }
@@ -222,15 +222,15 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
             if (this._Invertido === false) {
                 // Si está en el paso final, asigno el paso actual al primer paso
                 this._PosPasos = 1;
-                this._PasoOrig           = this._Pasos[this._PosPasos - 1]; 
-                this._PasoDest           = this._Pasos[this._PosPasos];
+                this._PasoOrig           = this.Pasos[this._PosPasos - 1]; 
+                this._PasoDest           = this.Pasos[this._PosPasos];
                 this._Retraso            = this._PasoDest.Retraso;
             }
             else {
                 // Si está en el paso inicial, asigno el paso actual al ultimo paso
-                this._PosPasos = this._Pasos.length - 1;
-                this._PasoOrig           = this._Pasos[this._PosPasos]; 
-                this._PasoDest           = this._Pasos[this._PosPasos - 1];
+                this._PosPasos = this.Pasos.length - 1;
+                this._PasoOrig           = this.Pasos[this._PosPasos]; 
+                this._PasoDest           = this.Pasos[this._PosPasos - 1];
                 this._Retraso            = this._PasoOrig.Retraso;
             }
             this._Avance = 0;
@@ -264,21 +264,20 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
     // Función que termina la animación y deja los valores en su estado final
     this.Terminar = function() {
         // Busco las variables que sean una instancia de ObjetoAnimacion_Rand y pongo el valor máximo para tener algun valor de referencia en las futuras funciones Iniciado y Terminado
-            for (var i = 0; i < this._Pasos.length; i++) {
-                this._Pasos.forEach(function(Valor, Indice, Array) {
+        for (var i = 0; i < this.Pasos.length; i++) {
+            this.Pasos.forEach(function(Valor, Indice, Array) {
                 if (Valor instanceof ObjetoAnimacion_Rand) { 
-                    this._Pasos[Indice] = Valor.Max;
+                    this.Pasos[Indice] = Valor.Max;
                 }
             });
-        }
-        
+        }        
         
         this._Opciones.FuncionIniciado();
+        for (var Indice in this.Pasos[this.Pasos.length - 1].Paso) {                    
+            this[Indice] = this.Pasos[this.Pasos.length - 1].Paso[Indice];
+        }                        
         this._Opciones.FuncionTerminado();
         this._Terminado = true;            
-        for (var Indice in this._Pasos[this._Pasos.length - 1].Paso) {                    
-            this[Indice] = this._Pasos[this._Pasos.length - 1].Paso[Indice];
-        }                        
         this._Opciones.FuncionActualizar(this);
     };
 
@@ -322,33 +321,36 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
                 this._Opciones.FuncionActualizar(this);
                 // Avanzo al siguiente paso
                 this._PosPasos ++;
-                if (this._PosPasos < this._Pasos.length) {
-                    this._PasoOrig = this._Pasos[this._PosPasos - 1];
-                    this._PasoDest = this._Pasos[this._PosPasos];
+                if (this._PosPasos < this.Pasos.length) {
+                    this._PasoOrig = this.Pasos[this._PosPasos - 1];
+                    this._PasoDest = this.Pasos[this._PosPasos];
                     this._Retraso = this._PasoDest.Retraso;                    
                     this._Avance = 0;
                 }
                 // No hay mas pasos
                 else {
                     if (this._Opciones.Invertir === false) {
+                        // no hay mas repeticiones
                         if (this._Opciones.Repetir <= 0) {
                             this._Opciones.FuncionTerminado();
                             this._Terminado = true;
 //                            console.log("--------------");
                         }
+                        // siguiente repetición
                         else {
                             this._Opciones.Repetir --;
                             this._PosPasos = 1;
-                            this._PasoOrig = this._Pasos[this._PosPasos - 1]; 
-                            this._PasoDest = this._Pasos[this._PosPasos];                                
+                            this._PasoOrig = this.Pasos[this._PosPasos - 1]; 
+                            this._PasoDest = this.Pasos[this._PosPasos];                                
                             this._Retraso = this._PasoDest.Retraso;                    
                             this._Avance = 0;
                         }
                     }
+                    // invierto la animación
                     else {
-                        this._PosPasos = this._Pasos.length - 1;
-                        this._PasoOrig = this._Pasos[this._PosPasos]; 
-                        this._PasoDest = this._Pasos[this._PosPasos - 1];                                
+                        this._PosPasos = this.Pasos.length - 1;
+                        this._PasoOrig = this.Pasos[this._PosPasos]; 
+                        this._PasoDest = this.Pasos[this._PosPasos - 1];                                
                         this._Retraso = this._PasoOrig.Retraso;                    
                         this._Avance = 0;
                         this._Invertido = true;
@@ -390,8 +392,8 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
                 // Avanzo al siguiente paso
                 this._PosPasos --;
                 if (this._PosPasos > 0) {
-                    this._PasoOrig = this._Pasos[this._PosPasos];
-                    this._PasoDest = this._Pasos[this._PosPasos - 1];
+                    this._PasoOrig = this.Pasos[this._PosPasos];
+                    this._PasoDest = this.Pasos[this._PosPasos - 1];
                     this._Retraso = this._PasoOrig.Retraso;                    
                     this._Avance = 0;
                 }
@@ -408,8 +410,8 @@ var ObjetoAnimacion_Animacion = function(ArrayPasos, Opciones, Padre, nTransicio
                     else {
                         this._Opciones.Repetir --;
                         this._PosPasos = 1;
-                        this._PasoOrig = this._Pasos[this._PosPasos - 1]; 
-                        this._PasoDest = this._Pasos[this._PosPasos];                                
+                        this._PasoOrig = this.Pasos[this._PosPasos - 1]; 
+                        this._PasoDest = this.Pasos[this._PosPasos];                                
                         this._Avance = 0;
                         this._Retraso = this._PasoOrig.Retraso;                                            
                     }

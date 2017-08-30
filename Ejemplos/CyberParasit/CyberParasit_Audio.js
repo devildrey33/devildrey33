@@ -1,10 +1,7 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/* Three.js CyberParasit creado por Josep Antoni Bover Comas el 08/08/2017 para devildrey33.es
+        Ultima modificación el 27/08/2017  */
 
-
+"use strict";
 
 var CyberParasit_Audio = function() {
     this.DatosAnalizador    = [];
@@ -16,16 +13,11 @@ var CyberParasit_Audio = function() {
         this.AudioContext = new Compatibilidad();        
         this.Analizador = this.AudioContext.createAnalyser();
         this.Analizador.fftSize = 1024;
-//        if (Padre.EsMovil === true) { this.Analizador.fftSize = 512;   } // Para movil la verión de 256 columnas
-//        else                        { this.Analizador.fftSize = 2048;  } // Para PC la versión de 1024 columnas
         this.Analizador.smoothingTimeConstant = 0.8; // 
-        this.Padre = Padre;
-        
+        this.Padre = Padre;        
         this.TamDatos = this.Analizador.fftSize / 2;
         this.DatosAnalizador = new Uint8Array(this.TamDatos);
-        this.DatosAnalizadorSin = new Uint8Array(this.TamDatos);        
-        
-        
+        this.DatosAnalizadorSin = new Uint8Array(this.TamDatos);                        
         this.CargarCancion();        
     };
     
@@ -55,7 +47,7 @@ var CyberParasit_Audio = function() {
         }        
     };
     
-    // devuelve true si se ha hecho play, false si se ha hecho pausa
+    // Devuelve true si se ha hecho play, false si se ha hecho pausa
     this.PlayPausa = function() {
        if (this.Cancion.duration > 0 && !this.Cancion.paused) {
            this.Cancion.pause(); 
@@ -67,15 +59,14 @@ var CyberParasit_Audio = function() {
        } 
     };
     
-
     this.MediaFrequenciasAudio = function() {
         // Obtengo los bufers con la frequencia y la onda
         this.Analizador.getByteFrequencyData(this.DatosAnalizador);
         this.Analizador.getByteTimeDomainData(this.DatosAnalizadorSin);        
         
-        // greus  de 0hz a 256hz
-        // mitjos de 257hz a 2000hz
-        // aguts  de 2001hz a 16000hz
+        // Graves  de 0hz    a 256hz
+        // Medios  de 257hz  a 2000hz
+        // Agudos  de 2001hz a 16000hz
         var HzPorBarra = this.AudioContext.sampleRate / this.Analizador.fftSize;
         var Divisiones = [ 256, 2000, 16000, 50000 ];
         var Total      = [ 0, 0, 0, 0, 0 ];// Graves, Medios, Agudos, Agudos inaudibles, Media de todo
@@ -88,8 +79,6 @@ var CyberParasit_Audio = function() {
             }
             Total[Pos] ++;
             Valores[Pos] += this.DatosAnalizador[i];
-            
-//            Valores[4] += this.DatosAnalizador[i];
         }
         
         return [ Valores[0] / Total[0], Valores[1] / Total[1], Valores[2] / Total[2], Valores[3] / Total[3], (Valores[0] + Valores[1] + Valores[2] + Valores[3]) / TotalFreq ];

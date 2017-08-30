@@ -1,32 +1,59 @@
 /* Fusión del ObjetoCanvas (originalmente destinado a tests de banners) con el ObjetoBanner 
     Creado el 14/10/2016 por Josep Antoni Bover Comas para devildrey33.es 
-    Ultima modificación :  05/11/2016 
+    Ultima modificación :  27/08/2017 
  */
 
-/*  Opciones['Tipo']            puede ser : 
-                                    - 2d       , Canvas con funciones 2D.                       (POR DEFECTO)
-                                    - THREE    , Canvas utilizando la API del Three.js
-    Opciones['Ancho']           por defecto el ancho se adapta al contenedor, establece un ancho en pixeles para que sea fijo.
-    Opciones['Alto']            por defecto la altura se adapta al contenedor, establece una altura en pixeles para que sea fija.
-    Opciones['Entorno']         puede ser :
-                                    - Normal   , Canvas para crear tests rapidos.               (POR DEFECTO)
-                                    - Banner   , Canvas diseñado para el Banner de devildrey33.
-    Opciones['MostrarFPS']      puede ser : true o false.                                       (TRUE POR DEFECTO)
-    Opciones['ElementoRaiz']    elemento del HTML donde se creará el canvas                     (POR DEFECTO es 'document.body')
-    Opciones['ColorFondo']      color del fondo en HEX (SOLO para THREE.js)                     (POR DEFECTO es '0x312E35' gris oscuro) 
- */
+/* NOTA Importante, inicialmente este objeto se creo con la finalidad de probar banners para mi web, pero con el tiempo lo he estado enriqueciendo y adaptando para poder crear
+ * presentaciones 2D o 3D, y ahora este objeto conserva el modo banner de mi web por compatibilidad y tambien por la pereza de tener que mantener 2 objetos distintos que en esencia hacen lo mismo. 
+ * La estructura HTML puede que sea excesiva, para una demostración 2d/3d pero ofrece ciertas ventajas, de las que en teoría ya no me tengo que preocupar, por ejemplo :
+ *  Muestra los frames por segundo si no se desactiva en las opciones 
+ *  Muestra si se está cargando algun archivo externo (texturas/modelos/audio/video/etc..) basta con utilizar ObjetoCanvas.Cargando(BOOL) 
+ *  Permite pausar el canvas si este se encuentra en segundo plano, y nos muestra un mensaje si está pausado.
+ *  (SOLO EN Entorno:'Normal') Muestra un boton iniciar animación, que además pone el canvas a pantalla completa. */
+ 
+/* NOTA [27/08/2017] : Solucionado bug con el boton de pantalla completa, que no funcionaba correctamente en dispositivos moviles */
 
-ObjetoCanvas = function(Opciones) {
-    // Opciones por defecto
+/*  Opciones['Tipo']                    puede ser : 
+                                           - 2d       , Canvas con funciones 2D.                       (POR DEFECTO)
+                                          - THREE    , Canvas utilizando la API del Three.js
+    Opciones['Ancho']                   por defecto el ancho se adapta al contenedor, establece un ancho en pixeles para que sea fijo.
+    Opciones['Alto']                    por defecto la altura se adapta al contenedor, establece una altura en pixeles para que sea fija.
+    Opciones['Entorno']                 puede ser :
+                                            - Normal   , Canvas para crear tests rapidos.               (POR DEFECTO)
+                                            - Banner   , Canvas diseñado para el Banner de devildrey33.
+    Opciones['Idioma']                  puede ser : 'es'pañol o 'en'glish.                              ('es' POR DEFECTO)
+    Opciones['MostrarFPS']              puede ser : true o false.                                       (TRUE POR DEFECTO)
+    Opciones['BotonPantallaCompleta']   puede ser : true o false.                                       (TRUE POR DEFECTO)
+    Opciones['BotonLogo']               puede ser : true o false.                                       (TRUE POR DEFECTO)
+    Opciones['ElementoRaiz']            elemento del HTML donde se creará el canvas                     (POR DEFECTO es 'document.body')
+    Opciones['ColorFondo']              color del fondo en HEX (SOLO para THREE.js)                     (POR DEFECTO es '0x312E35' gris oscuro) 
+    Opciones['CapturaEjemplo']          nombre del archivo que contiene la captura de pantalla          (Enlazará a '/Web/Graficos/250x200_')
+*/
+"use strict";
+
+var ObjetoCanvas = function(Opciones) {
+    // Constantes
+    this.Constantes = { 
+        Radiant : Math.PI / 180, // 360 deg = Math.PI * 2
+        TAU     : Math.PI * 2 
+    };
+    
+    // Opciones por defecto, puedes modificar las opciones creando un objeto que contenga una o mas opciones a modificar, y pasando el array en el constructor del ObjetoCanvas
     this.OpcionesCanvas  = { 
-        Tipo          : '2d',
-        Ancho         : 'Auto',
-        Alto          : 'Auto',
-        Entorno       : 'Normal',
-        MostrarFPS    : true,
-        ElementoRaiz  : document.body,
-        Pausar        : true,             // Pausar si el canvas está en segundo plano
-        ColorFondo    : 0x312E35          // Color del fondo por defecto (solo si usas THREE.js)
+        Tipo                    : '2d',
+        Ancho                   : 'Auto',
+        Alto                    : 'Auto',
+        Entorno                 : 'Normal',
+        Idioma                  : 'es',             
+        MostrarFPS              : true,
+        BotonesPosicion         : "derecha",        // Puede ser 'derecha' o 'izquierda'
+        BotonPantallaCompleta   : true,
+        BotonLogo               : true,
+        BotonExtraHTML          : "",               // Contenido extra para los botones del lateral inferior izquierdo (solo se usa en el ejemplo sinusoidal)
+        ElementoRaiz            : document.body,
+        Pausar                  : true,             // Pausar si el canvas está en segundo plano
+        ColorFondo              : 0x312E35,         // Color del fondo por defecto (solo si usas THREE.js)
+        CapturaEjemplo          : ""
     };
     // Copio las nuevas opciones encima de las opciones por defecto
     if (typeof Opciones === 'object') {
@@ -42,16 +69,72 @@ ObjetoCanvas = function(Opciones) {
         PreCabecera.id = "Cabecera";
         this.OpcionesCanvas['ElementoRaiz'].appendChild(PreCabecera);
 
-
         // Creo las etiquetas que contienen información adicional sobre la animación
         this.Cabecera = document.getElementById("Cabecera");
-        this.Cabecera.innerHTML =   '<div id="Cabecera_Cargando">Cargando animación...</div>' +
-                                    "<div id='Cabecera_Stats'>0 FPS</div>" +
-                                    "<canvas id='Cabecera_Canvas'></canvas>" +
-                                    '<div id="Cabecera_PausaAni">El canvas está en segundo plano, animación en pausa.</div>';
+        this.Textos = { 
+            en : ["Loading..." , "Paused"  , "Start"  , "Frames per second" , "Full Screen"      , "Restore Screen"    , "devildrey33 home page", "Error loading WebGL" ],
+            es : ["Cargando...", "En Pausa", "Iniciar", "Frames por segundo", "Pantalla Completa", "Restaurar Pantalla", "Página de devildrey33", "Error iniciando WebGL" ] 
+        };
+        var StrHtml = '<div id="Cabecera_Cargando" class="MarcoCanvas"><span>' + this.Textos[this.OpcionesCanvas.Idioma][0] + '</span></div>' +
+            "<canvas id='Cabecera_Canvas'></canvas>" +
+            '<div id="Cabecera_PausaAni" class="MarcoCanvas">' + this.Textos[this.OpcionesCanvas.Idioma][1] + '</div>' + 
+            '<div id="Cabecera_Iniciar" class="MarcoCanvas">' + this.Textos[this.OpcionesCanvas.Idioma][2] + '</div>' + 
+            '<div id="Cabecera_Error" class="MarcoCanvas" visible="false">Error :</div>';
+        // Etiqueta para el marco de los botones
+        StrHtml += "<div id='ObjetoCanvas_Controles' alinear='" + this.OpcionesCanvas.BotonesPosicion + "'>";
+        // Marco FPS
+        if (this.OpcionesCanvas.MostrarFPS === true) {
+            StrHtml += "<div class='ObjetoCanvas_Marco' title='" + this.Textos[this.OpcionesCanvas.Idioma][3] + "'>" +
+                    "<span id='ObjetoCanvas_FPS'>60</span>" +
+                    "<span id='ObjetoCanvas_TxtFPS'>fps</span>" +
+                "</div>";
+        }
+        // Boton / botones extra
+        if (this.OpcionesCanvas.BotonExtraHTML !== "") { StrHtml += this.OpcionesCanvas.BotonExtraHTML; }
+        // Boton pantalla completa / restaurar pantalla
+        if (this.OpcionesCanvas.BotonPantallaCompleta === true) {
+            StrHtml += "<div class='ObjetoCanvas_Boton' id='ObjetoCanvas_PantallaCompleta' title='" + this.Textos[this.OpcionesCanvas.Idioma][4] + "'>" +
+                    "<img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-pantalla-completa' />" +
+                "</div>" +
+                "<div class='ObjetoCanvas_Boton' id='ObjetoCanvas_RestaurarPantalla' title='" + this.Textos[this.OpcionesCanvas.Idioma][5] +"'>" +
+                    "<img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-restaurar-pantalla' />" +
+                "</div>";
+        }
+        // Boton con el logo
+        if (this.OpcionesCanvas.BotonLogo === true) {
+            StrHtml +=  "<a href='https://devildrey33.es' class='ObjetoCanvas_Boton' target='_blank' title='"+ this.Textos[this.OpcionesCanvas.Idioma][6] +"' id='ObjetoCavas_Logo'>" +
+                    "<img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-logo' />" +
+                    "<div id='ObjetoCavas_TextoLogo'>" +
+                        "<span>D</span>" + "<span>E</span>" + "<span>V</span>" + "<span>I</span>" + "<span>L</span>" + "<span>D</span>" + "<span>R</span>" + "<span>E</span>" + "<span>Y</span>" + "<span>&nbsp;</span>" + "<span>3</span>" + "<span>3</span>" +
+                    "</div>" +
+                "</a>";
+        }        
+        StrHtml += "</div>";
+
+        this.Cabecera.innerHTML = StrHtml;
+        
+        if (this.OpcionesCanvas.BotonPantallaCompleta === true) {
+            // Botones restaurar y pantalla completa
+            var bPantallaCompleta = document.getElementById("ObjetoCanvas_PantallaCompleta");
+            var bRestaurarPantalla = document.getElementById("ObjetoCanvas_RestaurarPantalla");
+//            if (this.OpcionesCanvas.BotonPantallaCompleta === true) { bPantallaCompleta.style.display = "block"; }
+//            else                                                    { bPantallaCompleta.style.display = "none"; }
+            bRestaurarPantalla.style.display = "none";
+            // Eventos para los botones pantalla completa y restaurar pantalla
+            bPantallaCompleta.addEventListener("click", function() { this.PantallaCompleta(); }.bind(this));
+            bRestaurarPantalla.addEventListener("click", function() { this.RestaurarPantalla(); }.bind(this));
+        
+            // Eventos para determinar si está en pantalla completa
+            document.addEventListener('webkitfullscreenchange', this.EventoPantallaCompleta.bind(this), false);
+            document.addEventListener('mozfullscreenchange', this.EventoPantallaCompleta.bind(this), false);
+            document.addEventListener('msfullscreenchange', this.EventoPantallaCompleta.bind(this), false);
+            document.addEventListener('fullscreenchange', this.EventoPantallaCompleta.bind(this), false);
+        }
+    
+//        if (this.OpcionesCanvas.BotonLogo === false) { document.getElementById("ObjetoCavas_Logo").style.display = "none"; }                       
     }
-    // En el entorno Banner las etiquetas ya estan creadas, pero hay que eliminar y volver a crear la etiqueta del canvas (para poder cargar varios canvas a petición del usuario)
-    if (this.OpcionesCanvas['Entorno'] === 'Banner') {
+    // En el entorno Banner las etiquetas ya estan creadas, pero hay que eliminar y volver a crear el canvas
+    else if (this.OpcionesCanvas['Entorno'] === 'Banner') {
         this.Cabecera = document.getElementById("Cabecera");
         // Hay que eliminar la etiqueta canvas por que al crear un 2d context encima de un webgl context y viceversa produce error.
         if (document.getElementById('Cabecera_Canvas')) { this.Cabecera.removeChild(document.getElementById('Cabecera_Canvas')); }
@@ -65,12 +148,14 @@ ObjetoCanvas = function(Opciones) {
     // Asigno el estado cargando, que muestra una ventana que avisa al usuario.
     this.Cabecera.setAttribute("cargando", true);
     this.Cabecera.setAttribute("animar", true);
+//    this.Cabecera.setAttribute("iniciado", false);
     
     
     // Obtengo la etiqueta canvas    
     this.Canvas = document.getElementById("Cabecera_Canvas");        
-    this._EsMovil = -1; // no se ha hecho la detección de dispositivos moviles
     
+    this._EsMovil = -1; // no se ha hecho la detección de dispositivos moviles
+
     // Tamaño del canvas
     this.Ancho          = 0;                                                // Ancho del canvas
     this.Alto           = 0;                                                // Altura del canvas
@@ -102,9 +187,12 @@ ObjetoCanvas = function(Opciones) {
         }
     }
     catch ( error ) {
-        document.getElementById("Cabecera_Cargando").innerHTML = "Error iniciando WebGL : " + error;                                                                 
+        this.MostrarErrorIniciarWebGL(error);
         return false;
     }    
+    
+//    this.MostrarErrorIniciarWebGL("Test error iniciando WebGL");
+//    return false;
     
     this.RAFID          = 0;                                                // Request Animation Frame ID
     this.FPS_UltimoTick = Date.now() + 1000;                                // Ultimo Tick del sistema + 1000ms
@@ -113,8 +201,6 @@ ObjetoCanvas = function(Opciones) {
     this.Tick           = 0;                                                // Date.now actualizado en cada frame
     // Calculo el tamaño del canvas
     this.EventoRedimensionar();
-    // Temporizador para la animación
-    this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this));           
     
     // Evento mouse movimiento
     this.EnlazarEventos();
@@ -122,85 +208,102 @@ ObjetoCanvas = function(Opciones) {
     // Estado cargando
     this.Cargando(true);
     
-    if (this.OpcionesCanvas.MostrarFPS === false) {
-        // Escondo el marco de los FPS
-        document.getElementById("Cabecera_Stats").style.display = "none";
-    }
+    this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this));           
     
     return true;
+};
+
+ObjetoCanvas.prototype.MostrarErrorIniciarWebGL = function(error) {
+    // Escondo los controles
+    document.getElementById("ObjetoCanvas_Controles").style.display = "none";
+    // Muestro la ventana con el error y una captura del ejemplo
+    var VentanaError = document.getElementById("Cabecera_Error");
+    VentanaError.setAttribute("visible", "true");
+    var Captura = (this.OpcionesCanvas["CapturaEjemplo"] === "") ? "" : "<br />" + "<img src='https://devildrey33.es/Web/Graficos/250x200_" + this.OpcionesCanvas["CapturaEjemplo"] + "'>";
+    VentanaError.innerHTML = "<span>" + this.Textos[this.OpcionesCanvas.Idioma][7] + " : " + error + "</span>" + Captura;
+    this.Cargando(false);
 };
 
 ObjetoCanvas.prototype.Terminar = function() {
     if (this.RAFID !== 0) {
         window.cancelAnimationFrame(this.RAFID); 
-        this.RAFID = 0;  
     }
     
     if (this.OpcionesCanvas.Entorno === "Normal") {
-        this.Cabecera.removeEventListener('touchstart', this.hEventoTouchStart);
-        this.Cabecera.removeEventListener('touchend', this.hEventoTouchEnd);
-        this.Cabecera.removeEventListener('mousedown', this.hEventoMousePresionado);
-        this.Cabecera.removeEventListener('mouseup', this.hEventoMouseSoltado);
+        if (this._EsMovil === true) {
+            this.Cabecera.removeEventListener('touchstart', this.hEventoTouchStart);
+            this.Cabecera.removeEventListener('touchmove', this.hEventoTouchMove);
+            this.Cabecera.removeEventListener('touchend', this.hEventoTouchEnd);
+        }
+        else {
+            this.Cabecera.removeEventListener('mousedown', this.hEventoMousePresionado);
+            this.Cabecera.removeEventListener('mouseup', this.hEventoMouseSoltado);
+        }
         window.removeEventListener('keydown', this.hEventoTeclaPresionada);
         window.removeEventListener('keyup', this.hEventoTeclaSoltada);    
     }
     
 //    if (this.Animaciones) { this.Animaciones.Limpiar(); }
     
-    this.Cabecera.removeEventListener('mousemove', this.hEventoMouseMove);
+    if (this._EsMovil === false) {
+        this.Cabecera.removeEventListener('mousemove', this.hEventoMouseMove);
+    }
     this.Cabecera.removeEventListener('mouseenter', this.hEventoMouseEnter);
     this.Cabecera.removeEventListener('mouseleave', this.hEventoMouseLeave);        
     window.removeEventListener('resize', this.hEventoRedimensionar);
     window.removeEventListener('scroll', this.hEventoScroll);
     window.removeEventListener('blur', this.hEventoFocoPerdido);
     window.removeEventListener('focus', this.hEventoFocoRecibido);
-    
-    this.Tick = 0;
-    
-    if (typeof(this.Terminado) !== "undefined") { this.Terminado.apply(this); }        
-    
     console.log("ObjetoCanvas.Terminar");
 };
 
 ObjetoCanvas.prototype.EnlazarEventos = function() {
     // Necesito guardar una variable con cada evento reconvertido con bind, para poder hacer mas tarde el removeEventListener
     if (this.OpcionesCanvas.Entorno === "Normal") { // Canvas que puede recibir eventos
-        this.hEventoTouchStart      = this.EventoTouchStart.bind(this);
-        this.hEventoTouchEnd        = this.EventoTouchEnd.bind(this);
-        this.hEventoMousePresionado = this.EventoMousePresionado.bind(this);
-        this.hEventoMouseSoltado    = this.EventoMouseSoltado.bind(this);
+        if (this.EsMovil() === true) {
+            this.hEventoTouchStart       = this.EventoTouchStart.bind(this);
+            this.hEventoTouchMove        = this.EventoTouchMove.bind(this);
+            this.hEventoTouchEnd         = this.EventoTouchEnd.bind(this);        
+            this.Cabecera.addEventListener('touchstart', this.hEventoTouchStart);
+            this.Cabecera.addEventListener('touchmove', this.hEventoTouchMove);
+            this.Cabecera.addEventListener('touchend', this.hEventoTouchEnd);
+        }
+        else {
+            this.hEventoMousePresionado = this.EventoMousePresionado.bind(this);
+            this.hEventoMouseSoltado    = this.EventoMouseSoltado.bind(this);
+            this.Cabecera.addEventListener('mousedown', this.hEventoMousePresionado);
+            this.Cabecera.addEventListener('mouseup', this.hEventoMouseSoltado);
+        }
         this.hEventoTeclaPresionada = this.EventoTeclaPresionada.bind(this);
         this.hEventoTeclaSoltada    = this.EventoTeclaSoltada.bind(this);
-        this.Cabecera.addEventListener('touchstart', this.hEventoToucStart);
-        this.Cabecera.addEventListener('touchend', this.hEventoTouchEnd);
-        this.Cabecera.addEventListener('mousedown', this.hEventoMousePresionado);
-        this.Cabecera.addEventListener('mouseup', this.hEventoMouseSoltado);
         window.addEventListener('keydown', this.hEventoTeclaPresionada);
         window.addEventListener('keyup', this.hEventoTeclaSoltada);
     }
-    this.hEventoMouseMove       = this.EventoMouseMove.bind(this);
     this.hEventoMouseEnter      = this.EventoMouseEnter.bind(this);
     this.hEventoMouseLeave      = this.EventoMouseLeave.bind(this);
     this.hEventoRedimensionar   = this.EventoRedimensionar.bind(this);
     this.hEventoScroll          = this.EventoScroll.bind(this);
     this.hEventoFocoPerdido     = this.EventoFocoPerdido.bind(this);
     this.hEventoFocoRecibido    = this.EventoFocoRecibido.bind(this);
+    if (this.EsMovil() === false) {
+        this.hEventoMouseMove       = this.EventoMouseMove.bind(this);
+        this.Cabecera.addEventListener('mousemove', this.hEventoMouseMove);
+    }
     
-    this.Cabecera.addEventListener('mousemove', this.hEventoMouseMove);
     this.Cabecera.addEventListener('mouseenter', this.hEventoMouseEnter);
     this.Cabecera.addEventListener('mouseleave', this.hEventoMouseLeave);
     
     window.addEventListener('resize', this.hEventoRedimensionar);
     window.addEventListener('scroll', this.hEventoScroll);
     window.addEventListener('blur', this.hEventoFocoPerdido);
-    window.addEventListener('focus', this.hEventoFocoRecibido);
+    window.addEventListener('focus', this.hEventoFocoRecibido);        
 };
 
 
 
 // Evento que salta cuando se obtiene el foco de la ventana
 ObjetoCanvas.prototype.EventoFocoRecibido = function() {
-    console.log("Foco de la ventana recibido");
+//    console.log("Foco de la ventana recibido");
     this.FocoWeb = true;
     if (this.OpcionesCanvas.Entorno === "Normal") {
         this.EventoReanudar();
@@ -213,11 +316,21 @@ ObjetoCanvas.prototype.EventoFocoRecibido = function() {
     
 // Evento que salta cuando se pierde el foco de la ventana
 ObjetoCanvas.prototype.EventoFocoPerdido = function() {
-    console.log("Foco de la ventana perdido");
+//    console.log("Foco de la ventana perdido");
     this.FocoWeb = false;
     this.EventoPausa();
 };
-    
+  
+// Evento que avisa si se ha pasado a pantalla completa, o se ha restaurado  
+ObjetoCanvas.prototype.EventoPantallaCompleta = function(Evento) {    
+    var PantallaCompleta = (document.fullscreenElement || document.msFullscreenElement || document.mozFullscreenElement || document.webkitFullscreenElement);
+    // Si no encuentro la función fullscreenElement (en firefox no va...), miro si la altura de la pantalla es igual a la altura de la pestaña
+    if (!PantallaCompleta) { PantallaCompleta = (Math.abs(screen.height - window.innerHeight) === 0); }
+    console.log("ObjetoCanvas.EventoPantallaCompleta " + PantallaCompleta );
+    // Si screenTop es 0 es que está en modo pantalla completa.
+    document.getElementById("ObjetoCanvas_PantallaCompleta").style.display = (!PantallaCompleta) ? "block" : "none";
+    document.getElementById("ObjetoCanvas_RestaurarPantalla").style.display = (!PantallaCompleta) ? "none" : "block";
+};
 // Función que devuelve el pixel ratio del dispositivo actual
 /*ObjetoCanvas.prototype.PixelRatio = function() {
     var ratio = 1;
@@ -233,24 +346,7 @@ ObjetoCanvas.prototype.EventoFocoPerdido = function() {
 };*/
 
 ObjetoCanvas.prototype.EsMovil = function() {
-    if (this._EsMovil === -1) {
-        if( navigator.userAgent.match(/Android/i)       ||
-            navigator.userAgent.match(/webOS/i)         ||
-            navigator.userAgent.match(/iPhone/i)        ||
-            navigator.userAgent.match(/iPad/i)          ||
-            navigator.userAgent.match(/iPod/i)          ||
-            navigator.userAgent.match(/BlackBerry/i)    ||
-            navigator.userAgent.match(/Windows Phone/i) ) {
-            console.log("ObjetoCanvas.EsMovil : true");
-            this._EsMovil = true;
-            return true;
-        }
-        else {
-            console.log("ObjetoCanvas.EsMovil : false");
-            this._EsMovil = false;
-            return false;
-        }
-    }
+    this._EsMovil = ObjetoNavegador.EsMovil();
     return this._EsMovil;
 };
 
@@ -259,10 +355,16 @@ ObjetoCanvas.prototype.Cargando = function(carga) {
     document.getElementById("Cabecera").setAttribute("cargando", carga);
 };
 
+// Función que obtiene el estado de carga
+ObjetoCanvas.prototype.EstaCargando = function() {
+    var Ret = document.getElementById("Cabecera").getAttribute("cargando");
+    return (Ret === "true" || Ret === true);
+};
+
 // Función interna utilizada por requestAnimationFrame para actualizar y pintar la animación
 ObjetoCanvas.prototype.Actualizar = function() {
     this.Tick = Date.now();
-    this.FPS(); 
+    if (this.OpcionesCanvas.MostrarFPS === true) { this.FPS(); }
     this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this));
     this.Pintar.apply(this); 
 };
@@ -292,24 +394,27 @@ ObjetoCanvas.prototype.EventoMouseSoltado = function(event) {
 
 // Función que procesa el evento mousemove
 ObjetoCanvas.prototype.EventoMouseEnter = function(event) {
-    console.log("ObjetoCanvas.EventoMouseEnter");
     if (typeof(this.MouseEnter) !== "undefined") { this.MouseEnter.apply(this, [ event ]); }
 };
 
 // Función que procesa el evento mousemove
 ObjetoCanvas.prototype.EventoMouseLeave = function(event) { 
-    console.log("ObjetoCanvas.EventoMouseLeave");
     if (typeof(this.MouseLeave) !== "undefined") { this.MouseLeave.apply(this, [ event ]); }
 };
 
-// Función que procesa el evento mousedown
+// Función que procesa el evento touchstart
 ObjetoCanvas.prototype.EventoTouchStart = function(event) {    
     if (typeof(this.TouchStart) !== "undefined") { this.TouchStart.apply(this, [ event ]); }
 };
-// Función que procesa el evento mouseup
+// Función que procesa el evento touchmove
+ObjetoCanvas.prototype.EventoTouchMove = function(event) {    
+    if (typeof(this.TouchMove) !== "undefined") {  this.TouchMove.apply(this, [ event ]);   }
+};
+// Función que procesa el evento touchend
 ObjetoCanvas.prototype.EventoTouchEnd = function(event) {    
     if (typeof(this.TouchEnd) !== "undefined") {  this.TouchEnd.apply(this, [ event ]);   }
 };
+
 
 // Función que obtiene el tamaño del canvas una vez redimensionado.
 ObjetoCanvas.prototype.EventoRedimensionar = function() {
@@ -341,6 +446,7 @@ ObjetoCanvas.prototype.EventoPausa = function() {
         console.log("ObjetoCanvas.Pausa");
         window.cancelAnimationFrame(this.RAFID); 
         this.RAFID = 0;
+//        this.TickPausa = this.Tick;
         if (typeof this.Pausa !== 'undefined') {  this.Pausa();   }
     }
 };
@@ -351,6 +457,7 @@ ObjetoCanvas.prototype.EventoReanudar = function() {
         document.getElementById("Cabecera").setAttribute("animar", true);
         this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this)); 
         console.log("ObjetoCanvas.Reanudar RAFID = " + this.RAFID);
+//        this.TickInicio = (this.Tick - this.TickPausa);
         if (typeof this.Pausa !== 'undefined') {  this.Reanudar();   }
     }
 };
@@ -359,7 +466,6 @@ ObjetoCanvas.prototype.EventoReanudar = function() {
 ObjetoCanvas.prototype.EventoScroll = function() {
     // Llamo a la función Scroll del NuevoObjeto (si existe)
     if (this.OpcionesCanvas.Entorno === "Banner") {
-//        if (this.Cabecera.length > 0) { // Hay páginas que no tienen la cabecera
         var PS = $(window).scrollTop();
         var Altura = this.Cabecera.offsetHeight;
         if (PS > Altura) {
@@ -369,8 +475,7 @@ ObjetoCanvas.prototype.EventoScroll = function() {
             this.EventoReanudar();
         }
     }
-
-    
+    // Llamo a la función Scroll si existe en la clase heredada.
     if (typeof(this.Scroll) !== "undefined") {
         this.Scroll.apply(this);
     }            
@@ -380,12 +485,26 @@ ObjetoCanvas.prototype.EventoScroll = function() {
 ObjetoCanvas.prototype.FPS = function() {
     if (this.Tick > this.FPS_UltimoTick) {
         this.FPS_UltimoTick = this.Tick + 1000;
-        document.getElementById("Cabecera_Stats").innerHTML = this.FPS_Contador + " FPS";
+        var SpanFPS = document.getElementById("ObjetoCanvas_FPS");
+        SpanFPS.innerHTML = this.FPS_Contador;
+        var Parte = 256 / 60;
+        SpanFPS.style.color = "rgb(" + Math.round(255 - (this.FPS_Contador * Parte)) + "," + Math.round(this.FPS_Contador * Parte) + ", 0)";
         this.FPS_Contador = 0;
     }
     else {
         this.FPS_Contador ++;
     }
+};
+// Modo pantalla completa
+ObjetoCanvas.prototype.PantallaCompleta = function() {    
+    var RFS = this.Cabecera.requestFullscreen || this.Cabecera.msRequestFullscreen || this.Cabecera.mozRequestFullScreen || this.Cabecera.webkitRequestFullscreen;
+    RFS.call(this.Cabecera);
+};
+
+// Restaurar pantalla completa
+ObjetoCanvas.prototype.RestaurarPantalla = function() {    
+    var EFS = document.exitFullscreen || document.msExitFullscreen || document.mozCancelFullScreen || document.webkitExitFullscreen;
+    EFS.call(document);
 };
 
 ////////////////////////////////////////////////////////////////////////////
@@ -401,26 +520,37 @@ var BufferCanvas = function(Ancho, Alto) {
 };
 
 
-
-
-
-
-
-
+// Objeto para detectar el navegador actual
+var ObjetoNavegador = new function() {
+    this._EsMovil = -1;
+    // Devuelve true si es un dispositivo movil
+    this.EsMovil = function() {
+        if (this._EsMovil === -1) {
+            if( navigator.userAgent.match(/Android/i)       ||
+                navigator.userAgent.match(/webOS/i)         ||
+                navigator.userAgent.match(/iPhone/i)        ||
+                navigator.userAgent.match(/iPad/i)          ||
+                navigator.userAgent.match(/iPod/i)          ||
+                navigator.userAgent.match(/BlackBerry/i)    ||
+                navigator.userAgent.match(/Windows Phone/i) ) {
+                this._EsMovil = true;
+                return true;
+            }
+            else {
+                console.log("ObjetoCanvas.EsMovil : false");
+                this._EsMovil = false;
+                return false;
+            }
+        }
+        return this._EsMovil;
+    };
     
-/* Función para generar un valor aleatório entero */
-/* Si no se especifican parametros devuelve 0 o 1 */
-/* Si solo se especifica un parámetro, el primer parámetro será el máximo, y el mínimo será 0 */
-/* Si se especifican dos parámetros, el primero es el máximo, y el segundo es el mínimo. */
-function RandInt(Max, Min) {
-    return Math.round(Rand(Max, Min));
-}
-
-
-/* Si no se especifican parametros devuelve 0 o 1 
-   Si se especifica solo el Máximo, el mínimo será 0 */
-function Rand(Max, Min) {
-    var min = (typeof(Min) !== "undefined") ? Min : 0; // Si no se especifica el mínimo por defecto es 0
-    var max = (typeof(Max) !== "undefined") ? Max : 1; // Si no se especifica el máximo por defecto es 1
-    return min + Math.random() * (max - min);    
-}      
+    this._EsFirefox = -1;
+    // Devuelve true si es un navegador firefox
+    this.EsFirefox = function() {
+        if (this._EsFirefox === -1) {
+            (navigator.userAgent.toLowerCase().indexOf('firefox') === -1) ? this._EsFirefox = false : this._EsFirefox = true;
+        }
+        return this._EsFirefox;
+    };
+};
