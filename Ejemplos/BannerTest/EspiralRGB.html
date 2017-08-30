@@ -174,7 +174,7 @@ EspiralRGB.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
         };
         this.Escena.add(this.Camara);
 
-        if (this.EsMovil() === false) {
+        if (ObjetoNavegador.EsMovil() === false) {
             // Parrilla para iniciar la plantilla (se puede eliminar)
             this.Parrilla = new THREE.GridHelper(100, 100, new THREE.Color(0xcccccc), new THREE.Color(0x999999));
             this.Parrilla.position.y = -5;

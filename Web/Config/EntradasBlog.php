@@ -5,6 +5,15 @@
 
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(
+array(	"Titulo" 	=> "Experimento con Three.js 'CyberParasit'", 
+        "Fecha" 	=> "30/08/2017",
+        "URL" 		=> "Ejemplos/CyberParasit/CyberParasit.html", 
+        "Tags" 		=> array("Three.js", "JavaScript", "Programación", "WebAudio" ),
+        "Idioma"        => "es",
+        "Autor"         => "Josep Antoni Bover",
+        "Tipo"		=> "Lab",
+        "Imagen"	=> "CyberParasit.png"),
+        
 array(	"Titulo" 	=> "Experimento con Three.js 'Hex Tunnel'", 
         "Fecha" 	=> "15/05/2017",
         "URL" 		=> "Ejemplos/BannerTest/HexTunnel.html", 
@@ -26,7 +35,7 @@ array(	"Titulo" 	=> "Experimento con Three.js 'Espiral RGB'",
 array(	"Titulo" 	=> "Experimento con Three.js 'EspectroAudible'", 
         "Fecha" 	=> "23/02/2017",
         "URL" 		=> "Ejemplos/BannerTest/EspectroAudible.html", 
-        "Tags" 		=> array("Three.js", "JavaScript", "Programación" ),
+        "Tags" 		=> array("Three.js", "JavaScript", "Programación", "WebAudio" ),
         "Idioma"        => "es",
         "Autor"         => "Josep Antoni Bover",
         "Tipo"		=> "Lab",

@@ -227,6 +227,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         var Geo = new THREE.BoxGeometry(35, 1, 8);
         Geo.translate(0, 0, -4); // Muevo el eje para la rotación
         this.Controles = new THREE.Mesh(Geo, new THREE.MeshPhongMaterial({ color: this.Colores.Suelo, specular : 0xeeeeee }) );
+        this.Controles.name ="Controles";
         this.Controles.rotation.x -= Math.PI / 2;
         this.Controles.position.z = 26;
         this.Controles.position.y = -0.4;
@@ -272,7 +273,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
 
         this.IniciarTransiciones();
         
-        var fftSize = (this._EsMovil === false) ? 2048 : 512;
+        var fftSize = (ObjetoNavegador.EsMovil() === false) ? 2048 : 512;
         this.PrecisionAnalizador = (fftSize === 2048) ? 0 : 1;
         
         this.Audio = new EspectroAudible_Audio();
@@ -619,6 +620,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
                 this.Controles.rotation.x = Valores.Angulo;
             }.bind(this) 
         });                
+        this.Controles.Ani.AsignarValoresIniciales();
         
         // Transición hover para la pantalla central
         this.Pantalla.Hover = false;

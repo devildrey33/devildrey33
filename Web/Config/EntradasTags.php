@@ -17,7 +17,8 @@
         "Google api",
         "Three js",
         "Canvas 2D",
-        "Shaders"
+        "Shaders",
+        "WebAudio"
     );
 
 ?>

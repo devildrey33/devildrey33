@@ -29,8 +29,6 @@
     Opciones['ColorFondo']              color del fondo en HEX (SOLO para THREE.js)                     (POR DEFECTO es '0x312E35' gris oscuro) 
     Opciones['CapturaEjemplo']          nombre del archivo que contiene la captura de pantalla          (Enlazará a '/Web/Graficos/250x200_')
 */
-"use strict";
-
 var ObjetoCanvas = function(Opciones) {
     // Constantes
     this.Constantes = { 
@@ -49,11 +47,12 @@ var ObjetoCanvas = function(Opciones) {
         BotonesPosicion         : "derecha",        // Puede ser 'derecha' o 'izquierda'
         BotonPantallaCompleta   : true,
         BotonLogo               : true,
-        BotonExtraHTML          : "",               // Contenido extra para los botones del lateral inferior izquierdo (solo se usa en el ejemplo sinusoidal)
+        BotonExtraHTML          : "",               // Contenido extra para los botones del lateral inferior izquierdo (solo se usa en el ejemplo sinusoidal y cyberparasit)
         ElementoRaiz            : document.body,
         Pausar                  : true,             // Pausar si el canvas está en segundo plano
         ColorFondo              : 0x312E35,         // Color del fondo por defecto (solo si usas THREE.js)
-        CapturaEjemplo          : ""
+        CapturaEjemplo          : "",
+        ForzarLandscape         : false             // Fuerza al dispositivo movil para que se muestre solo apaisado
     };
     // Copio las nuevas opciones encima de las opciones por defecto
     if (typeof Opciones === 'object') {
@@ -64,13 +63,14 @@ var ObjetoCanvas = function(Opciones) {
             
     // En el entorno Normal hay que crear todas las etiquetas
     if (this.OpcionesCanvas['Entorno'] === 'Normal') {
-        // Creo la cabecera vacia
-        var PreCabecera = document.createElement('header');
-        PreCabecera.id = "Cabecera";
-        this.OpcionesCanvas['ElementoRaiz'].appendChild(PreCabecera);
-
+        // Creo la cabecera vacia si no existe
+        if (!document.getElementById("ObjetoCanvas")) {
+            var PreCabecera = document.createElement('div');
+            PreCabecera.id = "ObjetoCanvas";
+            this.OpcionesCanvas['ElementoRaiz'].appendChild(PreCabecera);
+        }
         // Creo las etiquetas que contienen información adicional sobre la animación
-        this.Cabecera = document.getElementById("Cabecera");
+        this.Cabecera = document.getElementById("ObjetoCanvas");
         this.Textos = { 
             en : ["Loading..." , "Paused"  , "Start"  , "Frames per second" , "Full Screen"      , "Restore Screen"    , "devildrey33 home page", "Error loading WebGL" ],
             es : ["Cargando...", "En Pausa", "Iniciar", "Frames por segundo", "Pantalla Completa", "Restaurar Pantalla", "Página de devildrey33", "Error iniciando WebGL" ] 
@@ -111,7 +111,7 @@ var ObjetoCanvas = function(Opciones) {
         }        
         StrHtml += "</div>";
 
-        this.Cabecera.innerHTML = StrHtml;
+        this.Cabecera.innerHTML = this.Cabecera.innerHTML + StrHtml;
         
         if (this.OpcionesCanvas.BotonPantallaCompleta === true) {
             // Botones restaurar y pantalla completa
@@ -162,11 +162,14 @@ var ObjetoCanvas = function(Opciones) {
     
     // Determino el ancho y altura del canvas (fijo o variable)
     if (this.OpcionesCanvas.Ancho !== "Auto") { this.Ancho = this.OpcionesCanvas.Ancho; }
-    if (this.OpcionesCanvas.Alto !== "Auto")  { this.Alto = this.OpcionesCanvas.Alto; }
+    if (this.OpcionesCanvas.Alto !== "Auto")  { this.Alto = this.OpcionesCanvas.Alto; }        
     // Si el canvas es de ancho fijo, añado el css para centrar-lo
     if (this.OpcionesCanvas.Ancho !== "Auto") { this.Canvas.style.width = this.Ancho + "px"; this.Canvas.style.left = "calc(50% - (" + this.Ancho + "px / 2))"; }
     if (this.OpcionesCanvas.Alto !== "Auto")  { this.Canvas.style.height = this.Alto + "px"; this.Canvas.style.top = "calc(50% - (" + this.Ancho + "px / 2))";  }
     
+    if (this.OpcionesCanvas.ForzarLandscape === true) {
+        this.Cabecera.setAttribute("forzarlandscape", true);
+    }
     
     // Creación del contexto
     try {
@@ -190,9 +193,6 @@ var ObjetoCanvas = function(Opciones) {
         this.MostrarErrorIniciarWebGL(error);
         return false;
     }    
-    
-//    this.MostrarErrorIniciarWebGL("Test error iniciando WebGL");
-//    return false;
     
     this.RAFID          = 0;                                                // Request Animation Frame ID
     this.FPS_UltimoTick = Date.now() + 1000;                                // Ultimo Tick del sistema + 1000ms
@@ -321,16 +321,6 @@ ObjetoCanvas.prototype.EventoFocoPerdido = function() {
     this.EventoPausa();
 };
   
-// Evento que avisa si se ha pasado a pantalla completa, o se ha restaurado  
-ObjetoCanvas.prototype.EventoPantallaCompleta = function(Evento) {    
-    var PantallaCompleta = (document.fullscreenElement || document.msFullscreenElement || document.mozFullscreenElement || document.webkitFullscreenElement);
-    // Si no encuentro la función fullscreenElement (en firefox no va...), miro si la altura de la pantalla es igual a la altura de la pestaña
-    if (!PantallaCompleta) { PantallaCompleta = (Math.abs(screen.height - window.innerHeight) === 0); }
-    console.log("ObjetoCanvas.EventoPantallaCompleta " + PantallaCompleta );
-    // Si screenTop es 0 es que está en modo pantalla completa.
-    document.getElementById("ObjetoCanvas_PantallaCompleta").style.display = (!PantallaCompleta) ? "block" : "none";
-    document.getElementById("ObjetoCanvas_RestaurarPantalla").style.display = (!PantallaCompleta) ? "none" : "block";
-};
 // Función que devuelve el pixel ratio del dispositivo actual
 /*ObjetoCanvas.prototype.PixelRatio = function() {
     var ratio = 1;
@@ -345,6 +335,7 @@ ObjetoCanvas.prototype.EventoPantallaCompleta = function(Evento) {
     return ratio;    
 };*/
 
+// TODO : retirar funcion y usar siempre ObjetoNavegador.EsMovil()
 ObjetoCanvas.prototype.EsMovil = function() {
     this._EsMovil = ObjetoNavegador.EsMovil();
     return this._EsMovil;
@@ -352,12 +343,12 @@ ObjetoCanvas.prototype.EsMovil = function() {
 
 // Función que determina el estado de carga (cargando/completo) true/false
 ObjetoCanvas.prototype.Cargando = function(carga) {
-    document.getElementById("Cabecera").setAttribute("cargando", carga);
+    this.Cabecera.setAttribute("cargando", carga);
 };
 
 // Función que obtiene el estado de carga
 ObjetoCanvas.prototype.EstaCargando = function() {
-    var Ret = document.getElementById("Cabecera").getAttribute("cargando");
+    var Ret = this.Cabecera.getAttribute("cargando");
     return (Ret === "true" || Ret === true);
 };
 
@@ -418,9 +409,27 @@ ObjetoCanvas.prototype.EventoTouchEnd = function(event) {
 
 // Función que obtiene el tamaño del canvas una vez redimensionado.
 ObjetoCanvas.prototype.EventoRedimensionar = function() {
-    // Calculo el nuevo ancho y la nueva altura (si no son fijas)
-    if (this.OpcionesCanvas.Ancho === "Auto") { this.Ancho  = document.getElementById("Cabecera").offsetWidth;  }
-    if (this.OpcionesCanvas.Alto === "Auto")  { this.Alto   = document.getElementById("Cabecera").offsetHeight; }
+    // portrait
+    if (this.OpcionesCanvas.ForzarLandscape === true && ObjetoNavegador.EsMovil() === true && window.innerWidth < window.innerHeight) {
+        // Invierto el nuevo ancho y la nueva altura (si no son fijas) para forzar el modo landscape
+        if (this.OpcionesCanvas.Ancho === "Auto") { this.Ancho  = window.innerHeight;  }
+        if (this.OpcionesCanvas.Alto === "Auto")  { this.Alto   = window.innerWidth; }        
+        this.Cabecera.style.left = -(this.Ancho - this.Alto) / 2 + "px";
+        this.Cabecera.style.top = (this.Ancho - this.Alto) / 2 + "px";
+        this.Cabecera.style.width = this.Ancho + "px";
+        this.Cabecera.style.height = this.Alto + "px";
+    }
+    else {
+        if (this.OpcionesCanvas['Entorno'] === 'normal') {
+            this.Cabecera.style.width  = "100%";
+            this.Cabecera.style.height = "100%";
+            this.Cabecera.style.left = "0px";
+            this.Cabecera.style.top  = "0px";
+        }
+        // Calculo el nuevo ancho y la nueva altura (si no son fijas)
+        if (this.OpcionesCanvas.Ancho === "Auto") { this.Ancho  = this.Cabecera.offsetWidth;  }
+        if (this.OpcionesCanvas.Alto === "Auto")  { this.Alto   = this.Cabecera.offsetHeight; }
+    }
     // Asigno el alto y el ancho a los atributos del canvas
     this.Canvas.setAttribute("width", this.Ancho);
     this.Canvas.setAttribute("height", this.Alto);
@@ -442,7 +451,7 @@ ObjetoCanvas.prototype.EventoRedimensionar = function() {
 // - En modo depuración nunca se hace la pausa (esto es para poder depurar el Three.js en el Three.js.inspector)
 ObjetoCanvas.prototype.EventoPausa = function() {
     if (this.RAFID !== 0 && this.OpcionesCanvas.Pausar === true) {
-        document.getElementById("Cabecera").setAttribute("animar", false);
+        this.Cabecera.setAttribute("animar", false);
         console.log("ObjetoCanvas.Pausa");
         window.cancelAnimationFrame(this.RAFID); 
         this.RAFID = 0;
@@ -454,7 +463,7 @@ ObjetoCanvas.prototype.EventoPausa = function() {
 // Función para reanudar la animación desde el ultimo punto
 ObjetoCanvas.prototype.EventoReanudar = function() {
     if (this.RAFID === 0 && this.FocoWeb === true) {
-        document.getElementById("Cabecera").setAttribute("animar", true);
+        this.Cabecera.setAttribute("animar", true);
         this.RAFID = window.requestAnimationFrame(this.Actualizar.bind(this)); 
         console.log("ObjetoCanvas.Reanudar RAFID = " + this.RAFID);
 //        this.TickInicio = (this.Tick - this.TickPausa);
@@ -495,10 +504,13 @@ ObjetoCanvas.prototype.FPS = function() {
         this.FPS_Contador ++;
     }
 };
+
 // Modo pantalla completa
 ObjetoCanvas.prototype.PantallaCompleta = function() {    
-    var RFS = this.Cabecera.requestFullscreen || this.Cabecera.msRequestFullscreen || this.Cabecera.mozRequestFullScreen || this.Cabecera.webkitRequestFullscreen;
-    RFS.call(this.Cabecera);
+    var RFS = document.body.requestFullscreen || document.body.msRequestFullscreen || document.body.mozRequestFullScreen || document.body.webkitRequestFullscreen;
+//    var RFS = this.Cabecera.requestFullscreen || this.Cabecera.msRequestFullscreen || this.Cabecera.mozRequestFullScreen || this.Cabecera.webkitRequestFullscreen;
+//    RFS.call(this.Cabecera);
+    RFS.call(document.body);
 };
 
 // Restaurar pantalla completa
@@ -506,6 +518,18 @@ ObjetoCanvas.prototype.RestaurarPantalla = function() {
     var EFS = document.exitFullscreen || document.msExitFullscreen || document.mozCancelFullScreen || document.webkitExitFullscreen;
     EFS.call(document);
 };
+
+// Evento que avisa si se ha pasado a pantalla completa, o se ha restaurado  
+ObjetoCanvas.prototype.EventoPantallaCompleta = function(Evento) {    
+    var PantallaCompleta = (document.fullscreenElement || document.msFullscreenElement || document.mozFullscreenElement || document.webkitFullscreenElement);
+    // Si no encuentro la función fullscreenElement (en firefox no va...), miro si la altura de la pantalla es igual a la altura de la pestaña
+    if (!PantallaCompleta) { PantallaCompleta = (Math.abs(screen.height - window.innerHeight) === 0); }
+    console.log("ObjetoCanvas.EventoPantallaCompleta " + PantallaCompleta );
+    // Si screenTop es 0 es que está en modo pantalla completa.
+    document.getElementById("ObjetoCanvas_PantallaCompleta").style.display = (!PantallaCompleta) ? "block" : "none";
+    document.getElementById("ObjetoCanvas_RestaurarPantalla").style.display = (!PantallaCompleta) ? "none" : "block";
+};
+
 
 ////////////////////////////////////////////////////////////////////////////
 // Objeto que crea y contiene un canvas 2d para utilizarlo de back buffer //
@@ -537,7 +561,7 @@ var ObjetoNavegador = new function() {
                 return true;
             }
             else {
-                console.log("ObjetoCanvas.EsMovil : false");
+//                console.log("ObjetoCanvas.EsMovil : false");
                 this._EsMovil = false;
                 return false;
             }

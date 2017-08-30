@@ -11,12 +11,13 @@ var CyberParasit = function() {
         Alto              : 'Auto',
         Entorno           : 'Normal',
         MostrarFPS        : !ObjetoNavegador.EsMovil(),
-        BotonLogo         : true,
+        BotonLogo         : false,
         BotonExtraHTML    : '<div class="ObjetoCanvas_Marco" id="BeatActual" title="Beats transcurridos"><div>0</div></div>',
         ElementoRaiz      : document.body,
         Pausar            : false,             // Pausa el canvas si la pestaña no tiene el foco del teclado
         ColorFondo        : 0x999999,
-        ForzarLandscape   : true
+        ForzarLandscape   : false, // no acaba de funcionar...
+        CapturaEjemplo    : "CyberParasit.png"
     }) === false) { return false; }
     
     // Se ha creado el canvas, inicio los valores de la animación ... 
@@ -130,7 +131,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
         // Inicio el API del audio y cargo la canción
         this.Audio = new CyberParasit_Audio();
         this.Audio.Iniciar(this);        
-        this.Audio.CargarCancion();
+//        this.Audio.CargarCancion();
 
         // Creacion de los objetos de la escena
         this.CrearEscenario();                

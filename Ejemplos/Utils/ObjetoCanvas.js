@@ -156,7 +156,7 @@ var ObjetoCanvas = function(Opciones) {
     // Obtengo la etiqueta canvas    
     this.Canvas = document.getElementById("Cabecera_Canvas");        
     
-    this._EsMovil = -1; // no se ha hecho la detección de dispositivos moviles
+//    this._EsMovil = -1; // no se ha hecho la detección de dispositivos moviles
 
     // Tamaño del canvas
     this.Ancho          = 0;                                                // Ancho del canvas
@@ -180,7 +180,7 @@ var ObjetoCanvas = function(Opciones) {
             console.log("ObjetoCanvas iniciado en modo 2d");
         }
         else if (this.OpcionesCanvas.Tipo.toLowerCase() === 'three') {
-            if (this.EsMovil() === true) { // El antialias no va con el samsung galaxy alpha...
+            if (ObjetoNavegador.EsMovil() === true) { // El antialias no va con el samsung galaxy alpha...
                this.Context = new THREE.WebGLRenderer({ canvas : this.Canvas });    // Contexto THREE.JS
                 console.log("ObjetoCanvas iniciado en modo THREE sin antialias");
             }
@@ -232,7 +232,7 @@ ObjetoCanvas.prototype.Terminar = function() {
     }
     
     if (this.OpcionesCanvas.Entorno === "Normal") {
-        if (this._EsMovil === true) {
+        if (ObjetoNavegador.EsMovil() === true) {
             this.Cabecera.removeEventListener('touchstart', this.hEventoTouchStart);
             this.Cabecera.removeEventListener('touchmove', this.hEventoTouchMove);
             this.Cabecera.removeEventListener('touchend', this.hEventoTouchEnd);
@@ -247,7 +247,7 @@ ObjetoCanvas.prototype.Terminar = function() {
     
 //    if (this.Animaciones) { this.Animaciones.Limpiar(); }
     
-    if (this._EsMovil === false) {
+    if (ObjetoNavegador.EsMovil() === false) {
         this.Cabecera.removeEventListener('mousemove', this.hEventoMouseMove);
     }
     this.Cabecera.removeEventListener('mouseenter', this.hEventoMouseEnter);
@@ -262,7 +262,7 @@ ObjetoCanvas.prototype.Terminar = function() {
 ObjetoCanvas.prototype.EnlazarEventos = function() {
     // Necesito guardar una variable con cada evento reconvertido con bind, para poder hacer mas tarde el removeEventListener
     if (this.OpcionesCanvas.Entorno === "Normal") { // Canvas que puede recibir eventos
-        if (this.EsMovil() === true) {
+        if (ObjetoNavegador.EsMovil() === true) {
             this.hEventoTouchStart       = this.EventoTouchStart.bind(this);
             this.hEventoTouchMove        = this.EventoTouchMove.bind(this);
             this.hEventoTouchEnd         = this.EventoTouchEnd.bind(this);        
@@ -287,7 +287,7 @@ ObjetoCanvas.prototype.EnlazarEventos = function() {
     this.hEventoScroll          = this.EventoScroll.bind(this);
     this.hEventoFocoPerdido     = this.EventoFocoPerdido.bind(this);
     this.hEventoFocoRecibido    = this.EventoFocoRecibido.bind(this);
-    if (this.EsMovil() === false) {
+    if (ObjetoNavegador.EsMovil() === false) {
         this.hEventoMouseMove       = this.EventoMouseMove.bind(this);
         this.Cabecera.addEventListener('mousemove', this.hEventoMouseMove);
     }
@@ -337,11 +337,10 @@ ObjetoCanvas.prototype.EventoFocoPerdido = function() {
     return ratio;    
 };*/
 
-// TODO : retirar funcion y usar siempre ObjetoNavegador.EsMovil()
+/*
 ObjetoCanvas.prototype.EsMovil = function() {
-    this._EsMovil = ObjetoNavegador.EsMovil();
-    return this._EsMovil;
-};
+    return ObjetoNavegador.EsMovil();
+};*/
 
 // Función que determina el estado de carga (cargando/completo) true/false
 ObjetoCanvas.prototype.Cargando = function(carga) {
@@ -411,6 +410,7 @@ ObjetoCanvas.prototype.EventoTouchEnd = function(event) {
 
 // Función que obtiene el tamaño del canvas una vez redimensionado.
 ObjetoCanvas.prototype.EventoRedimensionar = function() {
+//    console.log("esmovil" + ObjetoNavegador.EsMovil());
     // portrait
     if (this.OpcionesCanvas.ForzarLandscape === true && ObjetoNavegador.EsMovil() === true && window.innerWidth < window.innerHeight) {
         // Invierto el nuevo ancho y la nueva altura (si no son fijas) para forzar el modo landscape
@@ -422,10 +422,12 @@ ObjetoCanvas.prototype.EventoRedimensionar = function() {
         this.Cabecera.style.height = this.Alto + "px";
     }
     else {
-        this.Cabecera.style.width  = "100%";
-        this.Cabecera.style.height = "100%";
-        this.Cabecera.style.left = "0px";
-        this.Cabecera.style.top  = "0px";
+        if (this.OpcionesCanvas['Entorno'] === 'normal') {
+            this.Cabecera.style.width  = "100%";
+            this.Cabecera.style.height = "100%";
+            this.Cabecera.style.left = "0px";
+            this.Cabecera.style.top  = "0px";
+        }
         // Calculo el nuevo ancho y la nueva altura (si no son fijas)
         if (this.OpcionesCanvas.Ancho === "Auto") { this.Ancho  = this.Cabecera.offsetWidth;  }
         if (this.OpcionesCanvas.Alto === "Auto")  { this.Alto   = this.Cabecera.offsetHeight; }
@@ -507,8 +509,8 @@ ObjetoCanvas.prototype.FPS = function() {
 
 // Modo pantalla completa
 ObjetoCanvas.prototype.PantallaCompleta = function() {    
-    var RFS = document.body.requestFullscreen || document.body.msRequestFullscreen || document.body.mozRequestFullScreen || document.body.webkitRequestFullscreen;
-//    var RFS = this.Cabecera.requestFullscreen || this.Cabecera.msRequestFullscreen || this.Cabecera.mozRequestFullScreen || this.Cabecera.webkitRequestFullscreen;
+//    var RFS = document.body.requestFullscreen || document.body.msRequestFullscreen || document.body.mozRequestFullScreen || document.body.webkitRequestFullscreen;
+    var RFS = this.Cabecera.requestFullscreen || this.Cabecera.msRequestFullscreen || this.Cabecera.mozRequestFullScreen || this.Cabecera.webkitRequestFullscreen;
 //    RFS.call(this.Cabecera);
     RFS.call(document.body);
 };

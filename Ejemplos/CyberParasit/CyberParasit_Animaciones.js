@@ -14,8 +14,6 @@ var CyberParasit_Animaciones = function() {
         this.OA = new ObjetoAnimacion;
         this.Padre = CyberParasitPadre;
         this.UltimoBeat = -1;
-
-        //this.Ani_CamaraUPos = [0, 0];
         
         this.Ani_Verde = this.OA.CrearAnimacion([
             { 'Paso' : { 
@@ -555,32 +553,32 @@ var CyberParasit_Animaciones = function() {
             this.Ani_TaDaDaDa.Iniciar.bind(this.Ani_TaDaDaDa),  // 7
             this.Ani_Biiing.Iniciar.bind(this.Ani_Biiing),      // 8
             this.Ani_Booong.Iniciar.bind(this.Ani_Booong),      // 9
-            this.Ani_Beeeng.Iniciar.bind(this.Ani_Beeeng),      // 10
+            this.Ani_Beeeng.Iniciar.bind(this.Ani_Beeeng)       // 10
         ];
 
-        // Array de animaciones críticas
+        // Array de animaciones críticas (invertido para mas facilidad a la hora de montar el bucle con splice)
         // 93.02 BPM
         this.Pasos_Animacion = [
-            { Beats : 1, Beat :  64, Funcion : this.Ani_MCubo1.Iniciar.bind(this.Ani_MCubo1)     , FuncionTerminado : this.Ani_MCubo1.Terminar.bind(this.Ani_MCubo1)   },   
-            { Beats : 1, Beat :  80, Funcion : this.Ani_MCubo2.Iniciar.bind(this.Ani_MCubo2)     , FuncionTerminado : this.Ani_MCubo2.Terminar.bind(this.Ani_MCubo2)   },   
-            { Beats : 2, Beat :  96, Funcion : this.Ani_Verde.Iniciar.bind(this.Ani_Verde)       , FuncionTerminado : this.Ani_Verde.Terminar.bind(this.Ani_Verde)     },   
-            { Beats : 2, Beat : 158, Funcion : this.Ani_TuPaPaPa.Iniciar.bind(this.Ani_TuPaPaPa) },    // empieza medio beat antes y se come un Pa.. mejor la dejo aquí        
-            { Beats : 2, Beat : 159, Funcion : this.Ani_Rojo.Iniciar.bind(this.Ani_Rojo)         , FuncionTerminado : this.Ani_Rojo.Terminar.bind(this.Ani_Rojo)       },               
-            { Beats : 1, Beat : 160, Funcion : this.Ani_MCubo3.Iniciar.bind(this.Ani_MCubo3)     , FuncionTerminado : this.Ani_MCubo3.Terminar.bind(this.Ani_MCubo3)   },   
-            { Beats : 1, Beat : 168, Funcion : this.Ani_MCubo4.Iniciar.bind(this.Ani_MCubo4)     , FuncionTerminado : this.Ani_MCubo4.Terminar.bind(this.Ani_MCubo4)   },   
-            { Beats : 1, Beat : 176, Funcion : this.Ani_MCubo5.Iniciar.bind(this.Ani_MCubo5)     , FuncionTerminado : this.Ani_MCubo5.Terminar.bind(this.Ani_MCubo5)   },   
-            { Beats : 1, Beat : 184, Funcion : this.Ani_MCubo6.Iniciar.bind(this.Ani_MCubo6)     , FuncionTerminado : this.Ani_MCubo6.Terminar.bind(this.Ani_MCubo6)   },   
-            { Beats : 1, Beat : 192, Funcion : this.Ani_MCubo7.Iniciar.bind(this.Ani_MCubo7)     , FuncionTerminado : this.Ani_MCubo7.Terminar.bind(this.Ani_MCubo7)   },   
-            { Beats : 1, Beat : 208, Funcion : this.Ani_MCubo8.Iniciar.bind(this.Ani_MCubo8)     , FuncionTerminado : this.Ani_MCubo8.Terminar.bind(this.Ani_MCubo8)   },   
-            { Beats : 1, Beat : 224, Funcion : this.Ani_MCubo9.Iniciar.bind(this.Ani_MCubo9)     , FuncionTerminado : this.Ani_MCubo9.Terminar.bind(this.Ani_MCubo9)   },   
-            { Beats : 1, Beat : 240, Funcion : this.Ani_MCubo10.Iniciar.bind(this.Ani_MCubo10)   , FuncionTerminado : this.Ani_MCubo10.Terminar.bind(this.Ani_MCubo10) },   
-            { Beats : 1, Beat : 256, Funcion : this.Ani_MCubo11.Iniciar.bind(this.Ani_MCubo11)   , FuncionTerminado : this.Ani_MCubo11.Terminar.bind(this.Ani_MCubo11) },   
-            { Beats : 1, Beat : 272, Funcion : this.Ani_MCubo12.Iniciar.bind(this.Ani_MCubo12)   , FuncionTerminado : this.Ani_MCubo12.Terminar.bind(this.Ani_MCubo12) },   
-            { Beats : 2, Beat : 287, Funcion : this.Ani_Azul.Iniciar.bind(this.Ani_Azul)         , FuncionTerminado : this.Ani_Azul.Terminar.bind(this.Ani_Azul)       },   
+            { Beats : 1, Beat : 299, Funcion : this.Ani_Final.Iniciar.bind(this.Ani_Final)       , FuncionTerminado : this.Ani_Final.Terminar.bind(this.Ani_Final)     },
             { Beats : 9, Beat : 288, Funcion : this.Ani_Reducir.Iniciar.bind(this.Ani_Reducir)   , FuncionTerminado : this.Ani_Reducir.Terminar.bind(this.Ani_Reducir) },            
-            { Beats : 1, Beat : 299, Funcion : this.Ani_Final.Iniciar.bind(this.Ani_Final)       , FuncionTerminado : this.Ani_Final.Terminar.bind(this.Ani_Final)     }
+            { Beats : 2, Beat : 287, Funcion : this.Ani_Azul.Iniciar.bind(this.Ani_Azul)         , FuncionTerminado : this.Ani_Azul.Terminar.bind(this.Ani_Azul)       },   
+            { Beats : 1, Beat : 272, Funcion : this.Ani_MCubo12.Iniciar.bind(this.Ani_MCubo12)   , FuncionTerminado : this.Ani_MCubo12.Terminar.bind(this.Ani_MCubo12) },   
+            { Beats : 1, Beat : 256, Funcion : this.Ani_MCubo11.Iniciar.bind(this.Ani_MCubo11)   , FuncionTerminado : this.Ani_MCubo11.Terminar.bind(this.Ani_MCubo11) },   
+            { Beats : 1, Beat : 240, Funcion : this.Ani_MCubo10.Iniciar.bind(this.Ani_MCubo10)   , FuncionTerminado : this.Ani_MCubo10.Terminar.bind(this.Ani_MCubo10) },   
+            { Beats : 1, Beat : 224, Funcion : this.Ani_MCubo9.Iniciar.bind(this.Ani_MCubo9)     , FuncionTerminado : this.Ani_MCubo9.Terminar.bind(this.Ani_MCubo9)   },   
+            { Beats : 1, Beat : 208, Funcion : this.Ani_MCubo8.Iniciar.bind(this.Ani_MCubo8)     , FuncionTerminado : this.Ani_MCubo8.Terminar.bind(this.Ani_MCubo8)   },   
+            { Beats : 1, Beat : 192, Funcion : this.Ani_MCubo7.Iniciar.bind(this.Ani_MCubo7)     , FuncionTerminado : this.Ani_MCubo7.Terminar.bind(this.Ani_MCubo7)   },   
+            { Beats : 1, Beat : 184, Funcion : this.Ani_MCubo6.Iniciar.bind(this.Ani_MCubo6)     , FuncionTerminado : this.Ani_MCubo6.Terminar.bind(this.Ani_MCubo6)   },   
+            { Beats : 1, Beat : 176, Funcion : this.Ani_MCubo5.Iniciar.bind(this.Ani_MCubo5)     , FuncionTerminado : this.Ani_MCubo5.Terminar.bind(this.Ani_MCubo5)   },   
+            { Beats : 1, Beat : 168, Funcion : this.Ani_MCubo4.Iniciar.bind(this.Ani_MCubo4)     , FuncionTerminado : this.Ani_MCubo4.Terminar.bind(this.Ani_MCubo4)   },   
+            { Beats : 1, Beat : 160, Funcion : this.Ani_MCubo3.Iniciar.bind(this.Ani_MCubo3)     , FuncionTerminado : this.Ani_MCubo3.Terminar.bind(this.Ani_MCubo3)   },   
+            { Beats : 2, Beat : 159, Funcion : this.Ani_Rojo.Iniciar.bind(this.Ani_Rojo)         , FuncionTerminado : this.Ani_Rojo.Terminar.bind(this.Ani_Rojo)       },               
+            { Beats : 2, Beat : 158, Funcion : this.Ani_TuPaPaPa.Iniciar.bind(this.Ani_TuPaPaPa) },    // empieza medio beat antes y se come un Pa.. mejor la dejo aquí        
+            { Beats : 2, Beat :  96, Funcion : this.Ani_Verde.Iniciar.bind(this.Ani_Verde)       , FuncionTerminado : this.Ani_Verde.Terminar.bind(this.Ani_Verde)     },   
+            { Beats : 1, Beat :  80, Funcion : this.Ani_MCubo2.Iniciar.bind(this.Ani_MCubo2)     , FuncionTerminado : this.Ani_MCubo2.Terminar.bind(this.Ani_MCubo2)   },   
+            { Beats : 1, Beat :  64, Funcion : this.Ani_MCubo1.Iniciar.bind(this.Ani_MCubo1)     , FuncionTerminado : this.Ani_MCubo1.Terminar.bind(this.Ani_MCubo1)   },   
         ];
-                
+
         return Debug_IniciarDesdeBeat;
     };
     
@@ -602,9 +600,9 @@ var CyberParasit_Animaciones = function() {
         // Nuevo Beat
         if (this.UltimoBeat !== this.Padre.Beats) {
             if (this.Pasos_Animacion.length > 0) {
-                if (this.Pasos_Animacion[0].Beat === this.Padre.Beats) {
-                    this.Pasos_Animacion[0].Funcion();
-                    this.Pasos_Animacion.splice(0, 1);
+                if (this.Pasos_Animacion[this.Pasos_Animacion.length - 1].Beat === this.Padre.Beats) {
+                    this.Pasos_Animacion[this.Pasos_Animacion.length - 1].Funcion();
+                    this.Pasos_Animacion.splice(this.Pasos_Animacion.length - 1, 1);
                 }
             }
                         

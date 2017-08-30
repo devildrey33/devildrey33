@@ -134,7 +134,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
     // Función que se llama al presionar un botón del mouse por el canvas
     MousePresionado : function(Evento) { },
     // Función que se llama al soltar un botón del mouse por el canvas
-    MouseSoltado    : function(Evento) { if (this.EsMovil() === true) { this.PlayPausa(); } },
+    MouseSoltado    : function(Evento) { if (ObjetoNavegador.EsMovil() === true) { this.PlayPausa(); } },
     // Función que se llama al entrar con el mouse en el canvas
     MouseEnter      : function(Evento) { },
     // Función que se llama al salir con el mouse del canvas
@@ -262,8 +262,8 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         var Compatibilidad = AudioContext =  window.AudioContext || window.webkitAudioContext;
         this.AudioContext = new Compatibilidad();
         this.Analizador = this.AudioContext.createAnalyser();
-        if (this.EsMovil() === true) { this.Analizador.fftSize = 128;   } // Para movil la verión de 64 columnas
-        else                         { this.Analizador.fftSize = 2048;  } // Para PC la versión de 1024 columnas
+        if (ObjetoNavegador.EsMovil() === true) { this.Analizador.fftSize = 128;   } // Para movil la verión de 64 columnas
+        else                                    { this.Analizador.fftSize = 2048;  } // Para PC la versión de 1024 columnas
 /*      this.Analizador.minDecibels = -90;
       this.Analizador.maxDecibels = -10;	    */
         this.Analizador.smoothingTimeConstant = 0.85; // ?¿?¿?
@@ -669,7 +669,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
         
         this.Test = new ObjetoTest({ "css" : { bottom : "10px", left : "10px" } });
 
-        if (this.EsMovil() === true) { return; }
+        if (ObjetoNavegador.EsMovil() === true) { return; }
     
     
         // Audio        
