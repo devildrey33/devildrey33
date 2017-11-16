@@ -1,0 +1,110 @@
+/* CSS para el canvas 2d 
+ *  Creado por Josep Antoni Bover Comas el 19/10/2017 para devildrey33.es 
+ *  Ultima modificación : 19/10/2017 */
+
+/* Fuente del logo */
+@import url('https://fonts.googleapis.com/css?family=Architects+Daughter|Orbitron');
+
+/* Marco que contiene todas las capas y etiquetas con información extra */
+.Canvas2D {
+    margin     : 0px;
+    height     : 100%;
+    border-top : none;
+    color      : #FFFFFF;
+    z-index    : 10;
+    width      : 100%;
+    overflow   : hidden;
+    position   : fixed;
+    top        : 0px;
+    bottom     : 0px;
+    left       : 0px;
+}        
+
+/* Marco para mostrar información extra (cargando, pausa, fps, etc...) )*/
+.Canvas2D_Marco {
+    transition          : 0.3s cubic-bezier(.33,.05,.69,1.59);
+    z-index             : 13;
+    padding             : 10px;
+    margin              : 5px;    
+    background-image    : radial-gradient(rgba(37,35,40, 0.4), rgba(37,35,40, 0.8));
+    color               : #FFF;
+    text-shadow         : 1px 1px 1px #000;
+    position            : fixed;
+    border-radius       : 4px;
+    border              : 2px solid #353338;
+    -webkit-user-select : none;
+    -moz-user-select    : none;
+    -ms-user-select     : none;
+    user-select         : none;
+}
+
+/* Cargando y Pausa centrados horizontal y verticalmente, además tienen una fuente de 3 em */
+.Canvas2D > .Canvas2D_Cargando, .Canvas2D > .Canvas2D_Pausa /*, #ObjetoCanvas > #Cabecera_Iniciar */ {
+    top         : 50%;
+    left        : 50%;
+    font-size   : 3em;
+    transform   : perspective(600px) rotateX(-90deg) translateX(-50%) translateY(-50%);
+    font-family : 'Orbitron',sans-serif;
+}        
+
+/* Solo se muestra el texto cargando mientras el atributo cargando sea true (necesario para advertir de la carga de texturas) */
+.Canvas2D[cargando=true] > .Canvas2D_Cargando, .Canvas2D[pausa=true] > .Canvas2D_Pausa {
+    transform:perspective(600px) rotateX(0deg) translateX(-50%) translateY(-50%);        
+}
+
+
+/* Contenedor para los controles del canvas */
+.Canvas2D_Controles {
+    position:fixed;
+    bottom:10px;
+    z-index:1000;
+    -webkit-user-select : none;
+    -moz-user-select    : none;
+    -ms-user-select     : none;
+    user-select         : none;
+    /* left: 0px; */
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    font-family:'Orbitron',sans-serif;
+    align-items: flex-start;
+    text-shadow:1px 1px 1px #000;
+}
+
+.Canvas2D_Controles[alinear=derecha]   { right:10px; }
+.Canvas2D_Controles[alinear=izquierda] { left:10px; }
+
+.Canvas2D_Controles[alinear=derecha] > .Canvas2D_Boton, .Canvas2D_Controles[alinear=derecha] > .Canvas2D_Marco {
+    margin-left:auto;
+}
+
+.Canvas2D_Controles[alinear=izquierda] > .Canvas2D_Boton, .Canvas2D_Controles[alinear=izquierda] > .Canvas2D_Marco {
+    margin-right:auto;
+}
+
+.Canvas2D_Controles > .Canvas2D_Boton, .Canvas2D_Controles > .Canvas2D_Marco {
+    width:58px;
+    height:58px;
+    padding:0px;
+    background-image:radial-gradient(rgba(37,35,40, 0.4), rgba(37,35,40, 0.8));
+    /*cursor:pointer;*/
+    color:#FFF;
+    overflow:hidden;
+    /* margin-left:auto;  */
+    /* margin-right:auto; */
+    margin-top:10px;
+    position:relative;
+    transition:0.4s;
+}
+
+
+.Canvas2D_Controles > .Canvas2D_Marco > .Canvas2D_FPS,
+.Canvas2D_Controles > .Canvas2D_Marco > .Canvas2D_TxtFPS {
+    display:table;
+    margin-left:auto;
+    margin-right:auto;
+    cursor: default;
+}
+
+.Canvas2D_Controles > .Canvas2D_Marco > .Canvas2D_FPS    { font-size:1.5em; color:rgb(0, 255, 0); }
+.Canvas2D_Controles > .Canvas2D_Marco > .Canvas2D_TxtFPS { font-size:1em; }

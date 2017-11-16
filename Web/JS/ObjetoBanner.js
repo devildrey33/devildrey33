@@ -1,3 +1,6 @@
+/* DEPRECATED should use ObjetoCanvas */
+
+
 /* Para crear un nuevo banner hay que seguir estos pasos : 
  *  - Modificar el archivo /Web/Config/ArchivosMinify.php, para añadirle el nuevo script para el banner. 
  *  - Modificar la variable $Banner_Lista, y añadir-le al final el nombre del objeto para el banner 

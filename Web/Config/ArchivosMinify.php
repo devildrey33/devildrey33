@@ -52,10 +52,10 @@ return array(
         "/JS/ObjetoCanvas.js", // Debe estar antes de los banners / canvas
         "/JS/ObjetoAnimacion.js", // Debe estar antes de los banners / canvas
         "/JS/ObjetoCanvas/Banner_Espacio2D.js",
-//      "/JS/Banner/Banner_Colisiones.js",
-//      "/JS/Banner/Banner_ResplandorCircular.js",
-//      "/JS/Banner/Banner_TranstornoLineal.js",
-//      "/JS/Banner/Banner_MatrixLluviaHexadecimal.js",      
+//      "/JS/ObjetoCanvas/Banner_Colisiones.js",
+//      "/JS/ObjetoCanvas/Banner_ResplandorCircular.js",
+//      "/JS/ObjetoCanvas/Banner_TranstornoLineal.js",
+        "/JS/ObjetoCanvas/Banner_MatrixLluviaHexadecimal.js",      
         "/JS/ObjetoCanvas/Banner_AdiestramientoCubos3D.js",
         "/JS/ObjetoCanvas/Banner_WormHole.js",
 //      "/JS/ObjetoCanvas/Banner_Anillos.js",                // no m'agrada

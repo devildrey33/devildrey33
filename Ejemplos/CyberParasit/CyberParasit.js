@@ -64,7 +64,7 @@ CyberParasit.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , 
     // Variable que indica si se ha terminado la canción
     Terminado       : false,
     // Muestra / oculta el marco que cuenta los beats
-    MostrarBeats    : false,
+    MostrarBeats    : true,
     // Utilizar desde CyberParasit_Animacion
     Debug_IniciarDesdeBeat : 0, 
     

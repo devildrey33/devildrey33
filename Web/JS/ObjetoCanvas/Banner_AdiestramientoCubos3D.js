@@ -59,7 +59,7 @@ Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoCanv
         this.YBase = (this.TamCubo / 2) + this.TamCubo;
 
         // Creo la parrilla
-        this.Parrilla = new THREE.GridHelper(Tam, Divisiones, new THREE.Color(0xcccccc), new THREE.Color(0x999999));
+        this.Parrilla = new THREE.GridHelper(Tam * 2, Divisiones, new THREE.Color(0xcccccc), new THREE.Color(0x999999));
         this.Parrilla.position.y = this.TamCubo;
     //    this.Parrilla.setColors(new THREE.Color(0xcccccc), new THREE.Color(0x999999));    // blanco
     //    this.Parrilla.setColors(new THREE.Color(0xdddd00), new THREE.Color(0xcc9900));    // naranja

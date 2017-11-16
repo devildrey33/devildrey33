@@ -1,17 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Ultime modificación el 27/09/2017 -->
 <html>
 	<head>
     	<style type="text/css">
-			/* Las etiquetas 'p' precedidas por una etiqueta 'div'  
-			   tienen el color del texto verde */
-			div~p { color:rgb(0, 255 ,0); }
-		</style>
+         /* Las etiquetas 'p' precedidas por una etiqueta 'div' tienen el color del texto verde 
+            Prueba 'div + p' para ver la direferencia entre adyaciente (+) y precedencia (~)  */
+            div ~ p { color:rgb(0, 255 ,0); }
+        </style>
     </head>
     <body>
-    	<p>Etiqueta 'p' antes de una etiqueta 'div'</p>
-        <div>Etiqueta 'div' normal</div>
-        <p>Etiqueta 'p' justo despues de una etiqueta 'div'</p>
-        <span>Etiqueta 'span' normal</span><br />
-        <p>Etiqueta 'p' precedida de una etiqueta 'div' (linea 11)</p>
+    	<p>&lt;p&gt; antes de un &lt;div&gt;</p>
+        <div style='color:blue'>&lt;div&gt;</div>
+        <p>&lt;p&gt; adyaciente a un <span style='color:blue'>&lt;div&gt;</span></p>
+        <span>&lt;span&gt;</span><br />
+        <p>&lt;p&gt; precedida de un &lt;div&gt; <span style='color:blue'>(linea 12)</span></p>
+        <p>&lt;p&gt; precedida de un &lt;div&gt; <span style='color:blue'>(linea 12)</span></p>
+        <div style='color:orange'>&lt;div&gt;</div>
+        <p>&lt;p&gt; adyaciente a un <span style='color:orange'>&lt;div&gt;</span></p>
     </body>
 </html>

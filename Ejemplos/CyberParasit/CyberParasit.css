@@ -8,7 +8,7 @@
     text-align:center;
     cursor:pointer;
     transform:perspective(600px) rotateX(-90deg) translateX(-50%);
-    z-index: 1000;
+    z-index:20;
     font-family:'Orbitron',sans-serif;
 }
 
@@ -36,7 +36,7 @@
     padding: 10px;
     transform:perspective(600px) rotateX(-90deg);
     margin: 0px;
-    
+    z-index:20;    
 }
 
 #Creditos[visible=true] {

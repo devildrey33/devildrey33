@@ -33,7 +33,7 @@ Banner_MatrixLluviaHexadecimal.prototype = Object.assign( Object.create(ObjetoCa
     
     Iniciar             : function() {
         // Arrays para cada plano
-        this.Caracteres = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" /*, "田", "由", "甲", "申", "甴", "电", "甶", "男", "甸", "甹", "町", "画", "甼", "甽", "甾", "甿", "畀", "畁", "畂", "畃", "畄", "畅", "畆", "畇", "畈", "畉", "畊", "畋", "界", "畍", "畎", "畏", "畐", "畑" */];    
+        this.Caracteres = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" ];    
         this.Columnas   = [];
         this.TamFuente  = 10;
         this.NoPintar   = false;
@@ -60,8 +60,6 @@ Banner_MatrixLluviaHexadecimal.prototype = Object.assign( Object.create(ObjetoCa
         this.Context.fillRect(0, 0, this.Ancho, this.Alto);        
         this.Context.fillStyle = "#00FF00"; 
         this.Context.font = this.TamFuente + "px arial";
-
-
 
         for (var i = 0; i < this.Columnas.length; i++) {
             var Char = this.Caracteres[RandInt(this.Caracteres.length)];

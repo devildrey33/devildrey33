@@ -2,7 +2,7 @@
 
 var Logo_devildrey33 = function() {
     var PreLogo = document.createElement('a');
-    PreLogo.setAttribute("href", "http://devildrey33.es");
+    PreLogo.setAttribute("href", "https://devildrey33.es");
     PreLogo.setAttribute("target", "_blank");
     PreLogo.id = "Logo_devildrey33";
     PreLogo.innerHTML = "<div>" +

@@ -194,27 +194,29 @@ var CyberParasit_Animaciones = function() {
 
         /* 1 Beat */        
         this.Ani_Tu3 = this.OA.CrearAnimacion([
-            { 'Paso' : { s : 1  , rz : 0             }},                      
-            { 'Paso' : { s : 1.5, rz : Math.PI }, 'Tiempo' : 115, 'FuncionTiempo' : FuncionesTiempo.SinIn },
-            { 'Paso' : { s : 1  , rz : Math.PI }, 'Tiempo' : 115, 'FuncionTiempo' : FuncionesTiempo.SinOut },
+            { 'Paso' : { s : 1  , rz : 0      /*, or : this.Padre.Parasito_PresetVerde[3].r, og : this.Padre.Parasito_PresetVerde[3].g, ob : this.Padre.Parasito_PresetVerde[3].b, */}},                      
+            { 'Paso' : { s : 1.5, rz : Math.PI/*, or : this.Padre.Parasito_PresetAzul[3].r , og : this.Padre.Parasito_PresetAzul[3].g , ob : this.Padre.Parasito_PresetAzul[3].b   */}, 'Tiempo' : 115, 'FuncionTiempo' : FuncionesTiempo.SinIn },
+            { 'Paso' : { s : 1  , rz : Math.PI/*, or : this.Padre.Parasito_PresetVerde[3].r, og : this.Padre.Parasito_PresetVerde[3].g, ob : this.Padre.Parasito_PresetVerde[3].b  */}, 'Tiempo' : 115, 'FuncionTiempo' : FuncionesTiempo.SinOut },
         ], { FuncionActualizar : function(Valores) { 
-//                this.Padre.Parasitos.scale.y = Valores.sy;
                 for (var i = 0; i < this.Padre.Parasitos_Visibles; i++) {
                    this.Padre.Parasito[i].rotation.z = Valores.rz;
                    this.Padre.Parasito[i].scale.set(Valores.s, Valores.s, Valores.s);
                 }
+//                this.Padre.Parasito_Colores[3].setRGB(Valores.or, Valores.og, Valores.ob);
+                
             }.bind(this)/*, FuncionIniciado : function() { this.Ani_Camara.Iniciar(); }.bind(this)             */
         });        
         /* 1 Beat */
         this.Ani_Pa3 = this.OA.CrearAnimacion([
-            { 'Paso' : { s : 1  , rz : Math.PI               }},                      
-            { 'Paso' : { s : 1.5, rz : 0  }, 'Tiempo' : 115, 'FuncionTiempo' : FuncionesTiempo.SinIn },
-            { 'Paso' : { s : 1  , rz : 0  }, 'Tiempo' : 115, 'FuncionTiempo' : FuncionesTiempo.SinOut },
+            { 'Paso' : { s : 1  , rz : Math.PI, or : this.Padre.Parasito_PresetVerde[3].r, og : this.Padre.Parasito_PresetVerde[3].g, ob : this.Padre.Parasito_PresetVerde[3].b, }},                      
+            { 'Paso' : { s : 1.5, rz : 0      , or : this.Padre.Parasito_PresetAzul[3].r , og : this.Padre.Parasito_PresetAzul[3].g , ob : this.Padre.Parasito_PresetAzul[3].b   }, 'Tiempo' : 115, 'FuncionTiempo' : FuncionesTiempo.SinIn },
+            { 'Paso' : { s : 1  , rz : 0      , or : this.Padre.Parasito_PresetVerde[3].r, og : this.Padre.Parasito_PresetVerde[3].g, ob : this.Padre.Parasito_PresetVerde[3].b, }, 'Tiempo' : 115, 'FuncionTiempo' : FuncionesTiempo.SinOut },
         ], { FuncionActualizar : function(Valores) { 
                 for (var i = 0; i < this.Padre.Parasitos_Visibles; i++) {
                    this.Padre.Parasito[i].rotation.z = Valores.rz;
                    this.Padre.Parasito[i].scale.set(Valores.s, Valores.s, Valores.s);
                 }
+                this.Padre.Parasito_Colores[3].setRGB(Valores.or, Valores.og, Valores.ob);
             }.bind(this)/*, FuncionIniciado : function() { this.Ani_Camara.Iniciar(); }.bind(this)   */
         });        
         
@@ -548,8 +550,8 @@ var CyberParasit_Animaciones = function() {
             this.Ani_Pa.Iniciar.bind(this.Ani_Pa),              // 2
             this.Ani_Tu2.Iniciar.bind(this.Ani_Tu2),            // 3
             this.Ani_Pa2.Iniciar.bind(this.Ani_Pa2),            // 4
-            this.Ani_Tu2.Iniciar.bind(this.Ani_Tu3),            // 5
-            this.Ani_Pa2.Iniciar.bind(this.Ani_Pa3),            // 6
+            this.Ani_Tu3.Iniciar.bind(this.Ani_Tu3),            // 5
+            this.Ani_Pa3.Iniciar.bind(this.Ani_Pa3),            // 6
             this.Ani_TaDaDaDa.Iniciar.bind(this.Ani_TaDaDaDa),  // 7
             this.Ani_Biiing.Iniciar.bind(this.Ani_Biiing),      // 8
             this.Ani_Booong.Iniciar.bind(this.Ani_Booong),      // 9

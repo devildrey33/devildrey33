@@ -56,7 +56,7 @@ class devildrey33_Opciones {
     static public function Administrador($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("Administrador",                                                                     0, 		$Valor);	}
     static public function Minificar_CSS($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_CSS", 		(devildrey33_Opciones::$ServidorLocal === FALSE) ? 1 : 0, 		$Valor);	}
     static public function Minificar_JS($Valor = -1)        {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_JS", 		(devildrey33_Opciones::$ServidorLocal === FALSE) ? 1 : 0, 		$Valor);	}
-    static public function Minificar_HTML($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_HTML", 		(devildrey33_Opciones::$ServidorLocal === FALSE) ? 0 : 1, 		$Valor);	}
+    static public function Minificar_HTML($Valor = -1)      {	return devildrey33_Opciones::_ObtenerAsignarValor("Minificar_HTML", 		                                                       1, 		$Valor);	}
 //    static public function ActualizarCache($Valor = -1)     {	return devildrey33_Opciones::_ObtenerAsignarValor("ActualizarCache", 		(devildrey33_Opciones::$ServidorLocal === FALSE) ? 0 : 1, 		$Valor);	}
     static public function PaginasVistas($Valor = -1)       {	return devildrey33_Opciones::_ObtenerAsignarValor("PaginasVistas",                                                                     0, 		$Valor);	}
     static public function UltimaActividadMS($Valor = -1)   {	return devildrey33_Opciones::_ObtenerAsignarValor("UltimaActividadMS",                                                                 0, 		$Valor);	}

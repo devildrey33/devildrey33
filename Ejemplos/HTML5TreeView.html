@@ -1,0 +1,69 @@
+<!-- 
+    Nuevo documento del laboratorio de pruebas para devildrey33
+    Se permite : HTML, JavaScript, CSS.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            treeview {
+                display:inline-block;
+                width:200px;
+            }
+            
+            treeview details > subitems {
+                position:relative;
+/*                transform-origin:top;*/
+                transform:scaleY(0);
+                color:#000;
+                transition:3.4s ease-in-out;
+            }
+            
+            treeview details[open] > subitems {
+                color:#F00;
+                transform:scaleY(1);
+            }
+
+            treeview subitems > details { margin-left:1em; }
+        </style>
+        
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+
+        <!-- Si deseas utilizar Three 3D lib descomenta la siguiente línea -->
+        <!-- <script src="/Web/JS/3rdParty/three-0.74.min.js"></script> -->
+
+        <!-- Si deseas utilizar Tween (animaciones para Three) descomenta la siguiente línea -->
+        <!-- <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script> -->
+        
+        <!-- Si deseas utilizar stats (framerate para Three) descomenta la siguiente línea -->
+        <!-- <script src="https://code.createjs.com/stats.min.js"></script> -->
+
+        <!-- Si deseas utilizar DAT.GUY (Marco de opciones configurable) descomenta la siguiente línea -->
+        <!-- <script src="https://code.createjs.com/DAT.GUY.js"></script> -->
+        
+        <!-- Código javascript -->
+        <script type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <treeview>
+            <details>
+                <summary>Item 1</summary>                
+                <subitems>
+                    <details>
+                        <summary>Item 1.1</summary>                
+                        <subitems>
+                            <details>
+                                <summary>Item 1.1.1</summary>                
+                            </details>
+                        </subitems>
+                    </details>
+                </subitems>
+            </details>
+        </treeview>
+    </body>
+</html>

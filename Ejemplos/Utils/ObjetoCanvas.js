@@ -1,6 +1,6 @@
 /* Fusión del ObjetoCanvas (originalmente destinado a tests de banners) con el ObjetoBanner 
     Creado el 14/10/2016 por Josep Antoni Bover Comas para devildrey33.es 
-    Ultima modificación :  27/08/2017 
+    Ultima modificación :  30/08/2017 
  */
 
 /* NOTA Importante, inicialmente este objeto se creo con la finalidad de probar banners para mi web, pero con el tiempo lo he estado enriqueciendo y adaptando para poder crear
@@ -28,6 +28,7 @@
     Opciones['ElementoRaiz']            elemento del HTML donde se creará el canvas                     (POR DEFECTO es 'document.body')
     Opciones['ColorFondo']              color del fondo en HEX (SOLO para THREE.js)                     (POR DEFECTO es '0x312E35' gris oscuro) 
     Opciones['CapturaEjemplo']          nombre del archivo que contiene la captura de pantalla          (Enlazará a '/Web/Graficos/250x200_')
+    Opciones['ForzarLandscape']         fuerza al dispositivo movil para mostrarse apaisado (NO FUNCIONA BIEN!!!!)
 */
 "use strict";
 
@@ -145,14 +146,11 @@ var ObjetoCanvas = function(Opciones) {
         document.getElementById("CabeceraAutorAni_HTML").innerHTML = "<div>"+ this.Nombre +"</div>" +
                                                                      "<div><span style='color:#AAA;'>Concepto original : </span><b>" + this.IdeaOriginal + "</b></div>" + 
                                                                      "<a href='" + this.URL + "' target='_blank'>" + this.NombreURL + "</a>";        
+        this.Cabecera.setAttribute("animar", true); /* Transición hover para el marco del banner que permite elegir la animación */
     }    
     
     // Asigno el estado cargando, que muestra una ventana que avisa al usuario.
     this.Cabecera.setAttribute("cargando", true);
-    this.Cabecera.setAttribute("animar", true);
-//    this.Cabecera.setAttribute("iniciado", false);
-    
-    
     // Obtengo la etiqueta canvas    
     this.Canvas = document.getElementById("Cabecera_Canvas");        
     
@@ -342,7 +340,7 @@ ObjetoCanvas.prototype.EsMovil = function() {
     return ObjetoNavegador.EsMovil();
 };*/
 
-// Función que determina el estado de carga (cargando/completo) true/false
+// Función que determina el estado de carga (cargando/completo) true / false
 ObjetoCanvas.prototype.Cargando = function(carga) {
     this.Cabecera.setAttribute("cargando", carga);
 };

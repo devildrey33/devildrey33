@@ -1,17 +1,120 @@
 /* Documento que contiene el CSS para el indice de devildrey33 */
 
-.Articulo_Portada > h1 > a {
-    color:rgb(200,200,200);
+.Articulo_Portada {
+    position:relative;
+}
+
+.Articulo_Portada_MarcoI, .Articulo_Portada_MarcoD {
+    position:absolute;
+    display: inline-block;
+    top:0px;
+    width:10px;
+    height: 100%;    
+}
+
+.Articulo_Portada > .Articulo_Portada_MarcoI::before, .Articulo_Portada > .Articulo_Portada_MarcoI::after,
+.Articulo_Portada > .Articulo_Portada_MarcoD::before, .Articulo_Portada > .Articulo_Portada_MarcoD::after {
     transition:0.4s;
+    content:'';
+    position:absolute;
+    width:20px;
+    height:20px;    
+}
+
+.Articulo_Portada > .Articulo_Portada_MarcoI::before, .Articulo_Portada > .Articulo_Portada_MarcoI::after, 
+.Articulo_Portada > .Articulo_Portada_MarcoD::before, .Articulo_Portada > .Articulo_Portada_MarcoD::after {
+    width:10px;
+    height: 10px;
+}
+
+.Articulo_Portada > .Articulo_Portada_MarcoI { left:-1px; margin:0px; }
+.Articulo_Portada > .Articulo_Portada_MarcoD { right:0px; margin:0px; }
+/* Parte izquierda del marco */
+.Articulo_Portada > .Articulo_Portada_MarcoI::before {
+    top:0px;
+    left:0px;
+    border-top:3px solid rgba(57, 55, 60, 0.3);
+    border-left:3px solid rgba(57, 55, 60, 0.3);
+}
+
+.Articulo_Portada > .Articulo_Portada_MarcoI::after {
+    left:0px;
+    bottom:-1px;
+    border-bottom:3px solid rgba(57, 55, 60, 0.3);
+    border-left:3px solid rgba(57, 55, 60, 0.3);
+}
+/* Parte derecha del marco */
+.Articulo_Portada > .Articulo_Portada_MarcoD::before {
+    bottom:-1px;
+    right: 0px;
+    border-bottom:3px solid rgba(57, 55, 60, 0.3);
+    border-right:3px solid rgba(57, 55, 60, 0.3);
+}
+
+.Articulo_Portada > .Articulo_Portada_MarcoD::after {
+    top:0px;
+    right: 0px;
+    border-top:3px solid rgba(57, 55, 60, 0.3);
+    border-right:3px solid rgba(57, 55, 60, 0.3);
+}
+
+/* hover para los contenedores izquierdo y derecho de las marcas */
+.Articulo_Portada:hover > .Articulo_Portada_MarcoD::before, .Articulo_Portada:hover > .Articulo_Portada_MarcoD::after,
+.Articulo_Portada:hover > .Articulo_Portada_MarcoI::before, .Articulo_Portada:hover > .Articulo_Portada_MarcoI::after {
+    width:18px;
+    height:18px;        
+}
+
+
+/* hover para las marcas */
+.Articulo_Portada:hover > .Articulo_Portada_MarcoI::before { 
+    top:6px;
+    left:6px;
+    border-top:2px solid #666;
+    border-left:2px solid #666;
+    border-radius:2px;
+}
+.Articulo_Portada:hover > .Articulo_Portada_MarcoI::after { 
+    bottom:6px;
+    left:6px;
+    border-bottom:2px solid #666;
+    border-left:2px solid #666;
+    border-radius:2px;
+}
+
+.Articulo_Portada:hover > .Articulo_Portada_MarcoD::before { 
+    bottom:6px;
+    right:6px;
+    border-bottom:2px solid #666;
+    border-right:2px solid #666;
+    border-radius:2px;
+}
+.Articulo_Portada:hover > .Articulo_Portada_MarcoD::after { 
+    top:6px;
+    right:6px;
+    border-top:2px solid #666;
+    border-right:2px solid #666;
+    border-radius:2px;
+}
+
+
+
+
+
+.Articulo_Portada > h1 > a {
+    color:inherit;
+/*    transition:0.4s;
+    position:relative;*/
 /*   text-decoration:underline; */
 }
 
-.Articulo_Portada > h1 > a:hover {
+/*.Articulo_Portada > h1 > a:hover {
     color:rgb(234, 80, 78);
-}
+}*/
 
 .Articulo_Portada:hover > h1 > a {
      text-decoration:none;
+/*     left:13px;*/
 }
 
 #Categorias_Estado + #Categorias_Label {
@@ -105,13 +208,37 @@
 .Articulo_Portada:hover {
     background:#1D1A21;
 }
-.Articulo_Portada > h1 {/*                font-family: 'Orbitron', sans-serif;*/margin:0px 0px 4px 0px;/* font-size: 2.2rem; */}
+.Articulo_Portada > h1 {
+    margin:0px 0px 4px 0px;
+    transition:0.4s;    
+}
 
-.Articulo_Portada > div {
+.Articulo_Portada > h1 > a {
+    position:relative;
+    transition:0.4s;
+    left:0px;
+    color:#999;
+    white-space: nowrap;
+    text-shadow:1px 1px 1px #000;
+}
+.Articulo_Portada:hover > h1 > a {
+    color:#FFF;
+    left:10px;
+}
+
+.Articulo_Portada > .MarcoInformacion {
     font-size:1.2rem;
     color:#999;
     margin-left: 10px;
+    transition:0.4s;
+    opacity:0.5;
 }
+
+.Articulo_Portada:hover > .MarcoInformacion {
+    margin-left: 25px;
+    opacity:1;
+}
+
 .Articulo_Portada > a > .Articulo_Portada_Imagen {
     position:absolute;
     right:40px;

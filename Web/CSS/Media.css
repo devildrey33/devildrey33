@@ -52,6 +52,6 @@ and open the template in the editor.
     }    
     /* Faig la font del titul un pel mes petita */
     .Articulo_Portada > h1 {
-        font-size:2.2rem;
+        font-size: 2rem;
     }    
 }

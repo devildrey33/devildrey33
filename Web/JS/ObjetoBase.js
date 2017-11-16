@@ -178,7 +178,7 @@ $Base = new function() {
                                 Banner_Colisiones,
                                 Banner_TranstornoLineal,*/
                                 Banner_Espacio2D,
-//                                Banner_MatrixLluviaHexadecimal,
+                                Banner_MatrixLluviaHexadecimal,
                                 Banner_AdiestramientoCubos3D,
                                 Banner_WormHole,
 //                                Banner_Anillos,
