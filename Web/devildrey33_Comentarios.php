@@ -15,7 +15,7 @@ class devildrey33_Comentarios {
 /*                        "<table>"."<tr>"."<td>".*/
                         "<input type='text' name='fullname' required placeholder='Nombre' id='Comentarios_Nombre' spellcheck='false'>".Intro().
                         "<input type='email' name='email' required placeholder='micorreo@servidor.dom' id='Comentarios_Correo' spellcheck='false'>".Intro().
-                        "<input type='url' name='url' id='Comentarios_Web' placeholder='http://miweb.dominio (opcional)' pattern='http?://.+' title='Si no tienes pagina web deja este espacio en blanco' spellcheck='false'>".Intro().
+                        "<input type='url' name='url' id='Comentarios_Web' placeholder='http://miweb.dominio (opcional)' pattern='^(http|https)://.+' title='Si no tienes pagina web deja este espacio en blanco' spellcheck='false'>".Intro().
                     "</div>".Intro().
 
 /*                        "<div id='Comentarios_MarcoCaptcha'>".Intro().

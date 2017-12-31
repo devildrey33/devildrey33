@@ -23,12 +23,12 @@ and open the template in the editor.
 .ImagenPortada, .ImagenPortada2 {
     margin-top:1em;
     background:rgb(255,255,255);
-    float:right;  
-    margin-left:15px;
+/*    float:right;  
+    margin-left:15px;*/
 }
-/*
+
 .ImagenPortada  { float:right;  margin-left:15px;  }
-.ImagenPortada2 { float:right;  margin-left:15px;   } */
+.ImagenPortada2 { float:left;  margin-right:15px;   } 
 /*
 .ImagenPortada:hover  { outline:1px solid #999; }
 .ImagenPortada2:hover { outline:1px solid #999; }

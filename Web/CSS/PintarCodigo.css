@@ -43,21 +43,25 @@
     font-size:1.6rem;*/
     font-family:Inconsolata, monospace;
     font-size:1.4rem !important;
+    line-height: 15px;
 }
 /* Numeración del código */
 .Codigo_Numeracion {
+    line-height: 15px;
     display:table-cell;
     position:relative;
     text-align:right;
-    padding:0px 6px;
+    padding: 10px;
     background:#f7f7f7;
     font-family:Inconsolata, monospace;
     font-size:1.4rem !important;
-/*    font-family:monospace;
-    font-size:1.6rem;*/
+}
+
+.Codigo_Numeracion > div, .Codigo_PRECodigo > div[l] {
+    height:15px;  /* Tamaño de cada línea */
 }
 /* Colores para los codigos */
-.TxtNegro 	{	color:#000000;			}
+.TxtNegro 	{color:#000000;min-height:  15px;}
 .TxtVerde 	{	color:#006600;			}
 .TxtVerdeClaro 	{	color:rgb(0, 153, 153);		}
 .TxtAzul 	{	color:#0000FF;			}
@@ -93,7 +97,6 @@ a[cid][l]:hover {
 .Codigo_PRECodigo > div[l] {
     transition:0.4s;
     background-color:rgb(255,255,255);
-    min-height:14px;
 }
 /* Línea de código al hacer click en una etiqueta <linea> */
 .Codigo_PRECodigo > div[l][click] {

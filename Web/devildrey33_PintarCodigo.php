@@ -336,11 +336,6 @@ class devildrey33_PintarCodigo {
         $Spans = 0;
         // Estado inicial de la línea
         switch ($Estado) {
-            case "HTML" : case "CSS" : case "PHP" : case "JS" : case "C" :           // Sin estado
-            default : // Comentario de una sola línea que se ha terminado
-                $Estado = $Tipo;
-                $Palabras[$TotalPalabras ++] = $this->_DivInicial($l, $this->_Color($Diccionario, 5), $Estado, $AbrirDivLinea, $Spans);
-                break;
             case "HTML_ComentarioML" : case "CSS_ComentarioML" : case "PHP_ComentarioML" : case "JS_ComentarioML" : case "C_ComentarioML" :
                 $Palabras[$TotalPalabras ++] = $this->_DivInicial($l, $this->_Color($Diccionario, 4), $Estado, $AbrirDivLinea, $Spans);
                 break;
@@ -356,6 +351,11 @@ class devildrey33_PintarCodigo {
                 break; 
             case "HTML_FinPHP" : case "HTML_FinJS" : case "HTML_FinCSS" :
                 $NuevoParsing .= "\n";
+                break;
+            case "HTML" : case "CSS" : case "PHP" : case "JS" : case "C" :           // Sin estado
+            default : // Comentario de una sola línea que se ha terminado
+                $Estado = $Tipo;
+                $Palabras[$TotalPalabras ++] = $this->_DivInicial($l, $this->_Color($Diccionario, 5), $Estado, $AbrirDivLinea, $Spans);
                 break;
         }
         $PalabraActual = array("Texto" => "", "Estado" => $Estado);       
@@ -963,7 +963,7 @@ class devildrey33_PintarCodigo {
         $PRE .=     "<div class='Codigo_Numeracion'>";
         if ($TotalLineas == 0) $TotalLineas = 1;
         for ($i = 1; $i < $TotalLineas + 1; $i++) {
-            $PRE .= $i."<br>";
+            $PRE .= "<div>".$i."</div>";
 //                $PRE .= "<div l=".$i.">".$i."</div>";
         }
         $PRE = $PRE."</div>".

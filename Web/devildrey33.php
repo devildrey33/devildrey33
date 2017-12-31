@@ -763,7 +763,7 @@ class devildrey33 {
 //                echo $this->RedesSociales($Archivo, $Nombre);
                 echo "<h1>".$TituloH1."</h1>".Intro();
                 echo "<div class='FechaEntrada'>".Intro();
-                echo $Dia." de ".$Mes." del ".$Any." por <b class='Autor'>".$Entradas->Datos[$i]["Autor"]."</b>".Intro();
+                echo $Dia." de ".$Mes." del ".$Any." por <b class='Autor'>".$Entradas->Datos[$i]["Autor"]."</b>, ".Intro();
                 echo "<span>".$this->BD->ObtenerValoresEntrada($Archivo, true)."</span>".Intro();
                 echo "<br />".Intro();
                 echo $this->EnlazarTags($Entradas->Datos[$i]["Tags"]).Intro();
