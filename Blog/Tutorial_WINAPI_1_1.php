@@ -11,7 +11,7 @@
 
         $Base->InicioPlantilla(basename(__FILE__), "Tutorial WINAPI C++ 1.1 (POO y WinMain)", $META);
         
-        $Base->InicioBlog(basename(__FILE__), "Tutorial WINAPI C++ 1.1 (POO y WinMain)");
+        $Base->InicioBlog(basename(__FILE__), "Tutorial WINAPI C++ 1.1 (POO y WinMain)", TRUE);
 
 ?>	
 

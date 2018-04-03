@@ -41,6 +41,8 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
     MouseLeave      : function(Evento) {  },
     
     Circulos        : [],
+    // Tamaño en pixeles de la pluma
+/*    GrosorPluma     : 3,*/
         
     CrearCirculos   : function(ArrayCirculos) {
         var TotalCirculos = RandInt(7, 4);
@@ -52,7 +54,8 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
             for (var i = 0; i < TotalCirculos; i++) {                
                 this.Circulos.push(new this.Circulo(RandInt((this.Alto / TotalCirculos) - 2, 15), 
                     "rgb(" + Math.floor(234 * cAlpha) + "," + Math.floor(80 * cAlpha) + "," + Math.floor(78 * cAlpha) + ")",
-                    "rgb(" + Math.floor(255 * cAlpha) + "," + Math.floor(155 * cAlpha) + "," + Math.floor(155 * cAlpha) + ")"
+                    "rgb(180, 180, 180)"
+//                    "rgb(" + Math.floor(255 * cAlpha) + "," + Math.floor(155 * cAlpha) + "," + Math.floor(155 * cAlpha) + ")"
                 ));
                 cAlpha += 0.1;
             }
@@ -62,7 +65,8 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
             for (var i = 0; i < ArrayCirculos.length; i++) {
                 this.Circulos.push(new this.Circulo(ArrayCirculos[i], 
                     "rgb(" + Math.floor(234 * cAlpha) + "," + Math.floor(80 * cAlpha) + "," + Math.floor(78 * cAlpha) + ")",
-                    "rgb(" + Math.floor(255 * cAlpha) + "," + Math.floor(155 * cAlpha) + "," + Math.floor(155 * cAlpha) + ")"
+                    "rgb(180, 180, 180)"
+                    //"rgb(" + Math.floor(255 * cAlpha) + "," + Math.floor(155 * cAlpha) + "," + Math.floor(155 * cAlpha) + ")"
                 ));
                 cAlpha += 0.1;
             }
@@ -92,7 +96,7 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
         this.DegradadoTranslucido_Ancho =  this.Ancho / 8;
         this.AnchoGrafico = this.Ancho - 400;
         this.PosXCirculoCentral = this.Ancho - 200;
-        
+                
         // Color para el gráfico
         this.Color = "rgb(234, 80, 78)";
         this.ColorPuntos = "rgb(255, 155, 155)";
@@ -110,7 +114,8 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
         this.ImgOnda.Context.strokeStyle = this.Color;    
 
         this.DiametroCirculo = this.ImgOnda.Alto / 5;
-        
+        // tamaño en pixeles de la pluma para la onda
+        this.ImgOnda.Context.lineWidth = 2;
         this.ImgOnda.Context.beginPath();
         this.ImgOnda.Context.moveTo(0, this.ImgOnda.Alto / 2);
         var Avance = 0;
@@ -136,8 +141,7 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
     Pintar          : function() {    
         this.Context.fillStyle = "rgba(49, 46, 53, 0.95)";
 /*        this.Context.fillStyle = "#FFF";*/
-        this.Context.fillRect(0, 0, this.Ancho, this.Alto);
-
+        this.Context.fillRect(0, 0, this.Ancho, this.Alto);        
         this.Context.strokeStyle = "rgb(80, 80, 80)";                
         this.Context.setLineDash([2.5]);
         this.Context.beginPath();
@@ -159,6 +163,8 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
 
         this.Avance2 += this.Velocidad;
 //        this.Context.fillStyle = this.ColorPuntos;                       
+        // tamaño de la pluma para los citculos
+        this.Context.lineWidth = 3;
         
 //        this.Context.strokeStyle = this.Color;        
         this.Context.fillStyle = this.ColorPunto;        
@@ -180,12 +186,17 @@ Banner_Sinusoidal.prototype = Object.assign( Object.create(ObjetoCanvas.prototyp
             
         }
                 
-        
+        // tamaño de la pluma para la l'inea que une los circulos con la onda
+        this.Context.lineWidth = 2;
+        this.Context.strokeStyle = "rgba(225,125,125, 0.5)";
         // Barra que une el último circulo con el gráfico
         this.Context.beginPath();
         this.Context.moveTo(this.Circulos[i - 1].X, this.Circulos[i - 1].Y);
         this.Context.lineTo(this.AnchoGrafico, this.Circulos[i - 1].Y);
         this.Context.stroke();
+
+        this.Context.fillStyle = "white";
+        
         
         // Punto inicial de la barra desde la curva sinusoidal
         this.Context.beginPath();

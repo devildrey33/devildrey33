@@ -238,7 +238,8 @@
                 $this->Desloguear(1);
             }
         }
-/*
+        
+        // Funció que genera els arxius css y js comprimits
         public function ActualizarCache() {            
             if (devildrey33_Opciones::Administrador() > 0) { 
                 devildrey33::Minificar_JS_CSS();    
@@ -248,23 +249,7 @@
                 $this->Desloguear(1);
             }
         }
-        /*
-        public function ActualizarCache($Num) {            
-            if (devildrey33_Opciones::Administrador() > 0) { 
-                devildrey33_Opciones::ActualizarCache($Num);           
-                if ($Num === 1) {
-                    devildrey33::Minificar_JS_CSS();    
-                    echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0, "Mensaje" => "Cache Generada!"));
-                }
-                else {
-                    echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));                    
-                }
-            }
-            else {
-                $this->Desloguear(1);
-            }
-        }*/
-        
+                
         public function Consola($Num) {            
             if (devildrey33_Opciones::Administrador() > 0) { 
                 devildrey33_Opciones::MostrarConsola($Num);            

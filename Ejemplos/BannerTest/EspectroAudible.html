@@ -281,7 +281,7 @@ EspectroAudible.prototype = Object.assign( Object.create(ObjetoCanvas.prototype)
                             function() { this.CancionCargada(); this.PlayPausa(); }.bind(this), // Función CanPlay
                             this.CancionTerminada.bind(this) );                                 // Función Ended
         
-        this.Audio.CargarCancion(RandInt(this.Audio.Canciones.length));
+        this.Audio.CargarCancion(RandInt(this.Audio.Canciones.length - 1));
         
         this.ReIniciarCubos(Math.sqrt(fftSize / 2));    
 

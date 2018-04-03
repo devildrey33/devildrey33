@@ -136,7 +136,7 @@
     padding:20px 40px;
     cursor:pointer;
     display:block;
-    transition:.5s ease-out;
+    transition:max-height .5s ease-out; 
     overflow:hidden;
     opacity:0;
     max-height:19px;
@@ -145,7 +145,7 @@
 
 #Categorias_Estado:checked + #Categorias_Label + #Categorias { 
     max-height:600px;
-    transition:.5s ease-in;
+    transition:max-height .5s ease-in;
 }
 
 #Categorias_Estado + #Categorias_Label + #Categorias[visible=true] {
@@ -195,7 +195,8 @@
     background:#29272C;
     padding:40px 260px 40px 40px;
     color:#FFFFFF;
-    transition:0.5s cubic-bezier(0.17, -0.42, 0.63, 1.44);
+/*    transition:0.5s cubic-bezier(0.17, -0.42, 0.63, 1.44); */
+    transition:padding 0.5s cubic-bezier(0.17, -0.42, 0.63, 1.44), color 0.5s cubic-bezier(0.17, -0.42, 0.63, 1.44), background 0.5s cubic-bezier(0.17, -0.42, 0.63, 1.44);
     position:relative;
     border-bottom: 1px solid #353338;
     border-left:   1px solid #353338;
@@ -210,12 +211,12 @@
 }
 .Articulo_Portada > h1 {
     margin:0px 0px 4px 0px;
-    transition:0.4s;    
+    transition:color 0.4s, padding 0.4s;
 }
 
 .Articulo_Portada > h1 > a {
     position:relative;
-    transition:0.4s;
+    transition:color 0.4s, left 0.4s;
     left:0px;
     color:#999;
     white-space: nowrap;
@@ -230,7 +231,7 @@
     font-size:1.2rem;
     color:#999;
     margin-left: 10px;
-    transition:0.4s;
+    transition:opacity 0.4s, margin-left 0.4s;
     opacity:0.5;
 }
 
@@ -250,11 +251,13 @@
     opacity:0.2;
     transition:0.4s;
     border-radius:8px;
+    /*filter:blur(2px);*/
 }
 
 .Articulo_Portada:hover > a > .Articulo_Portada_Imagen {
     opacity:1.0;
     right:70px;
+/*    filter:blur(0px);*/
 }
 
 .Articulo_Portada_ImagenO {

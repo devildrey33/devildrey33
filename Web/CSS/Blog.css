@@ -99,7 +99,7 @@ h2:before {
     position:absolute;
     width:100%;
     height:236px;
-    background: rgba(49,46,53, 1);    
+    background: rgba(49,46,53, 0.5);    
 /*    background: rgba(0,0,0, 0) !important;*/
     z-index:12;
     padding:6px 74px 0px 25px;
@@ -109,7 +109,7 @@ h2:before {
 }
 
 .Blog > #Cabecera[animar=true] > .Cabecera_Datos {
-    background: rgba(29,26,33, 0.5); 
+    background: rgba(29,26,33, 0.5);     
 }
 
 .Blog > #Cabecera[animar=true]:hover > .Cabecera_Datos {
@@ -144,6 +144,7 @@ h2:before {
     overflow:hidden;
     left:-25px;
 }
+
 /*
 .Blog > #Cabecera > .Cabecera_Img1 {    background-image:url('../Graficos/FondoBlog1.png');   }
 .Blog > #Cabecera > .Cabecera_Img2 {    background-image:url('../Graficos/FondoBlog2.png');   }
@@ -154,6 +155,12 @@ h2:before {
     height:100%;
     background: rgba(29,26,33, 1); 
     width:calc(100% - 60px);
+    filter:blur(2px) grayscale(30%);
+    transition:filter 0.5s;
+}
+
+.Blog > #Cabecera:hover > #Cabecera_Canvas {
+    filter:blur(0px) grayscale(0%);
 }
 
 #Cabecera > #Cabecera_AutorAni, 

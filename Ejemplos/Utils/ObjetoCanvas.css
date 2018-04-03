@@ -1,12 +1,11 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
-    Created on : 05-ago-2016, 23:38:27
-    Author     : devildrey33
+    Archivo CSS para el ObjetoCanvas creado el [05/08/2016] por Josep Antoni Bover Comas, para https://devildrey33.es
+    Ultima modificación [03/04/2018]
+        - [03/04/2018] Añadido filtro blur/grayscale en el canvas durante la pre-carga (mientras se ve el mensaje "Cargando...")
+                       NOTA : no funciona en navegadores de microsoft..
 */
+
+
 
 /* Fuente del logo */
 @import url('https://fonts.googleapis.com/css?family=Architects+Daughter|Orbitron');
@@ -45,6 +44,12 @@ body { margin:0px; padding:0px; }
     left:0px;
     right:0px;
     bottom:0px;
+    filter: blur(0px) grayscale(0%);
+    transition:filter 0.4s;
+}
+
+#ObjetoCanvas[cargando=true] > #Cabecera_Canvas {
+    filter: blur(3px) grayscale(20%);
 }
 
 #ObjetoCanvas > #Cabecera_Cargando {  left: calc(50%);  font-family:'Orbitron',sans-serif; }
@@ -88,7 +93,7 @@ body { margin:0px; padding:0px; }
 }
 /* Marco para mostrar texto */
 .MarcoCanvas {
-    transition:0.3s cubic-bezier(.33,.05,.69,1.59);
+    transition:0.4s cubic-bezier(.33,.05,.69,1.59);
     z-index:13;
     padding:10px;
     margin:5px;    

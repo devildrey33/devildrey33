@@ -655,7 +655,7 @@ class devildrey33 {
         echo "</body>".Intro()."</html>";        
     }
     
-    public function InicioBlog($NombreDocumento, $Titulo, $AlinearImagenDerecha = FALSE) {
+    public function InicioBlog($NombreDocumento, $Titulo, $AlinearImagenIzquierda = FALSE) {
         $this->_NombreDocumento = $NombreDocumento;
         $this->BD = new devildrey33_BD();
         echo "<article class='Blog' pagina='$NombreDocumento'>".Intro();        
@@ -673,7 +673,7 @@ class devildrey33 {
             echo        "<div id='Cabecera_PausaAni'>La web está en segundo plano, animación en pausa.</div>";
             echo        "<div id='Cabecera_Cargando'>Cargando animación...</div>";
             echo    "</header>".Intro();
-            if ($AlinearImagenDerecha === FALSE) 
+            if ($AlinearImagenIzquierda === FALSE) 
                 echo "<img class='ImagenPortada' src='".Base::URL_Graficos()."250x200_".$this->EntradaBlog["Imagen"]."' alt='$Titulo' />".Intro();
             else 
                 echo "<img class='ImagenPortada2' src='".Base::URL_Graficos()."250x200_".$this->EntradaBlog["Imagen"]."' alt='$Titulo' />".Intro();
