@@ -33,6 +33,7 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_cmd.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Animation/AnimacionCargando2.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ObjetoCanvas2D/test.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ObjetoCanvas2D/Canvas2D.js</file>
@@ -40,6 +41,7 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/EntradasTags.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ObjetoCanvas2D/Canvas2D.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_2_4.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoIndice.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/EntradasBlog.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/SelectoresCSS/ElementoPrecedidoElemento.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_3_1.php</file>
@@ -52,11 +54,12 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/AdiestramientoCubos.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/HTML5TreeView2.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_PintarCodigo.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoCanvas/Banner_Sinusoidal.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/Config/EntradasDocCSS.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/CyberParasit.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoBase.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Utils/ObjetoAnimacion.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ObjetoCanvas2D/Plantilla.Canvas2D.Capa.js</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Index.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_2_2.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSSMin.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/CyberParasit/CyberParasit_Test.js</file>
@@ -78,18 +81,22 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/EspectroAudible.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Base.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Utils/ObjetoLogo.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS_BD.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/3rdParty/codemirror.min.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoLab.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ObjetoCanvas2D/TestCanvas2D.Capa2.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/empezando-sqlte-c.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/CyberParasit/CyberParasit.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/HTML5TreeView.html</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/clip-path.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoAdmin.Comentarios.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/CyberParasit/CyberParasit.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Comentarios.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/PropiedadesCSS/clip-path.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/CyberParasit/CyberParasit_Audio.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Utils/ObjetoLogo.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/PintarCodigo.css</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Blog.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ObjetoCanvas2D/TestCanvas2D.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/BarraNavegacion.css</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/Utils/ObjetoLogo.js</file>
@@ -99,6 +106,7 @@
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ObjetoCanvas2D/TestCanvas2D.Capa1.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Blog/Tutorial_WINAPI_1_1.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/ObjetoCanvas2D/Canvas2D.Capa.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Opciones.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/CyberParasit/CyberParasit_Animaciones.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/CyberParasit/CyberParasit.js</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Selectores/ElementoPrecedidoElemento.php</file>

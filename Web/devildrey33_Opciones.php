@@ -116,6 +116,7 @@ class Base {
    static public function URL_Cache() {         return Base::URL_Raiz()."Web/Cache/";        }
    static public function URL_Blog() {          return Base::URL_Raiz()."Blog/";          }
    static public function URL_Lab() {           return Base::URL_Raiz()."Lab/";          }
+   static public function URL_Doc() {           return Base::URL_Raiz()."Doc/";          }
    static public function URL_Descargas() {     return Base::URL_Raiz()."Descargas/";          }
    static public function URL_Raiz() {
        $Protocolo = "http://";

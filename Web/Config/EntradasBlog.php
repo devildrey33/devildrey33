@@ -4,7 +4,25 @@
     /*  ej: 155x125_CSS3.png, 250x200_CSS3.png */
 
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
-    return array(
+    return array(        
+array(	"Titulo" 	=> "Propiedad CSS : filter",
+        "Fecha" 	=> "28/06/2016",
+        "URL" 		=> "CSS/Propiedades/filter",
+        "Tags" 		=> array("CSS", "HTML"),
+        "Tipo"		=> "DocCSS",
+        "Autor"         => "Josep Antoni Bover",
+        "Idioma"        => "es",
+        "Imagen"	=> "CSS3.png"), 
+        
+array(	"Titulo" 	=> "Propiedad CSS : clip-path",
+        "Fecha" 	=> "03/04/2018",
+        "URL" 		=> "CSS/Propiedades/clip-path",
+        "Tags" 		=> array("CSS", "HTML"),
+        "Tipo"		=> "DocCSS",
+        "Autor"         => "Josep Antoni Bover",
+        "Idioma"        => "es",
+        "Imagen"	=> "CSS3.png"), 
+        
 array(	"Titulo" 	=> "Experimento con Three.js 'CyberParasit'", 
         "Fecha" 	=> "30/08/2017",
         "URL" 		=> "Ejemplos/CyberParasit/CyberParasit.html", 

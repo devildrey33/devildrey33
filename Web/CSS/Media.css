@@ -37,10 +37,16 @@ and open the template in the editor.
 }
 
 /* En l'index si es un movil en portrait no hi ha ample suficient per posar el titul i els spans informatius, OJU perque nomes ha de ser en movils, en tables NO */
-/* El movil amb resoluciÃ³ mes ample que he vist es el iphone 6p(atata) amb 414px */
+/* El movil amb resolució mes ample que he vist es el iphone 6p(atata) amb 414px */
 @media  only screen and (max-device-width:420px) and (orientation:portrait) {
     body { font-size:1.1rem !important; }
     .Articulo_Portada > div, #Comentarios_BarraControles { display:none !important; }
+    /* arreglo per les fonts dels tituls de l'index '*/
+    .Articulo_Portada > h1 { font-size:1.2rem !important; z-index:0; }
+    /* arreglo que fa que les imatges isguin 100% opaques per que si el texte trepitja l'imatge que no es vegi (el texte) */
+    .Articulo_Portada > a > .Articulo_Portada_Imagen { opacity:1 !important; }
+    .VentanaMensaje { zoom:1.8; font-size:1.5rem; }
+    .VentanaMensaje::before {  }
 }
 
 /* En l'index si l'ample de la pantalla fa mes de 1700 px creo una segona columna per mostrar les entrades '*/

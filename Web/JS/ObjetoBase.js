@@ -759,8 +759,8 @@ $Base = new function() {
     
     /* Función que muestra / oculta el icono cargando de la esquina inferior derecha */
     this.Cargando = function(Valor) {
-        if (Valor === "TRUE") { $("#BarraNavegacion_Inferior").attr({ "mostrar" : true });        }
-        else                  { $("#BarraNavegacion_Inferior").removeAttr("mostrar");             }
+        if (Valor === "TRUE" || Valor === true) { $("#BarraNavegacion_Inferior").attr({ "mostrar" : true });        }
+        else                                    { $("#BarraNavegacion_Inferior").removeAttr("mostrar");             }
     };
     
     
@@ -975,6 +975,7 @@ $Base = new function() {
 
     /* Función para enviar comandos simples */
     this.cmd = function(Comando) {
+        this.Cargando("TRUE");
         // Reseteo el temporizador para el tiempo de la sesión
         this.ResetearTimerTiempoSesion();
         $.post(this.Raiz + "cmd/" + Comando + ".cmd").done(function(data) {
@@ -993,9 +994,12 @@ $Base = new function() {
                 setTimeout(function() { $('#Marco33').html(''); }, 500);                    
                 $Base.MostrarMensaje("Error!, no eres administrador.");
             }
+            $Base.Cargando("FALSE");
+            
         }).fail(function( jqXHR, textStatus, tError ) { 
             console.log("Base.cmd Error ajax", jqXHR, textStatus, tError);
             $Base.MostrarErrorAjax(jqXHR.status, false, tError);
+            this.Cargando("FALSE");
         });                    
     };
     

@@ -1,23 +1,8 @@
 Millores de la web :
  V  - Al editar comentaris avegades es creen etiquetes amb el atribut contenteditable="true" (SOLUCIONAT)
         - Ara avegades desapareixen lineas al editar, pero al recarregar es veu bè :O ...
- V  - El buscador del menú principal (sense google)... aviam si al 2016 el faig.. xd
- V      - Generar un array amb les paraules de cada document (de moment Blog y Doc)
- V          - Parsejar arxius per eliminar codi php i etiquetes html.
- V      - Buscador básic integrat a la web
- V      - Enllaçar enllaços href al $Base.CargarURL     
- V      - Retocar CSS
- V      - Probar de llegir els arxius directament amb include : $foo = include 'return.php';
  V      - Afegir els exemples del lab a la BD de paraules... (lo que repetira el solitario...)
             - OJU perque llavors poden haber exemples que ja surten a l'index del blog ( fer el mateix sistema pel Doc/CSS )
- V  - Modificada la visualització d'errors en javascript de forma que ara es mes fácil accedir a la línea afectada desde el log.
- V  - Implementar banner del blog amb fractals en javascript del codepen, i que enllaçin a la web del autor o al codepen.
- V      - Finestra per canviar de banner implementada
- V          - S'ha dimplementar algo semblant al DAT.GUY però al meu estil ... ... (ObjetoTest)
- V      - Exemple en Three.js 'WormHole' (2 cilindres un dintre de l'altre, amb la camara al centre dels dos, i posant una textura que avança i rota.)
- V      - Exemple en Canvas 2D 'Anillos' (Varis cercles rotant al voltant del centre del canvas, amb un efecte de difuminat al borrar el fondo amb un color rgba)
- V          - Exemple eliminat de la bateria de banners per ser el mes lleig.
- V      - Creats varis banners mes : Sinusoidal, Geometría básica, Esfera (Vertex shader), Reunion de circulos, i MultiCubo.
 
     - Revisar les votacions, s'ha de poguer cambiar la votació, i s'ha de veure en el mateix menú de la votació el resultat (pel lab especialment ja que no hi ha altre forma de veure la mitja)
 
@@ -32,28 +17,9 @@ Millores de la web :
  V      - Icones SVG re-editats amb corel X8 ja que no queden iguals que amb el X7... (tot per afegir l'icona del logo)
     - Els 5 putus primers caracters que imprimeix qualsevol document php... no se d'on cony surten... tinc echos de l'ordre de carrega dels objectes y echos de putes distribuits estrategicament de forma que no funcionara res de res, aviam si puc obtenir un callback complet d'execució sense fer guarrades amb els echos.
         - S'imprimeixen just abans d'iniciar el constructor de devildrey33.php, pero no he pogut aillar l'origen....
- V  - En el tema d'administració s'ha de posar un timer de 30 minuts per elminiar el status admin. Aquest timer s'ha de renovar cada cop que s'utilitzi un CargarURL o un cmd. (tambè afegit a les peticións ajaxs dels comentaris i el lab)
- V      - No crec que sigui exacte però serà bastant aproximat i ames acabara de tancar tot el tema que vaig re-escriure per advertir del timeout en php en tots els cmd.
- V  - Actualitzat a jQuery 3.1.1 (en fase de test)
- V  - ObjetoAnimacion per crear animacións de temps
- V      - Ajustada "FuncionActualizar" per que salti un cop per actualització i no un cop per cada valor. Abans tenia 2 parametres : Indice , Valor. Ara nomes te un parametre : Valores.
- V      - El objeto animación ja no es estatic, s'ha de crear una instancia.
- V      - Afegides funcións per pausar i seguir l'animació (Pausar, Reanudar). Bàsicament refresco la variable _UltimoTick de cada animació al tick que obtinc en la funció Reanudar.
- V  - ObjetoTest per crear tests de variables / funcions 
- V       - s'ha de fer un auto actualizar amb un timer, especificant-ho per les opcions inicials (NTY)!!
- V  - Reimplementada una pàgina d'error 404 simple, aixi ja no haig de carregar el tween.js per defecte...... ni mai mes xd (ObjetoAnimacion)
- V  - Retocat el sistema que afegia les dades meta per reds socials, ara ja hauria de funcionar amb el lab.
- V  - Els butons de reds socials ara posen bè el texte (dintre del lab)
- V  - Habilitat Cross Origin Resource Sharing en el htaccess
- V  - Afegit Sitemap (creat desde el 1and1)
- V  - Solucionat problema amb els meta tags de facebook i twitter amb articles del lab... ara tots els metas es re-escriuen amb java script al carregar la pagina.
- V  - Hi ha un bon lio amb la variable EntradasBlog en JavaScript... s'hauria de mirar de posar el path sencer i la extensio a tot al crear la variable en php (en principi vaig elimiar troços del path quan nomes podia enllaçar al blog [i no al lab, ni als docs] per estalviar espai... i m'ha sortit malament no, lo següent), i aixi m'estalviaria varies comprobacións en javascript
- V      - Però s'ha de fer amb calma, perque aquesta variable la faig servir per identificar en varis moments la entrada actual en llocs no gaire critics, i s'hauria de enumerar TOTS els cops que la faig servir....
 
+    - Fer un Pintador de codi online utilitzant devildrey33_Pintar_Codigo que li posis el codi, i retorni el html colorejat (que necesitara un css basic, o inclus es pot fer inline si te molt exit)
     
-Index : 
- V  - Mostrar dues columnes de articles en resolucións de pantalla grans.
-
 Lab :
     - Implementar alguna forma d'afegir links al codi.
         - Lo que donaria peu a poguer fer enllaços en els includes / links / scripts externs, i poder-los obrir en una pestanya nova.
@@ -72,7 +38,6 @@ Lab :
     - Resaltar i obrir carpeta de l'exemple actual (de moment funciona nomes per un nivell, Dir -> Dir -> Archiu no funciona)
  V  - Guardat de documents al canviar de url si ha expirat la sesió ara demanara password, i si l'accepta guardara el document. 
         - si canceles el login no se que deu fer encara amb el timer del Cargar_URL....   
- V  - Revisada la funció ResaltarArchivoActual del lab, i amb alguna chapuça (timer)... ara va bè... el problema es que mentres la llista esta amagada, no es computen bè les mides.
 
 Blog :
  X  - Revisar document "CSS3_Transition_Transform.php", te estils inline i s'han de posar amb un CSS a part. (el mateix css es l'exemple i inclueix l'etiqueta script, per lo que no el puc moure a un css...)
@@ -122,27 +87,8 @@ SpaceInvaders 404 :
                 - falten municións i bichos extra (ufo, i altres posibles jefes reproduibles a 2 colors xd.
 
 
-ObjetoAnimacion :
- V  - Afegides funcions Terminar i Cancelar, Terminar acaba l'animació i deixa els valors en el seu estat final, Cancelar acaba l'animació i deixa els valors tal i com estan.
- V  - La funció Actualizar ja no es crida per cada valor de l'animació, ara es crida per cada frame, i s'han de calcular tots els valors d'aquell frame.
- V      - D'aquesta forma puc posar mes valors del compte sense afectar gaire el rendiment, ja que en una animació de 10 valors evito 9 crides a la funció Actualizar.
- V  - Afegides funcions Pausa i Reanudar, per pausar i rependre l'animació, apart el temps de pausa no es descomptara de l'animació, per lo que es rependra just en el moment que s'ha pausat.
-
-ObjetoTest
- V  - Implementada opcio 'Modificable' per poder establir si es pot modificar o no la variable.
- V  - Com no es pot fer un SetCapture... he tingut que fer un listener del mouse a tot el document, per poder controlar la barra un cop el mouse es fora d'ella.
- V  - Afegida opcio AutoActualizar per actualitzar els valors mitjançant un timer, per defecte es false, i hauras d'actualitzar els valors amb la funció Actualizar.
- V      - Afegides funcions AutoActualizar_Iniciar i AutoActualizar_Cancelar
- V  - Recordar Pestanyes obertes... es un lio sobretot pel tema del css transition, es podria calcular a lo bestia (22px * TotalVariables)... I a lo bestia s'ha calculat.
- V  - Testejat en Firefox i explorer amb resultats positius (he tingut que canviar les variables x i y que agafaba del event mousemove per clientX i clientY
-
 ObjetoComentarios
     - Habilitar en mode administració el copy/paste d'etiquetes de tot tipus, i fer un editor de codi HTML, per retocar els missatges.
         - Copy/paste d'etiquetes script y style ha de requerir superadmin. (Deixar que algu sigui capaç d'injectar estils css o pitjor encara scripts es una cosa molt seria, que facilment es podria carregar la web, i que a mes seria dificil/engorros de detectar /eliminar.
     - Hi ha algo raro al editar missatges... desapareixen lineas al guardar l'edició, però al recarregar tornen a sortir...
-
-Log 
- V  - Crear nou log que pugui llegir arxius log que estan comprimits
- V      - Crear estadistiques
- V      - Evitar limitacions de memoria del servidor utilitzant nomes javascript per ordenar el log per ips
  
