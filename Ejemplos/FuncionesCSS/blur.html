@@ -1,0 +1,63 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [09/05/2018] para devildrey33.es 
+		Última modificación el [11/05/2018] -->
+<!doctype html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            /* Imagen para aplicar el filtro */
+            #Imagen {
+                position:absolute;
+                left:160px;
+                width:250px;
+                height:200px;
+                top:0px;
+                background:url(/Web/Graficos/250x200_Logo.png);
+                transition:0.4s;
+            }
+            /* input radio invisible */
+            input[type='radio'] { display:none; }
+            /* El label recibe los eventos del mouse para el input radio, y tiene la apariencia de un botón rectangular */
+            input[type='radio'] + label {
+                display:block;
+                border:1px solid #000;
+                background-color:#333;
+                color:#FFF;
+                padding:10px;
+                margin:10px 4px;
+                width:140px;
+                transition:0.4s;
+                cursor:pointer;
+                box-shadow: 0px 0px 0px rgba(234, 80, 78, 0);
+                text-shadow: 1px 1px 1px #000;
+            }
+            /* Label resaltado */
+            input[type='radio'] + label:hover {  box-shadow: 0px 0px 8px rgba(0, 0, 0, 1);  }
+            /* Label marcado */
+            input[type='radio']:checked + label {                
+                background-color:rgb(234, 80, 78);
+                cursor: auto;
+            }            
+            /* Filtro que se aplicara según el input radio marcado */
+            #check1:checked ~ #Imagen { filter:blur(0);      }
+            #check2:checked ~ #Imagen { filter:blur(2px);    }
+            #check3:checked ~ #Imagen { filter:blur(3em);    }
+            #check4:checked ~ #Imagen { filter:blur(1.3rem); }
+        </style>
+    </head>
+    <body>
+        <input type="radio" name='check' id='check1' checked="checked" />
+        <label for='check1'>filter:blur(0);</label>
+
+        <input type="radio" name='check' id='check2' />
+        <label for='check2'>filter:blur(2px);</label>
+
+        <input type="radio" name='check' id='check3' />
+        <label for='check3'>filter:blur(3em);</label>
+
+        <input type="radio" name='check' id='check4' />
+        <label for='check4'>filter:blur(1.3rem);</label>
+
+        <div id='Imagen'></div>
+    </body>
+</html>

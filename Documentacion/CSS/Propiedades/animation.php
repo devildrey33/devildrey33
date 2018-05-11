@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad se puede utilizar para especificar todas las propiedades de la animación, excepto la propiedad "<i><a href="animation-play-state">animation-play-state</a></i>".</p>
 <p>Podemos especificar hasta 6 propiedades de la animación con esta propiedad : <a href="animation-name"><i>animation-name</i></a>, <a href="animation-duration"><i>animation-duration</i></a>, <a href="animation-timing-function"><i>animation-timing-function</i></a>, <a href="animation-delay"><i>animation-delay</i></a>, <a href="animation-iteration-count"><i>animation-iteration-count</i></a>, y <a href="animation-direction"><i>animation-direction</i></a>.</p>
 <hr />
@@ -38,6 +42,3 @@
         <td>Especifica si la animación se alterna/invierte al llegar al final. Valores : "<i>normal</i>" (<b>por defecto</b>), o "<i>alternate</i>" (invertir). </td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores, aunque Chrome, Safari y Opera aun requieren el prefijo <code>-webkit-</code>.</p>

@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos establecer una imagen de fondo. Los navegadores modernos soportan mas de una imagen de fondo y fondos creados mediante <a href="../DegradadosCSS.php" target="_blank">Degradados CSS</a>.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -27,9 +31,3 @@
 </table><br />
 <div class='nota'>Es muy recomendable asignar la propiedad <a href="background-color">background-color</a> con algun color similar a lo que deberia ser el fondo, por si el navegador no soporta bien la porpiedad <code>background-image</code>.</div>
 
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1. 
-<br /><b>IE6</b> e inferiores no soportan imagenes png con fondo transparente.
-<br /><b>IE8</b> e inferiores no soportan fondos multiples.
-<br /><b>IE9</b> e inferiores no soportan <a href="/Doc/CSS/Degradados/" target="_blank">Degradados</a> CSS en el fondo.</p>

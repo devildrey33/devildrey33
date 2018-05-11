@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Propiedad que permite definir una o mas transformaciones en 2d o en 3d.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -97,6 +101,3 @@
     </tr>
 </table><br />
 <div class='nota'>Todas las funciones 3d requieren una perspectiva en el mismo objeto, o en el contenedor padre. Echa un vistazo al siguiente ejemplo : <a href="/Lab/Ejemplos/PropiedadesCSS/transform3d.html" target="_blank">Transformaciones 3D</a>.</div>
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad está soportada por todos los navegadores compatibles con CSS3.</p>

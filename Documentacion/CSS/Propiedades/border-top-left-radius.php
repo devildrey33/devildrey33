@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad permite establecer la figura del borde superior izquierdo de forma que se pueda redondear el borde.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -14,6 +18,3 @@
         <td>Define el radio vertical del borde. Se puede especificar en pixeles o en porcentaje.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2><br />
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3, y tambien por Internet Explorer 9.</p>

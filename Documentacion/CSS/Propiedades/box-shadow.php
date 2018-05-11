@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad permite especificar una o mas sombras para la caja / contenedor. Cada sombra se define con un maximo de 6 valores, los dos primeros son la posición horizontal y vertical de la sombra, luego el desenfoque y la propagación, y por ultimo el color y el tipo de sombra.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -29,6 +33,3 @@
         <td>Tipo de sombra que puede ser <code>inset</code> o nada. Por defecto no es nada por lo que la sombra se hace hacia fuera.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3, además también se soporta en Internet Explorer 9.</p>

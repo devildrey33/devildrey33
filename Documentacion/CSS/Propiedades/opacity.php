@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar la opacidad para el objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -13,6 +17,3 @@
     </tr>
 </table><br />
 <div class='nota'>Para IE8 e inferiores se puede usar <code>filter:Alpha(opacity=<i>VALOR</i>)</code>, VALOR puede ser de 0 a 100. Personalmente no recomiendo el uso de <code>filter:Alpha</code>.</div><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3.</p>

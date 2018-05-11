@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar el ancho del objeto.</p>
 <div class='nota'>El valor asignado a esta propiedad no incluye ni el <a href="margin">margin</a> ni el <a href="padding">padding</a>, ni los <a href="border">border</a>, ni los <a href="outline">outline</a>.</div>
 <hr />
@@ -17,6 +21,3 @@
         <td>Se heredara el estilo de su objeto padre. <div class='nota'>Este valor no está soportado en IE7 e inferiores. Para IE8 se necesita definir un <i>!DOCTYPE</i>.</div></td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1.</p>

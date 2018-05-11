@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar como se alineará la ultima linea del texto.</p>
 <div class='nota'>Para utilizar esta propiedad debes establecer el valor de la propiedad <a href="text-align" target="_blank">text-align</a> a <code>justify</code>.</div>
 <hr />
@@ -33,7 +37,3 @@
         <td>La ultima línea se justificara adaptandose al ancho disponible. </td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada parcialmente por IE 10 y por Firefox.</p>
-<p>En FireFox requiere el prefijo <code>-moz-</code>, PERO la pripiedad javascript <code>mozTextAlignLast</code> no funciona.</p>

@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar el estilo del borde del objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -64,6 +68,3 @@ Si especificamos 4 valores, el primer valor se asignara al <i>top</i>, el segund
         <td>Se heredara el estilo de su objeto padre. <div class='nota'>Este valor no está soportado en IE8 e inferiores.</div></td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1.</p>

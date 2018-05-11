@@ -48,7 +48,7 @@
 }*/
 
 .Tabla tr td {
-    transition:0.4s;
+    transition:background 0.4s;
     background:rgb(240,240,240);
 }
 
@@ -116,7 +116,7 @@
     padding:10px;
     background:#FFFFFF;
     font-size:1.5rem;
-    transition:0.4s;
+    transition:outline 0.4s;
 /*    border-radius:4px;*/
     display:table;
 }
@@ -185,7 +185,7 @@
     display:table;
     margin:10px 0px;
     padding:10px;
-    transition:0.4s;
+    transition:outline 0.4s;
 /*    border-radius:4px;*/
 }
 .nota:hover, nota:hover, postit:hover, .postit:hover {

@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta prpopiedad nos permite especificar donde se ubicara la marca de cada item de la lista. La marca se puede ubicar fuera del item (por defecto), o dentro del item.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -18,6 +22,3 @@
         </td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1.</p>

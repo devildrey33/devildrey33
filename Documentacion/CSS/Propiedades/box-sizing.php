@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar si queremos incluir las propiedades <a href='padding'>padding</a> y <a href='border'>border</a> en el calculo final de las propiedades <a href='width'>width</a> y <a href="height">height</a>.</p>
 <p>En esencia esta propiedad le dice al navegador como tiene que calcular el tamaño del objeto, 
 <hr />
@@ -24,6 +28,3 @@
         </td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3.</p>

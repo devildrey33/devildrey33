@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar el orden de la capa / objeto.</p>
 <div class='nota'>Solo funciona con objetos que tengan la propiedad <code>position</code> a : <code>absolute</code>, <code>relative</code>, y <code>fixed</code></div>
 <hr />
@@ -17,6 +21,3 @@
         <td>Se heredara el estilo de su objeto padre. <div class='nota'>Este valor no está soportado en IE7 e inferiores. Para IE8 se necesita definir un <i>!DOCTYPE</i>.</div></td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS2.</p>

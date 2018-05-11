@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar si el objeto debe ser visible o por el contrario debe estar oculto.</p>
 <div class='nota'>Aunque ocultemos el elemento. el navegador seguira reservando el espacio que ocupa el objeto.</div>
 <hr />
@@ -25,6 +29,3 @@
         <td>Se heredara el estilo de su objeto padre. <div class='nota'>Este valor no está soportado en IE.</div></td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS2.</p>

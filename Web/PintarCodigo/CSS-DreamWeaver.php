@@ -145,6 +145,7 @@ return array(   array("Palabra" => "!important"                 , "Color" => "Tx
     
                 array("Palabra" => "bottom"                     , "Color" => "TxtAzul"),
                 array("Palabra" => "clear"                      , "Color" => "TxtAzul"),
+                array("Palabra" => "clip-path"                  , "Color" => "TxtAzul"),
                 array("Palabra" => "clip"                       , "Color" => "TxtAzul"),
                 array("Palabra" => "display"                    , "Color" => "TxtAzul"),
                 array("Palabra" => "float"                      , "Color" => "TxtAzul"),

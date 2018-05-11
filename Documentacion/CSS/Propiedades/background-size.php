@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar el tamaño con el que queremos mostrar la imagen de fondo independientemente de su tamaño original.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -24,6 +28,3 @@
         <td>La imagen se expandira de forma que se vea completamente en el contenedor respetando su proporción.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3.</p>

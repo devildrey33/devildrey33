@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar que elementos flotantes no son permitidos despues del objeto actual.</p>
 <div class='nota'>Imaginemos que tenemos 2 divs con <code>float:left</code> uno al lado del otro, si no especificamos ningun clear se mostrará el primer elemento seguido por el segundo elemento que se intentará colocar justo a la izquierda si es posible. Si asignamos <code>clear:both</code> al segundo elemento, este entenderá que debe empezar en la linea inferior, y no a su lado.</div><br />
 <hr />
@@ -27,6 +31,3 @@
         </td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1.</p>

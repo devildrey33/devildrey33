@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad se usa para especificar el comportamiento de las propiedades del elemento animado a la hora de empezar y de terminar la animación.</p>
 <p>Por defecto las animaciones CSS solo afectan al elemento desde que el primer keyframe es ejecutado y hasta que el ultimo keyframe es ejecutado.<div class='nota'><a href="animation-delay">animation-delay</a> termina justo al empezar el primer keyframe.</div></p>
 
@@ -32,6 +36,3 @@
         </td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3.</p>

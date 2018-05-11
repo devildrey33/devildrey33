@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta porpiedad nos permite especificar la posiciñon donde empezara la imagen de fondo.</p>
 <div class='nota'>Puede parecer que <code><a href="background-clip" target="_blank">background-clip</a></code> sea igual que esta propiedad, pero no lo es, ya que esta propiedad está mas enfocada a imagenes de fondo.</div>
 <hr />
@@ -17,6 +21,3 @@
         <td>La imagen de fondo empezara desde el rectangulo del contenido.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3.</p>

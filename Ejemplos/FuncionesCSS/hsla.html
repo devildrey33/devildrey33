@@ -6,6 +6,7 @@
         <style>
             /* Fondo blanco*/
             body { background:url('/Web/Graficos/logo400.png') no-repeat center; }
+            .Tab { margin-left:20px; }
             /* Controles del tipo slider */
             #Rango_H, #Rango_S, #Rango_L, #Rango_A { height:10px; }
             /* Marco donde se ubican los controles */
@@ -16,7 +17,7 @@
             }
             /* Etiquetas para mostrar los valores RGB */
             #Valor_H, #Valor_S, #Valor_L, #Valor_A { display:inline-block; width:45px; }
-            #Valor_S, #Valor_L, #Valor_A { margin-left:212px; }
+/*            #Valor_S, #Valor_L, #Valor_A { margin-left:212px; }*/
             /* Marco centrado con posición fija y margen automático */
             #Marco {
                 position:fixed;
@@ -51,19 +52,25 @@
     </head>
 	<body>
     	<div id='Controles'>
-            <code>#Marco {<br />&nbsp;&nbsp;&nbsp;&nbsp;background-color:hlsa(</code>
-            <span id='Valor_H' title='Matriz'>0</span>
-            <input id='Rango_H' type="range" min="0" max="360" value="0" title='Matriz' onchange="ActualizarColor()"> 
-            <code>,</code><br />
-            <span id='Valor_S' title='Saturación'>0 %</span>
-            <input id='Rango_S' type="range" min="0" max="100" value="0" title='Saturación' onchange="ActualizarColor()"> 
-            <code>,</code><br />
-            <span id='Valor_L' title='Luminosidad'>100 %</span>
-            <input id='Rango_L' type="range" min="0" max="100" value="100" title='Luminosidad' onchange="ActualizarColor()"> 
-            <code>,</code><br />
-            <span id='Valor_A' title='Alpha'>0.8</span>
-            <input id='Rango_A' type="range" min="0.0" max="1.0" value="0.8" title='Alpha' step="0.01" onchange="ActualizarColor()"> 
-            <code>);<br />}</code>
+            <code>#Marco {</code>
+            <div class='Tab'>
+                <code>background-color:hlsa(</code>
+                <div class='Tab'>
+                    <code id='Valor_H' title='Matriz'>0</code>
+                    <input id='Rango_H' type="range" min="0" max="360" value="0" title='Matriz' onmousemove="ActualizarColor()"> 
+                    <code>,</code><br />
+                    <code id='Valor_S' title='Saturación'>0 %</code>
+                    <input id='Rango_S' type="range" min="0" max="100" value="0" title='Saturación' onmousemove="ActualizarColor()"> 
+                    <code>,</code><br />
+                    <code id='Valor_L' title='Luminosidad'>100 %</code>
+                    <input id='Rango_L' type="range" min="0" max="100" value="100" title='Luminosidad' onmousemove="ActualizarColor()"> 
+                    <code>,</code><br />
+                    <code id='Valor_A' title='Alpha'>0.8</code>
+                    <input id='Rango_A' type="range" min="0.0" max="1.0" value="0.8" title='Alpha' step="0.01" onmousemove="ActualizarColor()"> 
+                </div>
+                <code>);</code>
+            </div>
+            <code>}</code>
     	</div>
         
         <div id='Marco'></div>

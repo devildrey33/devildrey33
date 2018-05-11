@@ -1,0 +1,206 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [22/04/2018] para devildrey33.es 
+        Ultima modificación el [11/05/2018] 
+
+        Este ejemplo es una caja de arena para poder testear todas las funciones de la propiedad filter. -->
+<!doctype html>
+<html lang="es">
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            body                                                        { background:#EEE;      }
+            .Caja                                                       { position:relative;    }  /* Caja que contiene la imagen y los controles */
+            .Opcion                                                     { margin-left:20px;     }  /* Tabulación para las opciones */
+            .Opcion > code                                              { display:inline-table; }            
+            .Opcion > code:nth-child(1)                                 { width:90px;           } /* Primer code (nombre de la función) */            
+            .Opcion > code:nth-child(2), .Opcion > code:nth-child(5)    { width:20px;           } /* Segundo y cuarto code (que se usan para abrir/cerrar parentesis) */            
+            .Opcion > code:nth-child(3)                                 { width:50px;           } /* Tercer code (valor de la función) */
+            /* Ultimo code para los comentarios */
+            .Opcion > code:nth-child(6) {
+                color:#AAA;
+                margin-left:10px;
+            }
+            /* Marco con todas las opciones del ejemplo */
+            .Opciones { 
+                position:relative;
+                display:table;
+                border:1px solid #CCC;
+                background:#FFF;
+                padding:5px;
+                opacity:0.9;
+            }
+            
+            
+            /* Sliders y cajas de texto */
+            input[type=range], input[type=text] {
+                margin-top:6px;
+                height:12px;
+                width:100px;                
+            }
+            /* Imagen para aplicar los filtros */
+            #Imagen {
+                background-image:url("/Web/Graficos/250x200_Logo.png");
+                position:absolute;
+                left: 550px;
+                top:calc(50% - 100px);
+                width:250px;
+                height:200px;
+                display:table;
+            }
+            
+        </style>
+        <!-- Javascript para el ejemplo -->
+        <script type="text/javascript">
+            
+            function Filtro() {
+                var Filtros = document.querySelectorAll("input");                
+                // Actualizo las etiquetas <code> con los valores y su formato
+                for (var i = 0; i < Filtros.length; i++) {
+                    // El atributo data-medida es un string con el formato que hay que utilizar para el valor.
+                    Filtros[i].previousElementSibling.innerHTML = Filtros[i].value + Filtros[i].getAttribute("data-medida");
+                }
+                // Creo la string para el filtro
+                var StrFiltro = "";
+                for (var i = 0; i < 9; i++) {
+                    // El attributo title del input es el nombre de la función, y en el previousElementSibling encontramos el valor formateado debidamente.
+                    StrFiltro += Filtros[i].getAttribute("title") + "(" + Filtros[i].previousElementSibling.innerHTML + ") ";
+                }
+                // drop-shadow tiene 4 parametros
+                StrFiltro += Filtros[9].getAttribute("title") + "(" + Filtros[9].previousElementSibling.innerHTML + " " + Filtros[10].previousElementSibling.innerHTML + " " + Filtros[11].previousElementSibling.innerHTML + " "; // + Filtros[12].previousElementSibling.innerHTML + " ";
+                StrFiltro += Filtros[12].value + ")"; // Color del drop-shadow
+                // Asigno el string del filtro al CSS
+                document.getElementById("Imagen").style.filter = StrFiltro;
+            }
+        </script>
+    </head>
+    <body>
+        <div class="Caja">
+            <!-- Imagen con el logo de devildrey33 -->
+            <div id="Imagen"></div>
+
+            <!-- Marco de opciones para los filtros -->
+            <div class="Opciones">
+                <code>filter :</code>
+                <!-- La estructura de cada opción son 3 <code> (nombre, parentesis, valor), un <input> (para modificar el valor), y 2 <code> (parentesis, comentario).  -->
+                <div class="Opcion">
+                    <code>blur</code>
+                    <code>(</code>
+                    <code>0px</code>
+                    <!--    El atributo title se utiliza en javascript para escribir el nombre de la función en el string del filtro,
+                            y el atributo data-medida se utiliza para especificar las unidades que utilizará el valor (px, %, etc..)                    -->
+                    <input type="range" min="0" max="50" value="0" title='blur' data-medida="px" onMouseMove="Filtro()">
+                    <code>),</code>
+                    <code> /* desenfoque */</code>
+                </div>
+                <div class="Opcion">
+                    <code>brightness</code>
+                    <code>(</code>
+                    <code>1</code>
+                    <input type="range" min="0.0" max="10.0" value="1.0" step="0.01" title='brightness' data-medida="" onMouseMove="Filtro()">
+                    <code>),</code>
+                    <code> /* brillo */</code>
+                </div>
+                <div class="Opcion">
+                    <code>contrast</code>
+                    <code>(</code>
+                    <code>100%</code>
+                    <input type="range" min="0" max="200" value="100" title='contrast' data-medida="%" onMouseMove="Filtro()">
+                    <code>),</code>
+                    <code> /* contraste */</code>
+                </div>
+                <div class="Opcion">
+                    <code>grayscale</code>
+                    <code>(</code>
+                    <code>0%</code>
+                    <input type="range" min="0" max="100" value="0" title='grayscale' data-medida="%" onMouseMove="Filtro()">
+                    <code>),</code>
+                    <code> /* escala de grises */</code>
+                </div>
+                <div class="Opcion">
+                    <code>hue-rotate</code>
+                    <code>(</code>
+                    <code>0deg</code>
+                    <input id='Opcion_HueRotate' type="range" min="0" max="360" value="0" title='hue-rotate' data-medida="deg" onMouseMove="Filtro()">
+                    <code>),</code>
+                    <code> /* color hue */</code>
+                </div>
+                <div class="Opcion">
+                    <code>invert</code>
+                    <code>(</code>
+                    <code>0%</code>
+                    <input type="range" min="0" max="100" value="0" title='invert' data-medida="%" onMouseMove="Filtro()">
+                    <code>),</code>
+                    <code> /* invertir */</code>
+                </div>
+                <div class="Opcion">
+                    <code>opacity</code>
+                    <code>(</code>
+                    <code>100%</code>
+                    <input type="range" min="0" max="100" value="100" title='opacity' data-medida="%" onMouseMove="Filtro()">
+                    <code>),</code>
+                    <code> /* transparencia */</code>
+                </div>
+                <div class="Opcion">
+                    <code>saturate</code>
+                    <code>(</code>
+                    <code>100%</code>
+                    <input type="range" min="0" max="200" value="100" title='saturate' data-medida="%" onMouseMove="Filtro()">
+                    <code>),</code>
+                    <code> /* saturación */</code>
+                </div>
+                <div class="Opcion">
+                    <code>sepia</code>
+                    <code>(</code>
+                    <code>0%</code>
+                    <input type="range" min="0" max="100" value="0" title='sepia' data-medida="%" onMouseMove="Filtro()">
+                    <code>),</code>
+                    <code> /* sepia */</code>
+                </div>
+            
+                
+                <div class="Opcion">
+                    <code>drop-shadow</code>
+                    <code>(</code>
+                    <code>0px</code>
+                    <input type="range" min="-100" max="100" value="0" title='drop-shadow' data-medida="px" onMouseMove="Filtro()">
+                    <code></code>                    
+                    <code> /* coordenada X de la sombra */</code>
+                </div>
+                <div class="Opcion">
+                    <code></code>
+                    <code></code>
+                    <code>0px</code>
+                    <input type="range" min="-100" max="100" value="0" data-medida="px" onMouseMove="Filtro()">
+                    <code></code>
+                    <code> /* coordenada Y de la sombra */</code>
+                </div>
+                <div class="Opcion">
+                    <code></code>
+                    <code></code>                    
+                    <code>0px</code>
+                    <input type="range" min="0" max="100" value="0" data-medida="px" onMouseMove="Filtro()">
+                    <code></code> 
+                    <code> /* desenfoque de la sombra */</code>
+                </div>
+<!--            Webkit no soporta el cuarto parámetro spread-radius, y si se especifica no se hace el render...
+                <div class="Opcion">
+                    <code></code>
+                    <code></code>                    
+                    <code>0px</code>
+                    <input type="range" min="0" max="100" value="0" data-medida="px" onMouseMove="Filtro()">
+                    <code></code> 
+                    <code> /* expansión de la sombra */</code>
+                </div> -->
+                <div class="Opcion">
+                    <code></code>
+                    <code></code>                    
+                    <code>#555</code>
+                    <input type="text" value="#555" data-medida="" onkeyup="Filtro()">
+                    <code>);</code> 
+                    <code> /* color de la sombra */</code>
+                </div>
+                
+            </div>
+                        
+        </div>
+    </body>
+</html>

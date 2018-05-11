@@ -65,6 +65,8 @@ class devildrey33_Comentarios {
     public function LeerComentarios($Pagina, $BD, $Num, $Desde) {
         if ($BD->_BDFuncional === false) return;
         // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
+        $Pagina = str_replace(array("(", ")", "@", ":", "ó", ".", "-"), array("", "", "", "", "o", "_", "_"), $Pagina);
+        
         $PaginaPadre    = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($Pagina))), 0, 51);        
 //        $PaginaPadre = str_replace(array(".", "-"), "_", $Pagina);            
         $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".$PaginaPadre." ORDER BY NumMsg DESC");
@@ -90,7 +92,9 @@ class devildrey33_Comentarios {
         if ($BD->_BDFuncional === false) return json_encode(array("HTML" => "", "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 2));
         $Ret = "";
         $Punto = FALSE;
-        $PaginaPadre = str_replace(array(".", "-"), "_", $Pagina);            
+        
+        $PaginaPadre = str_replace(array("(", ")", "@", ":", "ó", ".", "-"), array("", "", "", "", "o", "_", "_"), $Pagina);
+//        $PaginaPadre = str_replace(array(".", "-"), "_", $Pagina);            
         $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".$BD->_mysqli->real_escape_string(strtolower($PaginaPadre))." ORDER BY NumMsg DESC");
         if ($Resultado) {
             $Total = $Resultado->num_rows;
@@ -212,10 +216,16 @@ class devildrey33_Comentarios {
         $BD = new devildrey33_BD;        
         
         if ($BD->_BDFuncional === false) return json_encode(array("HTML" => "Error de la base de datos del servidor.", "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 2));
+        
+        // elimino caracteres problematicos de la documentación CSS
+        $PaginaPadre2 = str_replace(array("(", ")", "@", ":", "ó"), array("", "", "", "", "o"), $PaginaPadre2);
+        
         // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
         $PaginaPadre = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($PaginaPadre2))), 0, 51);        
+//        echo $PaginaPadre;
         $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".$PaginaPadre);
         
+//        echo $Resultado;
         $CrearTabla = true;
         if ($Resultado) {
             if ($Resultado->num_rows != 0) $CrearTabla = false; // La tabla ya está creada

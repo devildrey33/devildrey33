@@ -1,3 +1,5 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [22/04/2018] para devildrey33.es 
+		Ultima modificación el [22/04/2018] -->
 <!doctype html>
 <html>
     <head>
@@ -15,6 +17,7 @@
                 background:#09F;
                 border:2px solid transparent;
                 z-index:1;
+                transition:0.4s;
             }
             .ElementoSombra {
                 background:#CCC;
@@ -39,20 +42,35 @@
         </script>
     </head>
     <body>
+        <!-- SVG con el logo -->
+        <svg width="0" height="0" style="clip-rule:evenodd;" viewBox="0 0 60 60" preserveAspectRatio="none">
+            <defs>
+                <clipPath id="LogoDevildrey33" >
+                    <path d="M30 14c4,0 7,1 10,4 6,-2 4,-6 2,-10 13,7 4,14 2,15 1,1 1,3 1,6 0,4 -2,8 -5,11 -2,8 -5,14 -15,10l-2 2c-2,-2 -3,-5 -3,-9 2,2 4,4 7,4l-1 2c5,1 9,-1 9,-7 -2,1 -4,1 -5,1 -9,0 -16,-6 -16,-14 0,-3 0,-5 1,-6 -2,-1 -10,-8 2,-15 -2,4 -4,8 2,10 3,-3 7,-4 11,-4zm-11 9c4,-1 9,6 9,8 0,3 -7,4 -9,3 -3,-1 -3,-9 0,-11zm21 0c-4,-1 -8,6 -8,8 0,3 7,4 9,3 2,-1 3,-9 -1,-11z"/>
+                    <ellipse cx="36" cy="31" rx="2" ry="1"/>
+                    <ellipse cx="24" cy="31" rx="2" ry="1"/>
+                </clipPath>
+            </defs>
+        </svg>
+        <!-- Opciones del ejemplo -->
         <select id='ChClip' onChange="CambiarClip()">
             <option>none</option>
+            <option>url(/Web/SVG/Logo.svg#Clip)</option>            
+            <option>url(#LogoDevildrey33)</option>            
             <option>inset(10px)</option>
             <option>inset(10px 20px)</option>
             <option>inset(10px 20px 30px)</option>
             <option>inset(10px 20px 30px 40px)</option>
-            <option>fill-box inset(10px 20px 30px 40px)</option>
-            <option>stroke-box inset(10px 20px 30px 40px)</option>
+<!--            <option>stroke-box inset(10px 20px 30px 40px)</option>
             <option>margin-box inset(10px 20px 30px 40px)</option>
             <option>border-box inset(10px 20px 30px 40px)</option>
             <option>padding-box inset(10px 20px 30px 40px)</option>
-            <option>content-box inset(10px 20px 30px 40px)</option>
+            <option>content-box inset(10px 20px 30px 40px)</option> -->
             <option>circle(10px)</option>
             <option>ellipse(10px 20px)</option>
+            <option>polygon(50% 0%, 0% 100%, 100% 100%)</option>
+            <option>polygon(50% 100%, 0% 0%, 100% 0%)</option>
+            
         </select><br /><br />
         <div class='Tam Elemento'>Espeficica el rectangulo que debe mostrarse de este elemento.</div>
         <div class='Tam ElementoSombra'></div>

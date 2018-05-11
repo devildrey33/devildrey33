@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar el método que se usara para justificar el texto.</p>
 <div class='nota'>Para utilizar esta propiedad debes establecer el valor de la propiedad <a href="text-align" target="_blank">text-align</a> a <code>justify</code>.</div>
 <hr />
@@ -33,6 +37,3 @@
         <td>Aumenta o disminuye el espaciado entre letras y entre palabras. Es la forma más sofisticada de justificación de alfabetos latinos.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad unicamente está soportada en Internet Explorer.</p>

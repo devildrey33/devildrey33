@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta función permite enlazar una propiedad con una variable CSS. Puedes utilizar la función var en cualquier parte del valor de la propiedad, es decir que no necesariamente la variable tiene que contener todo el valor de la propiedad.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -13,7 +17,3 @@
         <td>Valor que recibirá la propiedad en el caso de no existir la variable. Este parámetro es opcional, si no se especifica este parámetro y la variable no existe, la propiedad permanecerá intacta.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3.</p>
-<p><b>No está previsto quie ningún Internet Explorer soporte esta propiedad...</b> (Microsoft Edge por lo visto si que la soporta)</p>

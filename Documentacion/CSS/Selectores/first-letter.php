@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Este selector apunta a la primera letra del elemento especificado.</p>
 <div class='nota'>Solo podemos utilizar las siguientes propiedades con este selector :</nota>
 <ul style='display:table'>
@@ -17,6 +21,3 @@
 <hr />
 <h2>Sintaxis</h2>
 <pre class='Sintaxis'>::first-letter { };</pre>
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1.</p>

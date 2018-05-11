@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar el tipo de posicionamiento para un objeto.</p>
 <p>Antes de nada hay que tener bien claro el concepto de que es la ventana y que es el documento. Si os fijáis en la siguiente foto sale un navegador con mi web, en él podemos ver un recuadro rojo que enmarca lo que sería el objeto <code>window</code> (ventana en castellano), y más abajo se puede ver con un marco naranja saliendo de la foto del navegador, lo que representa que queda del <code>document</code> (documento en castellano).</p>
 <img src='/Web/Graficos/window-document.png' alt="Diferencias entre ventana y documento">
@@ -41,6 +45,3 @@
         </td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS2.</p>

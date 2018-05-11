@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar la ruta de la imagen que se usara para pintar el borde.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -14,7 +18,3 @@ border-image-source: <b>FunciónDegradado()</b></pre>
     </tr>
 
 </table><br />
-<hr />
-
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores modernos. Para Internet Explorer solo funciona a partir de la versión 11.</p>

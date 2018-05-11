@@ -1,3 +1,8 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
+
 <p>Esta funcion define un color utilizando 3 canales de color (<b>R</b>ed, <b>G</b>reen, <b>B</b>lue). Cada canal tiene un rango de 0 a 255.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -16,6 +21,3 @@
         <td>Canal azul, puede ser de 0 a 255.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1.</p>

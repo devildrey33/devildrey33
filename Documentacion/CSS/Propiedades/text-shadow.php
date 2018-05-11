@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad permite especificar una o mas sombras para el texto. Cada sombra se define con un maximo de 4 valores, los dos primeros son la posición horizontal y vertical de la sombra, luego el tamaño del difuminado, y por ultimo el color de la sombra.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -21,6 +25,3 @@
         <td>Color para la sombra. Para mas información sobre los colores en CSS visita este enlace <a href="/Doc/CSS/Colores/" target="_blank">Referencia CSS : Colores</a>.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3.</p>

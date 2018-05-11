@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>El selector <code>nth-last-child</code> se puede utilizar de varias maneras, pero siempre pensando en una estructura de arból en la que queremos buscar elementos con ciertas caracteristicas agrupandolos por su nodo padre.</p>
 <p>El mas sencillo es es el de posición, si por ejemplo quieres apuntar a la penultima etiqueta 'p' que pertenecen a objetos con una clase especifica, puedes utilizar <code>.ClaseEspecifica > p:nth-last-child(2) { ... }</code>.</p>
 <p>Luego tenemos los valores '<code>even</code>' (pares) y '<code>odd</code>' (impares), que por ejemplo se utilizan en tablas con muchos datos para cambiar el color del fondo de las celdas, y asi poder diferenciar mejor las filas y columnas.</p>
@@ -44,7 +48,3 @@
         <td class='TD_SintaxisU'>Selecciona 'B' elementos empezando por el ultimo. El valor 'B' no puede ser negativo.</td>
     </tr>
 </table>
-
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3.</p>

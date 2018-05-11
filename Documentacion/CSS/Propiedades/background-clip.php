@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta porpiedad nos permite especificar el area donde se pintara el fondo.</p>
 <div class='nota'>Para imagenes de fondo, esta propiedad cortara la imagen si esta sobresale del rectangulo especificado.</div>
 <hr />
@@ -17,6 +21,3 @@
         <td>El fondo se pintara desde el rectangulo del contenido.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3.</p>

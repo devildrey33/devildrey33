@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <div>
 	<img src='/Graficos/border-image-slice.png' alt='Imagen con 3 filas y 3 columnas' style="float:right; margin-right:20px;">
 	<p>Esta propiedad nos permite especificar la porción de la imagen que se va a utilizar para el borde. Para entendernos mejor tenemos que pensar en una imagen dividida en 9 partes (3 filas y 3 columnas).</p>
@@ -27,6 +31,3 @@ Si especificamos 4 valores, el primer valor se asignara al <i>top</i>, el segund
         <td>Permite definir el tamaño que se extraerá de la imagen origen. Se puede especificar un valor numérico o un porcentaje, los valores numéricos representarán pixeles para imagénes rasterizadas, y coordenadas para las imagenes vectorizadas.</td>
     </tr>
 </table><br />
-<h2>Compatibilidad</h2>
-<hr />
-<p>Esta propiedad es soportada por todos los navegadores modernos. Para Internet Explorer solo funciona a partir de la versión 11.</p>

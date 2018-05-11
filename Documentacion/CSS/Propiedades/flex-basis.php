@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad se utiliza para especificar el tamaño de un <code>flex-item</code> antes de distribuir el tamaño disponible según las normas del contenedor flexible.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -17,9 +21,3 @@
         </td>
     </tr>
 </table><br />
-
-
-
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3.</p>

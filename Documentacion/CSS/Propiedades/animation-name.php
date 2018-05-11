@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad se usa para enlazar un <a href="/Doc/CSS/Reglas/@keyframes" target="_blank">@keyframes</a> especifico a la animación.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -11,6 +15,4 @@
         <td><b>none</b></td>
         <td>Especifica que no hay animación (se puede usar para finalizar la animación y volver a los valores originales).</td>
     </tr>
-</table><br /><hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores, aunque Chrome, Safari y Opera aun requieren el prefijo <code>-webkit-</code>.</p>
+</table><br />

@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta regla nos permite añadir fuentes externas para utilizar en el documento.</p>
 <p>Si quieres alguna fuente que no sea convencional, te recomiendo buscar en la siguiente pagina <a href="http://www.fontsquirrel.com/fonts" target="_blank">Font Squirrel</a>, la cual tiene cientos de fuentes gratis compatibles para la web listas para la descarga.</p>
 <hr />
@@ -32,7 +36,3 @@
     </tr>
 
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta regla es soportada por todos los navegadores compatibles con CSS3.<br />
-IE 9 solo soporta fuentes del tipo eot.</p>

@@ -45,6 +45,7 @@
             case eTipo::Selector : 	$Path = "Selectores";	$PathBD = "Selector"; 	$TipoTxt = "selector";	 $TipoTxt2 = "selectores"; 	break;
         }
 
+        // Obtengo el nombre de la propiedad
         for ($i = strlen($_SERVER['REQUEST_URI']); $i > 0; $i --) {
             if (substr($_SERVER['REQUEST_URI'], $i, 1) == '/') {
                 $NombrePropiedad = substr($_SERVER['REQUEST_URI'], $i + 1);
@@ -55,8 +56,8 @@
 /*	if ($NombrePropiedad == "")	header("location: http://devildrey33.es/Doc/CSS/".$Path."/");*/
 
         $Tipo = $Path." CSS : ";
-        $CSS_BD = new CSS_BD;
         $NombrePropiedad = str_replace(".php", "", $NombrePropiedad);  // filtro las extensiones php
+        $CSS_BD = new CSS_BD;
         $Entrada = $CSS_BD->BuscarEntrada($NombrePropiedad);
         $NombreCSS = $CSS_BD->NormalizarNombre($NombrePropiedad);
        
@@ -162,7 +163,7 @@
     /*************************************************************************************************************************************/    
     
     /* PropiedadES, SelectorES, FuncionES, ReglaS */
-    else if ($TipoSalida == eTipo::Funciones || $TipoSalida == eTipo::Propiedades || $TipoSalida == eTipo::Reglas || $TipoSalida == eTipo::Selectores) { 
+    /*else if ($TipoSalida == eTipo::Funciones || $TipoSalida == eTipo::Propiedades || $TipoSalida == eTipo::Reglas || $TipoSalida == eTipo::Selectores) { 
         switch ($TipoSalida) {
             case eTipo::Funciones : 	$Str = "funciones";	$Str2 = "Funciones";	break;
             case eTipo::Propiedades : 	$Str = "propiedeades";	$Str2 = "Propiedeades";	break;

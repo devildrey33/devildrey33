@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar como debe ser mostrado el objeto.</p>
 <p>Cada etiqueta tiene su valor por defecto, por ejemplo las etiquetas <code>div</code> por defecto vienen con <code>display:block</code>, las etiqquetas <code>span</code> vienen por defecto con <code>display:inline</code>, las etiquetas <code>table</code> con <code>display:table</code>, etc...</p>
 <hr />
@@ -93,8 +97,3 @@
         <td>El objeto se muestra como si fuera un <code>&lt;tbody&gt;</code> de una tabla.</td>
     </tr>
 </table><br />
-
-
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1.</p>

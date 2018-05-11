@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad define como debe repetirse la imagen si el borde es de mayor tamaño.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -21,6 +25,3 @@ border-image-repeat: Horizontal Vertical;
         <td>La imagen será estirada hasta llenar el borde. Si la imagen no queda ajustada después de haber repetido un número de veces, la imagen se reajustará a la medida.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores modernos. Para Internet Explorer solo funciona a partir de la versión 11.</p>

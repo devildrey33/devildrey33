@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad corta nos permite especificar las propiedades <a href="font-family">font-family</a>, <a href="font-size">font-size</a>, <a href="font-style">font-style</a>, <a href="font-weight">font-weight</a>, <a href="font-variant">font-variant</a>, y <a href="line-height">line-height</a> en la misma declaración.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -61,7 +65,3 @@
         </tr>    
     </table>    
 </div>
-
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1.</p>

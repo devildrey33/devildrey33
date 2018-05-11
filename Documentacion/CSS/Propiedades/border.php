@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad corta nos permite asginar las propiedades "<a href="border-width"><i>border-width</i></a>", "<a href="border-style"><i>border-style</i></a>", y "<a href="border-color"><i>border-color</i></a>" en la misma linea.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -21,6 +25,3 @@
         <td>El borde se hereda del elemento padre.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1.</p>

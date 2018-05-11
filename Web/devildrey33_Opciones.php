@@ -202,7 +202,10 @@ class Base {
        $Cabecera = "From: ".$Desde."\r\n".
                    "Reply-To: ".$Desde."\r\n".
                    "X-Mailer: PHP/".phpversion();
-       return mail($Para, $Titulo, $Mensaje, $Cabecera);
+       // la @ suprime los warnings (si está en localhost no se puede mandar el correo y tira varios warnings)
+       return @mail($Para, $Titulo, $Mensaje, $Cabecera);
+//       try                  {   return mail($Para, $Titulo, $Mensaje, $Cabecera);   }
+//       catch (Exception $e) {   return NULL;                                        }
    }
 
 

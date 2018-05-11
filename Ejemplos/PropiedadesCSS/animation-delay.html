@@ -1,33 +1,25 @@
+<!-- Ejemplo creado por Josep Antoni Bover el 03/06/2016 para devildrey33.es
+        Ultima modificación [28/04/2018]  -->
+
 <!doctype html>
 <html>
-	<head>
-		<!-- Estilos CSS -->
-		<style type="text/css">
-			/* Retraso de 3 segundos para empezar la animación */
-			.Retraso {
-				animation-delay:3s;
-				-webkit-animation-delay:3s; /* Safari y Chrome */
-			}
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            /* Retraso de 3 segundos para empezar la animación */
+            .Retraso {
+                animation-delay:3s;
+            }
 
             /* Animación */
             .ObjetoAnimado {
-				float:left;
-				margin-right:20px;
-				width:50px;
-				height:50px;
-				animation-name:MiAnimacion;
-				animation-duration:20s; /* Si no especificamos la duración, por defecto es 0 */
-				/* Safari y Chrome */
-				-webkit-animation-name:MiAnimacion;
-				-webkit-animation-duration:10s;
+                float:left;
+                margin-right:20px;
+                width:50px;
+                height:50px;
+                animation-name:MiAnimacion;
+                animation-duration:20s; /* Si no especificamos la duración, por defecto es 0 */
             }
-			            
-            /* Animación para Chrome y Safari */    
-            @-webkit-keyframes MiAnimacion {
-                0%   { background-color:#EEE; }          /* Al principio de la animación */
-                100% { background-color:#00A; }          /* Al final de la animación */
-            }
-                        
             /* Animación para todos (cuando sea oficial, de momento no funciona en ningún navegador) */    
             @keyframes MiAnimacion {
                 0%   { background-color:#EEE; }          /* Al principio de la animación */

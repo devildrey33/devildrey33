@@ -28,6 +28,7 @@ include("devildrey33_Log.php");
                 Enumerar requeriments per cada tipus de plantilla : BD, CodiHTML, MissatgeriaPublica, BannerSuperiorAleatori, Document centrat
  */
 
+register_shutdown_function("devildrey33::CALLBACK_Shutdown");
 
 class devildrey33 {
 //    protected   $_Tipo;				// Tipo de plantilla
@@ -60,7 +61,7 @@ class devildrey33 {
         $this->PintarCodigo = new devildrey33_PintarCodigo;
     }
     
-    public function CALLBACK_Shutdown() {
+    static public function CALLBACK_Shutdown() {
         $Log = Base::ObtenerLogPHP();
         if ($Log !== "") {
             echo "<div id='ErroresFinPlantilla'>".Intro().
@@ -73,7 +74,7 @@ class devildrey33 {
     /* NombreDocumento ya no es necesaria, este parametro ahora se obtiene en las funciones InicioBlog, InicioDoc, InicioSinCabecera  */
     /* SOLO SE USA SI no se recibe un POST o un GET SinPlantilla */
     public function InicioPlantilla($NombreDocumento, $Titulo, $Meta = "") {
-        register_shutdown_function(array($this, "CALLBACK_Shutdown"));
+//        register_shutdown_function(array($this, "CALLBACK_Shutdown"));
 
         $Entradas = new devildrey33_EditarEntradas;
         $this->EntradaBlog = $Entradas->BuscarEntrada($Titulo, $NombreDocumento);
@@ -713,25 +714,16 @@ class devildrey33 {
     }
     
 
-    public function FinSinCabecera() {
+    public function FinSinCabecera() {        
         echo "</article>".Intro();        
     }
 
+    public function FinDoc($EvitarComentarios = false, $SoloLectura = FALSE) {
+        $this->FinBlog($EvitarComentarios, $SoloLectura);
+    }
+
+    
     public function FinBlog($EvitarComentarios = false, $SoloLectura = FALSE) {
-/*        echo "<div id='VotarDocumento'>".Intro().
-                "<div class='VotarDocumento postit'>".Intro().                
-                    "<span></span>".Intro(). // Por favor puntúa este documento del 1 al 5
-                    "<span></span>".Intro(). // De esta forma me ayudas a mejorar la web
-                    "<div class='VotarDocumento_Estrellas'>".Intro().
-                        "<button>1</button>".Intro().
-                        "<button>2</button>".Intro().
-                        "<button>3</button>".Intro().
-                        "<button>4</button>".Intro().
-                        "<button>5</button>".Intro().
-                    "</div>".Intro().
-                 "</div>".Intro();
-             "</div>".Intro();*/
-        
         echo "</article>".Intro();
         if ($EvitarComentarios === true || isset($_GET["GenerarCacheBuscador"])) return;
         $Com = new devildrey33_Comentarios();
@@ -776,21 +768,21 @@ class devildrey33 {
     // Se utiliza al entrar en la web de una entrada con un path falso (de momento PropiedadesCSS)
     public function LeerDatosPathFalso($Archivo, $TituloH1) {
         if (strpos($Archivo, "SelectorCSS_") !== FALSE) 	{
-            $ArchivoSinEntrada = str_replace(array("SelectorCSS_", '(', ')'), array("../Documentacion/CSS/Selectores/", '', ''), $Archivo);
+            $ArchivoSinEntrada = str_replace(array("SelectorCSS_", '(', ')'), array("Documentacion/CSS/Selectores/", '', ''), $Archivo);
             $PathFalso = str_replace(array("SelectorCSS_", ".php"), array("Doc/CSS/Selectores/", ''), $Archivo);
         }
         else if (strpos($Archivo, "FunciónCSS_") !== FALSE) 	{
-            $ArchivoSinEntrada = str_replace(array("FunciónCSS_", '(', ')'), array("../Documentacion/CSS/Funciones/", '', ''), $Archivo);
+            $ArchivoSinEntrada = str_replace(array("FunciónCSS_", '(', ')'), array("Documentacion/CSS/Funciones/", '', ''), $Archivo);
             $PathFalso = str_replace(array("FunciónCSS_", ".php"), array("Doc/CSS/Funciones/", ''), $Archivo);
             $PathFalso = str_replace(".php", "", $PathFalso);
         }
         else if (strpos($Archivo, "ReglaCSS_") !== FALSE) 	{
-            $ArchivoSinEntrada = str_replace(array("ReglaCSS_", '(', ')'), array("../Documentacion/CSS/Reglas/", '', ''), $Archivo);
+            $ArchivoSinEntrada = str_replace(array("ReglaCSS_", '(', ')'), array("Documentacion/CSS/Reglas/", '', ''), $Archivo);
             $PathFalso = str_replace(array("ReglaCSS_", ".php"), array("Doc/CSS/Reglas/", ''), $Archivo);
             $PathFalso = str_replace(".php", "", $PathFalso);
         }
         else if (strpos($Archivo, "PropiedadCSS_") !== FALSE) 	{
-            $ArchivoSinEntrada = str_replace(array("PropiedadCSS_", '(', ')'), array("../Documentacion/CSS/Propiedades/", '', ''), $Archivo);
+            $ArchivoSinEntrada = str_replace(array("PropiedadCSS_", '(', ')'), array("Documentacion/CSS/Propiedades/", '', ''), $Archivo);
             $PathFalso = str_replace(array("PropiedadCSS_", ".php"), array("Doc/CSS/Propiedades/", ''), $Archivo);
             $PathFalso = str_replace(".php", "", $PathFalso);
         }
@@ -799,7 +791,7 @@ class devildrey33 {
             $PathFalso = "/".$Archivo;
         }
         
-//        echo $ArchivoSinEntrada
+        $ArchivoSinEntrada = $_SERVER["DOCUMENT_ROOT"]."/".$ArchivoSinEntrada;
         
 //			echo "<br />".$Archivo."<br />".$ArchivoSinEntrada;
         // No se ha encontrado la entrada en el XML (propiedad css)
@@ -809,13 +801,14 @@ class devildrey33 {
 //        echo $ArchivoSinEntrada;
         if (file_exists($ArchivoSinEntrada)) {
             echo "<div class='FechaEntrada'>".Intro();
-            echo date("d", filemtime($ArchivoSinEntrada))." de ".Base::ObtenerMesStr(date("m", filemtime($ArchivoSinEntrada)))." del ".date("Y", filemtime($ArchivoSinEntrada))." por <b>Josep Antoni Bover</b>".Intro();
+            $ft = filemtime($ArchivoSinEntrada);
+            echo date("d", $ft)." de ".Base::ObtenerMesStr(date("m", $ft))." del ".date("Y", $ft)." por <b class='Autor'>Josep Antoni Bover</b>. ".Intro();
             echo "<span>".$this->BD->ObtenerValoresEntrada(str_replace("ó", "o", $Archivo), true)."</span><br />".Intro();
             echo $this->EnlazarTags(array('CSS')).Intro();
             echo "</div>".Intro();
         }
         else {
-            echo "<div class='FechaEntrada'>$Archivo, $ArchivoSinEntrada no existe.</div>";
+            echo "<div class='FechaEntrada'>".$ArchivoSinEntrada." no existe.</div>";
         }
     }    
     
@@ -912,6 +905,7 @@ class devildrey33 {
                 $EntradasJS[] = $EntradaJS;
             }  
             /* /Doc/CSS */
+            $EntradaJS["Imagen"]   = "CSS3.png";
             foreach ($EntradasDocCSS as $Entrada) {
                 $EntradaJS["Tipo"]     = "DocCSS-".$Entrada["Grupo"];
                 switch ($Entrada["TipoCSS"]) {

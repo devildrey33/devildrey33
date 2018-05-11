@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite asignar el margen superior del objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -8,6 +12,3 @@
         <td>Un tamaño válido para CSS. Para mas información consulta la <a href="/Doc/CSS/Unidades/">Referencia CSS : Unidades</a>.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1.</p>

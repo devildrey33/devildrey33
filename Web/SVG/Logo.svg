@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="155" height="125" version="1.1" 
+	style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"      
+	viewBox="6 10 45 45"> 
+	<defs>
+		<style type="text/css">
+			.fil0 {fill:#DDD; }            
+			.fil1 {fill:#666; }            
+			g { display: none; position:absolute; }
+			g:target { display:inline; }
+		</style>                
+	</defs>
+	
+	<clipPath id='Clip'>
+		<rect y="110" x="137" width="90" height="90"/>
+	</clipPath>
+	
+	<clipPath id="myPath" clipPathUnits="objectBoundingBox">
+    <path d="M0.5,1
+      C 0.5,1,0,0.7,0,0.3
+      A 0.25,0.25,1,1,1,0.5,0.3
+      A 0.25,0.25,1,1,1,1,0.3
+      C 1,0.7,0.5,1,0.5,1 Z" />
+  </clipPath>	
+	<g id="Claro">
+		<path class="fil0" d="M30 14c4,0 7,1 10,4 6,-2 4,-6 2,-10 13,7 4,14 2,15 1,1 1,3 1,6 0,4 -2,8 -5,11 -2,8 -5,14 -15,10l-2 2c-2,-2 -3,-5 -3,-9 2,2 4,4 7,4l-1 2c5,1 9,-1 9,-7 -2,1 -4,1 -5,1 -9,0 -16,-6 -16,-14 0,-3 0,-5 1,-6 -2,-1 -10,-8 2,-15 -2,4 -4,8 2,10 3,-3 7,-4 11,-4zm-11 9c4,-1 9,6 9,8 0,3 -7,4 -9,3 -3,-1 -3,-9 0,-11zm21 0c-4,-1 -8,6 -8,8 0,3 7,4 9,3 2,-1 3,-9 -1,-11z"/>
+		<ellipse class="fil0" cx="36" cy="31" rx="2" ry="1"/>
+		<ellipse class="fil0" cx="24" cy="31" rx="2" ry="1"/>
+	</g>
+	<g id="Oscuro">
+		<path class="fil1" d="M30 14c4,0 7,1 10,4 6,-2 4,-6 2,-10 13,7 4,14 2,15 1,1 1,3 1,6 0,4 -2,8 -5,11 -2,8 -5,14 -15,10l-2 2c-2,-2 -3,-5 -3,-9 2,2 4,4 7,4l-1 2c5,1 9,-1 9,-7 -2,1 -4,1 -5,1 -9,0 -16,-6 -16,-14 0,-3 0,-5 1,-6 -2,-1 -10,-8 2,-15 -2,4 -4,8 2,10 3,-3 7,-4 11,-4zm-11 9c4,-1 9,6 9,8 0,3 -7,4 -9,3 -3,-1 -3,-9 0,-11zm21 0c-4,-1 -8,6 -8,8 0,3 7,4 9,3 2,-1 3,-9 -1,-11z"/>
+		<ellipse class="fil1" cx="36" cy="31" rx="2" ry="1"/>
+		<ellipse class="fil1" cx="24" cy="31" rx="2" ry="1"/>
+	</g>
+</svg>    

@@ -222,19 +222,19 @@
             <div class='Tab1'>
                 <code class='TextoLinea1'>perspective</code><code>:</code>
                 <code class='Valor' id='ContenedorPerspectiva_Valor'>1500</code>
-                <input id='ContenedorPerspectiva' type="range" min="0" max="6000" value="0" title='Perspectiva del contenedor' onchange="ActualizarContenedor()"> 
+                <input id='ContenedorPerspectiva' type="range" min="0" max="6000" value="0" title='Perspectiva del contenedor' onMouseMove="ActualizarContenedor()"> 
                 <code>;</code>
             </div>
             <div class='Tab1'>
                 <code class='TextoLinea1'>perspective-origin</code><code>:</code>
                 <code class='Valor' id='ContenedorOriginX_Valor'>50</code>
-                <input id='ContenedorOriginX' type="range" min="0" max="100" value="50" title='perspective-origin X' onchange="ActualizarContenedor()"> 
+                <input id='ContenedorOriginX' type="range" min="0" max="100" value="50" title='perspective-origin X' onMouseMove="ActualizarContenedor()"> 
                 <code>,</code>
             </div>
             <div class='Tab1'>
                 <code class='TextoLinea1'>&nbsp;</code><code>&nbsp;</code>
                 <code class='Valor' id='ContenedorOriginY_Valor'>50</code>
-                <input id='ContenedorOriginY' type="range" min="0" max="100" value="50" title='perspective-origin Y' onchange="ActualizarContenedor()">  
+                <input id='ContenedorOriginY' type="range" min="0" max="100" value="50" title='perspective-origin Y' onMouseMove="ActualizarContenedor()">  
                 <code>;</code>
             </div>
             <div><code>}</code></div>
@@ -244,7 +244,7 @@
             <div class='Tab2'>
                 <code class='TextoLinea2'>perspective</code><code>(</code>
                 <code class='Valor' id='ObjetoPerspectiva_Valor'>0</code>
-                <input id='ObjetoPerspectiva' type="range" min="0" max="6000" value="0"  title='Perspectiva del objeto' onchange="ActualizarTransform()">
+                <input id='ObjetoPerspectiva' type="range" min="0" max="6000" value="0"  title='Perspectiva del objeto' onMouseMove="ActualizarTransform()">
                 <code>)</code>
             </div>
             <div class='Tab2'><hr /></div>
@@ -252,17 +252,17 @@
             <div class='Tab2'>
                 <code class='TextoLinea2'>translate3d</code><code>(</code>
                 <code class='Valor' id='ObjetoTranslateX_Valor'>0 px</code>
-                <input id='ObjetoTranslateX' type="range" min="-400" max="400" value="0" title='translate3d X' onchange="ActualizarTransform()">
+                <input id='ObjetoTranslateX' type="range" min="-400" max="400" value="0" title='translate3d X' onMouseMove="ActualizarTransform()">
             </div>
             <div class='Tab2'>
                 <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
                 <code class='Valor' id='ObjetoTranslateY_Valor'>0 px</code>
-                <input id='ObjetoTranslateY' type="range" min="-400" max="400" value="0" title='translate3d Y' onchange="ActualizarTransform()">
+                <input id='ObjetoTranslateY' type="range" min="-400" max="400" value="0" title='translate3d Y' onMouseMove="ActualizarTransform()">
             </div>
             <div class='Tab2'>
                 <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
                 <code class='Valor' id='ObjetoTranslateZ_Valor'>0 px</code>
-                <input id='ObjetoTranslateZ' type="range" min="-2000" max="300" value="0" title='translate3d Z' onchange="ActualizarTransform()">
+                <input id='ObjetoTranslateZ' type="range" min="-2000" max="300" value="0" title='translate3d Z' onMouseMove="ActualizarTransform()">
                 <code>)</code>
             </div>
             <div class='Tab2'><hr /></div>
@@ -271,17 +271,17 @@
             <div class='Tab2'>
                 <code class='TextoLinea2'>scale3d</code><code>(</code>
                 <code class='Valor' id='ObjetoScaleX_Valor'>0</code>
-                <input id='ObjetoScaleX' type="range" min="0.5" max="2" value="1" step='0.01' title='scale3d X' onchange="ActualizarTransform()">
+                <input id='ObjetoScaleX' type="range" min="0.5" max="2" value="1" step='0.01' title='scale3d X' onMouseMove="ActualizarTransform()">
             </div>
             <div class='Tab2'>
                 <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
                 <code class='Valor' id='ObjetoScaleY_Valor'>0</code>
-                <input id='ObjetoScaleY' type="range" min="0.5" max="2" value="1" step='0.01' title='scale3d Y' onchange="ActualizarTransform()">
+                <input id='ObjetoScaleY' type="range" min="0.5" max="2" value="1" step='0.01' title='scale3d Y' onMouseMove="ActualizarTransform()">
             </div>
             <div class='Tab2'>
                 <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
                 <code class='Valor' id='ObjetoScaleZ_Valor'>0</code>
-                <input id='ObjetoScaleZ' type="range" min="0.5" max="2" value="1" step='0.01' title='scale3d Z' onchange="ActualizarTransform()">
+                <input id='ObjetoScaleZ' type="range" min="0.5" max="2" value="1" step='0.01' title='scale3d Z' onMouseMove="ActualizarTransform()">
                 <code>);</code>
             </div>
             <div class='Tab2'><hr /></div>
@@ -289,19 +289,19 @@
             <div class='Tab2'>
                 <code class='TextoLinea2'>rotateX</code><code>(</code>
                 <code class='Valor' id='ObjetoRotateX_Valor'>0 deg</code>
-                <input id='ObjetoRotateX' type="range" min="0" max="360" value="0"  title='Rotación del eje X' onchange="ActualizarTransform()">
+                <input id='ObjetoRotateX' type="range" min="0" max="360" value="0"  title='Rotación del eje X' onMouseMove="ActualizarTransform()">
                 <code>)</code>
             </div>
             <div class='Tab2'>
                 <code class='TextoLinea2'>rotateY</code><code>(</code>
                 <code class='Valor' id='ObjetoRotateY_Valor'>0 deg</code>
-                <input id='ObjetoRotateY' type="range" min="0" max="360" value="0"  title='Rotación del eje Y' onchange="ActualizarTransform()">
+                <input id='ObjetoRotateY' type="range" min="0" max="360" value="0"  title='Rotación del eje Y' onMouseMove="ActualizarTransform()">
                 <code>)</code>
             </div>
             <div class='Tab2'>
                 <code class='TextoLinea2'>rotateZ</code><code>(</code>
                 <code class='Valor' id='ObjetoRotateZ_Valor'>0 deg</code>
-                <input id='ObjetoRotateZ' type="range" min="0" max="360" value="0"  title='Rotación del eje Z' onchange="ActualizarTransform()">
+                <input id='ObjetoRotateZ' type="range" min="0" max="360" value="0"  title='Rotación del eje Z' onMouseMove="ActualizarTransform()">
                 <code>)</code>
             </div>
 
@@ -310,22 +310,22 @@
             <div class='Tab2'>
                 <code class='TextoLinea2'>rotate3d</code><code>(</code>
                 <code class='Valor' id='ObjetoRotate3DX_Valor'>0</code>
-                <input id='ObjetoRotate3DX' type="range" min="0" max="100" value="0" title='rotate3d vector X' onchange="ActualizarTransform()">
+                <input id='ObjetoRotate3DX' type="range" min="0" max="100" value="0" title='rotate3d vector X' onMouseMove="ActualizarTransform()">
             </div>
             <div class='Tab2'>
                 <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
                 <code class='Valor' id='ObjetoRotate3DY_Valor'>0</code>
-                <input id='ObjetoRotate3DY' type="range" min="0" max="100" value="0" title='rotate3d vector Y' onchange="ActualizarTransform()">
+                <input id='ObjetoRotate3DY' type="range" min="0" max="100" value="0" title='rotate3d vector Y' onMouseMove="ActualizarTransform()">
             </div>
             <div class='Tab2'>
                 <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
                 <code class='Valor' id='ObjetoRotate3DZ_Valor'>0</code>
-                <input id='ObjetoRotate3DZ' type="range" min="0" max="100" value="0" title='rotate3d vector Z' onchange="ActualizarTransform()">
+                <input id='ObjetoRotate3DZ' type="range" min="0" max="100" value="0" title='rotate3d vector Z' onMouseMove="ActualizarTransform()">
             </div>
             <div class='Tab2'>
                 <span class='TextoLinea2'><label>Animar ángulo</label><input type="checkbox" id='Animacion' onChange="AnimarAngulo()"> </span><code>&nbsp;</code>
                 <code class='Valor' id='ObjetoRotateAngulo3D_Valor'>0 deg</code>
-                <input id='ObjetoRotate3DAngulo' type="range" min="-180.0" max="180.0" value="0"  step='0.1' title='rotate3d Ángulo' onchange="ActualizarTransform()">
+                <input id='ObjetoRotate3DAngulo' type="range" min="-180.0" max="180.0" value="0"  step='0.1' title='rotate3d Ángulo' onMouseMove="ActualizarTransform()">
                 <code>);</code>
             </div>
 
@@ -334,17 +334,17 @@
             <div class='Tab1'>
                 <code class='TextoLinea1'>transform-origin</code><code>:</code>
                 <code class='Valor' id='ObjetoOriginX_Valor'>50 %</code>
-                <input id='ObjetoOriginX' type="range" min="-100" max="200" value="50" title='transform-origin X' onChange="ActualizarTransformOrigin()">
+                <input id='ObjetoOriginX' type="range" min="-100" max="200" value="50" title='transform-origin X' onMouseMove="ActualizarTransformOrigin()">
             </div>
             <div class='Tab2'>
                 <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
                 <code class='Valor' id='ObjetoOriginY_Valor'>50 %</code>
-                <input id='ObjetoOriginY' type="range" min="-100" max="200" value="50" title='transform-origin Y' onChange="ActualizarTransformOrigin()">
+                <input id='ObjetoOriginY' type="range" min="-100" max="200" value="50" title='transform-origin Y' onMouseMove="ActualizarTransformOrigin()">
             </div>
             <div class='Tab2'>
                 <code class='TextoLinea2'>&nbsp;</code><code>&nbsp;</code>
                 <code class='Valor' id='ObjetoOriginZ_Valor'>100 px</code>
-                <input id='ObjetoOriginZ' type="range" min="-100" max="200" value="0" title='transform-origin Z' onChange="ActualizarTransformOrigin()">
+                <input id='ObjetoOriginZ' type="range" min="-100" max="200" value="0" title='transform-origin Z' onMouseMove="ActualizarTransformOrigin()">
                 <code>)</code>
             </div>
 

@@ -1,0 +1,65 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [22/04/2018] para devildrey33.es 
+		Ultima modificación el [22/04/2018] -->
+<!doctype html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            .Tam {
+                position:absolute;
+                width:100px;
+                height:100px;                
+                margin:10px;
+                padding:20px;
+                right:10px;
+            }
+            .Elemento {
+                background:#09F;
+                border:2px solid transparent;
+                transition:0.3s;
+                z-index:1;
+                clip-path:circle(100%);
+            }
+            .ElementoSombra {
+                background:#CCC;
+                border:2px dotted #666;
+                z-index:0;
+            }
+            .SimMargin {
+                position:absolute;
+                width:120px;
+                height:120px;                                
+                padding:20px;                
+                border:2px dashed #BBB;
+                right:10px;
+            }
+            .Nota {
+                border-left: 4px solid orange;
+                background-color: rgb(249, 249, 222);
+                display:table;
+                padding:10px;
+            }
+        </style>
+        <!-- Javascript para el ejemplo -->
+        <script type="text/javascript">
+            function CambiarClip() {
+                var Combo = document.getElementById("ChClip");
+                document.getElementsByClassName("Elemento").item(0).style.clipPath = Combo.options[Combo.selectedIndex].innerHTML;
+            }
+        </script>
+    </head>
+    <body>
+        <select id='ChClip' onChange="CambiarClip()">
+            <option>circle(100%)</option>
+            <option>circle(100% at -10px -10px)</option>
+            <option>circle(30px)</option>
+            <option>circle(1em)</option>
+            <option>circle(20px at 0px 0px)</option>
+            <option>circle(7px at 50% 90px)</option>
+            <option>circle(37px at 30px 25%)</option>
+        </select><br /><br />
+        <div class='Tam Elemento'>Espeficica el rádio del circulo que debe mostrarse en este elemento.</div>
+        <div class='Tam ElementoSombra'></div>
+        <div class='SimMargin'></div>
+    </body>
+</html>

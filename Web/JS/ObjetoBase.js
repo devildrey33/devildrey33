@@ -485,7 +485,7 @@ $Base = new function() {
             Ret["TipoPagina"] = "Blog";
             nURL = iURL.substr(6);
         }
-        if (cURL.indexOf("doc/css") > -1) {
+        if (cURL.indexOf("doc/css") > -1 || cURL.indexOf("documentacion/css") > -1) {
             Ret["TipoPagina"] = "DocCSS";
             nURL = iURL.substr(8);
         }
@@ -530,16 +530,19 @@ $Base = new function() {
         return -1;
     };
     
+    // Busca la entrada del blog / doc css
     this.BuscarEntradaActual = function(nURL, nTitulo) {
         for (i = 0; i < EntradasBlog.length; i++) {
 //            console.log(nURL.indexOf(EntradasBlog[i]["URL"]), EntradasBlog[i]["URL"], EntradasBlog[i]["Fecha"] ,nFecha);
-            if (nURL.indexOf(EntradasBlog[i]["URL"]) !== -1 && EntradasBlog[i]["Titulo"] === nTitulo) {
-                console.log("Base.BuscarEntradaActual : " + i, EntradasBlog[i]);
-                this.Entrada["Titulo"] = EntradasBlog[i]["Titulo"];
-                this.Entrada["Imagen"] = EntradasBlog[i]["Imagen"];
-                this.Entrada["Idioma"] = EntradasBlog[i]["Idioma"];
-                this.PosPrevNext_Tipo = EntradasBlog[i]["Tipo"];
-                return i;
+            if (EntradasBlog[i]["Titulo"] === nTitulo) {
+                if (nURL.indexOf(EntradasBlog[i]["URL"]) !== -1) {
+                    console.log("Base.BuscarEntradaActual : " + i, EntradasBlog[i]);
+                    this.Entrada["Titulo"] = EntradasBlog[i]["Titulo"];
+                    this.Entrada["Imagen"] = EntradasBlog[i]["Imagen"];
+                    this.Entrada["Idioma"] = EntradasBlog[i]["Idioma"];
+                    this.PosPrevNext_Tipo = EntradasBlog[i]["Tipo"];
+                    return i;
+                }
             }
         }
         console.log("Base.BuscarEntradaActual : -1");

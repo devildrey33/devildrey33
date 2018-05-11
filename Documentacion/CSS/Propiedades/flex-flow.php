@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad es un atajo para las propiedades <a href='/Doc/CSS/Propiedades/flex-direction'>flex-direction</a> y <a href='/Doc/CSS/Propiedades/flex-wrap'>flex-wrap</a>.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -48,7 +52,3 @@
         <td>Se heredara el estilo de su objeto padre.</td>
     </tr>
 </table><br />
-
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3.</p>

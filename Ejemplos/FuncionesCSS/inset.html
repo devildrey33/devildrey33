@@ -1,0 +1,69 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [22/04/2018] para devildrey33.es 
+		Ultima modificación el [22/04/2018] -->
+<!doctype html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            .Tam {
+                position:absolute;
+                width:100px;
+                height:100px;                
+                margin:10px;
+                padding:20px;
+                right:10px;
+            }
+            .Elemento {
+                background:#09F;
+                border:2px solid transparent;
+                transition:0.3s;
+                z-index:1;
+            }
+            .ElementoSombra {
+                background:#CCC;
+                border:2px dotted #666;
+                z-index:0;
+            }
+            .SimMargin {
+                position:absolute;
+                width:120px;
+                height:120px;                                
+                padding:20px;                
+                border:2px dashed #BBB;
+                right:10px;
+            }
+            .Nota {
+                border-left: 4px solid orange;
+                background-color: rgb(249, 249, 222);
+                display:table;
+                padding:10px;
+            }
+        </style>
+        <!-- Javascript para el ejemplo -->
+        <script type="text/javascript">
+            function CambiarClip() {
+                var Combo = document.getElementById("ChClip");
+                document.getElementsByClassName("Elemento").item(0).style.clipPath = Combo.options[Combo.selectedIndex].innerHTML;
+            }
+        </script>
+    </head>
+    <body>
+        <select id='ChClip' onChange="CambiarClip()">
+            <option>none</option>
+            <option>inset(10px)</option>
+            <option>inset(10px 20px)</option>
+            <option>inset(10px 20px 30px)</option>
+            <option>inset(10px 20px 30px 40px)</option>
+            <option>fill-box inset(20px)</option>
+            <option>stroke-box inset(20px)</option>
+            <option>margin-box inset(20px)</option>
+            <option>border-box inset(20px)</option>
+            <option>padding-box inset(20px)</option>
+            <option>content-box inset(20px)</option>
+        </select><br /><br />
+        <div class='Nota'><b>NOTA </b> <code>fill-box</code>, <code>stroke-box</code>, <code>margin-box</code>, <code>padding-box</code>, y <code>content-box</code> solo funcionan en Firefox.</div>
+        <div class='Tam Elemento'>Espeficica el rectangulo que debe mostrarse en este elemento.</div>
+        <div class='Tam ElementoSombra'></div>
+        <div class='SimMargin'></div>
+    </body>
+</html>

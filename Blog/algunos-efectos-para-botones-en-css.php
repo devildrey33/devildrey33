@@ -16,7 +16,7 @@
     
     <p>La intención de este documento es mostrar la forma de exprimir al máximo una simple etiqueta <code>&lt;button&gt;</code> añadiendo transiciones y transformaciones para cada uno de sus estados.</p>
     <p>Lo que mas claro nos debe quedar a la hora de trabajar con botones son sus estados. En esencia una etiqueta <code>&lt;button&gt;</code> puede tener los siguientes estados :</p>
-    <ul>
+    <ul style="margin-left:250px">
         <li><code><a href='/Doc/CSS/Selectores/:hover'>:hover</a></code>  (al pasar el mouse por encima)</li>
         <li><code><a href='/Doc/CSS/Selectores/:active'>:active</a></code> (al hacer click con el mouse)</li>
         <li><code><a href='/Doc/CSS/Selectores/:focus'>:focus</a></code>  (al obtener el foco del teclado)</li>

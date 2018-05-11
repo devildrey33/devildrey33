@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Propiedad que permite especificar junto con la propiedad <a href="direction" target="_blank">direction</a> hacia donde se escribe el texto.</p>
 <div class='nota'>Esta propiedad resulta util para escribir en varios idiomas que no compartan la misma dirección al escribir. En castellano escribimos de izquierda a derecha, pero por ejemplo con el japonés se escribe de derecha a izquierda.</div>
 <br />
@@ -18,6 +22,3 @@
     </tr>
 </table><br />
 <div class='nota'>El algoritmo bidireccional Unicode invierte automáticamente las secuencias de caracteres incrustados en función de su dirección inherente. Por ejemplo, la dirección base de un documento en inglés es de izquierda a derecha. Si parte de un párrafo dentro del documento incluye un idioma con un orden de lectura de derecha a izquierda, la dirección de dicho idioma se muestra correctamente de derecha a izquierda. El explorador que aplica el algoritmo bidireccional invierte la dirección del idioma correctamente.</div>
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad está soportada por todos los navegadores compatibles con CSS2.</p>

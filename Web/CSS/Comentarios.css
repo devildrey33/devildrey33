@@ -65,10 +65,10 @@ html[lang=en] #Comentarios > h2:nth-child(1)::after {
     color:#000;
     /*margin-left:-21px;*/
     margin-bottom:20px;
-    overflow:overlay;
+    overflow: hidden;
     position:relative;
     transition:1s;
-    -webkit-animation-play-state: paused; /* Chrome, Safari, Opera */
+/*    -webkit-animation-play-state: paused; /* Chrome, Safari, Opera */
     animation-play-state: paused;
     perspective:600px;
     transform-style:preserve-3d;

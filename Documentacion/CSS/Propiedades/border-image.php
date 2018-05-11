@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite asignar las propiedades "<i><a href="border-image-source">border-image-source</a></i>", "<i><a href="border-image-slice">border-image-slice</a></i>", "<i><a href="border-image-width">border-image-width</a></i>", "<i><a href="border-image-outset">border-image-outset</a></i>", y "<i><a href="border-image-repeat">border-image-repeat</a></i>" en la misma linea.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -24,6 +28,3 @@
         <td>Especifica como debe ser tratada la imagen para extenderla al borde.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores modernos. Para Internet Explorer solo funciona a partir de la versión 11.</p>

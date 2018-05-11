@@ -24,7 +24,7 @@ html {
    font-size  : 62.5%; /* ConversiÃ³n para que el rem valga 10 pixeles por defecto en la web */
    min-width  : 600px;
    height     : 100%;    
-   transition : 0.4s;
+/*   transition : 0.4s;*/
 }
 h1, h2, h3, h4, h5 { font-family : 'Karla', sans-serif; }
 h2, h3, h4, h5 { margin : 0px; }       
@@ -64,9 +64,9 @@ pre, code, kbd, samp, tt {
 }
 
 hr {
-    border       : 1px solid #666;
-    margin-left  : -10px;
-    margin-right : -5px;
+    border-top: 1px solid rgb(200, 200, 200);
+    /* margin-left  : -10px; */
+    /* margin-right : -5px; */
 }
 
 /*pre, code {
@@ -145,7 +145,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
     background : rgb(75,0,0);
 }
 
-/* AnimaciÃ³n para la alerta de la ventana mensaje */
+/* Animación para la alerta de la ventana mensaje */
 @keyframes Ani_VentanaMensaje_Alerta {
     0%   { background : rgb(75,0,0); }
     25%  { background : rgb(175,0,0); }
@@ -372,4 +372,11 @@ input[type=text]:focus, input[type=email]:focus, input[type=url]:focus, input[ty
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;    
+}
+
+
+
+/* Tabulación */
+.Tab {
+    margin-left:30px;
 }

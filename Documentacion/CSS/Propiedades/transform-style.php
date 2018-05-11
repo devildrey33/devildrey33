@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Propiedad que permite establecer si los elementos hijos preservaran su posición 3D.</p>
 <br />
 <h2>Sintaxis</h2>
@@ -14,6 +18,3 @@
 
 </table><br />
 <div class='nota'>Todas las funciones 3d requieren una perspectiva en el mismo objeto, o en el contenedor padre.</div>
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad está soportada por todos los navegadores compatibles con CSS3. <b>NO</b> soportado en IE 10 (Según la <a href="http://msdn.microsoft.com/en-us/library/ie/hh772282(v=vs.85).aspx" target="_blank">MSDN</a> solo soporta el atributo <code>flat</code>, o lo que es lo mismo NADA).</p>

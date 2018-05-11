@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Propiedad que permite modificar la posición de la perspectiva 3d con la que mostrarán todos sus objetos hijos.</p>
 <div class='nota'>Esta propiedad puede combinarse con la propiedad <a href="perspective-origin" target="_blank">perspective-origin</a>.</div>
 <br />
@@ -16,6 +20,3 @@
     </tr>
 </table><br />
 <div class='nota'>Solo es aplicable para transformaciones 3D.</div>
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad está soportada por todos los navegadores compatibles con CSS3.</p>

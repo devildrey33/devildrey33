@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar el color del borde para la parte derecha del objeto.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -16,7 +20,3 @@
         <td>Especifica que el color debe ser heredado desde su objeto padre. <div class='nota'>Este valor no está soportado en IE7 o inferiores. En IE8 requiere la declaración de un !DOCTYPE.</div></td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1.</p>
-

@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad nos permite especificar de que forma se mostraran los caracteres, con mayusculas y minusculas normales, o convirtiendo todos los caracteres a mayusculas y haciendo mas pequeños aquellos que representan minusculas.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -18,6 +22,3 @@
         </td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta regla es soportada por todos los navegadores compatibles con CSS1.</p>

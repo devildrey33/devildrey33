@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad permite asignar el tamaño del borde que excederá al contenedor.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -23,6 +27,3 @@ Si especificamos 4 valores, el primer valor se asignara al <i>top</i>, el segund
         <td>Tamaño que excederá el borde de la imagen, se puede especificar cualquier medida de <a href="/Doc/CSS/Unidades/" target="_blank">unidad</a> siempre que no sea negativa.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores modernos. Para Internet Explorer solo funciona a partir de la versión 11.</p>

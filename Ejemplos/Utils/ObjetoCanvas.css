@@ -44,12 +44,12 @@ body { margin:0px; padding:0px; }
     left:0px;
     right:0px;
     bottom:0px;
-    filter: blur(0px) grayscale(0%);
-    transition:filter 0.4s;
+/*    filter:grayscale(0%);
+    transition:filter 2s;*/
 }
 
 #ObjetoCanvas[cargando=true] > #Cabecera_Canvas {
-    filter: blur(3px) grayscale(20%);
+/*    filter:grayscale(100%);*/
 }
 
 #ObjetoCanvas > #Cabecera_Cargando {  left: calc(50%);  font-family:'Orbitron',sans-serif; }

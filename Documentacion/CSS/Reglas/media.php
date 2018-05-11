@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta regla nos permite especificar un conjunto de selectores que solo se utilizaran en el caso de estar en el medio especificado.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -198,7 +202,3 @@
         <td>El ancho de la ventana cliente / viewport.</td>
     </tr>
 </table>
-
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta regla es soportada por todos los navegadores compatibles con CSS3.</p>

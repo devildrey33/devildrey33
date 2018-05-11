@@ -1,0 +1,63 @@
+<!-- Ejemplo creado por Josep Antoni Bover el [22/04/2018] para devildrey33.es 
+		Ultima modificación el [24/04/2018] -->
+<!doctype html>
+<html>
+    <head>
+        <!-- Estilos CSS -->
+        <style type="text/css">
+            .Tam {
+                position:absolute;
+                width:100px;
+                height:100px;                
+                margin:10px;
+                padding:20px;
+                right:10px;
+            }
+            .Elemento {
+                background:#09F;
+                border:2px solid transparent;
+                transition:0.3s;
+                z-index:1;
+                clip-path:ellipse(100% 100%);
+            }
+            .ElementoSombra {
+                background:#CCC;
+                border:2px dotted #666;
+                z-index:0;
+            }
+            .SimMargin {
+                position:absolute;
+                width:120px;
+                height:120px;                                
+                padding:20px;                
+                border:2px dashed #BBB;
+                right:10px;
+            }
+            .Nota {
+                border-left: 4px solid orange;
+                background-color: rgb(249, 249, 222);
+                display:table;
+                padding:10px;
+            }
+        </style>
+        <!-- Javascript para el ejemplo -->
+        <script type="text/javascript">
+            function CambiarClip() {
+                var Combo = document.getElementById("ChClip");
+                document.getElementsByClassName("Elemento").item(0).style.clipPath = Combo.options[Combo.selectedIndex].innerHTML;
+            }
+        </script>
+    </head>
+    <body>
+        <select id='ChClip' onChange="CambiarClip()">
+            <option>none</option>
+            <option>polygon(50% 0%, 0% 100%, 100% 100%)</option>
+            <option>polygon(50% 100%, 0% 0%, 100% 0%)</option>
+            <option>polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%)</option>
+            <option>polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)</option>
+        </select><br /><br />
+        <div class='Tam Elemento'>Espeficica los puntos del poligono que debe mostrarse en este elemento.</div>
+        <div class='Tam ElementoSombra'></div>
+        <div class='SimMargin'></div>
+    </body>
+</html>

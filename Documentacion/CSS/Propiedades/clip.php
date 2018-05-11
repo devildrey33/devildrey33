@@ -1,5 +1,9 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad permite especificar una porción rectangular del objeto para mostrar, mientras el resto permanecerá oculto.</p>
-<div class='nota'>Esta propiedad no funciona si el objeto tiene <code>overflow:visible</code>.</div><br />
+<div class='nota'>Esta propiedad ha quedado <b>OBSOLETA</b>, considera echar un vistazo a la propiedad <a href='/Doc/CSS/Propiedades/clip-path'>clip-path</a> que es su substituta para CSS3.</div>
 <h2>Sintaxis</h2>
 <pre class='Sintaxis'>clip: <b>Valor</b>;</pre>
 <table class='Tabla'>
@@ -18,6 +22,4 @@
         </td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad está soportada por todos los navegadores compatibles con CSS2.</p>
+<div class='nota'>Esta propiedad no funciona si el objeto tiene <code>overflow:visible</code>.</div><br />

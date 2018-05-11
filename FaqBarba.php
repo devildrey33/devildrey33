@@ -382,7 +382,7 @@
                     <b>$IDMarco</b> es la id del marc del codi en HTML/JavaScript<br />
                     <b>$Titulo</b> el titul<br /> 
                     <b>$Archivo</b> path de l'arxiu<br />
-                    <b>$ID</b> es la id de la porció a mostrar, si no hi ha $ID es mostra tot l'arxiu<br />
+                    <b>$ID</b> es la id de la porció a mostrar, si no hi ha $ID es mostra tot l'arxiu, per definir una ID has de posar un comentari amb el següent text :<br /> <code>-[INICIO devildrey33.<b>ID</b>]-</code> al principi del códi, i <code>-[FIN devildrey33.<b>ID</b>]-</code> al final del codi. <br />
                 </td>
             </tr>
             <tr>

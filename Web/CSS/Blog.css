@@ -155,13 +155,13 @@ h2:before {
     height:100%;
     background: rgba(29,26,33, 1); 
     width:calc(100% - 60px);
-    filter:blur(2px) grayscale(30%);
-    transition:filter 0.5s;
+/*    filter:blur(2px) grayscale(30%);
+    transition:filter 0.5s;*/
 }
 
-.Blog > #Cabecera:hover > #Cabecera_Canvas {
-    filter:blur(0px) grayscale(0%);
-}
+/*.Blog > #Cabecera:hover > #Cabecera_Canvas {
+    filter:blur(0px) grayscale(0%); 
+}*/
 
 #Cabecera > #Cabecera_AutorAni, 
 #Cabecera > #Cabecera_PausaAni, 
@@ -318,7 +318,7 @@ h2:before {
 }
 .EnlacesRelacionados > li {
     flex:0 0 250px;
-    
+    color: #888;
 }
 /* Sintaxis de la documentación CSS  */
 /*.Pre_Sintaxis {

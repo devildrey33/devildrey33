@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Propiedad corta que nos permite especificar una o mas propiedades para el fondo.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -36,6 +40,3 @@
         <td>Permite especificar el tamaño con el que queremos mostrar la imagen de fondo, independientemente de su tamaño original.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1, para <code><a href="background-clip">background-clip</a></code>, <code><a href="background-origin">background-origin</a></code>, <code><a href="background-size">background-size</a></code>, se requiere un navegador compatible con CSS3 (tambien se soportan estas porpiedades en IE9 y superiores).</p>

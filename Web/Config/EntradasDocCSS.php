@@ -1,4 +1,55 @@
-<?php return array ( 
+<?php 
+/* OJU si afegeixes una nova regla @ o una funció () hauras de retocar el .htacces per que faci be la redirecció */
+return array (    
+    
+  array ( 
+    'Nombre'        => 'inset()',
+    'TipoCSS'       => 2,
+    'Grupo'         => 38,
+    'Descripcion'   => 'Especifica un área rectangular para mostrarse en un elemento.',
+    'Version'       => 3,
+    'Soportada'     => array ( 24, 3.5, 0, 12, 0 ),
+    'Ejemplo'       => '',
+    'Path'          => '',
+    'EjemplosExtra' => array ( ),
+    'Tipo'          => 'DocCSS'
+  ),    
+  array ( 
+    'Nombre'        => 'circle()',
+    'TipoCSS'       => 2,
+    'Grupo'         => 38,
+    'Descripcion'   => 'Especifica un área circular para mostrarse en un elemento.',
+    'Version'       => 3,
+    'Soportada'     => array ( 24, 3.5, 0, 12, 0 ),
+    'Ejemplo'       => '',
+    'Path'          => '',
+    'EjemplosExtra' => array ( ),
+    'Tipo'          => 'DocCSS'
+  ),    
+  array ( 
+    'Nombre'        => 'ellipse()',
+    'TipoCSS'       => 2,
+    'Grupo'         => 38,
+    'Descripcion'   => 'Especifica un área eliptica para mostrarse en un elemento.',
+    'Version'       => 3,
+    'Soportada'     => array ( 24, 3.5, 0, 12, 0 ),
+    'Ejemplo'       => '',
+    'Path'          => '',
+    'EjemplosExtra' => array ( ),
+    'Tipo'          => 'DocCSS'
+  ),    
+  array ( 
+    'Nombre'        => 'polygon()',
+    'TipoCSS'       => 2,
+    'Grupo'         => 38,
+    'Descripcion'   => 'Especifica un poligono para mostrarse en un elemento.',
+    'Version'       => 3,
+    'Soportada'     => array ( 24, 3.5, 0, 12, 0 ),
+    'Ejemplo'       => '',
+    'Path'          => '',
+    'EjemplosExtra' => array ( ),
+    'Tipo'          => 'DocCSS'
+  ),        
   array ( 
     'Nombre'        => ':active',
     'TipoCSS'       => 1,
@@ -878,8 +929,8 @@
   array ( 
     'Nombre'        => 'clip',
     'TipoCSS'       => 0,
-    'Grupo'         => 21,
-    'Descripcion'   => 'Especifica que área debe mostrarse en elementos con posición absoluta.',
+    'Grupo'         => 38,
+    'Descripcion'   => 'Especifica el área rectangular que debe mostrarse en elementos con posición absoluta. <b>OBSOLETA</b>',
     'Version'       => 2,
     'Soportada'     => array ( 1, 1, 8, 7, 5 ),
     'Ejemplo'       => '',
@@ -887,6 +938,18 @@
     'EjemplosExtra' => array ( ),
     'Tipo'          => 'DocCSS'
   ),
+  array ( 
+    'Nombre'        => 'clip-path',
+    'TipoCSS'       => 0,
+    'Grupo'         => 38,
+    'Descripcion'   => 'Especifica que área debe mostrarse en un elemento.',
+    'Version'       => 3,
+    'Soportada'     => array ( 24, 3.5, 0, 12, 0 ),
+    'Ejemplo'       => '',
+    'Path'          => '',
+    'EjemplosExtra' => array ( ),
+    'Tipo'          => 'DocCSS'
+  ),        
   array ( 
     'Nombre'        => 'color',
     'TipoCSS'       => 0,
@@ -1217,7 +1280,7 @@
     'Grupo'         => 16,
     'Descripcion'   => '',
     'Version'       => 3,
-    'Soportada'     => array ( 1018, 0, 0, 1017, 3 ),
+    'Soportada'     => array ( 23, 35, 0, 18, 1003 ),
     'Ejemplo'       => '',
     'Path'          => '',
     'EjemplosExtra' => array ( ),

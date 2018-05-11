@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta regla se usa para especificar las fases de la animación.</p>
 <p>Podemos añadir fases desde el 0% al 100% de la animación, para entendernos podriamos hacer que en el 0% el fondo sea rojo, y en el 100% sea azul, pero ademas podriamos incluir una fase intermedia al 50% para que el fondo sea verde.</p>
 <hr />
@@ -19,6 +23,3 @@
         <td>Uno o más estilos CSS válidos (obligatorio).</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores, aunque Chrome, Safari y Opera aun requieren el prefijo <code>-webkit-</code>.</p>

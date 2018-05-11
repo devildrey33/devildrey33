@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Esta propiedad corta nos permite asignar las propiedades "<a href="border-bottom-left-radius"><i>border-bottom-left-radius</i></a>", "<a href="border-bottom-right-radius"><i>border-bottom-right-radius</i></a>", "<a href="border-top-left-radius"><i>border-top-left-radius</i></a>", y "<a href="border-top-right-radius"><i>border-top-right-radius</i></a>" en la misma línea.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -41,6 +45,3 @@ También se pueden omitir los valores hasta dejar un unico valor, en ese caso si
         <td>Especifica el valor <a href="border-bottom-right-radius"><i>border-bottom-right-radius</i></a> vertical.</td>
     </tr>
 </table><br />
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS3, y tambien por Internet Explorer 9.</p>

@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Este selector apunta a la primera línea del elemento especificado. Se interpreta cómo línea todo el texto que muestra el navegador en una línea, y que puede cambiar según el tamaño de la ventana.</p>
 <div class='nota'>Solo podemos utilizar las siguientes propiedades con este selector :</nota>
 <ul>
@@ -15,6 +19,3 @@
 <hr />
 <h2>Sintaxis</h2>
 <pre class='Sintaxis'>::first-line { };</pre>
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad es soportada por todos los navegadores compatibles con CSS1.</p>

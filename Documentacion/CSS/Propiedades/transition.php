@@ -1,3 +1,7 @@
+<?php    
+    include("../../../Web/devildrey33_Documentacion.php");    
+    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+?>
 <p>Propiedad corta que nos permite especificar las propiedades <a href="transition-delay">transition-delay</a>, <a href="transition-duration">transition-duration</a>, <a href="transition-timing-function">transition-timing-function</a>, y <a href="transition-property">transition-property</a>.</p>
 <div class='nota'>Las transiciónes se suelen utilizar para el selector <code>:hover</code>, aunque tambien se pueden utilizar para el selector <code>:active</code>.</div>
 <br />
@@ -22,6 +26,3 @@
     </tr>
 </table><br />
 <div class='nota'>Si deseas especificar mas de una propiedad para la transición, debes separarlas por una coma, ademas tambien tienes que especificar como minimo la duración para esa propiedad en concreto. Por ejemplo : <code>transition:width 5s linear 0s, height 5s;</code>.<br />Fijate que en el parámetro <i>height</i> no he especificado ni el <i>timing-function</i> ni el <i>delay</i>, por lo que tomaran los valores por defecto <code>ease 0s</code>.</div>
-<hr />
-<h2>Compatibilidad</h2>
-<p>Esta propiedad está soportada por todos los navegadores compatibles con CSS3.</p>
