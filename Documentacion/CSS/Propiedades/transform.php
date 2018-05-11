@@ -100,4 +100,4 @@
         <td>Permite corregir la posición Z del objeto. Debes especificar el tipo de <a href="/Doc/CSS/Unidades/" target="_blank" title='px, ex, em, %, cm, mm, in, pt, pc'>unidad</a> para el valor (px, cm, pt, etc..).</td>
     </tr>
 </table><br />
-<div class='nota'>Todas las funciones 3d requieren una perspectiva en el mismo objeto, o en el contenedor padre. Echa un vistazo al siguiente ejemplo : <a href="/Lab/Ejemplos/PropiedadesCSS/transform3d.html" target="_blank">Transformaciones 3D</a>.</div>
+<div class='nota'>Todas las funciones 3d requieren una perspectiva en el mismo objeto, o en el contenedor padre. Echa un vistazo al siguiente ejemplo : <a href="/Lab/Ejemplos/CSS/Propiedades/transform3d.html" target="_blank">Transformaciones 3D</a>.</div>

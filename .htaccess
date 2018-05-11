@@ -158,6 +158,14 @@ RewriteRule ^Doc/CSS/Variables                              Blog/variables-css.p
 #RewriteRule ^Doc/CSS/Selectores/([^/]+) 	Web/Doc_ParseadorUrl.php?Selector=$1 [NC]
 #RewriteRule ^Doc/CSS/Funciones/([^/]+) 		Web/Doc_ParseadorUrl.php?Funcion=$1 [NC]
 
+
+#Rewrite para los ejemplos
+RewriteRule ^Ejemplos/PropiedadesCSS                        Ejemplos/CSS/Propiedades/$1 [R]
+RewriteRule ^Ejemplos/FuncionesCSS                          Ejemplos/CSS/Funciones/$1 [R]
+RewriteRule ^Ejemplos/SelectoresCSS                         Ejemplos/CSS/Selectores/$1 [R]
+RewriteRule ^Ejemplos/ReglasCSS                             Ejemplos/CSS/Reglas/$1 [R]
+
+
 #RewriteRule ^Doc/CSS/Reglas/([^/]+) 		Web/Doc_ParseadorUrl.php?Regla=$1 [NC]
 
 #RewriteRule ^Doc/CSS 				Web/Doc_ParseadorUrl.php?RaizCSS=true [NC]

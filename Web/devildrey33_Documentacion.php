@@ -65,7 +65,7 @@
             $Entrada = $this->CSS_BD->BuscarEntrada($this->NombrePropiedad);     // Obtengo los datos de la función / propiedad / selector / regla    
 
             // Array con uno o mas ejemplos para este documento
-            $Paths = array("Ejemplos/".$this->PathEjemplos."CSS/".$this->NombreCSS.".html");
+            $Paths = array("Ejemplos/CSS/".$this->PathEjemplos."/".$this->NombreCSS.".html");
             // Añado los ejemplos extra (si hay alguno
             for ($i = 0; $i < count($Entrada["EjemplosExtra"]); $i++) {
                 array_push($Paths, $Entrada["EjemplosExtra"][$i]);
