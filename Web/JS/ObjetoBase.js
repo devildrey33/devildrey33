@@ -371,7 +371,7 @@ $Base = new function() {
                 if (Datos["HTML"] !== "false") {
                     $(".Cabecera_Datos > .FechaEntrada > span").html(Datos["HTML"]);
                     $("#BarraNavegacion_Votacion").removeAttr("Mostrar");
-                    if ($("html").attr("lang") === "es") { $Base.MostrarMensaje("La votación se ha relaizado correctamente, muchas gracias!"); }
+                    if ($("html").attr("lang") === "es") { $Base.MostrarMensaje("La votación se ha realizado correctamente, muchas gracias!"); }
                     else                                 { $Base.MostrarMensaje("Your vote is annotated, thank you!"); }
                 }
                 $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
@@ -409,7 +409,13 @@ $Base = new function() {
         });
         Ventana.appendTo('body').attr({"visible" : "false"});
 //        Ventana.attr({"visible" : "true"}).find("button").focus();
-        setTimeout(function(Ventana) { Ventana.attr({"visible" : "true"}).find("button").focus(); }, 100, Ventana);
+        // Text to spech
+        window.speechSynthesis.speak(new SpeechSynthesisUtterance(Mensaje));
+        
+        setTimeout(function(Ventana) { 
+            Ventana.attr({"visible" : "true"}).find("button").focus(); 
+        }, 100, Ventana);
+
     };
     
     this.MostrarErrorAjax = function(Error, VolverIndice, Excepcion) { 
@@ -660,7 +666,7 @@ $Base = new function() {
         var Simple = (typeof nSimple === 'undefined') ? false : true;
         console.log("Base.MostrarBarraNavegacion(Simple)", Simple);
 
-        $("#BarraNavegacion_RedesSociales, #BarraNavegacion_Votacion").attr('mostrar', !Simple);
+        $("#BarraNavegacion_RedesSociales").attr('mostrar', !Simple);
                 
         // Idioma del articulo
         $("html").attr({ "lang" : this.Entrada["Idioma"] });

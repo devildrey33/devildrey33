@@ -96,9 +96,9 @@
                         <td>A partir de la versión 10 sin necesidad de prefijo.</td>
                     </tr>
                 </table>
-<div class='Centrado'>
-    <a href='/Lab/Ejemplos/DegradadosCSS/DegradadoLinear.html' class='Boton-Normal'>Ver ejemplo</a>
-</div>
+                <h3>Ejemplo</h3><br />
+        <?php devildrey33_Lab::CrearMiniLab(array("Ejemplos/CSS/Degradados/DegradadoLinear.html")); ?>        
+                
                 <hr />
                 <a href='#repeating-linear-gradient'></a>
                 <h2>Degradado lineal repetitivo</h2>
@@ -143,9 +143,9 @@
                     </tr>
                 </table>
                 
-<div class='Centrado'>
-    <a href='/Lab/Ejemplos/DegradadosCSS/DegradadoLinearRepetitivo.html' class='Boton-Normal'>Ver ejemplo</a>
-</div>
+                <h3>Ejemplo</h3><br />
+        <?php devildrey33_Lab::CrearMiniLab(array("Ejemplos/CSS/Degradados/DegradadoLinearRepetitivo.html")); ?>        
+                
                 <hr />
                 
                 <a href='#radial-gradient'></a>
@@ -296,9 +296,10 @@
                         <td>A partir de la versión 10 sin necesidad de prefijo.</td>
                     </tr>
                 </table>
-<div class='Centrado'>
-    <a href='/Lab/Ejemplos/DegradadosCSS/DegradadoRadial.html' class='Boton-Normal'>Ver ejemplo</a>
-</div>
+
+                <h3>Ejemplo</h3><br />
+        <?php devildrey33_Lab::CrearMiniLab(array("Ejemplos/CSS/Degradados/DegradadoRadial.html")); ?>        
+
                 <hr />
                 <a href='#repeating-radial-gradient'></a>
                 <h2>Degradado radial repetitivo</h2>
@@ -354,9 +355,10 @@
                         <td>A partir de la versión 10 sin necesidad de prefijo.</td>
                     </tr>
                 </table>
-                <div class='Centrado'>
-                    <a href='/Lab/Ejemplos/DegradadosCSS/DegradadoRadialRepetitivo.html' class='Boton-Normal Centrado'>Ver ejemplo</a>
-                </div>
+
+                <h3>Ejemplo</h3><br />
+        <?php devildrey33_Lab::CrearMiniLab(array("Ejemplos/CSS/Degradados/DegradadoRadialRepetitivo.html")); ?>        
+
 
             <div class='nota'>He de decir que toda esta documentación está sujeta a cambios ya que aun no está del todo claro como acabaran los degradados en CSS3, y aun están implementando nueva sintaxis, por lo que puede haber más de un cambio en el futuro. De todas formas pienso que como mucho añadirán mas funciones y dejaran todo lo hecho así para conservar compatibilidad.</div>
                 

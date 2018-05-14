@@ -28,6 +28,10 @@ ObjetoAdmin = function() {
 //        $('#CH_Entradas').click(function(e){ $Base.CargarURL('/Web/Editar-Entradas'); $Base.ClickMenu(0); });  /* EXPLORAR LAB */        
         /* Boton limpiar baneados */ 
         $('#CH_IPSBan').click(function(e){ $Base.cmd("LimpiarBaneados"); });  
+        $('#CH_LocalStorage').click(function(e){ 
+            localStorage.clear(); 
+            $Base.MostrarMensaje('LocalStorage eliminado.'); 
+        });  
         /* CheckBox del marco de administración */
         $('#BarraPrincipal_Marco33 .CheckBox').off("click").on("click", function(e){ 
             var Marcado = ($(this).attr('marcado') === 'true') ? true : false;

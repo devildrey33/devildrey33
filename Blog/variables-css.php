@@ -76,8 +76,9 @@
             <li>En el ámbito de <code>.ColVerde</code> las etiquetas <code>&lt;span&gt;</code> tienen el color del texto verde.</li>
             
         </ul>        
-        
-        <?php devildrey33_Lab::CrearMiniLab(array("Ejemplos/VariablesCSS/ambito.html")); ?>        
+        <h3>Ejemplo :</h3><br />
+
+        <?php devildrey33_Lab::CrearMiniLab(array("Ejemplos/CSS/Variables/ambito.html")); ?>        
         
         <div class='nota'>Si creamos una variable solamente para un ámbito local, y una propiedad intenta acceder a ella en otro ámbito desde el que no tiene acceso, no sucederá absolutamente nada y la propiedad permanecerá igual que antes.</div>
         <h2>Enlazar variables a las propiedades</h2>
@@ -137,7 +138,8 @@ function AsignarVariableCSS(Variable, Valor) {
             <?php $Web->PintarCodigo->PintarArchivoJS("asignarvariable", "Asignar un valor a una variable global del CSS", basename(__FILE__), 'asignarvariable'); ?>
             <p>Como veis en el ejemplo anterior se utiliza la función <code>style.setProperty</code>, de un elemento que se encuentre dentro del ámbito de la variable. En este caso como la variable es global podemos utilizar <code>document.body</code> directamente.</p>
             <p>Por último os dejo un ejemplo que modifica vía JavaScript cuatro variables que contienen los colores de los cuatro marcos que tiene el ejemplo.</p>
-            <?php devildrey33_Lab::CrearMiniLab(array("Ejemplos/VariablesCSS/javascript.html")); ?>        
+            <h3>Ejemplo :</h3><br />
+            <?php devildrey33_Lab::CrearMiniLab(array("Ejemplos/CSS/Variables/javascript.html")); ?>        
             
 
 <?php   

@@ -197,11 +197,11 @@ class devildrey33_Comentarios {
                 strcasecmp($Nombre, "Jose Antonio Bover") == 0          || 
                 strcasecmp($Nombre, "Josep Antoni Bover Comas") == 0    || 
                 strcasecmp($Nombre, "Jose Antonio Bover Comas") == 0)   
-                                { $Error .= " No puedes usar ese nombre."; }        
+                                { $Error .= " No puedes utilizar ese nombre."; }        
         }
         if (devildrey33_Opciones::Administrador() != 2) {
              if (strcasecmp($Nombre, "Joel Barba") == 0) {
-                 $Error .= " No puedes usar ese nombre.";
+                 $Error .= " No puedes utilizar ese nombre.";
              }
         }
         if ($Email == "")       { $Error .= " No se ha introducido ningún correo."; }

@@ -164,6 +164,8 @@ RewriteRule ^Ejemplos/PropiedadesCSS                        Ejemplos/CSS/Propied
 RewriteRule ^Ejemplos/FuncionesCSS                          Ejemplos/CSS/Funciones/$1 [R]
 RewriteRule ^Ejemplos/SelectoresCSS                         Ejemplos/CSS/Selectores/$1 [R]
 RewriteRule ^Ejemplos/ReglasCSS                             Ejemplos/CSS/Reglas/$1 [R]
+RewriteRule ^Ejemplos/VariablesCSS                          Ejemplos/CSS/Variables/$1 [R]
+RewriteRule ^Ejemplos/DegradadosCSS                         Ejemplos/CSS/Degradados/$1 [R]
 
 
 #RewriteRule ^Doc/CSS/Reglas/([^/]+) 		Web/Doc_ParseadorUrl.php?Regla=$1 [NC]

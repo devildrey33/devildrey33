@@ -1,0 +1,45 @@
+<!-- 
+    Nuevo documento del laboratorio de pruebas para devildrey33
+    Se permite : HTML, JavaScript, CSS.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        
+        <!-- Estilos CSS -->
+        <style type="text/css">
+        </style>
+        
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+
+        <!-- Si deseas utilizar Three 3D lib descomenta la siguiente línea -->
+        <!-- <script src="/Web/JS/3rdParty/three-0.74.min.js"></script> -->
+
+        <!-- Si deseas utilizar Tween (animaciones para Three) descomenta la siguiente línea -->
+        <!-- <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script> -->
+        
+        <!-- Si deseas utilizar stats (framerate para Three) descomenta la siguiente línea -->
+        <!-- <script src="https://code.createjs.com/stats.min.js"></script> -->
+
+        <!-- Si deseas utilizar DAT.GUY (Marco de opciones configurable) descomenta la siguiente línea -->
+        <!-- <script src="https://code.createjs.com/DAT.GUY.js"></script> -->
+        
+        <!-- Código javascript -->
+        <script type="text/javascript">
+// https://stackoverflow.com/questions/45003548/how-to-capture-generated-audio-from-window-speechsynthesis-speak-call            
+       
+            
+            function Hablar() {
+                var utterance = new SpeechSynthesisUtterance('Gracias por tu valoración!');
+                window.speechSynthesis.speak(utterance);
+            }
+        </script>
+    </head>
+    <body>
+        <h1>
+            <button onclick='Hablar();'>h</button>
+        </h1>
+    </body>
+</html>

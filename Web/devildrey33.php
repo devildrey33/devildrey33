@@ -604,12 +604,15 @@ class devildrey33 {
             }
             
             $HTMLAdmin.= 
-                    "<table class='MarcoOpciones2C MarcoOpcionesBorde' titulo='JavaScript'>".Intro().
-                        "<tr>".Intro().
-                            "<td>Mostrar Debug JS</td>".Intro().
-                            "<td>"."<div id='CH_Consola' class='CheckBox' marcado='".$Consola."' title='Muestra datos de depuración por la consola'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
-                        "</tr>".Intro().
-                    "</table>".Intro();
+                    "<div class='MarcoOpcionesBorde' titulo='JavaScript'>".Intro().
+                        "<table class='MarcoOpciones2C' >".Intro().
+                            "<tr>".Intro().
+                                "<td>Mostrar Debug JS</td>".Intro().
+                                "<td>"."<div id='CH_Consola' class='CheckBox' marcado='".$Consola."' title='Muestra datos de depuración por la consola'>"."<div></div>"."<div></div>"."</div>"."</td>".Intro().
+                            "</tr>".Intro().
+                        "</table>".Intro().
+                        "<button class='Boton-Normal' id='CH_LocalStorage' title='Elimina todas las ips baneadas de la lista'>Limpiar LocalStorage</button>".Intro().
+                    "</div>".Intro();
             
             $HTMLAdmin.= 
                     "<table class='MarcoOpciones2C MarcoOpcionesBorde' titulo='Banners JS'>".Intro().
