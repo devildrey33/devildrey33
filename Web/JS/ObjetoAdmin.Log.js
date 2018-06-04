@@ -296,7 +296,7 @@ $Admin.Log = new function() {
         for (var i = 0; i < this.Ips.length; i++) {
             for (var e = 0; e < this.Ips[i]["Datos"].length; e++) {
                 switch (this.Ips[i]["Datos"][e]["Relevancia"]) {
-                    case 2  : this.AgregarImagen(this.Ips[i]["Datos"][e]["Url"]);                                           break;
+                    case 1  : this.AgregarImagen(this.Ips[i]["Datos"][e]["Url"]);                                           break;
                     case 5  : this.AgregarDocumento(this.Ips[i]["Datos"][e]["Url"]);                                        break;
                     case 7  : this.AgregarError(this.Ips[i]["Datos"][e]["Url"]);                                            break;
                     default : this.AgregarObjeto(this.Ips[i]["Datos"][e]["Url"], this.Ips[i]["Datos"][e]["Relevancia"]);    break;

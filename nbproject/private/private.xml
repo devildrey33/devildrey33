@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4">
         <file>
+            <url>Web/JS/ObjetoBase.js</url>
+            <bookmark id="4">
+                <name/>
+                <line>336</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
             <url>Web/JS/ObjetoAdmin.js</url>
             <bookmark id="1">
                 <name/>
@@ -22,32 +30,18 @@
                 <key/>
             </bookmark>
         </file>
-        <file>
-            <url>Web/JS/ObjetoBase.js</url>
-            <bookmark id="4">
-                <name/>
-                <line>336</line>
-                <key/>
-            </bookmark>
-        </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/EspectroAudible.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Base.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/variables-css.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/.htaccess</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Lab.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/background-clip.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Documentacion.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/BarraNavegacion.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/ColoresCSS.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/clip-path.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/CSS/Comentarios.css</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Descargar.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoBase.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/CSS/Propiedades/clip-path.html</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/AudioMsgBox.html</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Blog/DegradadosCSS.php</file>
-            <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/transform.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/JS/ObjetoAdmin.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/TraductorPutaPuta/index.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Web/devildrey33_Comentarios.php</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Ejemplos/CyberParasit/CyberParasit_Audio.js</file>
+            <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/clip-path.php</file>
             <file>file:/C:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/filter.php</file>
         </group>
     </open-files>

@@ -151,6 +151,10 @@ var PUTAPUTA = function() {
         TARet.select();
         try {
             document.execCommand('copy');
+            var TextoDictado = new SpeechSynthesisUtterance(TARet.value);
+            TextoDictado.lang = 'ca'
+            window.speechSynthesis.speak(TextoDictado);
+            
         }
         catch(err) {
             console.log("error en el Control+C", err);
@@ -220,6 +224,10 @@ var PUTAPUTA = function() {
         var TARet = document.getElementById(InputD);
         TARet.value = Resultat;
         TARet.select();
+            var TextoDictado = new SpeechSynthesisUtterance(Resultat);
+            TextoDictado.lang = 'ca'
+            window.speechSynthesis.speak(TextoDictado);
+        
 /*        try {
             document.execCommand('copy');
         }

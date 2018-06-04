@@ -409,8 +409,11 @@ $Base = new function() {
         });
         Ventana.appendTo('body').attr({"visible" : "false"});
 //        Ventana.attr({"visible" : "true"}).find("button").focus();
+
         // Text to spech
-        window.speechSynthesis.speak(new SpeechSynthesisUtterance(Mensaje));
+/*        var sp = new SpeechSynthesisUtterance(Mensaje);
+        sp.lang = $("html").attr("lang"); // Idioma
+        window.speechSynthesis.speak(new SpeechSynthesisUtterance(Mensaje)); */
         
         setTimeout(function(Ventana) { 
             Ventana.attr({"visible" : "true"}).find("button").focus(); 
