@@ -148,7 +148,44 @@ class devildrey33_BD {
         return $Visitas;
     }
 
-
+    public function ObtenerValoresEntrada2($Archivo, $SumarVisita = false) {        
+        // Datos a devolver
+        $Ret = array(   "Visitas"       => 0, 
+                        "Comentarios"   => 0,
+                        "Votaciones"    => array(  
+                                                    "TotalVotaciones"   => 0, 
+                                                    "TotalEstrellas"    => 0));
+        // Si la BD no funciona devuelvo los datos iniciales
+        if ($this->_BDFuncional === false) { return $Ret; }
+        $Contador = 0;
+        // Renombro el $Archivo si este pertenece a la documentación (directorio Doc/)
+        $ArchivoFinal = str_replace(array("CSS/Funciones/", "CSS/Propiedades/", "CSS/Selectores/", "CSS/Reglas/"), array("FunciónCSS_", "PropiedadCSS_", "SelectorCSS_", "ReglaCSS_"), $Archivo, $Contador);
+        if ($Contador > 0) $ArchivoFinal .= ".php";
+        // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
+        // Re-emplazo los caracteres "." y "-" por el caracter "_" para crear un nombre compatible con los nombres de tabla de MYSQL
+        $NombreArchivo = substr($this->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($ArchivoFinal))), 0, 51);        
+        // Comprobamos el numero de comentarios
+        $Resultado = $this->_mysqli->query("SELECT * FROM comentarios__".strtolower($NombreArchivo));
+        if ($Resultado) $Ret["Comentarios"] = $Resultado->num_rows;
+        // Comprobamos si existe algun registro de la página 
+        $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina='".$this->_mysqli->real_escape_string($ArchivoFinal)."'");
+        if ($Resultado) {
+            if ($Resultado->num_rows == 1) {
+                $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
+                // Si hay datos obtenemos sus valores
+                if ($Datos) $Ret["Visitas"] = $Datos['Visitas'];
+            }
+        }
+        // Sumo la visita (si es necesario)
+        $Ret["Visitas"]     = $this->SumarVisita($ArchivoFinal, $SumarVisita);
+        // Obtengo la media de las votaciones
+        $Ret["Votaciones"]  = $this->ObtenetMediaVotacionesWeb($ArchivoFinal);                
+        
+        return $Ret;
+    }
+    
+    // TODO : S'ha de fer una nova funció que NO imprimeixi codi HTML y que torni les dades en una variable
+    // 
     // Función que obtiene los valores de una entrada (numero de comentarios, visitas, votos, fecha, etc..)
     public function ObtenerValoresEntrada($Archivo, $SumarVisita = false) {        
         if ($this->_BDFuncional === false) return "0 visitas, 0 comentarios, 0 votaciones.";
@@ -178,8 +215,9 @@ class devildrey33_BD {
         //if ($SumarVisita == true) 
         $Visitas = $this->SumarVisita($Archivo, $SumarVisita);
 
-        $StrVotos = "votos";
         $Votaciones = $this->ObtenetMediaVotacionesWeb($Archivo);
+
+        $StrVotos = "votos";
         $StrCom = "comentarios";
         if ($Comentarios == 1) $StrCom = "comentario";
         if ($Votaciones->TotalVotaciones == 1) $StrVotos = "voto";

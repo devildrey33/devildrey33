@@ -12,7 +12,7 @@
 <br />
 <h3><i>Ruta</i></h3>
 <div class='Tab'>
-<p>La dirección del elemento externo al que queremos enlazar, por ejemplo :<p/>
+<p>La ruta del elemento al que queremos enlazar, por ejemplo :<p/>
 <!-- -[INICIO devildrey33.ruta]-            
 url(mi_imagen.png);       /* Archivo png externo */
 url(mi_imagen.svg#MiID);  /* Una parte del archivo svg externo */
@@ -20,6 +20,8 @@ url(mi_imagen.svg#MiID);  /* Una parte del archivo svg externo */
     <?php 
         $Base->PintarCodigo->PintarArchivoC("ruta", "", basename(__FILE__), 'ruta'); /* Amb C queda millor pintat que amb CSS... xd */
     ?>            
-    <div class="nota">Se puede especificar una ID al final del path, para señalar un objeto concreto del archivo sin que se muestre el resto.</div>
+<div class="nota">Para las propiedades <code>background</code> y <code>background-image</code> se puede especificar una ID al final del path, para señalar un objeto concreto de un archivo svg sin que se muestre el resto.<br /> <br />
+Para la propiedad <code>clip-path</code> se puede especificar la url de un svg externo y la ID del objeto, o se puede especificar únicamente una ID si nos queremos referir a un objeto de un svg que este dentro del mismo código html.
+</div>
 </div>
 <br />

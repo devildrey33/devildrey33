@@ -18,14 +18,12 @@
 ?>
 
 <style>
-    
-    
     .EjemploPath {
         position:relative;
         float:right;
         width:210px; 
         height:210px;
-        border:1px dashed #666;
+        border:1px dashed rgba(78, 78, 78, 0.5);
         margin-left:10px;
     }
     .EjemploPath::before {
@@ -63,6 +61,7 @@
     .EjemploPathCircle::after {
         background: linear-gradient(120deg, red,orange,yellow,green,blue,indigo,violet); 
     }
+    
     .EjemploPathEllipse::before {
         clip-path:ellipse(10% 5%);
         animation: AniEllipse 20s ease 0s infinite;
@@ -71,11 +70,40 @@
     .EjemploPathEllipse::after {
         background: linear-gradient(300deg, red,orange,yellow,green,blue,indigo,violet); 
     }    
-    .CodigoPath {
+
+    .EjemploPathPolygon::before {
+        clip-path:polygon(  0%   0%, 100%   0%, 100%  75%,  75%  75%,  75% 100%, 50%  75%,   0%  75%,   0%  50%); 
+        animation: AniPolygon 20s ease 0s infinite;
+        background: linear-gradient(240deg, red,orange,yellow,green,blue,indigo,violet); 
+    }
+    .EjemploPathPolygon::after {
+        background: linear-gradient(240deg, red,orange,yellow,green,blue,indigo,violet); 
+    }    
+    
+    .EjemploPathDestacar {
+        width:140px !important;
+        height:140px !important;
+    }
+    
+    .EjemploPathDestacar::before {
+        transition:0.4s;
+        text-align: center;        
+        content:"";
+        font-size:1.5em;
+        background: linear-gradient(75deg, red,yellow,green,blue,violet);        
+        clip-path:inset(10px); 
+    }
+    .EjemploPathDestacar:hover::before {
+        clip-path:inset(40%); 
+    }
+    .EjemploPathDestacar::after {
+        background: linear-gradient(75deg, red,yellow,green,blue,violet);                
+    }
+    
+/*    .CodigoPath {
         margin-top:0px;
         position:absolute;
         width:100%;
-        /*display:none;*/
     }
     .CodigoPath > code {
         position:relative;
@@ -83,15 +111,38 @@
         width:200%;
         left:-50%;
         text-align: center;
+    }*/
+    
+
+    .EjemploTexto {
+        position:absolute;
+        font-size:25px;
+        text-shadow:1px 1px 2px #000;
+        color:#FFF;
+        top:50%;
+        left:50%;
+        transform:translate(-50%, -50%);
+    }
+
+    @keyframes AniPolygon {
+        0%   { clip-path:polygon(  0%   0%, 100%   0%, 100%  75%,  75%  75%,  75% 100%,  50%  75%,   0%  75%,   0%  60%,   0%  42%,   0%  25%); }
+        15%  { clip-path:polygon(  0%   0%, 100%   0%, 100%  75%,  75%  75%,  75% 100%,  50%  75%,   0%  75%,   0%  60%,   0%  42%,   0%  25%); }
+        
+        20%  { clip-path:polygon( 40%   0%,  40%  20%, 100%  20%, 100%  40%, 100%  60%, 100%  80%,   70%  80%, 40%  80%,  40% 100%,   0%  50%); }
+        35%  { clip-path:polygon( 40%   0%,  40%  20%, 100%  20%, 100%  40%, 100%  60%, 100%  80%,   70%  80%, 40%  80%,  40% 100%,   0%  50%); }
+        
+        40%  { clip-path:polygon( 50%   0%,  80%  10%, 100%  35%, 100%  70%,  80%  90%,  50% 100%,  20%  90%,   0%  70%,   0%  35%,  20%  10%); }
+        55%  { clip-path:polygon( 50%   0%,  80%  10%, 100%  35%, 100%  70%,  80%  90%,  50% 100%,  20%  90%,   0%  70%,   0%  35%,  20%  10%); }
+        
+        60%  { clip-path:polygon( 50%   0%,  61%  35%,  98%  35%,  68%  57%,  79%  91%,  50%  70%,  21%  91%,  32%  57%,   2%  35%,  39%  35%); }
+        75%  { clip-path:polygon( 50%   0%,  61%  35%,  98%  35%,  68%  57%,  79%  91%,  50%  70%,  21%  91%,  32%  57%,   2%  35%,  39%  35%); }
+        
+        80%  { clip-path:polygon(  0%   0%,   0% 100%,  25% 100%,  25%  25%,  75%  25%,  75%  75%,  25%  75%,  25% 100%, 100% 100%, 100%   0%); }
+        95%  { clip-path:polygon(  0%   0%,   0% 100%,  25% 100%,  25%  25%,  75%  25%,  75%  75%,  25%  75%,  25% 100%, 100% 100%, 100%   0%); }
+        
+        100% { clip-path:polygon(  0%   0%, 100%   0%, 100%  75%,  75%  75%,  75% 100%,  50%  75%,   0%  75%,   0%  60%,   0%  42%,   0%  25%); }
     }
     
-    .CodigoPath:nth-child(1) { animation: E5P1 20s ease 0s infinite; }
-    .CodigoPath:nth-child(2) { animation: E5P2 20s ease 0s infinite; }
-    .CodigoPath:nth-child(3) { animation: E5P3 20s ease 0s infinite; }
-    .CodigoPath:nth-child(4) { animation: E5P4 20s ease 0s infinite; }
-    .CodigoPath:nth-child(5) { animation: E5P5 20s ease 0s infinite; }
-/*    .CodigoPath:nth-child(6) { animation: E5P6 20s ease 0s infinite; } */
-
     @keyframes AniEllipse {
         0%   { clip-path:ellipse(10% 5%); }
         15%  { clip-path:ellipse(10% 5%); }
@@ -101,8 +152,8 @@
         55%  { clip-path:ellipse(80% 150% at 0% 50%); }
         60%  { clip-path:ellipse(70% 50% at 100% 20px); }
         75%  { clip-path:ellipse(70% 50% at 100% 20px); }
-        80%  { clip-path:ellipse(100px 60% at 50px 150px); }
-        95%  { clip-path:ellipse(100px 60% at 50px 150px); }
+        80%  { clip-path:ellipse(100px 60% at 50% 150px); }
+        95%  { clip-path:ellipse(100px 60% at 50% 150px); }
         100% { clip-path:ellipse(10% 5%); }
     }
 
@@ -134,45 +185,17 @@
         100% { clip-path:inset(0%);  }
     }
     
-    @keyframes E5P1 {
-        0%   { opacity:0; }
-        5%   { opacity:1; }
-        15%  { opacity:1; }
-        20%  { opacity:0;  }
-        100% { opacity:0;  }        
-    }
-    @keyframes E5P2 {
-        0%   { opacity:0;  }
-        15%  { opacity:0;  }
-        20%  { opacity:1;  }
-        35%  { opacity:1;  }
-        40%  { opacity:0;  }
-        100% { opacity:0;  }        
-    }
-    @keyframes E5P3 {
-        0%   { opacity:0;  }
-        35%  { opacity:0;  }
-        40%  { opacity:1;  }
-        55%  { opacity:1;  }
-        60%  { opacity:0;  }
-        100% { opacity:0;  }        
-    }
-    @keyframes E5P4 {
-        0%   { opacity:0;  }
-        55%  { opacity:0;  }
-        60%  { opacity:1;  }
-        75%  { opacity:1;  }
-        80%  { opacity:0;  }
-        100% { opacity:0;  }        
-    }
-    @keyframes E5P5 {
-        0%   { opacity:0;  }
-        75%  { opacity:0;  }
-        80%  { opacity:1;  }
-        95%  { opacity:1;  }
-        100% { opacity:0;  }        
-    }
 </style>
+
+        <!-- SVG con el logo -->
+        <svg width="0" height="0" style="clip-rule:evenodd;" preserveAspectRatio="xMinYMin meet" >
+            <defs>
+                <clipPath id="Figura">
+                    <path d="M70 22c12,0 23,5 32,12 18,-6 13,-19 8,-30 39,22 11,43 4,45 2,5 4,12 4,18 0,14 -7,27 -17,35 -4,23 -15,42 -45,31l-4 7c-7,-8 -10,-17 -12,-27 6,5 14,9 23,10l-4 7c16,2 26,-4 28,-20 -5,1 -11,3 -17,3 -26,0 -47,-21 -47,-46 0,-6 1,-13 4,-18 -8,-2 -33,-23 4,-45 -5,11 -11,24 7,30 9,-7 20,-12 32,-12zm-32 29c14,-3 27,17 27,24 0,7 -22,11 -28,8 -8,-4 -9,-28 1,-32zm65 0c-13,-3 -27,17 -27,24 0,7 22,11 28,8 8,-4 9,-28 -1,-32z"/>
+                </clipPath>
+            </defs>
+        </svg>
+
 
 <p>Esta propiedad permite recortar el área visible de un objeto, de forma que el navegador incluso es capaz de utilizar una figura SVG (path) para especificar la figura de un objeto.</p>
 <div class='nota'>Esta propiedad se ha creado para substituir a la propiedad <a href='/Doc/CSS/Propiedades/clip'>clip</a>, que a partir de ahora se considera obsoleta.</div>
@@ -184,13 +207,14 @@
 
 <h3><i>none</i></h3>
 <div class='Tab'>
-    <p>Muestra todo el objeto. <b>(valor por defecto)</b></p>
+    <p>No aplica ninguna mascara al objeto / Muestra el objeto tal cual. <b>(valor por defecto)</b></p>
     <hr />
 </div><br /><br />
 
 <h3><i><a href='/Doc/CSS/Funciones/url()'>url()</a></i></h3>
 <div class='Tab'>
-    <p>Especifica que el objeto tomará el área definida de un svg.<br />Por ejemplo :</p>
+    <p>Especifica que el objeto tomará el área definida de un grupo de objetos dentro de un svg definido con una ID.</p>
+    <p>Por ejemplo :</p>
 <!-- -[INICIO devildrey33.url]-            
 clip-path:url(mi_archivo.svg#id_grupo);              /* SVG externo */
 -[FIN devildrey33.url]- -->
@@ -205,21 +229,7 @@ clip-path:url(mi_archivo.svg#id_grupo);              /* SVG externo */
 <h3><i><a href='/Doc/CSS/Funciones/inset()'>inset()</a></i></h3>
 <div class='Tab'>
     <div class='EjemploPath EjemploPathInset'>
-        <div class='CodigoPath'>
-            <code>inset(0px);</code>
-        </div>
-        <div class='CodigoPath'>
-            <code>inset(10px);</code>
-        </div>
-        <div class='CodigoPath'>
-            <code>inset(10px 20px);</code>
-        </div>        
-        <div class='CodigoPath'>
-            <code>inset(10px 20px 30px);</code>
-        </div>
-        <div class='CodigoPath'>
-            <code>inset(10px 20px 30px 40px);</code>
-        </div>        
+        <div class="EjemploTexto">Animación</div>        
     </div>
     <p>El área a mostrar se recortará partiendo de los valores especificados para formar un rectangulo. Los valores se pueden especificar con cualquier tipo de unidad de tamaño relativa válida. Para más información consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.</p>
     <p>El rectangulo inicial es el objeto completo, y a este se le restan los valores especificados</p>
@@ -247,21 +257,7 @@ clip-path:inset(10px 20px, 30px, 40px);     /* 10 pixeles menos para el top, 20 
 <h3><i><a href='/Doc/CSS/Funciones/circle()'>circle()</a></i></h3>
 <div class="Tab">
     <div class='EjemploPath EjemploPathCircle'>
-        <div class='CodigoPath'>
-            <code>circle(10%);</code>
-        </div>
-        <div class='CodigoPath'>
-            <code>circle(50% at 100% 20%);</code>
-        </div>
-        <div class='CodigoPath'>
-            <code>circle(20% at 50% 25%);</code>
-        </div>        
-        <div class='CodigoPath'>
-            <code>circle(40px at 10% 10%);</code>
-        </div>
-        <div class='CodigoPath'>
-            <code>circle(100px at 150px 150px);</code>
-        </div>        
+        <div class="EjemploTexto">Animación</div>
     </div>
     
     
@@ -285,21 +281,7 @@ clip-path:circle(50px at 25% 75%);          /* 50 Pixeles de rádio empezando un
 <h3><i><a href='/Doc/CSS/Funciones/ellipse()'>ellipse()</a></i></h3>
 <div class="Tab">
     <div class='EjemploPath EjemploPathEllipse'>
-        <div class='CodigoPath'>
-            <code>ellipse(10% 5%);</code>
-        </div>
-        <div class='CodigoPath'>
-            <code>ellipse(120% 30%);</code>
-        </div>
-        <div class='CodigoPath'>
-            <code>ellipse(80% 150% at 0% 50%);</code>
-        </div>        
-        <div class='CodigoPath'>
-            <code>ellipse(70% 50% at 100% 20px);</code>
-        </div>
-        <div class='CodigoPath'>
-            <code>ellipse(100px 60% at 50px 150px);</code>
-        </div>        
+        <div class="EjemploTexto">Animación</div>
     </div>
     
     
@@ -321,21 +303,53 @@ clip-path:ellipse(500px 50% at 0% 100px);   /* 500px de rádio X y 50% de rádio
 
 <h3><i><a href='/Doc/CSS/Funciones/polygon()'>polygon()</a></i></h3>
 <div class="Tab">
-    <p>El área a mostrar será un poligono. Para definir el polygono debes definir 3 o más puntos, cada punto debe tener un valor para la X y otro para la Y.<br />
-    Todas las coordenadas deben ser un valor positivo utilizando cualquier tipo de unidad de tamaño relativa válida. Para más información consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.</p>
+    <div class='EjemploPath EjemploPathPolygon'>
+        <div class="EjemploTexto">Animación</div>
+<!--        <div class='CodigoPath'>
+            <code>ellipse(10% 5%);</code>
+        </div>
+        <div class='CodigoPath'>
+            <code>ellipse(120% 30%);</code>
+        </div>
+        <div class='CodigoPath'>
+            <code>ellipse(80% 150% at 0% 50%);</code>
+        </div>        
+        <div class='CodigoPath'>
+            <code>ellipse(70% 50% at 100% 20px);</code>
+        </div>
+        <div class='CodigoPath'>
+            <code>ellipse(100px 60% at 50px 150px);</code>
+        </div>        -->
+    </div>
+    
+    <p>El área a mostrar será un poligono. Para definir el poligono debes definir 3 o más puntos, cada punto debe tener un valor para la X y otro para la Y.</p>
+    <p>Todas las coordenadas deben ser un valor positivo utilizando cualquier tipo de unidad de tamaño relativa válida. Para más información consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.</p>
     <p>Por ejemplo :</p>
 <!-- -[INICIO devildrey33.polygon]-
-clip-path:polygon(50% 0%, 0% 100%, 100% 100%);  /* Un triangulo */
+clip-path:polygon(50% 0%, 0% 100%, 100% 100%);                                                                                  /* Triangulo */
+clip-path:polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);                                                                          /* Trapezoide */
+clip-path:polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);  /* Cruz */
 -[FIN devildrey33.polygon]- -->            
 <?php 
     $Base->PintarCodigo->PintarArchivoCSS("polygon", "", basename(__FILE__), 'polygon'); 
 ?>                   
+<!-- -[INICIO devildrey33.polygon2]-
+clip-path:polygon(  0%   0%, 100%   0%, 100%  75%,  75%  75%,  75% 100%,  50%  75%,   0%  75%,   0%  60%,   0%  42%,   0%  25%);    /* Bocadillo   */
+clip-path:polygon( 40%   0%,  40%  20%, 100%  20%, 100%  40%, 100%  60%, 100%  80%,   70%  80%, 40%  80%,  40% 100%,   0%  50%);    /* Flecha izq. */
+clip-path:polygon( 50%   0%,  80%  10%, 100%  35%, 100%  70%,  80%  90%,  50% 100%,  20%  90%,   0%  70%,   0%  35%,  20%  10%);    /* Decágono    */
+clip-path:polygon( 50%   0%,  61%  35%,  98%  35%,  68%  57%,  79%  91%,  50%  70%,  21%  91%,  32%  57%,   2%  35%,  39%  35%);    /* Estrella    */
+clip-path:polygon(  0%   0%,   0% 100%,  25% 100%,  25%  25%,  75%  25%,  75%  75%,  25%  75%,  25% 100%, 100% 100%, 100%   0%);    /* Ventana     */
+-[FIN devildrey33.polygon2]- -->            
+<?php 
+    $Base->PintarCodigo->PintarArchivoCSS("polygon2", "Pasos de la animación de la derecha (10 puntos)", basename(__FILE__), 'polygon2'); 
+?>                   
 
+<div class='nota'>Para hacer los poligonos he utilizado la siguiente página : <a href='https://bennettfeely.com/clippy/' target="_blank">Clippy</a>, El truco para animar desde un poligono a otro es que tienen que tener siempre el mismo número de puntos, por ejemplo el Bocadillo solo tiene 7 puntos por lo que he añadido 3 puntos más para que todos los poligonos de la animación tuvieran 10 puntos .</div>
 </div><br />
 
 <hr />
 <h2>Área de partida</h2>
-<p>En la MDN (en ingles, que es la mas completa) se menciona que se puede especificar un área de partida (basic-shape) desde donde se calculará el clip-path. SOLO Para firefox (de momento) podemos especificar el área de partida para la función inset. Pero según mis pruebas parece que no funciona con las funciones cirle, ellipse, y polygon (NTY).
+<p>En la MDN (en ingles, que es la mas completa) se menciona que se puede especificar un área de partida (basic-shape) desde donde se calculará el clip-path. SOLO Para firefox (de momento) podemos especificar el área de partida para la función inset. Pero según mis pruebas parece que no funciona con las funciones cirle, ellipse, y polygon.
 <!--<table class='Tabla'>
     <tr>
         <td style="width:250px"><b>fill-box<br />stroke-box<br />view-box<br />margin-box<br />border-box<br />padding-box<br />content-box</b></td>
@@ -374,11 +388,15 @@ clip-path:polygon(50% 0%, 0% 100%, 100% 100%);  /* Un triangulo */
 <!--        </td>        
     </tr>
 </table> -->
-<div class="nota">Hasta la fecha de este documento, el área de partida solo funciona en FireFox, y aún no queda muy claro si es solo para la función inset, o mas adelante tambien se podrá utilizar con circle, ellipse y polygon.</div>
+<div class="nota">Hasta la fecha de este documento, el área de partida solo funciona en FireFox, y aún no queda muy claro si es solo para la función <code>inset</code>, o mas adelante también se podrá utilizar con <code>circle</code>, <code>ellipse</code> y <code>polygon</code>.</div>
 <br /><hr />
 
 <h2>Por destacar</h2>
-<p>La propiedad <code>clip-path</code> se puede utilizar para crear <a href='/Doc/CSS/Propiedades/transition'>transiciones</a> y <a href='/Doc/CSS/Propiedades/animation'>animaciones</a>. Para ello hay que jugar con la misma función, por ejejmplo :</p>
+<div class='EjemploPath EjemploPathDestacar'>
+    <div class="EjemploTexto">Transición MouseOver</div>    
+</div>
+<p>La propiedad <code>clip-path</code> se puede utilizar para crear <a href='/Doc/CSS/Propiedades/transition'>transiciones</a> y <a href='/Doc/CSS/Propiedades/animation'>animaciones</a>. Existen varias limitaciones, la mas importante es que no se pueden combinar funciones, es decir no podemos hacer una transición de la función <code>circle</code> a la función <code>polygon</code>. En definitiva, para realizar una transición / animación se tiene que utilizar siempre la misma función en todos los pasos.</p>
+<p>Además si queremos animar un polygono, todas las fases de la animación deben tener el mismo número de puntos / coordenadas. Es decir, no podemos animar un poligono de 8 puntos a un poligono de 10 puntos...</p>
 <!-- -[INICIO devildrey33.combi]-
 .Objeto {
     transition:0.4s;                        /* Transición de 0.4 segundos */

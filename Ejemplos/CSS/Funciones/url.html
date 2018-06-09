@@ -8,12 +8,47 @@
             .LogoPng        { background-image:url(/Web/Graficos/155x125_Logo.png);                             }
             .LogoSVGClaro   { background:url(/Web/SVG/Logo.svg#Claro);                                          }
             .LogoSVGOscuro  { background:url(/Web/SVG/Logo.svg#Oscuro);                                         }
-    	</style>
-    
+            /* clip-path */
+            .LogoClipPath {
+                position:relative; width:140px; height:140px; display:inline-block; margin:5px 5px 5px 15px;
+            }
+            .LogoClipPath::after   { /* El objeto after tiene un degradado translucido */
+                content:'';
+                width:100%;
+                height:100%;
+                position:absolute;
+                z-index:0;
+                background:linear-gradient(240deg, red,orange,yellow,green,blue,indigo,violet);  
+                opacity:0.3;
+            }
+            .LogoClipPath::before   { /* El objeto before tiene un degradado con la figura del logo de devildrey33 */
+                content:'';
+                width:100%;
+                height:100%;
+                position:absolute;
+                z-index:1;
+                clip-path:url(#Figura);
+                background:linear-gradient(240deg, red,orange,yellow,green,blue,indigo,violet);  
+            }
+
+    	</style>    
     </head>
-    <body>
+    <body>        
+        <!-- SVG con el logo -->
+        <svg width="0" height="0" style="clip-rule:evenodd;" preserveAspectRatio="xMinYMin meet" >
+            <defs>
+                <clipPath id="Figura">
+                    <path d="M70 22c12,0 23,5 32,12 18,-6 13,-19 8,-30 39,22 11,43 4,45 2,5 4,12 4,18 0,14 -7,27 -17,35 -4,23 -15,42 -45,31l-4 7c-7,-8 -10,-17 -12,-27 6,5 14,9 23,10l-4 7c16,2 26,-4 28,-20 -5,1 -11,3 -17,3 -26,0 -47,-21 -47,-46 0,-6 1,-13 4,-18 -8,-2 -33,-23 4,-45 -5,11 -11,24 7,30 9,-7 20,-12 32,-12zm-32 29c14,-3 27,17 27,24 0,7 -22,11 -28,8 -8,-4 -9,-28 1,-32zm65 0c-13,-3 -27,17 -27,24 0,7 22,11 28,8 8,-4 9,-28 -1,-32z"/>
+                </clipPath>
+            </defs>
+        </svg>
+
+        <h2><code>background</code> / <code>background-image</code></h2>
         <div class="Tam LogoPng"></div>
         <div class="Tam LogoSVGClaro"></div>
         <div class="Tam LogoSVGOscuro"></div>
+        <br />
+        <h2><code>clip-path</code></h2>
+        <div class="LogoClipPath"></div>
     </body>
 </html>

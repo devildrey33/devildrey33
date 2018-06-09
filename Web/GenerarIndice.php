@@ -67,7 +67,28 @@
                                   "</a>".Intro();
                     $Codigo .=    "<h1><a href='".$URL."'>".$EntradasPC[$i]["Titulo"]."</a></h1>".Intro();
                     $Codigo .=    "<div class='MarcoInformacion'>".Intro();
-                    $Codigo .=    "<div>".$BD->ObtenerValoresEntrada($EntradasPC[$i]["URL"], $EntradasPC[$i]["Titulo"], false)."</div>".Intro();
+                    
+                    
+                    $ValoresEntrada = $BD->ObtenerValoresEntrada2($EntradasPC[$i]["URL"], $EntradasPC[$i]["Titulo"], false);
+                    $Codigo .=    "<div>".
+                                    "<b>".$ValoresEntrada["Visitas"]."</b> visitas, ".
+                                    "<b>".$ValoresEntrada["Comentarios"]."</b> ";
+                    if ($ValoresEntrada["Comentarios"] != 1) { $Codigo .= "comentarios"; }
+                    else                                     { $Codigo .= "comentario"; }
+                    $Codigo .=      ", <b>".$ValoresEntrada["Votaciones"]->TotalVotaciones."</b> ";
+                    if ($ValoresEntrada["Votaciones"]->TotalVotaciones == 1) { $Codigo .= "voto"; }
+                    else                                                       { 
+                        if ($ValoresEntrada["Votaciones"]->TotalEstrellas == 0) {
+                            $Codigo .= "votos";
+                        }
+                        else {
+                            $Codigo .= "votos con una media de <b>".round($ValoresEntrada["Votaciones"]->TotalEstrellas / $ValoresEntrada["Votaciones"]->TotalVotaciones, 2)."</b> sobre <b>5</b>.";                            
+                        }                        
+                    }
+                            
+                    $Codigo .=    "</div>".Intro();
+                    //$Codigo .=    "<div>".$BD->ObtenerValoresEntrada($EntradasPC[$i]["URL"], $EntradasPC[$i]["Titulo"], false)."</div>".Intro();
+//                    $Codigo .=    "<div>".$BD->ObtenerValoresEntrada($EntradasPC[$i]["URL"], $EntradasPC[$i]["Titulo"], false)."</div>".Intro();
                     $Codigo .=    "<div>".substr($EntradasPC[$i]["Fecha"], 0, 2)." de ".Indice::ObtenerMesStr(substr($EntradasPC[$i]["Fecha"], 3, 2))." del ".substr($EntradasPC[$i]["Fecha"], 6, 4)." por <b>".$EntradasPC[$i]["Autor"]."</b></siv>".Intro();
 //$Codigo .= "<span><b>190</b> visitas, <b>0</b> comentarios, <b>120</b> votos con una media de <b>10</b> sobre <b>5</b><br />07 septiembre del 2025 <b>- Josep Antoni Bover</b>";
                     $Codigo .=      "<div>".Intro();
