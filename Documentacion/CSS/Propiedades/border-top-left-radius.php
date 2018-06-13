@@ -11,10 +11,10 @@
 <table class='Tabla'>
     <tr>
         <td><b>ValorH</b></td>
-        <td>Define el radio horizontal del borde. Se puede especificar en pixeles o en porcentaje.</td>
+        <td>Define el radio horizontal del borde. Se puede especificar en píxeles o en porcentaje.</td>
     </tr>
     <tr>
         <td><b>ValorV</b></td>
-        <td>Define el radio vertical del borde. Se puede especificar en pixeles o en porcentaje.</td>
+        <td>Define el radio vertical del borde. Se puede especificar en píxeles o en porcentaje.</td>
     </tr>
 </table><br />

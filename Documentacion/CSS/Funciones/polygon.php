@@ -67,7 +67,7 @@
         100% { clip-path:polygon(  0%   0%, 100%   0%, 100%  75%,  75%  75%,  75% 100%,  50%  75%,   0%  75%,   0%  60%,   0%  42%,   0%  25%); }
     }    
 </style>
-<p>Esta función recorta el área visible del objeto utilizando el poligono especificado.</p>
+<p>Esta función recorta el área visible del objeto utilizando el polígono especificado.</p>
 <p>Solo se puede utilizar en la propiedad <a href='/Doc/CSS/Propiedades/clip-path'>clip-path</a>.</p>
 <hr />
 <h2>Sintaxis</h2>
@@ -76,7 +76,7 @@
     </div>
 <pre class='Sintaxis'>polygon( <i>X</i> <i>Y</i>, <i>X</i> <i>Y</i>, <i>X</i> <i>Y</i>, ... );</pre>
 <br />
-<p>Para definir el polygono debes definir 3 o más puntos, cada punto debe tener un valor para la X y otro para la Y.</p>
+<p>Para definir el polígono debes definir 3 o más puntos, cada punto debe tener un valor para la X y otro para la Y.</p>
 <p>Todas las coordenadas deben ser un valor positivo utilizando cualquier tipo de unidad de tamaño relativa válida. Para más información consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.</p>
 <p>Por ejemplo puedes ver los pasos de la animación de la derecha (10 puntos) :</p>
 <!-- -[INICIO devildrey33.polygon]-
@@ -89,4 +89,4 @@ clip-path:polygon(  0%   0%,   0% 100%,  25% 100%,  25%  25%,  75%  25%,  75%  7
 <?php 
     $Base->PintarCodigo->PintarArchivoCSS("polygon", "", basename(__FILE__), 'polygon'); 
 ?>               
-<div class='nota'>Se puede aplicar una animación o una transición con la función <code>polygon</code> siempre que todos los pasos tengan el mismo numero de puntos.</div>
+<div class='nota'>Se puede aplicar una animación o una transición con la función <code>polygon</code> siempre que todos los pasos tengan el mismo número de puntos.</div>

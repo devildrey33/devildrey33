@@ -21,7 +21,7 @@
         <td><b>absolute</b></td>
         <td>
         	Define el objeto como absoluto, y este se posicionará relativamente a su primer padre que no sea estático (si no existe tal padre, se posicionara al inicio del documento). Hay que destacar que con esta propiedad se trabaja con la posición relativa al padre no estatico, por lo que si especificamos <code>bottom:0px;</code>, el elemento se colocara justo al final del padre no estatico, y necesitaremos bajar el scroll vertical para poder verlo.
-            Otra cosa a destacar es que las coordenadas X-Y empiezan desde el elemento padre que no sea estático, por lo que si asignamos <code>left:50px;</code>, el objeto se moverá 50 pixeles hacia la derecha partiendo de la posición del primer padre no estático.
+            Otra cosa a destacar es que las coordenadas X-Y empiezan desde el elemento padre que no sea estático, por lo que si asignamos <code>left:50px;</code>, el objeto se moverá 50 píxeles hacia la derecha partiendo de la posición del primer padre no estático.
         </td>
     </tr>
     <tr>

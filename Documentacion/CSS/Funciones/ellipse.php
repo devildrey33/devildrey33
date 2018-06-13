@@ -72,7 +72,7 @@
     </div>
 <pre class='Sintaxis'>ellipse( <i>radioX</i> <i>RadioY</i> [ <i>at X Y</i> ] );</pre>
 <br />
-<p>Los rádios deben ser un valor positivo utilizando cualquier tipo de unidad de tamaño relativa válida.</p>
+<p>Los radios deben ser un valor positivo utilizando cualquier tipo de unidad de tamaño relativa válida.</p>
 <p>Las coordenadas de inicio son opcionales, y se pueden especificar con cualquier tipo de unidad de tamaño relativo válido, tanto positivo como negativo.<br />
 Para más información sobre unidades de tamaño relativo, consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.</p>
 <p>Por ejemplo podéis ver los pasos de la animación de la derecha :</p>                        
@@ -80,8 +80,8 @@ Para más información sobre unidades de tamaño relativo, consulta la <a href="
 clip-path:ellipse(10% 5%);                  /* 10% de rádio X, 5% de rádio Y                                                    */
 clip-path:ellipse(120% 30%);                /* 120% de rádio X, 30% de rádio Y                                                  */
 clip-path:ellipse(80% 150% at 0% 50%);      /* 80% de rádio X, 150% de rádio Y, 0% posición X, 50% posición Y                   */
-clip-path:ellipse(70% 50% at 100% 20px);    /* 70% de rádio X, 50% de rádio Y, 100% posición X, 20 pixeles posición Y           */
-clip-path:ellipse(100px 60% at 50% 150px);  /* 100 pixeles de rádio X, 60% de rádio Y, 50% posición X, 150 pixeles posición Y   */
+clip-path:ellipse(70% 50% at 100% 20px);    /* 70% de rádio X, 50% de rádio Y, 100% posición X, 20 píxeles posición Y           */
+clip-path:ellipse(100px 60% at 50% 150px);  /* 100 píxeles de rádio X, 60% de rádio Y, 50% posición X, 150 píxeles posición Y   */
  -[FIN devildrey33.ellipse]- -->
 <?php 
     $Base->PintarCodigo->PintarArchivoCSS("ellipse", "", basename(__FILE__), 'ellipse'); 

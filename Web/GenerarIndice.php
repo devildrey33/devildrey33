@@ -84,8 +84,7 @@
                         else {
                             $Codigo .= "votos con una media de <b>".round($ValoresEntrada["Votaciones"]->TotalEstrellas / $ValoresEntrada["Votaciones"]->TotalVotaciones, 2)."</b> sobre <b>5</b>.";                            
                         }                        
-                    }
-                            
+                    }                            
                     $Codigo .=    "</div>".Intro();
                     //$Codigo .=    "<div>".$BD->ObtenerValoresEntrada($EntradasPC[$i]["URL"], $EntradasPC[$i]["Titulo"], false)."</div>".Intro();
 //                    $Codigo .=    "<div>".$BD->ObtenerValoresEntrada($EntradasPC[$i]["URL"], $EntradasPC[$i]["Titulo"], false)."</div>".Intro();

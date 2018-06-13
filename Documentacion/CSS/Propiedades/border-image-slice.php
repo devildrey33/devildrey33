@@ -5,7 +5,7 @@
 <div>
 	<img src='/Graficos/border-image-slice.png' alt='Imagen con 3 filas y 3 columnas' style="float:right; margin-right:20px;">
 	<p>Esta propiedad nos permite especificar la porción de la imagen que se va a utilizar para el borde. Para entendernos mejor tenemos que pensar en una imagen dividida en 9 partes (3 filas y 3 columnas).</p>
-	<p>Por ejemplo la imagen de la derecha tiene 90 pixeles de ancho y de alto, por lo tanto si la dividimos equitativamente en 9 partes cada celda ocupara 30x30.</p>
+	<p>Por ejemplo la imagen de la derecha tiene 90 píxeles de ancho y de alto, por lo tanto si la dividimos equitativamente en 9 partes cada celda ocupara 30x30.</p>
 </div>
 <hr />
 <h2>Sintaxis</h2>
@@ -20,14 +20,14 @@ border-image-slice: Top Left Bottom Right;
 /* 4 valores : arriba, derecha, abajo, izquierda. */
 </code></pre>
 <div class='nota'>Podemos especificar hasta 4 valores (uno por cada costado).<br />
-Si especificamos solo un valor, se aplicara a los 4 costados.<br />
-Si especificamos 2 valores, el primer valor se asignara a <i>top</i> / <i>bottom</i>, y el segundo valor a <i>left</i> / <i>right</i>.<br />
-Si especificamos 3 valores, el primer valor se asignara al <i>top</i>, el segundo al <i>right</i>, y el tercero al <i>bottom</i>.<br />
-Si especificamos 4 valores, el primer valor se asignara al <i>top</i>, el segundo al <i>right</i>, y el tercero al <i>bottom</i>, y el cuarto al <i>left</i>.<br />
+Si especificamos solo un valor, se aplicará a los 4 costados.<br />
+Si especificamos 2 valores, el primer valor se asignará a <i>top</i> / <i>bottom</i>, y el segundo valor a <i>left</i> / <i>right</i>.<br />
+Si especificamos 3 valores, el primer valor se asignará al <i>top</i>, el segundo al <i>right</i>, y el tercero al <i>bottom</i>.<br />
+Si especificamos 4 valores, el primer valor se asignará al <i>top</i>, el segundo al <i>right</i>, y el tercero al <i>bottom</i>, y el cuarto al <i>left</i>.<br />
 </div><br />
 <table class='Tabla'>
     <tr>
         <td><b>Valor</b></td>
-        <td>Permite definir el tamaño que se extraerá de la imagen origen. Se puede especificar un valor numérico o un porcentaje, los valores numéricos representarán pixeles para imagénes rasterizadas, y coordenadas para las imagenes vectorizadas.</td>
+        <td>Permite definir el tamaño que se extraerá de la imagen origen. Se puede especificar un valor numérico o un porcentaje, los valores numéricos representarán píxeles para imagénes rasterizadas, y coordenadas para las imagenes vectorizadas.</td>
     </tr>
 </table><br />

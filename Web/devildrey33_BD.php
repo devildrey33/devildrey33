@@ -2,6 +2,7 @@
 
 //echo "devildrey33_BD\n";
 
+/* TODO : prohibit fer un echo */
 
 class devildrey33_BD {
     public    $_mysqli;
@@ -184,10 +185,11 @@ class devildrey33_BD {
         return $Ret;
     }
     
+    
     // TODO : S'ha de fer una nova funció que NO imprimeixi codi HTML y que torni les dades en una variable
     // 
     // Función que obtiene los valores de una entrada (numero de comentarios, visitas, votos, fecha, etc..)
-    public function ObtenerValoresEntrada($Archivo, $SumarVisita = false) {        
+  /*  public function ObtenerValoresEntrada($Archivo, $SumarVisita = false) {        
         if ($this->_BDFuncional === false) return "0 visitas, 0 comentarios, 0 votaciones.";
 
         $Votos       = 0;
@@ -223,7 +225,7 @@ class devildrey33_BD {
         if ($Votaciones->TotalVotaciones == 1) $StrVotos = "voto";
         if ($Votaciones->TotalEstrellas == 0) 	return "<b>$Visitas</b> visitas, <b>".$Comentarios."</b> ".$StrCom.", <b>".$Votaciones->TotalVotaciones."</b> ".$StrVotos.".";
         else					return "<b>$Visitas</b> visitas, <b>".$Comentarios."</b> ".$StrCom.", <b>".$Votaciones->TotalVotaciones."</b> ".$StrVotos." con una media de <b>".round($Votaciones->TotalEstrellas / $Votaciones->TotalVotaciones, 2)."</b> sobre <b>5</b>.";
-    }
+    }*/
 
 
     // Suma 1 al valor especificado de la tabla General_Enteros

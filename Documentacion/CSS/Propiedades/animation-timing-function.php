@@ -2,7 +2,7 @@
     include("../../../Web/devildrey33_Documentacion.php");    
     $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
 ?>
-<p>Esta propiedad nos permite definir que tipo de curva de velocidad usara la animación. Para entenderlo mejor vamos a imaginar una animación que mueve 10 pixeles un objeto durante 10 segundos, una curva "<i>linear</i>" moveria 1 pixel en cada segndo, pero por ejemplo si usamos "<i>ease-in</i>" los primeros segundos se movera mas lenta, y luego continuara de forma normal.</p>
+<p>Esta propiedad nos permite definir que tipo de curva de velocidad usara la animación. Para entenderlo mejor vamos a imaginar una animación que mueve 10 píxeles un objeto durante 10 segundos, una curva "<i>linear</i>" moveria 1 pixel en cada segndo, pero por ejemplo si usamos "<i>ease-in</i>" los primeros segundos se movera mas lenta, y luego continuara de forma normal.</p>
 <hr />
 <h2>Sintaxis</h2>
 <pre class='Sintaxis'>animation-timing-function: <b>Valor</b>;</pre>

@@ -16,8 +16,8 @@
         <td>Podemos especificar 2 valores con el porcentaje relativo al objeto que mostrara el fondo, con el que queremos mostrar la imagen.</td>
     </tr>
     <tr>
-        <td><b>Pixeles</b></td>
-        <td>Podemos especificar 2 valores en pixeles para definir el tamaño de la imagen del fondo.</td>
+        <td><b>Píxeles</b></td>
+        <td>Podemos especificar 2 valores en píxeles para definir el tamaño de la imagen del fondo.</td>
     </tr>
     <tr>
         <td><b>cover</b></td>

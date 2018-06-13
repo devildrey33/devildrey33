@@ -759,7 +759,28 @@ class devildrey33 {
                 echo "<h1>".$TituloH1."</h1>".Intro();
                 echo "<div class='FechaEntrada'>".Intro();
                 echo $Dia." de ".$Mes." del ".$Any." por <b class='Autor'>".$Entradas->Datos[$i]["Autor"]."</b>, ".Intro();
-                echo "<span>".$this->BD->ObtenerValoresEntrada($Archivo, true)."</span>".Intro();
+                
+                $ValoresEntrada = $this->BD->ObtenerValoresEntrada2($Archivo, false);
+                $Codigo =    "<span>".
+                                "<b>".$ValoresEntrada["Visitas"]."</b> visitas, ".
+                                "<b>".$ValoresEntrada["Comentarios"]."</b> ";
+                if ($ValoresEntrada["Comentarios"] != 1) { $Codigo .= "comentarios"; }
+                else                                     { $Codigo .= "comentario"; }
+                $Codigo .=      ", <b>".$ValoresEntrada["Votaciones"]->TotalVotaciones."</b> ";
+                if ($ValoresEntrada["Votaciones"]->TotalVotaciones == 1) { $Codigo .= "voto"; }
+                else                                                       { 
+                    if ($ValoresEntrada["Votaciones"]->TotalEstrellas == 0) {
+                        $Codigo .= "votos";
+                    }
+                    else {
+                        $Codigo .= "votos con una media de <b>".round($ValoresEntrada["Votaciones"]->TotalEstrellas / $ValoresEntrada["Votaciones"]->TotalVotaciones, 2)."</b> sobre <b>5</b>.";                            
+                    }                        
+                }                            
+                $Codigo .=    "</span>".Intro();
+                echo $Codigo;
+                
+                
+                //echo "<span>".$this->BD->ObtenerValoresEntrada($Archivo, true)."</span>".Intro();
                 echo "<br />".Intro();
                 echo $this->EnlazarTags($Entradas->Datos[$i]["Tags"]).Intro();
                 echo "</div>".Intro();
@@ -806,7 +827,26 @@ class devildrey33 {
             echo "<div class='FechaEntrada'>".Intro();
             $ft = filemtime($ArchivoSinEntrada);
             echo date("d", $ft)." de ".Base::ObtenerMesStr(date("m", $ft))." del ".date("Y", $ft)." por <b class='Autor'>Josep Antoni Bover</b>. ".Intro();
-            echo "<span>".$this->BD->ObtenerValoresEntrada(str_replace("ó", "o", $Archivo), true)."</span><br />".Intro();
+//            echo "<span>".$this->BD->ObtenerValoresEntrada(str_replace("ó", "o", $Archivo), true)."</span><br />".Intro();
+                $ValoresEntrada = $this->BD->ObtenerValoresEntrada2($Archivo, false);
+                $Codigo =    "<span>".
+                                "<b>".$ValoresEntrada["Visitas"]."</b> visitas, ".
+                                "<b>".$ValoresEntrada["Comentarios"]."</b> ";
+                if ($ValoresEntrada["Comentarios"] != 1) { $Codigo .= "comentarios"; }
+                else                                     { $Codigo .= "comentario"; }
+                $Codigo .=      ", <b>".$ValoresEntrada["Votaciones"]->TotalVotaciones."</b> ";
+                if ($ValoresEntrada["Votaciones"]->TotalVotaciones == 1) { $Codigo .= "voto"; }
+                else                                                       { 
+                    if ($ValoresEntrada["Votaciones"]->TotalEstrellas == 0) {
+                        $Codigo .= "votos";
+                    }
+                    else {
+                        $Codigo .= "votos con una media de <b>".round($ValoresEntrada["Votaciones"]->TotalEstrellas / $ValoresEntrada["Votaciones"]->TotalVotaciones, 2)."</b> sobre <b>5</b>.";                            
+                    }                        
+                }                            
+                $Codigo .=    "</span>".Intro();
+                echo $Codigo;            
+            
             echo $this->EnlazarTags(array('CSS')).Intro();
             echo "</div>".Intro();
         }

@@ -4,7 +4,7 @@
 ?>
 <p>Esta propiedad nos permite especificar la posición del objeto partiendo desde arriba.</p>
 <p>La propiedad <code>top</code> solo tiene efeto si la propiedad <a href="position" target="_blank">position</a> tiene un valor que no sea <code>static</code>.</p>
-<p>Cuando la propiedad <a href="position">position</a> es <code>relative</code> la propiedad <code>top</code> parte desde la posición original (<code>static</code>) del objeto, es decir <code>top:10px</code> bajaria el objeto 10 pixeles.</p>
+<p>Cuando la propiedad <a href="position">position</a> es <code>relative</code> la propiedad <code>top</code> parte desde la posición original (<code>static</code>) del objeto, es decir <code>top:10px</code> bajaria el objeto 10 píxeles.</p>
 <p>Cuando la propiedad <a href="position">position</a> es <code>abolute</code> la propiedad <code>top</code> parte desde la posición del primer objeto padre con una posición <b>NO</b> estatica.</p>
 <p>Cuando la propiedad <a href="position">position</a> es <code>fixed</code> la propiedad <code>top</code> parte desde el borde superior de la ventana.</p>
 

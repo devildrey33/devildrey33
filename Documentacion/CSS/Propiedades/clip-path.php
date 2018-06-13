@@ -116,12 +116,19 @@
 
     .EjemploTexto {
         position:absolute;
-        font-size:25px;
+        font-size:21px;
         text-shadow:1px 1px 2px #000;
         color:#FFF;
         top:50%;
         left:50%;
         transform:translate(-50%, -50%);
+        text-align:center;
+        z-index:100;
+        -webkit-user-select : none;
+        -moz-user-select    : none;
+        -ms-user-select     : none;
+        user-select         : none;        
+        
     }
 
     @keyframes AniPolygon {
@@ -185,6 +192,45 @@
         100% { clip-path:inset(0%);  }
     }
     
+    
+    /* transición clip-path */
+    .LogoClipPath {
+        position:relative; 
+        width:140px; 
+        height:140px; 
+        display:inline-block; 
+        margin:5px 5px 5px 15px;
+        background:linear-gradient(240deg, rgba(255,0,0,0.3), rgba(255,165,0,0.3), rgba(255,255,0,0.3), rgba(0,255,0,0.3), rgba(0,0,255,0.3), rgba(75,0,130,0.3), rgba(238,130,238,0.3)); 
+        float:right;
+    }
+/*                */
+    /* Objeto que muestra el logo desde un svg */
+    .LogoClipPath_Logo {
+        width:100%;
+        height:100%;
+        position:absolute;                
+        top:0;
+        width:140px; height:140px; display:inline-block;
+        background:linear-gradient(240deg, rgba(255,0,0,1), rgba(255,165,0,1), rgba(255,255,0,1), rgba(0,255,0,1), rgba(0,0,255,1), rgba(75,0,130,1), rgba(238,130,238,1)); 
+        clip-path:url(#Figura);
+        z-index:2;
+    }
+
+    .LogoClipPath > .LogoClipPath_FondoAni {
+        width:100%;
+        height:100%;
+        position:absolute;                
+        top:0;
+        display:inline-block;
+        background:linear-gradient(240deg, rgba(255,0,0,1), rgba(255,165,0,1), rgba(255,255,0,1), rgba(0,255,0,1), rgba(0,0,255,1), rgba(75,0,130,1), rgba(238,130,238,1)); 
+        z-index:1;                
+        transition:0.8s ease-out;
+        clip-path:circle(100%);
+    }    
+    .LogoClipPath:hover > .LogoClipPath_FondoAni {
+        clip-path:circle(0%);
+    }
+
 </style>
 
         <!-- SVG con el logo -->
@@ -198,7 +244,7 @@
 
 
 <p>Esta propiedad permite recortar el área visible de un objeto, de forma que el navegador incluso es capaz de utilizar una figura SVG (path) para especificar la figura de un objeto.</p>
-<div class='nota'>Esta propiedad se ha creado para substituir a la propiedad <a href='/Doc/CSS/Propiedades/clip'>clip</a>, que a partir de ahora se considera obsoleta.</div>
+<div class='nota'>Esta propiedad se ha creado para sustituir a la propiedad <a href='/Doc/CSS/Propiedades/clip'>clip</a>, que a partir de ahora se considera obsoleta.</div>
 <h2>Sintaxis</h2>
 <pre class='Sintaxis'>clip-path: <b>Valor</b>;</pre>
 <hr /><br />
@@ -207,7 +253,7 @@
 
 <h3><i>none</i></h3>
 <div class='Tab'>
-    <p>No aplica ninguna mascara al objeto / Muestra el objeto tal cual. <b>(valor por defecto)</b></p>
+    <p>No aplica ninguna máscara al objeto / Muestra el objeto tal cual. <b>(valor por defecto)</b></p>
     <hr />
 </div><br /><br />
 
@@ -231,21 +277,21 @@ clip-path:url(mi_archivo.svg#id_grupo);              /* SVG externo */
     <div class='EjemploPath EjemploPathInset'>
         <div class="EjemploTexto">Animación</div>        
     </div>
-    <p>El área a mostrar se recortará partiendo de los valores especificados para formar un rectangulo. Los valores se pueden especificar con cualquier tipo de unidad de tamaño relativa válida. Para más información consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.</p>
-    <p>El rectangulo inicial es el objeto completo, y a este se le restan los valores especificados</p>
+    <p>El área a mostrar se recortará partiendo de los valores especificados para formar un rectángulo. Los valores se pueden especificar con cualquier tipo de unidad de tamaño relativa válida. Para más información consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.</p>
+    <p>El rectángulo inicial es el objeto completo, y a este se le restan los valores especificados</p>
         <div class='nota'>Podemos especificar hasta 4 valores.<br />
-            Si especificamos solo un valor, se aplicara a los 4 costados.<br />
-            Si especificamos 2 valores, el primer valor se asignara a <i>top</i> / <i>bottom</i>, y el segundo valor a <i>left</i> / <i>right</i>.<br />
-            Si especificamos 3 valores, el primer valor se asignara al <i>top</i>, el segundo al <i>right</i>, y el tercero al <i>bottom</i>.<br />
-            Si especificamos 4 valores, el primer valor se asignara al <i>top</i>, el segundo al <i>right</i>, y el tercero al <i>bottom</i>, y el cuarto al <i>left</i>.<br />
+            Si especificamos solo un valor, se aplicará a los 4 costados.<br />
+            Si especificamos 2 valores, el primer valor se asignará a <i>top</i> / <i>bottom</i>, y el segundo valor a <i>left</i> / <i>right</i>.<br />
+            Si especificamos 3 valores, el primer valor se asignará al <i>top</i>, el segundo al <i>right</i>, y el tercero al <i>bottom</i>.<br />
+            Si especificamos 4 valores, el primer valor se asignará al <i>top</i>, el segundo al <i>right</i>, y el tercero al <i>bottom</i>, y el cuarto al <i>left</i>.<br />
         </div>
         <div>Por ejemplo :</div>
             
 <!-- -[INICIO devildrey33.inset]-
-clip-path:inset(10px);                      /* 10 pixeles menos para el top, bottom, left, right */
-clip-path:inset(10px 20px);                 /* 10 pixeles menos para el top y bottom, 20 pixeles para el left y right */                
-clip-path:inset(10px 20px, 30px);           /* 10 pixeles menos para el top, 20 pixeles para el left y right, 30 pixeles para el bottom */                
-clip-path:inset(10px 20px, 30px, 40px);     /* 10 pixeles menos para el top, 20 pixeles para el right, 30 pixeles para el bottom, 40 pixeles para el left */     
+clip-path:inset(10px);                      /* 10 píxeles menos para el top, bottom, left, right */
+clip-path:inset(10px 20px);                 /* 10 píxeles menos para el top y bottom, 20 píxeles para el left y right */                
+clip-path:inset(10px 20px, 30px);           /* 10 píxeles menos para el top, 20 píxeles para el left y right, 30 píxeles para el bottom */                
+clip-path:inset(10px 20px, 30px, 40px);     /* 10 píxeles menos para el top, 20 píxeles para el right, 30 píxeles para el bottom, 40 píxeles para el left */     
  -[FIN devildrey33.inset]- -->
     <?php 
         $Base->PintarCodigo->PintarArchivoCSS("inset", "", basename(__FILE__), 'inset'); 
@@ -261,15 +307,15 @@ clip-path:inset(10px 20px, 30px, 40px);     /* 10 pixeles menos para el top, 20 
     </div>
     
     
-    <p>El área a mostrar será un circulo. El primer valor es el rádio y no es opcional, y luego se puede espeficicar la posición inicial añadiendo <code>at X Y</code>.</p>
-    <p>El rádio debe ser un valor positivo utilizando cualquier tipo de unidad de tamaño relativa válida.</p>
+    <p>El área a mostrar será un círculo. El primer valor es el radio y no es opcional, y luego se puede especificar la posición inicial añadiendo <code>at X Y</code>.</p>
+    <p>El radio debe ser un valor positivo utilizando cualquier tipo de unidad de tamaño relativa válida.</p>
     <p>Las coordenadas de inicio se pueden especificar con cualquier tipo de unidad de tamaño relativo válido, tanto positivo como negativo.<br />
 Para más información sobre unidades de tamaño relativo, consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.</p>
 <p>Por ejemplo :</p>
 <!-- -[INICIO devildrey33.circle]-
-clip-path:circle(5px);                      /* 5 pixeles de rádio */
-clip-path:circle(10% at 5px 10px);          /* 10% de rádio empezando 5 pixeles a la derecha y 10 desde arriba */
-clip-path:circle(50px at 25% 75%);          /* 50 Pixeles de rádio empezando un 25% a la derecha y un 75% desde arriba */
+clip-path:circle(5px);                      /* 5 píxeles de radio */
+clip-path:circle(10% at 5px 10px);          /* 10% de radio empezando 5 píxeles a la derecha y 10 desde arriba */
+clip-path:circle(50px at 25% 75%);          /* 50 píxeles de radio empezando un 25% a la derecha y un 75% desde arriba */
 -[FIN devildrey33.circle]- -->            
     <?php 
         $Base->PintarCodigo->PintarArchivoCSS("circle", "", basename(__FILE__), 'circle'); 
@@ -285,15 +331,15 @@ clip-path:circle(50px at 25% 75%);          /* 50 Pixeles de rádio empezando un
     </div>
     
     
-    <p>El área a mostrar será un ellipse. Los primeros valores son el rádio X y el rádio Y y no son opcionales, y luego se puede espeficicar la posición inicial añadiendo <code>at X Y</code>.</p>
-    <p>Los rádios deben ser un valor positivo utilizando cualquier tipo de unidad de tamaño relativa válida.</p>
+    <p>El área a mostrar será un ellipse. Los primeros valores son el radio X y el radio Y y no son opcionales, y luego se puede especificar la posición inicial añadiendo <code>at X Y</code>.</p>
+    <p>Los radios deben ser un valor positivo utilizando cualquier tipo de unidad de tamaño relativa válida.</p>
 <p>Las coordenadas de inicio se pueden especificar con cualquier tipo de unidad de tamaño relativo válido, tanto positivo como negativo.<br />
 Para más información sobre unidades de tamaño relativo, consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.</p>
 <p>Por ejemplo :</p>
 <!-- -[INICIO devildrey33.ellipse]-
-clip-path:ellipse(6px 3px);                 /* 6 pixeles de rádio X y 3 pixeles de rádio Y */
-clip-path:ellipse(10% 30% at 5px 10px);     /* 10% de rádio X y 30% de rádio Y, empezando 5 pixeles a la derecha y 10 pixeles desde arriba */
-clip-path:ellipse(500px 50% at 0% 100px);   /* 500px de rádio X y 50% de rádio Y, empezando 0% a la derecha y 100 pixeles desde arriba */
+clip-path:ellipse(6px 3px);                 /* 6 píxeles de radio X y 3 píxeles de radio Y */
+clip-path:ellipse(10% 30% at 5px 10px);     /* 10% de radio X y 30% de radio Y, empezando 5 píxeles a la derecha y 10 píxeles desde arriba */
+clip-path:ellipse(500px 50% at 0% 100px);   /* 500px de radio X y 50% de radio Y, empezando 0% a la derecha y 100 píxeles desde arriba */
 -[FIN devildrey33.ellipse]- -->            
 <?php 
     $Base->PintarCodigo->PintarArchivoCSS("ellipse", "", basename(__FILE__), 'ellipse'); 
@@ -322,7 +368,7 @@ clip-path:ellipse(500px 50% at 0% 100px);   /* 500px de rádio X y 50% de rádio
         </div>        -->
     </div>
     
-    <p>El área a mostrar será un poligono. Para definir el poligono debes definir 3 o más puntos, cada punto debe tener un valor para la X y otro para la Y.</p>
+    <p>El área a mostrar será un polígono. Para definir el polígono debes definir 3 o más puntos, cada punto debe tener un valor para la X y otro para la Y.</p>
     <p>Todas las coordenadas deben ser un valor positivo utilizando cualquier tipo de unidad de tamaño relativa válida. Para más información consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.</p>
     <p>Por ejemplo :</p>
 <!-- -[INICIO devildrey33.polygon]-
@@ -344,12 +390,12 @@ clip-path:polygon(  0%   0%,   0% 100%,  25% 100%,  25%  25%,  75%  25%,  75%  7
     $Base->PintarCodigo->PintarArchivoCSS("polygon2", "Pasos de la animación de la derecha (10 puntos)", basename(__FILE__), 'polygon2'); 
 ?>                   
 
-<div class='nota'>Para hacer los poligonos he utilizado la siguiente página : <a href='https://bennettfeely.com/clippy/' target="_blank">Clippy</a>, El truco para animar desde un poligono a otro es que tienen que tener siempre el mismo número de puntos, por ejemplo el Bocadillo solo tiene 7 puntos por lo que he añadido 3 puntos más para que todos los poligonos de la animación tuvieran 10 puntos .</div>
+<div class='nota'>Para hacer los polígonos he utilizado la siguiente página : <a href='https://bennettfeely.com/clippy/' target="_blank">Clippy</a>, El truco para animar desde un polígono a otro es que tienen que tener siempre el mismo número de puntos, por ejemplo el Bocadillo solo tiene 7 puntos por lo que he añadido 3 puntos más para que todos los polígonos de la animación tuvieran 10 puntos .</div>
 </div><br />
 
 <hr />
 <h2>Área de partida</h2>
-<p>En la MDN (en ingles, que es la mas completa) se menciona que se puede especificar un área de partida (basic-shape) desde donde se calculará el clip-path. SOLO Para firefox (de momento) podemos especificar el área de partida para la función inset. Pero según mis pruebas parece que no funciona con las funciones cirle, ellipse, y polygon.
+<p>En la MDN (en inglés, que es la más completa) se menciona que se puede especificar un área de partida (basic-shape) desde donde se calculará el clip-path. SOLO Para firefox (de momento) podemos especificar el área de partida para la función inset. Pero según mis pruebas parece que no funciona con las funciones cirle, ellipse, y polygon.
 <!--<table class='Tabla'>
     <tr>
         <td style="width:250px"><b>fill-box<br />stroke-box<br />view-box<br />margin-box<br />border-box<br />padding-box<br />content-box</b></td>
@@ -388,38 +434,44 @@ clip-path:polygon(  0%   0%,   0% 100%,  25% 100%,  25%  25%,  75%  25%,  75%  7
 <!--        </td>        
     </tr>
 </table> -->
-<div class="nota">Hasta la fecha de este documento, el área de partida solo funciona en FireFox, y aún no queda muy claro si es solo para la función <code>inset</code>, o mas adelante también se podrá utilizar con <code>circle</code>, <code>ellipse</code> y <code>polygon</code>.</div>
+<div class="nota">Hasta la fecha de este documento, el área de partida solo funciona en FireFox, y aún no queda muy claro si es solo para la función <code>inset</code>, o más adelante también se podrá utilizar con <code>circle</code>, <code>ellipse</code> y <code>polygon</code>.</div>
 <br /><hr />
 
 <h2>Por destacar</h2>
-<div class='EjemploPath EjemploPathDestacar'>
-    <div class="EjemploTexto">Transición MouseOver</div>    
-</div>
-<p>La propiedad <code>clip-path</code> se puede utilizar para crear <a href='/Doc/CSS/Propiedades/transition'>transiciones</a> y <a href='/Doc/CSS/Propiedades/animation'>animaciones</a>. Existen varias limitaciones, la mas importante es que no se pueden combinar funciones, es decir no podemos hacer una transición de la función <code>circle</code> a la función <code>polygon</code>. En definitiva, para realizar una transición / animación se tiene que utilizar siempre la misma función en todos los pasos.</p>
-<p>Además si queremos animar un polygono, todas las fases de la animación deben tener el mismo número de puntos / coordenadas. Es decir, no podemos animar un poligono de 8 puntos a un poligono de 10 puntos...</p>
+<!-- <div class='EjemploPath EjemploPathDestacar'> -->
+    <div class="LogoClipPath">
+        <div class='LogoClipPath_Logo'></div>
+        <div class='LogoClipPath_FondoAni'></div>
+        <div class="EjemploTexto">Transición MouseOver</div>
+    </div>
+
+    <!--     
+</div>-->
+<p>La propiedad <code>clip-path</code> se puede utilizar para crear <a href='/Doc/CSS/Propiedades/transition'>transiciones</a> y <a href='/Doc/CSS/Propiedades/animation'>animaciones</a>. Existen varias limitaciones, la más importante es que no se pueden combinar funciones, es decir no podemos hacer una transición de la función <code>circle</code> a la función <code>polygon</code>. En definitiva, para realizar una transición / animación se tiene que utilizar siempre la misma función en todos los pasos.</p>
+<p>Además si queremos animar un polígono, todas las fases de la animación deben tener el mismo número de puntos / coordenadas. Es decir, no podemos animar un polígono de 8 puntos a un polígono de 10 puntos...</p>
 <!-- -[INICIO devildrey33.combi]-
 .Objeto {
     transition:0.4s;                        /* Transición de 0.4 segundos */
-    clip-path:inset(10px);                  /* desde 10 pixeles */    
+    clip-path:inset(10px);                  /* desde 10 píxeles */    
 }
 .Objeto:hover {
-    clip-path:inset(20px);                  /* hasta 20 pixeles */    
+    clip-path:inset(20px);                  /* hasta 20 píxeles */    
 }
 -[FIN devildrey33.combi]- -->            
 <?php 
     $Base->PintarCodigo->PintarArchivoCSS("combi", "", basename(__FILE__), 'combi'); 
 ?>                   
 <div class='nota'>
-    La transición / animación solo será posible si utilizamos en cada paso la misma función. Si por ejemplo hacemos una transición de <code>inset(10px)</code> a <code>circle(20px)</code>, la transición no se ejecutara por tratarse de distintas funciones.<br />
+    La transición / animación solo será posible si utilizamos en cada paso la misma función. Si por ejemplo hacemos una transición de <code>inset(10px)</code> a <code>circle(20px)</code>, la transición no se ejecutará por tratarse de distintas funciones.<br />
     Para la función <code>polygon</code> hay que especificar el mismo número de coordenadas en cada paso para que funcione la animación / transición.
 <!--    Este ejemplo no ejecutará la transición :<br /> -->
 <!-- -[INICIO devildrey33.combi2]-
 .Objeto {
     transition:0.4s;                        /* Transición de 0.4 segundos */
-    clip-path:inset(10px);                  /* rectangulo con 10 pixeles de margen */   
+    clip-path:inset(10px);                  /* rectángulo con 10 píxeles de margen */   
 }
 .Objeto:hover {
-    clip-path:circle(20px);                 /* circulo de 20px de rádio centrado */    
+    clip-path:circle(20px);                 /* circulo de 20px de radio centrado */    
 }
 -[FIN devildrey33.combi2]- -->            
 <?php 

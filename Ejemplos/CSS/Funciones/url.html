@@ -8,29 +8,45 @@
             .LogoPng        { background-image:url(/Web/Graficos/155x125_Logo.png);                             }
             .LogoSVGClaro   { background:url(/Web/SVG/Logo.svg#Claro);                                          }
             .LogoSVGOscuro  { background:url(/Web/SVG/Logo.svg#Oscuro);                                         }
-            /* clip-path */
+            /* clip-path con animación */
             .LogoClipPath {
-                position:relative; width:140px; height:140px; display:inline-block; margin:5px 5px 5px 15px;
+                position:relative; 
+                width:140px; 
+                height:140px; 
+                display:inline-block; 
+                margin:5px 5px 5px 15px;
+                background:linear-gradient(240deg, rgba(255,0,0,0.3), rgba(255,165,0,0.3), rgba(255,255,0,0.3), rgba(0,255,0,0.3), rgba(0,0,255,0.3), rgba(75,0,130,0.3), rgba(238,130,238,0.3)); 
             }
-            .LogoClipPath::after   { /* El objeto after tiene un degradado translucido */
-                content:'';
+/*                */
+            /* Objeto que muestra el logo desde un svg */
+            .LogoClipPath_Logo {
                 width:100%;
                 height:100%;
-                position:absolute;
-                z-index:0;
-                background:linear-gradient(240deg, red,orange,yellow,green,blue,indigo,violet);  
-                opacity:0.3;
-            }
-            .LogoClipPath::before   { /* El objeto before tiene un degradado con la figura del logo de devildrey33 */
-                content:'';
-                width:100%;
-                height:100%;
-                position:absolute;
-                z-index:1;
+                position:absolute;                
+                top:0;
+                width:140px; height:140px; display:inline-block;
+                background:linear-gradient(240deg, rgba(255,0,0,1), rgba(255,165,0,1), rgba(255,255,0,1), rgba(0,255,0,1), rgba(0,0,255,1), rgba(75,0,130,1), rgba(238,130,238,1)); 
                 clip-path:url(#Figura);
-                background:linear-gradient(240deg, red,orange,yellow,green,blue,indigo,violet);  
+                z-index:2;
             }
-
+            
+            .LogoClipPath_FondoAni {
+                width:100%;
+                height:100%;
+                position:absolute;                
+                top:0;
+                width:140px; height:140px; display:inline-block;
+                background:linear-gradient(240deg, rgba(255,0,0,1), rgba(255,165,0,1), rgba(255,255,0,1), rgba(0,255,0,1), rgba(0,0,255,1), rgba(75,0,130,1), rgba(238,130,238,1)); 
+                z-index:1;                
+                animation: AniLogoEjemplo 2s ease-in-out 0s infinite alternate;
+                clip-path:circle(125%);
+            }
+            
+            @keyframes AniLogoEjemplo {
+                0%    { clip-path:circle(100%); }
+                100%  { clip-path:circle(0%);   }
+            }
+            
     	</style>    
     </head>
     <body>        
@@ -49,6 +65,9 @@
         <div class="Tam LogoSVGOscuro"></div>
         <br />
         <h2><code>clip-path</code></h2>
-        <div class="LogoClipPath"></div>
+        <div class="LogoClipPath">
+            <div class='LogoClipPath_Logo'></div>
+            <div class='LogoClipPath_FondoAni'></div>
+        </div>
     </body>
 </html>

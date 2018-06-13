@@ -2,7 +2,7 @@
     include("../../../Web/devildrey33_Documentacion.php");    
     $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
 ?>
-<p>Esta propiedad se usa para indicar si la animación al llegar al final se debe reiniciar o debe ser invertida. Por ejemplo imaginaros un objeto que se mueve 100 pixeles a la derecha, una vez termine podemos hacer que haga el recorrido a la inversa, o que simplemente no haga nada.</p>
+<p>Esta propiedad se usa para indicar si la animación al llegar al final se debe reiniciar o debe ser invertida. Por ejemplo imaginaros un objeto que se mueve 100 píxeles a la derecha, una vez termine podemos hacer que haga el recorrido a la inversa, o que simplemente no haga nada.</p>
 <div class='nota'>Para que alternate funcione la animación debe hacer como minimo 2 iteraciones con "<a href="animate-iteration-count" target="_blank"><i>animate-iteration-count</i></a>".</div>
 <br />
 <hr />

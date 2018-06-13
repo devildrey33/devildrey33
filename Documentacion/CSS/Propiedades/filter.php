@@ -140,7 +140,7 @@
     <p>Por ejemplo :</p>
 <!-- -[INICIO devildrey33.blur]-            
 filter:blur(0px);                                                       /* valor por defecto       */
-filter:blur(5px);                                                       /* 2 pixeles de desenfoque */
+filter:blur(5px);                                                       /* 2 píxeles de desenfoque */
 -[FIN devildrey33.blur]- -->
     <?php 
         $Base->PintarCodigo->PintarArchivoCSS("blur", "", basename(__FILE__), 'blur'); 

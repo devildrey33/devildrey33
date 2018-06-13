@@ -16,10 +16,10 @@ border-image-outset: Top Left Bottom Right;
 /* 4 valores : arriba, derecha, abajo, izquierda. */
 </code></pre>
 <div class='nota'>Podemos especificar hasta 4 valores (uno por cada costado).<br />
-Si especificamos solo un valor, se aplicara a los 4 costados.<br />
-Si especificamos 2 valores, el primer valor se asignara a <i>top</i> / <i>bottom</i>, y el segundo valor a <i>left</i> / <i>right</i>.<br />
-Si especificamos 3 valores, el primer valor se asignara al <i>top</i>, el segundo al <i>right</i>, y el tercero al <i>bottom</i>.<br />
-Si especificamos 4 valores, el primer valor se asignara al <i>top</i>, el segundo al <i>right</i>, y el tercero al <i>bottom</i>, y el cuarto al <i>left</i>.<br />
+Si especificamos solo un valor, se aplicará a los 4 costados.<br />
+Si especificamos 2 valores, el primer valor se asignará a <i>top</i> / <i>bottom</i>, y el segundo valor a <i>left</i> / <i>right</i>.<br />
+Si especificamos 3 valores, el primer valor se asignará al <i>top</i>, el segundo al <i>right</i>, y el tercero al <i>bottom</i>.<br />
+Si especificamos 4 valores, el primer valor se asignará al <i>top</i>, el segundo al <i>right</i>, y el tercero al <i>bottom</i>, y el cuarto al <i>left</i>.<br />
 </div><br />
 <table class='Tabla' style="margin-right:20px">
     <tr>

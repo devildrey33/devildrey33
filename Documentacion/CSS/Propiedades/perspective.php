@@ -10,7 +10,7 @@
 <table class='Tabla'>
     <tr>
         <td><b><i>valor</i></b></td>
-        <td>Distancia de la perspectiva. Es recomendable especificar el valor en pixeles.</td>
+        <td>Distancia de la perspectiva. Es recomendable especificar el valor en píxeles.</td>
         <td>(por defecto es <b>none</b> / <b>0</b>)</td>
     </tr>
 </table><br />
