@@ -69,7 +69,7 @@
                     $Codigo .=    "<div class='MarcoInformacion'>".Intro();
                     
                     
-                    $ValoresEntrada = $BD->ObtenerValoresEntrada2($EntradasPC[$i]["URL"], $EntradasPC[$i]["Titulo"], false);
+                    $ValoresEntrada = $BD->ObtenerValoresEntrada2($EntradasPC[$i]["URL"], false);
                     $Codigo .=    "<div>".
                                     "<b>".$ValoresEntrada["Visitas"]."</b> visitas, ".
                                     "<b>".$ValoresEntrada["Comentarios"]."</b> ";

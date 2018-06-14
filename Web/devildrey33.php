@@ -760,7 +760,7 @@ class devildrey33 {
                 echo "<div class='FechaEntrada'>".Intro();
                 echo $Dia." de ".$Mes." del ".$Any." por <b class='Autor'>".$Entradas->Datos[$i]["Autor"]."</b>, ".Intro();
                 
-                $ValoresEntrada = $this->BD->ObtenerValoresEntrada2($Archivo, false);
+                $ValoresEntrada = $this->BD->ObtenerValoresEntrada2($Archivo, true);
                 $Codigo =    "<span>".
                                 "<b>".$ValoresEntrada["Visitas"]."</b> visitas, ".
                                 "<b>".$ValoresEntrada["Comentarios"]."</b> ";
@@ -828,7 +828,7 @@ class devildrey33 {
             $ft = filemtime($ArchivoSinEntrada);
             echo date("d", $ft)." de ".Base::ObtenerMesStr(date("m", $ft))." del ".date("Y", $ft)." por <b class='Autor'>Josep Antoni Bover</b>. ".Intro();
 //            echo "<span>".$this->BD->ObtenerValoresEntrada(str_replace("ó", "o", $Archivo), true)."</span><br />".Intro();
-                $ValoresEntrada = $this->BD->ObtenerValoresEntrada2($Archivo, false);
+                $ValoresEntrada = $this->BD->ObtenerValoresEntrada2($Archivo, true);
                 $Codigo =    "<span>".
                                 "<b>".$ValoresEntrada["Visitas"]."</b> visitas, ".
                                 "<b>".$ValoresEntrada["Comentarios"]."</b> ";
@@ -845,8 +845,9 @@ class devildrey33 {
                     }                        
                 }                            
                 $Codigo .=    "</span>".Intro();
-                echo $Codigo;            
-            
+                echo $Codigo;    
+                
+            echo "<br />".Intro();
             echo $this->EnlazarTags(array('CSS')).Intro();
             echo "</div>".Intro();
         }

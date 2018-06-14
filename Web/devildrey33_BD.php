@@ -62,7 +62,27 @@ class devildrey33_BD {
                 $Valor = $Datos["VotosValor"] + $Valor;                
                 $this->_mysqli->query("UPDATE paginas SET VotosTotal='".$this->_mysqli->real_escape_string($Total)."', VotosValor='".$this->_mysqli->real_escape_string($Valor)."' WHERE Pagina='".$this->_mysqli->real_escape_string($Archivo)."'");
              
-                return json_encode(array("HTML" => $this->ObtenerValoresEntrada($Archivo), "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
+                $ValoresEntrada = $this->ObtenerValoresEntrada2($Archivo);
+                $Codigo =    "<span>".
+                                "<b>".$ValoresEntrada["Visitas"]."</b> visitas, ".
+                                "<b>".$ValoresEntrada["Comentarios"]."</b> ";
+                if ($ValoresEntrada["Comentarios"] != 1) { $Codigo .= "comentarios"; }
+                else                                     { $Codigo .= "comentario"; }
+                $Codigo .=      ", <b>".$ValoresEntrada["Votaciones"]->TotalVotaciones."</b> ";
+                if ($ValoresEntrada["Votaciones"]->TotalVotaciones == 1) { $Codigo .= "voto"; }
+                else                                                       { 
+                    if ($ValoresEntrada["Votaciones"]->TotalEstrellas == 0) {
+                        $Codigo .= "votos";
+                    }
+                    else {
+                        $Codigo .= "votos con una media de <b>".round($ValoresEntrada["Votaciones"]->TotalEstrellas / $ValoresEntrada["Votaciones"]->TotalVotaciones, 2)."</b> sobre <b>5</b>.";                            
+                    }                        
+                }                            
+                $Codigo .=    "</span>".Intro();
+//                echo $Codigo;    
+                
+                
+                return json_encode(array("HTML" => $Codigo, "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0));
             }
         }
         return json_encode(array("HTML" => "false", "ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 2));
@@ -178,7 +198,7 @@ class devildrey33_BD {
             }
         }
         // Sumo la visita (si es necesario)
-        $Ret["Visitas"]     = $this->SumarVisita($ArchivoFinal, $SumarVisita);
+        $Ret["Visitas"]     = $this->SumarVisita($Archivo, $SumarVisita);
         // Obtengo la media de las votaciones
         $Ret["Votaciones"]  = $this->ObtenetMediaVotacionesWeb($ArchivoFinal);                
         
