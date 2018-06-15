@@ -12,7 +12,7 @@
         "Tipo"		=> "DocCSS",
         "Autor"         => "Josep Antoni Bover",
         "Idioma"        => "es",
-        "Imagen"	=> "CSS3.png"), */
+        "Imagen"	=> "CSS3.png"),      */   
         
 array(	"Titulo" 	=> "Propiedad CSS : clip-path",
         "Fecha" 	=> "14/06/2018",

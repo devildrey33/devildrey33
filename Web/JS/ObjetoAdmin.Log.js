@@ -37,7 +37,8 @@ $Admin.Log = new function() {
         $("#Log_Cargando").attr("visible", true);
         $("#Log_CargandoF1").css({ color : "#fff" });
         nAjax = $.post($Base.Raiz + "cmd/ObtenerLog.cmd", { "Archivo" : Archivo }).done(function(data) {
-            Datos = JSON.parse(data);
+            // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
+            if ($Base.JSON_Parse(data) === false) return;
 //            $Base.MostrarMensaje(Datos["HTML"]);
             document.getElementById("Log_Datos").value = Datos["DatosLog"];
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
@@ -156,7 +157,7 @@ $Admin.Log = new function() {
     };
     
     // relevancia de la url definida por colores del 9 al 1
-    this.ColorRelevancia = function(Relevancia, Ret = 0) {
+    this.ColorRelevancia = function(Relevancia, Ret) {
         if (Ret === 404) return "purple";
         switch (Relevancia) {
             case 9 : return "Log_Entrada_Ataque";      break;// Ataque
@@ -425,7 +426,7 @@ $Admin.Log = new function() {
         this.ArrayObjetos.push(Ret);        
     };
     
-    this.ExpandirIp = function(Id, MostrarTodo = false) {
+    this.ExpandirIp = function(Id, MostrarTodo) {
         var PosIp = Id.slice(10); // EntradaLog ocupa 10 caracteres (me quedo solo con el número)        
         if (this.Ips[PosIp]["Abierto"] === false) {
             var Checks = this.ObtenerChecks();
@@ -492,7 +493,7 @@ $Admin.Log = new function() {
         this.Ips[PosIp]["Abierto"] = !this.Ips[PosIp]["Abierto"];
     };
 
-    this.TipoUrl = function(Url, Ret = 0) {
+    this.TipoUrl = function(Url, Ret) {
         var nUrl = Url.toLowerCase();
         if (nUrl.indexOf("banearip.php") !== -1)        {	this.TotalTipos["Ataques"]++;           return 9; 	}
         if (nUrl.indexOf("?") !== -1)               	{	this.TotalTipos["Advertencias"]++; 	return 8; 	}

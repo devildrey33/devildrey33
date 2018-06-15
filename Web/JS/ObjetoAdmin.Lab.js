@@ -27,7 +27,8 @@ $Admin.Lab = new function() {
         }
         else { // Sobre-escritura de un archivo normal*/
             $.post($Base.Raiz + "cmd/LabGuardarEjemplo.cmd", { "Archivo" : Archivo, "Codigo" : Codigo }).done(function(data) {
-                Datos = JSON.parse(data);           
+                // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
+                if ($Base.JSON_Parse(data) === false) return;
                 if (Datos["Estado"] === 1) { // Error no es admin
                     console.log("Admin.Lab_Guardar Ajax Error! no es admin");
                     $("#BarraNavegacion_Explorador").html(Datos["HTML"]);
@@ -109,7 +110,8 @@ $Admin.Lab = new function() {
 
         nAjax = $.post($Base.Raiz + "cmd/Lab_GenerarCache.cmd", { "Lista" : JLista });
         nAjax.done(function(data) {
-            Datos = JSON.parse(data);
+            // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
+            if ($Base.JSON_Parse(data) === false) return;
             console.log("Lab_GenerarCache Completo!");
             $Base.MostrarMensaje("Cache del laboratorio generada!");
             $Base.Cargando("FALSE");

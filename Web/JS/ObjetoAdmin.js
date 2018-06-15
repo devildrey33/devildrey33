@@ -148,7 +148,8 @@ ObjetoAdmin = function() {
 
         nAjax = $.post($Base.Raiz + "cmd/Desloguear.cmd");
         nAjax.done(function(data) {
-            Datos = JSON.parse(data);
+            // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
+            if ($Base.JSON_Parse(data) === false) return;
             console.log("Admin.Desloguear");
             $("#BarraNavegacion_Explorador").html(Datos["HTML"]);            
             $Lab.EnlazarEventosExplorador();            

@@ -75,14 +75,14 @@
                                     "<b>".$ValoresEntrada["Comentarios"]."</b> ";
                     if ($ValoresEntrada["Comentarios"] != 1) { $Codigo .= "comentarios"; }
                     else                                     { $Codigo .= "comentario"; }
-                    $Codigo .=      ", <b>".$ValoresEntrada["Votaciones"]->TotalVotaciones."</b> ";
-                    if ($ValoresEntrada["Votaciones"]->TotalVotaciones == 1) { $Codigo .= "voto"; }
+                    $Codigo .=      ", <b>".$ValoresEntrada["Votaciones"]["TotalVotaciones"]."</b> ";
+                    if ($ValoresEntrada["Votaciones"]["TotalVotaciones"] == 1) { $Codigo .= "voto"; }
                     else                                                       { 
-                        if ($ValoresEntrada["Votaciones"]->TotalEstrellas == 0) {
+                        if ($ValoresEntrada["Votaciones"]["TotalEstrellas"] == 0) {
                             $Codigo .= "votos";
                         }
                         else {
-                            $Codigo .= "votos con una media de <b>".round($ValoresEntrada["Votaciones"]->TotalEstrellas / $ValoresEntrada["Votaciones"]->TotalVotaciones, 2)."</b> sobre <b>5</b>.";                            
+                            $Codigo .= "votos con una media de <b>".round($ValoresEntrada["Votaciones"]["TotalEstrellas"] / $ValoresEntrada["Votaciones"]["TotalVotaciones"], 2)."</b> sobre <b>5</b>.";                            
                         }                        
                     }                            
                     $Codigo .=    "</div>".Intro();

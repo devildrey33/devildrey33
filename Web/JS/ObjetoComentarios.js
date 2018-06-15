@@ -127,7 +127,8 @@ $Comentarios = new function() {
                                                      "Valor"         : Valor
         // Al terminar la petición ajax correctamente
         }).done(function(data) { 
-            Datos = JSON.parse(data);
+            // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
+            if ($Base.JSON_Parse(data) === false) return;
             if (Datos.Mensaje === "Correcto") {
                 nValor = $("#Comentarios_Datos > div[comentario=" + Datos.NumComentario + "] > div:nth-child(2) > span > b:nth-child(1)");
                 nTotal = $("#Comentarios_Datos > div[comentario=" + Datos.NumComentario + "] > div:nth-child(2) > span > b:nth-child(2)");
@@ -196,7 +197,8 @@ $Comentarios = new function() {
                                                             } );
         console.log("Comentarios.BotonEnviarComentario");
         nAjax.done(function(data) { 
-            Datos = JSON.parse(data);
+            // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
+            if ($Base.JSON_Parse(data) === false) return;
             // Se ha detectado un error, parseando en el PHP 
             if (Datos["HTML"].substr(0, 5) === "Error") { 
                 $Base.MostrarMensaje(Datos["HTML"]);
@@ -236,7 +238,8 @@ $Comentarios = new function() {
         this.Obteniendo = true;
         nAjax = $.post($Base.Raiz + "cmd/ObtenerComentarios", { "Pagina" : Pagina,  "Desde" : Desde - 1, "Hasta" : Desde - 21 } );
         nAjax.done(function(data) { 
-            Datos = JSON.parse(data);
+            // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
+            if ($Base.JSON_Parse(data) === false) return;
             $("div[puntoscroll=true]").removeAttr("puntoscroll");
             $("#Comentarios_Datos").html($("#Comentarios_Datos").html() + Datos["HTML"]);
             $Base.Cargando("FALSE");
@@ -270,7 +273,8 @@ $Comentarios = new function() {
         this.Obteniendo = true;
         nAjax = $.post($Base.Raiz + "cmd/ObtenerComentarios", { "Pagina" : Pagina,  "Desde" : Desde - 1, "Hasta" : Num } );
         nAjax.done(function(data) { 
-            Datos = JSON.parse(data);
+            // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
+            if ($Base.JSON_Parse(data) === false) return;
             $("div[puntoscroll=true]").removeAttr("puntoscroll");
             $("#Comentarios_Datos").html($("#Comentarios_Datos").html() + Datos["HTML"]);
             $Comentarios.Obteniendo = false;

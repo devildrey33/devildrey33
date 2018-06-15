@@ -92,3 +92,7 @@ ObjetoComentarios
         - Copy/paste d'etiquetes script y style ha de requerir superadmin. (Deixar que algu sigui capaç d'injectar estils css o pitjor encara scripts es una cosa molt seria, que facilment es podria carregar la web, i que a mes seria dificil/engorros de detectar /eliminar.
     - Hi ha algo raro al editar missatges... desapareixen lineas al guardar l'edició, però al recarregar tornen a sortir...
  
+
+JS General :
+    - Tots els JSON.parse s'han de eliminar, i fer una funció ObjetoBase.JSONParse() que retorni TRUE o FALSE, i que a mes executi la funció $Base.MostrarErroresPHP per mostrar el texte retornat (que ha de ser un error PHP si no es pot parsejar...).
+        - De moment está fet per cada funció que utilitza el parse (inline), peró seria mes adecuat fer una funció preparada per errors php que a mes els mostri...

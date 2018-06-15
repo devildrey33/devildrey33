@@ -4,17 +4,9 @@
     https://developer.mozilla.org/en-US/docs/Web/CSS/clip-path
     https://css-tricks.com/clipping-masking-css/
     https://tympanus.net/codrops/css_reference/shape-outside/
-
-    funcións per crear/modificar
-        url     : per modificar
-        inset   : per crear
-        circle  : per crear
-        ellipse : per crear
-        polygon : per crear
-    s'ha de modificar també la propietat clip per REMARCAR que está obsoleta i que ara s'ha d'utilitzar clip-path
 */
     include("../../../Web/devildrey33_Documentacion.php");    
-    $Doc = new devildrey33_Documentacion(basename(__FILE__)); $Base = $Doc->Base;
+    $Doc = new devildrey33_Documentacion(basename(__FILE__), "inset, circle, ellipse, polygon"); $Base = $Doc->Base;
 ?>
 
 <style>
@@ -100,20 +92,6 @@
         background: linear-gradient(75deg, red,yellow,green,blue,violet);                
     }
     
-/*    .CodigoPath {
-        margin-top:0px;
-        position:absolute;
-        width:100%;
-    }
-    .CodigoPath > code {
-        position:relative;
-        display:block;
-        width:200%;
-        left:-50%;
-        text-align: center;
-    }*/
-    
-
     .EjemploTexto {
         position:absolute;
         font-size:21px;
@@ -127,8 +105,7 @@
         -webkit-user-select : none;
         -moz-user-select    : none;
         -ms-user-select     : none;
-        user-select         : none;        
-        
+        user-select         : none;                
     }
 
     @keyframes AniPolygon {
@@ -192,9 +169,10 @@
         100% { clip-path:inset(0%);  }
     }
     
-    
+    /************************/
     /* transición clip-path */
     .LogoClipPath {
+    /************************/
         position:relative; 
         width:140px; 
         height:140px; 
@@ -203,7 +181,7 @@
         background:linear-gradient(240deg, rgba(255,0,0,0.3), rgba(255,165,0,0.3), rgba(255,255,0,0.3), rgba(0,255,0,0.3), rgba(0,0,255,0.3), rgba(75,0,130,0.3), rgba(238,130,238,0.3)); 
         float:right;
     }
-/*                */
+
     /* Objeto que muestra el logo desde un svg */
     .LogoClipPath_Logo {
         width:100%;
@@ -216,6 +194,7 @@
         z-index:2;
     }
 
+    /* Objeto con una transición de clip-path:circle(100%) a clip-path:circle(0%) */
     .LogoClipPath > .LogoClipPath_FondoAni {
         width:100%;
         height:100%;

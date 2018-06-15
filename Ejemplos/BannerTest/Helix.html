@@ -1,0 +1,177 @@
+<!-- 
+    Ejemplo Helix en Three.js creado por Josep Antoni Bover Comas el 14/06/2018 para http://devildrey33.es
+
+        Vista por defecto en el Laboratorio de pruebas  
+		devildrey33_Lab->Opciones->Vista = Filas; // Preview
+
+        Ultima modificación el 14/06/2018
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <!-- Estilos CSS para el test -->
+        <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoCanvas.css' />        
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        <!-- Three.JS -->
+        <script src="/Web/JS/3rdParty/three-0.84.min.js"></script>
+<!--        <script src="/Web/JS/3rdParty/three-0.79.min.js"></script> -->
+        <!-- Three.JS para depuración -->
+        <!-- <script src="/Web/JS/3rdParty/three-0.79.js"></script> -->
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
+<script id="VertexShader" type="x-shader/x-vertex">
+    uniform float Tiempo;
+    uniform float Avance;
+    uniform float Posicion;
+//    uniform vec3  Pos;
+    varying float PosZ;
+    void main() {
+        PosZ = position.z + (2.0 * sin(Tiempo + Posicion)) + (2.0 * cos(Tiempo + Posicion));
+        
+        gl_Position = projectionMatrix *
+                      modelViewMatrix *
+                      vec4( Avance + position.x + 2.0 * sin(Tiempo + Posicion),   
+                            position.y + 2.0 * sin(Tiempo + Posicion) - (2.0 * cos(Tiempo + Posicion)),   
+                            PosZ,
+                            1.0);
+    }    
+</script>        
+  
+
+<script id="FragmentShader" type="x-shader/x-fragment">
+//    uniform float Tiempo;
+    varying float PosZ;
+    uniform vec3  Color;
+    void main() {  
+        //                  R         G         B         Aplico opacidad según el valor Z
+        gl_FragColor = vec4(Color[0], Color[1], Color[2], 0.5 + (PosZ / 10.0)); 
+    }    
+</script>        
+    
+
+        
+<!-- Código javascript --> 
+<script type="text/javascript">
+
+// Constructor
+var Helix = function() {
+    // Llamo al constructor del ObjetoCanvas
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'                      : 'THREE',
+        'Ancho'                     : 'Auto',
+        'Alto'                      : 'Auto',
+        'Entorno'                   : 'Normal',
+        'MostrarFPS'                : true,
+        'BotonLogo'                 : false,
+        'BotonPantallaCompleta'     : true,
+        'ElementoRaiz'              : document.body,
+        'Pausar'                    : false,             // Pausa el canvas si la pestaña no tiene el foco del teclado
+        'ColorFondo'                : 0x000000,
+        CapturaEjemplo              : "EspiralRGB.png"
+
+    }) === false) { return false; }
+
+    this.Iniciar();    
+    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
+    this.Cargando(false);
+};
+
+
+Helix.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor     : Helix, 
+    // Función que se llama al redimensionar el documento
+    Redimensionar   : function() {    },
+    // Función que se llama al hacer scroll en el documento    
+    Scroll          : function() {    },
+    // Función que se llama al mover el mouse por el canvas
+    MouseMove       : function(Evento) { },
+    // Función que se llama al presionar un botón del mouse por el canvas
+    MousePresionado : function(Evento) { },
+    // Función que se llama al soltar un botón del mouse por el canvas
+    MouseSoltado    : function(Evento) { },
+    // Función que se llama al entrar con el mouse en el canvas
+    MouseEnter      : function(Evento) {  },
+    // Función que se llama al salir con el mouse del canvas
+    MouseLeave      : function(Evento) {  },
+    // Función que se llama al presionar una tecla
+    TeclaPresionada : function(Evento) { },
+    // Función que se llama al soltar una tecla
+    TeclaSoltada    : function(Evento) { },
+    // Función que se llama al pausar el banner
+    Pausa           : function() { },
+    // Función que se llama al reanudar el banner
+    Reanudar        : function() { },
+    // Función que se llama al redimensionar el documento
+    Iniciar         : function() {
+        // Activo el mapeado de sombras
+        this.Context.shadowMap.enabled	= true;
+        // Creo la escena
+        this.Escena = new THREE.Scene();
+        // Creo la camara
+        this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 1, 1000);
+        this.Camara.position.set(0, 0, 35);        
+        this.Escena.add(this.Camara);
+        // Particulas por espiral
+        if (ObjetoNavegador.EsMovil() === false) {  this.Particulas = 400;  }
+        else                                     {  this.Particulas = 100;  }
+
+        this.Espirales = 2;
+        this.RecorridoX =  (120 / 2) + this.Espirales; // de -50 a 50
+
+
+        this.Cubos = [];
+        // Array de colores para las espirales
+        var Colores = [ [0.7, 0.0, 0.0], [0.1, 0.5, 1.0], [0.3, 0.0, 1.0] ];
+        // Posiciones iniciales de las espirales
+        for (var e = 0; e < this.Espirales; e++) {
+            for (var i = 0; i < this.Particulas; i++) {
+                var Tam = Rand(0.6, 0.2);
+                // Buffer con la geometría de un cubo (se requiere que sea un buffer para aplicarlo al shader)
+                var CuboGeo = new THREE.SphereBufferGeometry( 0.4, 32, 32 );
+
+                // Variables para el shader 
+                var Uniforms = { 
+                    Tiempo    : { "type" : "1f", value : ((this.RecorridoX / this.Particulas) * i)  },
+                    Avance    : { "type" : "1f", value : -this.RecorridoX +  (-this.RecorridoX + ((this.RecorridoX * 2) / this.Particulas) * i) },
+                    Posicion  : { "type" : "1f", value : 16 * e },
+//                    Pos       : { "type" : "3f", value : [Rand(0.3, -0.3), Rand(0.3, -0.3), Rand(0.3, -0.3) ] },
+                    Color     : { "type" : "3f", value : [ Colores[e][0],  Colores[e][1],  Colores[e][2]] }
+                };            
+
+                var MaterialShader = new THREE.ShaderMaterial({
+                    uniforms       : Uniforms,
+                    vertexShader   : document.getElementById('VertexShader').innerHTML,
+                    fragmentShader : document.getElementById('FragmentShader').innerHTML,
+                    transparent    : true
+                });
+
+                // Creo el cubo con los datos del shader
+                var Cubo = new THREE.Mesh(CuboGeo, MaterialShader);
+                this.Cubos.push(Cubo);
+                this.Escena.add(Cubo);
+            }
+        }
+    },
+    // Función que pinta cada frame de la animación
+    Pintar          : function() {  
+        for (var i = 0; i < this.Particulas * this.Espirales; i++) {
+            var u = this.Cubos[i].material.uniforms;
+            u.Avance.value += 0.03;
+            if (u.Avance.value > this.RecorridoX) { u.Avance.value = -this.RecorridoX;}
+            u.Tiempo.value += 0.05;
+        }
+        
+//        this.Camara.Rotar();
+        this.Context.render(this.Escena, this.Camara);  
+    }
+});
+
+var Canvas = null;
+window.addEventListener('load', function() { Canvas = new Helix; });
+</script>
+    </head>
+    <body>
+    </body>
+</html>

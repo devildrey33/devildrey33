@@ -68,14 +68,14 @@ class devildrey33_BD {
                                 "<b>".$ValoresEntrada["Comentarios"]."</b> ";
                 if ($ValoresEntrada["Comentarios"] != 1) { $Codigo .= "comentarios"; }
                 else                                     { $Codigo .= "comentario"; }
-                $Codigo .=      ", <b>".$ValoresEntrada["Votaciones"]->TotalVotaciones."</b> ";
-                if ($ValoresEntrada["Votaciones"]->TotalVotaciones == 1) { $Codigo .= "voto"; }
+                $Codigo .=      ", <b>".$ValoresEntrada["Votaciones"]["TotalVotaciones"]."</b> ";
+                if ($ValoresEntrada["Votaciones"]["TotalVotaciones"] == 1) { $Codigo .= "voto"; }
                 else                                                       { 
-                    if ($ValoresEntrada["Votaciones"]->TotalEstrellas == 0) {
+                    if ($ValoresEntrada["Votaciones"]["TotalEstrellas"] == 0) {
                         $Codigo .= "votos";
                     }
                     else {
-                        $Codigo .= "votos con una media de <b>".round($ValoresEntrada["Votaciones"]->TotalEstrellas / $ValoresEntrada["Votaciones"]->TotalVotaciones, 2)."</b> sobre <b>5</b>.";                            
+                        $Codigo .= "votos con una media de <b>".round($ValoresEntrada["Votaciones"]["TotalEstrellas"] / $ValoresEntrada["Votaciones"]["TotalVotaciones"], 2)."</b> sobre <b>5</b>.";                            
                     }                        
                 }                            
                 $Codigo .=    "</span>".Intro();
@@ -91,14 +91,18 @@ class devildrey33_BD {
     
     
     public function ObtenetMediaVotacionesWeb($Archivo) {
-        if ($this->_BDFuncional === false) return array("TotalVotaciones" => 0, "TotalEstrellas" => 0);
-        $Ret = new devildrey33_ObtenetMediaVotacionesWeb;
+        $Ret = array("TotalVotaciones" => 0, "TotalEstrellas" => 0);
+        if ($this->_BDFuncional === false) return $Ret;
         // Comprobamos si exsite la pagina
         $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina = '".$this->_mysqli->real_escape_string($Archivo)."'");
         if (!$Resultado) return $Ret;
         $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
-        $Ret->TotalVotaciones = $Datos["VotosTotal"];
-        $Ret->TotalEstrellas  = $Datos["VotosValor"];
+/*        echo "<pre>";
+        print_r($Datos);
+        echo "</pre>";*/
+        
+        $Ret["TotalVotaciones"] = $Datos["VotosTotal"];
+        $Ret["TotalEstrellas"]  = $Datos["VotosValor"];
         return $Ret;
     }
     
@@ -171,11 +175,11 @@ class devildrey33_BD {
 
     public function ObtenerValoresEntrada2($Archivo, $SumarVisita = false) {        
         // Datos a devolver
-        $Ret = array(   "Visitas"       => 0, 
-                        "Comentarios"   => 0,
-                        "Votaciones"    => array(  
-                                                    "TotalVotaciones"   => 0, 
-                                                    "TotalEstrellas"    => 0));
+        $Ret = array(   "Visitas"           => 0, 
+                        "Comentarios"       => 0,
+                        "Votaciones"        => array(   
+                                                        "TotalVotaciones"   => 0, 
+                                                        "TotalEstrellas"    => 0));
         // Si la BD no funciona devuelvo los datos iniciales
         if ($this->_BDFuncional === false) { return $Ret; }
         $Contador = 0;
@@ -197,10 +201,18 @@ class devildrey33_BD {
                 if ($Datos) $Ret["Visitas"] = $Datos['Visitas'];
             }
         }
-        // Sumo la visita (si es necesario)
-        $Ret["Visitas"]     = $this->SumarVisita($Archivo, $SumarVisita);
+        
         // Obtengo la media de las votaciones
-        $Ret["Votaciones"]  = $this->ObtenetMediaVotacionesWeb($ArchivoFinal);                
+        $Ret["Votaciones"]  = $this->ObtenetMediaVotacionesWeb($ArchivoFinal);                            
+        // Sumo la visita (si es necesario)
+        if ($SumarVisita === true) {
+            $this->SumarVisita($Archivo, $SumarVisita);
+            $Ret["Visitas"] ++;            
+        }
+        
+/*        echo "<pre>";
+        print_r($Ret);
+        echo "</pre>";*/
         
         return $Ret;
     }
@@ -342,7 +354,7 @@ class devildrey33_BD {
 };
 
 
-
+/*
 class devildrey33_ObtenetMediaVotacionesWeb {
     public $TotalEstrellas;
     public $TotalVotaciones;
@@ -350,7 +362,7 @@ class devildrey33_ObtenetMediaVotacionesWeb {
         $this->TotalEstrellas = 0;
         $this->TotalVotaciones = 0;
     }
-};
+};*/
 
 
 

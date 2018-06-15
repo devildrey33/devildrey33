@@ -12,7 +12,7 @@
         public $Base;
         public $PathEjemplos;
         
-        /* Si especificas un $META_ExtraKeywords debe empezadr por */
+        /* Si especificas el $META_ExtraKeywords debe ir así : "keyword de varias palabras, otra keyword, etc..." */
         public function __construct($Archivo, $META_ExtraKeywords = "") {
             $this->Inicio($Archivo, $META_ExtraKeywords);
         }
