@@ -251,7 +251,8 @@ $Lab = new function() {
         if (ID === undefined) { ID = -1; }        
         this.PeticionAjax = $.post($Base.Raiz + "cmd/LabAbrirEjemplo.cmd",  { "Archivo" : Archivo, "ID" : ID }, function(data) {
             // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
-            if ($Base.JSON_Parse(data) === false) return;
+            Datos = $Base.JSON_Parse(data);
+            if (Datos === false) return;
             if      (Datos["Ret"] === 404) { $Base.MostrarErrorAjax(404, false); }
             else if (Datos["Ret"] === 403) { $Base.MostrarErrorAjax(403, false); }
             else                           { 

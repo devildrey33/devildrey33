@@ -44,7 +44,8 @@ $Indice = new function() {
                 nAjax = $.post($Base.Raiz + "cmd/IndiceObtener15Mas.cmd", { "Categoria" : $("#Categorias").attr("categoria"),  "Inicio" : this.TotalArticulosCargados } );
                 nAjax.done(function(data) { 
                     // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
-                    if ($Base.JSON_Parse(data) === false) return;
+                    Datos = $Base.JSON_Parse(data);
+                    if (Datos === false) return;
                     $("div[puntoscroll=true]").removeAttr("puntoscroll");
                     $("#MarcoIndice").html($("#MarcoIndice").html() + Datos["HTML"]);
                     $Base.Cargando("FALSE");

@@ -11,13 +11,10 @@ $Admin.Comentarios = new function() {
         NumC = $(Boton).parent().parent().attr("comentario"); 
         console.log("Admin.Comentarios.VerEmail", Pagina, NumC);
         nAjax = $.post($Base.Raiz + "cmd/VerEmailComentario.cmd", { "Pagina" : Pagina,  "NumComentario" : NumC }).done(function(data) {
-            try {
-                Datos = JSON.parse(data);
-            }
-            catch(e) {
-                $Base.MostrarErroresPHP(e + "<br />" + data);
-                return;
-            }
+            // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
+            Datos = $Base.JSON_Parse(data);
+            if (Datos === false) return;
+            
             $Base.MostrarMensaje(Datos["HTML"]);
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
             if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
@@ -39,7 +36,8 @@ $Admin.Comentarios = new function() {
         // ajax para votar
         nAjax = $.post($Base.Raiz + "cmd/EliminarComentario.cmd", { "Pagina" : Pagina,  "NumComentario" : NumC }).done(function(data) {
             // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
-            if ($Base.JSON_Parse(data) === false) return;
+            Datos = $Base.JSON_Parse(data);
+            if (Datos === false) return;
             if (Datos.Mensaje === "Comentario Eliminado") {
                 $("#Comentarios_Datos > div[comentario=" + Datos.NumComentario + "]").remove();
             }
@@ -90,7 +88,8 @@ $Admin.Comentarios = new function() {
                                                                         "Mensaje"       : Msg
             }).done(function(data) {
                 // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
-                if ($Base.JSON_Parse(data) === false) return;
+                Datos = $Base.JSON_Parse(data);
+                if (Datos === false) return;
                 if (Datos.Mensaje === "Comentario Editado") {
                     
                     $("#Comentarios_Datos > div[comentario] > div[contenteditable=true]").removeAttr("contenteditable");

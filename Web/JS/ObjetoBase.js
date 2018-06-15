@@ -383,7 +383,8 @@ $Base = new function() {
             localStorage["Voto_" + Pagina] = Valor;
             $.post(this.Raiz + "cmd/VotarPagina.cmd", { "Pagina" : Pagina, "Valor" : Valor, "URL" : window.location.href }).done(function(data) {
                 // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
-                if ($Base.JSON_Parse(data) === false) return;
+                Datos = $Base.JSON_Parse(data);
+                if (Datos === false) return;
                 if (Datos["HTML"] !== "false") {
                     $(".Cabecera_Datos > .FechaEntrada > span").html(Datos["HTML"]);
                     $("#BarraNavegacion_Votacion").removeAttr("Mostrar");
@@ -804,7 +805,8 @@ $Base = new function() {
         this.Cargando("TRUE");
         $.post(this.Raiz + "cmd/Buscar", { "Palabras" : $("#BarraPrincipal_MarcoBuscar_Edit").val() }).done(function(data) {
             // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
-            if ($Base.JSON_Parse(data) === false) return;
+            Datos = $Base.JSON_Parse(data);
+            if (Datos === false) return;
 //            $("body").attr({ "Tipo" : $Base.Entrada["Buscar"] });
 //            $("#MarcoNavegacion").html(Datos["HTML"]);
             $("#BarraPrincipal_MarcoBuscar_Resultado").html(Datos["HTML"]);
@@ -885,7 +887,8 @@ $Base = new function() {
         this.nURL = nURL;
         this.PeticionAjax = $.post(nURL, { "Regenerar" : "todo", "Categoria" : "Todo", "SinPlantilla" : "true" }).done(function(data) {
             // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
-            if ($Base.JSON_Parse(data) === false) return;
+            Datos = $Base.JSON_Parse(data);
+            if (Datos === false) return;
             if (Datos["HTML"].indexOf("<script>$Base.MostrarErrorAjax(404, false);</script>") === 0) {
                 $Base.MostrarErrorAjax(404, false, 'No se ha encontrado');
             }
@@ -962,7 +965,8 @@ $Base = new function() {
         $.post($Base.Raiz + "cmd/Loguear.cmd", { "l" : l,  "p" : pass }).done(function(data, textStatus, jqXHR) {
 //            console.log("Base.Loguear", data);
             // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
-            if ($Base.JSON_Parse(data) === false) return;
+            Datos = $Base.JSON_Parse(data);
+            if (Datos === false) return;
             if (Datos.Estado === 0) { // Logueado
                 localStorage["Comentarios_Usuario"] = $("#devildrey33_Usuario").val();
                 //$("#devildrey33_Password").val("");
@@ -1011,7 +1015,8 @@ $Base = new function() {
         this.ResetearTimerTiempoSesion();
         $.post(this.Raiz + "cmd/" + Comando + ".cmd").done(function(data) {
             // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
-            if ($Base.JSON_Parse(data) === false) return;
+            Datos = $Base.JSON_Parse(data);
+            if (Datos === false) return;
             console.log("Base.cmd(" + Comando + ")", Datos);
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
             if (Datos["ErroresPHP"] !== "") { $Base.MostrarErroresPHP(); }
@@ -1155,7 +1160,8 @@ $Base = new function() {
         else              nURL = cURL;
         this.PeticionAjax = $.post(nURL, { "Regenerar" : "todo", "Categoria" : "Todo", "SinPlantilla" : "true" }).done(function(data) {
             // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
-            if ($Base.JSON_Parse(data) === false) return;
+            Datos = $Base.JSON_Parse(data);
+            if (Datos === false) return;
             /* Error 404 */
             if (Datos["HTML"].indexOf("<script>$Base.MostrarErrorAjax(404, false);</script>") === 0) {
                 $Base.MostrarErrorAjax(404, "false");

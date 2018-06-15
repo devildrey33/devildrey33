@@ -38,7 +38,8 @@ $Admin.Log = new function() {
         $("#Log_CargandoF1").css({ color : "#fff" });
         nAjax = $.post($Base.Raiz + "cmd/ObtenerLog.cmd", { "Archivo" : Archivo }).done(function(data) {
             // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
-            if ($Base.JSON_Parse(data) === false) return;
+            Datos = $Base.JSON_Parse(data);
+            if (Datos === false) return;
 //            $Base.MostrarMensaje(Datos["HTML"]);
             document.getElementById("Log_Datos").value = Datos["DatosLog"];
             $("#ErroresPHP_Info").html(Datos["ErroresPHP"]);
