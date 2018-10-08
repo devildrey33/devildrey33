@@ -79,11 +79,11 @@
 Para más información sobre unidades de tamaño relativo, consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.</p>
 <p>Por ejemplo podéis ver los pasos de la animación de la derecha :</p>            
 <!-- -[INICIO devildrey33.circle]-
-clip-path:circle(10%);                      /* 10 píxeles de rádio                                  */
-clip-path:circle(50% at 100% 20%);          /* 50% de rádio al 100% de la X y al 20% de la Y        */
-clip-path:circle(20% at 50% 25%);           /* 20% de rádio al  50% de la X y al 25% de la Y        */
-clip-path:circle(40px at 10% 10%);          /* 40 píxeles de rádio al 10% de la X y la Y            */
-clip-path:circle(100px at 150px 150px);     /* 100 píxeles de rádio a 150 píxeles de la X y la Y    */
+clip-path:circle(10%);                      /* 10 píxeles de radio                                  */
+clip-path:circle(50% at 100% 20%);          /* 50% de radio al 100% de la X y al 20% de la Y        */
+clip-path:circle(20% at 50% 25%);           /* 20% de radio al  50% de la X y al 25% de la Y        */
+clip-path:circle(40px at 10% 10%);          /* 40 píxeles de radio al 10% de la X y la Y            */
+clip-path:circle(100px at 150px 150px);     /* 100 píxeles de radio a 150 píxeles de la X y la Y    */
  -[FIN devildrey33.circle]- -->
 <?php 
     $Base->PintarCodigo->PintarArchivoCSS("circle", "", basename(__FILE__), 'circle'); 

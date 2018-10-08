@@ -66,7 +66,8 @@ class devildrey33_Comentarios {
         if ($BD->_BDFuncional === false) return;
         // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
         $Pagina = str_replace(array("(", ")", "@", ":", "ó", ".", "-"), array("", "", "", "", "o", "_", "_"), $Pagina);
-        
+        // Avegades dona aquest error... : PHP Fatal error:  Call to a member function real_escape_string() on null in /homepages/14/d288223143/htdocs/devildrey33.es/Web/devildrey33_Comentarios.php on line 70
+        if ($BD->_mysqli == NULL) return;
         $PaginaPadre    = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($Pagina))), 0, 51);        
 //        $PaginaPadre = str_replace(array(".", "-"), "_", $Pagina);            
         $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".$PaginaPadre." ORDER BY NumMsg DESC");

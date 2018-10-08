@@ -77,11 +77,11 @@
 Para más información sobre unidades de tamaño relativo, consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.</p>
 <p>Por ejemplo podéis ver los pasos de la animación de la derecha :</p>                        
 <!-- -[INICIO devildrey33.ellipse]-
-clip-path:ellipse(10% 5%);                  /* 10% de rádio X, 5% de rádio Y                                                    */
-clip-path:ellipse(120% 30%);                /* 120% de rádio X, 30% de rádio Y                                                  */
-clip-path:ellipse(80% 150% at 0% 50%);      /* 80% de rádio X, 150% de rádio Y, 0% posición X, 50% posición Y                   */
-clip-path:ellipse(70% 50% at 100% 20px);    /* 70% de rádio X, 50% de rádio Y, 100% posición X, 20 píxeles posición Y           */
-clip-path:ellipse(100px 60% at 50% 150px);  /* 100 píxeles de rádio X, 60% de rádio Y, 50% posición X, 150 píxeles posición Y   */
+clip-path:ellipse(10% 5%);                  /* 10% de radio X, 5% de radio Y                                                    */
+clip-path:ellipse(120% 30%);                /* 120% de radio X, 30% de radio Y                                                  */
+clip-path:ellipse(80% 150% at 0% 50%);      /* 80% de radio X, 150% de radio Y, 0% posición X, 50% posición Y                   */
+clip-path:ellipse(70% 50% at 100% 20px);    /* 70% de radio X, 50% de radio Y, 100% posición X, 20 píxeles posición Y           */
+clip-path:ellipse(100px 60% at 50% 150px);  /* 100 píxeles de radio X, 60% de radio Y, 50% posición X, 150 píxeles posición Y   */
  -[FIN devildrey33.ellipse]- -->
 <?php 
     $Base->PintarCodigo->PintarArchivoCSS("ellipse", "", basename(__FILE__), 'ellipse'); 

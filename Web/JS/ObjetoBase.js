@@ -43,10 +43,11 @@ $Base = new function() {
     this.Iniciar = function() {
         /* Botones de las vistas del lab */
 //        $("#BarraNavegacion_LabVer > .Menu_Boton").on("click"), function() { $("#BarraNavegacion_BotonVer_Estado").trigger("click") }
-        $(".Lab_BotonVerFilas").click(function(e)   { $Lab.AjustarVista("0"); });
-        $(".Lab_BotonVerColumnas").click(function(e){ $Lab.AjustarVista("1"); });
-        $(".Lab_BotonVerCodigo").click(function(e)  { $Lab.AjustarVista("2"); });
-        $(".Lab_BotonVerPreview").click(function(e) { $Lab.AjustarVista("3"); });
+        $(".Lab_BotonVerModoCabecera").click(function(e)    { $Lab.AjustarVista("0"); });
+        $(".Lab_BotonVerFilas").click(function(e)           { $Lab.AjustarVista("1"); });
+        $(".Lab_BotonVerColumnas").click(function(e)        { $Lab.AjustarVista("2"); });
+        $(".Lab_BotonVerCodigo").click(function(e)          { $Lab.AjustarVista("3"); });
+        $(".Lab_BotonVerPreview").click(function(e)         { $Lab.AjustarVista("4"); });
         /* Explorador del laboratorio */
 //        $("#BarraNavegacion_LabExplorar > .Menu_Boton > .Menu_Boton_Cruz > svg").on("click"), function() { $("#BarraNavegacion_BotonExplorar_Estado").trigger("click"); }
 //        $("#BarraNavegacion_LabMarcoVer > label.Menu_Boton:nth-child(8)").click(function(e){ $Lab.AjustarVista("3"); });

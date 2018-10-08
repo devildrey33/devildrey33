@@ -94,5 +94,5 @@ ObjetoComentarios
  
 
 JS General :
-    - Tots els JSON.parse s'han de eliminar, i fer una funció ObjetoBase.JSONParse() que retorni TRUE o FALSE, i que a mes executi la funció $Base.MostrarErroresPHP per mostrar el texte retornat (que ha de ser un error PHP si no es pot parsejar...).
-        - De moment está fet per cada funció que utilitza el parse (inline), peró seria mes adecuat fer una funció preparada per errors php que a mes els mostri...
+  V - Tots els JSON.parse s'han de eliminar, i fer una funció ObjetoBase.JSON_Parse() que retorni TRUE o FALSE, i que a mes executi la funció $Base.MostrarErroresPHP per mostrar el texte retornat (que ha de ser un error PHP si no es pot parsejar...).
+     V - De moment está fet per cada funció que utilitza el parse (inline), peró seria mes adecuat fer una funció preparada per errors php que a mes els mostri... ObjetoBase.JSON_Parse()

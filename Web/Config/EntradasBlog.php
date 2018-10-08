@@ -5,14 +5,14 @@
 
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(        
-/*array(	"Titulo" 	=> "Propiedad CSS : filter",
+array(	"Titulo" 	=> "Propiedad CSS : filter",
         "Fecha" 	=> "28/06/2016",
         "URL" 		=> "CSS/Propiedades/filter",
         "Tags" 		=> array("CSS", "HTML"),
         "Tipo"		=> "DocCSS",
         "Autor"         => "Josep Antoni Bover",
         "Idioma"        => "es",
-        "Imagen"	=> "CSS3.png"),      */   
+        "Imagen"	=> "CSS3.png"),      
         
 array(	"Titulo" 	=> "Propiedad CSS : clip-path",
         "Fecha" 	=> "14/06/2018",

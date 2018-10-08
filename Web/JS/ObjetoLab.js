@@ -67,10 +67,11 @@ $Lab = new function() {
         
         this.Original = $("#Lab_Codigo").val();
         switch (this.ForzarVista) {
-            case "0" :     $(".Lab_BotonVerFilas").trigger("click");        break; 
-            case "1" :     $(".Lab_BotonVerColumnas").trigger("click");     break; 
-            case "2" :     $(".Lab_BotonVerCodigo").trigger("click");       break; 
-            case "3" :     $(".Lab_BotonVerPreview").trigger("click");      break;             
+            case "0" :     $(".Lab_BotonVerModoCabecera").trigger("click");     break; 
+            case "1" :     $(".Lab_BotonVerFilas").trigger("click");            break; 
+            case "2" :     $(".Lab_BotonVerColumnas").trigger("click");         break; 
+            case "3" :     $(".Lab_BotonVerCodigo").trigger("click");           break; 
+            case "4" :     $(".Lab_BotonVerPreview").trigger("click");          break;             
         }
 //        this.ResaltarArchivoActual(this.Archivo, true);
         this.ActualizarResultado();
@@ -265,11 +266,12 @@ $Lab = new function() {
                     
                     $Lab.Original = $Lab.Editor.getValue();
                     
-                    switch (Datos["Vista"]) {
-                        case "0" :     $(".Lab_BotonVerFilas").trigger("click");        break; 
-                        case "1" :     $(".Lab_BotonVerColumnas").trigger("click");     break; 
-                        case "2" :     $(".Lab_BotonVerCodigo").trigger("click");       break; 
-                        case "3" :     $(".Lab_BotonVerPreview").trigger("click");      break;             
+                    switch (Datos["Vista"]) {                        
+                        case "0" :     $(".Lab_BotonVerModoCabecera").trigger("click");     break; 
+                        case "1" :     $(".Lab_BotonVerFilas").trigger("click");            break; 
+                        case "2" :     $(".Lab_BotonVerColumnas").trigger("click");         break; 
+                        case "3" :     $(".Lab_BotonVerCodigo").trigger("click");           break; 
+                        case "4" :     $(".Lab_BotonVerPreview").trigger("click");          break;             
                     }
                     
 //                    $Lab.AjustarVista(Datos["Vista"]);  
@@ -354,19 +356,36 @@ $Lab = new function() {
 //        $("#Lab_VerFilas_Estado, #Lab_VerColumnas_Estado, #Lab_VerCodigo_Estado, #Lab_VerPreview_Estado").removeAttr("checked");
         
         switch (NuevaVista) {
-            case "0" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "filas" });      /*  $("#Lab_VerFilas_Estado").attr({ "checked" : "checked" });     */   break; // Mixto Filas
-            case "1" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "columnas" });   /*  $("#Lab_VerColumnas_Estado").attr({ "checked" : "checked" });  */   break; // Mixto Columnas
-            case "2" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "codigo" });     /*  $("#Lab_VerCodigo_Estado").attr({ "checked" : "checked" });    */   break; // Código
-            case "3" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "preview" });    /*  $("#Lab_VerPreview_Estado").attr({ "checked" : "checked" });   */   break; // Preview                
+            case "0" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "modocabecera" }); /*  $("#Lab_VerModoCabecera_Estado").attr({ "checked" : "checked" }); */   break; // Mixto Filas
+            case "1" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "filas" });        /*  $("#Lab_VerFilas_Estado").attr({ "checked" : "checked" });        */   break; // Mixto Filas
+            case "2" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "columnas" });     /*  $("#Lab_VerColumnas_Estado").attr({ "checked" : "checked" });     */   break; // Mixto Columnas
+            case "3" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "codigo" });       /*  $("#Lab_VerCodigo_Estado").attr({ "checked" : "checked" });       */   break; // Código
+            case "4" : $("#BarraNavegacion_Lab_IconoVer").attr({ "ver" : "preview" });      /*  $("#Lab_VerPreview_Estado").attr({ "checked" : "checked" });      */   break; // Preview                
         }
 
-
-/*        for (i = 1; i < 5; i++) {
-            $("#BarraNavegacion_LabMarcoVer > div:nth-child(" + i + ")").css({ display : (i - 1 === parseInt(NuevaVista))? "none" : "block" });
-        }*/
+        /* TODO!!! 
+         *      - El codi en la NuevaVista(0) (ModoCabecera) ha d'anar a sota, i el canvas a sobre. */
 
         switch (NuevaVista) {
-            case "0" : // Mixto Filas
+            case "0" : // Mixto Filas Tamaño de la cabecera
+                $(".CodeMirror").css({ "display" : "block" });
+                PosBarra = Alto - 240;
+//                PosBarra = Math.round((Alto - 6) / 2);
+/*                if (undefined === localStorage["Lab_BarraPosF"]) { PosBarra = Math.round((Alto - 6) / 2); }
+                else                                             { PosBarra = parseInt(localStorage["Lab_BarraPosF"]); }*/
+
+                $("#Lab_Barra1").css({  top : PosBarra, left : AnchoMenu,  height : 4, width : Ancho, display : "block", cursor : "ns-resize" });
+                $("#Lab_Barra1").draggable({  /*                       El contenedor del drag sera el marco de navegación, OJO porque en la vista de columnas no debe ser asi */
+                    axis: "y",  cursor : "ns-resize",   containment : "#MarcoNavegacion",
+                    start : function(event, ui) {   $("#Lab_ParcheIframe").css({ "display" : "block" });    $Lab.DragFilas(false); },
+                    drag  : function(event, ui) {                                                           $Lab.DragFilas(false); },
+                    stop  : function(event, ui) {   $("#Lab_ParcheIframe").css({ "display" : "none" });     $Lab.DragFilas(true);  }
+                });
+                $("#Lab_Preview").css({ left : AnchoMenu, width : Ancho + 1, display : "block" });
+                this.DragFilas(false);
+                $("#Lab_Preview").focus();      // Asigno el foco al iframe del resultado, especialmente por los ejempls con canvas
+                break;
+            case "1" : // Mixto Filas
                 $(".CodeMirror").css({ "display" : "block" });
                 PosBarra = Math.round((Alto - 6) / 2);
 /*                if (undefined === localStorage["Lab_BarraPosF"]) { PosBarra = Math.round((Alto - 6) / 2); }
@@ -383,7 +402,7 @@ $Lab = new function() {
                 this.DragFilas(false);
                 $("#Lab_Preview").focus();      // Asigno el foco al iframe del resultado, especialmente por los ejempls con canvas
                 break;
-            case "1" : // Mixto columnas
+            case "2" : // Mixto columnas
                 $(".CodeMirror").css({ "display" : "block" });
                 PosBarra = Math.round((Ancho - 6) / 2);
 //                if (undefined === localStorage["Lab_BarraPosF"]) { PosBarra = Math.round((Ancho - 6) / 2); } // El 6 son los pixeles que ocupa la barra
@@ -401,13 +420,13 @@ $Lab = new function() {
                 this.DragColumnas(false);
                 $("#Lab_Preview").focus();      // Asigno el foco al iframe del resultado, especialmente por los ejempls con canvas
                 break;
-            case "2" : // Código
+            case "3" : // Código
                 $("#Lab_Barra1").css({  display : "none" });
                 $("#Lab_Preview").css({ display : "none" });
                 this.Editor.setSize( Ancho,  Alto );
                 $(".CodeMirror").css({ "display" : "block" });
                 break;
-            case "3" : // PreView
+            case "4" : // PreView
                 $("#Lab_Barra1").css({  display : "none" });
                 $("#Lab_Preview").css({ display : "block", top : 0, left : AnchoMenu, height : Alto, width : Ancho });
                 $(".CodeMirror").css({ "display" : "none" });

@@ -332,6 +332,7 @@ class devildrey33 {
                 "<div class='Menu_Boton'>".Intro().
                     "<span class='Menu_Boton_Cruz' id='BarraNavegacion_Lab_IconoVer'>".Intro().
 /*                        "<span></span>".Intro().  */
+                        "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-modocabecera' />".Intro().
                         "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-filas' />".Intro().
                         "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-columnas' />".Intro().
                         "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-codigo' />".Intro().
@@ -339,6 +340,14 @@ class devildrey33 {
                     "</span>".Intro().
                 "</div>".Intro().
                 "<div class='Menu_Marco' id ='BarraNavegacion_LabMarcoVer'>".Intro().                                       
+                    "<input id='Lab_VerModoCabecera_Estado' class='Menu_Boton_Input' type='radio' name='Lab_Ver' />".Intro().
+                    "<label tooltip-es='Ver Modo Cabecera' tooltip-en='Rows' tooltip-pos='B' class='Menu_Boton_Label Lab_BotonVerModoCabecera' for='Lab_VerModoCabecera_Estado'></label>".Intro().                    
+                    "<div class='Menu_Boton'>".Intro().
+                        "<span class='Menu_Boton_Cruz' id='BarraNavegacion_Lab_IconoVer'>".Intro().
+                            "<img class='Menu_Boton_SVG' src='".Base::URL_Web()."SVG/Iconos50x50.svg#svg-vista-modocabecera' sinopacidad='true' />".Intro().
+                        "</span>".Intro().
+                    "</div>".Intro().
+
                     "<input id='Lab_VerFilas_Estado' class='Menu_Boton_Input' type='radio' name='Lab_Ver' />".Intro().
                     "<label tooltip-es='Ver Filas' tooltip-en='Rows' tooltip-pos='B' class='Menu_Boton_Label Lab_BotonVerFilas' for='Lab_VerFilas_Estado'></label>".Intro().                    
                     "<div class='Menu_Boton'>".Intro().

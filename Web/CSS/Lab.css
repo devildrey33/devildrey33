@@ -205,9 +205,10 @@ and open the template in the editor.
 };*/
 
 /* Ajustes para los botones de las vistas del lab */
-#Lab_VerColumnas_Estado + label { left: 61px; }
-#Lab_VerCodigo_Estado + label { left: 121px; }
-#Lab_VerPreview_Estado + label { left: 181px; }
+#Lab_VerFilas_Estado + label    { left: 61px;}
+#Lab_VerColumnas_Estado + label { left: 121px; }
+#Lab_VerCodigo_Estado + label   { left: 181px; }
+#Lab_VerPreview_Estado + label  { left: 241px; }
 
 .Lab_BotonVerCodigo, .Lab_BotonVerPreview, .Lab_BotonVerMixto, .Lab_BotonVerColumas, .Lab_BotonVerFilas {
     background-repeat: no-repeat;

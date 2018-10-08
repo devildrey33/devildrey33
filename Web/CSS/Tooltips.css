@@ -37,9 +37,10 @@ html[lang='es'] *[tooltip-es]::after, html[lang='en'] *[tooltip-en]::after {
 [tooltip-pos='T']::after { top:-52px; right:0px;  } /* Desde arriba */
 [tooltip-pos='B']::after { top:70px; right:0px;  } /* Desde abajo */
 /* Botones para las vistas del lab */
-#Lab_VerCodigo_Estado   + [tooltip-pos='B']::after     { right:-60px;  }
-#Lab_VerColumnas_Estado + [tooltip-pos='B']::after     { right:-120px; }
-#Lab_VerFilas_Estado    + [tooltip-pos='B']::after     { right:-180px; }
+#Lab_VerCodigo_Estado       + [tooltip-pos='B']::after { right:-60px;  }
+#Lab_VerColumnas_Estado     + [tooltip-pos='B']::after { right:-120px; }
+#Lab_VerFilas_Estado        + [tooltip-pos='B']::after { right:-180px; }
+#Lab_VerModoCabecera_Estado + [tooltip-pos='B']::after { right:-240px; }
 /* Botones de las redes sociales */
 /*#BarraNavegacion_MarcoRedesSociales_GooglePlus::after  { right:-8px;  }*/
 #BarraNavegacion_MarcoRedesSociales_Twitter::after     { right:-60px;  }

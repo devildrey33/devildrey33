@@ -135,13 +135,15 @@
         <div class="ImagenOriginal"></div>
         <div class="ImagenFiltro" id="ImagenBlur"></div>
     </div>
-    <p>Filtro para desenfocar el objeto (<a href='https://es.wikipedia.org/wiki/Desenfoque_gaussiano' target='_blank'>desenfoque Gaussiano</a>). </p>
-    <p>Hay que especificar el rádio para definir la desviación estándar, el rádio se puede especificar con cualquier tipo de unidad de tamaño relativa válida. Para más información consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.</p>
-    <p>Por ejemplo :</p>
-<!-- -[INICIO devildrey33.blur]-            
-filter:blur(0px);                                                       /* valor por defecto       */
-filter:blur(5px);                                                       /* 2 píxeles de desenfoque */
--[FIN devildrey33.blur]- -->
+    <p>Filtro que aplica un <a href='https://es.wikipedia.org/wiki/Desenfoque_gaussiano' target='_blank'>desenfoque Gaussiano</a> al objeto.</p>
+<p>El desenfoque debe ser un valor positivo utilizando cualquier tipo de unidad de tamaño relativa válida excepto porcentajes '<code>%</code>'.</p>
+<p>Se tiene que especificar un valor que determinarña la dfesviación estándar, dicho valor puede ser especificado utilizando cualquier tipo de unidad relativa válida (excepto porcentajes '<code>%</code>').
+    <br /> Consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem">Referencia CSS : Unidades</a> para más información.</p>
+<p>Por ejemplo podéis ver los pasos de la animación de la derecha :</p>            
+<!-- -[INICIO devildrey33.blur]-
+filter:blur(0px);          /* 0 píxeles de desenfoque */
+filter:blur(5px);          /* 5 píxeles de desenfoque */
+ -[FIN devildrey33.blur]- -->
     <?php 
         $Base->PintarCodigo->PintarArchivoCSS("blur", "", basename(__FILE__), 'blur'); 
     ?> 

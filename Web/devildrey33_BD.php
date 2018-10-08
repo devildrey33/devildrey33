@@ -12,9 +12,9 @@ class devildrey33_BD {
         if (file_exists(dirname(__FILE__).'/Passwords.php')) {
             $ArrayDatos = (require dirname(__FILE__).'/Passwords.php');
 
-            if (strpos($_SERVER["SERVER_NAME"], "devildrey33.esy.es") !== false)    $this->_mysqli = new mysqli($ArrayDatos["URL-BD-H"], $ArrayDatos["USER-BD-H"], $ArrayDatos["PASS-BD-H"], $ArrayDatos["NOM-BD-H"]);
-            else if (strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false)   $this->_mysqli = new mysqli($ArrayDatos["URL-BD"], $ArrayDatos["USER-BD"], $ArrayDatos["PASS-BD"], $ArrayDatos["NOM-BD"]);
-            else                                                                    $this->_mysqli = new mysqli("localhost", "root", $ArrayDatos["PASS-BD-LOCAL"], $ArrayDatos["NOM-BD"]);
+            if      (strpos($_SERVER["SERVER_NAME"], "devildrey33.esy.es") !== false)   $this->_mysqli = new mysqli($ArrayDatos["URL-BD-H"], $ArrayDatos["USER-BD-H"], $ArrayDatos["PASS-BD-H"], $ArrayDatos["NOM-BD-H"]);
+            else if (strpos($_SERVER["SERVER_NAME"], "devildrey33.es") !== false)       $this->_mysqli = new mysqli($ArrayDatos["URL-BD"], $ArrayDatos["USER-BD"], $ArrayDatos["PASS-BD"], $ArrayDatos["NOM-BD"]);
+            else                                                                        $this->_mysqli = new mysqli("localhost", "root", $ArrayDatos["PASS-BD-LOCAL"], $ArrayDatos["NOM-BD"]);
 
             if ($this->_mysqli->connect_errno) {            
                 error_log("<span style='color:red'>Error iniciando la BD en <b>".$_SERVER["SERVER_NAME"]."</b></span> : ".utf8_encode($this->_mysqli->connect_error));

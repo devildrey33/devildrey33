@@ -28,7 +28,9 @@ and open the template in the editor.
     #Logo, #BarraPrincipal, #BarraNavegacion,                       /* Barres laterals  */
     #Categorias, #Categorias_Estado + #Categorias_Label,            /* Marco categorias y label para expandir / contraer las categorias */
     #Cabecera, #Comentarios_MarcoDatos,                             /* Cabecera del blog, marco unicamente con los comentarios posteados */
-    #Comentarios_Comentario, .devildrey33_Marco, .Codigo_Marco      /* Marco con los controles de los comentarios, marco estandar (se mantiene por compatibilidad), marco para cÃ³digo */
+    #Comentarios_Comentario, .devildrey33_Marco,                    /* Marco con los controles de los comentarios */
+    .Codigo_Marco, .Tabla                                           /* Marco con código de ejemplo, Tabla con varias columnas y filas de datos*/
+    
                         { zoom:1.5 !important; }
     body                { margin-left:90px; }  
     #MarcoNavegacion    { left:-10px;}

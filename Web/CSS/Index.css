@@ -4,6 +4,14 @@
     position:relative;
 }
 
+/* Marco que contiene el texto del articulo (titulo, visitas, comentarios, votos, fecha, categoriías)*/
+.Articulo_Portada_MarcoDatos {
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+/* Esquinas animadas */
 .Articulo_Portada_MarcoI, .Articulo_Portada_MarcoD {
     position:absolute;
     display: inline-block;

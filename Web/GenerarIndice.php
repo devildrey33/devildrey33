@@ -61,21 +61,22 @@
                     $Codigo .= "<article class='Articulo_Portada' style='transition-delay:".(rand(0, 50) / 100)."s'>".Intro();
                     $Codigo .=    "<div class='Articulo_Portada_MarcoI'></div>".Intro();
                     $Codigo .=    "<div class='Articulo_Portada_MarcoD'></div>".Intro();
-                    $Codigo .=    "<a href='".$URL."'>".Intro().
-                                    "<div class='Articulo_Portada_ImagenO'></div>".Intro().
-                                    "<img src='".Base::URL_Graficos()."155x125_".$EntradasPC[$i]["Imagen"]."' class='Articulo_Portada_Imagen' alt='".$EntradasPC[$i]["Titulo"]."' />".Intro().
-                                  "</a>".Intro();
-                    $Codigo .=    "<h1><a href='".$URL."'>".$EntradasPC[$i]["Titulo"]."</a></h1>".Intro();
-                    $Codigo .=    "<div class='MarcoInformacion'>".Intro();
+//                    $Codigo .=    "<div class='Articulo_Portada_Marco'>".Intro();
+                    $Codigo .=      "<a href='".$URL."'>".Intro().
+                                      "<div class='Articulo_Portada_ImagenO'></div>".Intro().
+                                      "<img src='".Base::URL_Graficos()."155x125_".$EntradasPC[$i]["Imagen"]."' class='Articulo_Portada_Imagen' alt='".$EntradasPC[$i]["Titulo"]."' />".Intro().
+                                    "</a>".Intro();
+                    $Codigo .=      "<h1><a href='".$URL."'>".$EntradasPC[$i]["Titulo"]."</a></h1>".Intro();
+                    $Codigo .=      "<div class='MarcoInformacion'>".Intro();
                     
                     
                     $ValoresEntrada = $BD->ObtenerValoresEntrada2($EntradasPC[$i]["URL"], false);
-                    $Codigo .=    "<div>".
-                                    "<b>".$ValoresEntrada["Visitas"]."</b> visitas, ".
-                                    "<b>".$ValoresEntrada["Comentarios"]."</b> ";
+                    $Codigo .=      "<div>".
+                                        "<b>".$ValoresEntrada["Visitas"]."</b> visitas, ".
+                                        "<b>".$ValoresEntrada["Comentarios"]."</b> ";
                     if ($ValoresEntrada["Comentarios"] != 1) { $Codigo .= "comentarios"; }
                     else                                     { $Codigo .= "comentario"; }
-                    $Codigo .=      ", <b>".$ValoresEntrada["Votaciones"]["TotalVotaciones"]."</b> ";
+                    $Codigo .=          ", <b>".$ValoresEntrada["Votaciones"]["TotalVotaciones"]."</b> ";
                     if ($ValoresEntrada["Votaciones"]["TotalVotaciones"] == 1) { $Codigo .= "voto"; }
                     else                                                       { 
                         if ($ValoresEntrada["Votaciones"]["TotalEstrellas"] == 0) {
@@ -85,7 +86,9 @@
                             $Codigo .= "votos con una media de <b>".round($ValoresEntrada["Votaciones"]["TotalEstrellas"] / $ValoresEntrada["Votaciones"]["TotalVotaciones"], 2)."</b> sobre <b>5</b>.";                            
                         }                        
                     }                            
+//                    $Codigo .=      "</div>".Intro();
                     $Codigo .=    "</div>".Intro();
+
                     //$Codigo .=    "<div>".$BD->ObtenerValoresEntrada($EntradasPC[$i]["URL"], $EntradasPC[$i]["Titulo"], false)."</div>".Intro();
 //                    $Codigo .=    "<div>".$BD->ObtenerValoresEntrada($EntradasPC[$i]["URL"], $EntradasPC[$i]["Titulo"], false)."</div>".Intro();
                     $Codigo .=    "<div>".substr($EntradasPC[$i]["Fecha"], 0, 2)." de ".Indice::ObtenerMesStr(substr($EntradasPC[$i]["Fecha"], 3, 2))." del ".substr($EntradasPC[$i]["Fecha"], 6, 4)." por <b>".$EntradasPC[$i]["Autor"]."</b></siv>".Intro();

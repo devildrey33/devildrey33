@@ -97,16 +97,16 @@ var ObjetoCanvas = function(Opciones) {
         // Boton pantalla completa / restaurar pantalla
         if (this.OpcionesCanvas.BotonPantallaCompleta === true) {
             StrHtml += "<div class='ObjetoCanvas_Boton' id='ObjetoCanvas_PantallaCompleta' title='" + this.Textos[this.OpcionesCanvas.Idioma][4] + "'>" +
-                    "<img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-pantalla-completa' />" +
+                    "<img src='https://cdn.rawgit.com/devildrey33/devildrey33/ddb01d71/Web/SVG/Iconos50x50.svg#svg-pantalla-completa' />" +
                 "</div>" +
                 "<div class='ObjetoCanvas_Boton' id='ObjetoCanvas_RestaurarPantalla' title='" + this.Textos[this.OpcionesCanvas.Idioma][5] +"'>" +
-                    "<img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-restaurar-pantalla' />" +
+                    "<img src='https://cdn.rawgit.com/devildrey33/devildrey33/ddb01d71/Web/SVG/Iconos50x50.svg#svg-restaurar-pantalla' />" +
                 "</div>";
         }
         // Boton con el logo
         if (this.OpcionesCanvas.BotonLogo === true) {
-            StrHtml +=  "<a href='https://devildrey33.es' class='ObjetoCanvas_Boton' target='_blank' title='"+ this.Textos[this.OpcionesCanvas.Idioma][6] +"' id='ObjetoCavas_Logo'>" +
-                    "<img src='https://devildrey33.es/Web/SVG/Iconos50x50.svg#svg-logo' />" +
+            StrHtml +=  "<a href='https://github.com/devildrey33' class='ObjetoCanvas_Boton' target='_blank' title='"+ this.Textos[this.OpcionesCanvas.Idioma][6] +"' id='ObjetoCavas_Logo'>" +
+                    "<img src='https://cdn.rawgit.com/devildrey33/devildrey33/ddb01d71/Web/SVG/Iconos50x50.svg#svg-logo' />" +
                     "<div id='ObjetoCavas_TextoLogo'>" +
                         "<span>D</span>" + "<span>E</span>" + "<span>V</span>" + "<span>I</span>" + "<span>L</span>" + "<span>D</span>" + "<span>R</span>" + "<span>E</span>" + "<span>Y</span>" + "<span>&nbsp;</span>" + "<span>3</span>" + "<span>3</span>" +
                     "</div>" +
@@ -219,7 +219,7 @@ ObjetoCanvas.prototype.MostrarErrorIniciarWebGL = function(error) {
     // Muestro la ventana con el error y una captura del ejemplo
     var VentanaError = document.getElementById("Cabecera_Error");
     VentanaError.setAttribute("visible", "true");
-    var Captura = (this.OpcionesCanvas["CapturaEjemplo"] === "") ? "" : "<br />" + "<img src='https://devildrey33.es/Web/Graficos/250x200_" + this.OpcionesCanvas["CapturaEjemplo"] + "'>";
+    var Captura = (this.OpcionesCanvas["CapturaEjemplo"] === "") ? "" : "<br />" + "<img src='https://github.com/devildrey33/devildrey33/blob/master/Web/Graficos/250x200_" + this.OpcionesCanvas["CapturaEjemplo"] + "'>";
     VentanaError.innerHTML = "<span>" + this.Textos[this.OpcionesCanvas.Idioma][7] + " : " + error + "</span>" + Captura;
     this.Cargando(false);
 };

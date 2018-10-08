@@ -5,7 +5,7 @@
             <url>Web/JS/ObjetoBase.js</url>
             <bookmark id="4">
                 <name/>
-                <line>336</line>
+                <line>342</line>
                 <key/>
             </bookmark>
         </file>
@@ -33,18 +33,40 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/devildrey33/Webs/devildrey33/Web/devildrey33_BD.php</file>
             <file>file:/F:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/clip-path.php</file>
-            <file>file:/F:/devildrey33/Webs/devildrey33/Web/JS/3rdParty/codemirror.min.js</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/JS/ObjetoAdmin.Log.js</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/JS/ObjetoIndice.js</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Documentacion/CSS/Funciones/ellipse.php</file>
             <file>file:/F:/devildrey33/Webs/devildrey33/Web/GenerarIndice.php</file>
-            <file>file:/F:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/Sinusoidal.html</file>
             <file>file:/F:/devildrey33/Webs/devildrey33/Web/devildrey33_cmd.php</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/JS/ObjetoAdmin.Comentarios.js</file>
             <file>file:/F:/devildrey33/Webs/devildrey33/Web/devildrey33.php</file>
-            <file>file:/F:/devildrey33/Webs/devildrey33/Web/Config/EntradasBlog.php</file>
-            <file>file:/F:/devildrey33/Webs/devildrey33/Web/JS/ObjetoBase.js</file>
-            <file>file:/F:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/EspectroAudible.html</file>
-            <file>file:/F:/devildrey33/Webs/devildrey33/Web/devildrey33_Documentacion.php</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Ejemplos/GraficoTarta/GraficoTarta.html</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/CSS/BarraNavegacion.css</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/JS/ObjetoAdmin.js</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/SVG/Iconos50x50.svg</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Documentacion/CSS/Funciones/blur.php</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/CSS/Index.css</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/CSS/Lab.css</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/CSS/Tooltips.css</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/CSS_BD.php</file>
             <file>file:/F:/devildrey33/Webs/devildrey33/Ejemplos/SpaceInvaders404/SpaceInvaders404.html</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/devildrey33_BD.php</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/devildrey33_Comentarios.php</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/Config/EntradasBlog.php</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/CSS/Media.css</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/JS/ObjetoLab.js</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/JS/ObjetoAdmin.Lab.js</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Ejemplos/Nuevo.html</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/devildrey33_Documentacion.php</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/JS/ObjetoComentarios.js</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/Sinusoidal.html</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Documentacion/CSS/Funciones/circle.php</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/JS/ObjetoBase.js</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Web/Config/EntradasDocCSS.php</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/EspectroAudible.html</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Documentacion/CSS/Propiedades/filter.php</file>
+            <file>file:/F:/devildrey33/Webs/devildrey33/Ejemplos/BannerTest/Helix.html</file>
         </group>
     </open-files>
 </project-private>

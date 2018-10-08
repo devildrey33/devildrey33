@@ -374,7 +374,7 @@ clip-path:polygon(  0%   0%,   0% 100%,  25% 100%,  25%  25%,  75%  25%,  75%  7
 
 <hr />
 <h2>Área de partida</h2>
-<p>En la MDN (en inglés, que es la más completa) se menciona que se puede especificar un área de partida (basic-shape) desde donde se calculará el clip-path. SOLO Para firefox (de momento) podemos especificar el área de partida para la función inset. Pero según mis pruebas parece que no funciona con las funciones cirle, ellipse, y polygon.
+<p>En la <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/clip-path' target ='_blank'>MDN (en inglés, que es la más completa)</a> se menciona que se puede especificar un área de partida (basic-shape) desde donde se calculará el clip-path. SOLO Para firefox (de momento) podemos especificar el área de partida para la función inset. Pero según mis pruebas parece que no funciona con las funciones <code>cirle</code>, <code>ellipse</code>, y <code>polygon</code>. Por lo que parece que estos parámetros solo sirven para la función <code>inset()</code>
 <!--<table class='Tabla'>
     <tr>
         <td style="width:250px"><b>fill-box<br />stroke-box<br />view-box<br />margin-box<br />border-box<br />padding-box<br />content-box</b></td>
