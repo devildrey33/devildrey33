@@ -219,7 +219,7 @@ ObjetoCanvas.prototype.MostrarErrorIniciarWebGL = function(error) {
     // Muestro la ventana con el error y una captura del ejemplo
     var VentanaError = document.getElementById("Cabecera_Error");
     VentanaError.setAttribute("visible", "true");
-    var Captura = (this.OpcionesCanvas["CapturaEjemplo"] === "") ? "" : "<br />" + "<img src='https://github.com/devildrey33/devildrey33/blob/master/Web/Graficos/250x200_" + this.OpcionesCanvas["CapturaEjemplo"] + "'>";
+    var Captura = (this.OpcionesCanvas["CapturaEjemplo"] === "") ? "" : "<br />" + "<img src='https://cdn.rawgit.com/devildrey33/devildrey33/2ff5c5dc/Web/Graficos/250x200_" + this.OpcionesCanvas["CapturaEjemplo"] + "'>";
     VentanaError.innerHTML = "<span>" + this.Textos[this.OpcionesCanvas.Idioma][7] + " : " + error + "</span>" + Captura;
     this.Cargando(false);
 };
