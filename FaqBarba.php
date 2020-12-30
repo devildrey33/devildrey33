@@ -15,7 +15,7 @@
         <p>Et vaig dir que la web no funcionaba si no la posaves a l'arrel del servidor, però ara ja es pot fer anar desde un sub-directori.</p>
         <?php             
             if ("/".Base::PathRelativo_Raiz() !== $htaccess["RewriteBase"]) {
-                echo "<p>Desde aquesta arrel ".Base::URL_Raiz()." es necesita un '<code>RewriteBase /".Base::PathRelativo_Raiz()."</code>' i tens ho configurat com a '<code style='color:red; font-weight:bold'>RewriteBase ".$htaccess["RewriteBase"]."</code>'. ". 
+                echo "<p>Desde aquesta arrel ".Base::URL_Raiz()." es necesita un '<code>RewriteBase /".Base::PathRelativo_Raiz()."</code>' i ho tens configurat com a '<code style='color:red; font-weight:bold'>RewriteBase ".$htaccess["RewriteBase"]."</code>'. ". 
                         "Obre aquest enllaç per solucionar-ho : <a href='AsignarRaiz.php' target='_blank'>AsignarRaiz.php</a>, i despres recarrega el Faq.";                
             }            
             else {

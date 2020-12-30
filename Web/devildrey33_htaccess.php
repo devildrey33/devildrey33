@@ -48,7 +48,7 @@ class devildrey33_htaccess {
         $DatosNuevos = substr($Datos, 0, $PosInicio);
         
         $DatosNuevos .= "#INICIO ips baneadas\r\n".
-                "deny from 213.5.64.19 		#spamer conocido\r\n";
+                "deny from 213.5.64.19\r\n";
         $DatosNuevos .= substr($Datos, $PosFin, strlen($Datos) - $PosFin);
         file_put_contents(Base::Path_Raiz().".htaccess", $DatosNuevos);
     }

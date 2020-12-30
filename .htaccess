@@ -10,7 +10,7 @@ AddType text/css .css
 <Limit GET>
 order allow,deny
 #INICIO ips baneadas
-deny from 213.5.64.19 		#spamer conocido
+deny from 213.5.64.19
 #FIN ips baneadas
 allow from all
 </Limit> 

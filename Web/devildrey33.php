@@ -824,12 +824,15 @@ class devildrey33 {
             $PathFalso = "/".$Archivo;
         }
         
-        $ArchivoSinEntrada = $_SERVER["DOCUMENT_ROOT"]."/".$ArchivoSinEntrada;
+         
+        $ArchivoSinEntrada = Base::Path_Raiz()."/".$ArchivoSinEntrada;
+//        $ArchivoSinEntrada = $_SERVER["DOCUMENT_ROOT"]."/".$ArchivoSinEntrada;
         
 //			echo "<br />".$Archivo."<br />".$ArchivoSinEntrada;
         // No se ha encontrado la entrada en el XML (propiedad css)
 //        if (file_exists($ArchivoSinEntrada)) $this->_Echo($this->RedesSociales($PathFalso, $TituloHead));
         echo "<h1>".$TituloH1."</h1>".Intro();		
+// echo $ArchivoSinEntrada." --- ".$_SERVER["DOCUMENT_ROOT"];
 
 //        echo $ArchivoSinEntrada;
         if (file_exists($ArchivoSinEntrada)) {

@@ -899,7 +899,8 @@ class devildrey33_PintarCodigo {
         $ID = $this->_RetocarNombreArchivo($ID);
         $NombreArchivo = $this->_RetocarNombreArchivo($Archivo);
         if ($ID != "") 	$NombrePintado = dirname(__FILE__).$this->_PathCache.$NombreArchivo."_".$ID.".PintarCodigo";
-        else		$NombrePintado = dirname(__FILE__).$this->_PathCache.$NombreArchivo.".PintarCodigo";
+        else		    $NombrePintado = dirname(__FILE__).$this->_PathCache.$NombreArchivo.".PintarCodigo";
+        $NombrePintado = str_replace('\\', '/', $NombrePintado);
         $ArchivoPrePintado = fopen($NombrePintado, "w");
         fwrite($ArchivoPrePintado, $Datos, strlen($Datos));
         fclose($ArchivoPrePintado);
