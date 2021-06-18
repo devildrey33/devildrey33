@@ -51,8 +51,8 @@ and open the template in the editor.
 /*    .VentanaMensaje::before {  }*/
 }
 
-/* En l'index si l'ample de la pantalla fa mes de 1700 px creo una segona columna per mostrar les entrades '*/
-@media only screen and (min-width: 1500px) and (orientation: landscape) {
+/* En l'index si l'ample de la pantalla fa mes de 1440 px creo una segona columna per mostrar les entrades '*/
+@media only screen and (min-width: 1440px) and (orientation: landscape) {
     /* Articles amb el 50% d'ample (menys 300 pixels de padding) */
     #MarcoIndice > .Articulo_Portada {
         display: inline-block;
@@ -60,6 +60,6 @@ and open the template in the editor.
     }    
     /* Faig la font del titul un pel mes petita */
     .Articulo_Portada > h1 {
-        font-size: 2rem;
+        font-size: 1.3vw;
     }    
 }

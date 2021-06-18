@@ -28,9 +28,9 @@ html {
 }
 h1, h2, h3, h4, h5 { font-family : 'Karla', sans-serif; }
 h2, h3, h4, h5 { margin : 0px; }       
-h1 {font-size: 2.5rem;}             
-h2 { font-size : 2.5rem;    display : table;   transition : 0.5s ease-in-out; } /* transiciÃ³n para la el resaltado de color de texto del ancla */
-h3 { font-size : 2.0rem;    display : table; }
+h1 { font-size : 1.5vw;}             
+h2 { font-size : 1.5vw;    display : table;   transition : 0.5s ease-in-out; } /* transiciÃ³n para la el resaltado de color de texto del ancla */
+h3 { font-size : 1.0vw;    display : table; }
 h2[resaltado] { color : rgb(234, 80, 78); }
 
 body { 
