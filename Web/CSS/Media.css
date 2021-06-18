@@ -60,6 +60,6 @@ and open the template in the editor.
     }    
     /* Faig la font del titul un pel mes petita */
     .Articulo_Portada > h1 {
-        font-size: 1.3vw;
+        font-size: 1.2vw;
     }    
 }

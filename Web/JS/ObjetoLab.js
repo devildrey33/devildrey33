@@ -329,7 +329,7 @@ $Lab = new function() {
      **/  
     this.AjustarVista = function(NuevaVista, Guardar) {
         if (document.getElementById("Lab_Barra1") === null) { return; }
-        // -1 Por defecto, 0 Mixta columnas, 1 Mixta filas, 2 Código, 3 Preview
+        // -1 Por defecto, 0 Cabecera, 1 Mixta columnas, 2 Mixta filas, 3 Código, 4 Preview
         if (NuevaVista === "-1") { 
             NuevaVista = (typeof(localStorage["Lab_Vista"]) === "undefined")? "0" : localStorage["Lab_Vista"]; 
         }

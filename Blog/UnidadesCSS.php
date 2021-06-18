@@ -82,7 +82,7 @@
                     </tr>
                     <tr>
                         <td><b>%</b></td>
-                        <td>Porcentaje.</td>                        
+                        <td>Porcentaje del ancho disponible en el ambito actual, por ejemplo de un menú lateral.</td>                        
                     </tr>
                 </table>                
                 <br />
