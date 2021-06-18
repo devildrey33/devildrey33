@@ -6,7 +6,7 @@
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(        
 array(	"Titulo" 	=> "Propiedad CSS : filter",
-        "Fecha" 	=> "28/06/2016",
+        "Fecha" 	=> "28/06/2018",
         "URL" 		=> "CSS/Propiedades/filter",
         "Tags" 		=> array("CSS", "HTML"),
         "Tipo"		=> "DocCSS",
