@@ -57,14 +57,15 @@
                     if ($Modo !== "Invalido") {
                         // Los archivos HTML y SVG pueden tener un comentario que especifica la vista por defecto (si no se especifica una vista por defecto se mostrara por filas)
                         if ($Modo === "text/html") {
-                            if (strpos($DatosArchivo, "devildrey33_Lab->Opciones->Vista = Filas;"))               { $Vista = "0"; } 
-                            elseif (strpos($DatosArchivo, "devildrey33_Lab->Opciones->Vista = Columnas;"))        { $Vista = "1"; }
-                            elseif (strpos($DatosArchivo, "devildrey33_Lab->Opciones->Vista = Codigo;"))          { $Vista = "2"; }
-                            elseif (strpos($DatosArchivo, "devildrey33_Lab->Opciones->Vista = Preview;"))         { $Vista = "3"; }
+                            if (strpos($DatosArchivo, "devildrey33_Lab->Opciones->Vista = Cabecera;"))            { $Vista = "0"; } 
+                            elseif (strpos($DatosArchivo, "devildrey33_Lab->Opciones->Vista = Filas;"))           { $Vista = "1"; }
+                            elseif (strpos($DatosArchivo, "devildrey33_Lab->Opciones->Vista = Columnas;"))        { $Vista = "2"; }
+                            elseif (strpos($DatosArchivo, "devildrey33_Lab->Opciones->Vista = Codigo;"))          { $Vista = "3"; }
+                            elseif (strpos($DatosArchivo, "devildrey33_Lab->Opciones->Vista = Preview;"))         { $Vista = "4"; }
                         }
                         // Los archivos JS y CSS solo se pueden mostrar en vista de Código
                         else {
-                            $Vista = "2";
+                            $Vista = "3";
                         }
                         
                         // Sumo una visita para este ejemplo
@@ -74,7 +75,7 @@
                         // Retorno el código 200 (HTML)
                         $Ret = 200;
                     }
-                    else {// No se permite acceder a archivos que no sean .html, .js, .css, y .svg
+                    else { // No se permite acceder a archivos que no sean .html, .js, .css, y .svg
                        $Archivo = "Ejemplos/ErrorExtension.html";
                        $DatosArchivo = file_get_contents(Base::Path_Raiz().$Archivo, FILE_USE_INCLUDE_PATH);
                        $Ret = 200; 

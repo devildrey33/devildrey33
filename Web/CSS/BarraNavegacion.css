@@ -39,26 +39,36 @@ body[tipo=LabError] #BarraNavegacion_LabExplorar {
 
 
 
-/* */
-#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=filas] > .Menu_Boton_SVG:nth-child(1) { display:block; }
-#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=filas] > .Menu_Boton_SVG:nth-child(2),
+/* Imagen final para el boton de la vista del lab */
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=modocabecera] > .Menu_Boton_SVG:nth-child(1) { display:block; }
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=modocabecera] > .Menu_Boton_SVG:nth-child(2),
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=modocabecera] > .Menu_Boton_SVG:nth-child(3),
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=modocabecera] > .Menu_Boton_SVG:nth-child(4),
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=modocabecera] > .Menu_Boton_SVG:nth-child(5) { display:none; }
+
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=filas] > .Menu_Boton_SVG:nth-child(2) { display:block; }
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=filas] > .Menu_Boton_SVG:nth-child(1),
 #BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=filas] > .Menu_Boton_SVG:nth-child(3),
-#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=filas] > .Menu_Boton_SVG:nth-child(4) { display:none; }
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=filas] > .Menu_Boton_SVG:nth-child(4),
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=filas] > .Menu_Boton_SVG:nth-child(5) { display:none; }
 
-#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=columnas] > .Menu_Boton_SVG:nth-child(2) { display:block; }
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=columnas] > .Menu_Boton_SVG:nth-child(3) { display:block; }
 #BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=columnas] > .Menu_Boton_SVG:nth-child(1),
-#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=columnas] > .Menu_Boton_SVG:nth-child(3),
-#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=columnas] > .Menu_Boton_SVG:nth-child(4) { display:none; }
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=columnas] > .Menu_Boton_SVG:nth-child(2),
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=columnas] > .Menu_Boton_SVG:nth-child(4),
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=columnas] > .Menu_Boton_SVG:nth-child(5) { display:none; }
 
-#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=codigo] > .Menu_Boton_SVG:nth-child(3) { display:block; }
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=codigo] > .Menu_Boton_SVG:nth-child(4) { display:block; }
 #BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=codigo] > .Menu_Boton_SVG:nth-child(1),
 #BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=codigo] > .Menu_Boton_SVG:nth-child(2),
-#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=codigo] > .Menu_Boton_SVG:nth-child(4) { display:none; }
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=codigo] > .Menu_Boton_SVG:nth-child(3),
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=codigo] > .Menu_Boton_SVG:nth-child(5) { display:none; }
 
-#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=preview] > .Menu_Boton_SVG:nth-child(4) { display:block; }
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=preview] > .Menu_Boton_SVG:nth-child(5) { display:block; }
 #BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=preview] > .Menu_Boton_SVG:nth-child(1),
 #BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=preview] > .Menu_Boton_SVG:nth-child(2),
-#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=preview] > .Menu_Boton_SVG:nth-child(3) { display:none; }
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=preview] > .Menu_Boton_SVG:nth-child(3),
+#BarraNavegacion_BotonVer_Estado + .Menu_Boton_Label + .Menu_Boton > span[ver=preview] > .Menu_Boton_SVG:nth-child(4) { display:none; }
 
 
 /* Por defecto oculto*/ 
