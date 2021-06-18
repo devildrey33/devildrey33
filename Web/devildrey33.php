@@ -776,7 +776,8 @@ class devildrey33 {
                 if ($ValoresEntrada["Comentarios"] != 1) { $Codigo .= "comentarios"; }
                 else                                     { $Codigo .= "comentario"; }
                 $Codigo .=      ", <b>".$ValoresEntrada["Votaciones"]["TotalVotaciones"]."</b> ";
-                if ($ValoresEntrada["Votaciones"]["TotalVotaciones"] == 1) { $Codigo .= "voto"; }
+                
+                if ($ValoresEntrada["Votaciones"]["TotalVotaciones"] == 1) { $Codigo .= "voto de <b>". $ValoresEntrada["Votaciones"]["TotalEstrellas"] ."</b> sobre <b>5</b> "; }
                 else                                                       { 
                     if ($ValoresEntrada["Votaciones"]["TotalEstrellas"] == 0) {
                         $Codigo .= "votos";

@@ -44,11 +44,11 @@ and open the template in the editor.
     body { font-size:1.1rem !important; }
     .Articulo_Portada > div, #Comentarios_BarraControles { display:none !important; }
     /* arreglo per les fonts dels tituls de l'index '*/
-    .Articulo_Portada > h1 { font-size:1.2rem !important; z-index:0; }
+    .Articulo_Portada > h1 { font-size:1vw !important; z-index:0; }
     /* arreglo que fa que les imatges isguin 100% opaques per que si el texte trepitja l'imatge que no es vegi (el texte) */
     .Articulo_Portada > a > .Articulo_Portada_Imagen { opacity:1 !important; }
     .VentanaMensaje { zoom:1.8; font-size:1.5rem; }
-    .VentanaMensaje::before {  }
+/*    .VentanaMensaje::before {  }*/
 }
 
 /* En l'index si l'ample de la pantalla fa mes de 1700 px creo una segona columna per mostrar les entrades '*/
