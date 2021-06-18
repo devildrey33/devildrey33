@@ -73,6 +73,14 @@
                         <td>Un <i>rem</i> es igual al ancho de la letra mayúscula 'M' en la fuente actual. A diferencia de em, el rem se basa en el ancho de la fuente que tiene la etiqueta html.</td>                        
                     </tr>
                     <tr>
+                        <td><b>vw</b></td>
+                        <td>Un <i>vw</i> es un uno porciento del ancho disponible en la ventana del navegador.</td>                        
+                    </tr>
+                    <tr>
+                        <td><b>vh</b></td>
+                        <td>Un <i>vh</i> es un uno porciento de la altura disponible en la ventana del navegador.</td>                        
+                    </tr>
+                    <tr>
                         <td><b>%</b></td>
                         <td>Porcentaje.</td>                        
                     </tr>
