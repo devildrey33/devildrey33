@@ -5,6 +5,15 @@
 
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(        
+array(	"Titulo" 	=> "Dominó 3D",
+        "Fecha" 	=> "16/01/2019",
+        "URL" 		=> "Ejemplos/Domino/index.html",
+        "Tags" 		=> array("Three.js", "JavaScript", "Programación"),
+        "Tipo"		=> "Lab",
+        "Autor"         => "Josep Antoni Bover",
+        "Idioma"        => "es",
+        "Imagen"	=> "Domino.png"),      
+        
 array(	"Titulo" 	=> "Propiedad CSS : filter",
         "Fecha" 	=> "28/06/2018",
         "URL" 		=> "CSS/Propiedades/filter",
