@@ -57,12 +57,11 @@ a:hover { text-decoration : underline; }
 img { max-width : 100%; }
 
 pre, code, kbd, samp, tt {
-/*  font-family:'Nova Mono',monospace !important;*/
-  font-family : Inconsolata, monospace;
-  font-size   : 1.4rem !important;
-  margin      : 1rem 0px 1rem;
-}
-
+    font-family : Inconsolata, monospace;
+    font-size   : 1.4rem;
+    margin      : 1rem 0px 1rem;
+  }
+  
 hr {
     border-top: 1px solid rgb(200, 200, 200);
     /* margin-left  : -10px; */

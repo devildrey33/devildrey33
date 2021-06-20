@@ -22,7 +22,7 @@ and open the template in the editor.
         only screen and (orientation:portrait) and (-moz-min-device-pixel-ratio: 1.2), 
         only screen and (orientation:portrait) and (-o-min-device-pixel-ratio: 13/10),
         only screen and (orientation:portrait) and (min-resolution: 120dpi) {            
-    h2, .Blog > h3,                                                 /* Tituls */
+    h1, h2, h3,                                                     /* Tituls */
     .nota, .postit, nota, postit,                                   /* Marcs nota/postit */
     .BarraNavegacion_SubIndice, .Sintaxis,                          /* Marc del sub-index, i marc de la sintaxis  */
     #Logo, #BarraPrincipal, #BarraNavegacion,                       /* Barres laterals  */
@@ -36,12 +36,22 @@ and open the template in the editor.
     #MarcoNavegacion    { left:-10px;}
     .Blog               { margin: 0px 100px 0px 30px !important; }    
     #MarcoNavegacionLab { margin: 0px 100px 0px 15px !important; }
+
+    h1      { font-size:2rem; }
+    h2      { font-size:2.7rem; }
+    h3      { font-size:2.6rem; }
+    pre, code, kbd, samp, tt {
+        font-family : Inconsolata, monospace;
+        font-size   : 1.8rem !important;
+        margin      : 1rem 0px 1rem;
+      }
+      
 }
 
 /* En l'index si es un movil en portrait no hi ha ample suficient per posar el titul i els spans informatius, OJU perque nomes ha de ser en movils, en tables NO */
 /* El movil amb resolució mes ample que he vist es el iphone 6p(atata) amb 414px */
 @media  only screen and (max-device-width:420px) and (orientation:portrait) {
-    body { font-size:1.1rem !important; }
+/*    body { font-size:1.1rem !important; }*/
     .Articulo_Portada > div, #Comentarios_BarraControles { display:none !important; }
     /* arreglo per les fonts dels tituls de l'index '*/
     .Articulo_Portada > h1 { font-size:1vw !important; z-index:0; }

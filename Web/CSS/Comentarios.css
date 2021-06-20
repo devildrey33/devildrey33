@@ -195,7 +195,8 @@ body[administrador33=true] #Comentarios_Datos > div[comentario] > .Comentarios_C
 
 
 #Comentarios_MarcoDatos > input {
-    width: 30%;
+    width: 30wv;
+    min-width:300px;
     height: 30px;
     transition:0.4s;
     padding:2px;   
