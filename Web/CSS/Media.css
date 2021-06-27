@@ -39,7 +39,7 @@ and open the template in the editor.
 
     /* Muestro la nota como un bloque, (los display table lo flipan con tamaños moviles) */
     .nota, .postit {
-        display:table !important;
+        display:block !important;
     }
     /* Oculto el texto nota de la izquierda */
     .nota::before, nota::before {
