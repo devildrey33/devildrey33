@@ -12,6 +12,12 @@
 /* Fix para mostrar la fuente Nova Mono */
 .NovaMono { font-family: "Nova Mono";  display:none;  }
 
+/* Variables globales */
+:root {
+    --ColorResaltado:rgb(234, 80, 78);
+    --ColorTextoFO:rgb(2550, 255, 255); /* Color del texto en fondo oscuro */
+}
+
 ::selection {
     background: rgb(234, 80, 78);
     color:#fff;
@@ -26,11 +32,12 @@ html {
    height     : 100%;    
 /*   transition : 0.4s;*/
 }
-h1, h2, h3, h4, h5 { font-family : 'Karla', sans-serif; }
+/*h1, h2, h3, h4, h5 { font-family : 'Karla', sans-serif; }*/
+h1, h2, h3, h4, h5 { font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
 h2, h3, h4, h5 { margin : 0px; }       
-h1 { font-size : 1.5vw;}             
-h2 { font-size : 1.5vw;    display : table;   transition : 0.5s ease-in-out; } /* transiciÃ³n para la el resaltado de color de texto del ancla */
-h3 { font-size : 1.0vw;    display : table; }
+h1 { font-size : 2.5rem;}             
+h2 { font-size : 2.4rem;    transition : 0.5s ease-in-out; } /* transición para la el resaltado de color de texto del ancla */
+h3 { font-size : 2.0rem;    }
 h2[resaltado] { color : rgb(234, 80, 78); }
 
 body { 

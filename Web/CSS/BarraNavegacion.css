@@ -341,7 +341,7 @@ body[administrador33][tipo=Lab][cachemodificada=true] #BarraNavegacion_LabGuarda
     flex:1 1 70px;
     position:relative;
     /* Si no en la vista de movil vertical se hacen enormes, ya que tienen un 200% por defecto */
-    zoom:1 !important;
+/*    zoom:1 !important;*/
 }
 
 #BarraNavegacion_MarcoNextPrev_Desc {
@@ -438,7 +438,7 @@ html[lang=en] #BarraNavegacion_MarcoVotacion > span:nth-child(2)::after {    con
     display:inline-block;
     padding:0px;
     margin:2px;
-    zoom:1!important;
+/*    zoom:1!important;*/
 }
 
 

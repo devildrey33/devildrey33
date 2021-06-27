@@ -371,7 +371,7 @@ html[lang=en] .VotarDocumento > span:nth-child(2)::after {    content:'Doing thi
     display:inline-block;
     padding:0px;
     margin:2px;
-    zoom:1!important;
+/*    zoom:1!important;*/
 }
 
 

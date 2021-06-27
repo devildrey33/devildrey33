@@ -133,6 +133,8 @@
     z-index:1;
 }
 
+
+
 /* Combo de categorias */
 #Categorias_Estado + #Categorias_Label + #Categorias {
     font-family: 'Karla', sans-serif;
@@ -150,6 +152,68 @@
     max-height:19px;
     height:auto;
 }
+
+/* texto de las categorias */
+#Categorias_Estado + #Categorias_Label + #Categorias > span {
+    transition:.4s ease-in;
+    display:inline-block;
+    color:var(--ColorTextoFO);
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);    
+}
+
+/* flecha de las categorias */
+#Categorias_Estado + #Categorias_Label + #Categorias > span::before, #Categorias_Estado + #Categorias_Label + #Categorias > span::after {
+    content:'';
+    position:absolute;
+    border-left:1px solid white;
+    height:16px;
+    width:1px;
+    left:50%;
+    top:30px;
+    transition:.4s ease-in;
+}
+
+/* Texto del combo de categorias en hover */
+#Categorias_Estado + #Categorias_Label:hover + #Categorias > span {
+    color:var(--ColorResaltado);
+}
+
+/* Flecha de las categorías en hover */
+#Categorias_Estado + #Categorias_Label:hover + #Categorias > span::before, 
+#Categorias_Estado + #Categorias_Label:hover + #Categorias > span::after {
+    border-left-color:var(--ColorResaltado);
+}
+
+
+#Categorias_Estado + #Categorias_Label + #Categorias > span::before, #Categorias_Estado + #Categorias_Label + #Categorias > span::after {
+    transform-style: preserve-3d;
+    transition:0.4s ease-out;
+    opacity:1;
+
+}
+
+#Categorias_Estado + #Categorias_Label + #Categorias > span::before {
+    transform:rotate(-45deg);
+    margin-right:10px;
+}
+#Categorias_Estado + #Categorias_Label + #Categorias > span::after {
+    margin-left:10px;
+    transform:rotate(45deg);
+}
+
+/* flecha hacia arriba */
+#Categorias_Estado:checked + #Categorias_Label + #Categorias > span::before {
+    /*transform:rotate(45deg);*/
+    opacity:0;
+}
+#Categorias_Estado:checked + #Categorias_Label + #Categorias > span::after {
+    /*transform:rotate(-45deg);*/
+    opacity:0;
+}
+
 
 #Categorias_Estado:checked + #Categorias_Label + #Categorias { 
     max-height:600px;

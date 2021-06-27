@@ -22,8 +22,8 @@ and open the template in the editor.
         only screen and (orientation:portrait) and (-moz-min-device-pixel-ratio: 1.2), 
         only screen and (orientation:portrait) and (-o-min-device-pixel-ratio: 13/10),
         only screen and (orientation:portrait) and (min-resolution: 120dpi) {            
-    h1, h2, h3,                                                     /* Tituls */
-    .nota, .postit, nota, postit,                                   /* Marcs nota/postit */
+/*    h1, h2, h3,                                                     /* Tituls */
+/*    .nota, .postit, nota, postit,                                   /* Marcs nota/postit */
     .BarraNavegacion_SubIndice, .Sintaxis,                          /* Marc del sub-index, i marc de la sintaxis  */
     #Logo, #BarraPrincipal, #BarraNavegacion,                       /* Barres laterals  */
     #Categorias, #Categorias_Estado + #Categorias_Label,            /* Marco categorias y label para expandir / contraer las categorias */
@@ -37,13 +37,23 @@ and open the template in the editor.
     .Blog               { margin: 0px 100px 0px 30px !important; }    
     #MarcoNavegacionLab { margin: 0px 100px 0px 15px !important; }
 
-    h1      { font-size:2rem; }
-    h2      { font-size:2.7rem; }
-    h3      { font-size:2.6rem; }
+    /* Muestro la nota como un bloque, (los display table lo flipan con tamaños moviles) */
+    .nota, .postit {
+        display:table !important;
+    }
+    /* Oculto el texto nota de la izquierda */
+    .nota::before, nota::before {
+        display:none !important;
+    }
+
+/*    h1, h2      { font-size:2rem; }
+    h3      { font-size:1.5rem; }
+/*    h2      { font-size:2.7rem; }
+    h3      { font-size:2.6rem; }*/
     pre, code, kbd, samp, tt {
         font-family : Inconsolata, monospace;
         font-size   : 1.8rem !important;
-        margin      : 1rem 0px 1rem;
+/*        margin      : 1rem 0px 1rem;*/
       }
       
 }
@@ -54,7 +64,7 @@ and open the template in the editor.
 /*    body { font-size:1.1rem !important; }*/
     .Articulo_Portada > div, #Comentarios_BarraControles { display:none !important; }
     /* arreglo per les fonts dels tituls de l'index '*/
-    .Articulo_Portada > h1 { font-size:1vw !important; z-index:0; }
+    .Articulo_Portada > h1 { font-size:0.9vw !important; z-index:0; }
     /* arreglo que fa que les imatges isguin 100% opaques per que si el texte trepitja l'imatge que no es vegi (el texte) */
     .Articulo_Portada > a > .Articulo_Portada_Imagen { opacity:1 !important; }
     .VentanaMensaje { zoom:1.8; font-size:1.5rem; }

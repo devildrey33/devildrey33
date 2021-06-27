@@ -61,20 +61,20 @@
     height:15px;  /* Tamaño de cada línea */
 }
 /* Colores para los codigos */
-.TxtNegro 	{color:#000000;min-height:  15px;}
-.TxtVerde 	{	color:#006600;			}
+.TxtNegro 	    {color:#000000;min-height:  15px;}
+.TxtVerde 	    {	color:#006600;			    }
 .TxtVerdeClaro 	{	color:rgb(0, 153, 153);		}
-.TxtAzul 	{	color:#0000FF;			}
+.TxtAzul 	    {	color:#0000FF;			    }
 .TxtAzulClaro 	{	color:rgb(102, 129, 255);	}
-.TxtAzulOscuro 	{	color:#009;			}
-.TxtLila 	{	color:rgb(153, 0, 153);		}
-.TxtRosa 	{	color:rgb(255, 58, 255);	}
-.TxtRojo 	{	color:#CC0000;			}
+.TxtAzulOscuro 	{	color:#009;			        }
+.TxtLila 	    {	color:rgb(153, 0, 153);		}
+.TxtRosa 	    {	color:rgb(255, 58, 255);	}
+.TxtRojo 	    {	color:#CC0000;			    }
 .TxtAmarillo 	{	color:rgb(206, 123, 0);		}
-.TxtGris 	{	color:rgb(128, 128, 128);	}
+.TxtGris 	    {	color:rgb(128, 128, 128);	}
 .TxtGrisClaro 	{	color:rgb(98, 143, 181);	}
-.TxtMarron 	{	color:rgb(109, 50, 6);		}
-.TxtNegrita 	{	font-weight:bold;		}
+.TxtMarron  	{	color:rgb(109, 50, 6);		}
+.TxtNegrita 	{	font-weight:bold;		      }
 /* Etiqueta linea para resaltar una línea de un ejemplo */
 linea { 
     display:inline;    

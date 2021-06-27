@@ -202,24 +202,22 @@ filter:contrast(200%);                                                  /* 200% 
     <p>Filtro que a partir de la mascara alfa del objeto crea una o mas sombras.</p>
     <p>Esta función tiene 2 parametros obligatorios, las coordenadas <code>X</code> e <code>Y</code> donde se ubicará la sombra partiendo desde el centro. se puede especificar con cualquier tipo de unidad de tamaño relativa válida. Para más información consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.</p>
     <p>Ademas según la mdn tiene 3 parámetros opcionales, <b>pero hasta la fecha solo dos de ellos funcionan en Webkit</b>.</p>
-<table class='Tabla'>
-    <tr>
-        <td><b>desenfoque</b></td>
-        <td>Rádio de desenfoque. Se utiliza igual que la función <a href=''>blur</a> pero solo se aplica a la sombra.</td>
-    </tr>
-    <tr>
-        <td><b style='color:#777' title='OJO! no recomendado'>expansión</b></td>
-        <td title='OJO! no recomendado'>
-            Rádio de expansión. se puede especificar con cualquier tipo de unidad de tamaño relativa válida. Para más información consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.
+
+    <ul>
+        <li>
+            Rádio de <b>desenfoque</b>. Se utiliza igual que la función <a href=''>blur</a> pero solo se aplica a la sombra.
+        </li>
+        <li>
+            
+            Rádio de <b>expansión</b>. se puede especificar con cualquier tipo de unidad de tamaño relativa válida. Para más información consulta la <a href="/Doc/CSS/Unidades/" target="_blank" title="px, ex, em, rem, %">Referencia CSS : Unidades</a>.
             <div class='nota'><b>no funciona en Webkit</b> e invalida el string de todo el <code>filter</code>, por lo que <b>no se aplicará ningún filtro</b> si especificas mas de 3 valores con un tipo de unidad de tamaño relativo válido...</div>
-        </td>
-    </tr>
-    <tr>
-        <td><b>color</b></td>
-        <td>Color de la sombra. Para mas información sobre los colores en CSS visita este enlace Referencia CSS : <a href='/Doc/CSS/Colores'>Colores</a>.</td>
-    </tr>
-</table>
-<p>Por ejemplo :</p>
+        </li>
+        <li>
+            <b>Color</b> de la sombra. Para mas información sobre los colores en CSS visita este enlace Referencia CSS : <a href='/Doc/CSS/Colores'>Colores</a>.
+        </li>
+    </ul>
+    
+    <p>Por ejemplo :</p>
 <!-- -[INICIO devildrey33.drop-shadow]-
 filter:drop-shadow(3px 3px);                                            /* Sombra abajo a la derecha */
 filter:drop-shadow(-4px 2px 3px red);                                   /* Sombra roja difuminada abajo a la izquierda */
