@@ -251,11 +251,14 @@ class devildrey33 {
                         "<a href='/Blog/Canvas2D_2'>Canvas 2D 2</a>".Intro().
                         "<a href='/Blog/Canvas2D_3'>Canvas 2D 3</a>".Intro().
                         "<a href='/Blog/Canvas2D_4'>Canvas 2D 4</a>".Intro().
-                        "<a href='/Blog/devildrey33_ListaDesplegable_2-0'>Lista desplegable</a>".Intro().
-                        "<a href='/Lab/Ejemplos/Solitario/Solitario.html'>Lab : Solitario HTML5</a>".Intro().                
-                        "<a href='/Lab/Ejemplos/BannerTest/WormHole.html'>Lab : Adiestrando cubos</a>".Intro().                
-                        "<a href='/Lab/Ejemplos/BannerTest/WormHole.html'>Lab : WormHole</a>".Intro().                
-                        "<a href='/Lab/Ejemplos/BannerTest/WormHole.html'>Lab : Sinusoidal</a>".Intro().                
+//                        "<a href='/Blog/devildrey33_ListaDesplegable_2-0'>Lista desplegable</a>".Intro(). 
+                        "<a href='/Lab/Ejemplos/Solitario/Solitario.html'>Solitario HTML5</a>".Intro().                
+                        "<a href='/Lab/Ejemplos/Domino/Domino.html'>Dominó 3D</a>".Intro().                
+                        "<a href='/Lab/Ejemplos/BannerTest/AdiestramientoCubos.html'>Adiestrando cubos</a>".Intro().                
+                        "<a href='/Lab/Ejemplos/BannerTest/WormHole.html'>WormHole</a>".Intro().                
+                        "<a href='/Lab/Ejemplos/BannerTest/Sinusoidal.html'>Sinusoidal</a>".Intro().                
+                        "<a href='/Lab/Ejemplos/CyberParasit/CyberParasit.html'>Cyber Parasit</a>".Intro().                
+                        "<a href='/Lab/Ejemplos/BannerTest/EspectroAudible.html'>Espectro Audible</a>".Intro().                
                     "</div>".Intro().
                 "</div>".Intro().
 

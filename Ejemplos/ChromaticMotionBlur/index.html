@@ -1,0 +1,66 @@
+<!--* Created by Josep Antrony Bover on 18/04/2021 
+ inspired on : https://twitter.com/ippsketch/status/1382703022875291650
+
+  Last update : [20/05/2021]
+-->
+
+<!-- 
+    Chromatic Motion Blur creado por Josep Antoni Bover Comas el 18/04/2021
+		inspirado en : https://twitter.com/ippsketch/status/1382703022875291650
+
+        Vista por defecto en el Laboratorio de pruebas  
+		devildrey33_Lab->Opciones->Vista = Filas;
+
+        adaptado a devildrey33.es el 01/07/2021
+-->
+
+<html>
+  <head>
+     <title>Chromatic Motion Blur</title>
+     <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+     <link rel="stylesheet" media="all" href="/Ejemplos/ChromaticMotionBlur/style.css" />
+     <script src="/Ejemplos/ChromaticMotionBlur/script.js"></script>        
+  </head>
+  <body>
+
+    <!-- CODEPEN START-->
+    <!-- Rail for a white square without filters -->
+    <div class="Rail" Texte="No Filter">
+      <div class="White"></div>
+    </div>
+
+    <!-- Rail for a white squares with a blur filter -->
+    <div class="Rail" Texte="Blur">
+      <div class="White Blur"></div>
+    </div>
+
+    <!-- Rail for a chromation aberration (consists of 3 squares with mix-blend-mode in difference) -->
+    <div class="Rail" Texte="Chromatic Aberration">
+      <div class="Green"></div>
+      <div class="Blue"></div>
+      <div class="Red"></div>
+    </div>
+
+    <!-- Rail for a chromation aberration (consists of 3 squares with mix-blend-mode in difference) and a blur filter-->
+    <div class="Rail" Texte="Blur + Chromatic Aberration">
+        <div class="Green Blur"></div>
+        <div class="Blue Blur"></div>
+        <div class="Red Blur"></div>
+    </div>
+
+    <!-- Controls -->
+    <div class="Controls">
+      
+        <div>Chromatic Aberration distance</div>
+        <input type="range" min="8" max="128" value="8" class="slider" id="SliderDistanceTime" onChange="SliderDistanceChange()">
+        <div id="TextDistanceTime">8ms</div>
+
+        <div>Total animation time</div>
+        <input type="range" min="1" max="50" value="5" class="slider" id="SliderAnimationTime" onChange="AnimationTimeChange()">
+        <div id="TextAnimationTime">5s</div>
+      </div>
+    </div>
+
+  <!-- CODEPEN END-->
+  </body>
+</html>

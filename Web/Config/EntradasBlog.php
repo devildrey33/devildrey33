@@ -5,6 +5,15 @@
 
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(        
+array(	"Titulo" 	=> "Chromatic Motion Blur",
+        "Fecha" 	=> "18/04/2021",
+        "URL" 		=> "Ejemplos/ChromaticMotionBlur/index.html",
+        "Tags" 		=> array("CSS", "JavaScript", "Programación"),
+        "Tipo"		=> "Lab",
+        "Autor"         => "Josep Antoni Bover",
+        "Idioma"        => "es",
+        "Imagen"	=> "Chroma.png"),      
+        
 array(	"Titulo" 	=> "Dominó 3D",
         "Fecha" 	=> "16/01/2019",
         "URL" 		=> "Ejemplos/Domino/index.html",

@@ -143,6 +143,15 @@ $Base = new function() {
 
         /* Usuario para el login */
         if (typeof localStorage["Comentarios_Usuario"] !== 'undefined') { $("#devildrey33_Usuario").val(localStorage["Comentarios_Usuario"]); }
+
+        // Evento para la perdida de conexión
+        window.addEventListener('offline', function(event){
+            $Base.MostrarMensaje("Conexión con el servidor perdida...");
+        });
+        // Evento para la re-conexión
+        window.addEventListener('online', function(event){
+            console.log("Se ha restablecido la conexión con el servidor.");
+        });
     };
     
     // Cancelación de la ventana de login/password
