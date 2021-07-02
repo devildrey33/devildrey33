@@ -112,7 +112,7 @@ var Domino_UI = function() {
             document.getElementById('Idioma_cat').className = "";
             document.getElementById('Idioma_es').className  = "";
         };
-        // Boton Català
+        // Boton Catalï¿½
         document.getElementById("Idioma_cat").onclick = function() {
             Domino.Partida.Opciones.AsignarIdioma('cat');
             document.getElementById('Idioma_en').className  = "";
@@ -128,7 +128,7 @@ var Domino_UI = function() {
         };
         
         
-        // Botones con las puntuaciones máximas
+        // Botones con las puntuaciones mï¿½ximas
         for (var i = 1; i < 7; i++) {
             document.getElementById("Puntos" + i * 100).onclick = function(Pos) {
                 this.AsignarPuntuacionPorPartida(Pos * 100);
@@ -138,7 +138,7 @@ var Domino_UI = function() {
         this.MostrarEmpezar();
     };
     
-    // Mostrar menú para empezar una partida
+    // Mostrar menï¿½ para empezar una partida
     this.MostrarEmpezar = function() {
         document.getElementById("MarcoEmpezar").setAttribute("visible", "true");
     };
@@ -153,7 +153,7 @@ var Domino_UI = function() {
         document.getElementById("MarcoEquipos").setAttribute("visible", "true");
     };
     
-    // Mostrar menu para ocultar el menú para editar equipos
+    // Mostrar menu para ocultar el menï¿½ para editar equipos
     this.OcultarEquipos = function() {
         document.getElementById("MarcoEquipos").setAttribute("visible", "false");
     };
@@ -163,7 +163,7 @@ var Domino_UI = function() {
         document.getElementById("MarcoOpciones").setAttribute("visible", "true");
     };
     
-    // Mostrar menu para ocultar el menú de las opciones
+    // Mostrar menu para ocultar el menï¿½ de las opciones
     this.OcultarOpciones = function() {
         document.getElementById("MarcoOpciones").setAttribute("visible", "false");
     };
@@ -268,12 +268,12 @@ var Domino_UI = function() {
         Domino.Partida.Opciones.AsignarPuntosPorPartida(Puntos);
     };
     
-    // Función que refresca los datos de la mano, en el div superior izquierdo.
+    // Funciï¿½n que refresca los datos de la mano, en el div superior izquierdo.
     this.MostrarDatosMano = function() {
         document.getElementById("DatosJuego").setAttribute("Visible", "true");
         document.getElementById("NombreEquipo1").innerHTML = Domino.Partida.Opciones.NombreEquipo[0];
         document.getElementById("NombreEquipo2").innerHTML = Domino.Partida.Opciones.NombreEquipo[1];
-        // Si no es un dispositivo móvil, muestro el historial de tiradas en un div superior derecho.
+        // Si no es un dispositivo mï¿½vil, muestro el historial de tiradas en un div superior derecho.
         if (ObjetoNavegador.EsMovil() === false) {
             document.getElementById("Historial").setAttribute("Visible", "true");
         }
@@ -295,20 +295,20 @@ var Domino_UI = function() {
     };
     
     this.MostrarVictoria = function() {
-        document.getElementById("VictoriaDerrota").innerHTML = "<div id='Victoria'><img src='./SVG/Partida.svg#Ganada' /></div>";
+        document.getElementById("VictoriaDerrota").innerHTML = "<div id='Victoria'><img src='/Ejemplos/Domino/SVG/Partida.svg#Ganada' /></div>";
     };
     
     this.MostrarDerrota = function() {
-        document.getElementById("VictoriaDerrota").innerHTML = "<div id='Derrota'><img src='./SVG/Partida.svg#Perdida' /></div>";        
+        document.getElementById("VictoriaDerrota").innerHTML = "<div id='Derrota'><img src='/Ejemplos/Domino/SVG/Partida.svg#Perdida' /></div>";        
     };
     
     this.MostrarPartidaGanada = function() {
-        document.getElementById("VictoriaDerrota").innerHTML = "<div id='ParitdaGanada'><img src='./SVG/PartidaGanada.svg' /></div>";
+        document.getElementById("VictoriaDerrota").innerHTML = "<div id='ParitdaGanada'><img src='/Ejemplos/Domino/SVG/PartidaGanada.svg' /></div>";
     };
     
     this.MostrarPartidaPerdida = function() {
         this.MostrarDerrota();
-        //document.getElementById("VictoriaDerrota").innerHTML = "<div id='Derrota'><img src='./SVG/Partida.svg#Perdida' /></div>";
+        //document.getElementById("VictoriaDerrota").innerHTML = "<div id='Derrota'><img src='Ejemplos/Domino/SVG/Partida.svg#Perdida' /></div>";
     };
             
 };
