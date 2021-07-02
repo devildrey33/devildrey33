@@ -197,10 +197,10 @@
 
 #Categorias_Estado + #Categorias_Label + #Categorias > span::before {
     transform:rotate(-45deg);
-    margin-right:10px;
+    margin-left:-6px;
 }
 #Categorias_Estado + #Categorias_Label + #Categorias > span::after {
-    margin-left:10px;
+    margin-left:6px;
     transform:rotate(45deg);
 }
 
