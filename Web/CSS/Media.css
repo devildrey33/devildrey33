@@ -62,9 +62,13 @@ and open the template in the editor.
 /* El movil amb resolució mes ample que he vist es el iphone 6p(atata) amb 414px */
 @media  only screen and (max-device-width:420px) and (orientation:portrait) {
 /*    body { font-size:1.1rem !important; }*/
+/*    #MarcoIndice > .Articulo_Portada { margin-bottom: 5px; }*/
+    /* permito que los titulos ocupen mas de una l'inea */
+    .Articulo_Portada > h1 > a { white-space:normal; }
+    /* escondo los controles de los comentarios */
     .Articulo_Portada > div, #Comentarios_BarraControles { display:none !important; }
     /* arreglo per les fonts dels tituls de l'index '*/
-    .Articulo_Portada > h1 { font-size:0.9vw !important; z-index:0; }
+    .Articulo_Portada > h1 { font-size:1.9vw !important; z-index:0; }
     /* arreglo que fa que les imatges isguin 100% opaques per que si el texte trepitja l'imatge que no es vegi (el texte) */
     .Articulo_Portada > a > .Articulo_Portada_Imagen { opacity:1 !important; }
     .VentanaMensaje { zoom:1.8; font-size:1.5rem; }

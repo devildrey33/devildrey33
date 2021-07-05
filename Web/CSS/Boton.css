@@ -74,7 +74,7 @@ and open the template in the editor.
     /*    font-family         : Karla, sans-serif;                   /* Fuente de google                                                        */
     font-size: 1.7rem;                              /* Tamaño de la fuente                                                     */
     color               : #FFF;                                /* Color del texto en blanco                                               */
-    margin: 10px;                                /* 10 pixeles de margen para separar los botones entre si.                 */
+    margin              : 10px;                                /* 10 pixeles de margen para separar los botones entre si.                 */
     position            : relative;                            /* Posición relativa para que sus hijos partan desde él                    */
     overflow            : hidden;                              /* Todo lo que sobresalga del botón no se verá                             */
     cursor              : pointer;                             /* Puntero del mouse que muestre una mano                                  */
@@ -84,7 +84,7 @@ and open the template in the editor.
     -moz-user-select    : none;
     -ms-user-select     : none;
     user-select         : none;
-    display             : inline-block;
+    display             : block;
 }
 /* Elimino el outline del botón por una transición con la sombra */
 [class^='Boton-']:enabled:focus, [class^='BotonSvg-']:enabled:focus { 

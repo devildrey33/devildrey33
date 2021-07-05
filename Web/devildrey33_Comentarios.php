@@ -46,9 +46,9 @@ class devildrey33_Comentarios {
                         "<div class='BotonEdicion' title='Justificar a la derecha'></div>".Intro().
                     "</div>".Intro().
                     "<div contenteditable='true' id='Comentarios_Comentario'></div>".Intro().
-                    "<div class='Centrado'>".Intro().
+//                    "<div class='Centrado'>".Intro().
                         "<button class='Boton-Normal Centrado'>Enviar comentario</button>".Intro().  // Enviar comentario
-                    "</div>".Intro().
+//                    "</div>".Intro().
                 "</section>".Intro();
         }            
 
