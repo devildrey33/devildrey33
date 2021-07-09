@@ -86,6 +86,9 @@ and open the template in the editor.
     user-select         : none;
     display             : block;
 }
+
+
+
 /* Elimino el outline del botón por una transición con la sombra */
 [class^='Boton-']:enabled:focus, [class^='BotonSvg-']:enabled:focus { 
     outline    : 1px solid transparent;                         /* Elimino el outline que hay por defecto       */

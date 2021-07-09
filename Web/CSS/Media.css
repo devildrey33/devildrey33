@@ -27,8 +27,8 @@ and open the template in the editor.
     .BarraNavegacion_SubIndice, .Sintaxis,                          /* Marc del sub-index, i marc de la sintaxis  */
     #Logo, #BarraPrincipal, #BarraNavegacion,                       /* Barres laterals  */
     #Categorias, #Categorias_Estado + #Categorias_Label,            /* Marco categorias y label para expandir / contraer las categorias */
-    #Cabecera, #Comentarios_MarcoDatos,                             /* Cabecera del blog, marco unicamente con los comentarios posteados */
-    #Comentarios_Comentario, .devildrey33_Marco,                    /* Marco con los controles de los comentarios */
+    #Cabecera /*, #Comentarios_MarcoDatos,                             /* Cabecera del blog, marco unicamente con los comentarios posteados */
+    /*#Comentarios_Comentario*/, .devildrey33_Marco,                    /* Marco con los controles de los comentarios */
     .Codigo_Marco, .Tabla                                           /* Marco con código de ejemplo, Tabla con varias columnas y filas de datos*/
     
                         { zoom:1.5 !important; }
@@ -63,7 +63,7 @@ and open the template in the editor.
 @media  only screen and (max-device-width:420px) and (orientation:portrait) {
 /*    body { font-size:1.1rem !important; }*/
 /*    #MarcoIndice > .Articulo_Portada { margin-bottom: 5px; }*/
-    /* permito que los titulos ocupen mas de una l'inea */
+    /* permito que los titulos ocupen mas de una línea */
     .Articulo_Portada > h1 > a { white-space:normal; }
     /* escondo los controles de los comentarios */
     .Articulo_Portada > div, #Comentarios_BarraControles { display:none !important; }

@@ -198,6 +198,7 @@ DominoThree.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
         this.Redimensionar();
 //        this.Camara.Rotar();
         setTimeout(this.Partida.CrearFichas.bind(this.Partida), 10);
+
     },
     
     

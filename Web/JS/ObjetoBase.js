@@ -150,7 +150,7 @@ $Base = new function() {
         });
         // Evento para la re-conexión
         window.addEventListener('online', function(event){
-            console.log("Se ha restablecido la conexión con el servidor.");
+            $Base.MostrarMensaje("Se ha restablecido la conexión con el servidor.");
         });
     };
     
