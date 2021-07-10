@@ -26,13 +26,13 @@ and open the template in the editor.
 /*    .nota, .postit, nota, postit,                                   /* Marcs nota/postit */
     .BarraNavegacion_SubIndice, .Sintaxis,                          /* Marc del sub-index, i marc de la sintaxis  */
     #Logo, #BarraPrincipal, #BarraNavegacion,                       /* Barres laterals  */
-    #Categorias, #Categorias_Estado + #Categorias_Label,            /* Marco categorias y label para expandir / contraer las categorias */
+/*    #Categorias, #Categorias_Estado + #Categorias_Label,            /* Marco categorias y label para expandir / contraer las categorias */
     #Cabecera /*, #Comentarios_MarcoDatos,                             /* Cabecera del blog, marco unicamente con los comentarios posteados */
     /*#Comentarios_Comentario*/, .devildrey33_Marco,                    /* Marco con los controles de los comentarios */
     .Codigo_Marco, .Tabla                                           /* Marco con código de ejemplo, Tabla con varias columnas y filas de datos*/
     
-                        { zoom:1.5 !important; }
-    body                { margin-left:90px; }  
+                        { /*zoom:1.5 !important;*/ }
+    body                { /*margin-left:90px; */ font-size:2rem !important; }  
     #MarcoNavegacion    { left:-10px;}
     .Blog               { margin: 0px 100px 0px 30px !important; }    
     #MarcoNavegacionLab { margin: 0px 100px 0px 15px !important; }
@@ -52,7 +52,7 @@ and open the template in the editor.
     h3      { font-size:2.6rem; }*/
     pre, code, kbd, samp, tt {
         font-family : Inconsolata, monospace;
-        font-size   : 1.8rem !important;
+/*        font-size   : 1.8rem !important;*/
 /*        margin      : 1rem 0px 1rem;*/
       }
       
@@ -68,10 +68,10 @@ and open the template in the editor.
     /* escondo los controles de los comentarios */
     .Articulo_Portada > div, #Comentarios_BarraControles { display:none !important; }
     /* arreglo per les fonts dels tituls de l'index '*/
-    .Articulo_Portada > h1 { font-size:1.9vw !important; z-index:0; }
+/*    .Articulo_Portada > h1 { font-size:1.9vw !important; z-index:0; }*/
     /* arreglo que fa que les imatges isguin 100% opaques per que si el texte trepitja l'imatge que no es vegi (el texte) */
     .Articulo_Portada > a > .Articulo_Portada_Imagen { opacity:1 !important; }
-    .VentanaMensaje { zoom:1.8; font-size:1.5rem; }
+/*    .VentanaMensaje { zoom:1.8; font-size:1.5rem; }*/
 /*    .VentanaMensaje::before {  }*/
 }
 

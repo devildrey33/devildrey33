@@ -29,6 +29,7 @@ var Domino_Partida = function() {
     this.ContinuandoPartida = false;            // Variable que previene que se inicien 2 manos a la vez
     
     this.Opciones         = new Domino_Opciones;
+    //this.Domino           = nDomino;
     
     this.CrearFichas = function() {
         if (this.Ficha.length !== 0) {
@@ -201,7 +202,7 @@ var Domino_Partida = function() {
                                                                 "data-idioma-en=' throws : '" + 
                                                                 "data-idioma-cat=' tira : '"  + 
                                                                 "data-idioma-es=' tira : '></span>" +
-                                                            "<img src='./SVG/Domino.svg#Ficha_6-6' />");                    
+                                                            "<img src='/Ejemplos/Domino/SVG/Domino.svg#Ficha_6-6' />");                    
                 }
             }
             
@@ -235,7 +236,7 @@ var Domino_Partida = function() {
                 // Turno de la maquina
                 if (this.JugadorActual !== 0) {
                     // IA 1.0
-                    // TODO : Segun la dificultad se hace un rand para ver si toca el movimiento l�gico, o un movimiento al azar)
+                    // TODO : Segun la dificultad se hace un rand para ver si toca el movimiento lógico, o un movimiento al azar)
                     // Ej : Facil (20% logica, 80 azar, normal 50%-50%, dificil 90%-10%)
                     var Rnd = 0;//RandInt(this.Posibilidades.length -1, 0);
                     if (Posibilidades[0].Rama === "izquierda") { 
@@ -249,7 +250,7 @@ var Domino_Partida = function() {
                                                "data-idioma-en=' throws : '" + 
                                                "data-idioma-cat=' tira : '"  + 
                                                "data-idioma-es=' tira : '></span>" + 
-                                        "<img src='./SVG/Domino.svg#Ficha_" + this.Ficha[Posibilidades[0].Pos].Valores[1] + "-" + this.Ficha[Posibilidades[0].Pos].Valores[0] +"' />");
+                                        "<img src='/Ejemplos/Domino/SVG/Domino.svg#Ficha_" + this.Ficha[Posibilidades[0].Pos].Valores[1] + "-" + this.Ficha[Posibilidades[0].Pos].Valores[0] +"' />");
                     console.log("Jugador" + (this.JugadorActual + 1) + " tira : " + this.Ficha[Posibilidades[0].Pos].Valores[1] + " | " + this.Ficha[Posibilidades[0].Pos].Valores[0]);
                     setTimeout(function() { this.Turno(); }.bind(this), this.TiempoTurno);
                 }
@@ -369,7 +370,7 @@ var Domino_Partida = function() {
             this.MostrarMensaje(this.JugadorActual, "<span>" + this.Opciones.NombreJugador[this.JugadorActual] + "</span>" + 
                                                     "<span " +
                                                         "data-idioma-en=' wons this hand!'" +
-                                                        "data-idioma-en=' guanya aquesta m�!'" +
+                                                        "data-idioma-en=' guanya aquesta má!'" +
                                                         "data-idioma-en=' gana esta mano!'" + "></span>", "verde");
             this.ManoTerminada = true;            
             // Cuento los puntos y muestro los valores
@@ -454,7 +455,7 @@ var Domino_Partida = function() {
         return Total;
     };
     
-    // Funci�n para mostrar un mensaje especifico para un jugador
+    // Función para mostrar un mensaje especifico para un jugador
     this.MostrarMensaje = function(Jugador, Texto, ColFondo) {
         var ColorFondo = (typeof(ColFondo) === "undefined") ? "negro" : ColFondo;
         var Msg = document.getElementById("Msg" + (Jugador + 1));
@@ -519,7 +520,7 @@ var Domino_Partida = function() {
                                                 "data-idioma-cat=' tira : '" + 
                                                 "data-idioma-cas=' tira : '>" + 
                                             "</span>" + 
-                                            "<img src='./SVG/Domino.svg#Ficha_" + this.Ficha[i].Valores[1] + "-" + this.Ficha[i].Valores[0] +"' />");
+                                            "<img src='/Ejemplos/Domino/SVG/Domino.svg#Ficha_" + this.Ficha[i].Valores[1] + "-" + this.Ficha[i].Valores[0] +"' />");
                         
                         // Compruebo si se ha terminado la mano
                         if (this.ComprobarManoTerminada() === true) return;

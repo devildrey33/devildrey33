@@ -6,6 +6,7 @@
     /* Archivo para peticiones ajax, tambien se puede utilizar a modo de consola MUY básica. */
     //include("devildrey33.php");
     include("GenerarIndice.php");
+    include("devildrey33_sitemap.php");
 
     /* Asigno si se verán o no los errores php */
     ini_set("display_errors", devildrey33_Opciones::MostrarErroresPHP());     
@@ -86,6 +87,7 @@
                 case "ActivarCacheImagenes" :           $this->CacheImagenes(TRUE);                 break;
                 case "DesactivarCacheImagenes" :        $this->CacheImagenes(FALSE);                break;
                 case "LimpiarBaneados" :                $this->LimpiarBaneados();                   break;
+                case "GenerarSitemap"   :               $this->GenerarSitemap();                    break;
             }
         }
         
@@ -392,6 +394,17 @@
             if (devildrey33_Opciones::Administrador() === 1) { 
                 devildrey33_htaccess::LimpiarBaneados();
                 echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0, "Mensaje" => "Se ha vaciado la lista de ips baneadas")); 
+            }
+            else {
+                $this->Desloguear(1);
+            }
+        }
+
+        public function GenerarSitemap() {
+            if (devildrey33_Opciones::Administrador() === 1) { 
+                $sm = new devildrey33_sitemap;
+                $sm->Generar();
+                echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0, "Mensaje" => "Se ha generado el sitemap")); 
             }
             else {
                 $this->Desloguear(1);

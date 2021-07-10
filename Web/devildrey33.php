@@ -108,7 +108,7 @@ class devildrey33 {
     "<head>".Intro().
         "<title>".$Titulo."</title>".Intro().
         "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />".Intro().
-//        "<meta name='viewport' content='width=device-width, initial scale=1'>".Intro().
+        "<meta name='viewport' content='width=device-width, initial scale=1.0' />".Intro().
         "<meta name='author' content='".$Autor."' />".Intro().
 //            echo '<meta name="description" content="Página web dedicada al mundo de la programación, donde puedes encontrar información sobre HTML, CSS, JS, Ajax, jQuery, PHP, MySql, C/C++, Three.js, etc...." />'.Intro();
         "<meta name='twitter:card' content='summary' />".Intro().        
