@@ -649,6 +649,7 @@ class devildrey33 {
                         "<button class='Boton-Normal' id='CH_Stats' "            . "title='Estadisticas de la base de datos'>Stats de la BD</button>".Intro().
                         "<button class='Boton-Normal' id='CH_PhpInfo' "          . "title='Información de la versión PHP del servidor actual'>Info servidor PHP</button>".Intro().
                         "<button class='Boton-Normal' id='CH_GenCacheBuscador' " . "title='Generar array de palabras cache para el buscador de la web'>Generar cache para el Buscador</button>".Intro().
+                        "<button class='Boton-Normal' id='CH_GenSitemap' "       . "title='Genera el archivo sitemap.xml'>Generar sitemap.xml</button>".Intro().
                     "</div>".Intro().
                 "</div>".Intro(); // #BarraPrincipal_Marco33
             

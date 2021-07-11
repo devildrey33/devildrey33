@@ -404,7 +404,7 @@
             if (devildrey33_Opciones::Administrador() === 1) { 
                 $sm = new devildrey33_sitemap;
                 $sm->Generar();
-                echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0, "Mensaje" => "Se ha generado el sitemap")); 
+                echo json_encode(array("ErroresPHP" => Base::ObtenerLogPHP(), "Estado" => 0, "Mensaje" => "Se ha generado el archivo sitemap.xml")); 
             }
             else {
                 $this->Desloguear(1);

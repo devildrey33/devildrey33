@@ -20,6 +20,9 @@ ObjetoAdmin = function() {
         $('#CH_PhpInfo').off("click").on("click", function(e){ $Base.CargarURL('/Web/phpinfo'); $Base.ClickMenu(0); }); /* MOSTRAR info php */
         /* Botón generar cache del buscador */
         $('#CH_GenCacheBuscador').off("click").on("click", function(e){ $Base.cmd('GenerarCacheBuscador');  }); 
+        /* Botón para generar el archivo sitemap.xml */
+        $('#CH_GenSitemap').off("click").on("click", function(e){ $Base.cmd('GenerarSitemap');  }); 
+        
         
         $('#CH_Minificar').off("click").on("click", function(e){ $Base.cmd('Minificar-JS-CSS'); });
         /* Boton explorar lab */
