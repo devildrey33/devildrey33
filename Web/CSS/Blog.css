@@ -71,6 +71,7 @@ h2:before {
     color:rgb(200, 200, 200);
     font-size:12px;
     text-shadow:1px 1px 1px #000;
+    margin-right:50px;
 /*    padding-right:100px;    */
 }
 

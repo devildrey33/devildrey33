@@ -34,8 +34,9 @@ and open the template in the editor.
                         { /*zoom:1.5 !important;*/ }
     body                { /*margin-left:90px; */ font-size:2rem !important; }  
     #MarcoNavegacion    { left:-10px;}
-    .Blog               { margin: 0px 100px 0px 30px !important; }    
-    #MarcoNavegacionLab { margin: 0px 100px 0px 15px !important; }
+    .Blog               { margin: 0px 55px 0px 30px !important; }    
+    #MarcoNavegacionLab { margin: 0px 55px 0px 15px !important; }
+    .FechaEntrada       { font-size:16px;                       }
 
     /* Muestro la nota como un bloque, (los display table lo flipan con tamaños moviles) */
     .nota, .postit {
@@ -52,7 +53,7 @@ and open the template in the editor.
     h3      { font-size:2.6rem; }*/
     pre, code, kbd, samp, tt {
         font-family : Inconsolata, monospace;
-/*        font-size   : 1.8rem !important;*/
+        font-size   : 2rem !important;
 /*        margin      : 1rem 0px 1rem;*/
       }
       
@@ -64,7 +65,7 @@ and open the template in the editor.
 /*    body { font-size:1.1rem !important; }*/
 /*    #MarcoIndice > .Articulo_Portada { margin-bottom: 5px; }*/
     /* permito que los titulos ocupen mas de una línea */
-    .Articulo_Portada > h1 > a { white-space:normal; }
+/*    .Articulo_Portada > h1 > a { white-space:normal; }*/
     /* escondo los controles de los comentarios */
     .Articulo_Portada > div, #Comentarios_BarraControles { display:none !important; }
     /* arreglo per les fonts dels tituls de l'index '*/

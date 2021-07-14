@@ -52,18 +52,18 @@
 
 @keyframes AnimacionLogo {
     0%   { padding-left:10px; }
-    50%  { padding-left:0px; }
+    50%  { padding-left:0px;  }
     100% { padding-left:10px; }
 }
 
 
 #Logo {
     font-family: 'Orbitron', sans-serif;
-    font-size:1.6rem;
+    font-size:1.8rem;
     position:fixed;
     white-space:nowrap;
     bottom:100px;
-    left:-42px;
+    left:-50px;
     transform: rotateZ(-90deg);
     color:#FFFFFF;
     transition:0.4s cubic-bezier(.17,-0.42,.63,1.24);

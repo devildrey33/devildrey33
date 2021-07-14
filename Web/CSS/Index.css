@@ -291,7 +291,7 @@
     transition:color 0.4s, left 0.4s;
     left:0px;
     color:#999;
-    white-space: nowrap;
+/*    white-space: nowrap;*/
     text-shadow:1px 1px 1px #000;
 }
 .Articulo_Portada:hover > h1 > a {
