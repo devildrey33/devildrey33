@@ -22,16 +22,6 @@ and open the template in the editor.
         only screen and (orientation:portrait) and (-moz-min-device-pixel-ratio: 1.2), 
         only screen and (orientation:portrait) and (-o-min-device-pixel-ratio: 13/10),
         only screen and (orientation:portrait) and (min-resolution: 120dpi) {            
-/*    h1, h2, h3,                                                     /* Tituls */
-/*    .nota, .postit, nota, postit,                                   /* Marcs nota/postit */
-    .BarraNavegacion_SubIndice, .Sintaxis,                          /* Marc del sub-index, i marc de la sintaxis  */
-    #Logo, #BarraPrincipal, #BarraNavegacion,                       /* Barres laterals  */
-/*    #Categorias, #Categorias_Estado + #Categorias_Label,            /* Marco categorias y label para expandir / contraer las categorias */
-    #Cabecera /*, #Comentarios_MarcoDatos,                             /* Cabecera del blog, marco unicamente con los comentarios posteados */
-    /*#Comentarios_Comentario*/, .devildrey33_Marco,                    /* Marco con los controles de los comentarios */
-    .Codigo_Marco, .Tabla                                           /* Marco con código de ejemplo, Tabla con varias columnas y filas de datos*/
-    
-                        { /*zoom:1.5 !important;*/ }
     body                { /*margin-left:90px; */ font-size:2rem !important; }  
     #MarcoNavegacion    { left:-10px;}
     .Blog               { margin: 0px 55px 0px 30px !important; }    
@@ -47,14 +37,9 @@ and open the template in the editor.
         display:none !important;
     }
 
-/*    h1, h2      { font-size:2rem; }
-    h3      { font-size:1.5rem; }
-/*    h2      { font-size:2.7rem; }
-    h3      { font-size:2.6rem; }*/
     pre, code, kbd, samp, tt {
         font-family : Inconsolata, monospace;
         font-size   : 2rem !important;
-/*        margin      : 1rem 0px 1rem;*/
       }
       
 }
@@ -62,18 +47,10 @@ and open the template in the editor.
 /* En l'index si es un movil en portrait no hi ha ample suficient per posar el titul i els spans informatius, OJU perque nomes ha de ser en movils, en tables NO */
 /* El movil amb resolució mes ample que he vist es el iphone 6p(atata) amb 414px */
 @media  only screen and (max-device-width:420px) and (orientation:portrait) {
-/*    body { font-size:1.1rem !important; }*/
-/*    #MarcoIndice > .Articulo_Portada { margin-bottom: 5px; }*/
-    /* permito que los titulos ocupen mas de una línea */
-/*    .Articulo_Portada > h1 > a { white-space:normal; }*/
     /* escondo los controles de los comentarios */
     .Articulo_Portada > div, #Comentarios_BarraControles { display:none !important; }
-    /* arreglo per les fonts dels tituls de l'index '*/
-/*    .Articulo_Portada > h1 { font-size:1.9vw !important; z-index:0; }*/
     /* arreglo que fa que les imatges isguin 100% opaques per que si el texte trepitja l'imatge que no es vegi (el texte) */
     .Articulo_Portada > a > .Articulo_Portada_Imagen { opacity:1 !important; }
-/*    .VentanaMensaje { zoom:1.8; font-size:1.5rem; }*/
-/*    .VentanaMensaje::before {  }*/
 }
 
 /* En l'index si l'ample de la pantalla fa mes de 1440 px creo una segona columna per mostrar les entrades '*/

@@ -26,6 +26,7 @@ NOTA : se puede añadir un span entre Menu_Boton_Cruz y Menu_Boton_SVG para agre
 /* Etiqueta que contiene un boton ademas de posibles marcos con controles adicionales */
 .Menu {
     position:relative;
+    margin-top:2px;
 }
 
 /* Input box que guarda el estado marcado para un boton del menu */

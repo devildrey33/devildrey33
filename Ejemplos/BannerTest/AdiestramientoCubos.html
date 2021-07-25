@@ -16,7 +16,8 @@
         <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
 <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
         <!-- Three.JS -->
-        <script src="/Web/JS/3rdParty/three-0.84.min.js"></script>
+<!--       <script src="/Web/JS/3rdParty/three-0.84.min.js"></script> -->
+        <script src="/Web/JS/3rdParty/three-r130.min.js"></script>
 <!--        <script src="/Web/JS/3rdParty/three-0.79.min.js"></script> -->
         <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
         <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
@@ -231,15 +232,33 @@ Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoCanv
     CrearMarcoCubo          : function(Objeto, Tam) {
         var Grupo = new THREE.Object3D();
         var Med = Tam / 2;
-        var GeoX = new THREE.Geometry();
-        var GeoY = new THREE.Geometry();
-        var GeoZ = new THREE.Geometry();
+
+        var PuX = [];
+        var PuY = [];
+        var PuZ = [];
+        PuX.push(new THREE.Vector3( -Med, 0, 0 ) );
+        PuX.push(new THREE.Vector3( Med, 0, 0 ) );
+        PuY.push(new THREE.Vector3( 0, -Med, 0 ) );
+        PuY.push(new THREE.Vector3( 0, Med, 0 ) );
+        PuZ.push(new THREE.Vector3( 0, 0, -Med  ) );
+        PuZ.push(new THREE.Vector3( 0, 0, Med ) );
+
+        GeoX = new THREE.BufferGeometry().setFromPoints(PuX);
+        GeoY = new THREE.BufferGeometry().setFromPoints(PuY);
+        GeoZ = new THREE.BufferGeometry().setFromPoints(PuZ);
+        
+/*        var GeoX = new THREE.BufferGeometry();
+        var GeoY = new THREE.BufferGeometry();
+        var GeoZ = new THREE.BufferGeometry();
         GeoX.vertices.push(new THREE.Vector3( -Med, 0, 0 ) );
         GeoX.vertices.push(new THREE.Vector3( Med, 0, 0 ) );
         GeoY.vertices.push(new THREE.Vector3( 0, -Med, 0 ) );
         GeoY.vertices.push(new THREE.Vector3( 0, Med, 0 ) );
         GeoZ.vertices.push(new THREE.Vector3( 0, 0, -Med  ) );
-        GeoZ.vertices.push(new THREE.Vector3( 0, 0, Med ) );
+        GeoZ.vertices.push(new THREE.Vector3( 0, 0, Med ) );*/
+
+
+
         Grupo.Material = new THREE.LineBasicMaterial( { color: 0x333333, opacity: .2, linewidth: .1 } );
         // Frontal
         var Linea1 = new THREE.Line( GeoX, Grupo.Material );

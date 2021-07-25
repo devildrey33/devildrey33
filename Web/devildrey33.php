@@ -1039,10 +1039,12 @@ class devildrey33 {
         echo "<script src='".Base::URL_JS()."3rdParty/codemirror.min.js'></script>".Intro();
         /* Three js */
         if (devildrey33_Opciones::Minificar_JS() == 0) { // Three.js sin minificar
-            echo "<script src='".Base::URL_JS()."3rdParty/three-0.84.js'></script>".Intro();
+//            echo "<script src='".Base::URL_JS()."3rdParty/three-0.84.js'></script>".Intro();
+            echo "<script src='".Base::URL_JS()."3rdParty/three-r130.js'></script>".Intro();
         }
         else {
-            echo "<script src='".Base::URL_JS()."3rdParty/three-0.84.min.js'></script>".Intro();            
+//            echo "<script src='".Base::URL_JS()."3rdParty/three-0.84.min.js'></script>".Intro();            
+            echo "<script src='".Base::URL_JS()."3rdParty/three-r130.min.js'></script>".Intro();            
         }
 //        echo "<script src='".Base::URL_JS()."3rdParty/tweenjs-0.6.2.min.js'></script>".Intro();
 //        echo "<script src='".Base::URL_JS()."3rdParty/stats.min.js'></script>".Intro();

@@ -214,15 +214,21 @@ Banner_AdiestramientoCubos3D.prototype = Object.assign( Object.create(ObjetoCanv
     CrearMarcoCubo          : function(Objeto, Tam) {
         var Grupo = new THREE.Object3D();
         var Med = Tam / 2;
-        var GeoX = new THREE.Geometry();
-        var GeoY = new THREE.Geometry();
-        var GeoZ = new THREE.Geometry();
-        GeoX.vertices.push(new THREE.Vector3( -Med, 0, 0 ) );
-        GeoX.vertices.push(new THREE.Vector3( Med, 0, 0 ) );
-        GeoY.vertices.push(new THREE.Vector3( 0, -Med, 0 ) );
-        GeoY.vertices.push(new THREE.Vector3( 0, Med, 0 ) );
-        GeoZ.vertices.push(new THREE.Vector3( 0, 0, -Med  ) );
-        GeoZ.vertices.push(new THREE.Vector3( 0, 0, Med ) );
+
+        var PuX = [];
+        var PuY = [];
+        var PuZ = [];
+        PuX.push(new THREE.Vector3( -Med, 0, 0 ) );
+        PuX.push(new THREE.Vector3( Med, 0, 0 ) );
+        PuY.push(new THREE.Vector3( 0, -Med, 0 ) );
+        PuY.push(new THREE.Vector3( 0, Med, 0 ) );
+        PuZ.push(new THREE.Vector3( 0, 0, -Med  ) );
+        PuZ.push(new THREE.Vector3( 0, 0, Med ) );
+
+        GeoX = new THREE.BufferGeometry().setFromPoints(PuX);
+        GeoY = new THREE.BufferGeometry().setFromPoints(PuY);
+        GeoZ = new THREE.BufferGeometry().setFromPoints(PuZ);
+        
         Grupo.Material = new THREE.LineBasicMaterial( { color: 0x333333, opacity: .2, linewidth: .1 } );
         // Frontal
         var Linea1 = new THREE.Line( GeoX, Grupo.Material );

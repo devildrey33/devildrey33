@@ -75,7 +75,7 @@ and open the template in the editor.
 }
 
 #BarraPrincipal_MarcoCPP > a:hover, #BarraPrincipal_MarcoCSS > a:hover, #BarraPrincipal_MarcoJS > a:hover, #BarraPrincipal_MarcoPHP > a:hover {
-    border:1px solid #red;
+    border:1px solid red;
     background-color:rgb(234, 80, 78);
 }
 
@@ -286,7 +286,7 @@ body[administrador33=true] #Marco33 {
 /* Submenu principal */
 #BarraPrincipal_Submenus {
     position:absolute;
-    top:-244px;
+    top:-274px;
     width:60px;
     height:360px;
     transition:0.4s cubic-bezier(.17,-0.42,.63,1.24);

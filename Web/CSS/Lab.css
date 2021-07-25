@@ -309,6 +309,10 @@ and open the template in the editor.
     display:none;
 }
 
+.MiniLab > .Menu {
+    margin-right:2px;
+}
+
 .MiniLab img {
     border:none !important;
     padding:0px; 
