@@ -406,18 +406,19 @@ ObjetoCanvas.prototype.EventoTouchEnd = function(event) {
 };
 
 
+// TODO POR REVISAR CON FORZARLANDSCAPE (EspectroAudible)
 // Función que obtiene el tamaño del canvas una vez redimensionado.
 ObjetoCanvas.prototype.EventoRedimensionar = function() {
 //    console.log("esmovil" + ObjetoNavegador.EsMovil());
     // portrait
-    if (this.OpcionesCanvas.ForzarLandscape === true && ObjetoNavegador.EsMovil() === true && window.innerWidth < window.innerHeight) {
+    if (this.OpcionesCanvas.ForzarLandscape === true && window.innerWidth < window.innerHeight) {
         // Invierto el nuevo ancho y la nueva altura (si no son fijas) para forzar el modo landscape
         if (this.OpcionesCanvas.Ancho === "Auto") { this.Ancho  = window.innerHeight;  }
         if (this.OpcionesCanvas.Alto === "Auto")  { this.Alto   = window.innerWidth; }        
         this.Cabecera.style.left = -(this.Ancho - this.Alto) / 2 + "px";
         this.Cabecera.style.top = (this.Ancho - this.Alto) / 2 + "px";
-        this.Cabecera.style.width = this.Ancho + "px";
-        this.Cabecera.style.height = this.Alto + "px";
+        this.Cabecera.style.width = "100vh"  // this.Ancho + "px";
+        this.Cabecera.style.height = "100vw" //this.Alto + "px";
     }
     else {
         if (this.OpcionesCanvas['Entorno'] === 'normal') {
