@@ -19,7 +19,7 @@ var Banner_RectangularDimension = function() {
     // Llamo al constructor del ObjetoBanner, y si devuelve un error salgo retornando false.
     // El segundo parámetro del constructor puede ser "2d" o "THREE".
     if (ObjetoCanvas.call(this, { 
-        'Tipo'          : '2d',
+        'Tipo'          : 'THREE',
         'Ancho'         : 'Auto',
         'Alto'          : 'Auto',
         'Entorno'       : 'Banner',
@@ -27,6 +27,12 @@ var Banner_RectangularDimension = function() {
         'ColorFondo'    : 0x000000,
         'ElementoRaiz'  : document.body
     }) === false) { return false; }
+
+        
+    this.Iniciar();
+
+    this.Cargando(false);
+
     // Retorno true para advertir que se ha creado el canvas correctamente
     return true;
 };
