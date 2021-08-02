@@ -1,5 +1,9 @@
 /* Plantilla para crear banners animados en devildrey33.es */
 
+/*  -1  Hay que añadir el archivo js a /Web/Config/ArchivosMinify.php para que sea incluido en devildrey33.min.js 
+    -2  Hay que añadir el nombre el objeto en la función Banner() del archivo /Web/JS/ObjetoBase.js
+*/
+
 // Constructor SIN TIPO, el tipo se especifica según la animación
 var PLANTILLABANNER = function() {
     // Llamo al constructor del ObjetoBanner, y si devuelve un error salgo retornando false.

@@ -1,4 +1,4 @@
-<!-- 
+/*
     Banner "Desperados Rectangular Dimension" para devildrey33.es creado por Josep Antoni Bover Comas el 25/07/2021
 
         Vista por defecto en el Laboratorio de pruebas  
@@ -11,120 +11,33 @@
         - mover los rectangulos con un fragment shader, y crear el color a partir de la velocidad i el largo del rectangulo
 
         NOTA : Necesitaba desenpolvar mis habilidades con el three.js, lastima que no me ha salido a la primera con shaders... a ver si lo arreglo con algo mas de lucidez mental
--->
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-        <title>Experimento Three.js</title>
-        <!-- Estilos CSS para el test -->
-        <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoCanvas.css' />        
-        
-        <!-- Estilos CSS para el ObjetoTest -->
-        <!-- <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoTest.css' /> -->
-        
-        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
-        <!-- Three.JS -->
-        <script src="/Web/JS/3rdParty/three-r130.min.js"></script>
-<!--        <script src="/Web/JS/3rdParty/three-0.79.min.js"></script> -->
-        <!-- Three.JS para depuración -->
-        <!-- <script src="/Web/JS/3rdParty/three-0.79.js"></script> -->
+*/
 
-        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
-        <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
-                
-        <!-- Objeto para crear animaciones de tiempo -->
-        <!-- <script src="/Ejemplos/Utils/ObjetoAnimacion.js"></script> -->
-        
-        <!-- Objeto para crear tests rápidos -->
-        <!-- <script src="/Ejemplos/Utils/ObjetoTest.js"></script> -->
-        
-        <!-- Código javascript --> 
 
-<!-- 
-<script id="VertexShader" type="x-shader/x-vertex">
-    uniform float Velocidad;
-    uniform float PosicionZ;
-    uniform float Transparencia;
-    uniform float Largo;
-
-    void main() {
-        vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
-        gl_Position = projectionMatrix * modelViewPosition; 
-    }    
-</script>                
-
-<script id="FragmentShader" type="x-shader/x-fragment">
-    uniform float Velocidad;
-    uniform float PosicionZ;
-    uniform float Transparencia;
-    uniform float Largo;
-
-    void main() {  // R, G, B, A
-        gl_FragColor = vec4(0.0, 0.0, Velocidad / 2.0, Transparencia); 
-    }    
-</script>        
-    
--->
-
-<script type="text/javascript">
-
-"use strict";
-/* Plantilla para crear banners animados en devildrey33.es */
-
-// Constructor
-var RectangularDimension = function() {
-    // Llamo al constructor del ObjetoBanner
+// Constructor SIN TIPO, el tipo se especifica según la animación
+var Banner_RectangularDimension = function() {
+    // Llamo al constructor del ObjetoBanner, y si devuelve un error salgo retornando false.
+    // El segundo parámetro del constructor puede ser "2d" o "THREE".
     if (ObjetoCanvas.call(this, { 
-        'Tipo'                      : 'THREE',
-        'Ancho'                     : 'Auto',
-        'Alto'                      : 'Auto',
-        'Entorno'                   : 'Normal',
-        'MostrarFPS'                : true,
-        'BotonLogo'                 : false,
-        'BotonPantallaCompleta'     : true,
-        'ElementoRaiz'              : document.body,
-        'Pausar'                    : false,             // Pausa el canvas si la pestaña no tiene el foco del teclado
-        'ColorFondo'                : 0x000000,
-        'CapturaEjemplo'            : "RectangularDimension"                // Captura de pantalla para el ejemplo a "NuevoCanvas2D.png" se le añadirá "https://devildrey33.es/Web/Graficos/250x200_"
+        'Tipo'          : '2d',
+        'Ancho'         : 'Auto',
+        'Alto'          : 'Auto',
+        'Entorno'       : 'Banner',
+        'MostrarFPS'    : true,
+        'ColorFondo'    : 0x000000,
+        'ElementoRaiz'  : document.body
     }) === false) { return false; }
-    
-    // Se ha creado el canvas, inicio los valores de la animación ... 
-    this.Iniciar();
-    
-    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
-    this.Cargando(false);
+    // Retorno true para advertir que se ha creado el canvas correctamente
+    return true;
 };
 
-RectangularDimension.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
-    constructor     : RectangularDimension, 
-    // Función que se llama al redimensionar el documento
-    Redimensionar   : function() {    },
-    // Función que se llama al hacer scroll en el documento    
-    Scroll          : function() {    },
-    // Función que se llama al mover el mouse por el canvas
-    MouseMove       : function(Evento) { },
-    // Función que se llama al presionar un botón del mouse por el canvas
-    MousePresionado : function(Evento) { },
-    // Función que se llama al soltar un botón del mouse por el canvas
-    MouseSoltado    : function(Evento) { },
-    // Función que se llama al entrar con el mouse en el canvas
-    MouseEnter      : function(Evento) { },
-    // Función que se llama al salir con el mouse del canvas
-    MouseLeave      : function(Evento) { },
-    // Función que se llama al presionar una tecla
-    TeclaPresionada : function(Evento) { },
-    // Función que se llama al soltar una tecla
-    TeclaSoltada    : function(Evento) { },
-    // Función que se llama al presionar la pantalla
-    TouchStart      : function(Evento) { },
-    // Función que se llama al soltar el dedo de la pantalla
-    TouchEnd        : function(Evento) { },    
-    // Función que se llama al pausar el banner
-    Pausa           : function() { },
-    // Función que se llama al reanudar el banner
-    Reanudar        : function() { },
+Banner_RectangularDimension.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor     : Banner_RectangularDimension, 
+    // Datos de la animación [requerido]
+    Nombre          : "RectangularDimension",
+    IdeaOriginal    : "devildrey33",
+    URL             : "/Lab/Ejemplos/BannerTest/RectangularDimension.html",
+    NombreURL       : "Lab : Rectangular Dimension",    
     // Rectangulos del banner
     Rectangulos     : [],
     // Función que inicia el ejemplo
@@ -155,14 +68,12 @@ RectangularDimension.prototype = Object.assign( Object.create(ObjetoCanvas.proto
             this.TotalRectangulos = 850;
         }
 
-//        this.Rectangulos = [];
         // Creo los rectangulos
         for (var i = 0; i < this.TotalRectangulos; i++) {
             this.CrearRectangulo();
         }
 
         this.CrearLuces();
-//        this.Camara.Rotar();
     },
 
     RndAvance       : function() {
@@ -170,11 +81,6 @@ RectangularDimension.prototype = Object.assign( Object.create(ObjetoCanvas.proto
     },
 
     RndPos       : function() {
-/*        var Rnd = 0;
-        do{
-            Rnd = Rand(15.0, -15.0);
-        } while (Rnd < 0.3 && Rnd > -0.3);
-        return Rnd;*/
         return Rand(50.0, -50.0);
     },
     
@@ -264,14 +170,4 @@ RectangularDimension.prototype = Object.assign( Object.create(ObjetoCanvas.proto
         this.Camara.Rotar();
         this.Avance();
         this.Context.render(this.Escena, this.Camara);  
-    }
-});
-
-// Inicialización del canvas en el Load de la página
-var Canvas = null;
-window.addEventListener('load', function() { Canvas = new RectangularDimension; });
-</script>
-    </head>
-    <body>
-    </body>
-</html>
+    }});

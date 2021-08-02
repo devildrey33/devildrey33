@@ -197,7 +197,8 @@ $Base = new function() {
                                 Banner_ReunionDeCirculos,
                                 Banner_HexTunnel,
                                 Banner_MultiCubo,
-                                Banner_EsferaVShader
+                                Banner_EsferaVShader,
+                                Banner_RectangularDimension
                             ];                
                             
         var fPos = 0;

@@ -65,6 +65,7 @@ return array(
         "/JS/ObjetoCanvas/Banner_ReunionDeCirculos.js",
         "/JS/ObjetoCanvas/Banner_MultiCubo.js",
         "/JS/ObjetoCanvas/Banner_HexTunnel.js",
+        "/JS/ObjetoCanvas/Banner_RectangularDimension.js",
         "/JS/ObjetoCanvas/SobreDevildrey33.js"
 //        "/JS/ObjetoTest.js"
     ),
