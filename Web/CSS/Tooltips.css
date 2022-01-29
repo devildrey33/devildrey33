@@ -11,8 +11,8 @@ and open the template in the editor.
 
 /* Tooltips multiidioma */
 html[lang='es'] *[tooltip-es]::after, html[lang='en'] *[tooltip-en]::after {
-    position:absolute;    
     display:block;
+    position:absolute;    
     background:rgb(234, 80, 78);
     border:1px solid red;        
     border-left:4px solid red;
@@ -29,6 +29,10 @@ html[lang='es'] *[tooltip-es]::after, html[lang='en'] *[tooltip-en]::after {
     z-index:1;
     overflow:hidden;
 }
+
+/* Escondo todos los tooltips si es una tablet o un movil */
+ html[lang='es'] body[mousehover=false] *[tooltip-es]::after, html[lang='en'] body[mousehover=false] *[tooltip-en]::after { display:none !important; }
+
 
 [tooltip-pos='R']::after { top:8px; right:66px; } /* Desde la derecha '*/
 [tooltip-pos='L']::after { top:10px; left:70px;  } /* Desde la izquierda */

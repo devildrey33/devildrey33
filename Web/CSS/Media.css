@@ -51,6 +51,9 @@ and open the template in the editor.
     .Articulo_Portada > div, #Comentarios_BarraControles { display:none !important; }
     /* arreglo que fa que les imatges isguin 100% opaques per que si el texte trepitja l'imatge que no es vegi (el texte) */
     .Articulo_Portada > a > .Articulo_Portada_Imagen { opacity:1 !important; }
+    /* *Escondo todos los tooltips */
+    html[lang='es'] *[tooltip-es]::after, html[lang='en'] *[tooltip-en]::after { display:none !important; }
+    
 }
 
 /* En l'index si l'ample de la pantalla fa mes de 1440 px creo una segona columna per mostrar les entrades '*/

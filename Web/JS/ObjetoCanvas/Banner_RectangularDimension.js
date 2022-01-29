@@ -176,4 +176,5 @@ Banner_RectangularDimension.prototype = Object.assign( Object.create(ObjetoCanva
         this.Camara.Rotar();
         this.Avance();
         this.Context.render(this.Escena, this.Camara);  
-    }});
+    }
+});

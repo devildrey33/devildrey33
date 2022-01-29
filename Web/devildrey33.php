@@ -165,8 +165,12 @@ class devildrey33 {
         echo "</script>".Intro().
     "</head>".Intro();
         
-        if (devildrey33_Opciones::Administrador() > 0)     echo "<body administrador33=true>".Intro();
-        else                                               echo "<body>".Intro();
+        $Navegador = Base::ObtenerNavegador();
+//        print_r($Navegador);
+        $EsMovil = $Navegador["EsMovil"];
+
+        if (devildrey33_Opciones::Administrador() > 0)     echo "<body administrador33=true mousehover=".(($EsMovil == "FALSE") ? 'true' : 'false').">".Intro();
+        else                                               echo "<body mousehover=".(($EsMovil == "FALSE") ? 'true' : 'false').">".Intro();
         // Fix per mostrar la font Nova Mono correctament en el banner HexTunnel
         echo "<div style='font-family:Nova Mono; position:fixed; top:-100px'>NovaMonoFix</div>".Intro();
         

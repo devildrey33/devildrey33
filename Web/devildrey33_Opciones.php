@@ -217,21 +217,25 @@ class Base {
        $platform = 'Indefinido';
        $platformcorto = '';
        $version= "";
+       $EsMovil = "FALSE"; // para arreglos con tablets / moviles en general, en especial para desactivar mousehovers (para plataformas desconocidas quedara como false por defecto)
 
        // Plataforma
-       if 	(stripos($u_agent, "android") !== FALSE)		{ $platformcorto = 'Android'; 	$platform = 'Android'; } 
-       elseif 	(stripos($u_agent, "linux") !== FALSE)			{ $platformcorto = 'Linux';	$platform = 'Linux'; }
-       elseif 	(stripos($u_agent, "iPhone") !== FALSE)			{ $platformcorto = 'iPhone';	$platform = 'iPhone'; }
-       elseif 	(stripos($u_agent, "iPad") !== FALSE)			{ $platformcorto = 'iPad';	$platform = 'iPad'; }
-       elseif 	(stripos($u_agent, "macintosh") !== FALSE)		{ $platformcorto = 'Mac';	$platform = 'Macintosh'; }
-       elseif 	(stripos($u_agent, "mac os x") !== FALSE)		{ $platformcorto = 'Mac';	$platform = 'Macintosh'; }
+       if 	(stripos($u_agent, "android") !== FALSE)	        	{ $platformcorto = 'Android'; 	$platform = 'Android';                  $EsMovil = "TRUE"; } 
+       elseif 	(stripos($u_agent, "linux") !== FALSE)		    	{ $platformcorto = 'Linux';	    $platform = 'Linux'; }
+       elseif 	(stripos($u_agent, "iPhone") !== FALSE)		       	{ $platformcorto = 'iPhone';	$platform = 'iPhone';                   $EsMovil = "TRUE"; }
+       elseif 	(stripos($u_agent, "iPad") !== FALSE)		    	{ $platformcorto = 'iPad';	    $platform = 'iPad';                     $EsMovil = "TRUE"; }
+       elseif 	(stripos($u_agent, "macintosh") !== FALSE)	    	{ $platformcorto = 'Mac';	    $platform = 'Macintosh'; }
+       elseif 	(stripos($u_agent, "mac os x") !== FALSE)		    { $platformcorto = 'Mac';	    $platform = 'Macintosh'; }
        elseif 	(stripos($u_agent, "windows nt 5.0") !== FALSE)		{ $platformcorto = 'Win2k'; 	$platform = 'Microsoft Windows 2000'; } 
        elseif 	(stripos($u_agent, "windows nt 5.") !== FALSE)		{ $platformcorto = 'WinXP'; 	$platform = 'Microsoft Windows XP'; }
        elseif 	(stripos($u_agent, "windows nt 6.0") !== FALSE)		{ $platformcorto = 'WinVista';  $platform = 'Microsoft Windows Vista'; }
-       elseif 	(stripos($u_agent, "windows nt 6.1") !== FALSE)		{ $platformcorto = 'Win7'; 	$platform = 'Microsoft Windows 7'; } 
-       elseif 	(stripos($u_agent, "windows nt 6.2") !== FALSE)		{ $platformcorto = 'Win8'; 	$platform = 'Microsoft Windows 8'; } 
-       elseif 	(stripos($u_agent, "windows") !== FALSE)		{ $platformcorto = 'Win'; 	$platform = 'Microsoft Windows'; }
-       elseif 	(stripos($u_agent, "win32") !== FALSE)			{ $platformcorto = 'Win'; 	$platform = 'Microsoft Windows'; }
+       elseif 	(stripos($u_agent, "windows nt 6.1") !== FALSE)		{ $platformcorto = 'Win7'; 	    $platform = 'Microsoft Windows 7'; } 
+       elseif 	(stripos($u_agent, "windows nt 6.2") !== FALSE)		{ $platformcorto = 'Win8'; 	    $platform = 'Microsoft Windows 8'; } 
+       elseif 	(stripos($u_agent, "windows nt 6.3") !== FALSE)		{ $platformcorto = 'Win8'; 	    $platform = 'Microsoft Windows 8.1'; } 
+       elseif 	(stripos($u_agent, "windows nt 10") !== FALSE)		{ $platformcorto = 'Win10'; 	$platform = 'Microsoft Windows 10'; } 
+       elseif 	(stripos($u_agent, "windows nt 13") !== FALSE)		{ $platformcorto = 'Win11'; 	$platform = 'Microsoft Windows 11'; } 
+       elseif 	(stripos($u_agent, "windows") !== FALSE)		    { $platformcorto = 'Win'; 	    $platform = 'Microsoft Windows'; }
+       elseif 	(stripos($u_agent, "win32") !== FALSE)			    { $platformcorto = 'Win'; 	    $platform = 'Microsoft Windows'; }
 
        // Next get the name of the useragent yes seperately and for good reason
        if		(preg_match('/Opera/i',$u_agent)) 			{ $bnamecorto = 'Opera'; 	$bname = 'Opera'; } 
@@ -283,13 +287,14 @@ class Base {
        }
 
        return array(
-           'userAgent' 		=> $u_agent,
-           'Nombre'      	=> $bname,
-           'NombreCorto'	=> $bnamecorto,
-           'Version'   		=> $version,
-           'Plataforma' 	=> $platform,
+           'userAgent' 		    => $u_agent,
+           'Nombre'      	    => $bname,
+           'NombreCorto'	    => $bnamecorto,
+           'Version'   		    => $version,
+           'Plataforma' 	    => $platform,
            'PlataformaCorto' 	=> $platformcorto,
-           'pattern'   		=> $pattern
+           'pattern'   		    => $pattern,
+           'EsMovil'            => $EsMovil
        );
    }
 
