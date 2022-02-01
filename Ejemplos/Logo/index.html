@@ -1,0 +1,246 @@
+<!-- 
+    Plantilla para test de canvas creado por Josep Antoni Bover Comas el 05/07/2016
+
+        Vista por defecto en el Laboratorio de pruebas  
+		devildrey33_Lab->Opciones->Vista = Filas;
+
+        Ultima modificación el 07/04/2017
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <title>Experimento Three.js</title>
+        <!-- Estilos CSS para el test -->
+        <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoCanvas.css' />        
+        
+        <!-- Estilos CSS para el ObjetoTest -->
+        <!-- <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoTest.css' /> -->
+        
+        <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        <!-- Three.JS -->
+        <script src="/Web/JS/3rdParty/three-r130.min.js"></script>
+<!--        <script src="/Web/JS/3rdParty/three-0.79.min.js"></script> -->
+        <!-- Three.JS para depuración -->
+        <!-- <script src="/Web/JS/3rdParty/three-0.79.js"></script> -->
+
+        <!-- ObjetoCanvas similar al ObjetoBanner para testear Banners -->
+        <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
+                
+        <!-- Objeto para crear animaciones de tiempo -->
+        <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
+        
+        <!-- Objeto para crear tests rápidos -->
+        <!-- <script src="/Ejemplos/Utils/ObjetoTest.js"></script> -->
+        
+        <!-- Código javascript --> 
+<script type="text/javascript">
+/* Plantilla para crear banners animados en devildrey33.es */
+
+// Constructor
+var NUEVOCANVASTHREE = function() {
+    // Inicio in gsap global para todas las animaciones
+    this.Ani = gsap.timeline({ yoyo : false });
+
+    // Llamo al constructor del ObjetoBanner
+    if (ObjetoCanvas.call(this, { 
+        'Tipo'                      : 'THREE',
+        'Ancho'                     : 'Auto',
+        'Alto'                      : 'Auto',
+        'Entorno'                   : 'Normal',
+        'MostrarFPS'                : true,
+        'BotonLogo'                 : false,
+        'BotonPantallaCompleta'     : true,
+        'ElementoRaiz'              : document.body,
+        'Pausar'                    : true,             // Pausa el canvas si la pestaña no tiene el foco del teclado
+        'ColorFondo'                : 0x000000,
+        'CapturaEjemplo'            : ""                // Captura de pantalla para el ejemplo a "NuevoCanvas2D.png" se le añadirá "https://devildrey33.es/Web/Graficos/250x200_"
+    }) === false) { return false; }
+    
+    // Se ha creado el canvas, inicio los valores de la animación ... 
+    this.Iniciar();
+    
+    // Esconde la ventana que informa al usuario de que se está cargando la animación. (REQUERIDO)
+    this.Cargando(false);
+};
+
+NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor     : NUEVOCANVASTHREE, 
+    // Función que se llama al redimensionar el documento
+    Redimensionar   : function() {    },
+    // Función que se llama al hacer scroll en el documento    
+    Scroll          : function() {    },
+    // Función que se llama al mover el mouse por el canvas
+    MouseMove       : function(Evento) { },
+    // Función que se llama al presionar un botón del mouse por el canvas
+    MousePresionado : function(Evento) { },
+    // Función que se llama al soltar un botón del mouse por el canvas
+    MouseSoltado    : function(Evento) { },
+    // Función que se llama al entrar con el mouse en el canvas
+    MouseEnter      : function(Evento) { },
+    // Función que se llama al salir con el mouse del canvas
+    MouseLeave      : function(Evento) { },
+    // Función que se llama al presionar una tecla
+    TeclaPresionada : function(Evento) { },
+    // Función que se llama al soltar una tecla
+    TeclaSoltada    : function(Evento) { },
+    // Función que se llama al presionar la pantalla
+    TouchStart      : function(Evento) { },
+    // Función que se llama al soltar el dedo de la pantalla
+    TouchEnd        : function(Evento) { },    
+    // Función que se llama al pausar el banner
+    Pausa           : function() { },
+    // Función que se llama al reanudar el banner
+    Reanudar        : function() { },
+    // Escala del logo
+    Escala          : 1.8,
+    // Tamaño de la difusión de los puntos del logo
+    Difusion        : .25,
+    // Puntos del logo que se pueden mover
+//    Puntos          : [],
+    // Posiciones de los puntos para formar el logo
+    Posiciones      : [],
+
+    // Función que inicia el ejemplo
+    Iniciar         : function() {
+
+        // Activo el mapeado de sombras
+//        this.Context.shadowMap.enabled	= true;
+        // Creo la escena
+        this.Escena = new THREE.Scene();
+        // Creo la camara
+        this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.1, 1000);
+        this.Camara.Rotacion = { Grados : 0, Avance : (Math.PI / 180) / 3, Distancia : 100, MirarHacia : new THREE.Vector3(0, 0, 0), Animacion : true };
+        this.Camara.position.set(0, 0, this.Camara.Rotacion.Distancia);        
+        // Función para que la cámara rote alrededor de la escena
+        this.Camara.Rotar = function() {
+            if (this.Rotacion.Animacion === true) {
+                this.Rotacion.Grados += this.Rotacion.Avance;
+                this.position.x = this.Rotacion.Distancia * Math.cos(this.Rotacion.Grados);
+                this.position.z = this.Rotacion.Distancia * Math.sin(this.Rotacion.Grados);
+                this.lookAt(this.Rotacion.MirarHacia); 
+            }
+        };
+        this.Escena.add(this.Camara);
+
+        this.IniciarLogo();
+
+        this.CrearLuces();
+//        this.Camara.Rotar();
+    },
+
+    IniciarLogo : function() {
+        this.Posiciones = [];
+
+        var Path = document.getElementById("LogoPath1");
+        var TotalPuntos = Path.getTotalLength();
+        // Enumero los vertices
+        for (var i = 0; i < TotalPuntos; i+=0.05) {
+            var Punto = Path.getPointAtLength(i);
+
+            var Vertice = new THREE.Vector3(this.Escala * ((Punto.x -29.7) + Rand(this.Difusion, -this.Difusion)), 
+                                            this.Escala * ((-Punto.y +29.7) + Rand(this.Difusion, -this.Difusion)), 
+                                            this.Escala * (Rand(this.Difusion * 2, -this.Difusion * 2)));
+            
+            
+            this.Posiciones.push(Vertice);
+        }
+
+        var Path = document.getElementById("LogoPath2");
+        var TotalPuntos = Path.getTotalLength();
+        // Enumero los vertices
+        for (var i = 0; i < TotalPuntos; i+=0.05) {
+            var Punto = Path.getPointAtLength(i);
+
+            var Vertice = new THREE.Vector3(this.Escala * ((Punto.x -29.7) + Rand(this.Difusion, -this.Difusion)), 
+                                            this.Escala * ((-Punto.y +29.7) + Rand(this.Difusion, -this.Difusion)), 
+                                            this.Escala * (Rand(this.Difusion * 2, -this.Difusion * 2)));
+            
+            
+            this.Posiciones.push(Vertice);
+        }
+
+        var Path = document.getElementById("LogoPath");
+        var TotalPuntos = Path.getTotalLength();
+        // Enumero los vertices
+        for (var i = 0; i < TotalPuntos; i+=0.05) {
+            var Punto = Path.getPointAtLength(i);
+
+            var Vertice = new THREE.Vector3(this.Escala * ((Punto.x -29.7) + Rand(this.Difusion, -this.Difusion)), 
+                                            this.Escala * ((-Punto.y +29.7) + Rand(this.Difusion, -this.Difusion)), 
+                                            this.Escala * (Rand(this.Difusion * 2, -this.Difusion * 2)));
+            
+            
+            this.Posiciones.push(Vertice);
+/*
+            this.Ani.from(this.Posiciones, {
+                x: 600 / 2, // Center X of the heart
+                y: -552 / 2, // Center Y of the heart
+                z: 0, // Center of the scene
+                ease: "power2.inOut",
+                duration: "random(2, 5)" // Random duration
+            },
+                i * 0.002 // Delay calculated from the distance along the path
+            );*/
+        }
+
+
+        this.Puntos = new THREE.BufferGeometry().setFromPoints(this.Posiciones);
+        var Mat = new THREE.PointsMaterial( { color: 0xea504e, blending: THREE.AdditiveBlending, size: 0.3 } );
+        this.Particulas = new THREE.Points(this.Puntos, Mat);
+        // Offset the particles in the scene based on the viewbox values
+//        this.Particulas.position.x -= 600 / 2;
+//        this.Particulas.position.y += 552 / 2;
+        this.Escena.add(this.Particulas);
+
+    },
+    
+    CrearLuces : function() {
+        // Luz direccional
+/*        this.DirLight = new THREE.DirectionalLight( 0xffffff, 0.41 );
+        this.DirLight.position.set( 30, 60, 20 ); //.normalize();
+        this.DirLight.position.multiplyScalar( 20 );
+        this.DirLight.castShadow = true;
+        this.DirLight.shadow.mapSize.width = 2048;
+        this.DirLight.shadow.mapSize.height = 2048;
+        var d = 40;
+        this.DirLight.shadow.camera.left = -d;
+        this.DirLight.shadow.camera.right = d;
+        this.DirLight.shadow.camera.top = d;
+        this.DirLight.shadow.camera.bottom = -d;
+        this.DirLight.shadow.camera.far = 3500;
+        this.DirLight.target = this.Suelo;
+        this.Escena.add( this.DirLight );*/
+        
+        // Luz de ambiente  
+        this.HemiLight = new THREE.HemisphereLight( 0xeeeeee, 0xffffff, 0.9 );
+        this.HemiLight.color.setHSL( 0.6, 0.6, 0.6 );
+        this.HemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
+        this.HemiLight.position.set( 0, 0, 0 );
+        this.Escena.add( this.HemiLight );         
+        
+    },
+    
+    // Función que pinta cada frame de la animación
+    Pintar          : function() {  
+        this.Camara.Rotar();
+        this.Puntos.setFromPoints(this.Posiciones);
+        this.Context.render(this.Escena, this.Camara);  
+    }
+});
+
+// Inicialización del canvas en el Load de la página
+var Canvas = null;
+window.addEventListener('load', function() { Canvas = new NUEVOCANVASTHREE; });
+</script>
+    </head>
+    <body>
+        <svg width="625" height="625" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+            <path id='LogoPath' class="fil1" d="M30 14c4,0 7,1 10,4 6,-2 4,-6 2,-10 13,7 4,14 2,15 1,1 1,3 1,6 0,4 -2,8 -5,11 -2,8 -5,14 -15,10l-2 2c-2,-2 -3,-5 -3,-9 2,2 4,4 7,4l-1 2c5,1 9,-1 9,-7 -2,1 -4,1 -5,1 -9,0 -16,-6 -16,-14 0,-3 0,-5 1,-6 -2,-1 -10,-8 2,-15 -2,4 -4,8 2,10 3,-3 7,-4 11,-4zm-11 9c4,-1 9,6 9,8 0,3 -7,4 -9,3 -3,-1 -3,-9 0,-11zm21 0c-4,-1 -8,6 -8,8 0,3 7,4 9,3 2,-1 3,-9 -1,-11z"/>        
+            <path id='LogoPath1' class="fil0" d='M34,31a2,1 0 1,0 4,0a2,1 0 1,0 -4,0' />
+            <path id='LogoPath2' class="fil0" d='M22,31a2,1 0 1,0 4,0a2,1 0 1,0 -4,0' />
+    
+        </svg>
+    </body>
+</html>
