@@ -131,11 +131,11 @@
 
 .ObjetoTest_Barra::before, .ObjetoTest_Barra::after {
     position:absolute;
-    top:6px;    
+    top:3px;    
     color:#CCC;
     transition:0.4s;
     z-index:200;
-    font-size:8px;
+    font-size:12px;
 }
 .ObjetoTest_Barra:hover::before, .ObjetoTest_Barra:hover::after {
     color:#FFF;

@@ -15,7 +15,7 @@
         <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoCanvas.css' />        
         
         <!-- Estilos CSS para el ObjetoTest -->
-        <!-- <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoTest.css' /> -->
+        <link rel='stylesheet' href='/Ejemplos/Utils/ObjetoTest.css' />
         
         <!-- Si deseas utilizar JQuery descomenta la siguiente línea -->
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
@@ -29,19 +29,19 @@
         <script src="/Ejemplos/Utils/ObjetoCanvas.js"></script>
                 
         <!-- Objeto para crear animaciones de tiempo -->
-        <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
+        <!-- <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script> -->
         
         <!-- Objeto para crear tests rápidos -->
-        <!-- <script src="/Ejemplos/Utils/ObjetoTest.js"></script> -->
+        <script src="/Ejemplos/Utils/ObjetoTest.js"></script>
         
         <!-- Código javascript --> 
 <script type="text/javascript">
 /* Plantilla para crear banners animados en devildrey33.es */
 
 // Constructor
-var NUEVOCANVASTHREE = function() {
+var MockupLogo = function() {
     // Inicio in gsap global para todas las animaciones
-    this.Ani = gsap.timeline({ yoyo : false });
+    //this.Ani = gsap.timeline({ yoyo : false });
 
     // Llamo al constructor del ObjetoBanner
     if (ObjetoCanvas.call(this, { 
@@ -53,7 +53,7 @@ var NUEVOCANVASTHREE = function() {
         'BotonLogo'                 : false,
         'BotonPantallaCompleta'     : true,
         'ElementoRaiz'              : document.body,
-        'Pausar'                    : true,             // Pausa el canvas si la pestaña no tiene el foco del teclado
+        'Pausar'                    : false,             // Pausa el canvas si la pestaña no tiene el foco del teclado
         'ColorFondo'                : 0x000000,
         'CapturaEjemplo'            : ""                // Captura de pantalla para el ejemplo a "NuevoCanvas2D.png" se le añadirá "https://devildrey33.es/Web/Graficos/250x200_"
     }) === false) { return false; }
@@ -65,8 +65,8 @@ var NUEVOCANVASTHREE = function() {
     this.Cargando(false);
 };
 
-NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
-    constructor     : NUEVOCANVASTHREE, 
+MockupLogo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
+    constructor     : MockupLogo, 
     // Función que se llama al redimensionar el documento
     Redimensionar   : function() {    },
     // Función que se llama al hacer scroll en el documento    
@@ -127,37 +127,45 @@ NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         this.IniciarLogo();
 
         this.CrearLuces();
+
+        this.CrearTest();
 //        this.Camara.Rotar();
+    },
+
+    CrearPunto : function (x, y) {
+        // NOTA el 29.7 es para que el svg quede centrado
+        var DifX = Rand(this.Difusion, -this.Difusion);
+        var DifY = Rand(this.Difusion, -this.Difusion);
+        var DifZ = Rand(this.Difusion * 2, -this.Difusion * 2);
+        var Ret = new THREE.Vector3(this.Escala * ((x -29.7) + DifX), 
+                                    this.Escala * ((-y +29.7) + DifY), 
+                                    this.Escala * DifZ);
+        // Valores originales centrados
+        Ret.OrigX = (x -29.7);
+        Ret.OrigY = (-y +29.7);
+        // Diferencia
+        Ret.DifX = DifX;
+        Ret.DifY = DifY;
+        Ret.DifZ = DifZ;
+
+        return Ret;
     },
 
     IniciarLogo : function() {
         this.Posiciones = [];
 
-        var Path = document.getElementById("LogoPath1");
-        var TotalPuntos = Path.getTotalLength();
-        // Enumero los vertices
-        for (var i = 0; i < TotalPuntos; i+=0.05) {
-            var Punto = Path.getPointAtLength(i);
-
-            var Vertice = new THREE.Vector3(this.Escala * ((Punto.x -29.7) + Rand(this.Difusion, -this.Difusion)), 
-                                            this.Escala * ((-Punto.y +29.7) + Rand(this.Difusion, -this.Difusion)), 
-                                            this.Escala * (Rand(this.Difusion * 2, -this.Difusion * 2)));
-            
-            
+        var PathO1 = document.getElementById("LogoPath1");
+        var TotalPuntos = PathO1.getTotalLength();
+        var PathO2 = document.getElementById("LogoPath2");
+        var TotalPuntos = PathO2.getTotalLength();
+        // Enumero los vertices de los ojos 
+        for (var i = 0; i < TotalPuntos; i+=0.1) {
+            var Punto = PathO1.getPointAtLength(i);
+            var Vertice = this.CrearPunto(Punto.x, Punto.y);
             this.Posiciones.push(Vertice);
-        }
 
-        var Path = document.getElementById("LogoPath2");
-        var TotalPuntos = Path.getTotalLength();
-        // Enumero los vertices
-        for (var i = 0; i < TotalPuntos; i+=0.05) {
-            var Punto = Path.getPointAtLength(i);
-
-            var Vertice = new THREE.Vector3(this.Escala * ((Punto.x -29.7) + Rand(this.Difusion, -this.Difusion)), 
-                                            this.Escala * ((-Punto.y +29.7) + Rand(this.Difusion, -this.Difusion)), 
-                                            this.Escala * (Rand(this.Difusion * 2, -this.Difusion * 2)));
-            
-            
+            var Punto = PathO2.getPointAtLength(i);
+            var Vertice = this.CrearPunto(Punto.x, Punto.y);
             this.Posiciones.push(Vertice);
         }
 
@@ -166,12 +174,7 @@ NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
         // Enumero los vertices
         for (var i = 0; i < TotalPuntos; i+=0.05) {
             var Punto = Path.getPointAtLength(i);
-
-            var Vertice = new THREE.Vector3(this.Escala * ((Punto.x -29.7) + Rand(this.Difusion, -this.Difusion)), 
-                                            this.Escala * ((-Punto.y +29.7) + Rand(this.Difusion, -this.Difusion)), 
-                                            this.Escala * (Rand(this.Difusion * 2, -this.Difusion * 2)));
-            
-            
+            var Vertice = this.CrearPunto(Punto.x, Punto.y);
             this.Posiciones.push(Vertice);
 /*
             this.Ani.from(this.Posiciones, {
@@ -185,6 +188,7 @@ NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
             );*/
         }
 
+        console.log(this.Posiciones.length);
 
         this.Puntos = new THREE.BufferGeometry().setFromPoints(this.Posiciones);
         var Mat = new THREE.PointsMaterial( { color: 0xea504e, blending: THREE.AdditiveBlending, size: 0.3 } );
@@ -196,23 +200,51 @@ NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
 
     },
     
-    CrearLuces : function() {
-        // Luz direccional
-/*        this.DirLight = new THREE.DirectionalLight( 0xffffff, 0.41 );
-        this.DirLight.position.set( 30, 60, 20 ); //.normalize();
-        this.DirLight.position.multiplyScalar( 20 );
-        this.DirLight.castShadow = true;
-        this.DirLight.shadow.mapSize.width = 2048;
-        this.DirLight.shadow.mapSize.height = 2048;
-        var d = 40;
-        this.DirLight.shadow.camera.left = -d;
-        this.DirLight.shadow.camera.right = d;
-        this.DirLight.shadow.camera.top = d;
-        this.DirLight.shadow.camera.bottom = -d;
-        this.DirLight.shadow.camera.far = 3500;
-        this.DirLight.target = this.Suelo;
-        this.Escena.add( this.DirLight );*/
-        
+    CrearTest : function () { 
+        this.Test = new ObjetoTest({ css : { bottom : "10px", left : "10px" } });
+
+        // Valores para el ObjetoTest de la cámara
+        this.lCamara = this.Test.AgregarLista("Cámara");
+        this.lCamara.Agregar({ Padre : this.Camara.position, Variable : "x", Min : -200, Max : 200, Nombre : "position.x", Modificable : false  });
+        this.lCamara.Agregar({ Padre : this.Camara.position, Variable : "y", Min : -200, Max : 200, Nombre : "position.y" });
+        this.lCamara.Agregar({ Padre : this.Camara.position, Variable : "z", Min : -200, Max : 200, Nombre : "position.z", Modificable : false });
+        this.lCamara.Agregar({ Padre : this.Camara.rotation, Variable : "x", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.x", Modificable : false });
+        this.lCamara.Agregar({ Padre : this.Camara.rotation, Variable : "y", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.y", Modificable : false });
+        this.lCamara.Agregar({ Padre : this.Camara.rotation, Variable : "z", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.z", Modificable : false });
+        this.lCamara.Agregar({ Padre : this.Camara.Rotacion, Variable : "Animacion", Nombre : "Animación", Actualizar : function(NuevoValor) {
+            this.Camara.Rotacion.Animacion = NuevoValor;
+            for (var i = 0; i < this.lCamara.Variables.length; i++) {
+                if (i !== 1 && i !== 6) {
+                    this.lCamara.Variables[i].Modificable(!NuevoValor);
+                }
+            }
+        }.bind(this) });
+
+        var tParticulas = this.Test.AgregarLista("Particulas");
+        tParticulas.Agregar({ Padre : this, Variable : "Escala", Min : 0.5, Max : 2.5, Nombre : "Escala", Modificable : true /*, Actualizar : function(NuevoValor) { 
+            for (var i = 0; i < this.Puntos.length; i++) {
+                this.Puntos.x = (this.Puntos.x / this.Escala) * NuevoValor;
+                this.Puntos.y = (this.Puntos.y / this.Escala) * NuevoValor;
+                this.Puntos.z = (this.Puntos.z / this.Escala) * (NuevoValor * 2);
+            }
+
+            this.Puntos.setFromPoints(this.Posiciones);
+
+        }.bind(this)   */});
+        tParticulas.Agregar({ Padre : this, Variable : "Difusion", Min : 0, Max : 1.5, Nombre : "Difusión", Modificable : true/*, Actualizar : function(NuevoValor) { 
+            for (var i = 0; i < this.Puntos.length; i++) {
+                this.Puntos.x = (this.Puntos.x - this.Puntos.DifX) + NuevoValor;
+                this.Puntos.y = (this.Puntos.y  - this.Puntos.DifY) + NuevoValor;
+                this.Puntos.z = (this.Puntos.z  - this.Puntos.DifZ) + (NuevoValor * 2);
+            }
+
+            this.Puntos.setFromPoints(this.Posiciones);
+
+        }.bind(this)  */ });
+
+    },
+
+    CrearLuces : function() {      
         // Luz de ambiente  
         this.HemiLight = new THREE.HemisphereLight( 0xeeeeee, 0xffffff, 0.9 );
         this.HemiLight.color.setHSL( 0.6, 0.6, 0.6 );
@@ -225,14 +257,17 @@ NUEVOCANVASTHREE.prototype = Object.assign( Object.create(ObjetoCanvas.prototype
     // Función que pinta cada frame de la animación
     Pintar          : function() {  
         this.Camara.Rotar();
-        this.Puntos.setFromPoints(this.Posiciones);
+
+        // Actualizo los valores del test
+        this.Test.ActualizarValores();
+
         this.Context.render(this.Escena, this.Camara);  
     }
 });
 
 // Inicialización del canvas en el Load de la página
 var Canvas = null;
-window.addEventListener('load', function() { Canvas = new NUEVOCANVASTHREE; });
+window.addEventListener('load', function() { Canvas = new MockupLogo; });
 </script>
     </head>
     <body>
