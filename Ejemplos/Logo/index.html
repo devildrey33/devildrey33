@@ -94,9 +94,9 @@ MockupLogo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
     // Función que se llama al reanudar el banner
     Reanudar        : function() { },
     // Escala del logo
-    Escala          : 1.8,
+    Escala          : 5.8,
     // Tamaño de la difusión de los puntos del logo
-    Difusion        : .25,
+    Difusion        : .75,
     // Puntos del logo que se pueden mover
 //    Puntos          : [],
     // Posiciones de los puntos para formar el logo
@@ -110,19 +110,32 @@ MockupLogo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
         // Creo la escena
         this.Escena = new THREE.Scene();
         // Creo la camara
-        this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.1, 1000);
+        this.Camara = new THREE.PerspectiveCamera(75, this.Ancho / this.Alto, 0.1, 2000);
         this.Camara.Rotacion = { Grados : 0, Avance : (Math.PI / 180) / 3, Distancia : 100, MirarHacia : new THREE.Vector3(0, 0, 0), Animacion : true };
         this.Camara.position.set(0, 0, this.Camara.Rotacion.Distancia);        
         // Función para que la cámara rote alrededor de la escena
         this.Camara.Rotar = function() {
             if (this.Rotacion.Animacion === true) {
                 this.Rotacion.Grados += this.Rotacion.Avance;
-                this.position.x = this.Rotacion.Distancia * Math.cos(this.Rotacion.Grados);
-                this.position.z = this.Rotacion.Distancia * Math.sin(this.Rotacion.Grados);
-                this.lookAt(this.Rotacion.MirarHacia); 
+                if (this.Rotacion.Distancia < 500) {
+                    this.Rotacion.Distancia  += this.Rotacion.Avance * 100;
+                }
             }
+            this.position.x = this.Rotacion.Distancia * Math.cos(this.Rotacion.Grados);
+            this.position.z = this.Rotacion.Distancia * Math.sin(this.Rotacion.Grados);
+            this.lookAt(this.Rotacion.MirarHacia); 
         };
         this.Escena.add(this.Camara);
+
+        // Plano para el suelo
+/*        this.Suelo = new THREE.Mesh(    new THREE.PlaneGeometry(1000, 1000), 
+                                        new THREE.MeshPhongMaterial({ color: 0xbbbbbb, specular : 0xffffff }));
+        this.Suelo.rotation.x = -Math.PI / 2;
+        this.Suelo.position.y = -(25 * this.Escala);
+        this.Suelo.castShadow = false;
+        this.Suelo.receiveShadow = true;
+        this.Suelo.wireframe = true;
+        this.Escena.add(this.Suelo);*/
 
         this.IniciarLogo();
 
@@ -191,11 +204,14 @@ MockupLogo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
         console.log(this.Posiciones.length);
 
         this.Puntos = new THREE.BufferGeometry().setFromPoints(this.Posiciones);
-        var Mat = new THREE.PointsMaterial( { color: 0xea504e, blending: THREE.AdditiveBlending, size: 0.3 } );
+        new THREE.MeshPhongMaterial({ color: 0xbbbbbb, specular : 0xffffff })
+        var Mat = new THREE.PointsMaterial( { color: 0xea504e, blending: THREE.NormalBlending, size: 0.3 } );
+//        var Mat = new THREE.PointsMaterial( { color: 0xea504e, blending: THREE.AdditiveBlending, size: 0.3 } );
         this.Particulas = new THREE.Points(this.Puntos, Mat);
         // Offset the particles in the scene based on the viewbox values
 //        this.Particulas.position.x -= 600 / 2;
 //        this.Particulas.position.y += 552 / 2;
+//        this.Particulas.castShadow = true;
         this.Escena.add(this.Particulas);
 
     },
@@ -207,14 +223,15 @@ MockupLogo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
         this.lCamara = this.Test.AgregarLista("Cámara");
         this.lCamara.Agregar({ Padre : this.Camara.position, Variable : "x", Min : -200, Max : 200, Nombre : "position.x", Modificable : false  });
         this.lCamara.Agregar({ Padre : this.Camara.position, Variable : "y", Min : -200, Max : 200, Nombre : "position.y" });
-        this.lCamara.Agregar({ Padre : this.Camara.position, Variable : "z", Min : -200, Max : 200, Nombre : "position.z", Modificable : false });
+        this.lCamara.Agregar({ Padre : this.Camara.position, Variable : "z", Min : -200, Max : 400, Nombre : "position.z", Modificable : false });
         this.lCamara.Agregar({ Padre : this.Camara.rotation, Variable : "x", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.x", Modificable : false });
         this.lCamara.Agregar({ Padre : this.Camara.rotation, Variable : "y", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.y", Modificable : false });
         this.lCamara.Agregar({ Padre : this.Camara.rotation, Variable : "z", Min : -Math.PI, Max : Math.PI, Nombre : "rotation.z", Modificable : false });
+        this.lCamara.Agregar({ Padre : this.Camara.Rotacion, Variable : "Distancia", Min : -150, Max : 1000, Nombre : "Distancia", Modificable : false });
         this.lCamara.Agregar({ Padre : this.Camara.Rotacion, Variable : "Animacion", Nombre : "Animación", Actualizar : function(NuevoValor) {
             this.Camara.Rotacion.Animacion = NuevoValor;
             for (var i = 0; i < this.lCamara.Variables.length; i++) {
-                if (i !== 1 && i !== 6) {
+                if (i !== 1 && i !== 7) {
                     this.lCamara.Variables[i].Modificable(!NuevoValor);
                 }
             }
@@ -242,9 +259,34 @@ MockupLogo.prototype = Object.assign( Object.create(ObjetoCanvas.prototype) , {
 
         }.bind(this)  */ });
 
+/*        var tLuces = this.Test.AgregarLista("Luces");
+        // HemisphereLight
+        var tHemiLight = tLuces.AgregarLista("HemisphereLight"); 
+        tHemiLight.Agregar({ Padre : this.HemiLight.position,   Variable : "x",         Min : -100, Max : 100});
+        tHemiLight.Agregar({ Padre : this.HemiLight.position,   Variable : "y",         Min : 0,    Max : 500});
+        tHemiLight.Agregar({ Padre : this.HemiLight.position,   Variable : "z",         Min : -200, Max : 200});
+        tHemiLight.Agregar({ Padre : this.HemiLight,            Variable : "intensity", Min : 0.0,  Max : 1.0});
+*/
     },
 
     CrearLuces : function() {      
+        // Luz direccional
+/*        this.DirLight = new THREE.DirectionalLight( 0xffffff, 0.41 );
+        this.DirLight.position.set( 30, 60, 20 ); //.normalize();
+        this.DirLight.position.multiplyScalar( 20 );
+        this.DirLight.castShadow = true;
+        this.DirLight.shadow.mapSize.width = 2048;
+        this.DirLight.shadow.mapSize.height = 2048;
+        var d = 40;
+        this.DirLight.shadow.camera.left = -d;
+        this.DirLight.shadow.camera.right = d;
+        this.DirLight.shadow.camera.top = d;
+        this.DirLight.shadow.camera.bottom = -d;
+        this.DirLight.shadow.camera.far = 3500;
+        this.DirLight.target = this.Suelo;
+        this.Escena.add( this.DirLight );
+        */
+
         // Luz de ambiente  
         this.HemiLight = new THREE.HemisphereLight( 0xeeeeee, 0xffffff, 0.9 );
         this.HemiLight.color.setHSL( 0.6, 0.6, 0.6 );
@@ -272,9 +314,9 @@ window.addEventListener('load', function() { Canvas = new MockupLogo; });
     </head>
     <body>
         <svg width="625" height="625" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
-            <path id='LogoPath' class="fil1" d="M30 14c4,0 7,1 10,4 6,-2 4,-6 2,-10 13,7 4,14 2,15 1,1 1,3 1,6 0,4 -2,8 -5,11 -2,8 -5,14 -15,10l-2 2c-2,-2 -3,-5 -3,-9 2,2 4,4 7,4l-1 2c5,1 9,-1 9,-7 -2,1 -4,1 -5,1 -9,0 -16,-6 -16,-14 0,-3 0,-5 1,-6 -2,-1 -10,-8 2,-15 -2,4 -4,8 2,10 3,-3 7,-4 11,-4zm-11 9c4,-1 9,6 9,8 0,3 -7,4 -9,3 -3,-1 -3,-9 0,-11zm21 0c-4,-1 -8,6 -8,8 0,3 7,4 9,3 2,-1 3,-9 -1,-11z"/>        
-            <path id='LogoPath1' class="fil0" d='M34,31a2,1 0 1,0 4,0a2,1 0 1,0 -4,0' />
-            <path id='LogoPath2' class="fil0" d='M22,31a2,1 0 1,0 4,0a2,1 0 1,0 -4,0' />
+            <path id='LogoPath' d="M30 14c4,0 7,1 10,4 6,-2 4,-6 2,-10 13,7 4,14 2,15 1,1 1,3 1,6 0,4 -2,8 -5,11 -2,8 -5,14 -15,10l-2 2c-2,-2 -3,-5 -3,-9 2,2 4,4 7,4l-1 2c5,1 9,-1 9,-7 -2,1 -4,1 -5,1 -9,0 -16,-6 -16,-14 0,-3 0,-5 1,-6 -2,-1 -10,-8 2,-15 -2,4 -4,8 2,10 3,-3 7,-4 11,-4zm-11 9c4,-1 9,6 9,8 0,3 -7,4 -9,3 -3,-1 -3,-9 0,-11zm21 0c-4,-1 -8,6 -8,8 0,3 7,4 9,3 2,-1 3,-9 -1,-11z"/>        
+            <path id='LogoPath1' d='M34,31a2,1 0 1,0 4,0a2,1 0 1,0 -4,0' />
+            <path id='LogoPath2' d='M22,31a2,1 0 1,0 4,0a2,1 0 1,0 -4,0' />
     
         </svg>
     </body>
