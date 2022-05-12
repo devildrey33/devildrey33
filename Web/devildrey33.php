@@ -408,8 +408,10 @@ class devildrey33 {
 //                "<span class='Menu_Boton_Cruz'>Ejem</span>".Intro().
                 "<div class='Menu_Marco' id ='BarraNavegacion_LabMarcoExplorador'>".Intro().
                      "<div class='Lab_Explorador SinSeleccion' id='BarraNavegacion_Explorador'>".Intro();
-            if (devildrey33_Opciones::Administrador() > 0) { echo devildrey33_Lab::MostrarCarpetaEjemplos(); }
-            else                                           { echo devildrey33_Lab::LeerCache(); }
+            $Lab = new devildrey33_Lab;
+
+            if (devildrey33_Opciones::Administrador() > 0) { echo $Lab->MostrarCarpetaEjemplos(); }
+            else                                           { echo $Lab->LeerCache(); }
             echo    "</div>".Intro().
                 "</div>".Intro().                                        
             "</div>".Intro().

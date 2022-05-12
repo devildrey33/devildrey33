@@ -61,7 +61,7 @@ and open the template in the editor.
     /* Articles amb el 50% d'ample (menys 300 pixels de padding) */
     #MarcoIndice > .Articulo_Portada {
         display: inline-block;
-        width: calc(50% - 302px);
+        width: calc(50% - 301px);
     }    
     /* Faig la font del titul un pel mes petita */
     .Articulo_Portada > h1 {
