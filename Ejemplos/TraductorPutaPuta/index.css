@@ -1,7 +1,7 @@
-html, body, textarea {
+/*html, body, textarea {
     box-sizing: border-box;
     padding:5px;
-}
+}*/
 
 html, body {
     margin: 0px;
@@ -60,7 +60,9 @@ button {
 #Inici > ul > li:nth-child(3) {    background-color:#bb6afe;    }
 
 #Inici > ul > li > h1 {
-    font-size:6em;
+/*    font-size:6em; */
+/*    font-size: clamp(1rem, -0.875rem + 8.333333vw, 8rem);*/
+    font-size: min(80px, 8rem);
     margin:10px 0px 0px 0px;
     display:table;
     margin-left:auto;
@@ -111,17 +113,16 @@ button {
 
 
 #Input_Cristia2, #Input_Descodificar {
-   width:100%;
-   height:90vh;
+   width:calc(100% - 12vh);
+   height:88vh;
    font-size:3em;
-   margin:20px;
+   margin:5vh;
 }
 
 #Buto_Codificar {
     position:fixed;
-    bottom:40px;
-    margin-left:20px;
-    margin-right:auto;
+    bottom:6vh;
+    left:6vh;
     font-size:3em;
     padding:2vh;
 }
