@@ -6,7 +6,7 @@
 
 class devildrey33_BD {
     public    $_mysqli;
-    public    $_BDFuncional = true;
+    public    $_BDFuncional = false;
     // Constructor
     public function __construct() {
         if (file_exists(dirname(__FILE__).'/Passwords.php')) {
@@ -93,13 +93,17 @@ class devildrey33_BD {
     public function ObtenetMediaVotacionesWeb($Archivo) {
         $Ret = array("TotalVotaciones" => 0, "TotalEstrellas" => 0);
         if ($this->_BDFuncional === false) return $Ret;
+        // Comprobamos si existe la tabla paginas
+        $Resultado = $this->_mysqli->query("SHOW TABLES LIKE 'paginas'");
+        if ($Resultado->num_rows == 0) {
+            return $Ret;
+        }
         // Comprobamos si exsite la pagina
         $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina = '".$this->_mysqli->real_escape_string($Archivo)."'");
-        if (!$Resultado) return $Ret;
+        if ($Resultado->num_rows == 0) {
+             return $Ret;
+        }
         $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
-/*        echo "<pre>";
-        print_r($Datos);
-        echo "</pre>";*/
         
         $Ret["TotalVotaciones"] = $Datos["VotosTotal"];
         $Ret["TotalEstrellas"]  = $Datos["VotosValor"];
@@ -141,19 +145,26 @@ class devildrey33_BD {
 
         $Archivo = $this->_mysqli->real_escape_string(str_replace(array("?Preview", "?Filas", "?Columnas", "?Codigo"), "", $Archivo));
         
+        $PaginasExiste = false;
         // Comprobamos si existe algun registro de la pagina 
-        $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina='".$Archivo."'");
-        if ($Resultado && $Resultado->num_rows == 1) {
-            $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
-            if ($Datos) $Visitas = $Datos['Visitas'];
+        $Resultado = $this->_mysqli->query("SHOW TABLES LIKE 'paginas'");
+        $PaginasExiste = ($Resultado->num_rows > 0) ? true : false;
+        if ($PaginasExiste == true) {
+            $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina='".$Archivo."'");
+            if ($Resultado && $Resultado->num_rows == 1) {
+                $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
+                if ($Datos) $Visitas = $Datos['Visitas'];
+            }
         }
         
         // Comprobamos si existe la tabla Paginas
-        $Resultado = $this->_mysqli->query("SELECT * FROM paginas");
-        if (!$Resultado || $Resultado->num_rows == 0) { // La tabla no existe, la creamos
+        if ($PaginasExiste == false) {
+          //$Resultado = $this->_mysqli->query("SELECT * FROM paginas");
+//        if (!$Resultado || $Resultado->num_rows == 0) { // La tabla no existe, la creamos
             if (!$this->_mysqli->query("CREATE TABLE paginas (NumPagina INT NOT NULL AUTO_INCREMENT PRIMARY KEY, Pagina VARCHAR(128), VotosTotal INT, VotosValor INT, Visitas INT)")) {
                 error_log('Error creando la tabla Paginas!! : '.$this->_mysqli->error);
             }
+//        }
         }
         
         // Comprobamos si existe la entrada para la pagina actual
@@ -188,13 +199,19 @@ class devildrey33_BD {
         if ($Contador > 0) $ArchivoFinal .= ".php";
         // El máximo de caracteres que puede tener el nombre de una tabla es 64, si le restamos los 13 de "comentarios__" queda en 51
         // Re-emplazo los caracteres "." y "-" por el caracter "_" para crear un nombre compatible con los nombres de tabla de MYSQL
-        $NombreArchivo = substr($this->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($ArchivoFinal))), 0, 51);        
+        $NombreArchivo = substr($this->_mysqli->real_escape_string(str_replace(array(".", "-", "/"), "_", strtolower($ArchivoFinal))), 0, 51);        
         // Comprobamos el numero de comentarios
-        $Resultado = $this->_mysqli->query("SELECT * FROM comentarios__".strtolower($NombreArchivo));
-        if ($Resultado) $Ret["Comentarios"] = $Resultado->num_rows;
+//        echo "<pre>"."SELECT * FROM comentarios__".strtolower($NombreArchivo)."</pre>";
+        $Resultado = $this->_mysqli->query("SHOW TABLES LIKE 'comentarios__".strtolower($NombreArchivo)."'");
+        if ($Resultado->num_rows > 0) {
+            $Resultado = $this->_mysqli->query("SELECT * FROM comentarios__".strtolower($NombreArchivo));
+            if ($Resultado) $Ret["Comentarios"] = $Resultado->num_rows;
+        }
         // Comprobamos si existe algun registro de la página 
-        $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina='".$this->_mysqli->real_escape_string($ArchivoFinal)."'");
-        if ($Resultado) {
+
+        $Resultado = $this->_mysqli->query("SHOW TABLES LIKE 'paginas'");
+        if ($Resultado->num_rows > 0) {
+            $Resultado = $this->_mysqli->query("SELECT * FROM paginas WHERE Pagina='".$this->_mysqli->real_escape_string($ArchivoFinal)."'");
             if ($Resultado->num_rows == 1) {
                 $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
                 // Si hay datos obtenemos sus valores

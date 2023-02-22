@@ -96,7 +96,7 @@
         }
         
         public function BanearIP() {
-            devildrey33_htaccess::BanearIP($_SERVER['REMOTE_ADDR']);
+            /*devildrey33_htaccess::BanearIP($_SERVER['REMOTE_ADDR']);*/
         }
         
         public function Loguear() {
