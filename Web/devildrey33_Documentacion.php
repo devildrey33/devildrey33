@@ -67,11 +67,13 @@
             // Array con uno o mas ejemplos para este documento
             $Paths = array("Ejemplos/CSS/".$this->PathEjemplos."/".$this->NombreCSS.".html");
             // Añado los ejemplos extra (si hay alguno
-            for ($i = 0; $i < count($Entrada["EjemplosExtra"]); $i++) {
-                array_push($Paths, $Entrada["EjemplosExtra"][$i]);
+            if (is_null($Entrada["EjemplosExtra"]) === false) {
+                for ($i = 0; $i < count($Entrada["EjemplosExtra"]); $i++) {
+                    array_push($Paths, $Entrada["EjemplosExtra"][$i]);
+                }
             }
-            if (count($Paths) > 1)   {  echo "<hr /><h2>Códigos de ejemplo</h2><br />";            }
-            else                    {  echo "<hr /><h2>Código de ejemplo</h2><br />";            }
+            if (count($Paths) > 1)   {  echo "<hr /><h2>Códigos de ejemplo</h2><br />";           }
+            else                     {  echo "<hr /><h2>Código de ejemplo</h2><br />";            }
             
             devildrey33_Lab::CrearMiniLab($Paths);
             $this->CSS_BD->MostrarCompatibilidad($this->NombrePropiedad, $Entrada["Version"], $Paths[0]);	

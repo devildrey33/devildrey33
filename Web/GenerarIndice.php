@@ -48,7 +48,8 @@
             $Codigo = "";
             if ($Categoria == "") { $Categoria = "Todo"; }
             $Contador = 0;
-            for ($i = $Inicio; $i < count($EntradasPC); $i++) {
+            $TotalEntradas = (is_null($EntradasPC) === true) ? 0 : count($EntradasPC);
+            for ($i = $Inicio; $i < $TotalEntradas; $i++) {
 //                if (Indice::BuscarCategoria($Entradas[$i]["Tags"], $Categoria) === TRUE) {
                     switch ($EntradasPC[$i]["Tipo"]) {
                         case "Blog"     :  default :    $URL = Base::URL_Blog().$EntradasPC[$i]["URL"];   $EntradasPC[$i]["URL"].= ".php";   break;

@@ -37,9 +37,9 @@ class devildrey33 {
     
 //    public      $Opciones;
 
-    public 	$BD;				// Base de datos
-    public 	$PintarCodigo;			// Objeto para pintar código
-    public      $EntradaBlog;                      // Contiene la lista de entradas del blog
+    public 	    $BD;				    // Base de datos
+    public 	    $PintarCodigo;			// Objeto para pintar código
+    public      $EntradaBlog;           // Contiene la lista de entradas del blog
 
     /* Constructor sin parametros, si hay que iniciar una plantilla ya se le suministraran el tipo y el nombre del documento en la misma función 
             Esto agilizara consultas ajax y de mensajeria que pasan por este constructor sin necesitar la mitad de cosas que se cargan.
@@ -740,12 +740,12 @@ class devildrey33 {
         echo "</article>".Intro();        
     }
 
-    public function FinDoc($EvitarComentarios = false, $SoloLectura = FALSE) {
+    public function FinDoc($EvitarComentarios = true, $SoloLectura = FALSE) {
         $this->FinBlog($EvitarComentarios, $SoloLectura);
     }
 
     
-    public function FinBlog($EvitarComentarios = false, $SoloLectura = FALSE) {
+    public function FinBlog($EvitarComentarios = true, $SoloLectura = FALSE) {
         echo "</article>".Intro();
         if ($EvitarComentarios === true || isset($_GET["GenerarCacheBuscador"])) return;
         $Com = new devildrey33_Comentarios();
