@@ -162,7 +162,7 @@
                 "</script>";            */
         }
         
-        public function LeerCache() {
+        static public function LeerCache() {
             return file_get_contents(Base::Path_Raiz()."Web/Cache/Lab_Explorador.txt");
         }
         /* Genera la cache a partir de una lista en JSon generada con JavaScript */
