@@ -69,23 +69,23 @@ class devildrey33_Comentarios {
         // Avegades dona aquest error... : PHP Fatal error:  Call to a member function real_escape_string() on null in /homepages/14/d288223143/htdocs/devildrey33.es/Web/devildrey33_Comentarios.php on line 70
         if ($BD->_mysqli == NULL) return;
         $PaginaPadre    = substr($BD->_mysqli->real_escape_string(str_replace(array(".", "-"), "_", strtolower($Pagina))), 0, 51);        
-//        $PaginaPadre = str_replace(array(".", "-"), "_", $Pagina);            
-        $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".$PaginaPadre." ORDER BY NumMsg DESC");
-//            echo "SELECT * FROM Comentarios__".$PaginaPadre." ORDER BY NumMsg DESC || ".$Resultado;
-        if ($Resultado) {
-            $Total = $Resultado->num_rows;
-            if ($Total !== 0) {
-                for ($i = 0; $i < $Total; $i++) {
-                    $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
-                    if ($i >= $Desde) {
-                        echo $this->_ImprimirComentario($Datos, ($i - $Desde == ($Num / 2) - 1) ? TRUE : FALSE);
-                        if ($i === $Total -1) echo "<div fincomentarios='true'></div>".Intro();
-                    }
 
-                    if ($i - $Desde == $Num - 1) break;
-                }                
+            $Resultado = $BD->_mysqli->query("SELECT * FROM comentarios__".$PaginaPadre." ORDER BY NumMsg DESC");
+    //            echo "SELECT * FROM Comentarios__".$PaginaPadre." ORDER BY NumMsg DESC || ".$Resultado;
+            if ($Resultado) {
+                $Total = $Resultado->num_rows;
+                if ($Total !== 0) {
+                    for ($i = 0; $i < $Total; $i++) {
+                        $Datos = $Resultado->fetch_array(MYSQLI_ASSOC);
+                        if ($i >= $Desde) {
+                            echo $this->_ImprimirComentario($Datos, ($i - $Desde == ($Num / 2) - 1) ? TRUE : FALSE);
+                            if ($i === $Total -1) echo "<div fincomentarios='true'></div>".Intro();
+                        }
+
+                        if ($i - $Desde == $Num - 1) break;
+                    }                
+                }
             }
-        }
     }
 
     public function InsertarComentarios($Pagina, $Desde, $Hasta) {

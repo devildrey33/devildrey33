@@ -9,7 +9,7 @@ if (!isset($_SESSION)) { session_start(); }
 
 // Tiempo de validez para la sesion 30 minutos desde la ultima actividad
 if (isset($_SESSION["Opciones"]['UltimaActividadMS'])) {
-    if ((time() - $_SESSION["Opciones"]['UltimaActividadMS'] > 1800))           { 	unset($_SESSION["Opciones"]["Administrador"]);	}	// 30 minutos
+    if ((time() - $_SESSION["Opciones"]['UltimaActividadMS'] > 1800))       { 	unset($_SESSION["Opciones"]["Administrador"]);	}	// 30 minutos
     if ((time() - $_SESSION["Opciones"]['UltimaActividadMS'] > 3600 * 24)) 	{ 	unset($_SESSION["Opciones"]["PaginasVistas"]);	}	// 1 dia
 }
 $_SESSION["Opciones"]['UltimaActividadMS'] = time(); // Guardo el tiempo de la ultima actividad

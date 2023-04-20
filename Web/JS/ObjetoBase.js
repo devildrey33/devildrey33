@@ -898,7 +898,18 @@ $Base = new function() {
         this.nURL = nURL;
         this.PeticionAjax = $.post(nURL, { "Regenerar" : "todo", "Categoria" : "Todo", "SinPlantilla" : "true" }).done(function(data) {
             // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
-            Datos = $Base.JSON_Parse(data);
+//            Datos = $Base.JSON_Parse(data);
+            var Datos = { };
+            // Si el parse de JSON devuelve false, es que ha fallado y mostrará una ventana con el error PHP
+            try {
+                Datos = JSON.parse(data);
+            }
+            catch (e) {
+                // Son datos planos, provablemente un html
+                Datos.HTML = "<iframe id='PlainHtml' src='" + nURL + "'></iframe>";
+                Datos.ErroresPHP = "";
+                console.log("Base.CargarURL : " + nURL + " cargado como documento plano" );
+            }
             if (Datos === false) return;
             if (Datos["HTML"].indexOf("<script>$Base.MostrarErrorAjax(404, false);</script>") === 0) {
                 $Base.MostrarErrorAjax(404, false, 'No se ha encontrado');

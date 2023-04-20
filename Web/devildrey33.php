@@ -99,6 +99,7 @@ class devildrey33 {
             $Autor  = $this->EntradaBlog["Autor"];
             if ($this->EntradaBlog["Tipo"] === "Blog")    { $URL    = Base::URL_Raiz()."Blog/".$this->EntradaBlog["URL"];     }
             elseif ($this->EntradaBlog["Tipo"] === "Lab") { $URL    = Base::URL_Raiz()."Lab/".$this->EntradaBlog["URL"];      }
+            elseif ($this->EntradaBlog["Tipo"] === "Experience") { $URL    = Base::URL_Raiz().$this->EntradaBlog["URL"];      }
             else                                          { $URL    = Base::URL_Raiz().$this->EntradaBlog["URL"];             }
             $Imagen = Base::URL_Raiz()."Web/Graficos/250x200_".$this->EntradaBlog["Imagen"];
         }
@@ -740,16 +741,16 @@ class devildrey33 {
         echo "</article>".Intro();        
     }
 
-    public function FinDoc($EvitarComentarios = true, $SoloLectura = FALSE) {
+    public function FinDoc($EvitarComentarios = false, $SoloLectura = FALSE) {
         $this->FinBlog($EvitarComentarios, $SoloLectura);
     }
 
     
-    public function FinBlog($EvitarComentarios = true, $SoloLectura = FALSE) {
+    public function FinBlog($EvitarComentarios = false, $SoloLectura = FALSE) {
         echo "</article>".Intro();
         if ($EvitarComentarios === true || isset($_GET["GenerarCacheBuscador"])) return;
-        $Com = new devildrey33_Comentarios();
-        $Com->AgregarComentarios($this->_NombreDocumento, $this->BD, $SoloLectura);
+//        $Com = new devildrey33_Comentarios();
+//        $Com->AgregarComentarios($this->_NombreDocumento, $this->BD, $SoloLectura);
     }
     
     public function NavegadorNoCompatible($Navegador) {

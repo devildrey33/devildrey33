@@ -54,6 +54,7 @@
                     switch ($EntradasPC[$i]["Tipo"]) {
                         case "Blog"     :  default :    $URL = Base::URL_Blog().$EntradasPC[$i]["URL"];   $EntradasPC[$i]["URL"].= ".php";   break;
                         case "Lab"      :               $URL = Base::URL_Lab().$EntradasPC[$i]["URL"];                                       break;
+                        case "Experience" :             $URL = Base::URL_Raiz().$EntradasPC[$i]["URL"];                                       break;
                         case "DocCSS"   :               $URL = Base::URL_Doc().$EntradasPC[$i]["URL"];                                       break;
                     }
                     // Parche parche para que como mínimo en un servidor local no dedicado (localhost/directorio-web) se pueda acceder a las entradas del indice

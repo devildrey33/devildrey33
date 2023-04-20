@@ -5,6 +5,24 @@
 
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(        
+array(	"Titulo" 	=> "Audio PlayGround",
+        "Fecha" 	=> "10/04/2023",
+        "URL" 		=> "Ejemplos/Three.js-Journey/Audio-PlayGround/index.html",
+        "Tags" 		=> array("Three.js", "JavaScript", "Shaders", "WebAudio"),
+        "Tipo"		=> "Experience",
+        "Autor"         => "Josep Antoni Bover",
+        "Idioma"        => "en",
+        "Imagen"	=> "AudioPlayGround.png"),      
+        
+array(	"Titulo" 	=> "Portal Experience",
+        "Fecha" 	=> "20/03/2023",
+        "URL" 		=> "Ejemplos/Three.js-Journey/Portal-Experience/index.html",
+        "Tags" 		=> array("Three.js", "JavaScript", "Shaders"),
+        "Tipo"		=> "Experience",
+        "Autor"         => "Josep Antoni Bover",
+        "Idioma"        => "en",
+        "Imagen"	=> "PortalExperience.png"),      
+        
 array(	"Titulo" 	=> "Chromatic Motion Blur",
         "Fecha" 	=> "18/04/2021",
         "URL" 		=> "Ejemplos/ChromaticMotionBlur/index.html",
