@@ -5,6 +5,15 @@
 
     /* Ojo! si el titulo no coincide con el titulo de devildrey33::InicioBlog, no se mostrará correctamente la imagen de la portada. */
     return array(        
+array(	"Titulo" 	=> "Audio Shader #4",
+        "Fecha" 	=> "06/05/2023",
+        "URL" 		=> "Ejemplos/Three.js-Journey/Audio-PlayGround/4/index.html",
+        "Tags" 		=> array("Three.js", "JavaScript", "Shaders", "WebAudio"),
+        "Tipo"		=> "Experience",
+        "Autor"         => "Josep Antoni Bover",
+        "Idioma"        => "en",
+        "Imagen"	=> "AudioShader4.png"),      
+        
 array(	"Titulo" 	=> "Audio Shader #3",
         "Fecha" 	=> "27/04/2023",
         "URL" 		=> "Ejemplos/Three.js-Journey/Audio-PlayGround/3/index.html",
