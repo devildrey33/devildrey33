@@ -530,6 +530,12 @@ $Base = new function() {
             Ret["TipoPagina"] = "Lab";
             nURL = "";
         }
+        else {
+            // Si no está dentro del lab y es de la carpeta ejemplos, es una Experience
+            if (cURL.indexOf("ejemplos/") > -1) {
+                Ret["TipoPagina"] = "Experience";
+            }
+        }
 /*        if (cURL.indexOf("web/") > -1) {
             Ret["TipoPagina"] = "Web";
             nURL = "";

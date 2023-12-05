@@ -9,23 +9,20 @@ and open the template in the editor.
 */
 
 
-/* Escondo el logo si la altura es menor que 670 pixeles y solo lo muestro durante la animaciÃ³n de carga */
+/* Escondo el logo si la altura es menor que 670 pixeles y solo lo muestro durante la animación de carga */
 @media only screen and (max-height: 550px) {
     #Logo           {    left:-200px;     }
     .AnimacionLogo  {    display:block;   }
 }
 
 
+
 /* Vista vertical (portrait) para la gran mayoria de moviles Y tablets  */                             
-@media  only screen and (orientation:portrait) and (min-resolution: 1.2dppx), 
-        only screen and (orientation:portrait) and (-webkit-min-device-pixel-ratio: 1.2), 
-        only screen and (orientation:portrait) and (-moz-min-device-pixel-ratio: 1.2), 
-        only screen and (orientation:portrait) and (-o-min-device-pixel-ratio: 13/10),
-        only screen and (orientation:portrait) and (min-resolution: 120dpi) {            
-    body                { /*margin-left:90px; */ font-size:2rem !important; }  
-    #MarcoNavegacion    { left:-10px;}
-    .Blog               { margin: 0px 55px 0px 30px !important; }    
-    #MarcoNavegacionLab { margin: 0px 55px 0px 15px !important; }
+@media  only screen and (orientation:portrait)  {            
+    body                { /*margin-left:90px; */ font-size:1.2rem !important; }  
+/*    #MarcoNavegacion    { left:-10px;}*/
+/*    .Blog               { margin: 0px 55px 0px 30px !important; }    
+    #MarcoNavegacionLab { margin: 0px 55px 0px 15px !important; }*/
     .FechaEntrada       { font-size:16px;                       }
 
     /* Muestro la nota como un bloque, (los display table lo flipan con tamaños moviles) */
@@ -40,7 +37,11 @@ and open the template in the editor.
     pre, code, kbd, samp, tt {
         font-family : Inconsolata, monospace;
         font-size   : 2rem !important;
-      }
+    }
+
+/*    .Articulo_Portada h1 {
+        font-size: 2rem;
+    }*/
       
 }
 
