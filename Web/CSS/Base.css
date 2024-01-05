@@ -45,15 +45,19 @@ body {
     padding     : 0px; 
     margin-left : 60px; 
     background  : #29272C;
-/*    min-width   : 600px;*/
+    min-width   : 600px;
 /*  overflow-y  : scroll;*/
-    height      : 100vh;    
+    overflow-x  : hidden;
+    height      : 100vh;        
     font-size   : 1.4rem;
     transition  : 0.4s;
 }
 
+/* Experiencias no tienen scroll,
+    asigno min-width a 0 para que no la lie en resoluciones moviles */
 body[tipo="Experience"] {
-    overflow: hidden;;
+    overflow  : hidden;
+    min-width : 0 !important;
 }
 
 i { background-color: rgba(255,255,255,0.8); }
