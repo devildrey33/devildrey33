@@ -1,8 +1,8 @@
 <?php
 /* Clase devildrey33_PintarCodigo creada por Josep Antoni Bover el 09/10/2011 para www.devildrey33.es
-   Ultima modificación : 29/01/2016
+   Ultima modificación : 19/06/2024
 
-   Versión             : 2.03
+   Versión             : 2.03b
 
    Explicación         : Esta clase consiste en un conjunto de funciones que permiten pintar cadenas de texto, archivos, o partes de archivo XML, PHP, C, C++, HTML, JavaScript, y CSS
                          La idea es parsear una parte de un archivo para introducir en las palabras especificadas etiquetas span con colores especificos.
@@ -12,8 +12,7 @@
    Objetivo            : Como estoy administrando mucho código en www.devildrey33.es necesito algo que me haga el trabajo de colorear aquellas porciones de código que quiero mostrar en la web.
                          De esta forma puedo añadir directamente los archivos de código en la web, y esta se encarga de colorearlos si son solicitados.
 
-   TODO                : Diccionario C++ estilo NetBeans
-                         Captar y parsear con el tipo CSS los atributos style del HTML. 
+   TODO                : Captar y parsear con el tipo CSS los atributos style del HTML.
 
    Licencia            : GPL3 (http://www.gnu.org/licenses/gpl-3.0.html)
 
@@ -26,7 +25,9 @@
                          Se puede especificar a la hora de pintar, que diccionario queremos utilizar.
                          La versión 2.01 pintaba ciertas palabras del diccionario HTML si se las encontraba sueltas por el código HTML sin los caracteres <>.
                          Pequeños retoques en las normas CSS, hace falta re-implementar el parseador para CSS, y añadir normas para las reglas CSS, también hay que pulit la forma de detectar los selectores... de momento solo detecta clases y id's (las etiquetas las pongo desde el diccionaro)
+                         Ahora al guardar cache de pntado se comprueba que exista la ruta "dirname(__FILE__).$this->_PathCache" y de no ser asi la crea
 */
+
 //    echo "devildrey33_PintarCodigo.php\n";
 
 
@@ -875,7 +876,7 @@ class devildrey33_PintarCodigo {
         $ID = $this->_RetocarNombreArchivo($ID);
         $NombreArchivo = $this->_RetocarNombreArchivo($Archivo);
         if ($ID != "") 	$NombrePintado = dirname(__FILE__).$this->_PathCache.$NombreArchivo."_".$ID.".PintarCodigo";
-        else		$NombrePintado = dirname(__FILE__).$this->_PathCache.$NombreArchivo.".PintarCodigo";
+        else		    $NombrePintado = dirname(__FILE__).$this->_PathCache.$NombreArchivo.".PintarCodigo";
         // Si existe una version pintada
         if (file_exists($NombrePintado) == true) {
             if (filemtime($Archivo) > filemtime($NombrePintado)) {
@@ -898,6 +899,12 @@ class devildrey33_PintarCodigo {
     private function _GuardarPintado($Archivo, $Datos, $ID = "") {
         $ID = $this->_RetocarNombreArchivo($ID);
         $NombreArchivo = $this->_RetocarNombreArchivo($Archivo);
+
+        // Si el directorio cache no existe lo creo
+        if (is_dir(dirname(__FILE__).$this->_PathCache) == FALSE) {
+            mkdir(dirname(__FILE__).$this->_PathCache);
+        }
+
         if ($ID != "") 	$NombrePintado = dirname(__FILE__).$this->_PathCache.$NombreArchivo."_".$ID.".PintarCodigo";
         else		    $NombrePintado = dirname(__FILE__).$this->_PathCache.$NombreArchivo.".PintarCodigo";
         $NombrePintado = str_replace('\\', '/', $NombrePintado);

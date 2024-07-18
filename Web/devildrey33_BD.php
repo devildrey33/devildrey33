@@ -6,7 +6,7 @@
 
 class devildrey33_BD {
     public    $_mysqli;
-    public    $_BDFuncional = false;
+    public    $_BDFuncional = true;
     // Constructor
     public function __construct() {
         if (file_exists(dirname(__FILE__).'/Passwords.php')) {
